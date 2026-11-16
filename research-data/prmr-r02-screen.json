@@ -5771,5 +5771,31 @@
       "drug_interactions_calculated": false,
       "cure_predicted": false
     }
-  ]
+  ],
+  "policy_sensitivity": {
+    "method": "2 000 perturbations des coefficients exploratoires ±20 % avec Random(260116)",
+    "scope": "10 triples de 5 représentants : irbesartan, dapagliflozine, pirfénidone, pentoxifylline, linagliptine",
+    "result": [
+      {
+        "agents": [
+          "Irbesartan",
+          "Dapagliflozine",
+          "Pirfénidone"
+        ],
+        "top_count": 1161,
+        "top_frequency": 0.5805
+      },
+      {
+        "agents": [
+          "Irbesartan",
+          "Dapagliflozine",
+          "Pentoxifylline"
+        ],
+        "top_count": 839,
+        "top_frequency": 0.4195
+      }
+    ],
+    "interpretation": "stabilité de priorité subjective uniquement; ni probabilité de guérison ni probabilité d'efficacité ni simulation biologique",
+    "reproduce": "research-tools/prmr_r02_sensitivity.py"
+  }
 }
