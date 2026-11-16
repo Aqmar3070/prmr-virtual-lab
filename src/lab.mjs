@@ -1,6 +1,7 @@
 import {DEFAULT_PARAMS,PARAMS,evaluate,scenarioEnvelope} from "./model.mjs";
 import {EXAMPLES,SYSTEMS,enumerateStructures,similarity,loadRDKit,analyzeSmiles} from "./chemistry.mjs";
 import {findPubChem,searchChEMBLTargets} from "./connectors.mjs";
+import {initCloud} from "./cloud.mjs";
 
 const $=id=>document.getElementById(id);
 const format=(n,d=2)=>(n!==null&&n!==undefined&&n!==""&&Number.isFinite(Number(n)))?Number(n).toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d}):"n.d.";
@@ -9,7 +10,7 @@ const state={kit:null,rdkit:"loading",pk:{...DEFAULT_PARAMS},latestMolecule:null
 const newEl=(tag,className,text)=>{const x=document.createElement(tag);if(className)x.className=className;if(text!==undefined)x.textContent=text;return x;};
 const clear=id=>$(id).replaceChildren();
 const feedback=(id,msg,type="")=>{const x=$(id);x.textContent=msg;x.className="feedback"+(type?" "+type:"");};
-const headings={overview:"Vue générale",molecules:"Atelier moléculaire",library:"Bibliothèque",combinations:"Comparaison",pkpd:"Simulation PK/PD",systems:"Atlas physiologique",data:"Connecteurs",quality:"Traçabilité"};
+const headings={overview:"Vue générale",molecules:"Atelier moléculaire",library:"Bibliothèque",combinations:"Comparaison",pkpd:"Simulation PK/PD",systems:"Atlas physiologique",data:"Connecteurs",cloud:"Espace privé",quality:"Traçabilité"};
 
 function navigate(id){
  if(!headings[id])return;
@@ -250,3 +251,16 @@ async function startChemistry(){
  }catch(e){setRdkitStatus("failed",e.message)}
 }
 populateExamples();initializePKControls();renderPK();renderLibrary();renderSelectors();renderSystems();setRdkitStatus("loading");startChemistry();
+initCloud({
+ getMolecule:()=>{
+  const analysis=analyzeCurrent();
+  if(!analysis)return null;
+  return {name:$("mol-name").value.trim()||"Structure sans nom",smiles:analysis.smiles,descriptors:analysis.descriptors};
+ },
+ getSimulation:()=>({
+  parameters:{...state.pk},
+  prediction:evaluate(state.pk),
+  uncertainty:scenarioEnvelope(state.pk)
+ })
+});
+
