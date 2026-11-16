@@ -1,0 +1,5775 @@
+{
+  "id": "PRMR-R02-2026-11-16",
+  "publication_date": "2026-11-16",
+  "model_version": "r02-v1.0",
+  "rdkit_version": "2025.09.4",
+  "original_screen": true,
+  "scope": "hypotheses de recherche renale uniquement",
+  "never": "pas de prediction de guerison, pas de mesure animale, pas de traitement valide, pas de synergie mesuree",
+  "counts": {
+    "molecules": 10,
+    "dual": 45,
+    "triple": 120,
+    "total": 165,
+    "conditional_or_excluded": 121,
+    "remaining_hypotheses": 44
+  },
+  "chemical_method": {
+    "smiles_source": "PubChem pages individuelles, identifiants CID disponibles",
+    "descriptors": "calculés RDKit 2025.09.4 à partir des SMILES",
+    "fingerprints": "Morgan radius=2, size=2048, Tanimoto; précision stockée à quatre décimales",
+    "score": "somme poids d'axes + 0,2 × diversité structurale − pénalités de vigilance − 0,4 par troisième molécule. Score de priorisation arbitraire; aucune efficacité estimée",
+    "weights": {
+      "SRAA": 2,
+      "SGLT2": 2,
+      "Fibrose": 1.5,
+      "Inflammation": 1.5,
+      "DPP4": 0.6,
+      "MR": 0.4,
+      "VDR": 0.1,
+      "XOR": 0
+    },
+    "penalties": {
+      "Pirfénidone": 0.45,
+      "Pentoxifylline": 0.5,
+      "Linagliptine": 0.35,
+      "Éplérénone": 1.5,
+      "Paricalcitol": 2,
+      "Allopurinol": 3
+    }
+  },
+  "sources": [
+    "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=73db516f-8c80-431f-8190-33081718cf8d",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b0d1d50f-9023-4e2f-889f-a5febba70fa5",
+    "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b0886e4e-5710-4053-9270-4d7de34068e7",
+    "https://www.nejm.org/doi/full/10.1056/NEJMoa1915833"
+  ],
+  "molecules": [
+    {
+      "name": "Irbesartan",
+      "cid": 3749,
+      "smiles": "CCCCC1=NC2(CCCC2)C(=O)N1CC3=CC=C(C=C3)C4=CC=CC=C4C5=NNN=N5",
+      "axis": "SRAA",
+      "class_code": "ARB",
+      "formula": "C25H28N6O",
+      "mass_g_mol": 428.54,
+      "clogp": 4.78,
+      "tpsa_A2": 87.13,
+      "hbd": 1,
+      "hba": 5,
+      "rotatable": 7,
+      "alert": "Surveillance potassium, pression et fonction rénale",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/3749"
+    },
+    {
+      "name": "Losartan",
+      "cid": 3961,
+      "smiles": "CCCCC1=NC(=C(N1CC2=CC=C(C=C2)C3=CC=CC=C3C4=NNN=N4)CO)Cl",
+      "axis": "SRAA",
+      "class_code": "ARB",
+      "formula": "C22H23ClN6O",
+      "mass_g_mol": 422.92,
+      "clogp": 4.27,
+      "tpsa_A2": 92.51,
+      "hbd": 2,
+      "hba": 6,
+      "rotatable": 8,
+      "alert": "Surveillance potassium, pression et fonction rénale",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/3961"
+    },
+    {
+      "name": "Dapagliflozine",
+      "cid": 9887712,
+      "smiles": "CCOC1=CC=C(C=C1)CC2=C(C=CC(=C2)[C@H]3[C@@H]([C@H]([C@@H]([C@H](O3)CO)O)O)O)Cl",
+      "axis": "SGLT2",
+      "class_code": "SGLT2",
+      "formula": "C21H25ClO6",
+      "mass_g_mol": 408.88,
+      "clogp": 1.84,
+      "tpsa_A2": 99.38,
+      "hbd": 4,
+      "hba": 6,
+      "rotatable": 6,
+      "alert": "Surveillance de l'état volémique, infections et acidocétose selon le contexte",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/9887712"
+    },
+    {
+      "name": "Empagliflozine",
+      "cid": 11949646,
+      "smiles": "C1COC[C@H]1OC2=CC=C(C=C2)CC3=C(C=CC(=C3)[C@H]4[C@@H]([C@H]([C@@H]([C@H](O4)CO)O)O)O)Cl",
+      "axis": "SGLT2",
+      "class_code": "SGLT2",
+      "formula": "C23H27ClO7",
+      "mass_g_mol": 450.92,
+      "clogp": 1.61,
+      "tpsa_A2": 108.61,
+      "hbd": 4,
+      "hba": 7,
+      "rotatable": 6,
+      "alert": "Surveillance de l'état volémique, infections et acidocétose selon le contexte",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/11949646"
+    },
+    {
+      "name": "Pirfénidone",
+      "cid": 40632,
+      "smiles": "CC1=CN(C(=O)C=C1)C2=CC=CC=C2",
+      "axis": "Fibrose",
+      "class_code": "ANTIFIB",
+      "formula": "C12H11NO",
+      "mass_g_mol": 185.23,
+      "clogp": 2.15,
+      "tpsa_A2": 22,
+      "hbd": 0,
+      "hba": 2,
+      "rotatable": 1,
+      "alert": "Mécanisme antifibrosant incomplet; surveillance hépatique et précautions rénales",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/40632"
+    },
+    {
+      "name": "Pentoxifylline",
+      "cid": 4740,
+      "smiles": "CC(=O)CCCCN1C(=O)C2=C(N=CN2C)N(C1=O)C",
+      "axis": "Inflammation",
+      "class_code": "PDE",
+      "formula": "C13H18N4O3",
+      "mass_g_mol": 278.31,
+      "clogp": 0.19,
+      "tpsa_A2": 78.89,
+      "hbd": 0,
+      "hba": 7,
+      "rotatable": 5,
+      "alert": "Métabolite actif accumulé en insuffisance rénale; hypotension et risques hémorragiques à évaluer",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/4740"
+    },
+    {
+      "name": "Linagliptine",
+      "cid": 10096344,
+      "smiles": "CC#CCN1C2=C(N=C1N3CCC[C@H](C3)N)N(C(=O)N(C2=O)CC4=NC5=CC=CC=C5C(=N4)C)C",
+      "axis": "DPP4",
+      "class_code": "DPP4",
+      "formula": "C25H28N8O2",
+      "mass_g_mol": 472.55,
+      "clogp": 1.15,
+      "tpsa_A2": 116.86,
+      "hbd": 1,
+      "hba": 10,
+      "rotatable": 4,
+      "alert": "Intérêt pour progression rénale non établi par ce criblage; mécanisme surtout glycémique",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/10096344"
+    },
+    {
+      "name": "Éplérénone",
+      "cid": 443872,
+      "smiles": "C[C@]12CCC(=O)C=C1C[C@H]([C@@H]3[C@]24[C@H](O4)C[C@]5([C@H]3CC[C@@]56CCC(=O)O6)C)C(=O)OC",
+      "axis": "MR",
+      "class_code": "MRA",
+      "formula": "C24H30O6",
+      "mass_g_mol": 414.5,
+      "clogp": 3.12,
+      "tpsa_A2": 82.2,
+      "hbd": 0,
+      "hba": 6,
+      "rotatable": 1,
+      "alert": "Hyperkaliémie et contre-indications rénales; association avec ARB à haut risque de potassium",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/443872"
+    },
+    {
+      "name": "Paricalcitol",
+      "cid": 5281104,
+      "smiles": "C[C@H](/C=C/[C@H](C)C(C)(C)O)[C@H]1CC[C@@H]\\2[C@@]1(CCC/C2=C\\C=C3C[C@H](C[C@@H](C3)O)O)C",
+      "axis": "VDR",
+      "class_code": "VDR",
+      "formula": "C27H44O3",
+      "mass_g_mol": 416.65,
+      "clogp": 5.56,
+      "tpsa_A2": 60.69,
+      "hbd": 3,
+      "hba": 3,
+      "rotatable": 5,
+      "alert": "Hypercalcémie et hyperphosphatémie possibles; nécessite une indication minérale documentée",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5281104"
+    },
+    {
+      "name": "Allopurinol",
+      "cid": 135401907,
+      "smiles": "C1=NNC2=C1C(=O)NC=N2",
+      "axis": "XOR",
+      "class_code": "XOR",
+      "formula": "C5H4N4O",
+      "mass_g_mol": 136.11,
+      "clogp": -0.35,
+      "tpsa_A2": 74.43,
+      "hbd": 2,
+      "hba": 3,
+      "rotatable": 0,
+      "alert": "CKD-FIX n'a pas établi de ralentissement de progression de MRC sans indication spécifique",
+      "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/135401907"
+    }
+  ],
+  "pairwise_tanimoto_upper": [
+    [
+      0.5139,
+      0.1183,
+      0.099,
+      0.1268,
+      0.1059,
+      0.1296,
+      0.0755,
+      0.0707,
+      0.0959
+    ],
+    [
+      0.1477,
+      0.1134,
+      0.1,
+      0.1098,
+      0.1121,
+      0.0374,
+      0.0404,
+      0.0694
+    ],
+    [
+      0.6613,
+      0.0746,
+      0.075,
+      0.0755,
+      0.0707,
+      0.0652,
+      0.0435
+    ],
+    [
+      0.0533,
+      0.0449,
+      0.0901,
+      0.0762,
+      0.0714,
+      0.026
+    ],
+    [
+      0.1273,
+      0.1538,
+      0.0649,
+      0.0278,
+      0.0909
+    ],
+    [
+      0.2093,
+      0.0909,
+      0.0476,
+      0.1071
+    ],
+    [
+      0.0783,
+      0.0642,
+      0.0714
+    ],
+    [
+      0.125,
+      0.0649
+    ],
+    [
+      0.0137
+    ]
+  ],
+  "combinations": [
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan"
+      ],
+      "axes": [
+        "SRAA"
+      ],
+      "indices": [
+        0,
+        1
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 1,
+      "tanimoto_mean": 0.5139,
+      "structural_diversity": 0.4861,
+      "priority_index": 2.097,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        0,
+        2
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1183,
+      "structural_diversity": 0.8817,
+      "priority_index": 4.176,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Empagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        0,
+        3
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.099,
+      "structural_diversity": 0.901,
+      "priority_index": 4.18,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose"
+      ],
+      "indices": [
+        0,
+        4
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1268,
+      "structural_diversity": 0.8732,
+      "priority_index": 3.225,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation"
+      ],
+      "indices": [
+        0,
+        5
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1059,
+      "structural_diversity": 0.8941,
+      "priority_index": 3.179,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        6
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1296,
+      "structural_diversity": 0.8704,
+      "priority_index": 2.424,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "MR"
+      ],
+      "indices": [
+        0,
+        7
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0755,
+      "structural_diversity": 0.9245,
+      "priority_index": 1.085,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0707,
+      "structural_diversity": 0.9293,
+      "priority_index": 0.286,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0959,
+      "structural_diversity": 0.9041,
+      "priority_index": -0.819,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        1,
+        2
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1477,
+      "structural_diversity": 0.8523,
+      "priority_index": 4.17,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Empagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        1,
+        3
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1134,
+      "structural_diversity": 0.8866,
+      "priority_index": 4.177,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose"
+      ],
+      "indices": [
+        1,
+        4
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1,
+      "structural_diversity": 0.9,
+      "priority_index": 3.23,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation"
+      ],
+      "indices": [
+        1,
+        5
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1098,
+      "structural_diversity": 0.8902,
+      "priority_index": 3.178,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4"
+      ],
+      "indices": [
+        1,
+        6
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1121,
+      "structural_diversity": 0.8879,
+      "priority_index": 2.428,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "MR"
+      ],
+      "indices": [
+        1,
+        7
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0374,
+      "structural_diversity": 0.9626,
+      "priority_index": 1.093,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "VDR"
+      ],
+      "indices": [
+        1,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0404,
+      "structural_diversity": 0.9596,
+      "priority_index": 0.292,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0694,
+      "structural_diversity": 0.9306,
+      "priority_index": -0.814,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Empagliflozine"
+      ],
+      "axes": [
+        "SGLT2"
+      ],
+      "indices": [
+        2,
+        3
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 1,
+      "tanimoto_mean": 0.6613,
+      "structural_diversity": 0.3387,
+      "priority_index": 2.068,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        2,
+        4
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0746,
+      "structural_diversity": 0.9254,
+      "priority_index": 3.235,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        2,
+        5
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.075,
+      "structural_diversity": 0.925,
+      "priority_index": 3.185,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        2,
+        6
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0755,
+      "structural_diversity": 0.9245,
+      "priority_index": 2.435,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "MR"
+      ],
+      "indices": [
+        2,
+        7
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0707,
+      "structural_diversity": 0.9293,
+      "priority_index": 1.086,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "VDR"
+      ],
+      "indices": [
+        2,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0652,
+      "structural_diversity": 0.9348,
+      "priority_index": 0.287,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "XOR"
+      ],
+      "indices": [
+        2,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0435,
+      "structural_diversity": 0.9565,
+      "priority_index": -0.809,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        3,
+        4
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0533,
+      "structural_diversity": 0.9467,
+      "priority_index": 3.239,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        3,
+        5
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0449,
+      "structural_diversity": 0.9551,
+      "priority_index": 3.191,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        3,
+        6
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0901,
+      "structural_diversity": 0.9099,
+      "priority_index": 2.432,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "MR"
+      ],
+      "indices": [
+        3,
+        7
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0762,
+      "structural_diversity": 0.9238,
+      "priority_index": 1.085,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "VDR"
+      ],
+      "indices": [
+        3,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0714,
+      "structural_diversity": 0.9286,
+      "priority_index": 0.286,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "XOR"
+      ],
+      "indices": [
+        3,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.026,
+      "structural_diversity": 0.974,
+      "priority_index": -0.805,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "Fibrose",
+        "Inflammation"
+      ],
+      "indices": [
+        4,
+        5
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1273,
+      "structural_diversity": 0.8727,
+      "priority_index": 2.225,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Linagliptine"
+      ],
+      "axes": [
+        "Fibrose",
+        "DPP4"
+      ],
+      "indices": [
+        4,
+        6
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1538,
+      "structural_diversity": 0.8462,
+      "priority_index": 1.469,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Éplérénone"
+      ],
+      "axes": [
+        "Fibrose",
+        "MR"
+      ],
+      "indices": [
+        4,
+        7
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0649,
+      "structural_diversity": 0.9351,
+      "priority_index": 0.137,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "Fibrose",
+        "VDR"
+      ],
+      "indices": [
+        4,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0278,
+      "structural_diversity": 0.9722,
+      "priority_index": -0.656,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Fibrose",
+        "XOR"
+      ],
+      "indices": [
+        4,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0909,
+      "structural_diversity": 0.9091,
+      "priority_index": -1.768,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        5,
+        6
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2093,
+      "structural_diversity": 0.7907,
+      "priority_index": 1.408,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Éplérénone"
+      ],
+      "axes": [
+        "Inflammation",
+        "MR"
+      ],
+      "indices": [
+        5,
+        7
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0909,
+      "structural_diversity": 0.9091,
+      "priority_index": 0.082,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "Inflammation",
+        "VDR"
+      ],
+      "indices": [
+        5,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0476,
+      "structural_diversity": 0.9524,
+      "priority_index": -0.71,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Inflammation",
+        "XOR"
+      ],
+      "indices": [
+        5,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.1071,
+      "structural_diversity": 0.8929,
+      "priority_index": -1.821,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Linagliptine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "DPP4",
+        "MR"
+      ],
+      "indices": [
+        6,
+        7
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0783,
+      "structural_diversity": 0.9217,
+      "priority_index": -0.666,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Linagliptine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "DPP4",
+        "VDR"
+      ],
+      "indices": [
+        6,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0642,
+      "structural_diversity": 0.9358,
+      "priority_index": -1.463,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Linagliptine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "DPP4",
+        "XOR"
+      ],
+      "indices": [
+        6,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0714,
+      "structural_diversity": 0.9286,
+      "priority_index": -2.564,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        7,
+        8
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.125,
+      "structural_diversity": 0.875,
+      "priority_index": -2.825,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        7,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0649,
+      "structural_diversity": 0.9351,
+      "priority_index": -3.913,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        8,
+        9
+      ],
+      "n_agents": 2,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.0137,
+      "structural_diversity": 0.9863,
+      "priority_index": -4.703,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Dapagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.26,
+      "structural_diversity": 0.74,
+      "priority_index": 3.748,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Empagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        0,
+        1,
+        3
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2421,
+      "structural_diversity": 0.7579,
+      "priority_index": 3.752,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose"
+      ],
+      "indices": [
+        0,
+        1,
+        4
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2469,
+      "structural_diversity": 0.7531,
+      "priority_index": 2.801,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation"
+      ],
+      "indices": [
+        0,
+        1,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2432,
+      "structural_diversity": 0.7568,
+      "priority_index": 2.751,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        1,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2519,
+      "structural_diversity": 0.7481,
+      "priority_index": 2,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "MR"
+      ],
+      "indices": [
+        0,
+        1,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2089,
+      "structural_diversity": 0.7911,
+      "priority_index": 0.658,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        1,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2083,
+      "structural_diversity": 0.7917,
+      "priority_index": -0.142,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Losartan",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        1,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2264,
+      "structural_diversity": 0.7736,
+      "priority_index": -1.245,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee",
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Empagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        0,
+        2,
+        3
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2929,
+      "structural_diversity": 0.7071,
+      "priority_index": 3.741,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        0,
+        2,
+        4
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1066,
+      "structural_diversity": 0.8934,
+      "priority_index": 4.829,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        0,
+        2,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0997,
+      "structural_diversity": 0.9003,
+      "priority_index": 4.78,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        2,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1078,
+      "structural_diversity": 0.8922,
+      "priority_index": 4.028,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "MR"
+      ],
+      "indices": [
+        0,
+        2,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0882,
+      "structural_diversity": 0.9118,
+      "priority_index": 2.682,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        2,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0847,
+      "structural_diversity": 0.9153,
+      "priority_index": 1.883,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        2,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0859,
+      "structural_diversity": 0.9141,
+      "priority_index": 0.783,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Empagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        0,
+        3,
+        4
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.093,
+      "structural_diversity": 0.907,
+      "priority_index": 4.831,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Empagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        0,
+        3,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0833,
+      "structural_diversity": 0.9167,
+      "priority_index": 4.783,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Empagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        3,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1062,
+      "structural_diversity": 0.8938,
+      "priority_index": 4.029,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Empagliflozine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "MR"
+      ],
+      "indices": [
+        0,
+        3,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0836,
+      "structural_diversity": 0.9164,
+      "priority_index": 2.683,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Empagliflozine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        3,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0804,
+      "structural_diversity": 0.9196,
+      "priority_index": 1.884,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Empagliflozine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        3,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0736,
+      "structural_diversity": 0.9264,
+      "priority_index": 0.785,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "Inflammation"
+      ],
+      "indices": [
+        0,
+        4,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.12,
+      "structural_diversity": 0.88,
+      "priority_index": 3.826,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        4,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1367,
+      "structural_diversity": 0.8633,
+      "priority_index": 3.073,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "MR"
+      ],
+      "indices": [
+        0,
+        4,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0891,
+      "structural_diversity": 0.9109,
+      "priority_index": 1.732,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        4,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0751,
+      "structural_diversity": 0.9249,
+      "priority_index": 0.935,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        4,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1045,
+      "structural_diversity": 0.8955,
+      "priority_index": -0.171,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1483,
+      "structural_diversity": 0.8517,
+      "priority_index": 3.02,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pentoxifylline",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "MR"
+      ],
+      "indices": [
+        0,
+        5,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0908,
+      "structural_diversity": 0.9092,
+      "priority_index": 1.682,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pentoxifylline",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        5,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0747,
+      "structural_diversity": 0.9253,
+      "priority_index": 0.885,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pentoxifylline",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        5,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.103,
+      "structural_diversity": 0.897,
+      "priority_index": -0.221,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Linagliptine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4",
+        "MR"
+      ],
+      "indices": [
+        0,
+        6,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0945,
+      "structural_diversity": 0.9055,
+      "priority_index": 0.931,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre",
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Linagliptine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        6,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0882,
+      "structural_diversity": 0.9118,
+      "priority_index": 0.132,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Linagliptine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        6,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.099,
+      "structural_diversity": 0.901,
+      "priority_index": -0.97,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        0,
+        7,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0904,
+      "structural_diversity": 0.9096,
+      "priority_index": -1.218,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        7,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0788,
+      "structural_diversity": 0.9212,
+      "priority_index": -2.316,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        0,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0601,
+      "structural_diversity": 0.9399,
+      "priority_index": -3.112,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine",
+        "Empagliflozine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2"
+      ],
+      "indices": [
+        1,
+        2,
+        3
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.3075,
+      "structural_diversity": 0.6925,
+      "priority_index": 3.738,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        1,
+        2,
+        4
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1074,
+      "structural_diversity": 0.8926,
+      "priority_index": 4.829,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        1,
+        2,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1108,
+      "structural_diversity": 0.8892,
+      "priority_index": 4.778,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        1,
+        2,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1118,
+      "structural_diversity": 0.8882,
+      "priority_index": 4.028,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "MR"
+      ],
+      "indices": [
+        1,
+        2,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0853,
+      "structural_diversity": 0.9147,
+      "priority_index": 2.683,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "VDR"
+      ],
+      "indices": [
+        1,
+        2,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0844,
+      "structural_diversity": 0.9156,
+      "priority_index": 1.883,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Dapagliflozine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        2,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0869,
+      "structural_diversity": 0.9131,
+      "priority_index": 0.783,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Empagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        1,
+        3,
+        4
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0889,
+      "structural_diversity": 0.9111,
+      "priority_index": 4.832,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Empagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        1,
+        3,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0894,
+      "structural_diversity": 0.9106,
+      "priority_index": 4.782,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Empagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        1,
+        3,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1052,
+      "structural_diversity": 0.8948,
+      "priority_index": 4.029,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Empagliflozine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "MR"
+      ],
+      "indices": [
+        1,
+        3,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0757,
+      "structural_diversity": 0.9243,
+      "priority_index": 2.685,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Empagliflozine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "VDR"
+      ],
+      "indices": [
+        1,
+        3,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0751,
+      "structural_diversity": 0.9249,
+      "priority_index": 1.885,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Empagliflozine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        3,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0696,
+      "structural_diversity": 0.9304,
+      "priority_index": 0.786,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pirfénidone",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "Inflammation"
+      ],
+      "indices": [
+        1,
+        4,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1124,
+      "structural_diversity": 0.8876,
+      "priority_index": 3.828,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pirfénidone",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "DPP4"
+      ],
+      "indices": [
+        1,
+        4,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.122,
+      "structural_diversity": 0.878,
+      "priority_index": 3.076,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pirfénidone",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "MR"
+      ],
+      "indices": [
+        1,
+        4,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0674,
+      "structural_diversity": 0.9326,
+      "priority_index": 1.737,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pirfénidone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "VDR"
+      ],
+      "indices": [
+        1,
+        4,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0561,
+      "structural_diversity": 0.9439,
+      "priority_index": 0.939,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pirfénidone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        4,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0868,
+      "structural_diversity": 0.9132,
+      "priority_index": -0.167,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        1,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1437,
+      "structural_diversity": 0.8563,
+      "priority_index": 3.021,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pentoxifylline",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "MR"
+      ],
+      "indices": [
+        1,
+        5,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0794,
+      "structural_diversity": 0.9206,
+      "priority_index": 1.684,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pentoxifylline",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "VDR"
+      ],
+      "indices": [
+        1,
+        5,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0659,
+      "structural_diversity": 0.9341,
+      "priority_index": 0.887,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Pentoxifylline",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        5,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0954,
+      "structural_diversity": 0.9046,
+      "priority_index": -0.219,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Linagliptine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4",
+        "MR"
+      ],
+      "indices": [
+        1,
+        6,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0759,
+      "structural_diversity": 0.9241,
+      "priority_index": 0.935,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre",
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Linagliptine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4",
+        "VDR"
+      ],
+      "indices": [
+        1,
+        6,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0722,
+      "structural_diversity": 0.9278,
+      "priority_index": 0.136,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Linagliptine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "DPP4",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        6,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0843,
+      "structural_diversity": 0.9157,
+      "priority_index": -0.967,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SRAA",
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        1,
+        7,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0676,
+      "structural_diversity": 0.9324,
+      "priority_index": -1.214,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        7,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0572,
+      "structural_diversity": 0.9428,
+      "priority_index": -2.311,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "hyperkaliemie_AR_B_et_MRA"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Losartan",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SRAA",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        1,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0412,
+      "structural_diversity": 0.9588,
+      "priority_index": -3.108,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Empagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        2,
+        3,
+        4
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2631,
+      "structural_diversity": 0.7369,
+      "priority_index": 2.797,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Empagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        2,
+        3,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2604,
+      "structural_diversity": 0.7396,
+      "priority_index": 2.748,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Empagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        2,
+        3,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2756,
+      "structural_diversity": 0.7244,
+      "priority_index": 1.995,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Empagliflozine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "MR"
+      ],
+      "indices": [
+        2,
+        3,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2694,
+      "structural_diversity": 0.7306,
+      "priority_index": 0.646,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Empagliflozine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "VDR"
+      ],
+      "indices": [
+        2,
+        3,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.266,
+      "structural_diversity": 0.734,
+      "priority_index": -0.153,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Empagliflozine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "XOR"
+      ],
+      "indices": [
+        2,
+        3,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 2,
+      "tanimoto_mean": 0.2436,
+      "structural_diversity": 0.7564,
+      "priority_index": -1.249,
+      "status": "suspendue",
+      "reasons": [
+        "classe_pharmacologique_repetee",
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "Inflammation"
+      ],
+      "indices": [
+        2,
+        4,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0923,
+      "structural_diversity": 0.9077,
+      "priority_index": 3.832,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "DPP4"
+      ],
+      "indices": [
+        2,
+        4,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1013,
+      "structural_diversity": 0.8987,
+      "priority_index": 3.08,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "MR"
+      ],
+      "indices": [
+        2,
+        4,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0701,
+      "structural_diversity": 0.9299,
+      "priority_index": 1.736,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "VDR"
+      ],
+      "indices": [
+        2,
+        4,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0559,
+      "structural_diversity": 0.9441,
+      "priority_index": 0.939,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "XOR"
+      ],
+      "indices": [
+        2,
+        4,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0697,
+      "structural_diversity": 0.9303,
+      "priority_index": -0.164,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        2,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1199,
+      "structural_diversity": 0.8801,
+      "priority_index": 3.026,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pentoxifylline",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "MR"
+      ],
+      "indices": [
+        2,
+        5,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0789,
+      "structural_diversity": 0.9211,
+      "priority_index": 1.684,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pentoxifylline",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "VDR"
+      ],
+      "indices": [
+        2,
+        5,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0626,
+      "structural_diversity": 0.9374,
+      "priority_index": 0.887,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pentoxifylline",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "XOR"
+      ],
+      "indices": [
+        2,
+        5,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0752,
+      "structural_diversity": 0.9248,
+      "priority_index": -0.215,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Linagliptine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4",
+        "MR"
+      ],
+      "indices": [
+        2,
+        6,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0748,
+      "structural_diversity": 0.9252,
+      "priority_index": 0.935,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Linagliptine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4",
+        "VDR"
+      ],
+      "indices": [
+        2,
+        6,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0683,
+      "structural_diversity": 0.9317,
+      "priority_index": 0.136,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Linagliptine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4",
+        "XOR"
+      ],
+      "indices": [
+        2,
+        6,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0635,
+      "structural_diversity": 0.9365,
+      "priority_index": -0.963,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        2,
+        7,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.087,
+      "structural_diversity": 0.913,
+      "priority_index": -1.217,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        2,
+        7,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0597,
+      "structural_diversity": 0.9403,
+      "priority_index": -2.312,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        2,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0408,
+      "structural_diversity": 0.9592,
+      "priority_index": -3.108,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pirfénidone",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "Inflammation"
+      ],
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0752,
+      "structural_diversity": 0.9248,
+      "priority_index": 3.835,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pirfénidone",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "DPP4"
+      ],
+      "indices": [
+        3,
+        4,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0991,
+      "structural_diversity": 0.9009,
+      "priority_index": 3.08,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pirfénidone",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "MR"
+      ],
+      "indices": [
+        3,
+        4,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0648,
+      "structural_diversity": 0.9352,
+      "priority_index": 1.737,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pirfénidone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "VDR"
+      ],
+      "indices": [
+        3,
+        4,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0508,
+      "structural_diversity": 0.9492,
+      "priority_index": 0.94,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pirfénidone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "XOR"
+      ],
+      "indices": [
+        3,
+        4,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0567,
+      "structural_diversity": 0.9433,
+      "priority_index": -0.161,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        3,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1148,
+      "structural_diversity": 0.8852,
+      "priority_index": 3.027,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pentoxifylline",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "MR"
+      ],
+      "indices": [
+        3,
+        5,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0707,
+      "structural_diversity": 0.9293,
+      "priority_index": 1.686,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pentoxifylline",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "VDR"
+      ],
+      "indices": [
+        3,
+        5,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0546,
+      "structural_diversity": 0.9454,
+      "priority_index": 0.889,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Pentoxifylline",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "XOR"
+      ],
+      "indices": [
+        3,
+        5,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0593,
+      "structural_diversity": 0.9407,
+      "priority_index": -0.212,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Linagliptine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4",
+        "MR"
+      ],
+      "indices": [
+        3,
+        6,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0815,
+      "structural_diversity": 0.9185,
+      "priority_index": 0.934,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Linagliptine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4",
+        "VDR"
+      ],
+      "indices": [
+        3,
+        6,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0752,
+      "structural_diversity": 0.9248,
+      "priority_index": 0.135,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Linagliptine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "DPP4",
+        "XOR"
+      ],
+      "indices": [
+        3,
+        6,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0625,
+      "structural_diversity": 0.9375,
+      "priority_index": -0.963,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "SGLT2",
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        3,
+        7,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0909,
+      "structural_diversity": 0.9091,
+      "priority_index": -1.218,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        3,
+        7,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0557,
+      "structural_diversity": 0.9443,
+      "priority_index": -2.311,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Empagliflozine",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "SGLT2",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        3,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.037,
+      "structural_diversity": 0.963,
+      "priority_index": -3.107,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "Fibrose",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        4,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1635,
+      "structural_diversity": 0.8365,
+      "priority_index": 2.067,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Pentoxifylline",
+        "Éplérénone"
+      ],
+      "axes": [
+        "Fibrose",
+        "Inflammation",
+        "MR"
+      ],
+      "indices": [
+        4,
+        5,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0944,
+      "structural_diversity": 0.9056,
+      "priority_index": 0.731,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Pentoxifylline",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "Fibrose",
+        "Inflammation",
+        "VDR"
+      ],
+      "indices": [
+        4,
+        5,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0676,
+      "structural_diversity": 0.9324,
+      "priority_index": -0.064,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Pentoxifylline",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Fibrose",
+        "Inflammation",
+        "XOR"
+      ],
+      "indices": [
+        4,
+        5,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1084,
+      "structural_diversity": 0.8916,
+      "priority_index": -1.172,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Linagliptine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "Fibrose",
+        "DPP4",
+        "MR"
+      ],
+      "indices": [
+        4,
+        6,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.099,
+      "structural_diversity": 0.901,
+      "priority_index": -0.02,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Linagliptine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "Fibrose",
+        "DPP4",
+        "VDR"
+      ],
+      "indices": [
+        4,
+        6,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0819,
+      "structural_diversity": 0.9181,
+      "priority_index": -0.816,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Linagliptine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Fibrose",
+        "DPP4",
+        "XOR"
+      ],
+      "indices": [
+        4,
+        6,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1054,
+      "structural_diversity": 0.8946,
+      "priority_index": -1.921,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "Fibrose",
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        4,
+        7,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0726,
+      "structural_diversity": 0.9274,
+      "priority_index": -2.165,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Fibrose",
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        4,
+        7,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0736,
+      "structural_diversity": 0.9264,
+      "priority_index": -3.265,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Fibrose",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        4,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0441,
+      "structural_diversity": 0.9559,
+      "priority_index": -4.059,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Linagliptine",
+        "Éplérénone"
+      ],
+      "axes": [
+        "Inflammation",
+        "DPP4",
+        "MR"
+      ],
+      "indices": [
+        5,
+        6,
+        7
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1262,
+      "structural_diversity": 0.8738,
+      "priority_index": -0.075,
+      "status": "suspendue",
+      "reasons": [
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Linagliptine",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "Inflammation",
+        "DPP4",
+        "VDR"
+      ],
+      "indices": [
+        5,
+        6,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.107,
+      "structural_diversity": 0.893,
+      "priority_index": -0.871,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Linagliptine",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Inflammation",
+        "DPP4",
+        "XOR"
+      ],
+      "indices": [
+        5,
+        6,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1293,
+      "structural_diversity": 0.8707,
+      "priority_index": -1.976,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "Inflammation",
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        5,
+        7,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0878,
+      "structural_diversity": 0.9122,
+      "priority_index": -2.218,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Inflammation",
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        5,
+        7,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0876,
+      "structural_diversity": 0.9124,
+      "priority_index": -3.318,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pentoxifylline",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "Inflammation",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        5,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0561,
+      "structural_diversity": 0.9439,
+      "priority_index": -4.111,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Linagliptine",
+        "Éplérénone",
+        "Paricalcitol"
+      ],
+      "axes": [
+        "DPP4",
+        "MR",
+        "VDR"
+      ],
+      "indices": [
+        6,
+        7,
+        8
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0892,
+      "structural_diversity": 0.9108,
+      "priority_index": -2.968,
+      "status": "suspendue",
+      "reasons": [
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Linagliptine",
+        "Éplérénone",
+        "Allopurinol"
+      ],
+      "axes": [
+        "DPP4",
+        "MR",
+        "XOR"
+      ],
+      "indices": [
+        6,
+        7,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0715,
+      "structural_diversity": 0.9285,
+      "priority_index": -4.064,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Linagliptine",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "DPP4",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        6,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0498,
+      "structural_diversity": 0.9502,
+      "priority_index": -4.86,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini"
+      ],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Éplérénone",
+        "Paricalcitol",
+        "Allopurinol"
+      ],
+      "axes": [
+        "MR",
+        "VDR",
+        "XOR"
+      ],
+      "indices": [
+        7,
+        8,
+        9
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0679,
+      "structural_diversity": 0.9321,
+      "priority_index": -6.214,
+      "status": "suspendue",
+      "reasons": [
+        "absence_indication_renale_progression_MRC",
+        "phenotype_mineral_non_defini",
+        "contre_indications_renales_et_hyperkaliemie_a_evaluer"
+      ],
+      "alerts": [],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    }
+  ],
+  "representative_ranked_hypotheses": [
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Pirfénidone"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Fibrose"
+      ],
+      "indices": [
+        0,
+        2,
+        4
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1066,
+      "structural_diversity": 0.8934,
+      "priority_index": 4.829,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "Inflammation"
+      ],
+      "indices": [
+        0,
+        2,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0997,
+      "structural_diversity": 0.9003,
+      "priority_index": 4.78,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Dapagliflozine",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "SGLT2",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        2,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1078,
+      "structural_diversity": 0.8922,
+      "priority_index": 4.028,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "Inflammation"
+      ],
+      "indices": [
+        2,
+        4,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.0923,
+      "structural_diversity": 0.9077,
+      "priority_index": 3.832,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone",
+        "Pentoxifylline"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "Inflammation"
+      ],
+      "indices": [
+        0,
+        4,
+        5
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.12,
+      "structural_diversity": 0.88,
+      "priority_index": 3.826,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pirfénidone",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "Fibrose",
+        "DPP4"
+      ],
+      "indices": [
+        2,
+        4,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1013,
+      "structural_diversity": 0.8987,
+      "priority_index": 3.08,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pirfénidone",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "Fibrose",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        4,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1367,
+      "structural_diversity": 0.8633,
+      "priority_index": 3.073,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Dapagliflozine",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SGLT2",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        2,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1199,
+      "structural_diversity": 0.8801,
+      "priority_index": 3.026,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Irbesartan",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "SRAA",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        0,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1483,
+      "structural_diversity": 0.8517,
+      "priority_index": 3.02,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    },
+    {
+      "agents": [
+        "Pirfénidone",
+        "Pentoxifylline",
+        "Linagliptine"
+      ],
+      "axes": [
+        "Fibrose",
+        "Inflammation",
+        "DPP4"
+      ],
+      "indices": [
+        4,
+        5,
+        6
+      ],
+      "n_agents": 3,
+      "n_unique_axes": 3,
+      "tanimoto_mean": 0.1635,
+      "structural_diversity": 0.8365,
+      "priority_index": 2.067,
+      "status": "hypothese_in_silico",
+      "reasons": [],
+      "alerts": [
+        "surveillance_hepatique_et_renale",
+        "accumulation_metabolites_renaux",
+        "benefice_renal_specifique_non_demontre"
+      ],
+      "experimental_efficacy_measured": false,
+      "synergy_predicted": false,
+      "drug_interactions_calculated": false,
+      "cure_predicted": false
+    }
+  ]
+}
