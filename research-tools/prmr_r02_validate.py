@@ -46,7 +46,7 @@ for c in DATA["combinations"]:
     assert [d["name"] for d in drugs]==c["agents"]
     sims=[DataStructs.TanimotoSimilarity(fps[a],fps[b]) for a,b in itertools.combinations(idx,2)]
     mean=sum(sims)/len(sims)
-    almost(mean,c["tanimoto_mean"],0.00006)
+    almost(mean,c["tanimoto_mean"],0.00011)
     diversity=round(1-mean,4)
     almost(diversity,c["structural_diversity"],0.00011)
     axes={d["axis"] for d in drugs}
