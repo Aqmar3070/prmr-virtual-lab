@@ -25,6 +25,7 @@
     <button class="navitem" data-view="systems"><span class="navicon">◎</span> Atlas physiologique</button>
     <div class="navgroup">RECHERCHE & QUALITÉ</div>
     <button class="navitem" data-view="data"><span class="navicon">⛁</span> Données & connecteurs</button>
+    <button class="navitem" data-view="cloud"><span class="navicon">☁</span> Espace de recherche privé <span class="navmini">Cloud</span></button>
     <button class="navitem" data-view="quality"><span class="navicon">☷</span> Traçabilité scientifique</button>
   </nav>
   <div class="sidebar-bottom"><div class="statusdot"></div><div><strong>Projet exploratoire</strong><span>Calculs locaux · aucun conseil clinique</span></div></div>
@@ -99,6 +100,35 @@
  <div class="pagehead"><span class="overline">LIVE DATA CONNECTORS / MODULE 06</span><h1>Données & connexions</h1><p>Requêtes directes aux services scientifiques publics. Chaque consultation affiche sa source et signale explicitement toute indisponibilité.</p></div>
  <div class="two-col"><div class="panel"><div class="panel-header"><div><h2>PubChem PUG REST</h2><p>Molécules enregistrées · NIH/NLM</p></div><span class="label-chip">API publique</span></div><label class="field-label" for="pubchem-query">Nom de molécule</label><div class="searchrow"><input class="field" id="pubchem-query" value="caffeine"><button class="btn primary" id="pubchem-search">Rechercher</button></div><p id="pubchem-feedback" class="feedback" aria-live="polite">Aucune requête effectuée.</p><div id="pubchem-result"></div></div>
  <div class="panel"><div class="panel-header"><div><h2>Cartographie des connecteurs</h2><p>Statut réel de l'intégration</p></div></div><div class="engine-line"><span>RDKit.js</span><b id="connector-rdkit">En cours</b></div><div class="engine-line"><span>PubChem</span><b id="connector-pubchem">Non interrogé</b></div><div class="engine-line"><span>ChEMBL</span><b id="connector-chembl">Non interrogé</b></div><div class="engine-line"><span>PK-Sim / MoBi</span><b class="muted">Pas de backend</b></div><div class="engine-line"><span>RDKit Python</span><b class="muted">Pas de backend</b></div><div class="note">GitHub Pages héberge des fichiers statiques : le calcul RDKit.js s'exécute dans Chrome, tandis que PK-Sim/MoBi nécessiteront une infrastructure de calcul dédiée.</div></div></div>
+</section>
+
+<section class="view" id="view-cloud" hidden>
+ <div class="pagehead"><span class="overline">PRMR RESEARCH CLOUD / MODULE 08</span><h1>Espace de recherche privé</h1><p>Connexion sécurisée, projets persistants, structures chimiques, hypothèses et résultats de simulations. Les données enregistrées sont protégées par des politiques RLS liées au propriétaire du compte.</p></div>
+ <div class="notice"><strong>Protection des données :</strong> seuls les utilisateurs authentifiés peuvent enregistrer et récupérer leurs propres données. Ne pas utiliser cette version pour des données de patients ou des informations médicales identifiables.</div>
+ <div class="panel"><div class="panel-header"><div><h2>Connexion Supabase</h2><p>Compte de PRMR distinct du compte administrateur Supabase.</p></div><span class="pill" id="cloud-auth-indicator">Initialisation</span></div>
+  <div id="cloud-auth-forms">
+   <div class="cloud-auth-grid"><div><label class="field-label" for="cloud-email">Adresse e-mail</label><input class="field" type="email" id="cloud-email" autocomplete="email" placeholder="adresse@exemple.com"></div>
+   <div><label class="field-label" for="cloud-password">Mot de passe</label><input class="field" type="password" id="cloud-password" autocomplete="current-password" minlength="12" placeholder="Mot de passe personnel"></div></div>
+   <div class="actionrow"><button class="btn primary" id="cloud-login">Se connecter</button><button class="btn secondary" id="cloud-signup">Créer un compte</button></div>
+   <p class="subtext">L'inscription peut nécessiter une confirmation par e-mail. Utiliser un mot de passe d'au moins 12 caractères. Les mots de passe ne sont jamais enregistrés dans le dépôt GitHub.</p>
+  </div>
+  <div id="cloud-signed-in" hidden><div class="cloud-signed-row"><span>Session active : <strong id="cloud-user"></strong></span><button class="btn secondary" id="cloud-signout">Se déconnecter</button></div></div>
+  <p class="cloud-feedback" id="cloud-message" role="status" aria-live="polite">Initialisation du client Supabase…</p>
+ </div>
+ <div id="cloud-workbench" hidden>
+ <div class="two-col"><div class="panel"><div class="panel-header"><div><h2>Mes projets</h2><p>Enregistrements persistants · accès privé</p></div><button class="btn secondary small" id="cloud-refresh">Actualiser</button></div>
+ <label class="field-label" for="cloud-projects">Projet actif</label><select class="field" id="cloud-projects"></select><p class="subtext" id="cloud-project-empty"></p>
+ <label class="field-label" for="cloud-new-project">Créer un nouveau projet</label><input class="field" id="cloud-new-project" maxlength="180" placeholder="Ex. PRMR — Recherche rénale">
+ <label class="field-label" for="cloud-research-area">Domaine de recherche</label><select class="field" id="cloud-research-area"><option value="renal">Rénal</option><option value="cardiovascular">Cardiovasculaire</option><option value="neurological">Neurologique</option><option value="oncology">Oncologie</option><option value="general">Multisystème / général</option></select>
+ <div class="actionrow"><button class="btn primary" id="cloud-create-project">Créer le projet</button></div></div>
+ <div class="panel"><h2>Enregistrer les travaux</h2><p class="subtext">Les calculs sont générés localement par le modèle existant. Supabase conserve les résultats et leur provenance, sans prétendre effectuer la simulation lui-même.</p>
+ <div class="cloud-action"><div><strong>Structure moléculaire</strong><small>Enregistrer la structure analysée dans l'atelier et ses descripteurs calculés</small></div><button class="btn secondary" id="cloud-save-molecule">Enregistrer</button></div>
+ <div class="cloud-action"><div><strong>Simulation PK/PD</strong><small>Enregistrer paramètres fictifs, courbe calculée et scénarios d'incertitude</small></div><button class="btn secondary" id="cloud-save-simulation">Enregistrer</button></div>
+ <div class="separator"></div><label class="field-label" for="cloud-experiment-title">Nouvelle hypothèse de recherche</label><input class="field" id="cloud-experiment-title" maxlength="180" placeholder="Ex. Étudier un mécanisme de fibrose"></input>
+ <div class="actionrow"><button class="btn secondary" id="cloud-create-experiment">Enregistrer l'hypothèse</button></div></div></div>
+ <div class="three-col cloud-records"><div class="panel"><h2>Molécules enregistrées</h2><div id="cloud-molecules"></div></div><div class="panel"><h2>Simulations archivées</h2><div id="cloud-simulations"></div></div><div class="panel"><h2>Expériences / hypothèses</h2><div id="cloud-experiments"></div></div></div>
+ </div>
+ <div class="note">L'authentification et le stockage sont fournis par Supabase. Le code public du site contient uniquement une clé publishable ; aucune clé de service privilégiée n'est exposée.</div>
 </section>
 
 <section class="view" id="view-quality" hidden>
