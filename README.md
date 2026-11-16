@@ -1,5 +1,14 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
+## PRMR-R04 — Laboratoire 3D interactif et physiologie comparée (16 novembre 2026)
+
+- **[Lancer le nouveau laboratoire interactif 3D](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html)** : simulation exploratoire 6 espèces — souris, rat, miniporc, chien, macaque cynomolgus, lapin.
+- Paramètres manipulables : espèce, masse, âge, sexe, constitution, déshydratation, fonction rénale, fonction hépatique, maladie, association et concentration libre illustrative.
+- Cartes d'espèces cliquables, graphiques SVG recalculés, trois visualiseurs 3D Canvas à rotation par glissement et quatre molécules réelles conformées par RDKit.
+- [Conformères 3D chimiques](research-data/r04_molecular_3d.json) · [Moteur R04](src/r04_engine.mjs) · [Visualiseur 3D](src/r04_visuals.mjs) · [Journal scientifique R04](docs/PRMR_R04_RESEARCH_LOG.md).
+- Les mesures pharmacocinétiques sont **humaines** et leur extrapolation aux animaux est un stress-test **non calibré**. Les facteurs âge, sexe et constitution modifient les questions et avertissements mais pas des AUC chiffrées en l'absence de coefficients validés. **Aucune probabilité biologique ni guérison n'est calculée.**
+- Résumé R04 enregistré dans `public.simulation_runs` du projet privé R01. Pas de nouvelle expérience animale.
+
 ## PRMR-R03 — Sensibilité PK/PD et risque–bénéfice (16 novembre 2026)
 
 - [Ouvrir le stress-test interactif R03](https://aqmar3070.github.io/prmr-virtual-lab/risk-r03.html) : deux espèces (souris et rats), masses corporelles, quatre états rénaux, trois états hépatiques, hydratation, limites d'âge/sexe/constitution.
