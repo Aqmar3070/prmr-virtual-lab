@@ -67,9 +67,12 @@ function body(species,renal,hepatic){
 export function create3D(canvas,{kind="kidney",model=null,species="mouse",renal="normal",hepatic="normal"}={}){
  const ctx=canvas.getContext("2d");
  if(!ctx)throw Error("Canvas 2D indisponible");
- let current={kind,model,species,renal,hepatic},yaw=.25,pitch=-.18,dragging=false,lastX=0,lastY=0,raf=0,enabled=true;
- function paint(){
+ let current={kind,model,species,renal,hepatic},yaw=.25,pitch=-.18,dragging=false,lastX=0,lastY=0,raf=0,enabled=true,lastFrame=0,geometryCache=null;
+ function paint(now=0){
   if(!enabled)return;
+  raf=requestAnimationFrame(paint);
+  if(now && now-lastFrame<38)return;
+  lastFrame=now;
   const rect=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);
   const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));
   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
@@ -80,9 +83,9 @@ export function create3D(canvas,{kind="kidney",model=null,species="mouse",renal=
   // static science-grid backdrop
   ctx.lineWidth=dpr*.6;ctx.strokeStyle="#31798b1f";
   for(let i=0;i<12;i++){let y=h*i/12;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
-  const content=current.kind==="molecule"&&current.model?
+  const content=geometryCache||(geometryCache=current.kind==="molecule"&&current.model?
    {atoms:current.model.a.map((c,i)=>({p:current.model.p[i],c:PALETTE[c]||"#cfe7e0",r:c==="Cl"?.29:c==="O"?.22:.19})),bonds:current.model.b,kind:"molecule"}:
-   current.kind==="animal"?body(current.species,current.renal,current.hepatic):kindney();
+   current.kind==="animal"?body(current.species,current.renal,current.hepatic):kindney());
   const values=content.atoms.map(x=>x.p),xs=values.map(v=>v[0]),ys=values.map(v=>v[1]);
   const extent=Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys),.6);
   const center=[(Math.max(...xs)+Math.min(...xs))/2,(Math.max(...ys)+Math.min(...ys))/2,0];
@@ -98,8 +101,7 @@ export function create3D(canvas,{kind="kidney",model=null,species="mouse",renal=
    const r=Math.min(content.kind==="molecule"?16*dpr:14*dpr,Math.max(content.kind==="molecule"?3*dpr:1.7*dpr,a.r*(content.kind==="molecule"?1:.65)));
    lightBall(ctx,a.x,a.y,r,a.c,content.kind==="molecule"?5*dpr:2*dpr);
   }
-  if(!dragging){yaw+=.0017}
-  raf=requestAnimationFrame(paint);
+  if(!dragging){yaw+=.0045}
  }
  const down=e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)};
  const move=e=>{if(!dragging)return;yaw+=(e.clientX-lastX)*.008;pitch=Math.max(-1.4,Math.min(1.4,pitch+(e.clientY-lastY)*.008));lastX=e.clientX;lastY=e.clientY};
@@ -108,5 +110,5 @@ export function create3D(canvas,{kind="kidney",model=null,species="mouse",renal=
  canvas.addEventListener("pointercancel",up);canvas.style.touchAction="none";
  document.addEventListener("visibilitychange",()=>{if(document.hidden){enabled=false;cancelAnimationFrame(raf)}else if(!enabled){enabled=true;paint()}});
  paint();
- return {set(next){current={...current,...next}},reset(){yaw=.25;pitch=-.18},destroy(){enabled=false;cancelAnimationFrame(raf);canvas.removeEventListener("pointerdown",down);canvas.removeEventListener("pointermove",move);canvas.removeEventListener("pointerup",up);canvas.removeEventListener("pointercancel",up)}};
+ return {set(next){current={...current,...next};geometryCache=null},reset(){yaw=.25;pitch=-.18},destroy(){enabled=false;cancelAnimationFrame(raf);canvas.removeEventListener("pointerdown",down);canvas.removeEventListener("pointermove",move);canvas.removeEventListener("pointerup",up);canvas.removeEventListener("pointercancel",up)}};
 }
