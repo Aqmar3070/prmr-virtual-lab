@@ -1,5 +1,13 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
+## PRMR-R01 · Recherche préclinique rénale (16 novembre 2026)
+
+- [Ouvrir le dossier interactif sur le site](https://aqmar3070.github.io/prmr-virtual-lab/preclinical.html) : résultats animaux publiés, comparaisons, filtres, explications simplifiées et export de données.
+- [Consulter le journal scientifique](docs/PRMR_R01_RESEARCH_LOG.md) : méthode de sélection documentaire, provenance, protocoles et limites.
+- Trois études animales externes archivées sous `external_reference` dans le projet privé Supabase PRMR-R01, sans revendication d'essai animal effectué par PRMR, ni de guérison.
+- Contrôles automatiques dans `tests/preclinical.test.mjs`.
+
+
 ## Cloud Research Workspace — Supabase (intégration initiale)
 
 - Module **Espace de recherche privé** dans la navigation GitHub Pages.
