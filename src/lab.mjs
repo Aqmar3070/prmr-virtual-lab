@@ -3,7 +3,7 @@ import {EXAMPLES,SYSTEMS,enumerateStructures,similarity,loadRDKit,analyzeSmiles}
 import {findPubChem,searchChEMBLTargets} from "./connectors.mjs";
 
 const $=id=>document.getElementById(id);
-const format=(n,d=2)=>Number.isFinite(Number(n))?Number(n).toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d}):"n.d.";
+const format=(n,d=2)=>(n!==null&&n!==undefined&&n!==""&&Number.isFinite(Number(n)))?Number(n).toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d}):"n.d.";
 const library=EXAMPLES.map((m,i)=>({...m,id:"example-"+i}));
 const state={kit:null,rdkit:"loading",pk:{...DEFAULT_PARAMS},latestMolecule:null,latestExternal:null};
 const newEl=(tag,className,text)=>{const x=document.createElement(tag);if(className)x.className=className;if(text!==undefined)x.textContent=text;return x;};
