@@ -264,3 +264,6 @@ initCloud({
  })
 });
 
+
+const initialView = new URLSearchParams(window.location.search).get("view");
+if (initialView && Object.prototype.hasOwnProperty.call(headings,initialView)) navigate(initialView);
