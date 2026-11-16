@@ -1,3 +1,39 @@
+# PRMR Virtual Lab · Research Workspace 2.0
+
+Site Web scientifique exploratoire accessible dans Chrome via GitHub Pages.
+
+## Modules ajoutés à l'interface (version 2.0)
+- Cockpit de recherche et navigation modulaire.
+- Analyse des structures SMILES et des descripteurs physicochimiques par **RDKit.js MinimalLib 2026.9.2** exécuté en WebAssembly dans le navigateur; la bibliothèque est chargée via un CDN externe. Le site signale explicitement son indisponibilité.
+- Énumération déterministe de 16 structures aromatiques virtuelles **sans affirmation de nouveauté chimique, de synthétisabilité, de sécurité ou d'efficacité**. Ne pas confondre cette énumération avec une intelligence artificielle de conception de médicaments.
+- Bibliothèque de session et export JSON; **aucun stockage sécurisé ni compte utilisateur**.
+- Comparaison de structures par empreintes Morgan et indice de Tanimoto, **sans déduction d'interaction médicamenteuse ni synergie**.
+- Modèle PK/PD simplifié existant, calculé indépendamment des structures moléculaires, avec analyse de scénarios.
+- Atlas documentaire de douze systèmes du corps humain, sans simulation physiologique opérationnelle.
+- Consultations ponctuelles PubChem (propriétés moléculaires) et ChEMBL (cibles biologiques). Les requêtes dépendent du réseau et des politiques d'accès/CORS des services.
+- Statut explicite des moteurs externes : PK-Sim, MoBi et moteur rénal mécanistique **non intégrés**.
+
+## Limites majeures
+Aucune précision absolue n'est scientifiquement possible pour prévoir les effets d'une nouvelle molécule dans le corps humain. Les résultats de structure RDKit ne démontrent ni activité pharmacologique, ni toxicité, ni biodisponibilité, ni aptitude à la synthèse. Les paramètres PK/PD ne sont pas calibrés sur les molécules sélectionnées. Il n'existe pas de moteur de simulation clinique ou de recommandation de dosage.
+
+## Conventions de provenance
+- **Base externe** : données effectivement retournées par PubChem ou ChEMBL avec identifiants et liens officiels.
+- **Calcul** : résultats déterministes de RDKit.js et du modèle PK/PD analytique.
+- **Hypothèse** : paramètres, candidats virtuels et scénarios exploratoires.
+- **Non disponible** : modèle rénal mécanistique, PBPK multi-organes, activité biologique ou interaction médicamenteuse prédictive.
+
+## Vérification
+Les modules JavaScript ont été contrôlés syntaxiquement et huit vérifications ciblées sur la chimie et le modèle PK/PD ont été exécutées lors de cette évolution. Les tests GitHub Actions, le chargement effectif de RDKit.js sur Chrome et les réponses en direct des services externes doivent encore être confirmés; ne pas considérer les modules comme validés scientifiquement.
+
+## Feuille de route
+1. Tests fonctionnels en navigateur et assurance qualité sur données de référence.
+2. Ajout de recherche de bioactivité par cible documentée, traçabilité des jeux de données et filtrage d'applicabilité.
+3. Backend dédié pour RDKit Python, simulations intensives et versions reproductibles des moteurs.
+4. Intégration de PK-Sim/MoBi; module rénal mécanistique filtrage, transport tubulaire, inflammation, fibrose.
+5. Modèles multi-organes uniquement après calibration et validation expérimentale par domaine.
+
+---
+## Archive historique 1.1
 # PRMR Virtual Lab · Version Web 1.1
 
 Plateforme expérimentale de simulation pharmacocinétique à un compartiment, gratuite et exécutable entièrement dans un navigateur moderne. **Non clinique : aucune molécule, espèce ou population calibrée.**
