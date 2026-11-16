@@ -1,5 +1,15 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
+## PRMR-R03 — Sensibilité PK/PD et risque–bénéfice (16 novembre 2026)
+
+- [Ouvrir le stress-test interactif R03](https://aqmar3070.github.io/prmr-virtual-lab/risk-r03.html) : deux espèces (souris et rats), masses corporelles, quatre états rénaux, trois états hépatiques, hydratation, limites d'âge/sexe/constitution.
+- **144 profils** et **432 comparaisons de combinaisons** ; un indicateur d'exposition relative par métabolite et son analyse de sensibilité, **pas** la probabilité de toxicité.
+- [Source reproductible du modèle](src/r03_model.mjs) et [tests automatiques de validité](tests/r03.test.mjs).
+- [Journal scientifique complet](docs/PRMR_R03_RESEARCH_LOG.md) : données pharmacocinétiques humaines originales, IC₅₀ animales SGLT2 in vitro, équations et limites des extrapolations.
+- Enregistrement privé dans `simulation_runs`, lié au projet R01, provenance `calculated:conditional_exposure_not_toxicity_probability`.
+- **Aucun nouvel essai animal, aucune dose, aucune prédiction individuelle de lésion ou de guérison.**
+
+
 ## PRMR-R02 — Criblage moléculaire original (16 novembre 2026)
 
 - **[Ouvrir l'interface PRMR-R02](https://aqmar3070.github.io/prmr-virtual-lab/screening.html)** — calculs RDKit à partir de 10 molécules existantes, 165 combinaisons, 44 hypothèses ouvertes et 121 associations suspendues.
