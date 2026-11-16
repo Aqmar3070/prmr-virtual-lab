@@ -1,5 +1,15 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
+## PRMR-R02 — Criblage moléculaire original (16 novembre 2026)
+
+- **[Ouvrir l'interface PRMR-R02](https://aqmar3070.github.io/prmr-virtual-lab/screening.html)** — calculs RDKit à partir de 10 molécules existantes, 165 combinaisons, 44 hypothèses ouvertes et 121 associations suspendues.
+- [Registre complet des 165 combinaisons](research-data/prmr-r02-screen.json), calculs de chimie et statut scientifique explicites.
+- [Journal de recherche et limites](docs/PRMR_R02_RESEARCH_LOG.md).
+- [Reproduction chimique par RDKit](research-tools/prmr_r02_validate.py) et [2000 perturbations de sensibilité](research-tools/prmr_r02_sensitivity.py).
+- Dossiers `R02-A`, `R02-B`, `R02-C` enregistrés dans Supabase, sous `evidence_type=calculated`. Les résultats publiés précédemment pour R01 sont sous `external_reference`.
+- **Pas d'expérience animale, pas de culture cellulaire, pas de prédiction biologique validée, pas de traitement curatif démontré.** Les scores classent des hypothèses selon des règles exploratoires arbitraires.
+
+
 ## PRMR-R01 · Recherche préclinique rénale (16 novembre 2026)
 
 - [Ouvrir le dossier interactif sur le site](https://aqmar3070.github.io/prmr-virtual-lab/preclinical.html) : résultats animaux publiés, comparaisons, filtres, explications simplifiées et export de données.
