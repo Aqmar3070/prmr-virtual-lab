@@ -7,6 +7,7 @@ on:
       - "research-tools/prmr_r02_validate.py"
       - "research-tools/prmr_r02_sensitivity.py"
       - ".github/workflows/chemistry-r02.yml"
+      - "requirements-r02.txt"
   pull_request:
     paths:
       - "research-data/prmr-r02-screen.json"
