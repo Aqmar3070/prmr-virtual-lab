@@ -29,8 +29,12 @@ export function initCloud(handlers){
   const {data,error}=await client.auth.getUser();
   loggedUser=error?null:(data?.user??null);
   showAuth();
-  if(loggedUser)await loadProjects();
-  else{projects=[];projectId=null;resetCloudLists();}
+  if(loggedUser){
+   await loadProjects();
+   msg("Session active. Projets et enregistrements synchronisés avec Supabase.","good");
+  }else{
+   projects=[];projectId=null;resetCloudLists();
+  }
  }
  function resetCloudLists(){
   $("cloud-projects").replaceChildren();
