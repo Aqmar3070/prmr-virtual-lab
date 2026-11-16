@@ -45,7 +45,7 @@ export function similarity(a,b) {
 }
 export function normalizeDescriptor(raw){
  const d=typeof raw==="string"?JSON.parse(raw):raw;
- const select=(...keys)=>{for(const key of keys)if(Number.isFinite(Number(d[key])))return Number(d[key]);return null};
+ const select=(...keys)=>{for(const key of keys)if(d[key]!==null&&d[key]!==undefined&&d[key]!==""&&Number.isFinite(Number(d[key])))return Number(d[key]);return null};
  return {
   mass:select("amw","MolWt","molwt","MW"),
   logp:select("CrippenClogP","CrippenLogP","logp","MolLogP"),
