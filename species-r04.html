@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071421">
+<meta name="description" content="PRMR R04: laboratoire préclinique 3D interactif, 6 espèces, comparaison animale, pharmacocinétique exploratoire, molécules RDKit et contrôles âge sexe poids maladie.">
+<title>PRMR-R04 | Laboratoire 3D interactif et comparaison des espèces</title>
+<link rel="stylesheet" href="./r04.css">
+<script type="module" src="./src/r04_app.mjs"></script>
+</head><body>
+<div class="r4-shell">
+<header class="r4-top">
+ <a class="r4-brand" href="./index.html">PRMR <span>Virtual Lab</span></a>
+ <nav class="r4-nav" aria-label="Laboratoire PRMR">
+  <a href="./index.html">Laboratoire</a>
+  <a href="./preclinical.html">R01 · Études externes</a>
+  <a href="./screening.html">R02 · Molécules</a>
+  <a href="./risk-r03.html">R03 · PK/PD</a>
+  <a href="./species-r04.html" class="active" aria-current="page">R04 · Simulation 3D</a>
+  <a href="./index.html?view=cloud">Projet privé</a>
+ </nav>
+</header>
+<main>
+<div class="r4-head">
+ <div><div class="r4-eye">PRMR-R04 / Simulation scientifique interactive / 16 novembre 2026</div>
+ <h1>Laboratoire 3D : <span>espèces, molécules et physiologie</span></h1>
+ <p>Un tableau de bord manipulable pour étudier comment le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Les organes 3D sont des schémas conceptuels.</p></div>
+ <svg class="r4-head-icon" viewBox="0 0 160 100" role="img" aria-label="Schéma des deux reins"><defs><linearGradient id="kidGlow"><stop stop-color="#6dfbdc"/><stop offset="1" stop-color="#159cae"/></linearGradient></defs>
+  <path d="M61 8 C25 0 12 24 15 51 C17 78 44 91 59 74 C72 56 46 52 48 39 C50 29 69 23 61 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
+  <path d="M99 8 C135 0 148 24 145 51 C143 78 116 91 101 74 C88 56 114 52 112 39 C110 29 91 23 99 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
+  <path d="M64 47 C77 52 74 71 78 90 M96 47 C83 52 86 71 82 90" stroke="#ffaf8f" fill="none" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="80" cy="88" r="6" fill="#62d9cc"/>
+ </svg>
+</div>
+<div class="r4-kpis" aria-label="Résumé de la recherche R04">
+ <div class="r4-kpi"><small>Espèces accessibles</small><b>6 espèces</b><em>Du rongeur au miniporc et au primate</em></div>
+ <div class="r4-kpi"><small>Protocoles R02 comparés</small><b>3 régimes</b><em>Doublet, R02-A, R02-B</em></div>
+ <div class="r4-kpi"><small>Modèles moléculaires</small><b>4 conformères</b><em>Coordonnées 3D RDKit</em></div>
+ <div class="r4-kpi"><small>État de la recherche</small><b>In silico</b><em>Calculs reproductibles, non expérimentaux</em></div>
+</div>
+<p class="r4-banner"><strong>Statut des résultats :</strong> les références AUC proviennent de données humaines ; leur projection entre espèces est un <strong>stress-test non calibré</strong>. Modifier un animal ou un paramètre met à jour l'analyse, mais ne prédit ni toxicité réelle, ni efficacité, ni guérison. Les courbes non disponibles restent identifiées comme inconnues.</p>
+<div class="r4-grid">
+<aside class="r4-panel r4-controls" aria-labelledby="parameters-heading">
+ <div class="r4-panel-title"><h2 id="parameters-heading">Console expérimentale</h2><span class="r4-tag">Interactif</span></div>
+ <p>Choisir un animal pour afficher immédiatement son profil et modifier les hypothèses du scénario.</p>
+ <h3>Choix de l'espèce</h3>
+ <div class="r4-species" id="species-grid" role="group" aria-label="Sélectionner une espèce"></div>
+ <div class="r4-control-grid">
+  <div class="r4-control full"><label for="r4-mass">Masse animale <span class="r4-readout" id="mass-readout">—</span></label><input id="r4-mass" type="range" min="0.015" max=".055" step="0.001" value=".025"><p id="mass-range" style="margin:1px 0 3px"></p></div>
+  <div class="r4-control"><label for="r4-age">Âge</label><select id="r4-age"><option value="juvenile">Jeune</option><option value="adult" selected>Adulte</option><option value="old">Âgé</option></select></div>
+  <div class="r4-control"><label for="r4-sex">Sexe</label><select id="r4-sex"><option value="unknown">Non précisé</option><option value="female">Femelle</option><option value="male">Mâle</option></select></div>
+  <div class="r4-control"><label for="r4-constitution">Constitution</label><select id="r4-constitution"><option value="lean">Maigre</option><option value="normal" selected>Normale</option><option value="adipose">Adiposité accrue</option></select></div>
+  <div class="r4-control"><label for="r4-hydration">Hydratation</label><select id="r4-hydration"><option value="normal" selected>Normale</option><option value="depleted">Déshydraté</option></select></div>
+  <div class="r4-control"><label for="r4-renal">Fonction rénale</label><select id="r4-renal"><option value="normal">Conservée</option><option value="mild">Légère atteinte</option><option value="moderate" selected>Atteinte modérée</option><option value="severe">Atteinte sévère</option></select></div>
+  <div class="r4-control"><label for="r4-hepatic">Fonction hépatique</label><select id="r4-hepatic"><option value="normal" selected>Conservée</option><option value="moderate">Atteinte modérée</option><option value="severe">Atteinte sévère</option></select></div>
+  <div class="r4-control full"><label for="r4-disease">Maladie étudiée</label><select id="r4-disease"><option value="fibrotic" selected>Fibrose rénale</option><option value="diabetic">Néphropathie diabétique</option><option value="hypertensive">Néphropathie hypertensive</option><option value="alport">Maladie d'Alport</option><option value="ischemic">Lésion rénale ischémique</option></select></div>
+  <div class="r4-control full"><label for="r4-regimen">Association</label><select id="r4-regimen"><option value="R02-DUO">R02-DUO : irbesartan + dapagliflozine</option><option value="R02-A" selected>R02-A : + pirfénidone</option><option value="R02-B">R02-B : + pentoxifylline</option></select></div>
+  <div class="r4-control full"><label for="r4-concentration">SGLT2 : concentration libre illustrative <span class="r4-readout" id="free-readout">3 nM</span></label><input type="range" id="r4-concentration" min="0" max="10" value="3" step=".25"></div>
+ </div>
+ <div class="r4-btnrow"><button id="r4-reset" type="button" class="r4-button secondary">Réinitialiser</button><button id="r4-export" type="button" class="r4-button">Exporter le scénario</button></div>
+ <div class="r4-indicator" role="status" aria-live="polite"><strong id="r4-profile-title">Profil animal</strong><p id="r4-profile-detail">Calcul des facteurs...</p></div>
+ <div class="r4-evidence">Sexe, âge et constitution : leur modification ajuste les questions biologiques et avertissements. Les ratios AUC ne changent pas artificiellement faute de paramètres validés par espèce.</div>
+</aside>
+<div class="r4-main">
+ <section class="r4-panel r4-c7" aria-labelledby="organ-heading">
+  <div class="r4-panel-title"><h2 id="organ-heading">Rein : mécanismes et lésions</h2><span class="r4-tag">3D conceptuelle · faire pivoter</span></div>
+  <div class="r4-viz"><canvas id="r4-kidney-3d" aria-label="Représentation 3D conceptuelle de rein, rotation au glissement" role="img"></canvas><span class="r4-viz-label">Cortex · médulla · néphrons</span><span class="r4-viz-foot">Glisser pour faire tourner</span></div>
+  <div class="r4-figure-text">
+   <div class="r4-callout"><strong>Inflammation</strong><span>Modulation à confirmer par IL-6, CCL2, KIM-1.</span></div>
+   <div class="r4-callout"><strong>Fibrose</strong><span>Comparer COL1A1, FN1, ACTA2 et histologie.</span></div>
+   <div class="r4-callout"><strong>Perfusion</strong><span>Mesurer pression, débit sanguin et DFG.</span></div>
+   <div class="r4-callout"><strong>Transport tubulaire</strong><span>Réponse SGLT2 dépendante de la cible et du glucose.</span></div>
+  </div>
+ </section>
+ <section class="r4-panel r4-c5" aria-labelledby="body-heading">
+  <div class="r4-panel-title"><h2 id="body-heading">Organisme sélectionné</h2><span class="r4-tag">3D éducative</span></div>
+  <div class="r4-viz"><canvas id="r4-body-3d" aria-label="Schéma 3D conceptuel d'organisme animal et des organes" role="img"></canvas><span class="r4-viz-label" id="r4-3d-species">Animal · rein / foie</span><span class="r4-viz-foot">Structures schématiques</span></div>
+  <div class="r4-indicator"><strong id="r4-anatomy">Architecture rénale</strong><p id="r4-focus">Indication expérimentale</p><a id="r4-source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8285645/" target="_blank" rel="noopener noreferrer" style="font-size:11px">Source de l'espèce</a></div>
+ </section>
+ <section class="r4-panel r4-c8" aria-labelledby="pk-heading">
+  <div class="r4-panel-title"><h2 id="pk-heading">Expositions PK simulées</h2><span class="r4-tag alert">Non calibrées chez l'animal</span></div>
+  <p>Exposition médiane relative sous les hypothèses de transfert R03. <strong>Les molécules et leurs métabolites ne partagent pas un seuil de toxicité comparable.</strong></p>
+  <svg id="r4-exposure-chart" class="r4-graph" role="img" aria-label="Graphique dynamique d'exposition relative des trois associations"></svg>
+  <div class="r4-legend"><span><i class="r4-dot" style="background:#52dcb4"></i>Doublet : dapagliflozine</span><span><i class="r4-dot" style="background:#ffbe80"></i>R02-A : métabolite 5-carboxy</span><span><i class="r4-dot" style="background:#f17a85"></i>R02-B : métabolite V</span></div>
+  <div id="r4-exposure-note" class="r4-indicator" aria-live="polite">Résultats de sensibilité en cours…</div>
+ </section>
+ <section class="r4-panel r4-c4" aria-labelledby="decision-heading">
+  <div class="r4-panel-title"><h2 id="decision-heading">Balance risque / bénéfice</h2><span class="r4-tag alert">Preuve limitée</span></div>
+  <div class="r4-current"><span>Association :</span><strong id="r4-active-name">R02-A</strong></div>
+  <p id="r4-risk-decision">Évaluation en cours...</p>
+  <div id="r4-observations" class="r4-reasons" aria-live="polite"></div>
+  <div class="r4-evidence"><strong>Résultat net :</strong> non estimable. Absence de mesures de réduction de fibrose, de toxicité animale et d'interaction des trois agents.</div>
+ </section>
+ <section class="r4-panel r4-c6" aria-labelledby="reference-heading">
+  <div class="r4-panel-title"><h2 id="reference-heading">Ancrages humains : évolution rénale</h2><span class="r4-tag">Données de la littérature</span></div>
+  <p>Modification de l'AUC selon la sévérité rénale chez l'humain, non une courbe animale. Changer la maladie ou l'espèce n'altère pas ces observations historiques.</p>
+  <svg id="r4-human-graph" class="r4-graph" role="img" aria-label="Graphique ancrages pharmacocinétiques humains par état rénal"></svg>
+ </section>
+ <section class="r4-panel r4-c6" aria-labelledby="pd-heading">
+  <div class="r4-panel-title"><h2 id="pd-heading">PD / Engagement de SGLT2</h2><span class="r4-tag">Modèle Emax illustratif</span></div>
+  <p id="r4-pd-note">Cible et disponibilité des paramètres selon l'espèce.</p>
+  <svg id="r4-pd-graph" class="r4-graph" role="img" aria-label="Courbe d'inhibition théorique de la cible SGLT2"></svg>
+ </section>
+ <section class="r4-panel r4-c12" aria-labelledby="molecules-heading">
+  <div class="r4-panel-title"><h2 id="molecules-heading">Atelier moléculaire : structures 2D / conformères 3D</h2><span class="r4-tag">RDKit · pivoter et sélectionner</span></div>
+  <p>Quatre molécules existantes. Les conformères 3D ont été construits par RDKit ETKDG puis optimisés par MMFF. Ces structures ne représentent ni des liaisons moléculaires entre médicaments ni une interaction mesurée avec leurs cibles.</p>
+  <div id="r4-molecules" class="r4-molecules" role="group" aria-label="Choisir une molécule à explorer"></div>
+  <div class="r4-moldetail" style="margin-top:13px">
+   <div class="r4-viz"><canvas id="r4-molecule-3d" aria-label="Conformère moléculaire 3D calculé RDKit, tourner en glissant" role="img"></canvas><span class="r4-viz-label">Conformère calculé · RDKit</span><span class="r4-viz-foot">Faire tourner avec le pointeur</span></div>
+   <div class="r4-molinfo">
+    <b id="r4-molecule-name">Irbesartan</b>
+    <p id="r4-molecule-function">Système rénine-angiotensine</p>
+    <p id="r4-molecule-data">Structure chimique et identifiant PubChem.</p>
+    <a id="r4-molecule-pubchem" target="_blank" rel="noopener noreferrer" href="https://pubchem.ncbi.nlm.nih.gov/compound/3749">Fiche chimique PubChem</a>
+    <p>Les sphères colorées représentent des atomes (C, O, N, Cl). La caméra tourne sur un conformère stable calculé ; <strong>aucun mouvement des atomes n'est une réaction chimique simulée</strong>.</p>
+   </div>
+  </div>
+ </section>
+ <section class="r4-panel r4-c12" aria-labelledby="comparison-heading">
+  <div class="r4-panel-title"><h2 id="comparison-heading">Comparaison explicative des six espèces</h2><span class="r4-tag">Faits qualitatifs, pas notes fictives</span></div>
+  <div class="r4-scroll"><table class="r4-table"><thead><tr><th>Espèce</th><th>Structure rénale</th><th>Intérêt du modèle</th><th>PK des triples PRMR</th></tr></thead><tbody id="r4-species-table"></tbody></table></div>
+  <div class="r4-indicator"><strong>Interprétation scientifique</strong><p>Le porc est pertinent pour l'architecture multipapillaire, la perfusion et certains modèles de néphropathie. Le chien est un modèle non-rongeur de toxicologie, non un substitut universel du rein humain. Un primate non humain n'est justifié que si la question ne peut pas être résolue autrement. Aucune de ces espèces ne dispose ici d'une PK validée des associations R02-A/R02-B.</p></div>
+ </section>
+ <section class="r4-panel r4-c12" aria-labelledby="plan-heading">
+  <div class="r4-panel-title"><h2 id="plan-heading">Parcours scientifique et traçabilité</h2><span class="r4-tag">Étude numérique réellement exécutée</span></div>
+  <div class="r4-steps">
+   <div class="r4-step"><b>1 · Molécules</b><span>Structures PubChem et conformères RDKit réels.</span></div>
+   <div class="r4-step"><b>2 · Physiologie</b><span>Choix animal, poids, âge, sexe, maladie, foie et rein.</span></div>
+   <div class="r4-step"><b>3 · Stress-test</b><span>AUC conditionnelles et graphes recalculés, limites visibles.</span></div>
+   <div class="r4-step"><b>4 · À valider</b><span>Cellules humaines / organoïdes, toxicocinétique, puis animaux autorisés si indispensables.</span></div>
+  </div>
+  <p><strong>Version simplifiée :</strong> chaque espèce a un organisme différent. L'ordinateur montre les informations disponibles et les questions importantes, mais il ne peut pas dire combien d'animaux seront guéris ou rendus malades sans véritables expériences.</p>
+  <div class="r4-links">
+   <a href="./screening.html">R02 : 165 combinaisons</a>
+   <a href="./risk-r03.html">R03 : analyse de référence</a>
+   <a href="./research-data/r04_molecular_3d.json">Conformères RDKit JSON</a>
+   <a href="./src/r04_engine.mjs">Code du modèle</a>
+   <a href="https://github.com/Aqmar3070/prmr-virtual-lab/blob/main/docs/PRMR_R04_RESEARCH_LOG.md" target="_blank" rel="noopener noreferrer">Journal R04</a>
+  </div>
+ </section>
+</div>
+</div>
+</main>
+<footer class="r4-footer">PRMR-R04 — Interface originale interactive. Aucune expérience animale n'est revendiquée. Les graphiques d'AUC interespèces montrent uniquement la sensibilité d'un modèle non calibré ; les probabilités de toxicité, d'efficacité et de guérison restent inconnues.</footer>
+</div>
+</body></html>
