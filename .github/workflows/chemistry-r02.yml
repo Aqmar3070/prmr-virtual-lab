@@ -1,0 +1,31 @@
+name: PRMR-R02 chemical reproducibility
+on:
+  push:
+    branches: [main]
+    paths:
+      - "research-data/prmr-r02-screen.json"
+      - "research-tools/prmr_r02_validate.py"
+      - "research-tools/prmr_r02_sensitivity.py"
+      - ".github/workflows/chemistry-r02.yml"
+  pull_request:
+    paths:
+      - "research-data/prmr-r02-screen.json"
+      - "research-tools/prmr_r02_validate.py"
+      - "research-tools/prmr_r02_sensitivity.py"
+jobs:
+  rdkit-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-r02.txt
+      - name: Install exact RDKit version
+        run: python -m pip install --disable-pip-version-check -r requirements-r02.txt
+      - name: Recalculate chemical descriptors and screen
+        run: python research-tools/prmr_r02_validate.py
+      - name: Reproduce sensitivity analysis
+        run: python research-tools/prmr_r02_sensitivity.py
