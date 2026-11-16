@@ -11,5 +11,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate interactive application syntax
+        run: |
+          node --check src/r04_app.mjs
+          node --check src/r04_engine.mjs
+          node --check src/r04_visuals.mjs
       - name: Run numerical tests
         run: node --test tests/*.test.mjs
