@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PRMR Virtual Lab · PK/PD 1.1</title><meta name="description" content="Laboratoire de simulation PK/PD exploratoire. Prototype non clinique."/>
+<link rel="stylesheet" href="style.css"/></head>
+<body>
+<header class="top"><div class="brand"><div class="logo">P</div><div><strong>PRMR Virtual Lab</strong><small>Pharmacologie computationnelle · V1.1</small></div></div><span class="tag">Prototype de recherche</span></header>
+<main class="layout">
+<section class="hero"><div class="eyebrow">MODULE ACTIF · PK/PD</div><h1>Simulation pharmacocinétique exploratoire</h1>
+<p>Modèle oral à un compartiment avec absorption et élimination de premier ordre. Ajustez les paramètres fictifs et examinez les prédictions mathématiques.</p>
+<div class="warning"><strong>Non validé pour une application clinique.</strong> Paramètres hypothétiques : aucune molécule, espèce ou population calibrée. Aucun conseil de dose humaine ou animale.</div></section>
+<section class="workspace">
+<aside class="panel controls"><div class="panelhead"><div><h2>Paramètres</h2><p>Hypothèses modifiables</p></div><button id="reset" class="secondary">Réinitialiser</button></div><div id="controls"></div>
+<div class="legend"><span class="dot"></span> Tous les paramètres sont illustratifs, sans provenance expérimentale.</div>
+</aside>
+<div class="results">
+<section class="metrics" id="metrics" aria-label="Résultats de simulation"></section>
+<section class="panel chartpanel"><div class="panelhead"><div><h2>Profil concentration–temps</h2><p>Concentration en mg/L · temps en heures</p></div><button id="download" class="secondary">Exporter JSON</button></div><div id="chart" class="chart" role="img" aria-label="Courbe concentration-temps simulée"></div><div class="chartfoot"><span>● Concentration simulée</span><span id="horizon"></span></div></section>
+<section class="panel"><div class="panelhead"><div><h2>Analyse de scénarios</h2><p>Variations indépendantes ±20 % de F, CLh et CLr (27 scénarios)</p></div></div>
+<div id="uncertainty"></div><p class="note">Enveloppe de scénarios hypothétiques, pas un intervalle de confiance ni une estimation de variabilité biologique.</p></section>
+</div></section>
+<section class="panel details"><h2>Méthode et traçabilité</h2><div class="columns">
+<div><h3>Équations</h3><p>CL = CLh × (1 − inhibition) + CLr × facteur rénal</p><p>kₑ = CL / V</p><p>C(t) = F × Dose × kₐ / [V(kₐ − kₑ)] × (e<sup>−kₑt</sup> − e<sup>−kₐt</sup>)</p><p>AUC₀₋∞ = F × Dose / CL</p><p>Indice d'effet = 100 × Cmax / (EC50 + Cmax)</p><p>Le cas kₐ = kₑ est calculé par sa limite analytique.</p></div>
+<div><h3>Nature des données</h3><p><strong>Expérimental :</strong> aucune donnée chargée.</p><p><strong>Hypothèses :</strong> tous les paramètres d'entrée (sans étalonnage).</p><p><strong>Prédictions :</strong> Cmax, Tmax, AUC, demi-vie, concentration et indice d'effet.</p><p><strong>Limites :</strong> facteur rénal ≠ DFG, ni stade d'insuffisance rénale. Aucune prédiction de régénération ni de réponse thérapeutique.</p></div></div></section>
+<section class="future"><h2>Modules futurs — non opérationnels</h2><div class="futuregrid"><div><strong>RDKit</strong><span>Structure moléculaire · à intégrer</span></div><div><strong>PK-Sim / MoBi</strong><span>PBPK et QSP · à intégrer</span></div><div><strong>Renal Engine</strong><span>Filtration, transport, inflammation, fibrose · à intégrer</span></div></div></section>
+</main><footer>PRMR Virtual Lab · Recherche exploratoire · Aucune décision clinique ne doit être fondée sur ces résultats.</footer>
+<script type="module" src="src/app.mjs"></script>
+</body></html>
