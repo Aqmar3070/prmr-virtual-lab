@@ -1,5 +1,16 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
+## Cloud Research Workspace — Supabase (intégration initiale)
+
+- Module **Espace de recherche privé** dans la navigation GitHub Pages.
+- Supabase Auth : inscription par e-mail/mot de passe, confirmation d'e-mail, session, déconnexion.
+- Projets et travaux persistants dans `research_projects`, `molecules`, `experiments` et `simulation_runs`.
+- Sauvegarde des structures **calculées** par RDKit.js et des prédictions PK/PD **hypothétiques**, sans prétendre à une validation clinique.
+- Accès limité au propriétaire via RLS pour les 4 tables; clés `service_role` jamais publiées.
+- **Vérification d'intégration requise** : les paramètres de redirection Auth du Dashboard et un vrai essai de confirmation d'e-mail/connexion/enregistrement doivent encore être effectués. Documentation : [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md).
+- Limites du SMTP d'essai Supabase : adresse de membre de l'organisation uniquement, 2 messages/h tant qu'un SMTP personnalisé n'est pas configuré.
+
+
 Site Web scientifique exploratoire accessible dans Chrome via GitHub Pages.
 
 ## Modules ajoutés à l'interface (version 2.0)
