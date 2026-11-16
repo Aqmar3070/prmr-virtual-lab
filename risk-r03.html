@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09111e"><title>PRMR-R03 | Stress-test PK/PD et risque–bénéfice animal</title>
+<meta name="description" content="Analyse computationnelle exploratoire de l'exposition rénale et hépatique, souris et rat, masse, maladie et hydratation. Aucune probabilité de toxicité inventée.">
+<link rel="stylesheet" href="./laboratory.css">
+<style>
+body{background:#09111e;color:#e7f3f6;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+main{max-width:1290px;margin:auto;padding:24px clamp(15px,3vw,42px) 70px}
+a{color:#90e5ea}.header{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:35px}
+.header strong{font-size:17px}.header strong span{color:#55e0c2}.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{background:#122b3e;border:1px solid #37536a;color:#d4f0ee;padding:10px 13px;border-radius:9px;text-decoration:none;font-size:12px}
+.kicker{font-size:10px;color:#70dfcc;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,54px);letter-spacing:-.052em;line-height:1.1;margin:15px 0}h1 span{color:#67e2cf}
+h2{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.03em;margin:0 0 12px}
+h3{font-size:17px;line-height:1.45;margin:0 0 12px}
+.lead{max-width:920px;color:#aec5cf;line-height:1.8;font-size:15px}
+.note{background:#2d261b;border-left:3px solid #d1a16a;color:#ebd5ac;padding:17px 19px;border-radius:9px;font-size:13px;line-height:1.8;margin:24px 0}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:23px 0}
+.kpi{border:1px solid #294859;background:#10283a;border-radius:12px;padding:18px}
+.kpi small{display:block;color:#9ab5c7;font-size:11px}.kpi b{display:block;font-size:30px;color:#7de9d1;margin:12px 0;letter-spacing:-.04em}
+section{margin-top:44px}section>p,.small{font-size:12px;line-height:1.8;color:#abc1cc}
+.panel{border:1px solid #30485b;background:#102538;border-radius:13px;padding:23px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.selectors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}
+.selectors label{display:block;font-size:11px;color:#a6bfc8;margin-bottom:7px}
+.selectors select{width:100%;min-width:0;background:#102032;color:#e7eff2;border:1px solid #345970;border-radius:8px;padding:11px 10px;font-size:12px}
+.flags{border-left:3px solid #86afba;padding:12px 15px;background:#102e3a;color:#c1d6dc;font-size:12px;line-height:1.8;border-radius:6px}
+.flags.warning{background:#30271c;border-color:#cba16d;color:#efd8b8}
+.badge{display:inline-block;color:#9cf0dd;background:#18483c;border:1px solid #388878;border-radius:99px;font-size:10px;font-weight:800;padding:6px 10px;margin-bottom:12px}
+.badge.warn{background:#443424;color:#edcea4;border-color:#86693e}
+.comp-title{display:flex;justify-content:space-between;align-items:start;gap:10px;flex-wrap:wrap}
+.ratio{font-size:27px;color:#8fe5d6;font-weight:900;letter-spacing:-.03em;margin:9px 0 5px}
+.ratiogrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.ratiogrid>div{background:#163247;border:1px solid #2d4e61;border-radius:10px;padding:15px;min-width:0}
+.ratiogrid small{display:block;font-size:11px;color:#afc5d1;line-height:1.6}
+.helptxt{font-size:10px;color:#a3bac8;line-height:1.7}
+.riskrow{padding:15px 0;border-top:1px solid #28475a;font-size:12px;color:#c6dae0;line-height:1.65}
+.riskrow:last-child{padding-bottom:0}
+.riskrow strong{color:#91e2d0}
+table{width:100%;border-collapse:collapse}
+.tablewrap{overflow-x:auto;border:1px solid #315064;border-radius:11px}
+th,td{text-align:left;border-bottom:1px solid #2b4659;padding:14px;font-size:12px;line-height:1.6;vertical-align:top}
+th{background:#183548;color:#d4e7ef}td{background:#102638;color:#b9d0dc}
+tr:last-child td{border-bottom:0}
+.bar{height:9px;background:#315063;border-radius:20px;margin-top:8px;overflow:hidden}.bar>span{height:100%;display:block;background:#66dfca}
+.education{border:1px solid #358271;background:#15372f;border-radius:13px;padding:24px}
+.education p{font-size:14px;line-height:1.9;color:#d7eae6}
+ul{padding-left:22px}li{line-height:1.8;color:#bed1da;font-size:13px}
+details{border-top:1px solid #315064;padding:15px 0}
+summary{cursor:pointer;font-size:13px;color:#90dfd4;font-weight:800}
+footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:11px;color:#99b3c0;line-height:1.75}
+@media(max-width:920px){.selectors{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.selectors,.kpis,.grid2,.grid3,.ratiogrid{grid-template-columns:1fr}.panel{padding:17px}}
+</style></head>
+<body>
+<main>
+<header class="header">
+ <strong>PRMR <span>Virtual Lab</span> / R03</strong>
+ <nav class="nav" aria-label="Navigation recherche">
+  <a href="./index.html">Laboratoire</a>
+  <a href="./screening.html">R02 — 165 combinaisons</a>
+  <a href="./preclinical.html">R01 — études publiées</a>
+  <a href="./index.html?view=cloud">Projet privé</a>
+ </nav>
+</header>
+<div class="kicker">PRMR-R03 · Physiologie comparée · Analyse computationnelle / 16 novembre 2026</div>
+<h1>Risque rénal, hépatique et <span>bénéfice potentiel.</span></h1>
+<p class="lead">Stress-test quantitatif de l'exposition de trois associations issues de PRMR-R02 chez des analogues de souris et de rats de différentes masses et différents états physiologiques. Il compare les signaux de pharmacocinétique et les mécanismes possibles, sans inventer de toxicités, de guérison ni de nouvelles observations animales.</p>
+<div class="note"><strong>Frontière scientifique essentielle :</strong> les chiffres d'exposition proviennent de données <strong>humaines</strong>, puis sont soumis à une extrapolation de sensibilité <strong>arbitraire</strong> vers des profils animaux. Les pourcentages calculés ne sont PAS des probabilités de lésions rénales, d'hépatotoxicité, de guérison ou d'efficacité. Il manque des courbes dose–réponse et des concentrations tissulaires validées des combinaisons.</div>
+<div class="kpis">
+ <div class="kpi"><small>Espèces animales de référence</small><b>2</b><small>Souris et rats, analogues hypothétiques</small></div>
+ <div class="kpi"><small>Profils expérimentaux simulés</small><b id="nprofiles">144</b><small>Masse × rein × foie × hydratation × espèce</small></div>
+ <div class="kpi"><small>Associations comparées</small><b>3</b><small>Double référence, R02-A, R02-B</small></div>
+ <div class="kpi"><small>Probabilité réelle de guérison</small><b>?</b><small>Non estimable avec les données disponibles</small></div>
+</div>
+<section id="assumptions">
+<h2>Données pharmacocinétiques de départ</h2>
+<p>Rapports AUC tirés de documents pharmacologiques relatifs à des personnes. Un rapport AUC plus haut indique une exposition plus forte au composé concerné, <strong>pas</strong> un pourcentage de toxicité.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Analyte</th><th>Atteinte rénale modérée</th><th>Atteinte rénale sévère</th><th>Atteinte hépatique modérée</th></tr></thead>
+<tbody>
+<tr><td>Dapagliflozine mère</td><td>×1,60</td><td>×1,87</td><td>Pas calculé ici</td></tr>
+<tr><td>Pirfénidone : métabolite 5-carboxy</td><td>×3,48</td><td>×5,85</td><td>Molécule mère ×1,60</td></tr>
+<tr><td>Pentoxifylline : métabolite V</td><td>×2,40</td><td>×12,90</td><td>Molécule mère ×6,50</td></tr>
+</tbody></table></div>
+<p class="small">Des molécules et des métabolites différents n'ont pas la même toxicité par unité d'exposition : ces multiples ne sont pas directement des scores de risque comparables. La catégorie « sévère » hépatique n'est pas extrapolée.</p>
+</section>
+<section id="simulator">
+<h2>Simulateur de profils animaux</h2>
+<p>Les contrôles appliquent le même modèle descriptif aux trois associations. La déshydratation déclenche un avertissement hémodynamique sans coefficient pharmacocinétique inventé.</p>
+<div class="panel">
+<div class="selectors">
+ <div><label for="species">Espèce et souche de référence</label><select id="species"><option value="mouse">Souris C57BL/6</option><option value="rat">Rat Sprague–Dawley</option></select></div>
+ <div><label for="mass">Masse corporelle</label><select id="mass"></select></div>
+ <div><label for="renal">État de la fonction rénale</label><select id="renal"><option value="normal">Conservée</option><option value="mild">Altération légère</option><option value="moderate">Altération modérée</option><option value="severe">Altération sévère</option></select></div>
+ <div><label for="hepatic">État de la fonction hépatique</label><select id="hepatic"><option value="normal">Conservée</option><option value="moderate">Altération modérée</option><option value="severe">Altération sévère</option></select></div>
+ <div><label for="hydration">État volémique</label><select id="hydration"><option value="normal">Hydratation conservée</option><option value="depleted">Déplétion / déshydratation</option></select></div>
+ <div><label for="sex">Sexe animal (non calibré)</label><select id="sex"><option value="unspecified">Non précisé</option><option value="female">Femelle</option><option value="male">Mâle</option></select></div>
+ <div><label for="age">Âge physiologique (non calibré)</label><select id="age"><option value="adult">Adulte</option><option value="young">Jeune</option><option value="aged">Âgé</option></select></div>
+ <div><label for="constitution">Constitution (non calibrée)</label><select id="constitution"><option value="unspecified">Non précisée</option><option value="lean">Maigre</option><option value="adipose">Adiposité accrue</option></select></div>
+</div>
+<div class="flags" id="input-warning" aria-live="polite">Choisir un profil animal.</div>
+<p class="small" id="profile-id">Profil de calcul</p>
+</div>
+<div id="results" class="grid3" style="margin-top:17px">
+<div class="panel"><h3>R02-DUO · référence</h3><p class="small">Résultats de simulation en cours…</p></div>
+<div class="panel"><h3>R02-A · hypothèse antifibrosante</h3><p class="small">Résultats de simulation en cours…</p></div>
+<div class="panel"><h3>R02-B · hypothèse anti-inflammatoire</h3><p class="small">Résultats de simulation en cours…</p></div>
+</div>
+<p class="small">Intervalles 5–95 % = fourchettes de tirages du scénario choisi, pas intervalles de confiance ni valeurs observées chez les animaux. « Au-dessus de ×2 » et « au-dessus de ×5 » = seules fréquences d'exposition <strong>conditionnelles aux hypothèses</strong> du modèle, et non seuils de toxicité. Un signal « non estimable » remplace toute toxicité non calibrée.</p>
+</section>
+<section id="pharmacodynamics">
+<h2>Pharmacodynamie : engagement de cible SGLT2</h2>
+<p>Calcul Emax à partir des IC₅₀ expérimentales in vitro de la dapagliflozine : 2,3 nM chez la souris et 3,0 nM chez le rat. Les concentrations libres de 1, 3 et 10 nM sont choisies <strong>uniquement comme illustrations mathématiques</strong>. Elles ne découlent d'aucune dose animale.</p>
+<div class="panel"><div id="sglt2" aria-live="polite"></div></div>
+<p class="small">Une inhibition théorique de SGLT2 ne prédit ni la filtration glomérulaire, ni le bénéfice antifibrotique, ni les éventuelles lésions hépatiques, ni une réparation complète du rein. La relation entre réponse SGLT2, glucosurie, DFG et progression rénale dépend du modèle pathologique.</p>
+</section>
+<section id="balance">
+<h2>Balance risque–bénéfice : décision exploratoire</h2>
+<div class="grid3">
+ <div class="panel">
+  <span class="badge">R02-DUO</span><h3>Irbesartan + dapagliflozine</h3>
+  <p class="small">Deux axes pharmacologiques cohérents avec des mécanismes de protection rénale connus. Risques hémodynamiques à évaluer avec déplétion volémique, pression basse, atteinte rénale et potassium.</p>
+  <p><strong>Bénéfice supplémentaire d'un troisième agent :</strong> sans objet.</p>
+ </div>
+ <div class="panel">
+  <span class="badge warn">R02-A</span><h3>Ajout de pirfénidone</h3>
+  <p class="small">Hypothèse de modulation de la fibrose. Signal de vigilance : foie et métabolite 5-carboxy en maladie rénale. Bénéfice rénal direct de cet ajout non démontré ici.</p>
+  <p><strong>Balance nette :</strong> indéterminée.</p>
+ </div>
+ <div class="panel">
+  <span class="badge warn">R02-B</span><h3>Ajout de pentoxifylline</h3>
+  <p class="small">Hypothèse de modulation inflammatoire. Signal de vigilance : métabolite V en insuffisance rénale et hausse d'exposition parentale en altération hépatique.</p>
+  <p><strong>Balance nette :</strong> indéterminée.</p>
+ </div>
+</div>
+<div class="note" id="balance-assessment" style="margin-top:16px">Aucune balance individuelle n'est déterminable en l'absence d'une efficacité rénale supplémentaire mesurée et de modèles exposition–toxicité validés.</div>
+</section>
+<section>
+<h2>Principaux facteurs de physiologie et limites</h2>
+<div class="grid2">
+<div class="panel"><h3>Pris en compte dans l'expérience numérique</h3><ul>
+<li>Espèce : souris C57BL/6 ou rat Sprague–Dawley, sans calibration PK absolue spécifique.</li>
+<li>Poids de 18 à 35 g (souris), 180 à 400 g (rats) ; relation allométrique illustrative.</li>
+<li>État rénal sur quatre niveaux ; signaux de métabolites extrapolés conditionnellement.</li>
+<li>État hépatique sur trois niveaux, sévérité forte exclue de l'extrapolation numérique.</li>
+<li>Déplétion volémique : alerte qualitative hémodynamique.</li>
+<li>1000 tirages de paramètres par marqueur et par scénario : enveloppe exploratoire reproductible.</li>
+</ul></div>
+<div class="panel"><h3>Non quantifiables dans la version R03</h3><ul>
+<li>Âge, sexe, hormones, masse grasse, état nutritionnel, albuminémie.</li>
+<li>Génotype, souche, expression CYP, UGT, transporteurs et excrétion biliaire.</li>
+<li>Étiologie de la maladie rénale, fibrose, glucose sanguin et DFG mesuré.</li>
+<li>Fraction libre, circulation intra-rénale, concentrations hépatiques et métabolites combinés.</li>
+<li>Profils concentration–temps et interactions de coadministration.</li>
+<li>Relations concentration–lésion, dose–efficacité, survie, restauration organique.</li>
+</ul></div>
+</div>
+</section>
+<section>
+<h2>La méthode : connaître les hypothèses et les limites</h2>
+<details><summary>Voir les équations et les échantillonnages</summary>
+<p class="small">AUC ≈ F × dose / clairance pour une exposition linéaire simplifiée. À dose nominale en mg/kg et clairance théorique proportionnelle à la masse^0,75, AUC relative est proportionnelle à masse^0,25. En raison de l'absence d'une calibration PK/PD propre à chaque composé chez chaque souche, R03 ne calcule ni concentration plasmatique réelle ni dose ni marge de sécurité.</p>
+<p class="small">Pour chaque indicateur publié chez l'humain, le modèle génère un rapport relatif = (rapport AUC humain)^(facteur de transfert) × (masse/masse de référence)^(exposant de sensibilité) × (variation résiduelle). Les facteurs de transfert uniformes 0,5–1,5, exposants 0,15–0,35 et facteurs résiduels 0,85–1,15 sont des hypothèses choisies pour tester la robustesse et non des distributions physiologiques estimées. La déshydratation, le sexe, l'âge et la composition corporelle ne sont pas transformés artificiellement en multiplicateurs d'exposition.</p>
+<p class="small">Fréquences « au-dessus de ×2 » ou « ×5 » : fraction des 1000 tirages dépassant un multiple relatif d'AUC, sans signification toxicologique validée. Une altération simultanée du foie et du rein n'a pas de modèle d'interaction calibré. R03 présente les marqueurs séparément ; il serait injustifié de les multiplier comme s'ils appartenaient au même métabolite.</p>
+</details>
+<details><summary>Qu'exiger pour une vraie probabilité de toxicité et une vraie balance ?</summary>
+<p class="small">Des séries dose–exposition–lésion par espèce et souche, sexes et âges, pharmacocinétique des molécules et métabolites, sang/tissu, ALT/AST et histologie hépatique, créatinine/cystatine C/DFG, marqueurs tubulaires KIM-1/NGAL, albuminurie/protéinurie, pression artérielle, potassium, mortalité et effets différés. Il faut ensuite calibrer une fonction de réponse avec incertitude (par exemple un modèle hiérarchique de toxicité) et valider en aveugle sur des données distinctes. Sans cela, aucune « probabilité de toxicité » n'est estimable.</p>
+<p class="small">Pour une balance : bénéfice net = bénéfice rénal mesuré et cliniquement pertinent − dommages mesurés, sur un horizon défini et dans une maladie précise. Les paramètres actuels ne permettent pas de calculer ce bénéfice net.</p>
+</details>
+</section>
+<section class="education">
+<h2>Explication simple : pourquoi l'ordinateur ne peut pas encore annoncer une guérison</h2>
+<p>Deux animaux peuvent peser différemment et ne pas éliminer les médicaments au même rythme. Si leurs reins ou leur foie sont malades, certaines substances peuvent rester plus longtemps dans leur corps.</p>
+<p>Nous avons étudié ces situations avec un modèle numérique, puis testé ce qui change lorsque ses hypothèses changent. Cela aide à repérer des situations qu'il faudra surveiller, mais **l'ordinateur n'a pas observé de rein guéri**.</p>
+<p>Les deux groupes de trois médicaments pourraient un jour produire un bénéfice supplémentaire. Ils pourraient aussi provoquer des problèmes. Sans mesures sur de vrais modèles biologiques, aucun des deux résultats n'est certain.</p>
+</section>
+<section>
+<h2>Sources et journal scientifique</h2>
+<ul>
+<li><a href="https://www.medicines.org.uk/emc/product/13875/smpc" target="_blank" rel="noopener noreferrer">Pirfénidone — pharmacocinétique, atteinte rénale/hépatique et métabolites (SmPC)</a></li>
+<li><a href="https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b0d1d50f-9023-4e2f-889f-a5febba70fa5" target="_blank" rel="noopener noreferrer">Pentoxifylline — exposition du métabolite V et atteinte hépatique (DailyMed)</a></li>
+<li><a href="https://www.medicines.org.uk/emc/product/7607/smpc" target="_blank" rel="noopener noreferrer">Dapagliflozine — pharmacocinétique et fonction rénale (SmPC)</a></li>
+<li><a href="https://journals.sagepub.com/doi/full/10.1177/1091581813505331" target="_blank" rel="noopener noreferrer">Dapagliflozine — pharmacodynamie SGLT2 chez la souris et le rat</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11782306/" target="_blank" rel="noopener noreferrer">Échelle allométrique : limites de la loi 0,75</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7610906/" target="_blank" rel="noopener noreferrer">ARRIVE 2.0 — standards expérimentaux pour des études animales</a></li>
+<li><a href="./src/r03_model.mjs" target="_blank" rel="noopener noreferrer">Moteur numérique R03 et hypothèses explicites</a></li>
+<li><a href="https://github.com/Aqmar3070/prmr-virtual-lab/blob/main/docs/PRMR_R03_RESEARCH_LOG.md" target="_blank" rel="noopener noreferrer">Journal PRMR-R03 et critères de validation biologique</a></li>
+</ul>
+</section>
+<footer>PRMR-R03 · Stress-test exploratoire et non PBPK validé · Aucune administration animale réalisée · Aucun résultat de réparation ou de guérison · Aucun pourcentage de toxicité réelle inféré.</footer>
+</main>
+<script type="module">
+import {build,SPECIES,sglt2Inhibition,massFactor} from "./src/r03_model.mjs";
+const data=build(),$=id=>document.getElementById(id);
+$("nprofiles").textContent=data.cohorts_count;
+const f=(v,d=2)=>Number(v).toLocaleString("fr-FR",{maximumFractionDigits:d,minimumFractionDigits:d});
+function masses(){const s=SPECIES.find(s=>s.id===$("species").value);$("mass").replaceChildren();for(const m of s.masses_g){const op=document.createElement("option");op.value=String(m);op.textContent=m+" g";if(m===s.ref_mass_g)op.selected=true;$("mass").append(op)}refresh()}
+function para(s,cls){const e=document.createElement("p");e.className=cls||"small";e.textContent=s;return e}
+function metric(label,value,details){let box=document.createElement("div");let small=document.createElement("small");small.textContent=label;let strong=document.createElement("div");strong.className="ratio";strong.textContent=value;box.append(small,strong,para(details,"helptxt"));return box}
+function groupCard(group){
+ const card=document.createElement("article");card.className="panel";
+ let h=document.createElement("h3");
+ h.textContent=group.regimen+" · "+(group.regimen==="R02-DUO"?"Comparateur":group.regimen==="R02-A"?"Antifibrosant hypothétique":"Anti-inflammatoire hypothétique");
+ let badge=document.createElement("span");badge.className="badge"+(group.regimen==="R02-DUO"?"":" warn");badge.textContent="Probabilité de toxicité : Non estimable";
+ card.append(badge,h,para(group.agents.join(" + ")));
+ let grid=document.createElement("div");grid.className="ratiogrid";
+ const ren=group.renal_exposure,hep=group.hepatic_exposure;
+ grid.append(metric("Exposition relative · marqueur rénal","×"+f(ren.median),"Intervalle simulé 5–95 % : ×"+f(ren.range_5_95[0])+" à ×"+f(ren.range_5_95[1])));
+ grid.append(metric("Exposition relative · marqueur hépatique",hep?"×"+f(hep.median):"Non estimable",hep?"Intervalle simulé 5–95 % : ×"+f(hep.range_5_95[0])+" à ×"+f(hep.range_5_95[1]):"Donnée propre à cette molécule/atteinte absente ou situation non extrapolable."));
+ card.append(grid);
+ const freq=document.createElement("div");freq.className="riskrow";freq.textContent="Fréquence AUC du marqueur rénal > ×2 : "+f(100*ren.share_above_2,1)+" % | > ×5 : "+f(100*ren.share_above_5,1)+" % (stress-test arbitraire, PAS toxicité).";
+ card.append(freq);
+ for(const flag of group.flags){const el=document.createElement("div");el.className="riskrow";el.textContent=flag;card.append(el)}
+ return card;
+}
+function refresh(){
+ const query={species:$("species").value,mass_g:Number($("mass").value),renal:$("renal").value,hepatic:$("hepatic").value,hydration:$("hydration").value};
+ const profile=data.profiles.find(p=>Object.keys(query).every(k=>p[k]===query[k]));
+ if(!profile){$("profile-id").textContent="Profil non disponible";return}
+ $("profile-id").textContent="Profil "+profile.id+" | Référence de masse : "+profile.ref_mass_g+" g | Modificateur allométrique central : ×"+f(massFactor(profile.mass_g,profile.ref_mass_g),3)+" (non validé)";
+ let warn=[];
+ if(profile.hepatic==="severe")warn.push("Foie sévèrement altéré : pas de calcul de marqueur hépatique, situation hors extrapolation.");
+ if(profile.renal==="severe")warn.push("Rein sévèrement altéré : exposition de certains métabolites fortement augmentée dans les références humaines.");
+ if(profile.hydration==="depleted")warn.push("Risque hémodynamique à surveiller sous bloqueur SRAA + SGLT2, sans probabilité estimable.");
+ const sex=$("sex").value,age=$("age").value,constitution=$("constitution").value;
+ if(sex!=="unspecified")warn.push("Sexe "+(sex==="female"?"femelle":"mâle")+" : aucun coefficient PK intersexes validé pour la combinaison.");
+ if(age!=="adult")warn.push("Âge "+(age==="young"?"jeune":"avancé")+" : absence de calibration selon âge.");
+ if(constitution!=="unspecified")warn.push("Constitution "+(constitution==="lean"?"maigre":"avec adiposité accrue")+" : liaison protéique et volumes tissulaires non quantifiés.");
+ if(!warn.length)warn.push("Les effets de masse, rein et foie présentés sont des scénarios, non des observations ou des prédictions validées.");
+ $("input-warning").textContent=warn.join(" ");
+ $("input-warning").className="flags"+(profile.renal==="severe"||profile.hepatic!=="normal"||profile.hydration==="depleted"?" warning":"");
+ $("results").replaceChildren(...profile.exposure_regimens.map(groupCard));
+ let assessment="Bénéfice supplémentaire de R02-A ou R02-B non mesuré. La balance risque–bénéfice demeure indéterminée; le doublet comporte moins de substances non validées.";
+ if(profile.renal==="severe")assessment+=" Les signaux d'accumulation humaine des métabolites sont plus importants pour pentoxifylline (×12,9) que pour pirfénidone (×5,85), mais ne représentent pas des toxicités directement comparables.";
+ if(profile.hepatic==="moderate")assessment+=" Dans les données humaines, l'AUC de la molécule mère est multipliée par 6,5 pour pentoxifylline et par 1,6 pour pirfénidone; aucune conclusion quantitative sur la toxicité comparative n'est permise.";
+ if(profile.hepatic==="severe")assessment+=" L'insuffisance hépatique sévère n'est pas simulable avec cette base de données.";
+ $("balance-assessment").textContent=assessment;
+}
+function showPD(){
+ const species=$("species").value,sd=SPECIES.find(s=>s.id===species);
+ const el=$("sglt2");el.replaceChildren(para("Espèce : "+sd.label+" ; IC₅₀ sur SGLT2 = "+sd.sglt2_ic50_nM+" nM. Aucune concentration réellement mesurée ni liée à une dose."));
+ for(const c of [1,3,10]){
+   const occupancy=100*sglt2Inhibition(species,c);
+   const row=document.createElement("div");row.className="riskrow";row.append(para("Concentration libre illustrative "+c+" nM → inhibition théorique "+f(occupancy,1)+" %"));
+   const bar=document.createElement("div");bar.className="bar";let inner=document.createElement("span");inner.style.width=occupancy+"%";bar.append(inner);row.append(bar);el.append(row);
+ }
+}
+["mass","renal","hepatic","hydration","sex","age","constitution"].forEach(id=>$(id).addEventListener("change",refresh));
+$("species").addEventListener("change",()=>{masses();showPD()});
+masses();showPD();
+</script></body></html>
