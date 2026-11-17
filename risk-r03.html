@@ -4,6 +4,7 @@
 <meta name="theme-color" content="#09111e"><title>PRMR-R03 | Stress-test PK/PD et risque–bénéfice animal</title>
 <meta name="description" content="Analyse computationnelle exploratoire de l'exposition rénale et hépatique, souris et rat, masse, maladie et hydratation. Aucune probabilité de toxicité inventée.">
 <link rel="stylesheet" href="./laboratory.css">
+<link rel="stylesheet" href="./r04-atlas.css">
 <style>
 body{background:#09111e;color:#e7f3f6;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 *{box-sizing:border-box}
@@ -78,6 +79,14 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:1
  <div class="kpi"><small>Associations comparées</small><b>3</b><small>Double référence, R02-A, R02-B</small></div>
  <div class="kpi"><small>Probabilité réelle de guérison</small><b>?</b><small>Non estimable avec les données disponibles</small></div>
 </div>
+<figure class="r4-original-poster" id="r03-original-poster" hidden>
+ <div class="r4-original-poster-header">
+  <div><strong>Tableau PK/PD — illustration originale PRMR</strong><small>Image de présentation. Les graphiques et chiffres illustratifs de l'affiche ne sont pas des mesures animales.</small></div>
+  <a href="./assets/illustrations/r04/tableau-pkpd.png" target="_blank" rel="noopener noreferrer">Voir l'image originale</a>
+ </div>
+ <img id="r03-original-image" src="./assets/illustrations/r04/tableau-pkpd.png" loading="lazy" alt="Affiche originale PRMR sur l'étude PK/PD : représentation pédagogique, non preuve de guérison">
+ <figcaption class="r4-original-poster-warning">Les valeurs représentées graphiquement dans l'affiche sont illustratives. Les scénarios numériques et leurs limites figurent dans les tableaux interactifs ci-dessous.</figcaption>
+</figure>
 <section id="assumptions">
 <h2>Données pharmacocinétiques de départ</h2>
 <p>Rapports AUC tirés de documents pharmacologiques relatifs à des personnes. Un rapport AUC plus haut indique une exposition plus forte au composé concerné, <strong>pas</strong> un pourcentage de toxicité.</p>
@@ -196,6 +205,12 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:1
 <footer>PRMR-R03 · Stress-test exploratoire et non PBPK validé · Aucune administration animale réalisée · Aucun résultat de réparation ou de guérison · Aucun pourcentage de toxicité réelle inféré.</footer>
 </main>
 <script type="module">
+const r03Poster=document.getElementById("r03-original-poster");
+const r03Image=document.getElementById("r03-original-image");
+r03Image?.addEventListener("load",()=>{r03Poster.hidden=false});
+r03Image?.addEventListener("error",()=>{r03Poster.remove()});
+if(r03Image?.complete&&r03Image.naturalWidth>0){r03Poster.hidden=false}
+
 import {build,SPECIES,sglt2Inhibition,massFactor} from "./src/r03_model.mjs";
 const data=build(),$=id=>document.getElementById(id);
 $("nprofiles").textContent=data.cohorts_count;
