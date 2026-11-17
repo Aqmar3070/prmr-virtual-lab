@@ -1,15 +1,9 @@
-// R04 visual atlas — high-contrast illustrated species cards, linked to existing live model.
-import {SPECIES_R04,OPTIONS} from "./r04_engine.mjs";
-const LABELS={
- mouse:{architecture:["Différente","limited"],experimental:["Mécanismes","strong"],ethics:["Encadrement","medium"]},
- rat:{architecture:["Différente","limited"],experimental:["Physiologie","strong"],ethics:["Encadrement","medium"]},
- pig:{architecture:["Proche sur la structure","strong"],experimental:["Procédures ciblées","medium"],ethics:["Exigence importante","strong"]},
- dog:{architecture:["Différente","limited"],experimental:["Toxicologie ciblée","medium"],ethics:["Exigence importante","strong"]},
- nhp:{architecture:["Proche sur certains aspects","strong"],experimental:["Usage exceptionnel","limited"],ethics:["Exigence majeure","strong"]},
- rabbit:{architecture:["Variable selon la question","medium"],experimental:["Usage ciblé","medium"],ethics:["Encadrement","medium"]}
-};
-const WIDTHS={limited:27,medium:56,strong:86,none:0};
-const ORIGINAL_POSTERS={
+// PRMR-R04 — Integrated scientific workbench, replacing external animal photos / poster galleries.
+// The original generated artwork is CROPPED as visual texture; all labels, statuses and
+// scientific charts are live controls. No rendered poster score is interpreted as evidence.
+import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
+import {create3D} from "./r04_visuals.mjs";
+export const ANIMAL_ART={
  mouse:"comparaison-especes.png",
  rat:"comparaison-especes.png",
  pig:"porc.png",
@@ -17,165 +11,174 @@ const ORIGINAL_POSTERS={
  nhp:"primate.png",
  rabbit:"lapin.png"
 };
-const POSTER_DIR="./assets/illustrations/r04/";
-function attachOriginalPoster(wrap,speciesId){
- const filename=ORIGINAL_POSTERS[speciesId];
- if(!filename)return;
- const url=POSTER_DIR+filename;
- const section=node("section",undefined,"r4-original-poster");
- section.setAttribute("aria-label","Illustration PRMR originale de l'espèce");
- section.hidden=true;
- const heading=node("div",undefined,"r4-original-poster-header");
- const label=node("div");
- label.append(node("strong","Illustration PRMR — maquette originale"),node("small","Image exacte lorsque le PNG est présent dans le dépôt"));
- const link=node("a","Voir en plein écran");
- link.href=url;link.target="_blank";link.rel="noopener noreferrer";
- heading.append(label,link);
- const image=node("img");
- image.alt="Maquette graphique originale PRMR — "+speciesId+". Image éducative et illustrative, sans résultats expérimentaux.";
- image.loading="eager";image.decoding="async";
- image.addEventListener("load",()=>{section.hidden=false});
- image.addEventListener("error",()=>{section.remove()});
- image.src=url;
- const warning=node("p","IMPORTANT : les valeurs et barres affichées dans cette image sont des illustrations graphiques, non des mesures ou scores scientifiques. Pour les analyses, utiliser les résultats du simulateur interactif ci-dessous.","r4-original-poster-warning");
- section.append(heading,image,warning);
- const anchor=wrap.querySelector(".r4-atlas-main-grid");
- if(anchor)wrap.insertBefore(section,anchor);
- else wrap.append(section);
-}
-
-const EFFECT={
- mouse:["Génétique","Modèles de maladie rénale","Transporteurs et métabolisme non identiques à l'humain"],
- rat:["Physiologie","Hémodynamique et suivi longitudinal","Métabolisme et architecture spécifiques au rat"],
- pig:["Anatomie","Rein multipapillaire et calices","Perfusion, imagerie et procédures translationnelles"],
- dog:["Toxicologie","Modèle non-rongeur si indispensable","Rein unipapillaire et métabolisme non universel"],
- nhp:["Spécificité","Cibles propres aux primates","Éthique renforcée et priorité aux alternatives"],
- rabbit:["Alternative","Études mécanistiques ciblées","Physiologie et excrétion propres à l'espèce"]
-};
 const $=id=>document.getElementById(id);
-function node(tag,txt,cls){const n=document.createElement(tag);if(txt!==undefined)n.textContent=txt;if(cls)n.className=cls;return n}
-function makeKidneys(sp){
- const many=sp.id==="pig"||sp.id==="nhp";
- const branch=many?
- '<path d="M58 139 L78 117 L87 82 M58 139 L65 109 L48 72 M58 139 L40 112 L29 87 M58 139 L74 154 L89 168" stroke="#ffc28c" stroke-width="8" fill="none" stroke-linecap="round"/>'+
- '<path d="M58 139 L78 117 L87 82 M58 139 L65 109 L48 72 M58 139 L40 112 L29 87" stroke="#fff8d1" stroke-width="2" fill="none" stroke-linecap="round"/>':
- '<path d="M58 139 Q77 113 68 84 M58 139 Q50 117 43 98" stroke="#ffbb8b" stroke-width="11" fill="none" stroke-linecap="round"/>'+
- '<path d="M58 139 Q77 113 68 84 M58 139 Q50 117 43 98" stroke="#fff1c9" stroke-width="2" fill="none" stroke-linecap="round"/>';
- const kidneyShape='<path d="M80 30 C21 10 -4 48 12 113 C20 157 34 175 52 183 C77 192 88 168 74 151 C62 137 72 124 86 124 C111 125 121 74 99 45 C94 39 87 34 80 30Z" fill="url(#r4Organ)" stroke="#ff8c9e" stroke-width="3"/>';
- const renalArt=kidneyShape+'<path d="M75 42 C29 24 12 54 22 109 C26 133 41 162 51 167 C60 168 68 155 61 143 C55 122 74 110 83 104 C99 90 94 51 75 42Z" fill="none" stroke="#ffc9a2" opacity=".7" stroke-width="4"/>'+branch+
- '<path d="M61 140 C80 133 100 138 114 129" stroke="#42c1fa" fill="none" stroke-width="8"/><path d="M59 147 C84 153 104 155 116 145" stroke="#fe676c" fill="none" stroke-width="7"/>';
- const art='<g transform="translate(63 9) scale(1.00)">'+renalArt+'</g>';
- const human='<g transform="translate(334 14) scale(.96)">'+
- kidneyShape+'<path d="M58 139 L75 115 L82 83 M58 139 L47 102 L33 75 M58 139 L73 160" stroke="#ffdc9c" stroke-width="7" fill="none" stroke-linecap="round"/>'+
- '<path d="M61 140 L117 128" stroke="#41c3ef" stroke-width="7"/><path d="M60 148 L115 143" stroke="#ff7277" stroke-width="7"/></g>';
- return '<svg viewBox="0 0 535 218" role="img" aria-label="Schéma éducatif du rein '+sp.label+' comparé à un rein humain, non issu d’une imagerie médicale">'+
- '<defs><radialGradient id="r4Organ" cx="35%" cy="35%" r="75%"><stop stop-color="#ffbca9"/><stop offset=".28" stop-color="#e26c80"/><stop offset=".75" stop-color="#7d385e"/><stop offset="1" stop-color="#351a38"/></radialGradient></defs>'+
- art+human+
- '<path d="M266 118 L317 118" stroke="#72f6ea" stroke-width="3"/><path d="M272 112 L265 118 L272 124 M310 112 L317 118 L310 124" fill="none" stroke="#72f6ea" stroke-width="3"/>'+
- '<text x="144" y="209" font-size="13" font-weight="700" fill="#d4fef4" text-anchor="middle">Rein : '+sp.label+'</text>'+
- '<text x="413" y="209" font-size="13" font-weight="700" fill="#d4fef4" text-anchor="middle">Rein humain</text>'+
- '</svg>';
+const n=(tag,txt,cls)=>{let x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;if(cls)x.className=cls;return x};
+const num=(v,d=2)=>Number(v).toLocaleString("fr-FR",{maximumFractionDigits:d,minimumFractionDigits:d});
+const MASS=v=>v<1?num(v*1000,0)+" g":num(v,2)+" kg";
+const LABS={
+ mouse:{title:"Modèle mécanistique",remark:"Génétique et mécanismes rénaux : un rein unipapillaire, pas un modèle humain miniaturisé",terms:["Modèles génétiques","Mesures de fibrose","Différences métaboliques"],palette:"teal"},
+ rat:{title:"Physiologie longitudinale",remark:"Mesures rénales et hémodynamiques ; la PK reste spécifique du rat",terms:["Suivi de la fonction","Pression & perfusion","Transporteurs"],palette:"blue"},
+ pig:{title:"Anatomie translationnelle",remark:"Rein multipapillaire, architecture plus comparable à l’humain ; PK du triple inconnue",terms:["Rein multipapillaire","Perfusion & imagerie","Mesures translationnelles"],palette:"pink"},
+ dog:{title:"Toxicologie non-rongeur",remark:"Intérêt de certaines mesures de tolérance, mais physiologie non interchangeable",terms:["Exposition systémique","Toxicité d’organe","Choix justifié"],palette:"gold"},
+ nhp:{title:"Pertinence ciblée",remark:"Certaines cibles proches de l’humain ; justification scientifique et éthique exceptionnelle",terms:["Cibles spécialisées","Alternatives prioritaires","Éthique renforcée"],palette:"purple"},
+ rabbit:{title:"Modèle complémentaire",remark:"Alternative pour une question ciblée ; aucune supériorité universelle",terms:["Physiologie distincte","Critères spécifiques","Alternatives 3R"],palette:"rose"}
+};
+const REGIMEN_LABEL={"R02-DUO":"Irbesartan + Dapagliflozine","R02-A":"Doublet + Pirfénidone","R02-B":"Doublet + Pentoxifylline"};
+function make(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
+function atomFetch(){
+ return fetch("./research-data/r04_molecular_3d.json",{cache:"force-cache"}).then(r=>{if(!r.ok)throw Error("Structures moléculaires indisponibles");return r.json()});
 }
-function addBar(container,label,value,level){
- const item=node("div",undefined,"r4-atlas-meta-row");
- const head=node("div",undefined,"r4-atlas-meta-row-label");
- head.append(node("span",label),node("strong",value));
- const bar=node("div",undefined,"r4-atlas-meta-row-track");
- const fill=node("span");fill.style.width=String(WIDTHS[level]??0)+"%";
- if(level==="none")fill.style.background="#798e9d";
- bar.append(fill);item.append(head,bar);container.append(item);
-}
-function makeDOM(container,profile,onChoose){
- container.replaceChildren();
- const wrap=node("div",undefined,"r4-atlas-wrap");container.append(wrap);
- const top=node("div",undefined,"r4-atlas-top");
- top.append(node("div","ATLAS VISUEL PRMR-R04 · 6 ESPÈCES","r4-atlas-brand"),node("span","Profils documentaires et modèles éducatifs","r4-tag"));wrap.append(top);
- const heading=node("h2","Comparaison animale · "+profile.name,"r4-atlas-heading");heading.id="r4-atlas-heading";wrap.append(heading);
- const sub=node("p","Photographies réelles sourcées · schémas rénaux conceptuels · calculs R04 manipulables ci-dessous","r4-atlas-subtitle");wrap.append(sub);
- const selector=node("div",undefined,"r4-atlas-species-strip");selector.id="r4-atlas-strip";
- for(const s of SPECIES_R04){
-  const doc=profile.all[s.id];
-  const btn=node("button",undefined,"r4-atlas-species-button");btn.type="button";btn.dataset.species=s.id;
-  const img=node("img");img.src=doc.src;img.alt="Portrait "+s.label;img.loading="lazy";
-  img.onerror=()=>{img.style.display="none"};
-  const text=node("div");text.append(node("b",s.label),node("small",s.latin));
-  btn.append(img,text);btn.setAttribute("aria-pressed",String(s.id===profile.sp.id));
-  btn.addEventListener("click",()=>onChoose(s.id));
-  selector.append(btn);
+function compactSelect(id,caption,choices,current,onChange){
+ const lab=make("label","r4-st-control");
+ const small=make("span",null,caption);
+ const sel=make("select");sel.id=id;
+ for(const [value,text] of Object.entries(choices)){
+  const opt=make("option",null,text);opt.value=value;sel.append(opt)
  }
- wrap.append(selector);
- const kpis=node("div",undefined,"r4-atlas-kpis");
- for(const [a,b] of [["Espèce étudiée",profile.name],["Architecture rénale",profile.anatomySummary],["Domaine expérimental",profile.sp.focus.split(",")[0]],["Validité PK/PD du triple","Non mesurée"]]){
-  const c=node("div",undefined,"r4-atlas-kpi");c.append(node("small",a),node("b",b));kpis.append(c)
- }
- wrap.append(kpis);
- if(!document.getElementById("r4-original-gallery"))attachOriginalPoster(wrap,profile.sp.id);
- const grid=node("div",undefined,"r4-atlas-main-grid");wrap.append(grid);
- const left=node("article",undefined,"r4-atlas-pane");grid.append(left);
- left.append(node("h3","Profil visuel — "+profile.name),node("p","Anatomie · pertinence expérimentale · contraintes de transposition"));
- const leftgrid=node("div",undefined,"r4-atlas-left");left.append(leftgrid);
- const figure=node("div",undefined,"r4-atlas-portrait");
- const big=node("img");big.src=profile.src;big.alt="Photo : "+profile.name+", auteur "+profile.credit;big.loading="eager";
- big.onerror=()=>{big.style.display="none";figure.style.background="linear-gradient(150deg,#174a62,#071e2f)"};
- figure.append(big,node("div",profile.sp.label+" · "+profile.sp.latin));
- leftgrid.append(figure);
- const bars=node("div",undefined,"r4-atlas-meta-rows");leftgrid.append(bars);
- const levels=LABELS[profile.sp.id];
- addBar(bars,"Structure du rein",...levels.architecture);
- addBar(bars,"Modèle expérimental",...levels.experimental);
- addBar(bars,"PK triple dans PRMR","Non mesurée","none");
- addBar(bars,"Exigences éthiques",...levels.ethics);
- bars.append(node("div","Barres qualitatives de présentation : catégories éditoriales, sans score numérique ni probabilité biologique.","r4-atlas-meta-disclaimer"));
- const right=node("article",undefined,"r4-atlas-pane");grid.append(right);
- const insight=node("div",undefined,"r4-atlas-insight");insight.append(node("strong","Ce qui change avec l'espèce"),node("p",profile.sp.anatomy+". "+profile.note+"."));right.append(insight);
- right.append(node("h3","Visualisation anatomique comparative"));
- const renal=node("div",undefined,"r4-atlas-kidney");renal.innerHTML=makeKidneys(profile.sp);
- const cap=node("span",profile.sp.id==="pig"?"Multipapillaire":profile.sp.anatomy,"r4-atlas-kidney-caption");renal.append(cap);right.append(renal);
- const clues=node("div",undefined,"r4-atlas-kidney-comparison");
- clues.append(node("span","Rein de "+profile.sp.label),node("span","Comparaison structurelle ≠ identité physiologique"),node("span","Modèle éducatif"));
- right.append(clues);
- const bottom=node("div",undefined,"r4-atlas-bottom");wrap.append(bottom);
- const strategy=node("article",undefined,"r4-atlas-pane");strategy.append(node("h3","Pourquoi étudier cette espèce ?"));
- const callouts=node("div",undefined,"r4-atlas-callouts");
- const facts=EFFECT[profile.sp.id];
- for(const [i,title] of ["Domaine","Intérêt","Limite"].entries()){const c=node("div",undefined,"r4-atlas-callout");c.append(node("b",title),node("span",facts[i]));callouts.append(c)}
- strategy.append(callouts);bottom.append(strategy);
- const conclusion=node("div",undefined,"r4-atlas-summary");
- conclusion.append(node("strong","À retenir"),node("p",profile.anatomy+" · "+profile.ethics+"."));
- conclusion.append(node("p","La recherche PRMR-R04 explore des scénarios, sans avoir testé physiquement ces associations sur des animaux."));
- const live=node("p","Profil en cours","r4-atlas-dynamic-physiology");live.id="r4-atlas-dynamic-physiology";conclusion.append(live);
- bottom.append(conclusion);
- const comp=node("div",undefined,"r4-atlas-complement");
- comp.append(node("span","Modifier l'âge, le sexe, le poids, la maladie ou l'état rénal dans la console R04. Les graphiques et avertissements se mettent à jour sans inventer de résultats."));
- const btn=node("button","Ouvrir les paramètres");btn.type="button";btn.addEventListener("click",()=>{
-  const target=document.getElementById("parameters-heading");if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
- });comp.append(btn);wrap.append(comp);
- const attr=node("div",undefined,"r4-atlas-attribution");
- attr.append(node("span","Photographie : "+profile.credit+" ("+profile.license+") · "));
- const link=node("a","source Wikimedia Commons");link.href=profile.page;link.target="_blank";link.rel="noopener noreferrer";attr.append(link);
- attr.append(node("span"," · Illustrations rénales : créations graphiques conceptuelles, non images médicales ni photographies d'expériences."));
- wrap.append(attr);
+ sel.value=current;sel.addEventListener("change",()=>onChange(sel.value));lab.append(small,sel);return lab;
 }
-export function createVisualAtlas({onChoose,getResult}){
- const host=$("r4-visual-atlas");
- if(!host)throw Error("Atlas R04 missing host");
- let images=null,latest=null,lastSpeciesId=null;
- function render(result){
-  latest=result;if(!images||!result)return;
-  const doc=images.sources[result.species.id];if(!doc)return;
-  if(result.species.id!==lastSpeciesId||!host.firstChild){
-    const profile={...doc,sp:result.species,all:images.sources,
-     anatomySummary:result.species.anatomy,
-     note:doc.note,anatomy:doc.anatomy,ethics:doc.ethics};
-    makeDOM(host,profile,onChoose);lastSpeciesId=result.species.id;
+function statCard(label,value,suffix){
+ const card=make("div","r4-st-stat");card.append(make("span",null,label),make("strong",null,value),make("small",null,suffix));return card;
+}
+function drawTrend(svg,result){
+ const sets=result.regimens.map((r,i)=>({id:r.id,y:r.renal?.median||0,color:["#5feacb","#ffc184","#fe8893"][i]}));
+ const m=Math.max(2,...sets.map(x=>x.y))*1.18;
+ const width=640,height=220,pad=58,base=166;
+ svg.setAttribute("viewBox","0 0 640 220");svg.setAttribute("role","img");svg.setAttribute("aria-label","Indicateurs conditionnels d'exposition AUC de trois analytes différents, non toxicité");
+ let a='<title>Expositions relatives sous un modèle de sensibilité non calibré</title>';
+ for(let k=0;k<=4;k++){const y=base-k*35;const val=m*k/4;
+  a+='<line x1="56" x2="605" y1="'+y+'" y2="'+y+'" stroke="#2b6c75" stroke-width=".8"/><text x="47" y="'+(y+4)+'" font-size="11" fill="#c0dce0" text-anchor="end">'+num(val,1)+'×</text>'
+ }
+ sets.forEach((x,i)=>{
+  const left=95+i*170,h=x.y/m*139;
+  a+='<rect x="'+left+'" y="'+(base-h)+'" width="91" height="'+h+'" rx="8" fill="'+x.color+'"/><text x="'+(left+45)+'" y="'+Math.max(base-h-11,14)+'" fill="#f1fffc" font-size="15" font-weight="800" text-anchor="middle">'+num(x.y)+'×</text><text x="'+(left+45)+'" y="190" fill="#bfe8e6" text-anchor="middle" font-size="12">'+x.id+'</text>';
+ });
+ a+='<text x="330" y="213" fill="#95bcc6" font-size="11" text-anchor="middle">Marqueurs distincts — les hauteurs ne sont pas des risques comparables</text>';
+ svg.innerHTML=a;
+}
+export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-visual-atlas",compact=false}){
+ const root=$(hostId);if(!root)throw Error("Conteneur de laboratoire absent : "+hostId);
+ let last=null,animal=null,renal=null,molecules=[],activeMol="irbesartan",initializing=false;
+ const choose=id=>onChoose(id);
+ root.replaceChildren();
+ const shell=make("div","r4-st-workbench"+(compact?" r4-st-home":""));
+ const heading=make("div","r4-st-heading");
+ const title=make("div");title.append(make("span","r4-st-eyebrow","PRMR · RECHERCHE RÉNALE / WORKBENCH R04"),make("h2",null,"Un modèle vivant. Une étude transparente."));
+ const kicker=make("span","r4-st-verification","CALCULS IN SILICO · NON VALIDÉS BIOLOGIQUEMENT");
+ heading.append(title,kicker);shell.append(heading);
+ const chooser=make("div","r4-st-species");
+ chooser.setAttribute("role","group");chooser.setAttribute("aria-label","Sélectionnez une espèce pour recalculer son profil");
+ for(const sp of SPECIES_R04){
+  const btn=make("button","r4-st-species-card");btn.type="button";btn.dataset.stageSpecies=sp.id;
+  const art=make("div","r4-st-art");art.dataset.species=sp.id;art.setAttribute("role","img");art.setAttribute("aria-label","Animal "+sp.label+" : détail de l'illustration PRMR");
+  const caption=make("span");caption.append(make("strong",null,sp.label),make("small",null,sp.latin));
+  btn.append(art,caption);btn.addEventListener("click",()=>choose(sp.id));chooser.append(btn)
+ }
+ shell.append(chooser);
+ const stats=make("div","r4-st-stats");
+ stats.append(statCard("ARCHITECTURE","Rein","Comparaison anatomique"),
+ statCard("AXES MOLÉCULAIRES","3 régimes","Hypothèses R02"),
+ statCard("TECHNOLOGIE","3D interactive","RDKit + organes conceptuels"),
+ statCard("TOXICITÉ / GUÉRISON","Indéterminées","Aucune probabilité calculée"));shell.append(stats);
+ const grid=make("div","r4-st-main-grid");shell.append(grid);
+ const large=make("div","r4-st-panel r4-st-profile");grid.append(large);
+ const largeTop=make("div","r4-st-paneltop");
+ largeTop.append(make("h3",null,"Profil de l’espèce — paramètres modifiables"),make("span","r4-st-chip","Espèce sélectionnée"));
+ large.append(largeTop);
+ const profileGrid=make("div","r4-st-profile-body");large.append(profileGrid);
+ const portrait=make("div","r4-st-portrait");portrait.dataset.species="mouse";portrait.setAttribute("role","img");portrait.setAttribute("aria-label","Portrait de l'animal sélectionné, détail des affiches PRMR");
+ const portraitOverlay=make("div","r4-st-portrait-label");portraitOverlay.append(make("strong","r4-st-species-name","Souris"),make("small","r4-st-latin","Mus musculus"));
+ portrait.append(portraitOverlay);profileGrid.append(portrait);
+ const info=make("div","r4-st-props");profileGrid.append(info);
+ const decision=make("div","r4-st-insight");decision.append(make("span",null,"AXE SCIENTIFIQUE"),make("strong","r4-st-decision","Approche mécanistique"),make("p","r4-st-remark","La réponse dépend de l'espèce et de la maladie."));
+ info.append(decision);
+ const meta=make("div","r4-st-annotations");info.append(meta);
+ const controls=make("div","r4-st-mini-controls");
+ const selections={};
+ function setControls(result){
+  for(const [id,sel] of Object.entries(selections))if(sel.value!==result.inputs[id])sel.value=result.inputs[id];
+ }
+ for(const [key,label] of [["age","Âge"],["sex","Sexe"],["disease","Maladie"],["renal","État rénal"]]){
+  const labelElem=compactSelect("r4-stage-"+key+"-"+hostId,label,OPTIONS[key],getResult().inputs[key],value=>{
+   if(onEdit)onEdit({[key]:value});
+   else {const inp={...getResult().inputs,[key]:value};render(computeR04(inp))}
+  });
+  selections[key]=labelElem.querySelector("select");
+  controls.append(labelElem);
+ }
+ info.append(controls);
+ const right=make("div","r4-st-panel r4-st-organ");grid.append(right);
+ const organTop=make("div","r4-st-paneltop");organTop.append(make("h3",null,"Rein / système physiologique"),make("span","r4-st-chip","ROTATION 3D · DRAG"));
+ right.append(organTop);
+ const organWrap=make("div","r4-st-organbox");
+ const organCanvas=make("canvas");organCanvas.setAttribute("aria-label","Rein conceptuel en 3D, faire pivoter au toucher ou avec le pointeur");organWrap.append(organCanvas);
+ const organsNotice=make("div","r4-st-3d-label","Vue pédagogique, non issue d'une imagerie réelle");organWrap.append(organsNotice);right.append(organWrap);
+ const renalNote=make("div","r4-st-renal-note");renalNote.append(make("strong",null,"Structure rénale"),make("p","r4-st-renal-details","Comparaison anatomique"));right.append(renalNote);
+ const callouts=make("div","r4-st-notes");right.append(callouts);
+ const panels=make("div","r4-st-bottom-grid");shell.append(panels);
+ const pk=make("section","r4-st-panel r4-st-kinetics");pk.append(make("h3",null,"Expositions PK · évolution du scénario"),make("p",null,"Rapports relatifs issus d'un transfert exploratoire d'AUC humaines ; chaque barre représente un analyte différent."));
+ const chart=document.createElementNS("http://www.w3.org/2000/svg","svg");chart.classList.add("r4-st-chart");pk.append(chart);
+ const ratio=make("div","r4-st-current-ratio");pk.append(ratio);panels.append(pk);
+ const pd=make("section","r4-st-panel r4-st-pharmacology");pd.append(make("h3",null,"Pharmacodynamie / pertinence"));
+ const pdVal=make("div","r4-st-pd-value");pd.append(pdVal);
+ const marker=make("p","r4-st-target","Cible biologique à confirmer");pd.append(marker);
+ const tr=make("div","r4-st-true-note","Ce panneau n'est pas un résultat de guérison.");pd.append(tr);panels.append(pd);
+ const moleculePanel=make("section","r4-st-panel r4-st-molecules");
+ const moleculesTop=make("div","r4-st-paneltop");moleculesTop.append(make("h3",null,"Molécules — conformères 3D manipulables"),make("span","r4-st-chip","STRUCTURES RDKit"));
+ moleculePanel.append(moleculesTop);
+ const deck=make("div","r4-st-molecule-grid");moleculePanel.append(deck);
+ for(const mol of MOLECULES_R04){
+  const btn=make("button","r4-st-molecule-card");btn.dataset.stageMol=mol.id;btn.type="button";
+  const canvas=make("canvas");canvas.setAttribute("aria-label","Molécule "+mol.name+" en trois dimensions, orientation manipulable");
+  btn.append(canvas,make("strong",null,mol.name),make("small",null,mol.axis));
+  btn.addEventListener("click",()=>{activeMol=mol.id;for(const b of deck.querySelectorAll("button"))b.setAttribute("aria-pressed",String(b.dataset.stageMol===mol.id));});
+  btn.setAttribute("aria-pressed",String(activeMol===mol.id));deck.append(btn);
+ }
+ const citations=make("div","r4-st-safety-caption",
+  "Les modèles chimiques sont des conformères calculés ; les animaux et organes sont des illustrations conceptuelles. Les effets physiologiques et probabilités de guérison ne sont pas déduits des images.");
+ moleculePanel.append(citations);shell.append(moleculePanel);
+ root.append(shell);
+ renal=create3D(organCanvas,{kind:"kidney"});
+ atomFetch().then(data=>{
+  if(!root.isConnected)return;
+  for(const mol of MOLECULES_R04){
+   const con=data[mol.id],btn=deck.querySelector('[data-stage-mol="'+mol.id+'"]');
+   if(con&&btn){const viewer=create3D(btn.querySelector("canvas"),{kind:"molecule",model:con});molecules.push(viewer)}
   }
-  const live=document.getElementById("r4-atlas-dynamic-physiology");
-  if(live)live.textContent="Profil sélectionné : "+OPTIONS.age[result.inputs.age]+" · "+OPTIONS.sex[result.inputs.sex]+" · "+OPTIONS.constitution[result.inputs.constitution]+" · "+OPTIONS.disease[result.inputs.disease]+". Exposition tissulaire réelle et bénéfice non déterminés.";
+ }).catch(e=>{citations.textContent="Visualisation 3D moléculaire indisponible : "+e.message});
+ function render(result){
+  if(!result)return;
+  last=result;const id=result.species.id,metaData=LABS[id];
+  portrait.dataset.species=id;portraitOverlay.querySelector("strong").textContent=result.species.label;
+  portraitOverlay.querySelector("small").textContent=result.species.latin+" · "+MASS(result.inputs.mass_kg);
+  for(const btn of chooser.querySelectorAll("button"))btn.setAttribute("aria-pressed",String(btn.dataset.stageSpecies===id));
+  decision.querySelector("strong").textContent=metaData.title;
+  decision.querySelector("p").textContent=metaData.remark;
+  meta.replaceChildren();
+  const labels=[
+   ["Maladie",OPTIONS.disease[result.inputs.disease]],
+   ["Sexe",OPTIONS.sex[result.inputs.sex]],
+   ["Âge",OPTIONS.age[result.inputs.age]],
+   ["Masse",MASS(result.inputs.mass_kg)],
+   ["État rénal",OPTIONS.renal[result.inputs.renal]],
+   ["État hépatique",OPTIONS.hepatic[result.inputs.hepatic]]
+  ];
+  for(const [a,b] of labels){const row=make("div","r4-st-field");row.append(make("span",null,a),make("strong",null,b));meta.append(row)}
+  setControls(result);
+  renalNote.querySelector("p").textContent=result.species.anatomy+" · "+result.species.focus;
+  callouts.replaceChildren();
+  for(const item of metaData.terms){const span=make("div",null,item);callouts.append(span)}
+  drawTrend(chart,result);
+  ratio.textContent="Association "+result.active.id+" · marqueur rénal : ×"+num(result.active.renal.median)+" (stress-test, pas toxicité)";
+  if(result.sglt2_occupancy===null){
+   pdVal.textContent="Cible non calibrée";
+   marker.textContent="Aucune IC50 SGLT2 pour "+result.species.label+" dans le jeu PRMR : aucune inhibition inventée.";
+  }else{
+   pdVal.textContent=num(100*result.sglt2_occupancy,1)+" %";
+   marker.textContent="Inhibition SGLT2 théorique à "+num(result.inputs.free_nM,2)+" nM libres, pas une mesure de protection du rein.";
+  }
+  tr.textContent="Bénéfice net : indéterminé. "+result.indication.markers+". Pas de dose–lésion calibrée.";
  }
- fetch("./research-data/r04_animal_portraits.json",{cache:"force-cache"}).then(resp=>{
-   if(!resp.ok)throw Error("Portrait manifest HTTP "+resp.status);
-   return resp.json();
- }).then(payload=>{images=payload;render(latest||getResult())})
- .catch(error=>{host.replaceChildren(node("div","Atlas visuel indisponible : "+error.message,"r4-empty"))});
- return {render};
+ render(getResult());
+ return {render,destroy(){renal?.destroy();for(const viewer of molecules)viewer.destroy();root.replaceChildren()},get current(){return last}};
 }
