@@ -109,7 +109,7 @@ function makeDOM(container,profile,onChoose){
   const c=node("div",undefined,"r4-atlas-kpi");c.append(node("small",a),node("b",b));kpis.append(c)
  }
  wrap.append(kpis);
- attachOriginalPoster(wrap,profile.sp.id);
+ if(!document.getElementById("r4-original-gallery"))attachOriginalPoster(wrap,profile.sp.id);
  const grid=node("div",undefined,"r4-atlas-main-grid");wrap.append(grid);
  const left=node("article",undefined,"r4-atlas-pane");grid.append(left);
  left.append(node("h3","Profil visuel — "+profile.name),node("p","Anatomie · pertinence expérimentale · contraintes de transposition"));
