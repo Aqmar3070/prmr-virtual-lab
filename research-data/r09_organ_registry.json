@@ -1,0 +1,1058 @@
+{
+  "release": "R09",
+  "date": "2026-11-17",
+  "purpose": "independent organ scene graph for six species",
+  "entries": [
+    {
+      "asset_id": "r09-mouse-kidneys",
+      "species_id": "mouse",
+      "species_latin": "Mus musculus",
+      "organ_id": "kidneys",
+      "label": "Rein gauche, rein droit, uretères, vessie",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-mouse-heart",
+      "species_id": "mouse",
+      "species_latin": "Mus musculus",
+      "organ_id": "heart",
+      "label": "Cœur, ventricules et gros vaisseaux",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-mouse-lungs",
+      "species_id": "mouse",
+      "species_latin": "Mus musculus",
+      "organ_id": "lungs",
+      "label": "Poumons, bronches et trachée",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-mouse-liver",
+      "species_id": "mouse",
+      "species_latin": "Mus musculus",
+      "organ_id": "liver",
+      "label": "Foie et voies biliaires",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-mouse-brain",
+      "species_id": "mouse",
+      "species_latin": "Mus musculus",
+      "organ_id": "brain",
+      "label": "Cerveau et tronc cérébral",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-mouse-digestive",
+      "species_id": "mouse",
+      "species_latin": "Mus musculus",
+      "organ_id": "digestive",
+      "label": "Estomac, intestins, cæcum et côlon",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-mouse-pancreas",
+      "species_id": "mouse",
+      "species_latin": "Mus musculus",
+      "organ_id": "pancreas",
+      "label": "Pancréas",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rat-kidneys",
+      "species_id": "rat",
+      "species_latin": "Rattus norvegicus",
+      "organ_id": "kidneys",
+      "label": "Rein gauche, rein droit, uretères, vessie",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": false,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rat-heart",
+      "species_id": "rat",
+      "species_latin": "Rattus norvegicus",
+      "organ_id": "heart",
+      "label": "Cœur, ventricules et gros vaisseaux",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": false,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rat-lungs",
+      "species_id": "rat",
+      "species_latin": "Rattus norvegicus",
+      "organ_id": "lungs",
+      "label": "Poumons, bronches et trachée",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": false,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rat-liver",
+      "species_id": "rat",
+      "species_latin": "Rattus norvegicus",
+      "organ_id": "liver",
+      "label": "Foie et voies biliaires",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": false,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rat-brain",
+      "species_id": "rat",
+      "species_latin": "Rattus norvegicus",
+      "organ_id": "brain",
+      "label": "Cerveau et tronc cérébral",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": false,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rat-digestive",
+      "species_id": "rat",
+      "species_latin": "Rattus norvegicus",
+      "organ_id": "digestive",
+      "label": "Estomac, intestins, cæcum et côlon",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": false,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rat-pancreas",
+      "species_id": "rat",
+      "species_latin": "Rattus norvegicus",
+      "organ_id": "pancreas",
+      "label": "Pancréas",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": false,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-pig-kidneys",
+      "species_id": "pig",
+      "species_latin": "Sus scrofa domesticus",
+      "organ_id": "kidneys",
+      "label": "Rein gauche, rein droit, uretères, vessie",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "multipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-pig-heart",
+      "species_id": "pig",
+      "species_latin": "Sus scrofa domesticus",
+      "organ_id": "heart",
+      "label": "Cœur, ventricules et gros vaisseaux",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "multipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-pig-lungs",
+      "species_id": "pig",
+      "species_latin": "Sus scrofa domesticus",
+      "organ_id": "lungs",
+      "label": "Poumons, bronches et trachée",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "multipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-pig-liver",
+      "species_id": "pig",
+      "species_latin": "Sus scrofa domesticus",
+      "organ_id": "liver",
+      "label": "Foie et voies biliaires",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "multipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-pig-brain",
+      "species_id": "pig",
+      "species_latin": "Sus scrofa domesticus",
+      "organ_id": "brain",
+      "label": "Cerveau et tronc cérébral",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "multipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-pig-digestive",
+      "species_id": "pig",
+      "species_latin": "Sus scrofa domesticus",
+      "organ_id": "digestive",
+      "label": "Estomac, intestins, cæcum et côlon",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "multipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-pig-pancreas",
+      "species_id": "pig",
+      "species_latin": "Sus scrofa domesticus",
+      "organ_id": "pancreas",
+      "label": "Pancréas",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "multipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-dog-kidneys",
+      "species_id": "dog",
+      "species_latin": "Canis lupus familiaris",
+      "organ_id": "kidneys",
+      "label": "Rein gauche, rein droit, uretères, vessie",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "hybrid: CT-derived modified canine source when present, otherwise tagged pedagogical fallback",
+      "primary_glb": "assets/vet3d/dog-visceral.glb",
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "source-credited; anatomical validation not completed",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://github.com/Ketbome/vet-atlas",
+        "https://sketchfab.com/3d-models/3d-canine-anatomy-normal-abdomen-962de878d2e94b75b10075931f0edaa3"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-dog-heart",
+      "species_id": "dog",
+      "species_latin": "Canis lupus familiaris",
+      "organ_id": "heart",
+      "label": "Cœur, ventricules et gros vaisseaux",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "hybrid: CT-derived modified canine source when present, otherwise tagged pedagogical fallback",
+      "primary_glb": "assets/vet3d/dog-visceral.glb",
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "source-credited; anatomical validation not completed",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://github.com/Ketbome/vet-atlas",
+        "https://sketchfab.com/3d-models/3d-canine-anatomy-normal-abdomen-962de878d2e94b75b10075931f0edaa3"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-dog-lungs",
+      "species_id": "dog",
+      "species_latin": "Canis lupus familiaris",
+      "organ_id": "lungs",
+      "label": "Poumons, bronches et trachée",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "hybrid: CT-derived modified canine source when present, otherwise tagged pedagogical fallback",
+      "primary_glb": "assets/vet3d/dog-visceral.glb",
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "source-credited; anatomical validation not completed",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://github.com/Ketbome/vet-atlas",
+        "https://sketchfab.com/3d-models/3d-canine-anatomy-normal-abdomen-962de878d2e94b75b10075931f0edaa3"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-dog-liver",
+      "species_id": "dog",
+      "species_latin": "Canis lupus familiaris",
+      "organ_id": "liver",
+      "label": "Foie et voies biliaires",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "hybrid: CT-derived modified canine source when present, otherwise tagged pedagogical fallback",
+      "primary_glb": "assets/vet3d/dog-visceral.glb",
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "source-credited; anatomical validation not completed",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://github.com/Ketbome/vet-atlas",
+        "https://sketchfab.com/3d-models/3d-canine-anatomy-normal-abdomen-962de878d2e94b75b10075931f0edaa3"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-dog-brain",
+      "species_id": "dog",
+      "species_latin": "Canis lupus familiaris",
+      "organ_id": "brain",
+      "label": "Cerveau et tronc cérébral",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "hybrid: CT-derived modified canine source when present, otherwise tagged pedagogical fallback",
+      "primary_glb": "assets/vet3d/dog-visceral.glb",
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "source-credited; anatomical validation not completed",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://github.com/Ketbome/vet-atlas",
+        "https://sketchfab.com/3d-models/3d-canine-anatomy-normal-abdomen-962de878d2e94b75b10075931f0edaa3"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-dog-digestive",
+      "species_id": "dog",
+      "species_latin": "Canis lupus familiaris",
+      "organ_id": "digestive",
+      "label": "Estomac, intestins, cæcum et côlon",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "hybrid: CT-derived modified canine source when present, otherwise tagged pedagogical fallback",
+      "primary_glb": "assets/vet3d/dog-visceral.glb",
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "source-credited; anatomical validation not completed",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://github.com/Ketbome/vet-atlas",
+        "https://sketchfab.com/3d-models/3d-canine-anatomy-normal-abdomen-962de878d2e94b75b10075931f0edaa3"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-dog-pancreas",
+      "species_id": "dog",
+      "species_latin": "Canis lupus familiaris",
+      "organ_id": "pancreas",
+      "label": "Pancréas",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "hybrid: CT-derived modified canine source when present, otherwise tagged pedagogical fallback",
+      "primary_glb": "assets/vet3d/dog-visceral.glb",
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "source-credited; anatomical validation not completed",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://github.com/Ketbome/vet-atlas",
+        "https://sketchfab.com/3d-models/3d-canine-anatomy-normal-abdomen-962de878d2e94b75b10075931f0edaa3"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-nhp-kidneys",
+      "species_id": "nhp",
+      "species_latin": "Macaca sp. – modèle exploratoire",
+      "organ_id": "kidneys",
+      "label": "Rein gauche, rein droit, uretères, vessie",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "variable selon espèce"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-nhp-heart",
+      "species_id": "nhp",
+      "species_latin": "Macaca sp. – modèle exploratoire",
+      "organ_id": "heart",
+      "label": "Cœur, ventricules et gros vaisseaux",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "variable selon espèce"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-nhp-lungs",
+      "species_id": "nhp",
+      "species_latin": "Macaca sp. – modèle exploratoire",
+      "organ_id": "lungs",
+      "label": "Poumons, bronches et trachée",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "variable selon espèce"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-nhp-liver",
+      "species_id": "nhp",
+      "species_latin": "Macaca sp. – modèle exploratoire",
+      "organ_id": "liver",
+      "label": "Foie et voies biliaires",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "variable selon espèce"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-nhp-brain",
+      "species_id": "nhp",
+      "species_latin": "Macaca sp. – modèle exploratoire",
+      "organ_id": "brain",
+      "label": "Cerveau et tronc cérébral",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "variable selon espèce"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-nhp-digestive",
+      "species_id": "nhp",
+      "species_latin": "Macaca sp. – modèle exploratoire",
+      "organ_id": "digestive",
+      "label": "Estomac, intestins, cæcum et côlon",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "variable selon espèce"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-nhp-pancreas",
+      "species_id": "nhp",
+      "species_latin": "Macaca sp. – modèle exploratoire",
+      "organ_id": "pancreas",
+      "label": "Pancréas",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "plissé",
+        "kidney": "variable selon espèce"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rabbit-kidneys",
+      "species_id": "rabbit",
+      "species_latin": "Oryctolagus cuniculus",
+      "organ_id": "kidneys",
+      "label": "Rein gauche, rein droit, uretères, vessie",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rabbit-heart",
+      "species_id": "rabbit",
+      "species_latin": "Oryctolagus cuniculus",
+      "organ_id": "heart",
+      "label": "Cœur, ventricules et gros vaisseaux",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rabbit-lungs",
+      "species_id": "rabbit",
+      "species_latin": "Oryctolagus cuniculus",
+      "organ_id": "lungs",
+      "label": "Poumons, bronches et trachée",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rabbit-liver",
+      "species_id": "rabbit",
+      "species_latin": "Oryctolagus cuniculus",
+      "organ_id": "liver",
+      "label": "Foie et voies biliaires",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rabbit-brain",
+      "species_id": "rabbit",
+      "species_latin": "Oryctolagus cuniculus",
+      "organ_id": "brain",
+      "label": "Cerveau et tronc cérébral",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rabbit-digestive",
+      "species_id": "rabbit",
+      "species_latin": "Oryctolagus cuniculus",
+      "organ_id": "digestive",
+      "label": "Estomac, intestins, cæcum et côlon",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    },
+    {
+      "asset_id": "r09-rabbit-pancreas",
+      "species_id": "rabbit",
+      "species_latin": "Oryctolagus cuniculus",
+      "organ_id": "pancreas",
+      "label": "Pancréas",
+      "representation": "true-rotatable-triangle-mesh",
+      "fidelity": "species-specific procedural educational preview – not a scan",
+      "primary_glb": null,
+      "generator": "src/r09_organ_geometry.mjs",
+      "viewer": "src/r09_viewer.mjs",
+      "register_status": "synthetic hypothesis, anatomy not validated",
+      "disease_mapping_status": "qualitative exploratory, not diagnostic",
+      "anatomical_features": {
+        "gallbladder": true,
+        "brain": "lissencéphalique",
+        "kidney": "unipapillaire"
+      },
+      "reference_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC9291387/",
+        "https://pubmed.ncbi.nlm.nih.gov/29023691/"
+      ],
+      "human_anatomy_substitution": false,
+      "simulation_results_source": "PRMR R04 exploratory scenario only"
+    }
+  ],
+  "scientific_notice": "Fidelity and organ shape data are not validated except canine derived imaging components. Visualizations are not measurements or clinical diagnoses."
+}
