@@ -1,50 +1,49 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {readFileSync} from "node:fs";
-import {SPECIES_R04,DEFAULT_R04,computeR04} from "../src/r04_engine.mjs";
+import {readFileSync,existsSync} from "node:fs";
+import {SPECIES_R04,DEFAULT_R04,computeR04,MOLECULES_R04} from "../src/r04_engine.mjs";
 const base=new URL("../",import.meta.url);
-const manifest=JSON.parse(readFileSync(new URL("research-data/r04_animal_portraits.json",base),"utf8"));
-const html=readFileSync(new URL("species-r04.html",base),"utf8");
-const js=readFileSync(new URL("src/r04_atlas.mjs",base),"utf8");
-const app=readFileSync(new URL("src/r04_app.mjs",base),"utf8");
+const atlas=readFileSync(new URL("src/r04_atlas.mjs",base),"utf8");
 const css=readFileSync(new URL("r04-atlas.css",base),"utf8");
-
-test("Visual atlas has all six species with credited CC image sources",()=>{
- assert.equal(manifest.version,"r04-visual-atlas-v1");
- assert.equal(Object.keys(manifest.sources).length,6);
- for(const s of SPECIES_R04){
-  const doc=manifest.sources[s.id];
-  assert.ok(doc,s.id);
-  assert.ok(doc.src.startsWith("https://"),s.id);
-  assert.ok(doc.page.startsWith("https://commons.wikimedia.org/wiki/File:"),s.id);
-  assert.ok(doc.credit.length>3);
-  assert.match(doc.license,/CC/i);
-  assert.ok(doc.note.length>10);
-  assert.ok(doc.anatomy.length>10);
+const app=readFileSync(new URL("src/r04_app.mjs",base),"utf8");
+test("Six PRMR poster animals replace Wikimedia photographs in main UI",()=>{
+ for(const name of ["comparaison-especes.png","porc.png","chien.png","primate.png","lapin.png"]){
+  assert.ok(atlas.includes(name));
+  assert.ok(existsSync(new URL("assets/illustrations/r04/"+name,base)));
+  assert.ok(css.includes(name));
  }
+ assert.equal(SPECIES_R04.length,6);
+ assert.ok(!atlas.includes("Wikimedia Commons"));
+ assert.ok(!atlas.includes("Photographies réelles sourcées"));
+ assert.match(atlas,/r4-st-species-card/);
+ assert.match(atlas,/r4-st-portrait/);
 });
-test("Reference poster is not misrepresented as actual uploaded generated art",()=>{
- assert.match(manifest.status,/pas les affiches générées/);
- assert.match(js,/Photographies réelles sourcées/);
- assert.match(js,/schémas rénaux conceptuels/);
- assert.match(js,/Barres qualitatives/);
- assert.ok(!js.includes("probabilité de guérison : 100"));
-});
-test("Species cards and live simulation share one state",()=>{
- assert.match(html,/id="r4-visual-atlas"/);
- assert.match(html,/href="\.\/r04-atlas\.css"/);
- assert.match(app,/createVisualAtlas/);
+test("The integrated workbench shares species, physiology and molecular state",()=>{
+ for(const key of ["age","sex","disease","renal"])assert.ok(atlas.includes('["'+key+'"'),key);
+ assert.match(atlas,/createVisualAtlas/);
+ assert.match(atlas,/onChoose\(sp\.id\)/);
+ assert.match(atlas,/onEdit/);
+ assert.match(atlas,/\.render\(result\)/);
  assert.match(app,/atlas\?\.render\(result\)/);
  assert.match(app,/onChoose:setSpecies/);
- assert.match(js,/btn\.addEventListener\("click",\(\)=>onChoose\(s\.id\)\)/);
- const adult=computeR04(DEFAULT_R04);
- assert.equal(adult.probability_toxicity,null);
- assert.equal(adult.probability_cure,null);
+ assert.match(app,/onEdit:patch/);
+ const a=computeR04(DEFAULT_R04);
+ assert.equal(a.probability_toxicity,null);
+ assert.equal(a.probability_cure,null);
 });
-test("R04 gallery is responsive and image failure is handled",()=>{
- assert.match(css,/@media\(max-width:550px\)/);
- assert.match(css,/@media\(max-width:1180px\)/);
- assert.match(js,/img\.onerror/);
- assert.match(js,/big\.onerror/);
- assert.match(js,/source Wikimedia Commons/);
+test("Molecules are displayed as real canvas-based 3D conformers",()=>{
+ assert.ok(atlas.includes("create3D("));
+ assert.ok(atlas.includes('kind:"molecule"'));
+ assert.ok(atlas.includes('research-data/r04_molecular_3d.json'));
+ assert.equal(MOLECULES_R04.length,4);
+ assert.ok(app.includes('className="r4-molecule-thumb3d"'));
+ assert.ok(!app.includes("rest/pug/compound/cid/"));
+});
+test("New architecture has mobile layout and preserves scientific provenance",()=>{
+ assert.match(css,/@media\(max-width:530px\)/);
+ assert.match(css,/@media\(max-width:1100px\)/);
+ assert.match(atlas,/non validés biologiquement|NON VALIDÉS BIOLOGIQUEMENT/);
+ assert.match(atlas,/indéterminé/i);
+ assert.match(atlas,/pas toxicité/);
+ assert.ok(!atlas.includes("probabilité de guérison : 100"));
 });
