@@ -45,23 +45,69 @@ function kindney(){
  return {atoms:nodes,bonds:edges,kind:"organ"};
 }
 function body(species,renal,hepatic){
- const renalColor=renal==="severe"?"#ff7180":renal==="moderate"?"#ffb16b":"#83e4cc";
- const liverColor=hepatic==="severe"?"#fb6c80":hepatic==="moderate"?"#ffbe82":"#dd879a";
+ // Species-specific procedural 3D educational sculpture, NOT anatomical reconstruction.
+ const kidneyColour=renal==="severe"?"#ff687b":renal==="moderate"?"#ffc17b":"#66f7da";
+ const liverColour=hepatic==="severe"?"#f15e76":hepatic==="moderate"?"#f4b471":"#cd8cb4";
+ const coat={mouse:"#b2d9d9",rat:"#a7bcc7",pig:"#d9a4ab",dog:"#cba778",nhp:"#947d75",rabbit:"#e4ced0"}[species]||"#9dc0c9";
+ const details={mouse:"#8ec5c7",rat:"#7996a3",pig:"#e7b3b9",dog:"#8b7053",nhp:"#6c5655",rabbit:"#d7b7bb"}[species]||"#6ac4cc";
  const atoms=[],bonds=[];
- const add=(arr)=>atoms.push(...arr);
- // Simple horizontal anatomical conceptual silhouette; not anatomical geometry.
- add(ellipsoid(0,0,0,2.0,.77,.58,"#305d75",11));
- add(ellipsoid(-1.7,.2,.05,.68,.64,.57,"#3e8099",9));
- add(ellipsoid(-2.1,.78,.11,.31,.5,.22,"#5bbac2",7));
- add(ellipsoid(0.4,-.08,.28,.62,.27,.24,liverColor,8));
- add(ellipsoid(1.05,-.05,.40,.32,.43,.29,renalColor,8));
- add(ellipsoid(.7,-.2,-.38,.27,.32,.25,renalColor,8));
- // longer muzzle for dog or pig, shorter for primates
- if(species==="dog"||species==="pig")add(ellipsoid(-2.35,-.02,.05,.45,.27,.33,"#4b95aa",7));
- if(species==="rabbit")add(ellipsoid(-1.8,1.03,.27,.18,.74,.16,"#51b0b4",7));
- const prev=atoms.length;
- for(let i=0;i<35;i++){const x=-1.8+i*3.9/34;atoms.push({p:[x,.02,.66],c:"#78d2dd",r:.035});if(i)bondssafe(prev+i-1,prev+i)}
- function bondssafe(a,b){bonds.push([a,b,1])}
+ const add=(x,y,z,sx,sy,sz,colour,res=7)=>atoms.push(...ellipsoid(x,y,z,sx,sy,sz,colour,res));
+ const wire=(p,q,steps,color,r=.045)=>{
+  const first=atoms.length;
+  for(let i=0;i<=steps;i++){
+   const t=i/steps;atoms.push({p:[p[0]+t*(q[0]-p[0]),p[1]+t*(q[1]-p[1]),p[2]+t*(q[2]-p[2])],c:color,r});
+   if(i)bonds.push([first+i-1,first+i,1])
+  }
+ };
+ const config={
+ mouse:{body:[1.38,.62,.53],head:[-.99,.23,.02,.53,.49,.46],nose:-1.48,legs:.72,ear:.42,tail:1.8},
+ rat:{body:[1.58,.55,.51],head:[-1.15,.26,0,.53,.42,.43],nose:-1.73,legs:.75,ear:.25,tail:2.1},
+ pig:{body:[1.86,.84,.76],head:[-1.55,.21,0,.76,.72,.68],nose:-2.27,legs:.84,ear:.38,tail:.65},
+ dog:{body:[1.74,.69,.56],head:[-1.47,.48,0,.62,.65,.49],nose:-2.18,legs:1.14,ear:.48,tail:1.08},
+ nhp:{body:[1.18,.78,.61],head:[-1.2,.71,0,.64,.68,.53],nose:-1.7,legs:1.16,ear:.2,tail:1.6},
+ rabbit:{body:[1.53,.66,.56],head:[-1.23,.36,0,.54,.55,.46],nose:-1.73,legs:.72,ear:.87,tail:.20}
+ }[species]||{body:[1.5,.7,.6],head:[-1,.3,0,.6,.6,.5],nose:-1.7,legs:1,ear:.3,tail:.6};
+ add(0,0,0,...config.body,coat,9);
+ const h=config.head;add(...h,details,8);
+ // Frontal muzzle and ears, which make each species identifiable in silhouette.
+ add(config.nose,.08,.14,species==="pig"?.45:.27,species==="pig"?.30:.20,.28,details,7);
+ if(species==="pig")add(config.nose-.25,.10,.14,.1,.2,.34,"#f0a6b1",7);
+ if(species==="dog")add(-1.76,.02,.25,.42,.28,.28,"#ede4d0",7);
+ if(species==="nhp")add(-1.7,.54,.22,.32,.29,.32,"#bb9b8c",7);
+ // Ear pair: long on rabbit, round on mouse/rat, drooping on dog.
+ const ears=(species==="rabbit"||species==="dog")?[
+  [h[0]-.12,h[1]+h[4]+config.ear*.5,.28,.17,config.ear,.18],
+  [h[0]+.18,h[1]+h[4]+config.ear*.45,-.25,.15,config.ear*.83,.17]]:
+  [[h[0]-.11,h[1]+h[4]+.2,.28,.23,config.ear,.19],
+   [h[0]+.25,h[1]+h[4]+.1,-.28,.22,config.ear,.20]];
+ ears.forEach(e=>add(...e,species==="pig"?"#e7b2b7":details,7));
+ // Four articulated limbs, species-dependent stride. NHP arms are longer.
+ const footY=-config.body[1]-config.legs*.8;
+ for(const x of [-1.0,1.1])for(const z of [-.36,.36]){
+  const limbStart=[x,-.35,z],limbEnd=[x+(x<0?-.12:.12),footY,z];
+  add(limbStart[0],(limbStart[1]+limbEnd[1])/2,z,.19,Math.abs(limbStart[1]-limbEnd[1])*.57,.18,details,6);
+  add(limbEnd[0],footY-.02,z+.12,.28,.14,.19,details,6);
+ }
+ // Distinctive curled pig tail, long thin rodent tail, short rabbit tail.
+ const tailStart=[config.body[0]*.94,.20,-.08],base=atoms.length;
+ if(species==="rabbit")add(config.body[0]+.10,.15,-.1,.28,.28,.27,"#f2e3e4",8);
+ else{
+  const steps=27;
+  for(let j=0;j<=steps;j++){
+   const t=j/steps;
+   const x=tailStart[0]+config.tail*t;
+   const y=species==="pig"?.21+.25*Math.sin(3.2*Math.PI*t):species==="dog"?.2+.74*Math.sin(Math.PI*t):.2+.26*Math.sin(1.4*Math.PI*t);
+   const z=-.08+.20*Math.sin(2*Math.PI*t);
+   atoms.push({p:[x,y,z],c:details,r:species==="pig"?.07:.045});
+   if(j)bonds.push([base+j-1,base+j,1]);
+  }
+ }
+ // Physiology concept overlay. Positions are illustrative and NOT actual organ mapping.
+ add(.40,.00,config.body[2]+.11,.43,.29,.23,liverColour,7);
+ add(.94,-.12,config.body[2]+.17,.26,.28,.2,kidneyColour,7);
+ add(.89,-.20,-config.body[2]-.03,.22,.30,.17,kidneyColour,6);
+ add(h[0]-.30,h[1]+.10,h[5]+.18,.085,.085,.085,"#102430",6);
+ wire([-.12,-.15,config.body[2]+.05],[1.27,-.02,config.body[2]+.02],22,"#78ece3",.028);
  return {atoms,bonds,kind:"animal"};
 }
 export function create3D(canvas,{kind="kidney",model=null,species="mouse",renal="normal",hepatic="normal"}={}){
