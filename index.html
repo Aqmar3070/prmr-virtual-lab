@@ -7,7 +7,6 @@
 <title>PRMR Virtual Lab | Research Workspace 2.0</title>
 <link rel="stylesheet" href="laboratory.css">
 <link rel="stylesheet" href="r04-atlas.css?v=r10-canine-only-20261117">
-<script type="module" src="./src/r04_embedded.mjs?v=r10-canine-only-20261117"></script>
 <script type="module" src="./src/r04_molecule_deck.mjs?v=r10-canine-only-20261117"></script>
 <script defer src="https://unpkg.com/@rdkit/rdkit@2026.9.2/dist/RDKit_minimal.js"></script>
 <script type="module" src="src/lab.mjs"></script>
@@ -58,20 +57,12 @@
  </div>
  <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
  </section>
- <div class="prmr-secondary"><h2>Ateliers spécialisés</h2><p>Les outils historiques restent accessibles ci-dessous, séparés du parcours principal pour éviter de confondre leurs résultats.</p></div>
- <section id="r5-home-stage" aria-label="Laboratoire interactif : modèle canin, pharmacocinétique et molécules en trois dimensions"></section>
+ <div class="prmr-secondary"><h2>Ateliers complémentaires</h2><p>Les outils moléculaires restent disponibles sans encombrer le parcours principal. Les visualisations animales se consultent uniquement à la phase 2.</p></div>
+
  <div class="notice"><strong>Précision absolue : impossible scientifiquement.</strong> Une molécule nouvelle ne peut pas être déclarée efficace, sûre ou thérapeutique par un calcul de structure seul. Les modules non validés sont identifiés.</div>
  <div class="overview-kpis"><div class="kpi"><span>OUTIL CHIMIQUE</span><strong id="kpi-rdkit">Initialisation</strong><small>RDKit WebAssembly</small></div><div class="kpi"><span>MODÈLE NUMÉRIQUE</span><strong>PK/PD 1C</strong><small>Hypothèses explicites</small></div><div class="kpi"><span>STRUCTURES EN SESSION</span><strong id="kpi-library">0</strong><small>Bibliothèque temporaire</small></div><div class="kpi"><span>DOMAINES BIOLOGIQUES</span><strong>12</strong><small>Atlas de recherche, non simulé</small></div></div>
-<div class="section-heading"><div><span class="overline">WORKFLOWS</span><h2>Entrer dans le laboratoire</h2></div></div>
+<div class="section-heading"><div><span class="overline">OUTILS COMPLÉMENTAIRES</span><h2>Ateliers techniques</h2></div></div>
  <div class="workflow-grid">
-  <a class="workflow" href="./clinical.html" style="text-decoration:none"><span class="workflow-index">RECHERCHE CLINIQUE / PHASE 5</span><strong>Insuffisance rénale chronique · Homme 3D</strong><p>Corps masculin et féminin de référence, 147 structures répertoriées, organes, os, muscles, artères, veines et nerfs, preuves cliniques distinctes.</p><span class="workflow-arrow">Explorer la phase 5 →</span></a>
-  <a class="workflow" href="./species-r04.html" style="text-decoration:none"><span class="workflow-index">LABORATOIRE INTERACTIF / R04</span><strong>Physiologie animale · Simulations 3D</strong><p>Chien uniquement : âge, sexe, masse et maladie ; graphiques recalculés et molécules manipulables en 3D.</p><span class="workflow-arrow">Explorer et manipuler →</span></a>
-  
-  <a class="workflow" href="./risk-r03.html" style="text-decoration:none"><span class="workflow-index">ANALYSE DE RISQUE / R03</span><strong>Stress-test physiologique animal</strong><p>Chien, masse, foie et rein, sensibilité PK/PD et balance risque–bénéfice fondée sur les données.</p><span class="workflow-arrow">Ouvrir les scénarios →</span></a>
-  
-  <a class="workflow" href="./screening.html" style="text-decoration:none"><span class="workflow-index">RECHERCHE ORIGINALE / R02</span><strong>165 associations calculées</strong><p>Criblage indépendant de dix molécules existantes, calculs RDKit, alertes et classement transparent.</p><span class="workflow-arrow">Examiner les résultats →</span></a>
-  
-  <a class="workflow" href="./preclinical.html" style="text-decoration:none"><span class="workflow-index">00 / RECHERCHE RÉNALE</span><strong>Études animales publiées</strong><p>Combinaisons existantes, résultats mesurés, groupes témoins, preuves et lecture simplifiée pour PRMR-R01.</p><span class="workflow-arrow">Consulter le dossier →</span></a>
   <button class="workflow" data-jump="molecules"><span class="workflow-index">01 / STRUCTURE</span><strong>Atelier moléculaire</strong><p>Entrée SMILES, représentation 2D, descripteurs RDKit et exploration de structures virtuelles.</p><span class="workflow-arrow">Ouvrir l'atelier →</span></button>
   <button class="workflow" data-jump="combinations"><span class="workflow-index">02 / COMPARAISON</span><strong>Comparer deux structures</strong><p>Similarité d'empreintes, propriétés et scénarios pharmacocinétiques indépendants.</p><span class="workflow-arrow">Comparer →</span></button>
   <button class="workflow" data-jump="pkpd"><span class="workflow-index">03 / MODÉLISATION</span><strong>Simulateur PK/PD</strong><p>Concentrations dans le temps, sensibilité paramétrique et export de calculs traçables.</p><span class="workflow-arrow">Simuler →</span></button>
