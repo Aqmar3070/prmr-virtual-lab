@@ -42,7 +42,7 @@ test("Anatomy canvas has self-contained rendering, zoom and robust no-WebGL fall
  assert.ok(!file.includes("fetch("),"Anatomy viewer must be asset/network-independent");
  assert.ok(!file.includes("getContext(\"webgl\""));
  assert.match(atlas,/r8-anatomy-fallback/);
- assert.match(atlas,/data-organ/);
+ assert.match(atlas,/dataset.organ/);
  assert.match(atlas,/onOrganChange/);
  assert.match(app,/createAnatomyViewer/);
  assert.match(css,/r8-anatomy-canvas/);
