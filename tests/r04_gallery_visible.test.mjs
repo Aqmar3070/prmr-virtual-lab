@@ -30,3 +30,14 @@ test("The R03 poster is displayed without waiting for JavaScript",()=>{
  assert.ok(existsSync(new URL("assets/illustrations/r04/tableau-pkpd.png",root)));
  assert.match(style,/r4-poster-gallery-grid/);
 });
+
+test("Main lab entrances expose original poster images without an interactive dependency",()=>{
+ for(const name of ["index.html","research.html"]){
+  const html=readFileSync(new URL(name,root),"utf8");
+  assert.match(html,/class="r4-home-promo"/);
+  assert.match(html,/src="\.\/assets\/illustrations\/r04\/comparaison-especes\.png"/);
+  assert.match(html,/href="\.\/species-r04\.html\?v=gallery-20261117"/);
+  assert.match(html,/href="r04-home-promo\.css"/);
+ }
+ assert.ok(existsSync(new URL("r04-home-promo.css",root)));
+});
