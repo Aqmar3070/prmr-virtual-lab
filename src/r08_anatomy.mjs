@@ -94,14 +94,17 @@ const centers={
  lungs:[[-.54,.24,-.22],[-.54,.24,.22]]
 };
 export function organDefinitions(species="mouse",mode="kidneys"){
- // Anatomical locations and sizes are deliberately not calibrated or measurable.
+ // Normalization follows the visible species silhouette, NOT validated morphometric data.
  const selected=ORGAN_MODES[mode]?mode:"kidneys";
+ const b=(ANATOMY_SPECIES[species]||ANATOMY_SPECIES.mouse).body;
+ const scaleX=b[0]/1.22,scaleY=b[1]/.60,scaleZ=b[2]/.49;
  return Object.entries(centers).flatMap(([kind,pts])=>pts.map(([x,y,z],i)=>({
-  kind,x,y,z,selected:selected==="all"||selected===kind,
+  kind,x:x*(.9+.1*scaleX),y:y*scaleY,z:z*scaleZ,
+  selected:selected==="all"||selected===kind,
   color:ORGAN_MODES[kind].color,
-  a:kind==="liver"?.43:kind==="kidneys"?.24:kind==="heart"?.23:.22,
-  b:kind==="lungs"?.33:kind==="kidneys"?.31:kind==="heart"?.27:.22,
-  c:kind==="liver"?.32:kind==="lungs"?.17:.18,
+  a:(kind==="liver"?.43:kind==="kidneys"?.24:kind==="heart"?.23:.22)*scaleX,
+  b:(kind==="lungs"?.33:kind==="kidneys"?.31:kind==="heart"?.27:.22)*scaleY,
+  c:(kind==="liver"?.32:kind==="lungs"?.17:.18)*scaleZ,
   sign:i===0?-1:1
  })));
 }
@@ -168,11 +171,13 @@ function background(ctx,w,h){
  ctx.font="600 10px system-ui";ctx.fillStyle="rgba(187,233,234,.73)";
  ctx.fillText("PRMR · ATLAS ANATOMIQUE SCHÉMATIQUE",12,17);
 }
-function labels(ctx,v,mode){
+function labels(ctx,v,mode,species){
  const active=mode==="all"?["kidneys","heart","liver","lungs"]:[mode];
+ const objects=organDefinitions(species,"all");
  active.forEach((id,i)=>{
-  const pts=centers[id];if(!pts)return;
-  const anchor=position(pts[pts.length-1],v),x=clamp(anchor[0]+(anchor[0]<v.w*.5?65:-65),62,v.w-62);
+  const pts=objects.filter(o=>o.kind===id);if(!pts.length)return;
+  const picked=pts[pts.length-1];
+  const anchor=position([picked.x,picked.y,picked.z],v),x=clamp(anchor[0]+(anchor[0]<v.w*.5?65:-65),62,v.w-62);
   const y=clamp(anchor[1]+(mode==="all"?(i-1.5)*18:0),40,v.h-32);
   ctx.save();
   ctx.strokeStyle=rgb(ORGAN_MODES[id].color,1,.76);
@@ -201,7 +206,7 @@ function renderScene(ctx,v,species,mode){
   }
  }
  for(const e of body.ellipses)wire(ctx,e,v,true);
- labels(ctx,v,mode);
+ labels(ctx,v,mode,species);
  ctx.font="10px system-ui";ctx.textAlign="left";ctx.fillStyle="#a9cfda";
  ctx.fillText("Proportions et placements indicatifs · non issus d’imagerie",12,v.h-10);
 }
