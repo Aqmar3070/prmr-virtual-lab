@@ -1,21 +1,23 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
-## Affiches originales R03/R04 — intégration vérifiée (17 novembre 2026)
+## Refonte des interfaces scientifiques — 17 novembre 2026
 
-Les **six PNG originaux sont présents sur la branche main** dans [`assets/illustrations/r04`](assets/illustrations/r04/README.md), avec vérification de leur SHA256 par `tests/r04_original_images.test.mjs`. L'import n'est plus nécessaire.
+**[Ouvrir le nouveau laboratoire PRMR](https://aqmar3070.github.io/prmr-virtual-lab/index.html)** · [**Console animaux et molécules 3D**](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html) · [**Journal de la refonte**](docs/PRMR_R04_UI_REBUILD.md)
 
-- [PRMR-R04 — galerie originale immédiatement visible](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html) : une grande affiche visible dans le HTML et six vignettes d'espèces. Les boutons synchronisent l'image originale et les paramètres physiologiques du simulateur.
-- [PRMR-R03 — affiche PK/PD](https://aqmar3070.github.io/prmr-virtual-lab/risk-r03.html) : fichier `tableau-pkpd.png` visible sans dépendre du chargement des simulations.
-- Les portraits documentaires et schémas rénaux conceptuels restent disponibles sous la galerie des affiches originales. Les images 3D restent manipulables.
-- Si une fenêtre du navigateur présente encore l'ancienne interface, recharger avec l'URL versionnée `species-r04.html?v=originals-20261117`, ce qui contourne le cache de la page HTML.
+La galerie autonome d'affiches a été **retirée**. Les visuels d'origine sont désormais les fonds artistiques recadrés des sélecteurs et profils des six espèces, avec des éléments scientifiques HTML vivants. La même architecture interactive apparaît dès l'accueil, dans R01, R02, R03 et R04. L'ancienne vue générale avec promotion de galerie a été remplacée.
 
-**Les maquettes sont des illustrations et leurs chiffres sont décoratifs, sans preuve d'efficacité ou de guérison.** Les calculs du modèle R04 restent séparés des présentations graphiques.
+- Six portraits animaux originaux intégrés aux boutons, fiches de profil et tableaux ; aucune photo Wikimedia dans l'interface principale. Les PNG sources restent versionnés et vérifiés par SHA256.
+- Espèce, âge, sexe, constitution, maladie, rein, foie, poids, hydratation et association : paramètres disponibles selon les modules ; seuls les facteurs dotés de données se répercutent numériquement.
+- Graphiques SVG, rein conceptuel 3D, sculptures animales conceptuelles 3D distinctes et quatre conformères chimiques **RDKit 3D** cliquables, directement dans l'atelier de l'application.
+- Cliquer sur un conformère de référence dans l'atelier moléculaire remplit les champs du modèle RDKit.js avec le nom et le SMILES correspondants. L'analyse 2D reste utilisée pour vérifier les structures libres sans conformation 3D.
+- Conservation intégrale des résultats/limites scientifiques R01-R04, de la traçabilité, de l'espace de recherche privé et des autres modules.
+- Les scores imprimés dans les anciennes maquettes ne sont **pas** repris comme résultats réels. Aucune simulation biochimique ne démontre une guérison ni ne fournit un taux de toxicité animal validé.
 
 ## PRMR-R04 — Laboratoire 3D interactif et physiologie comparée (16 novembre 2026)
 
 - **[Lancer le nouveau laboratoire interactif 3D](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html)** : simulation exploratoire 6 espèces — souris, rat, miniporc, chien, macaque cynomolgus, lapin.
-- **Atlas visuel de six espèces** en haut du tableau de bord : portraits Wikimedia Commons sourcés et crédités, fiches explicatives qualitatives et comparaisons anatomiques redessinées en SVG. Les portraits sont disponibles en ligne selon la connexion du navigateur.
-- **Affiches originales intégrées :** les six PNG sont maintenant stockés sur GitHub, présentés au-dessus de l'atlas documentaire et reliés aux espèces. Leurs chiffres imprimés n'ont pas de valeur expérimentale.
+- **Interface intégrée** : les six profils animaux utilisent les zones visuelles des affiches originales directement dans les cartes et les panneaux physiologiques, pas une galerie séparée.
+- **3D et interaction** : reins et sculptures animales conceptuelles orientables, plus quatre molécules aux coordonnées conformères RDKit. Les annotations et graphiques HTML sont les véritables données de l’application.
 - Paramètres manipulables : espèce, masse, âge, sexe, constitution, déshydratation, fonction rénale, fonction hépatique, maladie, association et concentration libre illustrative.
 - Cartes d'espèces cliquables, graphiques SVG recalculés, trois visualiseurs 3D Canvas à rotation par glissement et quatre molécules réelles conformées par RDKit.
 - [Conformères 3D chimiques](research-data/r04_molecular_3d.json) · [Moteur R04](src/r04_engine.mjs) · [Visualiseur 3D](src/r04_visuals.mjs) · [Journal scientifique R04](docs/PRMR_R04_RESEARCH_LOG.md).
