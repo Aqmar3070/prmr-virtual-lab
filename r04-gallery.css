@@ -1,0 +1,21 @@
+/* Original PNG posters, present in HTML independently from JavaScript */
+.r4-poster-gallery{border:1px solid #2c9fa5;border-radius:16px;background:radial-gradient(ellipse at 95% 0%,#1464795e,transparent 56%),linear-gradient(135deg,#0b2c3d,#071d2b);padding:18px;margin:18px 0 23px;box-shadow:0 12px 35px #04152188}
+.r4-poster-gallery-top{display:flex;justify-content:space-between;gap:12px;align-items:start;flex-wrap:wrap}
+.r4-gallery-kicker{color:#86f6e1;font-size:10px;letter-spacing:.12em;font-weight:850}
+.r4-poster-gallery-top h2{color:#ecfffc;font-size:clamp(20px,2.5vw,28px);margin:5px 0;letter-spacing:-.04em}
+.r4-poster-gallery-top p{font-size:12px;color:#adcbd4;line-height:1.6;margin:0 0 15px}
+.r4-poster-gallery-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,235px);gap:14px}
+.r4-poster-main{min-width:0;border:1px solid #319ba3;background:#081b2c;overflow:hidden;border-radius:12px}
+.r4-poster-main-toolbar{padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#0c3f4a}
+.r4-poster-main-toolbar span{font-size:13px;font-weight:780;color:#edfff9}
+.r4-poster-main-toolbar a{display:inline-flex;color:#c1fff0;background:#165663;border:1px solid #61c5b8;border-radius:8px;padding:6px 9px;text-decoration:none;font-size:11px;white-space:nowrap}
+#r4-poster-image-link{display:block;line-height:0}
+#r4-poster-main-img{display:block;width:100%;height:auto;min-height:170px;aspect-ratio:1672/941;object-fit:contain;background:radial-gradient(circle at center,#155064,#071521);color:#fff}
+.r4-poster-disclaimer{background:#312718;color:#f2d5a7;font-size:11px;line-height:1.7;padding:11px 13px;margin:0}
+.r4-poster-thumbnails{display:grid;grid-template-columns:1fr;gap:7px;align-content:start}
+.r4-poster-thumb{display:flex;gap:9px;align-items:center;padding:7px;background:#123644;border:1px solid #2a6677;border-radius:10px;min-height:64px;color:#e2f4f4;text-decoration:none;transition:background .15s,border-color .15s}
+.r4-poster-thumb:hover,.r4-poster-thumb[aria-current=true]{border-color:#89f6d8;background:#19545b;box-shadow:0 0 12px #39dacc30}
+.r4-poster-thumb img{width:82px;aspect-ratio:16/9;object-fit:cover;border-radius:6px;border:1px solid #46737b;background:#081b2e;flex-shrink:0}
+.r4-poster-thumb span{min-width:0}.r4-poster-thumb strong{display:block;font-size:12px;line-height:1.3;color:#edfffc}.r4-poster-thumb small{display:block;font-size:10px;line-height:1.2;color:#9fcad0;margin-top:3px}
+@media(max-width:850px){.r4-poster-gallery-grid{grid-template-columns:minmax(0,1fr)}.r4-poster-thumbnails{grid-template-columns:repeat(3,minmax(0,1fr))}.r4-poster-thumb{flex-direction:column;align-items:start}.r4-poster-thumb img{width:100%}}
+@media(max-width:525px){.r4-poster-gallery{padding:10px}.r4-poster-thumbnails{grid-template-columns:repeat(2,minmax(0,1fr))}.r4-poster-thumb{min-height:unset}.r4-poster-gallery-top h2{font-size:21px}}
