@@ -1,0 +1,31 @@
+name: PRMR R07 — importer les six modèles 3D texturés
+on:
+  push:
+    branches: [main]
+    paths:
+      - incoming/PRMR_R07_modeles_3D_textures_legers.zip
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  install-photo3d:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Vérifier archive originale et intégrer les fichiers
+        run: python3 scripts/ingest_r07.py
+      - name: Commit des véritables fichiers GLB et WebP
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/animals-3d assets/animals-photo
+          git commit -m "assets(PRMR-R07): 6 maillages photo-texturés vérifiés (GLB + WebP)"
+          git push
+      - name: Documentation
+        run: |
+          echo "Les douze fichiers binaires ont été copiés et leur intégrité vérifiée." >> "$GITHUB_STEP_SUMMARY"
+          echo "Les vrais maillages 3D seront servis sous /assets/animals-3d/*.glb." >> "$GITHUB_STEP_SUMMARY"
+          echo "Références scientifiques : reconstruction artistique mono-vue, dos non observé." >> "$GITHUB_STEP_SUMMARY"
