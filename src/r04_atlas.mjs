@@ -3,7 +3,8 @@
 // Scientific values remain live HTML/SVG outputs, never inferred from artwork.
 import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createAnatomyViewer,ORGAN_MODES} from "./r08_anatomy.mjs?v=r08-anatomy-polish-20261117";
+import {createAnatomyViewer,ORGAN_MODES} from "./r09_viewer.mjs";
+import {organAssessment} from "./r09_organ_catalog.mjs";
 export const ANIMAL_ART=Object.fromEntries(SPECIES_R04.map(species=>[species.id,"./assets/animals/"+species.id+".svg"]));
 const $=id=>document.getElementById(id);
 const n=(tag,txt,cls)=>{let x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;if(cls)x.className=cls;return x};
@@ -104,13 +105,16 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  const organToolbar=make("div","r8-organ-switch");
  organToolbar.setAttribute("role","group");organToolbar.setAttribute("aria-label","Organe interne à mettre en évidence");
  const organButtons={};
- const organDescription=make("p","r8-anatomy-note","Reins bilatéraux : repères schématiques à l'intérieur du corps transparent. Proportions non calibrées.");
+ const organDescription=make("p","r8-anatomy-note","Vue 3D rotative par espèce. Le chien dispose de surfaces issues de CT modifiées ; les autres espèces présentent des maillages pédagogiques indépendants.");
  const organCopy={
-  kidneys:"Reins bilatéraux et trajets urinaires indicatifs. Aucune lésion ou toxicité n'est visualisée.",
-  heart:"Cœur : position conceptuelle mise en évidence dans le thorax. Pas d'imagerie cardiaque.",
-  liver:"Foie : volume indicatif au sein du tronc, sans mesure biologique.",
-  lungs:"Poumons : deux volumes thoraciques simplifiés, sans exploration respiratoire réelle.",
-  all:"Reins, cœur, foie et poumons simultanément. Positions et proportions approximatives."
+  kidneys:"Reins, artères et uretères en 3D. Surlignage éventuel = question biologique, jamais lésion confirmée.",
+  heart:"Myocarde et gros vaisseaux modélisés. Interactions hémodynamiques conceptuelles.",
+  liver:"Foie lobulé, vésicule biliaire selon espèce. Aucune mesure hépatique PRMR.",
+  lungs:"Lobation pulmonaire adaptée selon espèce et arbre bronchique schématique.",
+  brain:"Encéphale en volumes séparés ; cortex lisse des rongeurs et du lapin, plissé des autres espèces.",
+  digestive:"Estomac, intestins, cæcum selon espèce, côlon spiralé indicatif chez le porc.",
+  pancreas:"Pancréas avec conduits schématiques et lobules. Aucun diagnostic métabolique.",
+  all:"Tous les systèmes internes affichés. Relations représentées uniquement en tant qu’hypothèses physiologiques."
  };
  for(const [id,details] of Object.entries(ORGAN_MODES)){
   const button=make("button","r8-organ-button",details.label);button.type="button";
@@ -121,13 +125,26 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
    for(const [key,b] of Object.entries(organButtons))b.setAttribute("aria-pressed",String(key===id));
    organDescription.textContent=organCopy[id];
    anatomy?.setOrgan(id);
+   renal?.setOrgan(id);
+   organsNotice.textContent="Organe indépendant · "+details.label+" · rotation 3D · aucun diagnostic";
    onOrganChange?.(id);
   });
   organButtons[id]=button;organToolbar.append(button);
  }
  portrait.dataset.mode="anatomy";root.dataset.focusOrgan="kidneys";
  const portraitOverlay=make("div","r4-st-portrait-label");portraitOverlay.append(make("strong","r4-st-species-name","Souris"),make("small","r4-st-latin","Mus musculus"));
- portraitPanel.append(portrait,organToolbar,organDescription,portraitOverlay);profileGrid.append(portraitPanel);
+ const sceneOptions=make("div","r09-scene-options");
+ const makeToggle=(label,initial,change)=>{
+  const button=make("button","r09-scene-toggle",label);button.type="button";
+  button.setAttribute("aria-pressed",String(initial));
+  button.addEventListener("click",()=>{const on=button.getAttribute("aria-pressed")!=="true";button.setAttribute("aria-pressed",String(on));change(on)});
+  sceneOptions.append(button);return button;
+ };
+ makeToggle("Corps transparent",true,on=>anatomy?.setBodyVisible(on));
+ makeToggle("Isoler la sélection",false,on=>anatomy?.setIsolated(on));
+ makeToggle("Afficher les liens d’organes",false,on=>anatomy?.setLinksVisible(on));
+ const sourceLine=make("p","r09-source-line","Maillage 3D indépendant. Précision anatomique variable ; aucune lésion constatée.");
+ portraitPanel.append(portrait,organToolbar,sceneOptions,organDescription,sourceLine,portraitOverlay);profileGrid.append(portraitPanel);
  const info=make("div","r4-st-props");profileGrid.append(info);
  const decision=make("div","r4-st-insight");decision.append(make("span",null,"AXE SCIENTIFIQUE"),make("strong","r4-st-decision","Approche mécanistique"),make("p","r4-st-remark","La réponse dépend de l'espèce et de la maladie."));
  info.append(decision);
@@ -175,11 +192,11 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  advanceFields.append(disclaimer);
  advanced.append(advanceFields);info.append(advanced);
  const right=make("div","r4-st-panel r4-st-organ");grid.append(right);
- const organTop=make("div","r4-st-paneltop");organTop.append(make("h3",null,"Rein / système physiologique"),make("span","r4-st-chip","ROTATION 3D · DRAG"));
+ const organTop=make("div","r4-st-paneltop");organTop.append(make("h3",null,"Organe isolé — explorer et faire tourner"),make("span","r4-st-chip","3D INDÉPENDANTE · DRAG"));
  right.append(organTop);
  const organWrap=make("div","r4-st-organbox");
- const organCanvas=make("canvas");organCanvas.setAttribute("aria-label","Rein conceptuel en 3D, faire pivoter au toucher ou avec le pointeur");organWrap.append(organCanvas);
- const organsNotice=make("div","r4-st-3d-label","Vue pédagogique, non issue d'une imagerie réelle");organWrap.append(organsNotice);right.append(organWrap);
+ const organCanvas=make("canvas","r09-isolated-canvas");organCanvas.setAttribute("aria-label","Organe 3D de l’espèce, rotation 360° indépendante de l’animal");organWrap.append(organCanvas);
+ const organsNotice=make("div","r4-st-3d-label","Organe isolé · rotation 3D · vérifier l’origine du maillage");organWrap.append(organsNotice);right.append(organWrap);
  const renalNote=make("div","r4-st-renal-note");renalNote.append(make("strong",null,"Structure rénale"),make("p","r4-st-renal-details","Comparaison anatomique"));right.append(renalNote);
  const callouts=make("div","r4-st-notes");right.append(callouts);
  const panels=make("div","r4-st-bottom-grid");shell.append(panels);
@@ -202,14 +219,20 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
   btn.setAttribute("aria-pressed",String(activeMol===mol.id));deck.append(btn);
  }
  const citations=make("div","r4-st-safety-caption",
-  "Molécules : conformères RDKit. Animaux : vues 3D pédagogiques filaires avec organes internes schématiques, sans atlas anatomique validé ni imagerie réelle. Les images ne prouvent ni toxicité ni guérison.");
+  "Molécules : conformères RDKit. Chien : surfaces vétérinaires CT modifiées et maillages supplétifs. Autres espèces : modèles 3D pédagogiques non validés. Les couleurs d’alerte sont des hypothèses, pas des lésions diagnostiquées.");
  moleculePanel.append(citations);shell.append(moleculePanel);
  root.append(shell);
- renal=create3D(organCanvas,{kind:"kidney"});
+ renal=createAnatomyViewer(organCanvas,{species:"mouse",organ:"kidneys",isolated:true});
  anatomy=createAnatomyViewer(animalCanvas,{species:"mouse",organ:"kidneys",
-  onRender:({species,organ,count})=>{
+  onOrganPick:id=>{if(organButtons[id])organButtons[id].click()},
+  onRender:({species,organ,count,source})=>{
    portrait.dataset.mode="anatomy";portrait.dataset.rendered=String(count);
-   sceneLabel.textContent="ATLAS FILAIRE · "+ORGAN_MODES[organ].label.toUpperCase()+" · ROTATION / ZOOM · ANATOMIE SCHÉMATIQUE";
+   portrait.dataset.viewSource=source||"unknown";
+   const isDogScan=source==="canine-CT-derived-hybrid-GLB";
+   sceneLabel.textContent=(isDogScan?"ANATOMIE CANINE CT MODIFIÉE":"MAILLAGES PÉDAGOGIQUES 3D")+" · GLISSER POUR TOURNER · ZOOM";
+   sourceLine.textContent=isDogScan
+    ?"Chien : modèles vétérinaires dérivés de CT (Massey/Cornell/pixelbeaker/Vet Atlas selon pièces), recalés et modifiés. Certaines structures sont schématiques."
+    :"Modèles volumiques 3D par espèce ; non segmentés à partir d’imagerie spécifique et non validés anatomiquement.";
   }
  });
  if(!anatomy.supported){
@@ -227,7 +250,11 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
   if(!result)return;
   last=result;const id=result.species.id,metaData=LABS[id];
   portrait.dataset.species=id;
-  anatomy.set({species:id,organ:organFocus});
+  anatomy.set({species:id,organ:organFocus,inputs:result.inputs});
+  renal?.set({species:id,organ:organFocus,inputs:result.inputs});
+  const risk=organAssessment(result.inputs);
+  portrait.dataset.visualAttention=risk.attention.kidneys;
+  organDescription.textContent=organCopy[organFocus]+" · "+risk.disclaimer;
   portraitOverlay.querySelector("strong").textContent=result.species.label;
   portraitOverlay.querySelector("small").textContent=result.species.latin+" · "+MASS(result.inputs.mass_kg);
   for(const btn of chooser.querySelectorAll("button"))btn.setAttribute("aria-pressed",String(btn.dataset.stageSpecies===id));
