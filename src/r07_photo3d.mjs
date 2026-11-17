@@ -13,7 +13,7 @@ const VS=[
 ].join("\n");
 const FS=[
  "precision mediump float;uniform sampler2D tex;varying vec3 vN;varying vec2 vUV;",
- "void main(){vec4 C=texture2D(tex,vUV);if(C.a<.12)discard;",
+ "void main(){vec4 C=texture2D(tex,vec2(vUV.x,1.-vUV.y));if(C.a<.12)discard;",
  "vec3 N=normalize(vN),L=normalize(vec3(-.45,.86,1.3)),R=normalize(vec3(.65,.18,.8));",
  "float d=max(0.,dot(N,L)),f=max(0.,dot(N,R));",
  "float rim=pow(1.-max(dot(N,vec3(0.,0.,1.)),0.),2.);",
