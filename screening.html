@@ -5,68 +5,78 @@
 <meta name="theme-color" content="#09111e">
 <meta name="description" content="PRMR-R02 : calcul original RDKit sur 10 molécules existantes et 165 associations précliniques in silico. Résultats, filtres, méthodes, incertitudes et hypothèses.">
 <title>PRMR-R02 | Criblage original de molécules</title>
+<link rel="stylesheet" href="./prmr-design-system.css?v=r12-20261117">
 <link rel="stylesheet" href="./laboratory.css">
 <style>
-:root{--line:#2c4257;--soft:#a5bdca;--sea:#66e0cd}
-*{box-sizing:border-box}
-body{background:#09111e;color:#e8f2f5}
-#app{max-width:1330px;padding:26px clamp(15px,3vw,42px) 70px;margin:auto}
-nav.headnav{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:36px}
-.brand{text-decoration:none;font-size:16px;color:#e8f2f5;font-weight:900}.brand span{color:#60dfc9}
-.navright{display:flex;gap:8px;flex-wrap:wrap}
-.navright a,.rbutton{background:#142b3c;color:#bce6e6;border:1px solid #34536a;border-radius:9px;font-size:12px;padding:10px 13px;text-decoration:none;font-weight:700;cursor:pointer}
-.navright a:hover,.rbutton:hover{border-color:#70cabc}.rbutton.active{background:#17493f;border-color:#4ead99}
-.eyebrow{color:#66dcca;letter-spacing:.14em;font-size:10px;font-weight:850;text-transform:uppercase}
-h1{font-size:clamp(30px,4.8vw,55px);letter-spacing:-.05em;line-height:1.1;margin:12px 0 17px}
-h1 span{color:#6cdec9}
-h2{font-size:clamp(21px,2.7vw,27px);letter-spacing:-.035em;margin:0 0 12px}
-h3{font-size:17px;letter-spacing:-.015em;margin:0 0 12px}
-.lead{max-width:970px;color:#adc3d1;font-size:15px;line-height:1.78}
-.hnotice{border-left:3px solid #d0a56f;background:#302818;color:#ecd7b1;border-radius:9px;padding:15px 17px;font-size:12px;line-height:1.7;margin:24px 0}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:28px 0}
-.stat{background:#11273a;border:1px solid var(--line);border-radius:12px;padding:20px}
-.stat label{font-size:11px;display:block;color:#a6bfcf}.stat strong{display:block;color:#7fe5d1;font-size:33px;margin:10px 0}.stat small{font-size:11px;color:#abc4d0;line-height:1.5}
-section{margin-top:43px}
-section>p,.muted{font-size:13px;color:#9fb7c6;line-height:1.8}
-.twocol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.panelx{border:1px solid var(--line);border-radius:14px;padding:23px;background:#102234;min-width:0}
-.pill{display:inline-flex;color:#abe2d9;border:1px solid #397669;background:#174438;border-radius:99px;font-size:10px;font-weight:800;padding:6px 10px;margin:2px 6px 8px 0}
-.pill.warn{color:#eed3ac;border-color:#725b3b;background:#453521}
-.panelx h3{line-height:1.5}
-.num{display:block;color:#89e6d6;font-size:30px;letter-spacing:-.04em;font-weight:900;margin:12px 0}
-.small{font-size:11px;line-height:1.65;color:#a4becd}
-.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:15px}
-.meta div{border-top:1px solid #31495c;padding-top:12px}
-.meta small{color:#95b1c3;font-size:10px;display:block}.meta b{font-size:12px;color:#d5ecec;display:block;margin-top:5px}
-.info{padding:15px 18px;border:1px solid #2b4f62;border-radius:10px;background:#112b3c;color:#c1dbdf;line-height:1.8;font-size:13px}
-ul{padding-left:20px}li{line-height:1.75;color:#b7cbd5;font-size:13px}
-.controls{display:flex;gap:9px;flex-wrap:wrap;margin:19px 0 16px;align-items:center}
-.rfield{width:auto;max-width:260px;min-width:180px;background:#0d2030;border:1px solid #34546c;color:#d6ecec;border-radius:9px;padding:11px 13px}
-#results{overflow-x:auto;border-radius:12px;border:1px solid #345064}
-table{border-collapse:collapse;width:100%;min-width:760px}
-th,td{text-align:left;border-bottom:1px solid #293e53;padding:13px 15px;font-size:12px;vertical-align:top;line-height:1.55}
-th{background:#19354a;color:#cee7ea;font-size:11px}td{color:#c2d6dd}
-tr:last-child td{border-bottom:0}
-tr:hover td{background:#142f40}
-.good{color:#89e4d1;font-weight:700}.bad{color:#e6ba84;font-weight:700}
-a{color:#8de0e8}
-#pager{margin-top:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-#pager button{background:#17493f;border:1px solid #3d8c7e;border-radius:9px;padding:10px 14px;color:#c9f5ea;font-weight:700;cursor:pointer}
+/* Styles propres à PRMR-R02. Palette, typographie, tableaux, statuts et
+   contrôles viennent de prmr-design-system.css : cette page ne redéfinit
+   que sa propre mise en page. */
+#app{max-width:1180px;padding:var(--prmr-space-6) clamp(16px,3vw,40px) var(--prmr-space-7);margin:auto}
+nav.headnav{display:flex;align-items:center;justify-content:space-between;gap:var(--prmr-space-4);flex-wrap:wrap;margin-bottom:var(--prmr-space-6)}
+.brand{text-decoration:none;font-size:var(--prmr-size-body);color:var(--prmr-text);font-weight:700}
+.brand span{color:var(--prmr-signal)}
+.navright{display:flex;gap:var(--prmr-space-2);flex-wrap:wrap}
+.navright a,.rbutton{background:var(--prmr-surface-raised);color:var(--prmr-text);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);font-size:var(--prmr-size-small);padding:var(--prmr-space-2) var(--prmr-space-3);text-decoration:none;font-weight:600;cursor:pointer}
+.navright a:hover,.rbutton:hover{border-color:var(--prmr-signal-dim)}
+.rbutton.active{border-color:var(--prmr-signal);color:var(--prmr-signal)}
+/* Ligne de contexte : phase, nature du travail, date. Lisible en casse
+   normale ; les capitales espacées rendaient cette information pénible à lire. */
+.eyebrow{color:var(--prmr-text-muted);font-size:var(--prmr-size-small);font-weight:600;margin:0}
+h1{margin:var(--prmr-space-3) 0 var(--prmr-space-4)}
+h1 span{color:var(--prmr-signal)}
+.lead{max-width:var(--prmr-measure);color:var(--prmr-text-muted);font-size:var(--prmr-size-lead);line-height:1.6}
+/* Avertissement de portée : filet tireté = construction exploratoire. */
+.hnotice{border-left:3px dashed var(--prmr-hypothesis);background:var(--prmr-hypothesis-bg);color:var(--prmr-text);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;padding:var(--prmr-space-4);font-size:var(--prmr-size-small);line-height:1.7;margin:var(--prmr-space-5) 0;max-width:var(--prmr-measure)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-3);margin:var(--prmr-space-5) 0}
+.stat{background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-4)}
+.stat label{font-size:var(--prmr-size-micro);display:block;color:var(--prmr-text-muted);margin:0}
+.stat strong{display:block;color:var(--prmr-text);font-size:30px;font-variant-numeric:tabular-nums;letter-spacing:-.02em;margin:var(--prmr-space-2) 0}
+.stat small{font-size:var(--prmr-size-micro);color:var(--prmr-text-muted);line-height:1.5}
+section{margin-top:var(--prmr-space-7)}
+section>p,.muted{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);line-height:1.75}
+.twocol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-4)}
+.panelx{border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5);background:var(--prmr-surface);min-width:0}
+.panelx h3{line-height:1.4}
+/* Jeton de statut, aligné sur la grammaire du système de design. */
+.pill{display:inline-flex;align-items:center;gap:var(--prmr-space-1);color:var(--prmr-computed);border:1px solid currentColor;background:var(--prmr-computed-bg);border-radius:999px;font-size:var(--prmr-size-micro);font-weight:600;padding:3px 9px;margin:2px var(--prmr-space-2) var(--prmr-space-2) 0}
+.pill.warn{color:var(--prmr-hypothesis);background:var(--prmr-hypothesis-bg)}
+/* L'indice de triage est une règle de classement inventée pour organiser le
+   criblage : il ne mesure rien. Il garde donc une taille de texte courant et
+   porte son statut, au lieu de dominer la carte comme un résultat. */
+.num-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--prmr-space-2);margin:var(--prmr-space-3) 0}
+.num{color:var(--prmr-text);font-size:var(--prmr-size-lead);font-variant-numeric:tabular-nums;font-weight:700}
+.num-label{color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.small{font-size:var(--prmr-size-micro);line-height:1.6;color:var(--prmr-text-muted)}
+.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-3);margin-top:var(--prmr-space-4)}
+.meta div{border-top:1px solid var(--prmr-line-soft);padding-top:var(--prmr-space-3)}
+.meta small{color:var(--prmr-text-muted);font-size:var(--prmr-size-micro);display:block}
+.meta b{font-size:var(--prmr-size-small);color:var(--prmr-text);display:block;margin-top:var(--prmr-space-1)}
+.info{padding:var(--prmr-space-4);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);background:var(--prmr-surface-sunken);color:var(--prmr-text-muted);line-height:1.75;font-size:var(--prmr-size-small)}
+ul{padding-left:var(--prmr-space-5)}
+li{line-height:1.7;color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.controls{display:flex;gap:var(--prmr-space-2);flex-wrap:wrap;margin:var(--prmr-space-5) 0 var(--prmr-space-4);align-items:center}
+.rfield{width:auto;max-width:260px;min-width:180px}
+#results{overflow-x:auto;border-radius:var(--prmr-radius-panel);border:1px solid var(--prmr-line);background:var(--prmr-surface);scrollbar-color:var(--prmr-line) transparent}
+#results table{border-collapse:collapse;width:100%;min-width:760px;font-size:var(--prmr-size-small)}
+#results th{position:sticky;top:0;z-index:1;background:var(--prmr-surface-raised);color:var(--prmr-text);font-size:var(--prmr-size-micro);font-weight:600;text-align:left;padding:var(--prmr-space-3) var(--prmr-space-4);border-bottom:1px solid var(--prmr-line);white-space:nowrap}
+#results td{text-align:left;border-bottom:1px solid var(--prmr-line-soft);padding:var(--prmr-space-3) var(--prmr-space-4);vertical-align:top;line-height:1.55;color:var(--prmr-text-muted)}
+#results td.numeric{text-align:right;font-variant-numeric:tabular-nums;color:var(--prmr-text)}
+#results tbody tr:nth-child(even){background:#ffffff05}
+#results tbody tr:hover{background:#5fe3c60d}
+#results tbody tr:last-child td{border-bottom:0}
+#pager{margin-top:var(--prmr-space-4);display:flex;gap:var(--prmr-space-3);align-items:center;flex-wrap:wrap}
 #pager button:disabled{opacity:.4;cursor:not-allowed}
-#molecule-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.molcard{border:1px solid #294454;background:#112638;border-radius:11px;padding:16px}
-.molcard h3{font-size:14px;margin:5px 0 9px}.molcard p{color:#a9c1ce;font-size:11px;line-height:1.6}
-.molcard .foot{border-top:1px solid #2d4557;padding-top:10px;margin-top:11px;font-size:10px;color:#9bc0cb}
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.step{border:1px solid var(--line);background:#142638;border-radius:11px;padding:17px}
-.step .index{font-size:10px;color:#5fdaca;font-weight:900}.step h3{margin:9px 0;font-size:14px}.step p{color:#adc3ce;font-size:12px;line-height:1.7}
-.education{border:1px solid #358577;border-radius:14px;background:#13342f;padding:25px}
-.education p,.education li{font-size:14px;line-height:1.9;color:#d6ebe4}
-details{padding:16px 0;border-bottom:1px solid #2b4256}
-summary{cursor:pointer;color:#9ae4d6;font-weight:700}
-footer{border-top:1px solid #2f4456;padding-top:25px;margin-top:48px;color:#92b0bd;line-height:1.7;font-size:11px}
-@media(max-width:850px){.stats,.steps{grid-template-columns:repeat(2,1fr)}#molecule-list{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.twocol,.stats,.steps,#molecule-list{grid-template-columns:1fr}.panelx{padding:17px}.rfield{max-width:100%;width:100%}.controls{align-items:stretch}}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-3)}
+.step{border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-4)}
+/* La numérotation est conservée : ces étapes sont une séquence réelle. */
+.step .index{font-size:var(--prmr-size-micro);color:var(--prmr-signal);font-weight:700;font-variant-numeric:tabular-nums}
+.step h3{margin:var(--prmr-space-2) 0;font-size:var(--prmr-size-body)}
+.step p{color:var(--prmr-text-muted);font-size:var(--prmr-size-small);line-height:1.7}
+.education{border:1px solid var(--prmr-signal-dim);border-radius:var(--prmr-radius-panel);background:var(--prmr-computed-bg);padding:var(--prmr-space-5)}
+.education p,.education li{font-size:var(--prmr-size-body);line-height:1.8;color:var(--prmr-text)}
+details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prmr-line-soft);border-radius:0;background:none}
+@media(max-width:850px){.stats,.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.twocol,.stats,.steps{grid-template-columns:1fr}.panelx{padding:var(--prmr-space-4)}.rfield{max-width:100%;width:100%}.controls{align-items:stretch}}
 </style>
 <link rel="stylesheet" href="./r04-atlas.css?v=r10-canine-only-20261117">
 <script type="module" src="./src/r04_embedded.mjs?v=r10-canine-only-20261117"></script>
@@ -103,14 +113,14 @@ footer{border-top:1px solid #2f4456;padding-top:25px;margin-top:48px;color:#92b0
 <div class="panelx">
 <span class="pill">R02-A · hypothèse antifibrosante</span>
 <h3>Irbesartan + dapagliflozine + pirfénidone</h3>
-<b class="num">4,829 <span class="small">points de triage</span></b>
+<p class="num-row"><b class="num">4,829</b> <span class="num-label">indice de triage documentaire</span> <span class="prmr-status prmr-status-hypothesis">Hypothèse</span></p>
 <p class="small">Système rénine–angiotensine + SGLT2 + processus de fibrose. Mécanisme de pirfénidone insuffisamment caractérisé pour affirmer une cible rénale directe.</p>
 <div class="meta"><div><small>Diversité structurale moyenne</small><b>0,8934</b></div><div><small>Vigilance</small><b>Hépatique et rénale</b></div></div>
 </div>
 <div class="panelx">
 <span class="pill">R02-B · hypothèse anti-inflammatoire</span>
 <h3>Irbesartan + dapagliflozine + pentoxifylline</h3>
-<b class="num">4,780 <span class="small">points de triage</span></b>
+<p class="num-row"><b class="num">4,780</b> <span class="num-label">indice de triage documentaire</span> <span class="prmr-status prmr-status-hypothesis">Hypothèse</span></p>
 <p class="small">Système rénine–angiotensine + SGLT2 + modulation inflammatoire. L'exposition aux métabolites de pentoxifylline peut augmenter avec une fonction rénale altérée.</p>
 <div class="meta"><div><small>Diversité structurale moyenne</small><b>0,9003</b></div><div><small>Vigilance</small><b>Accumulation de métabolites</b></div></div>
 </div>

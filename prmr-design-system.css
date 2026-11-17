@@ -1,0 +1,649 @@
+/* ==========================================================================
+   PRMR Virtual Lab — Système de design unique
+   --------------------------------------------------------------------------
+   Un seul jeu de variables, de styles de base et de composants pour toutes
+   les pages du laboratoire. Avant ce fichier, quatre pages définissaient
+   chacune sa propre palette (--bg, --r-bg, #09111e en dur) et ses propres
+   tableaux : d'où des écarts visibles de bordures, d'espacements et de
+   contrastes d'une page à l'autre.
+
+   Principe directeur : le statut de provenance est la structure.
+   Dans ce laboratoire, la chose la plus importante à propos d'un nombre est
+   son origine — mesuré dans une publication, calculé par RDKit, posé comme
+   hypothèse, ou indisponible. Ce fichier donne à ces quatre statuts une
+   grammaire visuelle constante (filet latéral + jeton), afin qu'aucun
+   indice exploratoire ne puisse être lu comme un résultat expérimental.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Jetons
+   -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: dark;
+
+  /* Surfaces, empilées par profondeur plutôt que par page */
+  --prmr-abyss: #060f19;
+  --prmr-surface: #0e1d2b;
+  --prmr-surface-raised: #15293a;
+  --prmr-surface-sunken: #0a1724;
+  --prmr-line: #244055;
+  --prmr-line-soft: #1b3346;
+
+  /* Texte */
+  --prmr-text: #e7f2f5;
+  --prmr-text-muted: #9db4c2;
+  --prmr-text-faint: #6f8798;
+
+  /* Accent d'identité du laboratoire */
+  --prmr-signal: #5fe3c6;
+  --prmr-signal-dim: #2e8f7d;
+
+  /* Statuts de provenance — l'axe central du système.
+     Mesuré : donnée expérimentale publiée, reprise d'une source externe.
+     Calculé : sortie déterministe et reproductible (RDKit, modèle analytique).
+     Hypothèse : paramètre, score ou scénario exploratoire non calibré.
+     Indisponible : la donnée n'existe pas ; ne pas combler par une estimation. */
+  --prmr-measured: #7fc8ff;
+  --prmr-measured-bg: #112c42;
+  --prmr-computed: #5fe3c6;
+  --prmr-computed-bg: #0f3330;
+  --prmr-hypothesis: #f2c279;
+  --prmr-hypothesis-bg: #33281466;
+  --prmr-unavailable: #93a6b4;
+  --prmr-unavailable-bg: #1a2836;
+  --prmr-vigilance: #ff93a1;
+  --prmr-vigilance-bg: #351c26;
+
+  /* Espacement */
+  --prmr-space-1: 4px;
+  --prmr-space-2: 8px;
+  --prmr-space-3: 12px;
+  --prmr-space-4: 16px;
+  --prmr-space-5: 24px;
+  --prmr-space-6: 32px;
+  --prmr-space-7: 48px;
+
+  /* Rayons : deux seulement, pour que la hiérarchie reste lisible.
+     Les contrôles sont plus serrés que les panneaux qui les contiennent. */
+  --prmr-radius-control: 6px;
+  --prmr-radius-panel: 12px;
+
+  /* Typographie */
+  --prmr-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --prmr-font-chem: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --prmr-size-micro: 11px;
+  --prmr-size-small: 12.5px;
+  --prmr-size-body: 15px;
+  --prmr-size-lead: 17px;
+  --prmr-size-h3: 20px;
+  --prmr-size-h2: 26px;
+  --prmr-size-h1: 34px;
+
+  --prmr-measure: 72ch;
+}
+
+/* --------------------------------------------------------------------------
+   2. Réinitialisation et éléments de base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--prmr-abyss);
+  color: var(--prmr-text);
+  font-family: var(--prmr-font);
+  font-size: var(--prmr-size-body);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Les nombres s'alignent en colonne : indispensable pour comparer des
+   expositions, des masses ou des indices d'un tableau à l'autre. */
+table,
+.prmr-numeric,
+output,
+time {
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--prmr-space-3);
+  line-height: 1.22;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--prmr-size-h1);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--prmr-size-h2);
+}
+
+h3 {
+  font-size: var(--prmr-size-h3);
+}
+
+h4 {
+  font-size: var(--prmr-size-body);
+}
+
+p,
+li {
+  max-width: var(--prmr-measure);
+}
+
+p {
+  margin: 0 0 var(--prmr-space-4);
+}
+
+.prmr-lead {
+  font-size: var(--prmr-size-lead);
+  color: var(--prmr-text-muted);
+  line-height: 1.6;
+}
+
+small,
+.prmr-small {
+  font-size: var(--prmr-size-small);
+  line-height: 1.55;
+}
+
+a {
+  color: var(--prmr-signal);
+  text-decoration-color: color-mix(in srgb, var(--prmr-signal) 45%, transparent);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Un anneau de focus visible au clavier sur tout élément interactif :
+   la navigation sans souris doit rester praticable dans les longs tableaux. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--prmr-signal);
+  outline-offset: 2px;
+  border-radius: var(--prmr-radius-control);
+}
+
+code,
+kbd,
+samp,
+.prmr-chem {
+  font-family: var(--prmr-font-chem);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+}
+
+/* Les chaînes SMILES et les identifiants se lisent caractère par caractère :
+   la casse monospace est ici fonctionnelle, pas décorative. */
+.prmr-chem {
+  background: var(--prmr-surface-sunken);
+  border: 1px solid var(--prmr-line-soft);
+  border-radius: var(--prmr-radius-control);
+  padding: 2px 6px;
+  color: var(--prmr-text);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--prmr-line-soft);
+  margin: var(--prmr-space-6) 0;
+}
+
+img,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   3. Mise en page
+   -------------------------------------------------------------------------- */
+
+.prmr-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--prmr-space-6) var(--prmr-space-5) var(--prmr-space-7);
+}
+
+.prmr-panel {
+  background: var(--prmr-surface);
+  border: 1px solid var(--prmr-line);
+  border-radius: var(--prmr-radius-panel);
+  padding: var(--prmr-space-5);
+  margin: 0 0 var(--prmr-space-5);
+}
+
+.prmr-panel-sunken {
+  background: var(--prmr-surface-sunken);
+}
+
+.prmr-grid {
+  display: grid;
+  gap: var(--prmr-space-4);
+}
+
+@media (min-width: 760px) {
+  .prmr-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .prmr-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Statut de provenance
+   -------------------------------------------------------------------------- */
+
+/* Jeton compact, à placer au contact du chiffre qu'il qualifie. */
+.prmr-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--prmr-space-1);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: var(--prmr-size-micro);
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+
+.prmr-status::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+.prmr-status-measured {
+  color: var(--prmr-measured);
+  background: var(--prmr-measured-bg);
+}
+
+.prmr-status-computed {
+  color: var(--prmr-computed);
+  background: var(--prmr-computed-bg);
+}
+
+.prmr-status-hypothesis {
+  color: var(--prmr-hypothesis);
+  background: var(--prmr-hypothesis-bg);
+}
+
+.prmr-status-unavailable {
+  color: var(--prmr-unavailable);
+  background: var(--prmr-unavailable-bg);
+}
+
+/* L'hypothèse reçoit un cercle creux : au-delà de la couleur, la forme
+   distingue l'exploratoire du mesuré pour un lecteur daltonien. */
+.prmr-status-hypothesis::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px currentColor;
+}
+
+.prmr-status-unavailable::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+/* Bloc d'évidence : filet latéral porteur du statut. Le trait plein signale
+   une donnée mesurée ou calculée, le tireté une construction exploratoire. */
+.prmr-evidence {
+  border-left: 3px solid var(--prmr-line);
+  background: var(--prmr-surface-sunken);
+  border-radius: 0 var(--prmr-radius-control) var(--prmr-radius-control) 0;
+  padding: var(--prmr-space-3) var(--prmr-space-4);
+  margin: 0 0 var(--prmr-space-4);
+}
+
+.prmr-evidence-measured {
+  border-left-color: var(--prmr-measured);
+}
+
+.prmr-evidence-computed {
+  border-left-color: var(--prmr-computed);
+}
+
+.prmr-evidence-hypothesis {
+  border-left-style: dashed;
+  border-left-color: var(--prmr-hypothesis);
+}
+
+.prmr-evidence-unavailable {
+  border-left-style: dotted;
+  border-left-color: var(--prmr-unavailable);
+}
+
+.prmr-evidence-vigilance {
+  border-left-color: var(--prmr-vigilance);
+  background: var(--prmr-vigilance-bg);
+}
+
+.prmr-evidence > :last-child {
+  margin-bottom: 0;
+}
+
+/* Rappel permanent, à conserver au-dessus de toute sortie numérique. */
+.prmr-caveat {
+  display: block;
+  color: var(--prmr-text-muted);
+  font-size: var(--prmr-size-small);
+  border-top: 1px solid var(--prmr-line-soft);
+  padding-top: var(--prmr-space-3);
+  margin-top: var(--prmr-space-4);
+}
+
+/* --------------------------------------------------------------------------
+   5. Tableaux
+   -------------------------------------------------------------------------- */
+
+/* Le conteneur gère le débordement : sur mobile, un tableau de comparaison
+   doit défiler horizontalement sans écraser ses colonnes ni rogner le texte. */
+.prmr-table-wrap {
+  position: relative;
+  overflow-x: auto;
+  border: 1px solid var(--prmr-line);
+  border-radius: var(--prmr-radius-panel);
+  background: var(--prmr-surface);
+  margin: 0 0 var(--prmr-space-5);
+  scrollbar-color: var(--prmr-line) transparent;
+}
+
+.prmr-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: var(--prmr-size-small);
+}
+
+.prmr-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: var(--prmr-space-4) var(--prmr-space-4) var(--prmr-space-3);
+  color: var(--prmr-text-muted);
+  font-size: var(--prmr-size-small);
+  border-bottom: 1px solid var(--prmr-line-soft);
+}
+
+/* En-tête collant : le sens des colonnes reste lisible dans les registres
+   longs (les 165 combinaisons R02, les 42 associations espèce–organe). */
+.prmr-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--prmr-surface-raised);
+  color: var(--prmr-text);
+  font-size: var(--prmr-size-micro);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--prmr-space-3) var(--prmr-space-4);
+  border-bottom: 1px solid var(--prmr-line);
+  white-space: nowrap;
+}
+
+.prmr-table tbody th,
+.prmr-table td {
+  padding: var(--prmr-space-3) var(--prmr-space-4);
+  border-bottom: 1px solid var(--prmr-line-soft);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.prmr-table tbody th {
+  font-weight: 600;
+  color: var(--prmr-text);
+}
+
+.prmr-table tbody tr:nth-child(even) {
+  background: #ffffff05;
+}
+
+.prmr-table tbody tr:hover {
+  background: #5fe3c60d;
+}
+
+.prmr-table tbody tr:last-child td,
+.prmr-table tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+/* Les colonnes numériques s'alignent à droite pour que les ordres de
+   grandeur se comparent à la verticale. */
+.prmr-table .prmr-col-num,
+.prmr-table td[data-numeric],
+.prmr-table th[data-numeric] {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Colonne de statut : largeur fixe, jamais comprimée. */
+.prmr-table .prmr-col-status {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* En-tête de tri : l'affordance est portée par le bouton, pas par le <th>,
+   afin de rester actionnable au clavier. */
+.prmr-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--prmr-space-1);
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.prmr-sort::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  opacity: 0.3;
+}
+
+.prmr-sort[aria-sort="ascending"]::after {
+  border-top: 0;
+  border-bottom: 5px solid var(--prmr-signal);
+  opacity: 1;
+}
+
+.prmr-sort[aria-sort="descending"]::after {
+  border-top-color: var(--prmr-signal);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   6. Contrôles
+   -------------------------------------------------------------------------- */
+
+button,
+.prmr-button {
+  font: inherit;
+  font-size: var(--prmr-size-small);
+  font-weight: 600;
+  color: var(--prmr-text);
+  background: var(--prmr-surface-raised);
+  border: 1px solid var(--prmr-line);
+  border-radius: var(--prmr-radius-control);
+  padding: var(--prmr-space-2) var(--prmr-space-4);
+  cursor: pointer;
+}
+
+button:hover,
+.prmr-button:hover {
+  border-color: var(--prmr-signal-dim);
+}
+
+.prmr-button-primary {
+  background: var(--prmr-signal);
+  border-color: var(--prmr-signal);
+  color: #04221d;
+}
+
+button[aria-pressed="true"] {
+  border-color: var(--prmr-signal);
+  color: var(--prmr-signal);
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  font-size: var(--prmr-size-small);
+  color: var(--prmr-text);
+  background: var(--prmr-surface-sunken);
+  border: 1px solid var(--prmr-line);
+  border-radius: var(--prmr-radius-control);
+  padding: var(--prmr-space-2) var(--prmr-space-3);
+  width: 100%;
+}
+
+label {
+  display: block;
+  font-size: var(--prmr-size-small);
+  color: var(--prmr-text-muted);
+  margin-bottom: var(--prmr-space-1);
+}
+
+details {
+  border: 1px solid var(--prmr-line);
+  border-radius: var(--prmr-radius-control);
+  background: var(--prmr-surface-sunken);
+  padding: var(--prmr-space-3) var(--prmr-space-4);
+  margin: 0 0 var(--prmr-space-4);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--prmr-size-small);
+}
+
+details[open] summary {
+  margin-bottom: var(--prmr-space-3);
+  color: var(--prmr-signal);
+}
+
+footer {
+  border-top: 1px solid var(--prmr-line-soft);
+  margin-top: var(--prmr-space-7);
+  padding-top: var(--prmr-space-4);
+  color: var(--prmr-text-faint);
+  font-size: var(--prmr-size-small);
+}
+
+/* --------------------------------------------------------------------------
+   7. Accessibilité et préférences
+   -------------------------------------------------------------------------- */
+
+.prmr-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Lien d'évitement : atteindre le contenu sans traverser la navigation. */
+.prmr-skip {
+  position: absolute;
+  left: var(--prmr-space-3);
+  top: -60px;
+  z-index: 50;
+  background: var(--prmr-signal);
+  color: #04221d;
+  padding: var(--prmr-space-2) var(--prmr-space-4);
+  border-radius: var(--prmr-radius-control);
+  font-weight: 600;
+  transition: top 120ms ease;
+}
+
+.prmr-skip:focus {
+  top: var(--prmr-space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --prmr-line: #4d7a96;
+    --prmr-line-soft: #3c6480;
+    --prmr-text-muted: #c2d6e0;
+    --prmr-text-faint: #a8bfcc;
+  }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --prmr-size-h1: 27px;
+    --prmr-size-h2: 22px;
+    --prmr-size-h3: 18px;
+  }
+
+  .prmr-shell {
+    padding: var(--prmr-space-5) var(--prmr-space-4) var(--prmr-space-6);
+  }
+
+  .prmr-panel {
+    padding: var(--prmr-space-4);
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .prmr-panel,
+  .prmr-table-wrap {
+    border-color: #999;
+    background: #fff;
+  }
+}

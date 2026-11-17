@@ -2,7 +2,7 @@
 const PAGES=[
  {file:"index.html",name:"Parcours",phase:"Accueil"},
  {file:"preclinical.html",name:"Preuves",phase:"01"},
- {file:"species-r04.html",name:"Chien 3D",phase:"02"},
+ {file:"species-r04.html",name:"Anatomie 3D",phase:"02"},
  {file:"screening.html",name:"Molécules",phase:"03"},
  {file:"risk-r03.html",name:"Simulations",phase:"04"},
  {file:"clinical.html",name:"Humain & clinique",phase:"05"}
