@@ -123,20 +123,22 @@ update();resize();animate();status.textContent="Initialisation de la base anatom
    Not a patient scan or a diagnosis tool. */
 let refModel=null,refGroups=new Map(),refMeshes=[],refCatalog=[],refSex="male",refToken=0;
 let refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};
-const refNames={kidney_l:"Rein gauche",kidney_r:"Rein droit",heart:"Cœur",lung_l:"Poumon gauche",lung_r:"Poumon droit",liver:"Foie",brain:"Cerveau",pancreas:"Pancréas",stomach:"Estomac",spleen:"Rate",bladder:"Vessie",aorta:"Aorte",vena_cava_inferior:"Veine cave inférieure",vena_cava_superior:"Veine cave supérieure",uterus:"Utérus"};
+let refVesselRoles={arteries:true,veins:true};
+const refNames={arteries_abdomen:"Artères abdominales",arteries_thorax:"Artères thoraciques",carotid_l:"Carotide gauche",carotid_r:"Carotide droite",coronary_arteries:"Artères coronaires",veins_abdomen:"Veines abdominales",veins_thorax:"Veines thoraciques",pulmonary_vessels:"Vaisseaux pulmonaires",ureter_l:"Uretère gauche",ureter_r:"Uretère droit",colon:"Côlon",small_intestine:"Intestin grêle",trachea:"Trachée",kidney_l:"Rein gauche",kidney_r:"Rein droit",heart:"Cœur",lung_l:"Poumon gauche",lung_r:"Poumon droit",liver:"Foie",brain:"Cerveau",pancreas:"Pancréas",stomach:"Estomac",spleen:"Rate",bladder:"Vessie",aorta:"Aorte",vena_cava_inferior:"Veine cave inférieure",vena_cava_superior:"Veine cave supérieure",uterus:"Utérus"};
 const refSystems={skin:"Peau",skeleton:"Squelette",muscles:"Muscles",organs:"Organes",vessels:"Artères et veines",nerves:"Nerfs"};
 function refLabel(x){return refNames[x.key]||x.label||x.key}
 function updateReference(){
  body.visible=false;structures.visible=false;
  for(const item of refMeshes){
   const picked=item.rec.key===chosen;
-  item.mesh.visible=isolated?picked:refLayers[item.rec.system]===true;
+  item.mesh.visible=isolated?picked:(refLayers[item.rec.system]===true&&(item.rec.system!=="vessels"||refVesselRoles[/^(vena|veins)/.test(item.rec.key)?"veins":"arteries"]));
   item.mesh.material=picked?item.highlight:item.rec.system==="skin"?item.transparent:item.normal;
  }
  for(const b of document.querySelectorAll("[data-system-layer]")){
   const on=refLayers[b.dataset.systemLayer];b.setAttribute("aria-pressed",String(on));
   b.textContent=(on?"✓ ":"○ ")+refSystems[b.dataset.systemLayer];
  }
+ for(const b of document.querySelectorAll("[data-vessel-role]"))b.setAttribute("aria-pressed",String(refVesselRoles[b.dataset.vesselRole]));
  for(const b of document.querySelectorAll("[data-sex]"))b.setAttribute("aria-pressed",String(b.dataset.sex===refSex));
  for(const b of document.querySelectorAll("[data-structure]"))b.setAttribute("aria-pressed",String(b.dataset.structure===chosen));
  $("toggle-isolate").textContent=isolated?"Réafficher les systèmes":"Isoler la structure";$("toggle-isolate").setAttribute("aria-pressed",String(isolated));
@@ -177,7 +179,7 @@ async function loadReference(sex){
  "https://raw.githubusercontent.com/MervinR07/open-anatomy-3d/main/packages/open-anatomy-3d/models/"+tail];
  for(const url of urls){try{gltf=await loader.loadAsync(url);break}catch(err){console.warn("[PRMR R06] Source de modèle indisponible",url,err)}}
  if(token!==refToken)return;
- if(!gltf){status.textContent="Téléchargement des maillages anatomiques indisponible ; aperçu schématique de secours affiché. Connexion réseau requise pour le modèle détaillé.";return}
+ if(!gltf){refSex=refModel?(refSex==="female"?"male":"female"):sex;status.textContent="Téléchargement des maillages anatomiques indisponible ; "+(refModel?"modèle précédent conservé.":"aperçu schématique de secours affiché.")+" Connexion réseau requise pour le modèle détaillé.";if(refModel)updateReference();return}
  if(refModel)scene.remove(refModel);
  refModel=gltf.scene;scene.add(refModel);refGroups=new Map();refMeshes=[];
  const map=new Map(refCatalog.map(x=>[x.key,x]));
@@ -213,11 +215,15 @@ function setupReferenceControls(){
   b.addEventListener("click",()=>{refLayers[key]=!refLayers[key];isolated=false;if(refModel)updateReference()});
   controls.append(b);
  }
+ const artery=document.createElement("button");artery.type="button";artery.dataset.vesselRole="arteries";artery.textContent="Artères";
+ const veins=document.createElement("button");veins.type="button";veins.dataset.vesselRole="veins";veins.textContent="Veines";
+ for(const b of [artery,veins])b.addEventListener("click",()=>{refVesselRoles[b.dataset.vesselRole]=!refVesselRoles[b.dataset.vesselRole];refLayers.vessels=true;isolated=false;if(refModel)updateReference()});
+ controls.append(artery,veins);
  for(const b of document.querySelectorAll("[data-sex]"))b.addEventListener("click",()=>{if(refSex!==b.dataset.sex)loadReference(b.dataset.sex)});
- $("show-all-layers").addEventListener("click",()=>{refLayers=Object.fromEntries(Object.keys(refSystems).map(k=>[k,true]));isolated=false;if(refModel)updateReference()});
+ $("show-all-layers").addEventListener("click",()=>{refLayers=Object.fromEntries(Object.keys(refSystems).map(k=>[k,true]));refVesselRoles={arteries:true,veins:true};isolated=false;if(refModel)updateReference()});
  $("structure-search").addEventListener("input",()=>{if(refModel)refSearch()});
  $("toggle-body").addEventListener("click",()=>{if(refModel){refLayers.skin=!refLayers.skin;updateReference()}});
- $("reset-view").addEventListener("click",()=>{if(refModel){refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};isolated=false;updateReference();refFrame()}});
+ $("reset-view").addEventListener("click",()=>{if(refModel){refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};refVesselRoles={arteries:true,veins:true};isolated=false;updateReference();refFrame()}});
 }
 async function launchReference(){
  setupReferenceControls();
