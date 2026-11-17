@@ -11,3 +11,30 @@
 .prmr-routebar .prmr-route-state{margin-left:auto;color:#d1c5aa;font-size:11px;background:#302b24;border:1px solid #65543e;border-radius:6px;padding:6px 9px}
 .prmr-route-skip{position:absolute;left:-99999px;top:0}.prmr-route-skip:focus{left:8px;z-index:1000;background:#fff;color:#071b26;padding:9px}
 @media(max-width:860px){.prmr-routebar .prmr-route-state{margin:0}.prmr-route-inner{gap:7px}.prmr-route-links{overflow:auto;flex-wrap:nowrap;width:100%;padding-bottom:5px}}
+
+/* R11 dashboard — the first view is a sequenced workflow, not a collection of disconnected modules */
+.prmr-journey{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#e4f5f2;border:1px solid #2b5160;background:linear-gradient(145deg,#0b2938,#091724);border-radius:16px;padding:clamp(17px,3vw,32px);margin-bottom:30px}
+.prmr-journey *{box-sizing:border-box}.prmr-journey-heading{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(240px,.8fr);gap:28px;align-items:center}
+.prmr-kicker{color:#75daca;font-size:11px;font-weight:800;letter-spacing:.12em}
+.prmr-journey h1{font-size:clamp(29px,3.3vw,48px);letter-spacing:-.05em;line-height:1.12;margin:10px 0 14px;color:#effffb}
+.prmr-journey p{color:#bdd5db;line-height:1.7;margin:7px 0;font-size:14px}
+.prmr-current-phase{border:1px solid #3f757a;background:#123a47;border-radius:12px;padding:19px}
+.prmr-current-phase strong{display:block;color:#a9ddd6;font-size:10px;letter-spacing:.1em}.prmr-current-phase span{display:block;font-size:19px;line-height:1.4;font-weight:800;margin:8px 0;color:#fff}
+.prmr-current-phase small{display:block;line-height:1.6;color:#b9ccd1;font-size:12px}
+.prmr-path{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin-top:24px}
+.prmr-path .prmr-stage{display:flex;flex-direction:column;gap:11px;padding:18px 14px;border:1px solid #385362;background:#0c2331;border-radius:10px;color:#e4f1f0;text-decoration:none;min-height:210px;transition:background .15s,border-color .15s}
+.prmr-path .prmr-stage:hover{background:#173b47;border-color:#79bdb0}.prmr-path .prmr-stage-current{border-color:#61b9a7;background:#133d43}
+.prmr-stage-num{font-size:10px;font-weight:800;letter-spacing:.045em;color:#83d7c9}
+.prmr-path .prmr-stage strong{font-size:15px;line-height:1.4;color:#fff}.prmr-path .prmr-stage>span:not(.prmr-stage-num){font-size:12px;line-height:1.55;color:#b4cbd1}
+.prmr-path .prmr-stage em{font-style:normal;font-size:11px;color:#87e6d1;margin-top:auto;text-decoration:underline;text-underline-offset:3px}
+.prmr-gate{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:20px;padding:19px;border-top:1px solid #345767}
+.prmr-gate strong{font-size:14px}.prmr-gate p{max-width:810px;font-size:12px;margin:5px 0 0}
+.prmr-gate a{flex-shrink:0;background:#1d6661;color:#fff;padding:11px 13px;border:1px solid #67b7aa;border-radius:8px;font-size:12px;text-decoration:none}
+.prmr-secondary{margin:28px 0 12px;padding:12px 0 7px;border-top:1px solid #284a5b}.prmr-secondary h2{font-size:22px;color:#e4f4f2;margin:0 0 5px}.prmr-secondary p{color:#aac5ca;margin:0 0 8px;font-size:12px}
+.prmr-ready-table{width:100%;border-collapse:collapse;font-size:13px}.prmr-ready-table th,.prmr-ready-table td{padding:12px;text-align:left;border-bottom:1px solid #305063;vertical-align:top;line-height:1.6}
+.prmr-ready-table th{color:#b7ded6;font-size:11px;font-weight:800}.prmr-ready-table td:last-child{color:#dfc29d}
+.prmr-ready-status{font-size:11px;font-weight:800;white-space:nowrap;color:#e8cba0}.prmr-ready-status[data-status="documented"]{color:#7de3b6}.prmr-ready-status[data-status="partial"]{color:#f3d08c}
+.prmr-ready-status[data-status="missing"]{color:#f0a2a2}
+.prmr-ready-note{border-left:3px solid #d9b377;background:#302920;color:#ead8bb;padding:14px 17px;font-size:13px;line-height:1.7;border-radius:7px}
+@media(max-width:1120px){.prmr-path{grid-template-columns:repeat(3,minmax(0,1fr))}.prmr-path .prmr-stage{min-height:165px}}
+@media(max-width:700px){.prmr-journey-heading{grid-template-columns:1fr}.prmr-path{grid-template-columns:1fr}.prmr-path .prmr-stage{min-height:auto;gap:6px}.prmr-gate{flex-direction:column;align-items:flex-start;padding:16px 0}.prmr-ready-table{font-size:11px}.prmr-ready-table th,.prmr-ready-table td{padding:8px 5px}}
