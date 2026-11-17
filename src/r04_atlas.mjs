@@ -3,7 +3,7 @@
 // Scientific values remain live HTML/SVG outputs, never inferred from artwork.
 import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createAnimalSculpture} from "./r05_animal3d.mjs?v=r06-studio-20261117";
+import {createPhotoAnimalViewer} from "./r07_photo3d.mjs?v=r07-photo-20261117";
 export const ANIMAL_ART=Object.fromEntries(SPECIES_R04.map(species=>[species.id,"./assets/animals/"+species.id+".svg"]));
 const $=id=>document.getElementById(id);
 const n=(tag,txt,cls)=>{let x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;if(cls)x.className=cls;return x};
@@ -65,8 +65,10 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  for(const sp of SPECIES_R04){
   const btn=make("button","r4-st-species-card");btn.type="button";btn.dataset.stageSpecies=sp.id;
   const art=make("div","r4-st-art");art.dataset.species=sp.id;
-  const picture=make("img","r5-animal-asset");picture.src="./assets/animals/"+sp.id+".svg";
-  picture.alt="Illustration autonome de "+sp.label+", sans texte ni recadrage";picture.loading="eager";
+  const picture=make("img","r5-animal-asset");
+  picture.src="./assets/animals-photo/"+sp.id+".webp";
+  picture.addEventListener("error",()=>{picture.onerror=null;picture.src="./assets/animals/"+sp.id+".svg"},{once:true});
+  picture.alt="Texture réaliste de "+sp.label+" ; représentation artistique, non anatomique";picture.loading="lazy";
   picture.width=840;picture.height=560;art.append(picture);
   const caption=make("span");caption.append(make("strong",null,sp.label),make("small",null,sp.latin));
   btn.append(art,caption);btn.addEventListener("click",()=>choose(sp.id));chooser.append(btn)
@@ -85,8 +87,11 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  const profileGrid=make("div","r4-st-profile-body");large.append(profileGrid);
  const portraitPanel=make("div","r5-animal-profile-panel");
  const portrait=make("div","r4-st-portrait");portrait.dataset.species="mouse";
- const standAloneImage=make("img","r5-animal-static");standAloneImage.src="./assets/animals/mouse.svg";
- standAloneImage.alt="Illustration autonome de la souris, sans texte ni fragments de poster";standAloneImage.width=840;standAloneImage.height=560;standAloneImage.loading="eager";
+ const standAloneImage=make("img","r5-animal-static");
+ standAloneImage.src="./assets/animals-photo/mouse.webp";
+ standAloneImage.addEventListener("error",()=>{standAloneImage.src="./assets/animals/"+(last?.species.id||"mouse")+".svg"});
+ standAloneImage.alt="Rendu réaliste indépendant de la souris ; apparence de référence, géométrie 3D approximative";
+ standAloneImage.width=512;standAloneImage.height=384;standAloneImage.loading="eager";
  portrait.append(standAloneImage);
  const animalCanvas=make("canvas","r5-animal-sculpture");
  animalCanvas.setAttribute("aria-label","Sculpture 3D éducative de l'animal, orientable au toucher ou à la souris");
@@ -168,13 +173,20 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   btn.setAttribute("aria-pressed",String(activeMol===mol.id));deck.append(btn);
  }
  const citations=make("div","r4-st-safety-caption",
-  "Les modèles chimiques sont des conformères calculés ; les animaux et organes sont des illustrations conceptuelles. Les effets physiologiques et probabilités de guérison ne sont pas déduits des images.");
+  "Molécules : conformères RDKit. Animaux : surfaces GLB phototexturées issues d’une seule vue, épaisseur et revers reconstruits, non anatomiquement validés. Les images ne prouvent ni toxicité ni guérison.");
  moleculePanel.append(citations);shell.append(moleculePanel);
  root.append(shell);
  renal=create3D(organCanvas,{kind:"kidney"});
- const sculpture=createAnimalSculpture(animalCanvas,{species:"mouse"});
- if(sculpture.supported)portrait.classList.add("r5-webgl-active");
- else sceneLabel.textContent="ILLUSTRATION ÉDUCATIVE · VUE FIXE";
+ const sculpture=createPhotoAnimalViewer(animalCanvas,{
+  species:"mouse",
+  onMode:(kind,message)=>{
+   if(kind==="photo3d"||kind==="stylized")portrait.classList.add("r5-webgl-active");
+   else portrait.classList.remove("r5-webgl-active");
+   sceneLabel.textContent=message;
+   portrait.dataset.mode=kind;
+  }
+ });
+ if(!sculpture.supported){sceneLabel.textContent="Illustration fixe : WebGL indisponible";portrait.classList.remove("r5-webgl-active")}
  atomFetch().then(data=>{
   if(!root.isConnected)return;
   for(const mol of MOLECULES_R04){
@@ -186,8 +198,9 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   if(!result)return;
   last=result;const id=result.species.id,metaData=LABS[id];
   portrait.dataset.species=id;
-  standAloneImage.src="./assets/animals/"+id+".svg";
-  standAloneImage.alt="Illustration autonome de "+result.species.label;
+  const fallback="assets/animals/"+id+".svg";
+  standAloneImage.src="./assets/animals-photo/"+id+".webp";
+  standAloneImage.alt="Rendu photoréaliste de "+result.species.label+" ; source d'une surface 3D reconstruite artistiquement";
   sculpture.set({species:id});
   portraitOverlay.querySelector("strong").textContent=result.species.label;
   portraitOverlay.querySelector("small").textContent=result.species.latin+" · "+MASS(result.inputs.mass_kg);
