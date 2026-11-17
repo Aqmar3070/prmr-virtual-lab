@@ -9,6 +9,41 @@ const LABELS={
  rabbit:{architecture:["Variable selon la question","medium"],experimental:["Usage ciblé","medium"],ethics:["Encadrement","medium"]}
 };
 const WIDTHS={limited:27,medium:56,strong:86,none:0};
+const ORIGINAL_POSTERS={
+ mouse:"comparaison-especes.png",
+ rat:"comparaison-especes.png",
+ pig:"porc.png",
+ dog:"chien.png",
+ nhp:"primate.png",
+ rabbit:"lapin.png"
+};
+const POSTER_DIR="./assets/illustrations/r04/";
+function attachOriginalPoster(wrap,speciesId){
+ const filename=ORIGINAL_POSTERS[speciesId];
+ if(!filename)return;
+ const url=POSTER_DIR+filename;
+ const section=node("section",undefined,"r4-original-poster");
+ section.setAttribute("aria-label","Illustration PRMR originale de l'espèce");
+ section.hidden=true;
+ const heading=node("div",undefined,"r4-original-poster-header");
+ const label=node("div");
+ label.append(node("strong","Illustration PRMR — maquette originale"),node("small","Image exacte lorsque le PNG est présent dans le dépôt"));
+ const link=node("a","Voir en plein écran");
+ link.href=url;link.target="_blank";link.rel="noopener noreferrer";
+ heading.append(label,link);
+ const image=node("img");
+ image.alt="Maquette graphique originale PRMR — "+speciesId+". Image éducative et illustrative, sans résultats expérimentaux.";
+ image.loading="lazy";image.decoding="async";
+ image.addEventListener("load",()=>{section.hidden=false});
+ image.addEventListener("error",()=>{section.remove()});
+ image.src=url;
+ const warning=node("p","IMPORTANT : les valeurs et barres affichées dans cette image sont des illustrations graphiques, non des mesures ou scores scientifiques. Pour les analyses, utiliser les résultats du simulateur interactif ci-dessous.","r4-original-poster-warning");
+ section.append(heading,image,warning);
+ const anchor=wrap.querySelector(".r4-atlas-main-grid");
+ if(anchor)wrap.insertBefore(section,anchor);
+ else wrap.append(section);
+}
+
 const EFFECT={
  mouse:["Génétique","Modèles de maladie rénale","Transporteurs et métabolisme non identiques à l'humain"],
  rat:["Physiologie","Hémodynamique et suivi longitudinal","Métabolisme et architecture spécifiques au rat"],
@@ -74,6 +109,7 @@ function makeDOM(container,profile,onChoose){
   const c=node("div",undefined,"r4-atlas-kpi");c.append(node("small",a),node("b",b));kpis.append(c)
  }
  wrap.append(kpis);
+ attachOriginalPoster(wrap,profile.sp.id);
  const grid=node("div",undefined,"r4-atlas-main-grid");wrap.append(grid);
  const left=node("article",undefined,"r4-atlas-pane");grid.append(left);
  left.append(node("h3","Profil visuel — "+profile.name),node("p","Anatomie · pertinence expérimentale · contraintes de transposition"));
