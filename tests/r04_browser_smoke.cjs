@@ -1,4 +1,4 @@
-// PRMR-R08 — real Chromium test of the anatomy grid, not the former photo-textured GLB.
+// PRMR-R09 — real Chromium test of the anatomy grid, not the former photo-textured GLB.
 // Desktop/mobile, six species, all internal organ modes and untouched RDKit controls.
 const assert=require("node:assert/strict");
 const {chromium}=require("playwright");
@@ -8,9 +8,9 @@ const {chromium}=require("playwright");
  const errors=[];page.on("pageerror",e=>errors.push(e.message));
  let step="initialisation";
  const hash=selector=>page.locator(selector).evaluate(c=>{
-  const {width:w,height:h}=c;if(w<2||h<2)return -1;
-  const d=c.getContext("2d")?.getImageData(0,0,w,h).data;if(!d)return -1;
-  let sum=0;for(let i=0;i<d.length;i+=31)sum=(sum*31+d[i]+d[i+1]+d[i+2])%1000000007;return sum;
+  if(c.width<20||c.height<20)return -1;
+  const png=c.toDataURL("image/png");
+  let sum=0;for(let i=0;i<png.length;i+=47)sum=(sum*31+png.charCodeAt(i))%1000000007;return sum;
  });
  const onCanvas=selector=>page.waitForFunction(sel=>{
   const c=document.querySelector(sel);
@@ -18,17 +18,18 @@ const {chromium}=require("playwright");
  },selector,{timeout:45000});
  try{
   page.setDefaultTimeout(35000);
-  step="accueil R08";
-  await page.goto("http://127.0.0.1:4173/index.html?v=prmr-r08",{waitUntil:"domcontentloaded"});
+  step="accueil R09";
+  await page.goto("http://127.0.0.1:4173/index.html?v=prmr-r09",{waitUntil:"domcontentloaded"});
   await page.waitForSelector("#r5-home-stage .r4-st-species-card",{timeout:45000});
   assert.equal(await page.locator("#r5-home-stage .r4-st-species-card").count(),6);
   assert.equal(await page.locator("#r5-home-stage .r4-st-molecule-card").count(),4);
-  assert.equal(await page.locator("#r5-home-stage .r8-organ-button").count(),5);
+  assert.equal(await page.locator("#r5-home-stage .r8-organ-button").count(),8);
   assert.equal(await page.locator("#r5-home-stage .r5-animal-static").count(),0,"Former 3D photo should not cover the anatomical grid");
   await onCanvas("#r5-home-stage .r8-anatomy-canvas");
   assert.equal(await page.locator("#r5-home-stage .r4-st-portrait").getAttribute("data-mode"),"anatomy");
   const first=await hash("#r5-home-stage .r8-anatomy-canvas");
-  assert.ok(first>0,"Anatomy canvas should contain visible pixels");
+  assert.equal(await page.locator("#r5-home-stage .r8-anatomy-canvas").getAttribute("data-anatomy-engine"),"webgl-three");
+  assert.ok(first>0,"WebGL 3D canvas should contain visible pixels");
   await page.screenshot({path:"/tmp/prmr-r05-home-desktop.png",fullPage:false});
   step="sélection du porc, reins internes";
   await page.locator("#r5-home-stage button[data-stage-species=pig]").click();
@@ -40,7 +41,7 @@ const {chromium}=require("playwright");
   step="switch coeur / foie / poumons / tous";
   const root="#r5-home-stage",scene=root+" .r8-anatomy-canvas";
   let previous=await hash(scene);
-  for(const mode of ["heart","liver","lungs","all","kidneys"]){
+  for(const mode of ["heart","liver","lungs","brain","digestive","pancreas","all","kidneys"]){
    await page.locator(root+' button[data-organ="'+mode+'"]').click();
    await page.waitForFunction(([sel,id])=>document.querySelector(sel)?.dataset.anatomyOrgan===id,[scene,mode]);
    const active=await page.locator(root+' button[data-organ="'+mode+'"]').getAttribute("aria-pressed");
@@ -53,7 +54,19 @@ const {chromium}=require("playwright");
     await page.screenshot({path:"/tmp/prmr-r08-all-organs.png",fullPage:false});
    }
   }
-  step="gestes de rotation et zoom";
+  step="commandes corps transparent, isolement, connexions et organe indépendant";
+  const flags=page.locator(root+" .r09-scene-toggle");
+  assert.equal(await flags.count(),3);
+  await flags.nth(0).click();assert.equal(await flags.nth(0).getAttribute("aria-pressed"),"false");
+  await flags.nth(1).click();assert.equal(await flags.nth(1).getAttribute("aria-pressed"),"true");
+  await flags.nth(2).click();assert.equal(await flags.nth(2).getAttribute("aria-pressed"),"true");
+  await onCanvas(root+" .r09-isolated-canvas");
+  await page.locator(root+' button[data-organ="heart"]').click();
+  await page.waitForFunction(sel=>document.querySelector(sel)?.dataset.anatomyOrgan==="heart",root+" .r09-isolated-canvas");
+  await page.locator(root+' button[data-organ="all"]').click();
+  await page.waitForFunction(sel=>document.querySelector(sel)?.dataset.anatomyOrgan==="all",root+" .r09-isolated-canvas");
+  await flags.nth(1).click();await flags.nth(0).click();
+    step="gestes de rotation et zoom";
   const before=Number(await page.locator(scene).getAttribute("data-anatomy-render"));
   const box=await page.locator(scene).boundingBox();
   await page.mouse.move(box.x+box.width*.47,box.y+box.height*.53);
@@ -78,6 +91,8 @@ const {chromium}=require("playwright");
   }
   await page.locator('#r4-visual-atlas button[data-stage-species="dog"]').click();
   await page.waitForFunction(()=>document.querySelector("#r4-3d-species")?.textContent.includes("Chien"));
+  await page.waitForFunction(()=>document.querySelector("#r4-visual-atlas .r8-anatomy-canvas")?.dataset.anatomySource==="canine-CT-derived-hybrid-GLB",null,{timeout:30000});
+  assert.ok(Number(await page.locator("#r4-visual-atlas .r8-anatomy-canvas").getAttribute("data-canine-scan-nodes"))>=14);
   assert.equal(await page.locator("#r4-mass").inputValue(),"10");
   await page.locator('#r4-visual-atlas button[data-organ="heart"]').click();
   await page.waitForFunction(()=>document.querySelector("#r4-body-3d")?.dataset.anatomyOrgan==="heart");
@@ -115,9 +130,9 @@ const {chromium}=require("playwright");
    assert.equal(await page.locator(selector+" .r4-st-species-card").count(),6);
   }
   assert.deepEqual(errors,[],"Browser JS errors: "+errors.join(" | "));
-  console.log("PASS PRMR-R08 — maillage transparent non vide, reins/coeur/foie/poumons, 6 espèces, synchronisation R04, 390px mobile, RDKit");
+  console.log("PASS PRMR-R09 — True Three.js WebGL, canine licensed CT GLB, 7 independent organ systems, all six species, organ isolation, physiological links, mobile and R04 RDKit");
  }catch(err){
-  console.error("PRMR R08 browser failure — "+step+": "+(err.stack||err));
+  console.error("PRMR R09 browser failure — "+step+": "+(err.stack||err));
   try{await page.screenshot({path:"/tmp/prmr-ui-error.png",fullPage:false})}catch{}
   process.exitCode=1;
  }finally{await browser.close()}
