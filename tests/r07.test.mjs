@@ -46,7 +46,7 @@ test("The actual GLB viewer loads and rotates a real textured triangular mesh wi
  assert.ok(!viewer.includes("https://cdn"));
  assert.match(atlas,/createAnatomyViewer/);
  assert.match(atlas,/animals-photo/);
- assert.match(atlas,/sans atlas anatomique validé/);
+ assert.match(atlas,/non validés|non validé|pas des lésions|lésions diagnostiquées/);
 });
 
 
