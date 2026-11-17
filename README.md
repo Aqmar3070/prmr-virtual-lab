@@ -3,6 +3,8 @@
 ## PRMR-R04 — Laboratoire 3D interactif et physiologie comparée (16 novembre 2026)
 
 - **[Lancer le nouveau laboratoire interactif 3D](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html)** : simulation exploratoire 6 espèces — souris, rat, miniporc, chien, macaque cynomolgus, lapin.
+- **Atlas visuel de six espèces** en haut du tableau de bord : portraits Wikimedia Commons sourcés et crédités, fiches explicatives qualitatives et comparaisons anatomiques redessinées en SVG. Les portraits sont disponibles en ligne selon la connexion du navigateur.
+- **Précision :** les quatre affiches PNG générées dans la conversation ne sont pas stockées sur GitHub ; l'atlas web en constitue une version interactive recréée avec des images libres et des illustrations. Les barres qualitatives ne sont pas des résultats d'efficacité.
 - Paramètres manipulables : espèce, masse, âge, sexe, constitution, déshydratation, fonction rénale, fonction hépatique, maladie, association et concentration libre illustrative.
 - Cartes d'espèces cliquables, graphiques SVG recalculés, trois visualiseurs 3D Canvas à rotation par glissement et quatre molécules réelles conformées par RDKit.
 - [Conformères 3D chimiques](research-data/r04_molecular_3d.json) · [Moteur R04](src/r04_engine.mjs) · [Visualiseur 3D](src/r04_visuals.mjs) · [Journal scientifique R04](docs/PRMR_R04_RESEARCH_LOG.md).
