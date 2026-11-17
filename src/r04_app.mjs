@@ -2,7 +2,7 @@
 import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} from "./r04_engine.mjs";
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createAnatomyViewer} from "./r08_anatomy.mjs?v=r08-anatomy-polish-20261117";
+import {createAnatomyViewer} from "./r09_viewer.mjs";
 import {createVisualAtlas} from "./r04_atlas.mjs?v=r08-anatomy-polish-20261117";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
@@ -136,7 +136,7 @@ function updateCard(result){
  safeText("r4-profile-detail",profile.latin+" · "+massFormat(result.inputs.mass_kg)+" · "+OPTIONS.age[result.inputs.age]+" · "+OPTIONS.sex[result.inputs.sex]+" · "+OPTIONS.disease[result.inputs.disease]);
  safeText("mass-readout",massFormat(result.inputs.mass_kg));
  safeText("free-readout",fmt(result.inputs.free_nM,2)+" nM");
- safeText("r4-3d-species",profile.label+" · Foie et reins conceptuels");
+ safeText("r4-3d-species",profile.label+" · Organes séparables et rotatifs en 3D");
  safeText("r4-anatomy",profile.anatomy);
  safeText("r4-focus","Intérêt : "+profile.focus+". Mesures prioritaires : "+result.indication.markers+".");
  const link=$("r4-source");link.href=profile.source;link.textContent="Ouvrir la publication de référence ("+profile.label+")";
@@ -155,7 +155,8 @@ function update(){
  let result;
  try{result=computeR04(state)}catch(e){$("r4-profile-detail").textContent=e.message;return}
  updateCard(result);updateExposure(result);updatePdGraph(result);
- body?.set({species:state.species});
+ body?.set({species:state.species,inputs:result.inputs});
+ kidney?.set({species:state.species,inputs:result.inputs});
  atlas?.render(result);
  const c=document.querySelector(".r4-banner");
  c.textContent="STATUT SCIENTIFIQUE — "+result.species.label+" : stress-test fondé sur des rapports AUC humains et un transfert arbitraire. Les changements âge / sexe / constitution sont documentés mais sans coefficient PK inventé. Probabilités de toxicité, d'efficacité ou de guérison : non estimables.";
@@ -191,7 +192,7 @@ function selectMolecule(id){
 function init(){
  initSpecies();setOptions();atlas=createVisualAtlas({
   onChoose:setSpecies,
-  onOrganChange:id=>body?.set({organ:id}),
+  onOrganChange:id=>{body?.set({organ:id});kidney?.setOrgan(id)},
   getResult:()=>computeR04(state),
   onEdit:patch=>{
    Object.assign(state,patch);
@@ -200,19 +201,19 @@ function init(){
    }
    update();
   }
- });kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
+ });kidney=createAnatomyViewer($("r4-kidney-3d"),{species:state.species,organ:"kidneys",isolated:true});
  body=createAnatomyViewer($("r4-body-3d"),{
   species:state.species,organ:"kidneys",
-  onRender:({species,organ,count})=>{
+  onRender:({species,organ,count,source})=>{
    const target=$("r4-body-render-status");
-   if(target)target.textContent="Corps en grille 3D transparente — "+organ+" internes (schéma non validé).";
+   if(target)target.textContent=(source==="canine-CT-derived-hybrid-GLB"?"Chien : surfaces vétérinaires CT modifiées et sculptées":"3D anatomique pédagogique non validée")+" · "+organ+" · rotation interactive.";
    const viewer=$("r4-body-3d");
-   if(viewer)viewer.dataset.renderMode="anatomy";
+   if(viewer)viewer.dataset.renderMode="webgl-anatomy";
   }
  });
  if(!body.supported){
   const target=$("r4-body-render-status");
-  if(target)target.textContent="Vue fixe disponible sur la fiche d'espèce : Canvas 2D indisponible";
+  if(target)target.textContent="WebGL 3D indisponible ; repli sur atlas Canvas 2D.";
  }
  updateHumanGraph();
  const requested=new URLSearchParams(location.search).get("species");
