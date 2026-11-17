@@ -1,16 +1,42 @@
-/* PRMR R11 - namespaced navigation, no framework or external font */
-.prmr-routebar{position:relative;z-index:100;background:var(--prmr-surface);color:var(--prmr-text);border-bottom:1px solid var(--prmr-line);font:500 12px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+/* PRMR — barre de parcours : navigation unique du laboratoire.
+   Le parcours se lit comme une séquence numérotée, parce qu'il en est une :
+   on part des preuves publiées pour arriver aux conditions d'entrée en clinique. */
+.prmr-routebar{position:relative;z-index:100;background:var(--prmr-surface);border-bottom:1px solid var(--prmr-line)}
 .prmr-routebar *{box-sizing:border-box}
-.prmr-route-inner{display:flex;align-items:center;gap:12px;max-width:1500px;margin:auto;padding:12px clamp(12px,3vw,30px);flex-wrap:wrap}
-.prmr-routebar .prmr-route-brand{font-weight:800;letter-spacing:.01em;white-space:nowrap;color:var(--prmr-signal);text-decoration:none}
-.prmr-routebar .prmr-route-caption{font-size:11px;color:#bdd0d6;margin-right:8px}
-.prmr-route-links{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
-.prmr-routebar a:not(.prmr-route-brand){color:var(--prmr-text);text-decoration:none;padding:8px 10px;border-radius:7px;border:1px solid transparent;white-space:nowrap}
-.prmr-routebar a:not(.prmr-route-brand):hover,.prmr-routebar a[aria-current="page"]{background:#194a52;border-color:#407b7b;color:var(--prmr-text)}
-.prmr-route-step{display:flex;align-items:center;gap:6px}.prmr-route-step small{display:inline-flex;border:1px solid #52747b;color:#a7d2cc;border-radius:5px;font-size:10px;padding:2px 5px}
-.prmr-routebar .prmr-route-state{margin-left:auto;color:#d1c5aa;font-size:11px;background:#302b24;border:1px solid #65543e;border-radius:6px;padding:6px 9px}
-.prmr-route-skip{position:absolute;left:-99999px;top:0}.prmr-route-skip:focus{left:8px;z-index:1000;background:var(--prmr-text);color:var(--prmr-surface);padding:9px}
-@media(max-width:860px){.prmr-routebar .prmr-route-state{margin:0}.prmr-route-inner{gap:7px}.prmr-route-links{overflow:auto;flex-wrap:nowrap;width:100%;padding-bottom:5px}}
+.prmr-route-inner{display:flex;align-items:center;gap:var(--prmr-space-5);max-width:1500px;margin:auto;padding:var(--prmr-space-3) clamp(12px,3vw,30px);flex-wrap:wrap}
+.prmr-route-brand{display:inline-flex;align-items:baseline;gap:6px;text-decoration:none;white-space:nowrap}
+.prmr-route-brand strong{color:var(--prmr-signal);font-size:var(--prmr-size-body);font-weight:700;letter-spacing:-.01em}
+.prmr-route-brand span{color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+
+/* Les étapes : un filet continu relie les numéros pour matérialiser la progression. */
+.prmr-route-steps{display:flex;align-items:stretch;gap:0;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.prmr-route-steps li{display:flex;align-items:center;max-width:none}
+.prmr-route-steps li+li::before{content:"";width:14px;height:1px;background:var(--prmr-line);flex:none}
+.prmr-route-step{display:inline-flex;align-items:center;gap:var(--prmr-space-2);padding:var(--prmr-space-2) var(--prmr-space-3);border:1px solid transparent;border-radius:var(--prmr-radius-control);color:var(--prmr-text-muted);text-decoration:none;white-space:nowrap;font-size:var(--prmr-size-small);font-weight:600}
+.prmr-route-num{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border:1px solid var(--prmr-line);border-radius:50%;font-size:var(--prmr-size-micro);font-variant-numeric:tabular-nums;color:var(--prmr-text-faint);flex:none}
+.prmr-route-step:hover{color:var(--prmr-text);border-color:var(--prmr-line);background:var(--prmr-surface-raised);text-decoration:none}
+.prmr-route-step[aria-current="page"]{color:var(--prmr-signal);border-color:var(--prmr-signal-dim);background:var(--prmr-computed-bg)}
+.prmr-route-step[aria-current="page"] .prmr-route-num{border-color:var(--prmr-signal);color:var(--prmr-signal)}
+
+.prmr-route-aside{display:flex;gap:var(--prmr-space-2);margin-left:auto;flex-wrap:wrap}
+.prmr-route-aside-link{color:var(--prmr-text-muted);text-decoration:none;font-size:var(--prmr-size-small);padding:var(--prmr-space-2) var(--prmr-space-3);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);white-space:nowrap}
+.prmr-route-aside-link:hover{color:var(--prmr-text);border-color:var(--prmr-signal-dim);text-decoration:none}
+
+/* Le stade réel du programme suit l'utilisateur sur chaque page. */
+.prmr-route-state{display:flex;align-items:center;gap:var(--prmr-space-2);flex-wrap:wrap;max-width:none;margin:0;padding:var(--prmr-space-2) clamp(12px,3vw,30px);background:var(--prmr-surface-sunken);border-top:1px solid var(--prmr-line-soft);font-size:var(--prmr-size-small)}
+.prmr-route-state-text{color:var(--prmr-text-muted)}
+.prmr-route-skip{position:absolute;left:-99999px;top:0}
+.prmr-route-skip:focus{left:var(--prmr-space-2);top:var(--prmr-space-2);z-index:1000;background:var(--prmr-signal);color:#04221d;padding:var(--prmr-space-2) var(--prmr-space-3);border-radius:var(--prmr-radius-control);font-weight:600}
+
+@media(max-width:980px){
+ .prmr-route-inner{gap:var(--prmr-space-3)}
+ .prmr-route-steps{overflow-x:auto;flex-wrap:nowrap;width:100%;padding-bottom:var(--prmr-space-1);scrollbar-width:thin}
+ .prmr-route-aside{margin-left:0}
+}
+@media(max-width:560px){
+ .prmr-route-name{display:none}
+ .prmr-route-steps li+li::before{width:8px}
+}
 
 /* R11 dashboard — the first view is a sequenced workflow, not a collection of disconnected modules */
 .prmr-journey{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--prmr-text);border:1px solid #2b5160;background:linear-gradient(145deg,var(--prmr-surface-raised),var(--prmr-surface-sunken));border-radius:16px;padding:clamp(17px,3vw,32px);margin-bottom:30px}

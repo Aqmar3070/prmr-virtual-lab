@@ -53,6 +53,11 @@ test("RDKit screening anchors match frozen calculation",()=>{
 });
 
 test("new user-facing research section is linked to the existing lab",()=>{
+ // L'accueil garde son lien direct ; entre modules, la navigation partagée
+ // prmr_route.mjs est la source unique, au lieu d'un en-tête recopié par page
+ // qui nommait la même destination de quatre façons différentes.
  assert.ok(main.includes('href="./screening.html"'));
- assert.ok(previous.includes('href="./screening.html"'));
+ const route=readFileSync(new URL("../src/prmr_route.mjs",import.meta.url),"utf8");
+ assert.match(route,/file: *"screening\.html"/);
+ assert.ok(previous.includes("src/prmr_route.mjs"),"preclinical charge la navigation partagée");
 });

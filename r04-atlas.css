@@ -6,7 +6,7 @@
  color:var(--prmr-text);box-shadow:0 18px 50px #02101d8c, inset 0 1px #61d5d02b;min-width:0
 }
 .r4-st-heading{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap}
-.r4-st-eyebrow{font-size:10px;color:#74e6e4;font-weight:850;letter-spacing:.13em}
+.r4-st-eyebrow{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);font-weight:600;letter-spacing:0}
 .r4-st-heading h2{margin:6px 0;font-size:clamp(21px,3vw,33px);letter-spacing:-.045em;line-height:1.22;color:var(--prmr-text)}
 .r4-st-verification{font-size:10px;letter-spacing:.04em;color:#d7b887;background:#312719;border:1px solid #8c663c;padding:7px 10px;border-radius:25px}
 .r4-st-species{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;margin:10px 0 15px}
