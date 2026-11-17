@@ -76,3 +76,11 @@ Nous avons dessiné en 3D des molécules qui existent et des dessins de reins. L
 - Les fichiers \`tests/r04_atlas.test.mjs\` et les vérifications syntaxiques exécutées par GitHub Actions protègent la traçabilité des six sources.
 
 **Intégrité de la demande iconographique :** la maquette picturale d'illustration générée précédemment dans la conversation n'a pas été ajoutée *octet par octet* au dépôt ; les visuels web publiés sont une reconstruction interactive inspirée de ces maquettes, avec photographies sous licence et schémas SVG. Il ne faut pas prétendre autrement. Pour une copie exacte des affiches PNG, les fichiers binaires des quatre maquettes devront être transférés dans \`assets/\` par un outil de transfert binaire autorisé.
+
+## Correction de provenance visuelle — 17 novembre 2026
+
+Les six PNG originaux ont finalement été **importés par l'utilisateur dans GitHub** : `porc.png`, `chien.png`, `primate.png`, `lapin.png`, `comparaison-especes.png` et `tableau-pkpd.png` dans `assets/illustrations/r04/`. Les tests de SHA256 `tests/r04_original_images.test.mjs` ont réussi et les fichiers sont présents sur la branche principale.
+
+Une nouvelle section de `species-r04.html` montre ces fichiers directement dans le HTML, sans attendre le module de calcul ni le chargement des fiches Wikimedia ; les six miniatures restent cliquables, et leur sélection synchronise le choix physiologique de l'espèce dans R04. L'affiche PK/PD de R03 est directement visible dans `risk-r03.html`.
+
+La mention précédente « les fichiers binaires originaux ne sont pas encore ajoutés » décrit un état antérieur et est **désormais obsolète**. Les scores ou probabilités apparaissant dans les affiches restent exclusivement décoratifs et sont explicitement distingués des scénarios calculés et des observations biologiques.
