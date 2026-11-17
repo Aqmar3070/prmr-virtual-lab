@@ -21,7 +21,7 @@ test("Six PRMR poster animals replace Wikimedia photographs in main UI",()=>{
 test("The integrated workbench shares species, physiology and molecular state",()=>{
  for(const key of ["age","sex","disease","renal"])assert.ok(atlas.includes('["'+key+'"'),key);
  assert.match(atlas,/createVisualAtlas/);
- assert.match(atlas,/onChoose\(sp\.id\)/);
+ assert.match(atlas,/choose\(sp\.id\)/);
  assert.match(atlas,/onEdit/);
  assert.match(atlas,/\.render\(result\)/);
  assert.match(app,/atlas\?\.render\(result\)/);
