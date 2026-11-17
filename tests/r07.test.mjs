@@ -44,9 +44,9 @@ test("The actual GLB viewer loads and rotates a real textured triangular mesh wi
  assert.match(viewer,/addEventListener\("wheel"/);
  assert.match(viewer,/createAnimalSculpture/); // low-power or unuploaded fallback
  assert.ok(!viewer.includes("https://cdn"));
- assert.match(atlas,/createPhotoAnimalViewer/);
+ assert.match(atlas,/createAnatomyViewer/);
  assert.match(atlas,/animals-photo/);
- assert.match(atlas,/non anatomiquement validés/);
+ assert.match(atlas,/sans atlas anatomique validé/);
 });
 
 
