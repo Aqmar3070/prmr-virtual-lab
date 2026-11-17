@@ -1,7 +1,7 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 ## PRMR-R08 — Atlas transparent 3D et organes internes (17 novembre 2026)
 
-**[Ouvrir l'atlas 3D transparent](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r08-anatomy-20261117)** · [**Accueil PRMR**](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r08-anatomy-20261117) · [**Journal R08**](docs/PRMR_R08_TRANSPARENT_ANATOMY.md).
+**[Ouvrir l'atlas 3D transparent](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r08-anatomy-polish-20261117)** · [**Accueil PRMR**](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r08-anatomy-polish-20261117) · [**Journal R08**](docs/PRMR_R08_TRANSPARENT_ANATOMY.md).
 
 La représentation extérieure GLB phototexturée R07 a été remplacée dans les postes de recherche par une **silhouette animale en grille transparente**, qui montre directement les organes internes. La zone d'affichage ne dépend plus de WebGL ni de textures externes et dispose d'un SVG de secours. Les portraits réalistes du sélecteur supérieur restent conservés.
 
