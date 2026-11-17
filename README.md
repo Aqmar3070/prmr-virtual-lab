@@ -1,17 +1,21 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
-## Import des affiches originales R03/R04
-L'application reconnaît automatiquement les six images PNG générées dans la conversation, **dès qu'elles sont déposées** dans [`assets/illustrations/r04`](assets/illustrations/r04/README.md). Télécharger et décompresser `PRMR_R04_images_originales_pour_plateforme.zip`; envoyer les six PNG (pas seulement le ZIP) via GitHub **Add file → Upload files → Commit changes** sur `main`. Les portraits et maquettes apparaîtront alors pour porc/chien/primate/lapin et comparaison souris/rat, ainsi que dans R03 pour le tableau PK/PD. Le dépôt de ces fichiers reste une opération humaine ; le connecteur GitHub ne permet pas ici la copie d'un binaire de la conversation vers le dépôt.
+## Affiches originales R03/R04 — intégration vérifiée (17 novembre 2026)
 
-Les empreintes cryptographiques des images attendues sont consignées dans `assets/illustrations/r04/manifest.json` ; `tests/r04_original_images.test.mjs` vérifie automatiquement l'authenticité des six PNG après leur import. L'interface conserve son fonctionnement sans ces images.
+Les **six PNG originaux sont présents sur la branche main** dans [`assets/illustrations/r04`](assets/illustrations/r04/README.md), avec vérification de leur SHA256 par `tests/r04_original_images.test.mjs`. L'import n'est plus nécessaire.
 
-**Les maquettes sont de la communication visuelle et leurs éventuels chiffres sont illustratifs ; elles ne prouvent ni guérison ni toxicité.**
+- [PRMR-R04 — galerie originale immédiatement visible](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html) : une grande affiche visible dans le HTML et six vignettes d'espèces. Les boutons synchronisent l'image originale et les paramètres physiologiques du simulateur.
+- [PRMR-R03 — affiche PK/PD](https://aqmar3070.github.io/prmr-virtual-lab/risk-r03.html) : fichier `tableau-pkpd.png` visible sans dépendre du chargement des simulations.
+- Les portraits documentaires et schémas rénaux conceptuels restent disponibles sous la galerie des affiches originales. Les images 3D restent manipulables.
+- Si une fenêtre du navigateur présente encore l'ancienne interface, recharger avec l'URL versionnée `species-r04.html?v=originals-20261117`, ce qui contourne le cache de la page HTML.
+
+**Les maquettes sont des illustrations et leurs chiffres sont décoratifs, sans preuve d'efficacité ou de guérison.** Les calculs du modèle R04 restent séparés des présentations graphiques.
 
 ## PRMR-R04 — Laboratoire 3D interactif et physiologie comparée (16 novembre 2026)
 
 - **[Lancer le nouveau laboratoire interactif 3D](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html)** : simulation exploratoire 6 espèces — souris, rat, miniporc, chien, macaque cynomolgus, lapin.
 - **Atlas visuel de six espèces** en haut du tableau de bord : portraits Wikimedia Commons sourcés et crédités, fiches explicatives qualitatives et comparaisons anatomiques redessinées en SVG. Les portraits sont disponibles en ligne selon la connexion du navigateur.
-- **Précision :** les quatre affiches PNG générées dans la conversation ne sont pas stockées sur GitHub ; l'atlas web en constitue une version interactive recréée avec des images libres et des illustrations. Les barres qualitatives ne sont pas des résultats d'efficacité.
+- **Affiches originales intégrées :** les six PNG sont maintenant stockés sur GitHub, présentés au-dessus de l'atlas documentaire et reliés aux espèces. Leurs chiffres imprimés n'ont pas de valeur expérimentale.
 - Paramètres manipulables : espèce, masse, âge, sexe, constitution, déshydratation, fonction rénale, fonction hépatique, maladie, association et concentration libre illustrative.
 - Cartes d'espèces cliquables, graphiques SVG recalculés, trois visualiseurs 3D Canvas à rotation par glissement et quatre molécules réelles conformées par RDKit.
 - [Conformères 3D chimiques](research-data/r04_molecular_3d.json) · [Moteur R04](src/r04_engine.mjs) · [Visualiseur 3D](src/r04_visuals.mjs) · [Journal scientifique R04](docs/PRMR_R04_RESEARCH_LOG.md).
