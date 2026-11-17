@@ -10,7 +10,7 @@ const state={kit:null,rdkit:"loading",pk:{...DEFAULT_PARAMS},latestMolecule:null
 const newEl=(tag,className,text)=>{const x=document.createElement(tag);if(className)x.className=className;if(text!==undefined)x.textContent=text;return x;};
 const clear=id=>$(id).replaceChildren();
 const feedback=(id,msg,type="")=>{const x=$(id);x.textContent=msg;x.className="feedback"+(type?" "+type:"");};
-const headings={overview:"Vue générale",molecules:"Atelier moléculaire",library:"Bibliothèque",combinations:"Comparaison",pkpd:"Simulation PK/PD",systems:"Atlas physiologique",data:"Connecteurs",cloud:"Espace privé",quality:"Traçabilité"};
+const headings={overview:"Parcours de recherche",molecules:"Atelier moléculaire",library:"Bibliothèque",combinations:"Comparaison",pkpd:"Simulation PK/PD",systems:"Atlas physiologique",data:"Connecteurs",cloud:"Espace privé",quality:"Traçabilité"};
 
 function navigate(id){
  if(!headings[id])return;
