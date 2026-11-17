@@ -1,5 +1,12 @@
 # PRMR Virtual Lab · Research Workspace 2.0
 
+## Import des affiches originales R03/R04
+L'application reconnaît automatiquement les six images PNG générées dans la conversation, **dès qu'elles sont déposées** dans [`assets/illustrations/r04`](assets/illustrations/r04/README.md). Télécharger et décompresser `PRMR_R04_images_originales_pour_plateforme.zip`; envoyer les six PNG (pas seulement le ZIP) via GitHub **Add file → Upload files → Commit changes** sur `main`. Les portraits et maquettes apparaîtront alors pour porc/chien/primate/lapin et comparaison souris/rat, ainsi que dans R03 pour le tableau PK/PD. Le dépôt de ces fichiers reste une opération humaine ; le connecteur GitHub ne permet pas ici la copie d'un binaire de la conversation vers le dépôt.
+
+Les empreintes cryptographiques des images attendues sont consignées dans `assets/illustrations/r04/manifest.json` ; `tests/r04_original_images.test.mjs` vérifie automatiquement l'authenticité des six PNG après leur import. L'interface conserve son fonctionnement sans ces images.
+
+**Les maquettes sont de la communication visuelle et leurs éventuels chiffres sont illustratifs ; elles ne prouvent ni guérison ni toxicité.**
+
 ## PRMR-R04 — Laboratoire 3D interactif et physiologie comparée (16 novembre 2026)
 
 - **[Lancer le nouveau laboratoire interactif 3D](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html)** : simulation exploratoire 6 espèces — souris, rat, miniporc, chien, macaque cynomolgus, lapin.
