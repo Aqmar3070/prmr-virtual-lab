@@ -6,8 +6,7 @@
 <title>PRMR-R04 | Laboratoire 3D interactif et comparaison des espèces</title>
 <link rel="stylesheet" href="./r04.css">
 <link rel="stylesheet" href="./r04-atlas.css">
-<link rel="stylesheet" href="./r04-gallery.css">
-<script type="module" src="./src/r04_app.mjs?v=r04-original-posters-20261117"></script>
+<script type="module" src="./src/r04_app.mjs?v=r04-refonte-20261117"></script>
 </head><body>
 <div class="r4-shell">
 <header class="r4-top">
@@ -24,8 +23,8 @@
 <main>
 <div class="r4-head">
  <div><div class="r4-eye">PRMR-R04 / Simulation scientifique interactive / 16 novembre 2026</div>
- <h1>Laboratoire 3D : <span>espèces, molécules et physiologie</span></h1>
- <p>Un tableau de bord manipulable pour étudier comment le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Les organes 3D sont des schémas conceptuels.</p></div>
+ <h1>PRMR R04 : <span>plateforme physiologique interactive</span></h1>
+ <p>Un véritable poste d’exploration, avec les nouveaux portraits intégrés aux commandes, les molécules orientables en 3D et les graphiques dynamiques. Le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Les organes 3D sont des schémas conceptuels.</p></div>
  <svg class="r4-head-icon" viewBox="0 0 160 100" role="img" aria-label="Schéma des deux reins"><defs><linearGradient id="kidGlow"><stop stop-color="#6dfbdc"/><stop offset="1" stop-color="#159cae"/></linearGradient></defs>
   <path d="M61 8 C25 0 12 24 15 51 C17 78 44 91 59 74 C72 56 46 52 48 39 C50 29 69 23 61 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
   <path d="M99 8 C135 0 148 24 145 51 C143 78 116 91 101 74 C88 56 114 52 112 39 C110 29 91 23 99 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
@@ -39,38 +38,8 @@
  <div class="r4-kpi"><small>Modèles moléculaires</small><b>4 conformères</b><em>Coordonnées 3D RDKit</em></div>
  <div class="r4-kpi"><small>État de la recherche</small><b>In silico</b><em>Calculs reproductibles, non expérimentaux</em></div>
 </div>
-<section id="r4-original-gallery" class="r4-poster-gallery" aria-labelledby="r4-original-heading">
-  <div class="r4-poster-gallery-top">
-    <div>
-      <span class="r4-gallery-kicker">GALERIE DES AFFICHES ORIGINALES PRMR</span>
-      <h2 id="r4-original-heading">Les illustrations exactes, intégrées au laboratoire</h2>
-      <p>Sélectionner une espèce pour afficher son affiche originale, puis modifier ses paramètres dans le simulateur ci-dessous.</p>
-    </div>
-    <span class="r4-tag">Six fichiers PNG intégrés</span>
-  </div>
-  <div class="r4-poster-gallery-grid">
-    <div class="r4-poster-main">
-      <div class="r4-poster-main-toolbar">
-        <span id="r4-poster-title">Comparaison générale des espèces</span>
-        <a id="r4-poster-fullscreen" href="./assets/illustrations/r04/comparaison-especes.png" target="_blank" rel="noopener noreferrer">Voir en grand</a>
-      </div>
-      <a id="r4-poster-image-link" href="./assets/illustrations/r04/comparaison-especes.png" target="_blank" rel="noopener noreferrer" title="Ouvrir l'affiche originale">
-        <img id="r4-poster-main-img" src="./assets/illustrations/r04/comparaison-especes.png?v=prmr-20261117-assets" alt="Affiche PRMR originale comparant les modèles animaux ; schémas et scores sont des illustrations, pas des mesures expérimentales" width="1672" height="941" loading="eager" fetchpriority="high">
-      </a>
-      <p class="r4-poster-disclaimer">Affiche de présentation graphique. Les scores représentés dans l'image ne sont pas des résultats expérimentaux et ne doivent pas être interprétés comme des probabilités. Les analyses numériques validables se trouvent dans le simulateur.</p>
-    </div>
-    <div class="r4-poster-thumbnails" aria-label="Choisir une affiche par espèce">
-      <a data-r4-gallery-species="mouse" href="./assets/illustrations/r04/comparaison-especes.png" class="r4-poster-thumb" aria-current="true"><img src="./assets/illustrations/r04/comparaison-especes.png?v=prmr-20261117-assets" alt="Affiche souris et comparaison générale" loading="eager"><span><strong>Souris</strong><small>Comparaison</small></span></a>
-      <a data-r4-gallery-species="rat" href="./assets/illustrations/r04/comparaison-especes.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/comparaison-especes.png?v=prmr-20261117-assets" alt="Affiche rat et comparaison générale" loading="eager"><span><strong>Rat</strong><small>Comparaison</small></span></a>
-      <a data-r4-gallery-species="pig" href="./assets/illustrations/r04/porc.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/porc.png?v=prmr-20261117-assets" alt="Affiche originale PRMR du porc / miniporc" loading="eager"><span><strong>Porc / miniporc</strong><small>Profil détaillé</small></span></a>
-      <a data-r4-gallery-species="dog" href="./assets/illustrations/r04/chien.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/chien.png?v=prmr-20261117-assets" alt="Affiche originale PRMR du chien" loading="eager"><span><strong>Chien</strong><small>Profil détaillé</small></span></a>
-      <a data-r4-gallery-species="nhp" href="./assets/illustrations/r04/primate.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/primate.png?v=prmr-20261117-assets" alt="Affiche originale PRMR du primate non humain" loading="eager"><span><strong>Primate</strong><small>Profil détaillé</small></span></a>
-      <a data-r4-gallery-species="rabbit" href="./assets/illustrations/r04/lapin.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/lapin.png?v=prmr-20261117-assets" alt="Affiche originale PRMR du lapin" loading="eager"><span><strong>Lapin</strong><small>Profil détaillé</small></span></a>
-    </div>
-  </div>
-</section>
+<section id="r4-visual-atlas" class="r4-integrated-workbench" aria-label="Comparateur interactif intégré des animaux, molécules et paramètres physiologiques"></section>
 <p class="r4-banner"><strong>Statut des résultats :</strong> les références AUC proviennent de données humaines ; leur projection entre espèces est un <strong>stress-test non calibré</strong>. Modifier un animal ou un paramètre met à jour l'analyse, mais ne prédit ni toxicité réelle, ni efficacité, ni guérison. Les courbes non disponibles restent identifiées comme inconnues.</p>
-<section id="r4-visual-atlas" class="r4-visual-atlas" aria-labelledby="r4-atlas-heading" aria-live="polite"></section>
 <div class="r4-grid">
 <aside class="r4-panel r4-controls" aria-labelledby="parameters-heading">
  <div class="r4-panel-title"><h2 id="parameters-heading">Console expérimentale</h2><span class="r4-tag">Interactif</span></div>
@@ -134,8 +103,8 @@
   <svg id="r4-pd-graph" class="r4-graph" role="img" aria-label="Courbe d'inhibition théorique de la cible SGLT2"></svg>
  </section>
  <section class="r4-panel r4-c12" aria-labelledby="molecules-heading">
-  <div class="r4-panel-title"><h2 id="molecules-heading">Atelier moléculaire : structures 2D / conformères 3D</h2><span class="r4-tag">RDKit · pivoter et sélectionner</span></div>
-  <p>Quatre molécules existantes. Les conformères 3D ont été construits par RDKit ETKDG puis optimisés par MMFF. Ces structures ne représentent ni des liaisons moléculaires entre médicaments ni une interaction mesurée avec leurs cibles.</p>
+  <div class="r4-panel-title"><h2 id="molecules-heading">Atelier moléculaire : véritables conformères 3D</h2><span class="r4-tag">RDKit · pivoter et sélectionner</span></div>
+  <p>Quatre molécules existantes, chacune présentée directement en 3D manipulable. Les conformères ont été construits par RDKit ETKDG puis optimisés par MMFF. Ces structures ne représentent ni des liaisons moléculaires entre médicaments ni une interaction mesurée avec leurs cibles.</p>
   <div id="r4-molecules" class="r4-molecules" role="group" aria-label="Choisir une molécule à explorer"></div>
   <div class="r4-moldetail" style="margin-top:13px">
    <div class="r4-viz"><canvas id="r4-molecule-3d" aria-label="Conformère moléculaire 3D calculé RDKit, tourner en glissant" role="img"></canvas><span class="r4-viz-label">Conformère calculé · RDKit</span><span class="r4-viz-foot">Faire tourner avec le pointeur</span></div>
