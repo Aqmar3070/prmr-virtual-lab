@@ -144,7 +144,10 @@ function updateReference(){
  $("toggle-isolate").textContent=isolated?"Réafficher les systèmes":"Isoler la structure";$("toggle-isolate").setAttribute("aria-pressed",String(isolated));
  $("toggle-body").textContent=refLayers.skin?"Masquer la peau":"Afficher la peau";$("toggle-body").setAttribute("aria-pressed",String(refLayers.skin));
  const selected=refCatalog.find(x=>x.key===chosen);
- $("organ-info").textContent=selected?refLabel(selected)+" · "+(refSystems[selected.system]||selected.system)+" · Maillage anatomique de référence, non clinique. Aucun diagnostic, débit sanguin ni lésion n'est représenté.":"Sélectionner une structure anatomique.";
+ const info=$("organ-info");info.replaceChildren();
+ if(selected){const p=document.createElement("p");p.className="muted";p.textContent=refLabel(selected)+" · "+(refSystems[selected.system]||selected.system)+" · Maillage anatomique de référence, non clinique. Aucun diagnostic, débit sanguin ni lésion n'est représenté.";info.append(p);
+ if(["kidney_l","kidney_r","ureter_l","ureter_r"].includes(selected.key)){const b=document.createElement("button");b.type="button";b.textContent="Explorer le néphron en 3D";b.addEventListener("click",()=>document.getElementById("microanatomy")?.scrollIntoView({behavior:"smooth",block:"start"}));info.append(b)}
+ }else{info.textContent="Sélectionner une structure anatomique."}
 }
 function refSearch(){
  const root=$("structure-list");root.replaceChildren();
