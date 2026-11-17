@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="laboratory.css">
 <link rel="stylesheet" href="r04-atlas.css?v=refonte-20261117">
 <script type="module" src="./src/r04_embedded.mjs?v=r04-refonte-20261117"></script>
+<script type="module" src="./src/r04_molecule_deck.mjs?v=refonte-20261117"></script>
 <script defer src="https://unpkg.com/@rdkit/rdkit@2026.9.2/dist/RDKit_minimal.js"></script>
 <script type="module" src="src/lab.mjs"></script>
 </head>
@@ -73,6 +74,12 @@
 
 <section class="view" id="view-molecules" hidden>
  <div class="pagehead"><span class="overline">MOLECULAR DISCOVERY / MODULE 01</span><h1>Atelier moléculaire</h1><p>Analyser une structure ou énumérer des variantes virtuelles. La validation syntaxique RDKit n'est pas une preuve de synthèse ou d'activité.</p></div>
+ <section class="r4-st-panel r4-st-molecules" aria-label="Molecules existentes en 3D manipulable" style="margin:16px 0 19px">
+ <div class="r4-st-paneltop"><h2>Molécules existantes — modèles 3D interactifs</h2><span class="r4-st-chip">RDKit · ETKDG / MMFF</span></div>
+ <p id="r5-molecular-deck-status" style="color:#b8d7df;font-size:12px">Chargement des conformères 3D...</p>
+ <div id="r5-molecular-deck" class="r4-st-molecule-grid"></div>
+ <p style="font-size:11px;color:#e2c8a5">Ce sont des structures chimiques calculées, pas des preuves de fixation, de synergie, d'efficacité ou d'innocuité.</p>
+</section>
  <div class="two-col uneven">
  <div class="panel"><div class="panel-header"><div><h2>Définir une structure</h2><p>Notation SMILES · saisie libre</p></div><span class="label-chip">RDKit requis</span></div>
  <label class="field-label" for="mol-name">Nom de travail</label><input class="field" id="mol-name" value="Caféine" maxlength="90"/>
