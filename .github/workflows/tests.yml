@@ -19,5 +19,6 @@ jobs:
           node --check src/r04_atlas.mjs
           node --check src/r04_embedded.mjs
           node --check src/r04_molecule_deck.mjs
+          node --check src/r05_animal3d.mjs
       - name: Run numerical tests
         run: node --test tests/*.test.mjs
