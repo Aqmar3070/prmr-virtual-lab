@@ -19,8 +19,8 @@
 .r4-st-species-card>span{display:block;padding:8px 9px 10px;background:#0c3140;min-height:51px}
 .r4-st-species-card strong{display:block;font-size:12px;color:#f1fffa;white-space:normal;line-height:1.28}
 .r4-st-species-card small{display:block;color:#93c2c8;font-size:9px;margin-top:3px;white-space:normal;line-height:1.25}
-.r4-st-art[data-species=mouse],.r4-st-portrait[data-species=mouse]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:650% auto;background-position:20% 48%}
-.r4-st-art[data-species=rat],.r4-st-portrait[data-species=rat]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:650% auto;background-position:34% 48%}
+.r4-st-art[data-species=mouse],.r4-st-portrait[data-species=mouse]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:900% auto;background-position:15% 38%}
+.r4-st-art[data-species=rat],.r4-st-portrait[data-species=rat]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:900% auto;background-position:25% 38%}
 .r4-st-art[data-species=pig],.r4-st-portrait[data-species=pig]{background-image:url("./assets/illustrations/r04/porc.png");background-size:470% auto;background-position:0% 46%}
 .r4-st-art[data-species=dog],.r4-st-portrait[data-species=dog]{background-image:url("./assets/illustrations/r04/chien.png");background-size:470% auto;background-position:0% 45%}
 .r4-st-art[data-species=nhp],.r4-st-portrait[data-species=nhp]{background-image:url("./assets/illustrations/r04/primate.png");background-size:470% auto;background-position:0% 46%}
