@@ -1,68 +1,108 @@
-
-/* PRMR R04 visual atlas — faithful screen composition, no fictive efficacy scores. */
-.r4-visual-atlas{margin:19px 0 26px}
-.r4-atlas-wrap{background:radial-gradient(ellipse at 88% 4%,#1150646b,transparent 45%),linear-gradient(145deg,#071e2e,#082332);border:1px solid #18798a;border-radius:17px;padding:16px 18px 19px;box-shadow:inset 0 0 0 1px #7afde20b,0 14px 36px #06131e88;overflow:hidden}
-.r4-atlas-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.r4-atlas-brand{font-size:11px;color:#76eddc;letter-spacing:.13em;font-weight:900;text-transform:uppercase}
-.r4-atlas-heading{font-size:clamp(22px,3vw,37px);line-height:1.13;letter-spacing:-.04em;margin:12px 0 4px}
-.r4-atlas-heading span{color:#8affdd}
-.r4-atlas-subtitle{color:#d1e8eb;font-size:13px;line-height:1.6;margin:0 0 15px}
-.r4-atlas-species-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin:11px 0 14px}
-.r4-atlas-species-button{background:#0e3544;border:1px solid #286a77;border-radius:10px;color:#dceff0;padding:6px;display:flex;gap:5px;align-items:center;text-align:left;min-width:0;transition:box-shadow .18s,background .18s}
-.r4-atlas-species-button:hover,.r4-atlas-species-button[aria-pressed=true]{border-color:#83ffde;background:#145562;box-shadow:0 0 11px #31d8ca55}
-.r4-atlas-species-button img{width:38px;height:38px;border-radius:7px;object-fit:cover;background:#153748;flex-shrink:0}
-.r4-atlas-species-button b{font-size:11px;line-height:1.15;display:block}
-.r4-atlas-species-button small{color:#9eb9c1;font-size:9px;display:block;line-height:1.2;margin-top:2px}
-.r4-atlas-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:9px 0 15px}
-.r4-atlas-kpi{background:linear-gradient(150deg,#0b4c5a,#0e3340);border:1px solid #368a93;box-shadow:inset 0 2px 0 #54f6d21c;border-radius:10px;padding:11px 12px;min-width:0}
-.r4-atlas-kpi small{display:block;color:#aad2db;font-size:10px}.r4-atlas-kpi b{display:block;font-size:clamp(12px,1.5vw,17px);font-weight:820;margin:3px 0;color:#f0fffc;line-height:1.25;overflow-wrap:anywhere}
-.r4-atlas-main-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:11px}
-.r4-atlas-pane{background:#082b39;border:1px solid #2c8991;border-radius:12px;padding:12px;min-width:0}
-.r4-atlas-pane h3{margin:0 0 3px;font-size:16px;color:#e2fffb}.r4-atlas-pane p{color:#a9cbd4;font-size:11px;margin:0 0 9px}
-.r4-atlas-left{display:grid;grid-template-columns:minmax(145px,.83fr) minmax(190px,1.17fr);gap:10px;margin-top:12px}
-.r4-atlas-portrait{background:radial-gradient(ellipse at center,#1c6a7788,#071c2e 75%);border:1px solid #367982;border-radius:11px;overflow:hidden;min-height:298px;position:relative}
-.r4-atlas-portrait>img{width:100%;height:100%;min-height:298px;position:absolute;inset:0;object-fit:cover;object-position:center;filter:saturate(.93) contrast(1.08)}
-.r4-atlas-portrait:after{position:absolute;inset:0;content:"";background:linear-gradient(transparent 50%,#061e2f 100%);pointer-events:none}
-.r4-atlas-portrait>div{position:absolute;bottom:13px;left:10px;right:10px;z-index:2;display:flex;align-items:center;gap:6px;background:#062e39d9;border:1px solid #49f6d5;border-radius:8px;padding:8px;font-size:12px;font-weight:800;line-height:1.25;color:#f0fffc;box-shadow:0 0 15px #26d2c34c}
-.r4-atlas-meta-rows{display:flex;flex-direction:column;gap:8px}
-.r4-atlas-meta-row{border:1px solid #367584;border-radius:9px;background:#0a3543;padding:9px 10px}
-.r4-atlas-meta-row-label{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#d9f4f0;font-size:11px;line-height:1.4}
-.r4-atlas-meta-row-label strong{font-size:11px;color:#d5fcf4;white-space:nowrap}
-.r4-atlas-meta-row-track{height:9px;overflow:hidden;background:#143f49;border:1px solid #396c71;border-radius:10px;margin-top:7px}
-.r4-atlas-meta-row-track span{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#26dcca,#96fa97);box-shadow:0 0 10px #5af2bb88}
-.r4-atlas-meta-disclaimer{font-size:10px;line-height:1.5;color:#ecc994;border:1px dashed #785c42;padding:9px;border-radius:7px}
-.r4-atlas-insight{background:linear-gradient(130deg,#11513ee8,#0b3a38);border:1px solid #43bf9b;border-radius:11px;padding:13px 15px;margin-bottom:9px}
-.r4-atlas-insight strong{font-size:12px;color:#94efbc}.r4-atlas-insight p{color:#e0f3e9;margin:4px 0 0;font-size:12px;line-height:1.55}
-.r4-atlas-kidney{position:relative;min-height:211px;border-radius:10px;background:radial-gradient(ellipse at 54% 56%,#104f60 3%,#071e2e 68%);border:1px solid #21778a;overflow:hidden}
-.r4-atlas-kidney svg{width:100%;height:205px;display:block;filter:drop-shadow(0 0 11px #39d9cf55)}
-.r4-atlas-kidney:after{content:"";position:absolute;bottom:19px;left:8%;width:84%;height:1px;background:linear-gradient(90deg,transparent,#41babe,transparent);box-shadow:0 0 14px #41e4d9;pointer-events:none}
-.r4-atlas-kidney-caption{position:absolute;top:10px;left:10px;background:#082738da;border:1px solid #2a7d8d;border-radius:7px;padding:6px 8px;font-size:10px;color:#c2fdf7}
-.r4-atlas-kidney-comparison{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;font-size:10px;margin:7px 0}
-.r4-atlas-kidney-comparison span{background:#0c3544;border:1px solid #306d7a;border-radius:7px;padding:5px 7px;color:#c4e6e8}
-.r4-atlas-bottom{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.95fr);gap:10px;margin-top:11px}
-.r4-atlas-callouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:7px}
-.r4-atlas-callout{border:1px solid #2f7687;border-radius:9px;padding:12px;background:#093445;min-width:0}
-.r4-atlas-callout:first-child{border-color:#7c83ce;background:#232b44}
-.r4-atlas-callout:nth-child(2){border-color:#3aadaa}
-.r4-atlas-callout:last-child{border-color:#4dac77;background:#113f38}
-.r4-atlas-callout b{display:block;color:#a2f4d9;font-size:12px;margin-bottom:5px}.r4-atlas-callout span{font-size:11px;color:#d7ecec;line-height:1.55}
-.r4-atlas-summary{border:1px solid #2f8c75;border-radius:10px;background:#0b423e;padding:12px 15px}
-.r4-atlas-summary strong{color:#9af2d3}.r4-atlas-summary p{font-size:12px;color:#def8ee;line-height:1.65;margin:5px 0}
-.r4-atlas-complement{border:1px solid #2a7681;border-radius:9px;padding:10px;background:#0b3244;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:9px}
-.r4-atlas-complement span{font-size:11px;color:#c3e1e9;line-height:1.6}
-.r4-atlas-complement button{background:#185b63;border:1px solid #63dcd0;color:#d9fff8;padding:9px 10px;border-radius:9px;font-weight:750;font-size:11px;white-space:nowrap}
-.r4-atlas-attribution{font-size:10px;color:#9dbfc7;line-height:1.6;margin-top:11px}.r4-atlas-attribution a{color:#91dfed}
-.r4-atlas-visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media(max-width:1180px){.r4-atlas-main-grid{grid-template-columns:1fr}.r4-atlas-portrait{min-height:330px}.r4-atlas-portrait>img{min-height:330px}.r4-atlas-bottom{grid-template-columns:1fr}}
-@media(max-width:820px){.r4-atlas-species-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.r4-atlas-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:550px){.r4-atlas-wrap{padding:11px}.r4-atlas-left{grid-template-columns:1fr}.r4-atlas-portrait{height:240px;min-height:240px}.r4-atlas-portrait>img{min-height:240px}.r4-atlas-callouts{grid-template-columns:1fr}.r4-atlas-species-button img{width:31px;height:31px}.r4-atlas-species-button b{font-size:10px}}
-
-/* Exact generated PRMR poster: appears only after its original PNG is uploaded. */
+/* PRMR integrated interactive workbench. Art is derived from the user's original PRMR R04 PNGs.
+   Cropped images illustrate anatomy; HTML supplies ALL interactive/scientific data. */
+.r4-st-workbench{
+ --st-teal:#67eee2;--st-mute:#aacdd6;--st-line:#228e9e;
+ border:1px solid #329fa7;border-radius:18px;padding:clamp(12px,1.8vw,25px);
+ background:radial-gradient(ellipse at 93% 0%,#0b626d75,transparent 44%),linear-gradient(145deg,#061c2a,#072938 67%,#061e2a);
+ color:#e7fffb;box-shadow:0 18px 50px #02101d8c, inset 0 1px #61d5d02b;min-width:0
+}
+.r4-st-heading{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.r4-st-eyebrow{font-size:10px;color:#74e6e4;font-weight:850;letter-spacing:.13em}
+.r4-st-heading h2{margin:6px 0;font-size:clamp(21px,3vw,33px);letter-spacing:-.045em;line-height:1.22;color:#eefffb}
+.r4-st-verification{font-size:10px;letter-spacing:.04em;color:#d7b887;background:#312719;border:1px solid #8c663c;padding:7px 10px;border-radius:25px}
+.r4-st-species{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;margin:10px 0 15px}
+.r4-st-species-card{display:block;position:relative;overflow:hidden;min-width:0;padding:0;border-radius:12px;border:1px solid #2b7582;background:#103545;color:#ecfffb;text-align:left;box-shadow:inset 0 0 12px #0c2235}
+.r4-st-species-card:hover,.r4-st-species-card[aria-pressed="true"]{border-color:#75f5dc;box-shadow:0 0 0 1px #6df9da54,0 0 20px #2ee9d73e;transform:translateY(-2px)}
+.r4-st-species-card:focus-visible{outline:2px solid white}
+.r4-st-art{height:clamp(79px,11vw,142px);position:relative;display:block;background-repeat:no-repeat;background-color:#0a3545}
+.r4-st-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#081b29d9,transparent 45%);pointer-events:none}
+.r4-st-species-card>span{display:block;padding:8px 9px 10px;background:#0c3140;min-height:51px}
+.r4-st-species-card strong{display:block;font-size:12px;color:#f1fffa;white-space:normal;line-height:1.28}
+.r4-st-species-card small{display:block;color:#93c2c8;font-size:9px;margin-top:3px;white-space:normal;line-height:1.25}
+.r4-st-art[data-species=mouse],.r4-st-portrait[data-species=mouse]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:650% auto;background-position:20% 48%}
+.r4-st-art[data-species=rat],.r4-st-portrait[data-species=rat]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:650% auto;background-position:34% 48%}
+.r4-st-art[data-species=pig],.r4-st-portrait[data-species=pig]{background-image:url("./assets/illustrations/r04/porc.png");background-size:470% auto;background-position:0% 46%}
+.r4-st-art[data-species=dog],.r4-st-portrait[data-species=dog]{background-image:url("./assets/illustrations/r04/chien.png");background-size:470% auto;background-position:0% 45%}
+.r4-st-art[data-species=nhp],.r4-st-portrait[data-species=nhp]{background-image:url("./assets/illustrations/r04/primate.png");background-size:470% auto;background-position:0% 46%}
+.r4-st-art[data-species=rabbit],.r4-st-portrait[data-species=rabbit]{background-image:url("./assets/illustrations/r04/lapin.png");background-size:470% auto;background-position:0% 46%}
+.r4-st-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.r4-st-stat{background:linear-gradient(125deg,#124e5b,#0d3646);border:1px solid #328899;border-radius:11px;padding:11px 13px;min-width:0}
+.r4-st-stat span{display:block;color:#8ad4d7;font-size:9px;letter-spacing:.055em;font-weight:800}
+.r4-st-stat strong{display:block;font-size:clamp(14px,1.5vw,20px);color:#ecfff8;letter-spacing:-.025em;line-height:1.3;margin:5px 0}
+.r4-st-stat small{display:block;color:#a4cbd1;font-size:10px}
+.r4-st-main-grid{display:grid;grid-template-columns:minmax(0,1.27fr) minmax(0,.73fr);gap:12px}
+.r4-st-panel{background:linear-gradient(145deg,#0b3543,#092332);border:1px solid #318995;border-radius:13px;min-width:0;padding:14px;position:relative;overflow:hidden}
+.r4-st-paneltop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 11px;flex-wrap:wrap}
+.r4-st-paneltop h3,.r4-st-panel>h3{margin:0;font-size:clamp(14px,1.5vw,19px);letter-spacing:-.035em;color:#e6fff9}
+.r4-st-chip{color:#adf4ea;border:1px solid #338b8c;border-radius:25px;padding:5px 10px;font-size:9px;font-weight:800;white-space:nowrap}
+.r4-st-profile-body{display:grid;grid-template-columns:minmax(145px,.85fr) minmax(0,1.15fr);gap:12px}
+.r4-st-portrait{min-height:295px;background-repeat:no-repeat;background-color:#0f4653;border:1px solid #50b4ba;border-radius:10px;position:relative;box-shadow:inset 0 0 35px #112534,0 0 20px #15797940}
+.r4-st-portrait:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#041a27ec 0%,transparent 39%)}
+.r4-st-portrait-label{position:absolute;z-index:1;left:10px;right:10px;bottom:10px;background:#092f3be5;border:1px solid #3cb5b6;box-shadow:0 0 13px #16e6db52;padding:7px 10px;border-radius:8px}
+.r4-st-portrait-label strong{display:block;color:#d9fff6;font-size:15px}.r4-st-portrait-label small{color:#9bd7d4;font-size:10px}
+.r4-st-props{min-width:0;display:flex;flex-direction:column;gap:9px}
+.r4-st-insight{border-left:3px solid #81f4a8;background:#0a423b;padding:10px 12px;border-radius:7px}
+.r4-st-insight span{font-size:9px;letter-spacing:.12em;color:#8ee3ae;display:block;font-weight:850}
+.r4-st-insight strong{display:block;color:#e1ffed;font-size:14px;line-height:1.2;margin:3px 0}
+.r4-st-insight p{font-size:11px;line-height:1.5;margin:0;color:#c2e8dc}
+.r4-st-annotations{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.r4-st-field{border:1px solid #276b7a;border-radius:7px;padding:7px;background:#0a303f;min-width:0}
+.r4-st-field span{display:block;font-size:9px;color:#9cc7d1}.r4-st-field strong{font-size:11px;line-height:1.35;color:#e1f9f4;display:block;overflow-wrap:anywhere;margin-top:2px}
+.r4-st-mini-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.r4-st-control span{display:block;font-size:10px;color:#a5d5d9;margin-bottom:4px}
+.r4-st-control select{width:100%;background:#0c2836;color:#eefffc;border:1px solid #317989;border-radius:7px;font-size:11px;padding:8px 5px;min-width:0}
+.r4-st-organbox{position:relative;background:#061c2d;border:1px solid #2b7889;border-radius:11px;overflow:hidden;height:245px}
+.r4-st-organbox canvas{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+.r4-st-3d-label{position:absolute;bottom:8px;left:9px;right:9px;background:#091c2bcb;padding:5px 8px;color:#acdfe0;font-size:10px;border-radius:7px;pointer-events:none}
+.r4-st-renal-note{border:1px solid #2d838b;background:#104b46;border-radius:9px;padding:10px 12px;margin-top:10px}
+.r4-st-renal-note strong{font-size:11px;color:#91f9db}
+.r4-st-renal-note p{font-size:12px;color:#d6f0e9;margin:4px 0;line-height:1.5}
+.r4-st-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:9px}
+.r4-st-notes>div{border:1px solid #286b7b;border-radius:7px;color:#bfe9ed;padding:7px;background:#083545;font-size:10px;line-height:1.3}
+.r4-st-bottom-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:12px;margin-top:12px}
+.r4-st-kinetics>p{font-size:11px;line-height:1.5;color:#b9d8da;margin:7px 0 5px}
+.r4-st-chart{width:100%;height:180px;background:#082431;border-radius:8px;display:block;margin:8px 0}
+.r4-st-current-ratio{border-left:3px solid #62e4ce;background:#13403e;padding:8px 10px;color:#d9fff5;font-size:11px;line-height:1.45;border-radius:6px}
+.r4-st-pd-value{font-size:clamp(24px,3vw,44px);color:#8affda;font-weight:900;letter-spacing:-.045em;margin:18px 0 8px}
+.r4-st-pharmacology>p{font-size:12px;line-height:1.6;color:#cee9e9}
+.r4-st-true-note{border:1px solid #856747;color:#f5d6aa;background:#342719;border-radius:8px;font-size:11px;line-height:1.5;padding:10px;margin-top:16px}
+.r4-st-molecules{margin-top:12px}
+.r4-st-molecule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
+.r4-st-molecule-card{border:1px solid #347c8e;border-radius:10px;color:#e1fbf7;background:linear-gradient(130deg,#0b3548,#081d2e);padding:7px;min-width:0;text-align:left;overflow:hidden}
+.r4-st-molecule-card:hover,.r4-st-molecule-card[aria-pressed=true]{border-color:#77f3db;box-shadow:0 0 11px #4ce2d640;background:#174f52}
+.r4-st-molecule-card canvas{display:block;width:100%;height:145px;border-radius:8px;background:#081d2b;touch-action:none}
+.r4-st-molecule-card strong{display:block;font-size:12px;color:#e4fffb;margin:7px 4px 2px}
+.r4-st-molecule-card small{display:block;color:#a0ccd3;font-size:10px;line-height:1.35;margin:0 4px 4px}
+.r4-st-safety-caption{font-size:11px;line-height:1.6;color:#d5c29f;background:#342919;border-radius:8px;padding:10px 12px;margin-top:12px}
+.r4-st-home{margin-bottom:24px}
 .r4-original-poster[hidden]{display:none!important}
 .r4-original-poster{margin:13px 0 18px;border:1px solid #3cbbba;border-radius:14px;background:#071b2b;overflow:hidden;box-shadow:0 8px 24px #020a1688}
 .r4-original-poster-header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 15px;background:#083746;border-bottom:1px solid #256d7d}
 .r4-original-poster-header strong{display:block;color:#d9fff7;font-size:13px}
 .r4-original-poster-header small{display:block;color:#a1cad1;font-size:11px}
 .r4-original-poster-header a{color:#bcf8ea;background:#12535b;border:1px solid #5fd3c2;border-radius:8px;padding:7px 10px;text-decoration:none;font-size:11px;font-weight:800}
-.r4-original-poster>img{display:block;width:100%;height:auto;aspect-ratio:1672 / 941;object-fit:contain;background:#071522}
+.r4-original-poster>img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain;background:#071522}
 .r4-original-poster-warning{margin:0!important;padding:10px 15px;background:#332719;color:#f4d7aa!important;line-height:1.65;font-size:11px!important}
+@media(max-width:1100px){
+ .r4-st-species{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .r4-st-art{height:115px}
+ .r4-st-main-grid{grid-template-columns:minmax(0,1fr)}
+ .r4-st-organbox{height:225px}
+ .r4-st-organbox canvas{height:225px}
+}
+@media(max-width:750px){
+ .r4-st-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .r4-st-bottom-grid{grid-template-columns:1fr}
+ .r4-st-art{height:95px}
+ .r4-st-molecule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:530px){
+ .r4-st-workbench{padding:11px}
+ .r4-st-profile-body{grid-template-columns:1fr}
+ .r4-st-portrait{min-height:210px}
+ .r4-st-art{height:72px}
+ .r4-st-species-card strong{font-size:11px}
+ .r4-st-species-card small{font-size:8px}
+ .r4-st-molecule-card canvas{height:113px}
+}
+@media(prefers-reduced-motion:reduce){.r4-st-species-card:hover{transform:none}}
