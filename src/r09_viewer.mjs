@@ -203,6 +203,9 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
    ghost=null;dogReal={coat:coat.scene,raw,meshGroups:collected};
    mode="canine-CT-derived-hybrid-GLB";
    sourceStatus="CT_DERIVED_AND_MODELED_NOT_DIAGNOSTIC";
+   canvas.dataset.anatomySource=mode;
+   canvas.dataset.anatomyModelFidelity=sourceStatus;
+   delete canvas.dataset.anatomyLoadingError;
    // If a subset is absent, preserve an explicitly synthetic placeholder, never mislabel it.
    const fallbackDog=makeSpeciesGroups("dog");disposeOrganGroup(fallbackDog.body);
    for(const [id,g]of Object.entries(fallbackDog.organs)){
@@ -214,6 +217,8 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
   }catch(e){
    if(!alive||token!==sceneToken)return;
    canvas.dataset.anatomyLoadingError=e.message||String(e);
+   canvas.dataset.anatomySource=mode;
+   console.warn("[PRMR-R09] Canine CT model unavailable:",e);
    mode="species-specific-procedural";
    sourceStatus="EDUCATIONAL_NOT_VALIDATED";
    request();
