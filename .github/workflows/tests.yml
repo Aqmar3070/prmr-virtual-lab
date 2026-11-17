@@ -21,6 +21,7 @@ jobs:
           node --check src/r04_molecule_deck.mjs
           node --check src/r05_animal3d.mjs
           node --check src/r07_photo3d.mjs
+          node --check src/r08_anatomy.mjs
           python3 -m py_compile scripts/ingest_r07.py
       - name: Run numerical tests
         run: node --test tests/*.test.mjs
