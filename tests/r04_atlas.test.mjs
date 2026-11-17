@@ -34,9 +34,12 @@ test("Text labels are native, separate and responsive",()=>{
  assert.ok(css.includes("@media(max-width:780px)"));
 });
 test("True GPU animal viewer, species-specific meshes and fallback",()=>{
- assert.match(atlas,/createAnimalSculpture/);
+ assert.match(atlas,/createPhotoAnimalViewer/);
+ assert.ok(atlas.includes("assets/animals-photo/"));
  assert.ok(atlas.includes("sculpture.set({species:id})"));
  assert.match(atlas,/r5-webgl-active/);
+ assert.ok(atlas.includes("phototexturées"));
+ assert.ok(atlas.includes("non anatomiquement validés"));
  assert.match(webgl,/createShader/);
  assert.ok(webgl.includes("gl.drawArrays(gl.TRIANGLES"));
  assert.match(webgl,/pointermove/);
