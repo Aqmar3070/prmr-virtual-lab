@@ -94,7 +94,9 @@ const {chromium}=require("playwright");
   }
   await page.locator('#r4-visual-atlas button[data-stage-species="dog"]').click();
   await page.waitForFunction(()=>document.querySelector("#r4-3d-species")?.textContent.includes("Chien"));
-  await page.waitForFunction(()=>document.querySelector("#r4-visual-atlas .r8-anatomy-canvas")?.dataset.anatomySource==="canine-CT-derived-hybrid-GLB",null,{timeout:30000});
+  await page.waitForTimeout(6500);
+  console.log("PRMR_R09_CANINE_DEBUG",JSON.stringify(await page.locator("#r4-visual-atlas .r8-anatomy-canvas").evaluate(c=>({source:c.dataset.anatomySource,errors:c.dataset.anatomyLoadingError,scanNodes:c.dataset.canineScanNodes,render:c.dataset.anatomyRender}))));
+  await page.waitForFunction(()=>document.querySelector("#r4-visual-atlas .r8-anatomy-canvas")?.dataset.anatomySource==="canine-CT-derived-hybrid-GLB",null,{timeout:14000});
   assert.ok(Number(await page.locator("#r4-visual-atlas .r8-anatomy-canvas").getAttribute("data-canine-scan-nodes"))>=14);
   assert.equal(await page.locator("#r4-mass").inputValue(),"10");
   await page.locator('#r4-visual-atlas button[data-organ="heart"]').click();
