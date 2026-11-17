@@ -6,6 +6,11 @@ const SUPABASE_SDK = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0
 
 export function initCloud(handlers){
  const $=id=>document.getElementById(id);
+ // Seul l'accueil porte le balisage de l'espace privé. Sans cette garde, le
+ // module s'attachait à des éléments absents sur research.html : la première
+ // ligne levait « Cannot read properties of null » et interrompait toute
+ // l'initialisation du laboratoire sur cette page.
+ if(!$("cloud-projects")||!$("cloud-message"))return {available:false};
  const el=(tag,text,css)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(css)e.className=css;return e};
  const msg=(message,kind="")=>{const n=$("cloud-message");n.textContent=message;n.dataset.kind=kind;};
  let client=null,loggedUser=null,projects=[],projectId=null,loadSeq=0;

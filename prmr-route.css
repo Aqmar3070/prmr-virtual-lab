@@ -34,8 +34,11 @@
  .prmr-route-aside{margin-left:0}
 }
 @media(max-width:560px){
- .prmr-route-name{display:none}
+ /* Les libellés ne tiennent plus tous : on garde celui de l'étape courante,
+    pour que la position dans le parcours reste lisible sans l'ouvrir. */
+ .prmr-route-step:not([aria-current="page"]) .prmr-route-name{display:none}
  .prmr-route-steps li+li::before{width:8px}
+ .prmr-route-aside{width:100%}
 }
 
 /* R11 dashboard — the first view is a sequenced workflow, not a collection of disconnected modules */
