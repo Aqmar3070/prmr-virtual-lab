@@ -2,7 +2,7 @@
 import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} from "./r04_engine.mjs";
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createAnimalSculpture} from "./r05_animal3d.mjs?v=r06-studio-20261117";
+import {createPhotoAnimalViewer} from "./r07_photo3d.mjs?v=r07-photo-20261117";
 import {createVisualAtlas} from "./r04_atlas.mjs?v=r06-studio-20261117";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
@@ -16,7 +16,7 @@ function el(tag,name,cls){const x=document.createElement(tag);if(name!==undefine
 function speciesIcon(id){
  const sp=SPECIES_R04.find(item=>item.id===id);
  const alt=sp?sp.label:id;
- return '<div class="r4-st-art" data-species="'+id+'"><img src="./assets/animals/'+id+'.svg" alt="Illustration indépendante de '+alt+'" width="840" height="560" loading="eager"></div>';
+ return '<div class="r4-st-art" data-species="'+id+'"><img src="./assets/animals-photo/'+id+'.webp" onerror="this.onerror=null;this.src=\'./assets/animals/'+id+'.svg\'" alt="Rendu visuel 3D-style de '+alt+'" width="512" height="384" loading="lazy"></div>';
 }
 function initSpecies(){
  for(const sp of SPECIES_R04){
@@ -199,7 +199,14 @@ function init(){
    update();
   }
  });kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
- body=createAnimalSculpture($("r4-body-3d"),{species:state.species});
+ body=createPhotoAnimalViewer($("r4-body-3d"),{
+  species:state.species,
+  onMode:(kind,detail)=>{
+   const target=$("r4-body-render-status");
+   if(target)target.textContent=detail;
+   const viewer=$("r4-body-3d");if(viewer)viewer.dataset.renderMode=kind;
+  }
+ });
  if(!body.supported)body=create3D($("r4-body-3d"),{kind:"animal",species:state.species,renal:state.renal,hepatic:state.hepatic});
  updateHumanGraph();
  const requested=new URLSearchParams(location.search).get("species");
