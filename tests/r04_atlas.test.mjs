@@ -23,22 +23,22 @@ test("Six independent SVG animal assets replace every cropped poster",()=>{
  assert.ok(!/assets\/illustrations\/r04/.test(css));
  assert.ok(!/background-size:\s*(?:\d{3}%)/.test(css));
  assert.match(css,/object-fit:contain/);
- assert.match(atlas,/\\.svg/);
+ assert.ok(atlas.includes(".svg"));
 });
 test("Text labels are native, separate and responsive",()=>{
  assert.ok(atlas.includes('class="r5-animal-asset"')||atlas.includes('"r5-animal-asset"'));
  assert.ok(atlas.includes('"r4-st-portrait-label"'));
- assert.match(css,/\\.r4-st-portrait-label\\{display:flex/);
+ assert.ok(css.includes(".r4-st-portrait-label{display:flex"));
  assert.match(css,/overflow-wrap:break-word/);
- assert.match(css,/@media\\(max-width:520px\\)/);
- assert.match(css,/@media\\(max-width:780px\\)/);
+ assert.ok(css.includes("@media(max-width:520px)"));
+ assert.ok(css.includes("@media(max-width:780px)"));
 });
 test("True GPU animal viewer, species-specific meshes and fallback",()=>{
  assert.match(atlas,/createAnimalSculpture/);
- assert.match(atlas,/sculpture\\.set\\(\\{species:id\\}\\)/);
+ assert.ok(atlas.includes("sculpture.set({species:id})"));
  assert.match(atlas,/r5-webgl-active/);
  assert.match(webgl,/createShader/);
- assert.match(webgl,/gl\\.drawArrays\\(gl\\.TRIANGLES/);
+ assert.ok(webgl.includes("gl.drawArrays(gl.TRIANGLES"));
  assert.match(webgl,/pointermove/);
  assert.match(webgl,/IntersectionObserver/);
  assert.match(webgl,/supported:false/);
@@ -47,7 +47,7 @@ test("True GPU animal viewer, species-specific meshes and fallback",()=>{
 test("Shared physiological state, unknown probabilities and molecular 3D remain intact",()=>{
  for(const key of ["age","sex","disease","renal"])assert.ok(atlas.includes('["'+key+'"'));
  assert.match(atlas,/onEdit/);
- assert.match(app,/atlas\\?\\.render\\(result\\)/);
+ assert.ok(app.includes("atlas?.render(result)"));
  assert.match(app,/onChoose:setSpecies/);
  assert.equal(MOLECULES_R04.length,4);
  assert.match(atlas,/kind:"molecule"/);
