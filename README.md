@@ -1,4 +1,14 @@
 # PRMR Virtual Lab · Research Workspace 2.0
+## PRMR-R08 — Atlas transparent 3D et organes internes (17 novembre 2026)
+
+**[Ouvrir l'atlas 3D transparent](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r08-anatomy-20261117)** · [**Accueil PRMR**](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r08-anatomy-20261117) · [**Journal R08**](docs/PRMR_R08_TRANSPARENT_ANATOMY.md).
+
+La représentation extérieure GLB phototexturée R07 a été remplacée dans les postes de recherche par une **silhouette animale en grille transparente**, qui montre directement les organes internes. La zone d'affichage ne dépend plus de WebGL ni de textures externes et dispose d'un SVG de secours. Les portraits réalistes du sélecteur supérieur restent conservés.
+
+**Modes interactifs :** `Reins` (par défaut), `Cœur`, `Foie`, `Poumons`, `Tous`. Le corps utilise des coordonnées 3D projetées, rotation au doigt/souris, zoom molette/clavier. Les six espèces sont disponibles ; la seconde vue R04 suit aussi la sélection d'organe. Les modèles GLB R07 restent archivés et les molécules RDKit continuent à fonctionner.
+
+**Attention scientifique :** volumes et implantations internes **schématiques non calibrés**. Ils ne sont pas une imagerie réelle ni une prédiction biologique. Les choix d'organe n'affectent pas les résultats PK/PD ou les probabilités inconnues de toxicité/guérison.
+
 ## PRMR-R07 — Modèles 3D phototexturés (17 novembre 2026)
 
 **Importation terminée — six modèles GLB et six aperçus WebP publiés.** Six vrais maillages GLB ont été construits à partir des rendus réalistes de la conversation (de **305 à 429 Ko** chacun), avec textures WebP intégrées, rotation à 360°, zoom et réinitialisation. Il s'agit de **reliefs 2.5D créés à partir d'une seule vue**, dont le dos et l'épaisseur sont estimés, **pas** d'anatomie validée à 360°.
