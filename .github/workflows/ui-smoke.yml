@@ -1,0 +1,42 @@
+name: PRMR browser UI smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/r04_*.mjs"
+      - "r04-atlas.css"
+      - "species-r04.html"
+      - "index.html"
+      - "research.html"
+      - "risk-r03.html"
+      - "screening.html"
+      - "preclinical.html"
+      - "tests/r04_browser_smoke.cjs"
+      - ".github/workflows/ui-smoke.yml"
+  workflow_dispatch:
+jobs:
+  ui-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser runner
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve PRMR static site
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/prmr-site.log 2>&1 &
+          sleep 2
+      - name: Test live browser interactions
+        run: node tests/r04_browser_smoke.cjs
+      - name: Upload failure screenshot
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prmr-ui-debug
+          path: /tmp/prmr-ui-error.png
+          if-no-files-found: ignore
