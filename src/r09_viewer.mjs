@@ -100,7 +100,9 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
   if(box.isEmpty())return;
   const center=box.getCenter(new T.Vector3()),size=box.getSize(new T.Vector3()),radius=Math.max(size.x,size.y,size.z,.1);
   controls.target.copy(center);
-  camera.position.copy(center).add(new T.Vector3(radius*1.22,radius*.72,radius*1.95));
+  camera.position.copy(center).add(current==="dog"&&mode==="canine-CT-derived-hybrid-GLB"
+    ?new T.Vector3(radius*1.62,radius*.56,radius*.48)
+    :new T.Vector3(radius*.87,radius*.46,radius*1.44));
   camera.near=Math.max(.01,radius/1000);camera.far=Math.max(100,radius*80);camera.updateProjectionMatrix();
   controls.minDistance=radius*.22;controls.maxDistance=radius*11;
   controls.update();request();
@@ -147,7 +149,7 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
   if(ghost)ghost.visible=bodyVisible&&!only;
   if(dogReal&&dogReal.coat)dogReal.coat.visible=bodyVisible&&!only;
   interactions();
-  if(only&&focus!=="all"&&organs[focus])frameView(organs[focus]);else if(!only)frameView();
+  if(only&&focus!=="all"&&organs[focus])frameView(organs[focus]);else frameView();
   request();
  }
  function generated(speciesId){
@@ -187,6 +189,16 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
       node.updateWorldMatrix(true,false);
       const copy=node.clone(false);
       copy.geometry=node.geometry;copy.material=node.material?.clone?.()||node.material;
+      if(id&&copy.material){
+       const visualColors={kidneys:"#bf686e",heart:"#bd4e5a",lungs:"#d68e98",liver:"#a7585a",brain:"#d3a1b1",digestive:"#df968b",pancreas:"#e1c186"};
+       const collection=Array.isArray(copy.material)?copy.material:[copy.material];
+       for(const m of collection){
+        m.color?.set(visualColors[id]||"#d6a1a0");
+        m.roughness=.54;m.metalness=0;
+        if("clearcoat" in m)m.clearcoat=.18;
+        m.needsUpdate=true;
+       }
+      }
       const inv=new T.Matrix4().copy(visceral.scene.matrixWorld).invert();copy.matrix.multiplyMatrices(inv,node.matrixWorld);copy.matrixAutoUpdate=false;
       keyed[id].add(copy);targetNames[node.name]=id;
      }
@@ -201,6 +213,22 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
    // Keep original coat but disable duplicate raw visceral meshes; only our organ toggles are selectable.
    visceral.scene.visible=false;
    raw.add(collected);
+   // Visual shell must be a genuinely transparent overlay, not an opaque white dog.
+   coat.scene.traverse(obj=>{
+    if(!obj.isMesh)return;
+    const list=Array.isArray(obj.material)?obj.material:[obj.material];
+    obj.material=list.map(m=>{
+     const translucent=m.clone();
+     translucent.transparent=true;
+     translucent.opacity=.115;
+     translucent.depthWrite=false;
+     translucent.side=T.DoubleSide;
+     translucent.roughness=.67;
+     translucent.color?.set("#a7cbd5");
+     return translucent;
+    });
+    if(obj.material.length===1)obj.material=obj.material[0];
+   });
    ghost=null;dogReal={coat:coat.scene,raw,meshGroups:collected};
    mode="canine-CT-derived-hybrid-GLB";
    sourceStatus="CT_DERIVED_AND_MODELED_NOT_DIAGNOSTIC";
