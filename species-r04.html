@@ -2,8 +2,8 @@
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071421">
-<meta name="description" content="PRMR R09 : maillages anatomiques 3D rotatifs indépendants, organes d'origine CT canine et prévisualisation distincte pour six espèces, données précliniques exploratoires et molécules RDKit.">
-<title>PRMR-R09 | Organes 3D rotatifs et comparaison scientifique interespèces</title>
+<meta name="description" content="PRMR R09 : maillages anatomiques 3D rotatifs indépendants, organes d'origine CT canine et exploration anatomique canine, données précliniques exploratoires et molécules RDKit.">
+<title>PRMR-R09 | Organes 3D rotatifs et exploration scientifique canine</title>
 <link rel="stylesheet" href="./r04.css">
 <link rel="stylesheet" href="./r04-atlas.css?v=r09-real-organ-scenes-20261117">
 <script type="module" src="./src/r04_app.mjs?v=r09-real-organ-scenes-20261117"></script>
@@ -24,7 +24,7 @@
 <div class="r4-head">
  <div><div class="r4-eye">PRMR-R04 / Simulation scientifique interactive / 16 novembre 2026</div>
  <h1>PRMR R09 : <span>organes individuels et corps transparents en 3D rotative</span></h1>
- <p>Un véritable poste d’exploration : animal transparent en grille 3D, organes internes mis en évidence (reins, cœur, foie, poumons), molécules orientables en 3D et graphiques dynamiques. Le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Le chien contient un atlas 3D de surfaces canines issues partiellement de CT, modifiées et créditées ; les cinq autres espèces possèdent des géométries 3D éducatives distinctes, non validées par imagerie.</p></div>
+ <p>Un véritable poste d’exploration : animal transparent en grille 3D, organes internes mis en évidence (reins, cœur, foie, poumons), molécules orientables en 3D et graphiques dynamiques. Le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Le chien contient un atlas 3D de surfaces canines issues partiellement de CT, modifiées et créditées ; les autres espèces ont été retirées du catalogue en raison de modèles anatomiques insuffisamment documentés.</p></div>
  <svg class="r4-head-icon" viewBox="0 0 160 100" role="img" aria-label="Schéma des deux reins"><defs><linearGradient id="kidGlow"><stop stop-color="#6dfbdc"/><stop offset="1" stop-color="#159cae"/></linearGradient></defs>
   <path d="M61 8 C25 0 12 24 15 51 C17 78 44 91 59 74 C72 56 46 52 48 39 C50 29 69 23 61 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
   <path d="M99 8 C135 0 148 24 145 51 C143 78 116 91 101 74 C88 56 114 52 112 39 C110 29 91 23 99 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
@@ -33,7 +33,7 @@
  </svg>
 </div>
 <div class="r4-kpis" aria-label="Résumé de la recherche R04">
- <div class="r4-kpi"><small>Espèces accessibles</small><b>6 espèces</b><em>Du rongeur au miniporc et au primate</em></div>
+ <div class="r4-kpi"><small>Espèces accessibles</small><b>1 espèce</b><em>Chien · surfaces CT vétérinaires modifiées</em></div>
  <div class="r4-kpi"><small>Protocoles R02 comparés</small><b>3 régimes</b><em>Doublet, R02-A, R02-B</em></div>
  <div class="r4-kpi"><small>Modèles moléculaires</small><b>4 conformères</b><em>Coordonnées 3D RDKit</em></div>
  <div class="r4-kpi"><small>État de la recherche</small><b>In silico</b><em>Calculs reproductibles, non expérimentaux</em></div>
@@ -44,7 +44,7 @@
 <aside class="r4-panel r4-controls" aria-labelledby="parameters-heading">
  <div class="r4-panel-title"><h2 id="parameters-heading">Console expérimentale</h2><span class="r4-tag">Interactif</span></div>
  <p>Choisir un animal pour afficher immédiatement son profil et modifier les hypothèses du scénario.</p>
- <h3>Choix de l'espèce</h3>
+ <h3>Espèce retenue</h3>
  <div class="r4-species" id="species-grid" role="group" aria-label="Sélectionner une espèce"></div>
  <div class="r4-control-grid">
   <div class="r4-control full"><label for="r4-mass">Masse animale <span class="r4-readout" id="mass-readout">—</span></label><input id="r4-mass" type="range" min="0.015" max=".055" step="0.001" value=".025"><p id="mass-range" style="margin:1px 0 3px"></p></div>
@@ -118,7 +118,7 @@
   </div>
  </section>
  <section class="r4-panel r4-c12" aria-labelledby="comparison-heading">
-  <div class="r4-panel-title"><h2 id="comparison-heading">Comparaison explicative des six espèces</h2><span class="r4-tag">Faits qualitatifs, pas notes fictives</span></div>
+  <div class="r4-panel-title"><h2 id="comparison-heading">Profil anatomique du chien</h2><span class="r4-tag">Faits qualitatifs, pas notes fictives</span></div>
   <div class="r4-scroll"><table class="r4-table"><thead><tr><th>Espèce</th><th>Structure rénale</th><th>Intérêt du modèle</th><th>PK des triples PRMR</th></tr></thead><tbody id="r4-species-table"></tbody></table></div>
   <div class="r4-indicator"><strong>Interprétation scientifique</strong><p>Le porc est pertinent pour l'architecture multipapillaire, la perfusion et certains modèles de néphropathie. Le chien est un modèle non-rongeur de toxicologie, non un substitut universel du rein humain. Un primate non humain n'est justifié que si la question ne peut pas être résolue autrement. Aucune de ces espèces ne dispose ici d'une PK validée des associations R02-A/R02-B.</p></div>
  </section>
@@ -142,6 +142,6 @@
 </div>
 </div>
 </main>
-<footer class="r4-footer">PRMR-R04 — Interface originale interactive. Aucune expérience animale n'est revendiquée. Les graphiques d'AUC interespèces montrent uniquement la sensibilité d'un modèle non calibré ; les probabilités de toxicité, d'efficacité et de guérison restent inconnues.</footer>
+<footer class="r4-footer">PRMR-R04 — Interface originale interactive. Aucune expérience animale n'est revendiquée. Les graphiques d'AUC exploratoires montrent uniquement la sensibilité d'un modèle non calibré ; les probabilités de toxicité, d'efficacité et de guérison restent inconnues.</footer>
 </div>
 </body></html>
