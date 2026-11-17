@@ -1,0 +1,13 @@
+/* PRMR R11 - namespaced navigation, no framework or external font */
+.prmr-routebar{position:relative;z-index:100;background:#071d2a;color:#d9f1ee;border-bottom:1px solid #315268;font:500 12px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+.prmr-routebar *{box-sizing:border-box}
+.prmr-route-inner{display:flex;align-items:center;gap:12px;max-width:1500px;margin:auto;padding:12px clamp(12px,3vw,30px);flex-wrap:wrap}
+.prmr-routebar .prmr-route-brand{font-weight:800;letter-spacing:.01em;white-space:nowrap;color:#79ead0;text-decoration:none}
+.prmr-routebar .prmr-route-caption{font-size:11px;color:#bdd0d6;margin-right:8px}
+.prmr-route-links{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.prmr-routebar a:not(.prmr-route-brand){color:#d3eae8;text-decoration:none;padding:8px 10px;border-radius:7px;border:1px solid transparent;white-space:nowrap}
+.prmr-routebar a:not(.prmr-route-brand):hover,.prmr-routebar a[aria-current="page"]{background:#194a52;border-color:#407b7b;color:#fff}
+.prmr-route-step{display:flex;align-items:center;gap:6px}.prmr-route-step small{display:inline-flex;border:1px solid #52747b;color:#a7d2cc;border-radius:5px;font-size:10px;padding:2px 5px}
+.prmr-routebar .prmr-route-state{margin-left:auto;color:#d1c5aa;font-size:11px;background:#302b24;border:1px solid #65543e;border-radius:6px;padding:6px 9px}
+.prmr-route-skip{position:absolute;left:-99999px;top:0}.prmr-route-skip:focus{left:8px;z-index:1000;background:#fff;color:#071b26;padding:9px}
+@media(max-width:860px){.prmr-routebar .prmr-route-state{margin:0}.prmr-route-inner{gap:7px}.prmr-route-links{overflow:auto;flex-wrap:nowrap;width:100%;padding-bottom:5px}}
