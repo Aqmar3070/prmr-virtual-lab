@@ -1,0 +1,79 @@
+name: PRMR R09 licensed anatomy assets
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/import-r09-veterinary-models.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-open-veterinary-models:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install audited MIT Three.js source for independent, offline rotation
+        run: |
+          npm install --no-save --no-package-lock three@0.181.0
+          mkdir -p vendor/three/build vendor/three/examples/jsm/loaders vendor/three/examples/jsm/controls vendor/three/examples/jsm/utils
+          cp node_modules/three/build/three.core.js vendor/three/build/three.core.js
+          cp node_modules/three/build/three.module.js vendor/three/build/three.module.js
+          cp node_modules/three/examples/jsm/loaders/GLTFLoader.js vendor/three/examples/jsm/loaders/GLTFLoader.js
+          cp node_modules/three/examples/jsm/controls/OrbitControls.js vendor/three/examples/jsm/controls/OrbitControls.js
+          cp node_modules/three/examples/jsm/utils/BufferGeometryUtils.js vendor/three/examples/jsm/utils/BufferGeometryUtils.js
+          cp node_modules/three/LICENSE vendor/three/LICENSE
+          python3 - <<'PY'
+          from pathlib import Path
+          for p in Path('vendor/three/examples/jsm').rglob('*.js'):
+              code=p.read_text()
+              code=code.replace("from 'three'", "from '../../../build/three.module.js'")
+              p.write_text(code)
+          PY
+          test "$(wc -c < vendor/three/build/three.core.js)" -gt 1000000
+          test "$(wc -c < vendor/three/build/three.module.js)" -gt 300000
+      - name: Import credited dog organ CT meshes and artistic dog coat under verified source SHA
+        run: |
+          mkdir -p assets/vet3d
+          curl --fail --location --retry 4 --silent --show-error "https://raw.githubusercontent.com/Ketbome/vet-atlas/main/public/models/dog/visceral.glb" -o assets/vet3d/dog-visceral.glb
+          curl --fail --location --retry 4 --silent --show-error "https://raw.githubusercontent.com/Ketbome/vet-atlas/main/public/models/dog/integumentary.glb" -o assets/vet3d/dog-coat.glb
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,struct,json
+          checks={
+           'dog-visceral.glb':'5b34701bc790a0c78aeab39736d42ac11ca96458',
+           'dog-coat.glb':'f908353992baa2074f6d8c2d35dd74324f5a75ff'
+          }
+          manifest={}
+          for name,expected in checks.items():
+              raw=(Path('assets/vet3d')/name).read_bytes()
+              assert len(raw)>100000 and raw[:4]==b'glTF'
+              actual=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\x00'+raw).hexdigest()
+              assert actual==expected,(name,actual,expected)
+              header=struct.unpack('<5I',raw[:20])
+              model=json.loads(raw[20:20+header[3]].decode('utf-8').strip('\x00 '))
+              manifest[name]={
+               'source':'https://github.com/Ketbome/vet-atlas',
+               'source_path':'public/models/dog/'+('visceral.glb' if name=='dog-visceral.glb' else 'integumentary.glb'),
+               'upstream_blob_sha':expected,
+               'sha256':hashlib.sha256(raw).hexdigest(),
+               'bytes':len(raw),
+               'nodes':[node.get('name') for node in model.get('nodes',[])],
+               'fidelity':'mixed CT-derived/modelled/illustrative; NOT fully validated'
+              }
+          (Path('assets/vet3d')/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Push vendored library and provenance-audited source assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vendor/three assets/vet3d
+          if ! git diff --cached --quiet; then
+            git commit -m "feat(PRMR-R09): offline three.js viewer and licensed canine CT-informed GLB assets"
+            git push origin HEAD:main
+          fi
