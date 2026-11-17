@@ -17,5 +17,7 @@ jobs:
           node --check src/r04_engine.mjs
           node --check src/r04_visuals.mjs
           node --check src/r04_atlas.mjs
+          node --check src/r04_embedded.mjs
+          node --check src/r04_molecule_deck.mjs
       - name: Run numerical tests
         run: node --test tests/*.test.mjs
