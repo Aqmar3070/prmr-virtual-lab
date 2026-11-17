@@ -55,7 +55,8 @@ summary{cursor:pointer;font-size:13px;color:#90dfd4;font-weight:800}
 footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:11px;color:#99b3c0;line-height:1.75}
 @media(max-width:920px){.selectors{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.selectors,.kpis,.grid2,.grid3,.ratiogrid{grid-template-columns:1fr}.panel{padding:17px}}
-</style></head>
+</style><script type="module" src="./src/r04_embedded.mjs?v=refonte-20261117"></script>
+</head>
 <body>
 <main>
 <header class="header">
@@ -79,14 +80,8 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:1
  <div class="kpi"><small>Associations comparées</small><b>3</b><small>Double référence, R02-A, R02-B</small></div>
  <div class="kpi"><small>Probabilité réelle de guérison</small><b>?</b><small>Non estimable avec les données disponibles</small></div>
 </div>
-<figure class="r4-original-poster" id="r03-original-poster">
- <div class="r4-original-poster-header">
-  <div><strong>Tableau PK/PD — illustration originale PRMR</strong><small>Image de présentation. Les graphiques et chiffres illustratifs de l'affiche ne sont pas des mesures animales.</small></div>
-  <a href="./assets/illustrations/r04/tableau-pkpd.png" target="_blank" rel="noopener noreferrer">Voir l'image originale</a>
- </div>
- <img id="r03-original-image" src="./assets/illustrations/r04/tableau-pkpd.png?v=prmr-20261117-assets" loading="eager" alt="Affiche originale PRMR sur l'étude PK/PD : représentation pédagogique, non preuve de guérison">
- <figcaption class="r4-original-poster-warning">Les valeurs représentées graphiquement dans l'affiche sont illustratives. Les scénarios numériques et leurs limites figurent dans les tableaux interactifs ci-dessous.</figcaption>
-</figure>
+<section id="r5-risk-stage" aria-label="Comparateur interactif d'animaux et de molécules en 3D"></section>
+<p class="r4-banner" style="margin-top:15px">Ce poste interactif unifie les six espèces, tandis que la section historique ci-dessous conserve son modèle R03 initial de souris et de rat. Aucun des deux ne détermine une probabilité biologique de guérison.</p>
 <section id="assumptions">
 <h2>Données pharmacocinétiques de départ</h2>
 <p>Rapports AUC tirés de documents pharmacologiques relatifs à des personnes. Un rapport AUC plus haut indique une exposition plus forte au composé concerné, <strong>pas</strong> un pourcentage de toxicité.</p>
@@ -205,11 +200,7 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:1
 <footer>PRMR-R03 · Stress-test exploratoire et non PBPK validé · Aucune administration animale réalisée · Aucun résultat de réparation ou de guérison · Aucun pourcentage de toxicité réelle inféré.</footer>
 </main>
 <script type="module">
-const r03Poster=document.getElementById("r03-original-poster");
-const r03Image=document.getElementById("r03-original-image");
-r03Image?.addEventListener("load",()=>{r03Poster.hidden=false});
-r03Image?.addEventListener("error",()=>{r03Poster.remove()});
-if(r03Image?.complete&&r03Image.naturalWidth>0){r03Poster.hidden=false}
+
 
 import {build,SPECIES,sglt2Inhibition,massFactor} from "./src/r03_model.mjs";
 const data=build(),$=id=>document.getElementById(id);
