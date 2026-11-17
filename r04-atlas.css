@@ -190,3 +190,60 @@
 .r4-st-portrait[data-mode="stylized"] .r5-scene-hint{color:#eed2a3;border-color:#9b7643}
 .r4-st-portrait .r5-animal-sculpture{border-radius:9px}
 @media(prefers-reduced-motion:reduce){.r5-animal-sculpture{scroll-behavior:auto}}
+
+/* R08 — anatomical 3D wireframe replaces the external-surface photo viewer.
+   The wireframe is a schematic non-diagnostic visualization, not CT/MRI. */
+.r4-st-portrait[data-mode="anatomy"],.r4-st-portrait[data-mode="static"]{
+ background:radial-gradient(ellipse at 48% 42%,#134d61 0%,#082638 75%);
+}
+.r4-st-portrait[data-mode="anatomy"] .r5-animal-sculpture{
+ display:block!important;position:absolute;inset:0;width:100%;height:100%;
+ z-index:2;opacity:1;cursor:grab;touch-action:none;border-radius:0;
+}
+.r4-st-portrait[data-mode="anatomy"] .r5-animal-sculpture:active{cursor:grabbing}
+.r4-st-portrait[data-mode="static"] .r5-animal-sculpture{display:none!important}
+.r8-anatomy-fallback{position:absolute;inset:0;width:100%;height:100%;display:none;opacity:.92;pointer-events:none}
+.r4-st-portrait[data-mode="static"] .r8-anatomy-fallback{display:block}
+.r4-st-portrait[data-mode="anatomy"] .r8-anatomy-fallback{display:none}
+.r4-st-portrait:before{display:none!important}
+.r4-st-portrait .r5-scene-hint{
+ z-index:4;bottom:7px;padding:5px 10px;max-width:96%;
+ font-size:9px;line-height:1.35;font-weight:700;letter-spacing:.015em;
+ text-align:center;background:#04202cdd;color:#d0f7f1;
+ border:1px solid #55aab5;border-radius:18px;
+}
+.r8-organ-switch{
+ display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+ gap:6px;padding:11px 9px 9px;background:linear-gradient(150deg,#0d3c4a,#0a293a);
+ border-top:1px solid #3a8390;
+}
+.r8-organ-button{
+ appearance:none;border:1px solid #366e7e;border-radius:8px;
+ background:#082e3c;color:#c9e5e8;
+ padding:8px 9px;min-height:38px;
+ font-family:inherit;font-size:11px;line-height:1.25;font-weight:750;
+ white-space:normal;overflow-wrap:break-word;text-align:center;
+ cursor:pointer;transition:border-color .14s,background .14s;
+}
+.r8-organ-button:hover{border-color:var(--r8-organ-accent);background:#104c54;color:#fff}
+.r8-organ-button[aria-pressed="true"]{
+ border-color:var(--r8-organ-accent);background:#164752;
+ box-shadow:inset 0 0 0 1px var(--r8-organ-accent),0 0 13px #2d9f9d2b;
+ color:#f0fff9;
+}
+.r8-organ-button:focus-visible,.r8-anatomy-canvas:focus-visible{outline:2px solid #b3fff2;outline-offset:2px}
+.r8-anatomy-note{
+ margin:0;padding:9px 13px 11px;background:#0b3141;
+ color:#afd4d9;border-bottom:1px solid #286a7c;
+ font-size:11px;line-height:1.55;min-height:47px;text-align:center;
+}
+.r8-anatomy-canvas{image-rendering:auto}
+@media(min-width:781px){.r4-st-portrait[data-mode="anatomy"]{height:355px}}
+@media(max-width:780px){.r4-st-portrait[data-mode="anatomy"]{height:320px}}
+@media(max-width:520px){
+ .r4-st-portrait[data-mode="anatomy"]{height:278px}
+ .r8-organ-switch{padding:9px 7px;gap:5px}
+ .r8-organ-button{font-size:10px;padding:7px 7px;min-height:36px}
+ .r8-anatomy-note{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.r8-organ-button{transition:none}}
