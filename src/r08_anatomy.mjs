@@ -88,7 +88,7 @@ function wire(ctx,e,v,near){
  }
 }
 const centers={
- kidneys:[[.42,-.17,-.31],[.42,-.17,.31]],
+ kidneys:[[.50,-.15,-.36],[.33,-.19,.36]],
  heart:[[-.49,.15,.0]],
  liver:[[-.05,-.16,.04]],
  lungs:[[-.54,.24,-.22],[-.54,.24,.22]]
@@ -169,7 +169,7 @@ function background(ctx,w,h){
  for(let x=0;x<w;x+=s){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}
  for(let y=0;y<h;y+=s){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
  ctx.font="600 10px system-ui";ctx.fillStyle="rgba(187,233,234,.73)";
- ctx.fillText("PRMR · ATLAS ANATOMIQUE SCHÉMATIQUE",12,17);
+ ctx.fillText("PRMR · ATLAS FILAIRE 3D",12,17);
 }
 function labels(ctx,v,mode,species){
  const active=mode==="all"?["kidneys","heart","liver","lungs"]:[mode];
@@ -215,7 +215,7 @@ export function createAnatomyViewer(canvas,{species="mouse",organ="kidneys",onRe
  let ctx;try{ctx=canvas?.getContext("2d",{alpha:false})}catch{return unsupported}
  if(!ctx)return unsupported;
  let current=ANATOMY_SPECIES[species]?species:"mouse",focus=ORGAN_MODES[organ]?organ:"kidneys";
- let yaw=-.22,pitch=.10,zoom=1,raf=0,rendered=0,alive=true,pressed=false,px=0,py=0;
+ let yaw=-.45,pitch=.10,zoom=1,raf=0,rendered=0,alive=true,pressed=false,px=0,py=0;
  const draw=()=>{
   raf=0;if(!alive)return;
   const box=canvas.getBoundingClientRect();
@@ -234,7 +234,7 @@ export function createAnatomyViewer(canvas,{species="mouse",organ="kidneys",onRe
  const move=e=>{if(!pressed)return;yaw+=(e.clientX-px)*.009;pitch=clamp(pitch+(e.clientY-py)*.008,-.9,.9);px=e.clientX;py=e.clientY;request()};
  const up=e=>{pressed=false;try{canvas.releasePointerCapture?.(e.pointerId)}catch{}};
  const wheel=e=>{e.preventDefault();zoom=clamp(zoom*(e.deltaY<0?1.08:.92),.64,1.6);request()};
- const reset=()=>{yaw=-.22;pitch=.10;zoom=1;request()};
+ const reset=()=>{yaw=-.45;pitch=.10;zoom=1;request()};
  const keyboard=e=>{
   let done=true;
   if(e.key==="ArrowLeft")yaw-=.13;else if(e.key==="ArrowRight")yaw+=.13;
