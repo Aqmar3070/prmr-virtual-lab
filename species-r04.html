@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="./r04-atlas.css?v=r12-20261117">
 <script type="module" src="./src/r04_app.mjs?v=r12-20261117"></script>
 <link rel="stylesheet" href="./prmr-route.css?v=r12-20261117">
+<script type="module">
+import {mountProvenancePanel} from "./src/r12_provenance_panel.mjs?v=r12-20261117";
+mountProvenancePanel("r12-provenance");
+</script>
 <script type="module" src="./src/prmr_route.mjs?v=r12-20261117"></script>
 </head><body>
 <div class="r4-shell">
@@ -114,6 +118,10 @@
   <div class="r4-panel-title"><h2 id="comparison-heading">Profil anatomique de l'espèce sélectionnée</h2><span class="r4-tag">Faits qualitatifs, pas notes fictives</span></div>
   <div class="r4-scroll"><table class="r4-table"><thead><tr><th>Espèce</th><th>Structure rénale</th><th>Intérêt du modèle</th><th>PK des triples PRMR</th></tr></thead><tbody id="r4-species-table"></tbody></table></div>
   <div class="r4-indicator"><strong>Interprétation scientifique</strong><p>Le porc est pertinent pour l'architecture multipapillaire, la perfusion et certains modèles de néphropathie. Le chien est un modèle non-rongeur de toxicologie, non un substitut universel du rein humain. Un primate non humain n'est justifié que si la question ne peut pas être résolue autrement. Aucune de ces espèces ne dispose ici d'une PK validée des associations R02-A/R02-B.</p></div>
+ </section>
+ <section class="r4-panel r4-c12" aria-labelledby="provenance-heading">
+  <div class="r4-panel-title"><h2 id="provenance-heading">D'où viennent ces surfaces 3D</h2></div>
+  <div id="r12-provenance"></div>
  </section>
  <section class="r4-panel r4-c12" aria-labelledby="plan-heading">
   <div class="r4-panel-title"><h2 id="plan-heading">Parcours scientifique et traçabilité</h2><span class="r4-tag">Étude numérique réellement exécutée</span></div>
