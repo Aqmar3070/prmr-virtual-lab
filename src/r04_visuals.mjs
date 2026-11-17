@@ -67,7 +67,7 @@ function body(species,renal,hepatic){
  nhp:{body:[1.18,.78,.61],head:[-1.2,.71,0,.64,.68,.53],nose:-1.7,legs:1.16,ear:.2,tail:1.6},
  rabbit:{body:[1.53,.66,.56],head:[-1.23,.36,0,.54,.55,.46],nose:-1.73,legs:.72,ear:.87,tail:.20}
  }[species]||{body:[1.5,.7,.6],head:[-1,.3,0,.6,.6,.5],nose:-1.7,legs:1,ear:.3,tail:.6};
- add(0,0,0,...config.body,coat,9);
+ add(0,0,0,config.body[0],config.body[1],config.body[2],coat,9);
  const h=config.head;add(...h,details,8);
  // Frontal muzzle and ears, which make each species identifiable in silhouette.
  add(config.nose,.08,.14,species==="pig"?.45:.27,species==="pig"?.30:.20,.28,details,7);
