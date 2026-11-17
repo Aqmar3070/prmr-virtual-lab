@@ -7,6 +7,8 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pages: write
+  actions: write
 jobs:
   install-photo3d:
     runs-on: ubuntu-24.04
@@ -24,6 +26,12 @@ jobs:
           git add assets/animals-3d assets/animals-photo
           git commit -m "assets(PRMR-R07): 6 maillages photo-texturés vérifiés (GLB + WebP)"
           git push
+      - name: Demander publication Pages et tests graphiques
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" || echo "Pages dépend de sa configuration de déploiement."
+          gh workflow run ui-smoke.yml --ref main || echo "La validation UI peut être relancée manuellement."
       - name: Documentation
         run: |
           echo "Les douze fichiers binaires ont été copiés et leur intégrité vérifiée." >> "$GITHUB_STEP_SUMMARY"
