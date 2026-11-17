@@ -107,6 +107,7 @@ function makeDOM(container,profile,onChoose){
  const conclusion=node("div",undefined,"r4-atlas-summary");
  conclusion.append(node("strong","À retenir"),node("p",profile.anatomy+" · "+profile.ethics+"."));
  conclusion.append(node("p","La recherche PRMR-R04 explore des scénarios, sans avoir testé physiquement ces associations sur des animaux."));
+ const live=node("p","Profil en cours","r4-atlas-dynamic-physiology");live.id="r4-atlas-dynamic-physiology";conclusion.append(live);
  bottom.append(conclusion);
  const comp=node("div",undefined,"r4-atlas-complement");
  comp.append(node("span","Modifier l'âge, le sexe, le poids, la maladie ou l'état rénal dans la console R04. Les graphiques et avertissements se mettent à jour sans inventer de résultats."));
@@ -122,14 +123,18 @@ function makeDOM(container,profile,onChoose){
 export function createVisualAtlas({onChoose,getResult}){
  const host=$("r4-visual-atlas");
  if(!host)throw Error("Atlas R04 missing host");
- let images=null,latest=null;
+ let images=null,latest=null,lastSpeciesId=null;
  function render(result){
   latest=result;if(!images||!result)return;
   const doc=images.sources[result.species.id];if(!doc)return;
-  const profile={...doc,sp:result.species,all:images.sources,
-   anatomySummary:result.species.anatomy,
-   note:doc.note,anatomy:doc.anatomy,ethics:doc.ethics};
-  makeDOM(host,profile,onChoose);
+  if(result.species.id!==lastSpeciesId||!host.firstChild){
+    const profile={...doc,sp:result.species,all:images.sources,
+     anatomySummary:result.species.anatomy,
+     note:doc.note,anatomy:doc.anatomy,ethics:doc.ethics};
+    makeDOM(host,profile,onChoose);lastSpeciesId=result.species.id;
+  }
+  const live=document.getElementById("r4-atlas-dynamic-physiology");
+  if(live)live.textContent="Profil sélectionné : "+OPTIONS.age[result.inputs.age]+" · "+OPTIONS.sex[result.inputs.sex]+" · "+OPTIONS.constitution[result.inputs.constitution]+" · "+OPTIONS.disease[result.inputs.disease]+". Exposition tissulaire réelle et bénéfice non déterminés.";
  }
  fetch("./research-data/r04_animal_portraits.json",{cache:"force-cache"}).then(resp=>{
    if(!resp.ok)throw Error("Portrait manifest HTTP "+resp.status);
