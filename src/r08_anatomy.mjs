@@ -207,8 +207,7 @@ function renderScene(ctx,v,species,mode){
  }
  for(const e of body.ellipses)wire(ctx,e,v,true);
  labels(ctx,v,mode,species);
- ctx.font="10px system-ui";ctx.textAlign="left";ctx.fillStyle="#a9cfda";
- ctx.fillText("Proportions et placements indicatifs · non issus d’imagerie",12,v.h-10);
+ // Scientific disclaimer is outside the canvas in the accessible HTML note (no overlapping text).
 }
 /** Always-available rendering: Canvas2D instead of costly WebGL/glTF pipeline. */
 export function createAnatomyViewer(canvas,{species="mouse",organ="kidneys",onRender}={}){
@@ -224,7 +223,7 @@ export function createAnatomyViewer(canvas,{species="mouse",organ="kidneys",onRe
   const dpr=clamp(window.devicePixelRatio||1,1,2),W=Math.ceil(w*dpr),H=Math.ceil(h*dpr);
   if(canvas.width!==W||canvas.height!==H){canvas.width=W;canvas.height=H}
   ctx.setTransform(dpr,0,0,dpr,0,0);
-  renderScene(ctx,{w,h,yaw,pitch,zoom,scale:Math.min(w/5.55,h/3.55)*zoom},current,focus);
+  renderScene(ctx,{w,h,yaw,pitch,zoom,scale:Math.min(w/4.75,h/2.95)*zoom},current,focus);
   rendered++;
   canvas.dataset.anatomyRender=String(rendered);
   canvas.dataset.anatomySpecies=current;canvas.dataset.anatomyOrgan=focus;
