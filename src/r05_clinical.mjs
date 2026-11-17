@@ -1,0 +1,115 @@
+// PRMR Phase 5 / Human clinical renal research. Educational anatomy, not segmented human medical imaging.
+import * as T from "../vendor/three/build/three.module.js";
+import {OrbitControls} from "../vendor/three/examples/jsm/controls/OrbitControls.js";
+const $=id=>document.getElementById(id);
+const CATALOG=[
+{key:"ace",name:"IEC : ramipril, lisinopril, énalapril",type:"established",target:"SRAA / hypertension / albuminurie",trial:"KDIGO 2024 ; essais REIN/AIPRI",result:"Réduction du risque de progression chez des groupes avec albuminurie ; traitement de fond selon indication.",limit:"Surveiller potassium, tension, créatinine. Ne pas associer IEC + ARA2.",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
+{key:"arb",name:"ARA2 : losartan, irbésartan, valsartan",type:"established",target:"SRAA / néphropathie albuminurique",trial:"RENAAL ; IDNT ; KDIGO 2024",result:"Réduction d'événements rénaux chez des patients sélectionnés, notamment avec diabète et albuminurie.",limit:"Bénéfice populationnel, pas de restitution anatomique prouvée. Risque hyperkaliémie.",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
+{key:"dapa",name:"Dapagliflozine",type:"established",target:"SGLT2 / rein–cœur",trial:"DAPA-CKD (n=4 304)",result:"HR 0,61 : réduction relative de 39 % du critère composite rénal ou décès rénal/cardiovasculaire dans la population étudiée.",limit:"Ne démontre pas la repousse des néphrons ; indications et surveillance à individualiser.",url:"https://doi.org/10.1056/NEJMoa2024816"},
+{key:"empa",name:"Empagliflozine",type:"established",target:"SGLT2 / progression rénale",trial:"EMPA-KIDNEY (n=6 609)",result:"HR 0,72 : réduction relative de 28 % du critère composite progression rénale ou décès cardiovasculaire.",limit:"Ne signifie pas une guérison. Surveillance de l'état volémique et des effets indésirables.",url:"https://doi.org/10.1056/NEJMoa2204233"},
+{key:"cana",name:"Canagliflozine",type:"established",target:"SGLT2 / MRC diabétique albuminurique",trial:"CREDENCE",result:"Démonstration d'un bénéfice sur un critère composite rénal et cardiovasculaire dans une population diabétique.",limit:"Populations, autorisations et précautions propres à la molécule.",url:"https://doi.org/10.1056/NEJMoa1811744"},
+{key:"fine",name:"Finérénone",type:"established",target:"Récepteur minéralocorticoïde non stéroïdien",trial:"FIDELIO-DKD ; FIGARO-DKD",result:"FIDELIO-DKD : HR 0,82 pour le critère composite rénal chez des patients avec diabète de type 2 et MRC.",limit:"Surveillance du potassium ; pas de preuve de régénération rénale complète.",url:"https://doi.org/10.1056/NEJMoa2025845"},
+{key:"sema",name:"Sémaglutide",type:"established",target:"GLP-1 / MRC avec diabète de type 2",trial:"FLOW (n≈3 533)",result:"HR 0,76 : réduction relative de 24 % du critère composite rénal/cardiovasculaire de FLOW.",limit:"Résultats propres à la MRC associée au diabète de type 2 ; pas de guérison complète.",url:"https://doi.org/10.1056/NEJMoa2403347"},
+{key:"combo",name:"Finérénone + empagliflozine",type:"established",target:"Combinaison déjà étudiée",trial:"CONFIDENCE (2025)",result:"À 180 jours, réduction de l'albuminurie 29 % supérieure à finérénone seule et 32 % supérieure à empagliflozine seule.",limit:"Critère albuminurie : ne démontre ni régénération des organes ni bénéfice rénal à long terme équivalent.",url:"https://doi.org/10.1056/NEJMoa2410659"},
+{key:"statin",name:"Statines : atorvastatine, rosuvastatine",type:"established",target:"Risque cardiovasculaire lié à la MRC",trial:"KDIGO 2024",result:"Réduction de risque cardiovasculaire selon profil ; ne constitue pas un traitement régénérant du rein.",limit:"Indication dépend du risque cardiovasculaire et du contexte clinique.",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
+{key:"iga",name:"Sparsentan, iptacopan, atrasentan, sibeprenlimab, budésonide ciblé",type:"specific",target:"Néphropathie primitive à IgA",trial:"PROTECT, APPLAUSE-IgAN, ALIGN, VISIONARY et autres",result:"Approches spécifiques à une étiologie glomérulaire ; résultats sur protéinurie et, selon traitement, évolution du DFG.",limit:"Ne pas extrapoler ces traitements à toutes les MRC ; statut réglementaire dépend du pays et de la date.",url:"https://kdigo.org/guidelines/iga-nephropathy/"},
+{key:"anemia",name:"Fer et agents de l'érythropoïèse",type:"specific",target:"Anémie associée à la MRC",trial:"KDIGO : recommandations dédiées",result:"Traitent une complication hématologique de la MRC, sans restaurer la filtration néphronique.",limit:"Risque et bénéfice selon hémoglobine, fer et comorbidités.",url:"https://kdigo.org/guidelines/anemia-in-ckd/"},
+{key:"cells",name:"Rilparencel / cellules rénales autologues",type:"experimental",target:"Réparation cellulaire",trial:"REGEN-006 / NCT05099770 (phase 3)",result:"Programme expérimental évaluant une thérapie cellulaire rénale en MRC diabétique.",limit:"Aucune restauration complète démontrée ; disponibilité et statut à vérifier dans le registre.",url:"https://clinicaltrials.gov/study/NCT05099770"},
+{key:"anti",name:"Antifibrosants et cibles TGF-β / sénescence",type:"experimental",target:"Fibrose rénale / réparation",trial:"Revue 2026 et recherches translationnelles",result:"Mécanismes biologiques étudiés, sans preuve de renversement complet de la fibrose chronique chez l'humain.",limit:"Ni traitement recommandé hors indication, ni preuve de régénération.",url:"https://academic.oup.com/ckj/article/19/9/sfag275/8759698"}
+];
+const tier={established:"Bénéfice clinique documenté",specific:"Indication rénale spécifique",experimental:"Expérimental / non validé"};
+function evidence(){
+ const q=$("evidence-search").value.toLocaleLowerCase("fr").trim(),filter=$("evidence-filter").value;
+ const found=CATALOG.filter(r=>(filter==="all"||r.type===filter)&&[r.name,r.target,r.trial,r.result,r.limit].join(" ").toLocaleLowerCase("fr").includes(q));
+ const root=$("evidence-list");root.replaceChildren();
+ for(const d of found){
+  const article=document.createElement("article");article.className="entry";
+  const tag=document.createElement("span");tag.className="tag";tag.textContent=tier[d.type];
+  const name=document.createElement("h3");name.textContent=d.name;
+  const info=document.createElement("p");info.textContent=d.target+" · "+d.trial;
+  const r=document.createElement("p");r.textContent="Résultat publié : "+d.result;
+  const l=document.createElement("p");l.textContent="Limite : "+d.limit;
+  const a=document.createElement("a");a.href=d.url;a.target="_blank";a.rel="noopener noreferrer";a.textContent="Étude ou recommandation source";
+  article.append(tag,name,info,r,l,a);root.append(article);
+ }
+ if(!found.length){const p=document.createElement("p");p.textContent="Aucune entrée correspondant à ces critères.";root.append(p)}
+}
+$("evidence-search").addEventListener("input",evidence);$("evidence-filter").addEventListener("change",evidence);evidence();
+const NAMES={
+kidneys:["Reins","Filtration glomérulaire, tubules, équilibre hydrique et électrolytique."],
+heart:["Cœur","Débit circulatoire, pression artérielle et syndrome cardiorénal."],
+lungs:["Poumons","Échanges respiratoires ; impact des désordres acido-basiques et de la surcharge hydrique."],
+liver:["Foie","Métabolisme et biotransformation de médicaments."],
+brain:["Cerveau","Conséquences neurologiques possibles de l'urémie et des désordres électrolytiques."],
+stomach:["Estomac","Absorption et tolérance digestive."],
+intestines:["Intestins","Microbiote, absorption et métabolites urémiques."],
+pancreas:["Pancréas","Métabolisme du glucose, diabète et risque rénal."],
+bladder:["Vessie","Stockage urinaire ; distincte de la capacité de filtration des reins."],
+spleen:["Rate","Organe immunitaire et hématologique."],
+vessels:["Vaisseaux","Axes vasculaires artériels et veineux ; hémodynamique rénale."]
+};
+const canvas=$("human-canvas"),status=$("model-status");
+let renderer;
+try{renderer=new T.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:"high-performance"});}
+catch(err){status.textContent="WebGL indisponible sur cet appareil ; les données cliniques restent accessibles.";throw err;}
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.6));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;
+const scene=new T.Scene();scene.background=new T.Color("#0b2532");
+const camera=new T.PerspectiveCamera(38,1,.1,100);camera.position.set(3,2.1,8);
+const controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.enablePan=false;controls.minDistance=2;controls.maxDistance=20;controls.target.set(0,0,0);
+scene.add(new T.HemisphereLight(0xe0f3ff,0x253344,2.7));
+const key=new T.DirectionalLight(0xfff4e9,3.2);key.position.set(-4,8,6);scene.add(key);
+const rim=new T.DirectionalLight(0x75d8e3,2.4);rim.position.set(4,2,-6);scene.add(rim);
+const body=new T.Group();scene.add(body);const structures=new T.Group();scene.add(structures);
+const organs={};let chosen="kidneys",isolated=false,shellVisible=true;
+const mat=(color,opacity=1)=>new T.MeshStandardMaterial({color,metalness:.04,roughness:.62,transparent:opacity<1,opacity,side:T.DoubleSide,depthWrite:opacity>=1});
+function ell(group,x,y,z,sx,sy,sz,color,opacity=1){const mesh=new T.Mesh(new T.SphereGeometry(1,28,18),mat(color,opacity));mesh.position.set(x,y,z);mesh.scale.set(sx,sy,sz);group.add(mesh);return mesh;}
+function tube(group,coords,r,color,opacity=1){const curve=new T.CatmullRomCurve3(coords.map(c=>new T.Vector3(...c)));const m=new T.Mesh(new T.TubeGeometry(curve,Math.max(16,coords.length*9),r,9,false),mat(color,opacity));group.add(m);return m;}
+function capsule(group,a,b,r,color,opacity=1){const start=new T.Vector3(...a),end=new T.Vector3(...b),d=new T.Vector3().subVectors(end,start);const cyl=new T.Mesh(new T.CylinderGeometry(r*.86,r,d.length(),16,1),mat(color,opacity));cyl.position.copy(start).add(end).multiplyScalar(.5);cyl.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());group.add(cyl);ell(group,...a,r,r,r,color,opacity);ell(group,...b,r,r,r,color,opacity);}
+function organ(id){const g=new T.Group();g.name=id;structures.add(g);organs[id]=g;return g;}
+const skin="#9acbd1",alpha=.10;
+ell(body,0,1.59,0,.40,.50,.33,skin,alpha); // skull
+ell(body,0,1.86,.03,.31,.30,.30,skin,alpha);
+capsule(body,[0,1.24,0],[0,1.04,0],.18,skin,alpha);
+ell(body,0,.43,0,.63,.88,.34,skin,alpha);
+ell(body,0,-.50,0,.51,.39,.36,skin,alpha);
+for(const s of [-1,1]){
+ capsule(body,[s*.61,.99,0],[s*.88,.10,.02],.18,skin,alpha);
+ capsule(body,[s*.88,.10,.02],[s*.89,-.54,.06],.135,skin,alpha);
+ ell(body,s*.89,-.65,.08,.16,.21,.10,skin,alpha);
+ capsule(body,[s*.25,-.65,0],[s*.31,-1.64,0],.245,skin,alpha);
+ capsule(body,[s*.31,-1.64,0],[s*.32,-2.42,.04],.17,skin,alpha);
+ ell(body,s*.32,-2.56,.17,.22,.12,.38,skin,alpha);
+}
+const kidney=organ("kidneys");for(const s of [-1,1]){const k=ell(kidney,s*.34,-.18,-.20,.19,.27,.13,"#b95769");k.rotation.z=s*.18;ell(kidney,s*.32,-.18,-.08,.065,.11,.03,"#e4a0a4");tube(kidney,[[s*.33,-.32,-.1],[s*.27,-.59,-.07],[s*.12,-.84,.02]],.023,"#e5b29a");}
+const heart=organ("heart");const h=ell(heart,-.12,.62,.13,.21,.29,.18,"#dc4b64");h.rotation.z=-.28;tube(heart,[[-.11,.75,.06],[-.12,.94,.09],[.05,1.01,.03]],.055,"#ca4250");
+const lungs=organ("lungs");for(const s of [-1,1]){const l=ell(lungs,s*.27,.68,-.08,.24,.40,.24,"#a8a5c8");l.rotation.z=-s*.11;}tube(lungs,[[0,1.25,0],[0,1.0,0],[0,.85,0]],.06,"#9bb5ca");
+const liver=organ("liver");const li=ell(liver,.20,.18,.05,.39,.22,.26,"#9f5750");li.rotation.z=.09;ell(liver,.40,.03,.1,.09,.12,.10,"#a2ad6b");
+const brain=organ("brain");ell(brain,0,1.88,0,.27,.22,.27,"#d0a7b5");for(const s of [-1,1])for(let i=0;i<5;i++)tube(brain,[[s*.05,1.80+i*.027,.23],[s*.15,1.78+i*.031,.25],[s*.23,1.83+i*.03,.13]],.014,"#ba8194");
+const stomach=organ("stomach");const st=ell(stomach,-.20,.05,.16,.19,.22,.15,"#c8847b");st.rotation.z=-.3;
+const intestines=organ("intestines");for(let i=0;i<5;i++){const y=-.30-i*.13;tube(intestines,[[-.30,y,.18],[-.18,y+.055,.25],[0,y-.035,.27],[.18,y+.046,.24],[.30,y-.01,.15]],.051,"#ca967c");}
+const pancreas=organ("pancreas");const pan=ell(pancreas,.02,-.08,.08,.33,.08,.11,"#e6c584");pan.rotation.z=.09;
+const bladder=organ("bladder");ell(bladder,0,-.75,.11,.17,.17,.15,"#d99b80");
+const spleen=organ("spleen");const sp=ell(spleen,-.43,.20,-.06,.10,.25,.12,"#994d76");sp.rotation.z=-.3;
+const vessels=organ("vessels");tube(vessels,[[0,.92,-.15],[.1,.45,-.22],[.05,.05,-.23],[.04,-.48,-.18],[0,-.75,-.1]],.036,"#d55c64");tube(vessels,[[-.08,.92,-.25],[-.08,.45,-.25],[-.09,-.12,-.25],[-.06,-.65,-.23]],.042,"#557cca");
+function select(id){if(!organs[id])return;chosen=id;update();}
+function update(){
+ for(const [id,g]of Object.entries(organs)){g.visible=!isolated||id===chosen;g.traverse(o=>{if(!o.isMesh)return;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.opacity=(id===chosen?1:.30);m.transparent=m.opacity<1;m.depthWrite=m.opacity>=1;}});}
+ body.visible=shellVisible&&!isolated;
+ for(const b of $("human-organs").querySelectorAll("button"))b.setAttribute("aria-pressed",String(b.dataset.organ===chosen));
+ $("organ-info").textContent=NAMES[chosen][0]+" — "+NAMES[chosen][1]+" Repères schématiques, sans imagerie clinique.";
+ $("toggle-body").textContent="Corps transparent : "+(shellVisible?"visible":"masqué");$("toggle-body").setAttribute("aria-pressed",String(shellVisible));
+ $("toggle-isolate").setAttribute("aria-pressed",String(isolated));
+ $("toggle-isolate").textContent=isolated?"Afficher tous les organes":"Isoler l'organe";
+}
+for(const [id,[label]] of Object.entries(NAMES)){const b=document.createElement("button");b.type="button";b.dataset.organ=id;b.textContent=label;b.addEventListener("click",()=>select(id));$("human-organs").append(b);}
+$("toggle-body").addEventListener("click",()=>{shellVisible=!shellVisible;update()});
+$("toggle-isolate").addEventListener("click",()=>{isolated=!isolated;update()});
+$("reset-view").addEventListener("click",()=>{camera.position.set(3,2.1,8);controls.target.set(0,0,0);controls.update()});
+const raycaster=new T.Raycaster(),pointer=new T.Vector2();let down=null;
+canvas.addEventListener("pointerdown",e=>{down=[e.clientX,e.clientY]});
+canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);const meshes=[];for(const [id,g]of Object.entries(organs))if(g.visible)g.traverse(o=>{if(o.isMesh){o.userData.organ=id;meshes.push(o)}});const hits=raycaster.intersectObjects(meshes);if(hits.length)select(hits[0].object.userData.organ)});
+function resize(){const box=canvas.getBoundingClientRect();if(box.width<10||box.height<10)return;renderer.setSize(box.width,box.height,false);camera.aspect=box.width/box.height;camera.updateProjectionMatrix();}
+const obs=typeof ResizeObserver!=="undefined"?new ResizeObserver(resize):null;obs?.observe(canvas);window.addEventListener("resize",resize);
+let active=true;const viewport=typeof IntersectionObserver!=="undefined"?new IntersectionObserver(entries=>{active=entries.some(e=>e.isIntersecting)},{rootMargin:"100px"}):null;viewport?.observe(canvas);
+function animate(){requestAnimationFrame(animate);if(!active||document.hidden)return;controls.update();renderer.render(scene,camera);}
+update();resize();animate();status.textContent="Atlas humain 3D pédagogique actif · 11 groupes anatomiques · modèle procédural non issu de CT.";
