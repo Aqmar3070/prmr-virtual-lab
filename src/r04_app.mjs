@@ -16,12 +16,13 @@ function el(tag,name,cls){const x=document.createElement(tag);if(name!==undefine
 function speciesIcon(id){
  const sp=SPECIES_R04.find(item=>item.id===id);
  const alt=sp?sp.label:id;
- return '<div class="r4-st-art" data-species="'+id+'"><img src="./assets/animals-photo/'+id+'.webp" onerror="this.onerror=null;this.src=\'./assets/animals/'+id+'.svg\'" alt="Rendu visuel 3D-style de '+alt+'" width="512" height="384" loading="lazy"></div>';
+ return '<div class="r4-st-art" data-species="'+id+'"><img src="./assets/animals-photo/'+id+'.webp" alt="Rendu visuel 3D-style de '+alt+'" width="512" height="384" loading="lazy"></div>';
 }
 function initSpecies(){
  for(const sp of SPECIES_R04){
   const btn=document.createElement("button");btn.type="button";btn.dataset.species=sp.id;
   btn.innerHTML=speciesIcon(sp.id)+"<span>"+sp.label+"</span>";
+  const art=btn.querySelector("img");if(art)art.addEventListener("error",()=>{art.src="./assets/animals/"+sp.id+".svg"},{once:true});
   btn.title=sp.latin+" — "+sp.breed;btn.addEventListener("click",()=>setSpecies(sp.id));
   $("species-grid").append(btn);
   const row=el("tr");row.tabIndex=0;row.style.cursor="pointer";
