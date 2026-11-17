@@ -48,7 +48,7 @@ test("Anatomy canvas has self-contained rendering, zoom and robust no-WebGL fall
  assert.match(css,/r8-anatomy-canvas/);
 });
 test("Visual organ selection does not invent pathology or change R04 PK/PD engine",()=>{
- assert.match(file,/non issus d.imagerie|non anatomique|non calibré|non mesur/);
+ assert.match(file,/no anatomical calibration|not validated morphometric data|schematics|not calibrated/i);
  assert.match(atlas,/Aucune lésion ou toxicité n.est visualisée/);
  assert.ok(atlas.includes("onEdit"));
  assert.ok(!file.includes("computeR04("));
