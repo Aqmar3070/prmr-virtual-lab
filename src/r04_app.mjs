@@ -169,7 +169,7 @@ function refreshOriginalPoster(speciesId){
  if(!item)return;
  const image=$("r4-poster-main-img"),link=$("r4-poster-image-link"),fullscreen=$("r4-poster-fullscreen");
  const url="./assets/illustrations/r04/"+item[0];
- if(image&&image.getAttribute("src")!==url){image.src=url}
+ if(image&&image.dataset.posterPath!==url){image.src=url+"?v=prmr-20261117-assets";image.dataset.posterPath=url}
  if(image)image.alt=item[1]+". Illustration de présentation et non résultat expérimental.";
  if(link)link.href=url;
  if(fullscreen)fullscreen.href=url;
