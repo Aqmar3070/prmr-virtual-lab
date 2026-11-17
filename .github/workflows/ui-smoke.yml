@@ -5,6 +5,9 @@ on:
     paths:
       - "src/r04_*.mjs"
       - "src/r05_*.mjs"
+      - "src/r07_*.mjs"
+      - "assets/animals-3d/*.glb"
+      - "assets/animals-photo/*.webp"
       - "assets/animals/*.svg"
       - "tests/r04_*.test.mjs"
       - "r04-atlas.css"
