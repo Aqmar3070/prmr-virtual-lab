@@ -181,7 +181,7 @@ function labels(ctx,v,mode){
   ctx.fillStyle=ORGAN_MODES[id].color;ctx.beginPath();ctx.arc(anchor[0],anchor[1],3,0,T);ctx.fill();
   const label=ORGAN_MODES[id].label,w=Math.max(62,Math.min(105,label.length*7.1+18)),left=clamp(x-w/2,4,v.w-w-4);
   ctx.fillStyle="rgba(6,31,46,.92)";ctx.strokeStyle=rgb(ORGAN_MODES[id].color,.91,.8);
-  ctx.beginPath();ctx.roundRect(left,y-12,w,23,7);ctx.fill();ctx.stroke();
+  ctx.beginPath();if(typeof ctx.roundRect==="function")ctx.roundRect(left,y-12,w,23,7);else ctx.rect(left,y-12,w,23);ctx.fill();ctx.stroke();
   ctx.fillStyle="#f2ffff";ctx.font="600 11px system-ui";ctx.textAlign="center";
   ctx.fillText(label,left+w/2,y+3);ctx.restore();
  });
