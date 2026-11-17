@@ -1,0 +1,51 @@
+{
+  "dog-visceral.glb": {
+    "source": "https://github.com/Ketbome/vet-atlas",
+    "source_path": "public/models/dog/visceral.glb",
+    "upstream_blob_sha": "5b34701bc790a0c78aeab39736d42ac11ca96458",
+    "sha256": "865408e9963cc7460ab12b9ca75b693861fed196717189d83e4e4fe175f64ede",
+    "bytes": 1758360,
+    "nodes": [
+      "dog_visceral_brain_cerebrum",
+      "dog_visceral_brain_cerebellum",
+      "dog_visceral_brain_brainstem",
+      "dog_visceral_heart",
+      "dog_visceral_aorta",
+      "dog_visceral_venae-cavae",
+      "dog_visceral_pulmonary-trunk",
+      "dog_visceral_pulmonary-veins",
+      "dog_visceral_lungs_L",
+      "dog_visceral_lungs_R",
+      "dog_visceral_trachea",
+      "dog_visceral_esophagus",
+      "dog_visceral_stomach",
+      "dog_visceral_liver",
+      "dog_visceral_pancreas",
+      "dog_visceral_small-intestine",
+      "dog_visceral_large-intestine",
+      "dog_visceral_spleen",
+      "dog_visceral_kidneys_L",
+      "dog_visceral_kidneys_R",
+      "dog_visceral_urinary-bladder",
+      "dog_visceral_prostate",
+      "dog_visceral_thyroid_L",
+      "dog_visceral_thyroid_R"
+    ],
+    "fidelity": "mixed CT-derived/modelled/illustrative; NOT fully validated"
+  },
+  "dog-coat.glb": {
+    "source": "https://github.com/Ketbome/vet-atlas",
+    "source_path": "public/models/dog/integumentary.glb",
+    "upstream_blob_sha": "f908353992baa2074f6d8c2d35dd74324f5a75ff",
+    "sha256": "fd591e538a20e95c4f759c3813b5d4bfdb39bd38ac5e41b91306e5f4724a1efd",
+    "bytes": 400720,
+    "nodes": [
+      "dog_integumentary_skin",
+      "dog_integumentary_claws_L",
+      "dog_integumentary_claws_R",
+      "dog_integumentary_eyes_L",
+      "dog_integumentary_eyes_R"
+    ],
+    "fidelity": "mixed CT-derived/modelled/illustrative; NOT fully validated"
+  }
+}
