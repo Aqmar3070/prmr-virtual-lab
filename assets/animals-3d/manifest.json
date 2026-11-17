@@ -3,7 +3,7 @@
   "created_utc": "2026-11-17",
   "asset_count": 6,
   "source": "user approved generated PNGs",
-  "status": "Binaries packaged but not yet in GitHub repository",
+  "status": "Binaries imported and verified in repository",
   "is_anatomical": false,
   "photorelief": true,
   "manipulation": "WebGL drag 360deg / wheel zoom / double click reset",
@@ -81,5 +81,7 @@
       "origin": "PRMR generated 2D animal cutout",
       "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
     }
-  ]
+  ],
+  "package_zip_sha256": "20fa1c28e92730a31dad545c428d138f05d5d50863cfe83ecd19896575ec9d64",
+  "deployment": "The binary files are committed to the repository; verify GitHub Pages separately"
 }
