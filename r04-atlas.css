@@ -106,3 +106,21 @@
  .r4-st-molecule-card canvas{height:113px}
 }
 @media(prefers-reduced-motion:reduce){.r4-st-species-card:hover{transform:none}}
+
+/* Unified home and embedded interface, replacing detached poster gallery */
+.r5-home-header{display:flex;align-items:end;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:7px 0 19px}
+.r5-home-header h1{margin:9px 0;font-size:clamp(27px,3.2vw,43px);line-height:1.15;letter-spacing:-.045em;color:#e9fffb}
+.r5-home-header h1 span{color:#6becd7}
+.r5-home-header p{font-size:13px;color:#b4d0da;max-width:780px;margin:4px 0;line-height:1.7}
+.r5-home-actions{display:flex;gap:9px;flex-wrap:wrap}
+.r5-home-actions a{text-decoration:none;background:#174c4e;border:1px solid #4cd9c5;color:#dbfff6;padding:10px 13px;font-weight:800;border-radius:9px;font-size:12px}
+.r5-home-actions a:nth-child(2){background:#113043;border-color:#3b7782}
+#r5-home-stage,#r5-risk-stage,#r5-screening-stage,#r5-preclinical-stage,#r4-visual-atlas{margin:14px 0 20px}
+.r4-species .r4-st-art{height:56px;width:100%;border-radius:7px;display:block;margin-bottom:6px}
+.r4-species button{overflow:hidden}
+.r4-species button[aria-pressed=true]{border-color:#75e9d5;box-shadow:0 0 15px #31f6e63a}
+.r4-molecule-thumb3d{display:block;width:100%;height:158px;min-height:120px;border-radius:9px;background:#092334;touch-action:none;cursor:grab}
+.r4-molecule canvas:active{cursor:grabbing}
+.r4-molecule h3{font-size:13px;margin:8px 0 5px;color:#e9fffb}
+.r4-molecule p{font-size:11px;line-height:1.35;color:#acd0d8;margin:0}
+@media(max-width:700px){.r5-home-header h1{font-size:28px}.r4-molecule-thumb3d{height:130px}.r5-home-actions a{flex:1;text-align:center}}
