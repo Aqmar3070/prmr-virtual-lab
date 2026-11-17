@@ -49,6 +49,7 @@ jobs:
           path: |
             /tmp/prmr-r05-home-desktop.png
             /tmp/prmr-r05-home-pig-desktop.png
+            /tmp/prmr-r08-all-organs.png
             /tmp/prmr-r05-r04-desktop.png
             /tmp/prmr-r05-mobile.png
           if-no-files-found: warn
