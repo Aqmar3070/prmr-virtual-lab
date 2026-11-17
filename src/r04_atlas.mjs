@@ -4,14 +4,7 @@
 import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
 import {create3D} from "./r04_visuals.mjs";
 import {createAnimalSculpture} from "./r05_animal3d.mjs";
-export const ANIMAL_ART={
- mouse:"comparaison-especes.png",
- rat:"comparaison-especes.png",
- pig:"porc.png",
- dog:"chien.png",
- nhp:"primate.png",
- rabbit:"lapin.png"
-};
+export const ANIMAL_ART=Object.fromEntries(SPECIES_R04.map(species=>[species.id,"./assets/animals/"+species.id+".svg"]));
 const $=id=>document.getElementById(id);
 const n=(tag,txt,cls)=>{let x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;if(cls)x.className=cls;return x};
 const num=(v,d=2)=>Number(v).toLocaleString("fr-FR",{maximumFractionDigits:d,minimumFractionDigits:d});
