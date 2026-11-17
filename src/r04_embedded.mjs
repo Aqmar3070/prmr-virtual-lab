@@ -1,5 +1,5 @@
 // Shared interactive PRMR research-workbench for landing, R03 and screening.
-import {createVisualAtlas} from "./r04_atlas.mjs?v=r05-standalone-20261117";
+import {createVisualAtlas} from "./r04_atlas.mjs?v=r06-studio-20261117";
 import {computeR04,SPECIES_R04,DEFAULT_R04} from "./r04_engine.mjs";
 const sessions=[];
 function bind(hostId){
