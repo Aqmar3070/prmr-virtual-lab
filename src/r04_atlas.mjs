@@ -3,7 +3,7 @@
 // Scientific values remain live HTML/SVG outputs, never inferred from artwork.
 import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createPhotoAnimalViewer} from "./r07_photo3d.mjs?v=r07-photo-20261117";
+import {createAnatomyViewer,ORGAN_MODES} from "./r08_anatomy.mjs?v=r08-atlas-20261117";
 export const ANIMAL_ART=Object.fromEntries(SPECIES_R04.map(species=>[species.id,"./assets/animals/"+species.id+".svg"]));
 const $=id=>document.getElementById(id);
 const n=(tag,txt,cls)=>{let x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;if(cls)x.className=cls;return x};
@@ -86,19 +86,47 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  large.append(largeTop);
  const profileGrid=make("div","r4-st-profile-body");large.append(profileGrid);
  const portraitPanel=make("div","r5-animal-profile-panel");
- const portrait=make("div","r4-st-portrait");portrait.dataset.species="mouse";
- const standAloneImage=make("img","r5-animal-static");
- standAloneImage.src="./assets/animals-photo/mouse.webp";
- standAloneImage.addEventListener("error",()=>{standAloneImage.src="./assets/animals/"+(last?.species.id||"mouse")+".svg"});
- standAloneImage.alt="Rendu réaliste indépendant de la souris ; apparence de référence, géométrie 3D approximative";
- standAloneImage.width=512;standAloneImage.height=384;standAloneImage.loading="eager";
- portrait.append(standAloneImage);
- const animalCanvas=make("canvas","r5-animal-sculpture");
- animalCanvas.setAttribute("aria-label","Sculpture 3D éducative de l'animal, orientable au toucher ou à la souris");
+ const portrait=make("div","r4-st-portrait");portrait.dataset.species="mouse";portrait.dataset.mode="anatomy";portrait.classList.add("r5-webgl-active");
+ // Canvas2D anatomy replaces the previous GLB viewer. SVG fallback prevents a blank box.
+ const fallbackSvg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+ fallbackSvg.setAttribute("class","r8-anatomy-fallback");
+ fallbackSvg.setAttribute("viewBox","0 0 480 300");
+ fallbackSvg.setAttribute("role","img");
+ fallbackSvg.setAttribute("aria-label","Silhouette transparente schématique avec reins, cœur et foie");
+ fallbackSvg.innerHTML='<g fill="none" stroke="#55cfe3" stroke-width="2.4" opacity=".72"><ellipse cx="256" cy="155" rx="141" ry="67"/><ellipse cx="105" cy="139" rx="48" ry="42"/><path d="M147 148 Q167 132 174 113 M177 203 L171 264 M331 205 L337 263 M392 154 Q427 137 443 171"/><path d="M118 154 Q240 83 376 156 M121 164 Q245 214 389 158"/></g><g fill="#4bd6b8" stroke="#c4fff0" stroke-width="2"><ellipse cx="284" cy="169" rx="18" ry="23"/><ellipse cx="332" cy="169" rx="18" ry="23"/></g><path d="M210 130 C183 98 170 135 210 166 C251 130 236 98 210 130Z" fill="#ff728b"/><ellipse cx="257" cy="181" rx="37" ry="20" fill="#edb36c" opacity=".75"/>';
+ portrait.append(fallbackSvg);
+ const animalCanvas=make("canvas","r5-animal-sculpture r8-anatomy-canvas");
+ animalCanvas.setAttribute("aria-label","Atlas anatomique 3D transparent : silhouette filaire et organes internes ; flèches pour orienter, molette pour agrandir");
  portrait.append(animalCanvas);
- const sceneLabel=make("span","r5-scene-hint","MODÈLE 3D ÉDUCATIF · GLISSER : ROTATION · MOLETTE : ZOOM · DOUBLE-CLIC : RESET");portrait.append(sceneLabel);
+ const sceneLabel=make("span","r5-scene-hint","MAILLAGE TRANSPARENT · GLISSER POUR ORIENTER · MOLETTE POUR ZOOMER");
+ portrait.append(sceneLabel);
+ let anatomy=null,organFocus="kidneys";
+ const organToolbar=make("div","r8-organ-switch");
+ organToolbar.setAttribute("role","group");organToolbar.setAttribute("aria-label","Organe interne à mettre en évidence");
+ const organButtons={};
+ const organDescription=make("p","r8-anatomy-note","Reins bilatéraux : repères schématiques à l'intérieur du corps transparent. Proportions non calibrées.");
+ const organCopy={
+  kidneys:"Reins bilatéraux et trajets urinaires indicatifs. Aucune lésion ou toxicité n'est visualisée.",
+  heart:"Cœur : position conceptuelle mise en évidence dans le thorax. Pas d'imagerie cardiaque.",
+  liver:"Foie : volume indicatif au sein du tronc, sans mesure biologique.",
+  lungs:"Poumons : deux volumes thoraciques simplifiés, sans exploration respiratoire réelle.",
+  all:"Reins, cœur, foie et poumons simultanément. Positions et proportions approximatives."
+ };
+ for(const [id,details] of Object.entries(ORGAN_MODES)){
+  const button=make("button","r8-organ-button",details.label);button.type="button";
+  button.dataset.organ=id;button.setAttribute("aria-pressed",String(id==="kidneys"));
+  button.style.setProperty("--r8-organ-accent",details.color);
+  button.addEventListener("click",()=>{
+   organFocus=id;root.dataset.focusOrgan=id;
+   for(const [key,b] of Object.entries(organButtons))b.setAttribute("aria-pressed",String(key===id));
+   organDescription.textContent=organCopy[id];
+   anatomy?.setOrgan(id);
+  });
+  organButtons[id]=button;organToolbar.append(button);
+ }
+ portrait.dataset.mode="anatomy";root.dataset.focusOrgan="kidneys";
  const portraitOverlay=make("div","r4-st-portrait-label");portraitOverlay.append(make("strong","r4-st-species-name","Souris"),make("small","r4-st-latin","Mus musculus"));
- portraitPanel.append(portrait,portraitOverlay);profileGrid.append(portraitPanel);
+ portraitPanel.append(portrait,organToolbar,organDescription,portraitOverlay);profileGrid.append(portraitPanel);
  const info=make("div","r4-st-props");profileGrid.append(info);
  const decision=make("div","r4-st-insight");decision.append(make("span",null,"AXE SCIENTIFIQUE"),make("strong","r4-st-decision","Approche mécanistique"),make("p","r4-st-remark","La réponse dépend de l'espèce et de la maladie."));
  info.append(decision);
@@ -173,20 +201,20 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   btn.setAttribute("aria-pressed",String(activeMol===mol.id));deck.append(btn);
  }
  const citations=make("div","r4-st-safety-caption",
-  "Molécules : conformères RDKit. Animaux : surfaces GLB phototexturées issues d’une seule vue, épaisseur et revers reconstruits, non anatomiquement validés. Les images ne prouvent ni toxicité ni guérison.");
+  "Molécules : conformères RDKit. Animaux : vues 3D pédagogiques filaires avec organes internes schématiques, sans atlas anatomique validé ni imagerie réelle. Les images ne prouvent ni toxicité ni guérison.");
  moleculePanel.append(citations);shell.append(moleculePanel);
  root.append(shell);
  renal=create3D(organCanvas,{kind:"kidney"});
- const sculpture=createPhotoAnimalViewer(animalCanvas,{
-  species:"mouse",
-  onMode:(kind,message)=>{
-   if(kind==="photo3d"||kind==="stylized")portrait.classList.add("r5-webgl-active");
-   else portrait.classList.remove("r5-webgl-active");
-   sceneLabel.textContent=message;
-   portrait.dataset.mode=kind;
+ anatomy=createAnatomyViewer(animalCanvas,{species:"mouse",organ:"kidneys",
+  onRender:({species,organ,count})=>{
+   portrait.dataset.mode="anatomy";portrait.dataset.rendered=String(count);
+   sceneLabel.textContent="ATLAS FILAIRE · "+ORGAN_MODES[organ].label.toUpperCase()+" · ROTATION / ZOOM · ANATOMIE SCHÉMATIQUE";
   }
  });
- if(!sculpture.supported){sceneLabel.textContent="Illustration fixe : WebGL indisponible";portrait.classList.remove("r5-webgl-active")}
+ if(!anatomy.supported){
+  portrait.dataset.mode="static";
+  sceneLabel.textContent="Schéma anatomique fixe · affichage 3D indisponible";
+ }
  atomFetch().then(data=>{
   if(!root.isConnected)return;
   for(const mol of MOLECULES_R04){
@@ -198,10 +226,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   if(!result)return;
   last=result;const id=result.species.id,metaData=LABS[id];
   portrait.dataset.species=id;
-  const fallback="assets/animals/"+id+".svg";
-  standAloneImage.src="./assets/animals-photo/"+id+".webp";
-  standAloneImage.alt="Rendu photoréaliste de "+result.species.label+" ; source d'une surface 3D reconstruite artistiquement";
-  sculpture.set({species:id});
+  anatomy.set({species:id,organ:organFocus});
   portraitOverlay.querySelector("strong").textContent=result.species.label;
   portraitOverlay.querySelector("small").textContent=result.species.latin+" · "+MASS(result.inputs.mass_kg);
   for(const btn of chooser.querySelectorAll("button"))btn.setAttribute("aria-pressed",String(btn.dataset.stageSpecies===id));
@@ -241,5 +266,5 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   tr.textContent="Bénéfice net : indéterminé. "+result.indication.markers+". Pas de dose–lésion calibrée.";
  }
  render(getResult());
- return {render,destroy(){sculpture.destroy();renal?.destroy();for(const viewer of molecules)viewer.destroy();root.replaceChildren()},get current(){return last}};
+ return {render,destroy(){anatomy?.destroy();renal?.destroy();for(const viewer of molecules)viewer.destroy();root.replaceChildren()},get current(){return last},setOrgan(id){if(organButtons[id])organButtons[id].click()}};
 }
