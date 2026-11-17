@@ -1,24 +1,20 @@
-# PRMR-R04 — Emplacement des images originales
+# PRMR-R04 — Images originales intégrées
 
-Ce dossier accueille les six PNG exacts des maquettes créées lors du programme PRMR.
+**État confirmé le 17 novembre 2026 : import terminé.** Les six PNG originaux sont présents dans ce dossier, sur `main`, avec contrôle SHA256 via [manifest.json](manifest.json) et [test automatisé](../../../tests/r04_original_images.test.mjs).
 
-## Importer les PNG dans GitHub
+## Images publiées et utilisation
 
-1. Décompresser `PRMR_R04_images_originales_pour_plateforme.zip`, disponible dans la conversation.
-2. Dans le dépôt GitHub, ouvrir `assets/illustrations/r04/` ; cliquer sur **Add file → Upload files**.
-3. Glisser les six PNG du dossier `assets/illustrations/r04/` de l'archive (sans les renommer).
-4. Cliquer sur **Commit changes** sur `main`.
-5. GitHub Pages publie les changements. Le tableau de bord `species-r04.html` affiche immédiatement les maquettes correspondant aux animaux et `risk-r03.html` montre le poster PK/PD.
+| Fichier | Affichage |
+|---|---|
+| `comparaison-especes.png` | Galerie initiale R04 ; souris et rat |
+| `porc.png` | Profil graphique porc / miniporc |
+| `chien.png` | Profil graphique chien |
+| `primate.png` | Profil graphique macaque |
+| `lapin.png` | Profil graphique lapin |
+| `tableau-pkpd.png` | Affiche du module R03 |
 
-## Noms attendus
+[Ouvrir la galerie interactive R04](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html) · [Ouvrir le module R03](https://aqmar3070.github.io/prmr-virtual-lab/risk-r03.html)
 
-- `porc.png` → portrait plein écran « Porc/Miniporc »
-- `chien.png` → portrait plein écran « Chien »
-- `primate.png` → portrait plein écran « Primate non humain »
-- `lapin.png` → portrait plein écran « Lapin »
-- `comparaison-especes.png` → affichage collectif pour souris/rat et comparaison générale
-- `tableau-pkpd.png` → illustration du module R03
+La galerie R04 affiche une image immédiatement depuis le HTML, puis permet de sélectionner une espèce avec les six miniatures. Quand JavaScript est opérationnel, ce choix actualise également le profil physiologique et les graphiques de calcul.
 
-Ces images sont des **illustrations de conception**, pas des mesures expérimentales. Les valeurs de similarité ou scores dessinés dans les maquettes sont purement décoratifs et ne doivent pas être utilisés comme résultats de recherche.
-
-Les pages R03 et R04 conservent toutes leurs commandes et leurs résultats calculés, même si les fichiers PNG ne sont pas encore importés.
+**Statut scientifique :** affiches illustratives. Leurs valeurs graphiques sont décoratives et ne sont ni des mesures animales ni des probabilités de toxicité ou de guérison. Elles doivent rester séparées des calculs R02/R03/R04 et des références expérimentales.
