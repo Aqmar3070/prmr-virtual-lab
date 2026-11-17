@@ -91,7 +91,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  const animalCanvas=make("canvas","r5-animal-sculpture");
  animalCanvas.setAttribute("aria-label","Sculpture 3D éducative de l'animal, orientable au toucher ou à la souris");
  portrait.append(animalCanvas);
- const sceneLabel=make("span","r5-scene-hint","MODÈLE 3D CONCEPTUEL · GLISSER POUR TOURNER");portrait.append(sceneLabel);
+ const sceneLabel=make("span","r5-scene-hint","MODÈLE 3D ÉDUCATIF · GLISSER : ROTATION · MOLETTE : ZOOM · DOUBLE-CLIC : RESET");portrait.append(sceneLabel);
  const portraitOverlay=make("div","r4-st-portrait-label");portraitOverlay.append(make("strong","r4-st-species-name","Souris"),make("small","r4-st-latin","Mus musculus"));
  portraitPanel.append(portrait,portraitOverlay);profileGrid.append(portraitPanel);
  const info=make("div","r4-st-props");profileGrid.append(info);
