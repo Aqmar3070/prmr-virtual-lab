@@ -2,8 +2,8 @@
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071421">
-<meta name="description" content="PRMR R04: laboratoire préclinique 3D interactif, 6 espèces, comparaison animale, pharmacocinétique exploratoire, molécules RDKit et contrôles âge sexe poids maladie.">
-<title>PRMR-R04 | Laboratoire 3D interactif et comparaison des espèces</title>
+<meta name="description" content="PRMR R08: atlas transparent en maillage 3D des six espèces avec reins, cœur, foie et poumons schématiques, données précliniques exploratoires et molécules RDKit.">
+<title>PRMR-R08 | Atlas anatomique transparent 3D et simulation interespèces</title>
 <link rel="stylesheet" href="./r04.css">
 <link rel="stylesheet" href="./r04-atlas.css?v=r07-photo-20261117">
 <script type="module" src="./src/r04_app.mjs?v=r07-photo-20261117"></script>
@@ -23,8 +23,8 @@
 <main>
 <div class="r4-head">
  <div><div class="r4-eye">PRMR-R04 / Simulation scientifique interactive / 16 novembre 2026</div>
- <h1>PRMR R04 : <span>plateforme physiologique interactive</span></h1>
- <p>Un véritable poste d’exploration, avec les nouveaux portraits intégrés aux commandes, les molécules orientables en 3D et les graphiques dynamiques. Le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Les organes 3D sont des schémas conceptuels.</p></div>
+ <h1>PRMR R08 : <span>atlas transparent et organes internes en 3D</span></h1>
+ <p>Un véritable poste d’exploration : animal transparent en grille 3D, organes internes mis en évidence (reins, cœur, foie, poumons), molécules orientables en 3D et graphiques dynamiques. Le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Les organes 3D sont des schémas conceptuels.</p></div>
  <svg class="r4-head-icon" viewBox="0 0 160 100" role="img" aria-label="Schéma des deux reins"><defs><linearGradient id="kidGlow"><stop stop-color="#6dfbdc"/><stop offset="1" stop-color="#159cae"/></linearGradient></defs>
   <path d="M61 8 C25 0 12 24 15 51 C17 78 44 91 59 74 C72 56 46 52 48 39 C50 29 69 23 61 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
   <path d="M99 8 C135 0 148 24 145 51 C143 78 116 91 101 74 C88 56 114 52 112 39 C110 29 91 23 99 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
@@ -74,8 +74,8 @@
   </div>
  </section>
  <section class="r4-panel r4-c5" aria-labelledby="body-heading">
-  <div class="r4-panel-title"><h2 id="body-heading">Organisme sélectionné</h2><span class="r4-tag">3D éducative</span></div>
-  <div class="r4-viz"><canvas id="r4-body-3d" aria-label="Schéma 3D conceptuel d'organisme animal et des organes" role="img"></canvas><span class="r4-viz-label" id="r4-3d-species">Animal · rein / foie</span><span class="r4-viz-foot">Structures schématiques</span></div>
+  <div class="r4-panel-title"><h2 id="body-heading">Organisme transparent / organes internes</h2><span class="r4-tag">Maillage filaire 3D</span></div>
+  <div class="r4-viz"><canvas id="r4-body-3d" aria-label="Grille anatomique 3D de l'organisme transparent, avec reins, cœur, foie, poumons à l'intérieur" tabindex="0" role="img"></canvas><span class="r4-viz-label" id="r4-3d-species">Espèce · organes internes</span><span class="r4-viz-foot">Fil de fer · structures schématiques</span></div><p id="r4-body-render-status" class="r4-evidence">Le modèle filaire transparent montrera les organes internes de l’espèce sélectionnée ; positions non mesurées.</p>
   <div class="r4-indicator"><strong id="r4-anatomy">Architecture rénale</strong><p id="r4-focus">Indication expérimentale</p><a id="r4-source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8285645/" target="_blank" rel="noopener noreferrer" style="font-size:11px">Source de l'espèce</a></div>
  </section>
  <section class="r4-panel r4-c8" aria-labelledby="pk-heading">
