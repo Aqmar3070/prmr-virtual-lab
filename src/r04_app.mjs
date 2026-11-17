@@ -2,6 +2,7 @@
 import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} from "./r04_engine.mjs";
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
+import {createAnimalSculpture} from "./r05_animal3d.mjs";
 import {createVisualAtlas} from "./r04_atlas.mjs?v=refonte-20261117";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
@@ -13,7 +14,9 @@ let kidney=null,body=null,molecule=null,coords=null,moleculeId="irbesartan";
 const safeText=(id,text)=>{const e=$(id);if(e)e.textContent=text};
 function el(tag,name,cls){const x=document.createElement(tag);if(name!==undefined)x.textContent=name;if(cls)x.className=cls;return x}
 function speciesIcon(id){
- return '<div class="r4-st-art" data-species="'+id+'" role="img" aria-label="Visuel original de l’espèce '+id+' intégré au sélecteur"></div>';
+ const sp=SPECIES_R04.find(item=>item.id===id);
+ const alt=sp?sp.label:id;
+ return '<div class="r4-st-art" data-species="'+id+'"><img src="./assets/animals/'+id+'.svg" alt="Illustration indépendante de '+alt+'" width="840" height="560" loading="eager"></div>';
 }
 function initSpecies(){
  for(const sp of SPECIES_R04){
@@ -196,7 +199,8 @@ function init(){
    update();
   }
  });kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
- body=create3D($("r4-body-3d"),{kind:"animal",species:state.species,renal:state.renal,hepatic:state.hepatic});
+ body=createAnimalSculpture($("r4-body-3d"),{species:state.species});
+ if(!body.supported)body=create3D($("r4-body-3d"),{kind:"animal",species:state.species,renal:state.renal,hepatic:state.hepatic});
  updateHumanGraph();
  const requested=new URLSearchParams(location.search).get("species");
  setSpecies(SPECIES_R04.some(x=>x.id===requested)?requested:state.species);
