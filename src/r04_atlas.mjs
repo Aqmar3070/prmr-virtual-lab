@@ -33,7 +33,7 @@ function attachOriginalPoster(wrap,speciesId){
  heading.append(label,link);
  const image=node("img");
  image.alt="Maquette graphique originale PRMR — "+speciesId+". Image éducative et illustrative, sans résultats expérimentaux.";
- image.loading="lazy";image.decoding="async";
+ image.loading="eager";image.decoding="async";
  image.addEventListener("load",()=>{section.hidden=false});
  image.addEventListener("error",()=>{section.remove()});
  image.src=url;
