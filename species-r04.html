@@ -5,6 +5,7 @@
 <meta name="description" content="PRMR R04: laboratoire préclinique 3D interactif, 6 espèces, comparaison animale, pharmacocinétique exploratoire, molécules RDKit et contrôles âge sexe poids maladie.">
 <title>PRMR-R04 | Laboratoire 3D interactif et comparaison des espèces</title>
 <link rel="stylesheet" href="./r04.css">
+<link rel="stylesheet" href="./r04-atlas.css">
 <script type="module" src="./src/r04_app.mjs"></script>
 </head><body>
 <div class="r4-shell">
@@ -38,6 +39,7 @@
  <div class="r4-kpi"><small>État de la recherche</small><b>In silico</b><em>Calculs reproductibles, non expérimentaux</em></div>
 </div>
 <p class="r4-banner"><strong>Statut des résultats :</strong> les références AUC proviennent de données humaines ; leur projection entre espèces est un <strong>stress-test non calibré</strong>. Modifier un animal ou un paramètre met à jour l'analyse, mais ne prédit ni toxicité réelle, ni efficacité, ni guérison. Les courbes non disponibles restent identifiées comme inconnues.</p>
+<section id="r4-visual-atlas" class="r4-visual-atlas" aria-labelledby="r4-atlas-heading" aria-live="polite"></section>
 <div class="r4-grid">
 <aside class="r4-panel r4-controls" aria-labelledby="parameters-heading">
  <div class="r4-panel-title"><h2 id="parameters-heading">Console expérimentale</h2><span class="r4-tag">Interactif</span></div>
