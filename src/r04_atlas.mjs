@@ -112,6 +112,34 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   controls.append(labelElem);
  }
  info.append(controls);
+ // Advanced experimental variables remain connected to exactly the same R04 state.
+ const advanced=make("details","r5-advanced-controls");
+ const advancedTitle=make("summary",null,"Paramètres avancés : masse, constitution, foie, hydratation, association et cible");
+ advanced.append(advancedTitle);
+ const advanceFields=make("div","r4-st-mini-controls r5-advanced-grid");
+ const r05Regimens={"R02-DUO":"Irbesartan + Dapagliflozine","R02-A":"Doublet + Pirfénidone","R02-B":"Doublet + Pentoxifylline"};
+ for(const [key,label,options] of [["constitution","Constitution",OPTIONS.constitution],["hepatic","Fonction hépatique",OPTIONS.hepatic],["hydration","Hydratation",OPTIONS.hydration],["regimen","Association",r05Regimens]]){
+  const lab=compactSelect("r5-"+key+"-"+hostId,label,options,getResult().inputs[key],value=>{
+   if(onEdit)onEdit({[key]:value});else render(computeR04({...getResult().inputs,[key]:value}))
+  });
+  selections[key]=lab.querySelector("select");advanceFields.append(lab)
+ }
+ const makeRange=(key,label)=>{
+  const wrap=make("label","r4-st-control r5-range-control");
+  const title=make("span",null,label),value=make("strong","r5-range-value","—");
+  const range=make("input");range.type="range";range.id="r5-"+key+"-"+hostId;
+  range.addEventListener("input",()=>{
+   const number=Number(range.value);
+   if(onEdit)onEdit({[key]:number});else render(computeR04({...getResult().inputs,[key]:number}))
+  });
+  wrap.append(title,value,range);advanceFields.append(wrap);
+  return {range,value}
+ };
+ const massControl=makeRange("mass_kg","Masse corporelle");
+ const freeControl=makeRange("free_nM","Concentration libre de référence, illustrative");
+ const disclaimer=make("p","r5-advanced-disclaimer","Âge, sexe et constitution : aucune variation numérique de toxicité n’est produite sans données calibrées par espèce. Seuls les paramètres réellement pris en charge changent les chiffres.");
+ advanceFields.append(disclaimer);
+ advanced.append(advanceFields);info.append(advanced);
  const right=make("div","r4-st-panel r4-st-organ");grid.append(right);
  const organTop=make("div","r4-st-paneltop");organTop.append(make("h3",null,"Rein / système physiologique"),make("span","r4-st-chip","ROTATION 3D · DRAG"));
  right.append(organTop);
@@ -177,6 +205,14 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   ];
   for(const [a,b] of labels){const row=make("div","r4-st-field");row.append(make("span",null,a),make("strong",null,b));meta.append(row)}
   setControls(result);
+  const sp=result.species;
+  massControl.range.min=String(sp.min_kg);massControl.range.max=String(sp.max_kg);
+  massControl.range.step=sp.ref_kg<.1?"0.001":sp.ref_kg<1?"0.005":"0.1";
+  massControl.range.value=String(result.inputs.mass_kg);
+  massControl.value.textContent=MASS(result.inputs.mass_kg);
+  freeControl.range.min="0";freeControl.range.max="10";freeControl.range.step="0.25";
+  freeControl.range.value=String(result.inputs.free_nM);
+  freeControl.value.textContent=num(result.inputs.free_nM,2)+" nM";
   renalNote.querySelector("p").textContent=result.species.anatomy+" · "+result.species.focus;
   callouts.replaceChildren();
   for(const item of metaData.terms){const span=make("div",null,item);callouts.append(span)}
