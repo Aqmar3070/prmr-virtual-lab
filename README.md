@@ -66,6 +66,16 @@ rat le plus proche est sous licence non commerciale. Une parité réelle avec le
 exigerait, par espèce, un jeu d'imagerie sous licence permissive, sa segmentation par
 organe et son recalage.
 
+### Corps humain
+
+Le corps humain de la phase 5 est aujourd'hui une reconstruction procédurale, non
+une imagerie segmentée. Une anatomie réellement acquise est accessible : le jeu
+**TotalSegmentator** (CC BY 4.0, Wasserthal et al., Radiology: AI 2023) couvre 104
+structures segmentées à partir d'examens CT. Le workflow
+`.github/workflows/import-r12-human-anatomy.yml` l'importe, le vérifie et consigne
+ce qu'il a reçu. Marche à suivre et limites :
+[docs/PRMR_R12_ANATOMIE_HUMAINE.md](docs/PRMR_R12_ANATOMIE_HUMAINE.md).
+
 **Obligations de licence** : attribution pour les sources CC BY et CC BY-SA, partage à
 l'identique pour les organes modélisés, citation demandée pour l'atlas cérébral CC0.
 
@@ -129,5 +139,6 @@ Aucune précision absolue n'est scientifiquement possible pour prévoir les effe
 - [Phase 03 — criblage computationnel](docs/PRMR_R02_RESEARCH_LOG.md)
 - [Phase 04 — sensibilité PK/PD](docs/PRMR_R03_RESEARCH_LOG.md)
 - [Phase 02 — physiologie comparée](docs/PRMR_R04_RESEARCH_LOG.md) · [atlas des organes](docs/PRMR_R09_ORGAN_ATLAS.md) · [anatomie transparente](docs/PRMR_R08_TRANSPARENT_ANATOMY.md)
+- [Anatomie humaine : état et voie vers une anatomie réelle](docs/PRMR_R12_ANATOMIE_HUMAINE.md)
 - [Espace de recherche privé Supabase](docs/SUPABASE_SETUP.md)
 - [Historique des versions R01 à R09](docs/HISTORIQUE_VERSIONS.md)
