@@ -7,6 +7,7 @@
 import * as T from "../vendor/three/build/three.module.js";
 import {OrbitControls} from "../vendor/three/examples/jsm/controls/OrbitControls.js";
 import {GLTFLoader} from "../vendor/three/examples/jsm/loaders/GLTFLoader.js";
+import {MeshoptDecoder} from "../vendor/three/examples/jsm/libs/meshopt_decoder.module.js";
 import {ORGAN_MODES,SPECIES_ANATOMY,organAssessment,ORGANS_INTERACTIONS} from "./r09_organ_catalog.mjs";
 import {makeSpeciesGroups,disposeOrganGroup} from "./r09_organ_geometry.mjs";
 import {createAnatomyViewer as fallback2D} from "./r08_anatomy.mjs";
@@ -160,7 +161,7 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
   organVisibility();
  }
  async function dogScanned(token){
-  const loader=new GLTFLoader();
+  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
   const load=url=>new Promise((resolve,reject)=>loader.load(url,resolve,undefined,reject));
   try{
    const [visceral,coat]=await Promise.all([
