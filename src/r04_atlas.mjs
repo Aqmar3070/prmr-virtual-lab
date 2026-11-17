@@ -50,7 +50,7 @@ function drawTrend(svg,result){
  a+='<text x="330" y="213" fill="#95bcc6" font-size="11" text-anchor="middle">Marqueurs distincts — les hauteurs ne sont pas des risques comparables</text>';
  svg.innerHTML=a;
 }
-export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-visual-atlas",compact=false}){
+export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=null,hostId="r4-visual-atlas",compact=false}){
  const root=$(hostId);if(!root)throw Error("Conteneur de laboratoire absent : "+hostId);
  let last=null,animal=null,renal=null,molecules=[],activeMol="irbesartan",initializing=false;
  const choose=id=>onChoose(id);
@@ -121,6 +121,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
    for(const [key,b] of Object.entries(organButtons))b.setAttribute("aria-pressed",String(key===id));
    organDescription.textContent=organCopy[id];
    anatomy?.setOrgan(id);
+   onOrganChange?.(id);
   });
   organButtons[id]=button;organToolbar.append(button);
  }
