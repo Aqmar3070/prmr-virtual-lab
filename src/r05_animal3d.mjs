@@ -4,7 +4,8 @@ const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255);
 function shapes(species){
  const col=colors[species]||colors.mouse,body=col[0],dark=col[1],skin=col[2];
  const s=[];
- const add=(x,y,z,a,b,c,color)=>s.push({x,y,z,a,b,c,col:rgb(color)});
+ const add=(x,y,z,a,b,c,color)=>s.push({x,y,z,a,b,c,col:rgb(color),
+  material:color===col[2]?2:(["#102127","#1c2326"].includes(color)?3:(color==="#f8ffff"||color==="#ffffff"?4:color===col[1]?1:0))});
  const put=(arr,color)=>{for(const [x,y,z,a,b,c] of arr)add(x,y,z,a,b,c,color)};
  const p={mouse:[1.2,.63,.56],rat:[1.46,.63,.58],pig:[1.46,.84,.76],dog:[1.51,.68,.55],nhp:[1.13,.8,.64],rabbit:[1.22,.67,.57]}[species];
  add(.12,-.06,0,...p,body);
@@ -53,13 +54,14 @@ function shapes(species){
  }
  return s;
 }
+// Higher tessellation improves natural curvature. Vertex normals are ellipsoid-correct.
 function geometry(parts){
- const data=[],rows=12,cols=18;
+ const data=[],rows=20,cols=28;
  const p=(o,i,j)=>{
   const a=i*Math.PI/rows,t=2*j*Math.PI/cols;
   const u=Math.sin(a)*Math.cos(t),v=Math.cos(a),w=Math.sin(a)*Math.sin(t);
   const N=[u/o.a,v/o.b,w/o.c],len=Math.hypot(...N)||1;
-  return [o.x+u*o.a,o.y+v*o.b,o.z+w*o.c,N[0]/len,N[1]/len,N[2]/len,...o.col]
+  return [o.x+u*o.a,o.y+v*o.b,o.z+w*o.c,N[0]/len,N[1]/len,N[2]/len,...o.col,o.material];
  };
  for(const o of parts)for(let i=0;i<rows;i++)for(let j=0;j<cols;j++){
   const a=p(o,i,j),b=p(o,i+1,j),c=p(o,i,j+1),d=p(o,i+1,j+1);
@@ -67,21 +69,40 @@ function geometry(parts){
  }
  return new Float32Array(data);
 }
+// Studio material shading: soft diffuse + subtle subsurface scatter + 3D coat microstructure.
+// No reference photos or scientific anatomy are claimed.
 const vert=[
-"attribute vec3 aPos; attribute vec3 aNormal; attribute vec3 aColor;",
-"uniform float uYaw,uPitch;uniform vec2 uAspect;",
-"varying vec3 vNormal,vColor;",
+"attribute vec3 aPos; attribute vec3 aNormal; attribute vec3 aColor; attribute float aMaterial;",
+"uniform float uYaw,uPitch,uZoom;uniform vec2 uAspect;",
+"varying vec3 vNormal,vColor,vPosition;varying float vMaterial;",
 "void main(){float c=cos(uYaw),s=sin(uYaw),cp=cos(uPitch),sp=sin(uPitch);",
 "mat3 Y=mat3(c,0.,-s,0.,1.,0.,s,0.,c);mat3 X=mat3(1.,0.,0.,0.,cp,sp,0.,-sp,cp);",
-"vec3 p=X*Y*aPos;vNormal=X*Y*aNormal;vColor=aColor;",
-"gl_Position=vec4(p.x/(3.5*uAspect.x),(p.y+.05)/(2.7*uAspect.y),-p.z/11.,1.);}"
+"vec3 p=X*Y*aPos;vNormal=normalize(X*Y*aNormal);vPosition=p;vColor=aColor;vMaterial=aMaterial;",
+"gl_Position=vec4(p.x/(3.5*uAspect.x*uZoom),(p.y+.05)/(2.7*uAspect.y*uZoom),-p.z/11.,1.);}"
 ].join("\n");
 const frag=[
-"precision mediump float;varying vec3 vNormal,vColor;",
-"void main(){vec3 N=normalize(vNormal),L=normalize(vec3(-.7,.95,1.55));",
-"float d=max(dot(N,L),0.),rim=pow(1.-max(dot(N,vec3(0.,0.,1.)),0.),2.);",
-"vec3 R=reflect(-L,N);float spec=pow(max(dot(R,vec3(0.,0.,1.)),0.),20.);",
-"gl_FragColor=vec4(vColor*(.43+.60*d)+vec3(.03,.16,.17)*rim+vec3(.28)*spec*.34,1.);}"
+"precision mediump float;varying vec3 vNormal,vColor,vPosition;varying float vMaterial;",
+"float hash(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}",
+"float noise3(vec3 p){vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);",
+"return mix(mix(mix(hash(i),hash(i+vec3(1.,0.,0.)),f.x),mix(hash(i+vec3(0.,1.,0.)),hash(i+vec3(1.,1.,0.)),f.x),f.y),",
+"mix(mix(hash(i+vec3(0.,0.,1.)),hash(i+vec3(1.,0.,1.)),f.x),mix(hash(i+vec3(0.,1.,1.)),hash(i+vec3(1.,1.,1.)),f.x),f.y),f.z);}",
+"void main(){vec3 N=normalize(vNormal),V=vec3(0.,0.,1.);",
+"vec3 key=normalize(vec3(-.62,.92,1.48)),fill=normalize(vec3(.75,.18,.73));",
+"float n=noise3(vPosition*40.),n2=noise3(vPosition*14.);",
+"float fur=1.-step(1.5,vMaterial);float skin=step(1.5,vMaterial)*(1.-step(2.5,vMaterial));",
+"float eyes=step(2.5,vMaterial);",
+"vec3 micro=vec3(n-.5,n2-.5,n-.5);N=normalize(N+micro*(.039*fur+.012*skin));",
+"float kd=max(dot(N,key),0.),fd=max(dot(N,fill),0.);",
+"float ambient=.44+.10*clamp(N.y*.5+.5,0.,1.);",
+"float rim=pow(1.-max(dot(N,V),0.),2.)*(.19+.05*skin);",
+"float rough=(.28+fur*.48+skin*.15),specPower=mix(56.,12.,rough);",
+"float spec=pow(max(dot(reflect(-key,N),V),0.),specPower);",
+"float coat=(n-.5)*.15*fur+(n2-.5)*.058*skin;",
+"vec3 c=vColor*(ambient+.66*kd+.23*fd+coat);",
+"c+=vec3(.12,.26,.28)*rim;",
+"c+=vec3(.34,.33,.28)*spec*(.24+skin*.18+eyes*.5);",
+"c+=vColor*max(dot(-N,key),0.)*.055*skin;",
+"gl_FragColor=vec4(clamp(c,0.,1.),1.);}"
 ].join("\n");
 function shader(gl,type,source){
  const sh=gl.createShader(type);gl.shaderSource(sh,source);gl.compileShader(sh);
@@ -97,8 +118,8 @@ export function createAnimalSculpture(canvas,{species="mouse"}={}){
   prog=gl.createProgram();gl.attachShader(prog,shader(gl,gl.VERTEX_SHADER,vert));gl.attachShader(prog,shader(gl,gl.FRAGMENT_SHADER,frag));gl.linkProgram(prog);
   if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(prog));buf=gl.createBuffer()
  }catch{return unsupported}
- let vertices=0,yaw=-.12,pitch=-.06,down=false,xx=0,yy=0,raf=0,active=true,inView=true,last=0;
- const upload=id=>{if(!colors[id])return;const v=geometry(shapes(id));vertices=v.length/9;gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,v,gl.STATIC_DRAW)};
+ let vertices=0,yaw=-.12,pitch=-.06,zoom=1,down=false,xx=0,yy=0,raf=0,active=true,inView=true,last=0;
+ const upload=id=>{if(!colors[id])return;const v=geometry(shapes(id));vertices=v.length/10;gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,v,gl.STATIC_DRAW)};
  upload(species);
  function paint(ms=0){
   if(!active)return;
@@ -107,13 +128,14 @@ export function createAnimalSculpture(canvas,{species="mouse"}={}){
   if(w<4||h<4)return;
   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h)}
   gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.useProgram(prog);gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  for(const [name,off] of [["aPos",0],["aNormal",3],["aColor",6]]){
-   const loc=gl.getAttribLocation(prog,name);if(loc<0)continue;gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,3,gl.FLOAT,false,36,off*4)
+  for(const [name,off,len] of [["aPos",0,3],["aNormal",3,3],["aColor",6,3],["aMaterial",9,1]]){
+   const loc=gl.getAttribLocation(prog,name);if(loc<0)continue;gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,len,gl.FLOAT,false,40,off*4)
   }
   let aspect=w/h;
   gl.uniform2f(gl.getUniformLocation(prog,"uAspect"),Math.max(1,aspect/1.55),Math.max(1,1.55/aspect));
   gl.uniform1f(gl.getUniformLocation(prog,"uYaw"),yaw);
   gl.uniform1f(gl.getUniformLocation(prog,"uPitch"),pitch);
+  gl.uniform1f(gl.getUniformLocation(prog,"uZoom"),zoom);
   gl.drawArrays(gl.TRIANGLES,0,vertices);
   if(!down)yaw+=.0022;
  }
@@ -121,7 +143,10 @@ export function createAnimalSculpture(canvas,{species="mouse"}={}){
  const pointerDown=e=>{down=true;xx=e.clientX;yy=e.clientY;canvas.setPointerCapture(e.pointerId)};
  const pointerMove=e=>{if(!down)return;yaw+=clamp((e.clientX-xx)*.009,-.3,.3);pitch=clamp(pitch+(e.clientY-yy)*.009,-.68,.68);xx=e.clientX;yy=e.clientY};
  const pointerUp=e=>{down=false;try{canvas.releasePointerCapture(e.pointerId)}catch{}};
+ const wheel=e=>{e.preventDefault();zoom=clamp(zoom+Math.sign(e.deltaY)*.065,.72,1.5)};
+ const reset=()=>{yaw=-.12;pitch=-.06;zoom=1};
  canvas.addEventListener("pointerdown",pointerDown);canvas.addEventListener("pointermove",pointerMove);canvas.addEventListener("pointerup",pointerUp);canvas.addEventListener("pointercancel",pointerUp);
+ canvas.addEventListener("wheel",wheel,{passive:false});canvas.addEventListener("dblclick",reset);
  canvas.style.touchAction="none";
  const stop=()=>{active=false;cancelAnimationFrame(raf)};
  const resume=()=>{if(!active&&inView&&!document.hidden){active=true;last=0;paint()}};
@@ -132,5 +157,5 @@ export function createAnimalSculpture(canvas,{species="mouse"}={}){
   observer=new IntersectionObserver(es=>{inView=es.some(e=>e.isIntersecting);if(inView)resume();else stop()},{rootMargin:"110px"});observer.observe(canvas)
  }
  paint();
- return {supported:true,set(p){if(p.species&&colors[p.species]){upload(p.species);yaw=-.12;pitch=-.06}},destroy(){stop();observer?.disconnect();document.removeEventListener("visibilitychange",visibility);canvas.removeEventListener("pointerdown",pointerDown);canvas.removeEventListener("pointermove",pointerMove);canvas.removeEventListener("pointerup",pointerUp);canvas.removeEventListener("pointercancel",pointerUp);gl.deleteBuffer(buf);gl.deleteProgram(prog)}};
+ return {supported:true,set(p){if(p.species&&colors[p.species]){upload(p.species);yaw=-.12;pitch=-.06;zoom=1}},destroy(){stop();observer?.disconnect();document.removeEventListener("visibilitychange",visibility);canvas.removeEventListener("pointerdown",pointerDown);canvas.removeEventListener("pointermove",pointerMove);canvas.removeEventListener("pointerup",pointerUp);canvas.removeEventListener("pointercancel",pointerUp);canvas.removeEventListener("wheel",wheel);canvas.removeEventListener("dblclick",reset);gl.deleteBuffer(buf);gl.deleteProgram(prog)}};
 }
