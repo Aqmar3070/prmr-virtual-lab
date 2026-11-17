@@ -7,55 +7,61 @@
 <link rel="stylesheet" href="./laboratory.css">
 <link rel="stylesheet" href="./r04-atlas.css?v=r12-20261117">
 <style>
-body{background:#09111e;color:#e7f3f6;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-*{box-sizing:border-box}
-main{max-width:1290px;margin:auto;padding:24px clamp(15px,3vw,42px) 70px}
-a{color:#90e5ea}.header{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:35px}
-.header strong{font-size:17px}.header strong span{color:#55e0c2}.nav{display:flex;gap:8px;flex-wrap:wrap}
-.nav a{background:#122b3e;border:1px solid #37536a;color:#d4f0ee;padding:10px 13px;border-radius:9px;text-decoration:none;font-size:12px}
-.kicker{font-size:10px;color:#70dfcc;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-h1{font-size:clamp(30px,5vw,54px);letter-spacing:-.052em;line-height:1.1;margin:15px 0}h1 span{color:#67e2cf}
-h2{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.03em;margin:0 0 12px}
-h3{font-size:17px;line-height:1.45;margin:0 0 12px}
-.lead{max-width:920px;color:#aec5cf;line-height:1.8;font-size:15px}
-.note{background:#2d261b;border-left:3px solid #d1a16a;color:#ebd5ac;padding:17px 19px;border-radius:9px;font-size:13px;line-height:1.8;margin:24px 0}
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:23px 0}
-.kpi{border:1px solid #294859;background:#10283a;border-radius:12px;padding:18px}
-.kpi small{display:block;color:#9ab5c7;font-size:11px}.kpi b{display:block;font-size:30px;color:#7de9d1;margin:12px 0;letter-spacing:-.04em}
-section{margin-top:44px}section>p,.small{font-size:12px;line-height:1.8;color:#abc1cc}
-.panel{border:1px solid #30485b;background:#102538;border-radius:13px;padding:23px;min-width:0}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.selectors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}
-.selectors label{display:block;font-size:11px;color:#a6bfc8;margin-bottom:7px}
-.selectors select{width:100%;min-width:0;background:#102032;color:#e7eff2;border:1px solid #345970;border-radius:8px;padding:11px 10px;font-size:12px}
-.flags{border-left:3px solid #86afba;padding:12px 15px;background:#102e3a;color:#c1d6dc;font-size:12px;line-height:1.8;border-radius:6px}
-.flags.warning{background:#30271c;border-color:#cba16d;color:#efd8b8}
-.badge{display:inline-block;color:#9cf0dd;background:#18483c;border:1px solid #388878;border-radius:99px;font-size:10px;font-weight:800;padding:6px 10px;margin-bottom:12px}
-.badge.warn{background:#443424;color:#edcea4;border-color:#86693e}
-.comp-title{display:flex;justify-content:space-between;align-items:start;gap:10px;flex-wrap:wrap}
-.ratio{font-size:27px;color:#8fe5d6;font-weight:900;letter-spacing:-.03em;margin:9px 0 5px}
-.ratiogrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.ratiogrid>div{background:#163247;border:1px solid #2d4e61;border-radius:10px;padding:15px;min-width:0}
-.ratiogrid small{display:block;font-size:11px;color:#afc5d1;line-height:1.6}
-.helptxt{font-size:10px;color:#a3bac8;line-height:1.7}
-.riskrow{padding:15px 0;border-top:1px solid #28475a;font-size:12px;color:#c6dae0;line-height:1.65}
+/* Styles propres à la phase 04. Palette, typographie, tableaux, statuts et
+   contrôles viennent de prmr-design-system.css.
+   Les sélecteurs d'élément sont cantonnés à main pour ne pas atteindre la
+   barre de parcours injectée au-dessus du contenu. */
+main{max-width:1180px;margin:auto;padding:var(--prmr-space-6) clamp(15px,3vw,42px) var(--prmr-space-7)}
+.kicker{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);font-weight:600}
+main h1{margin:var(--prmr-space-4) 0}
+main h1 span{color:var(--prmr-signal)}
+main h2{margin:0 0 var(--prmr-space-3)}
+main h3{font-size:var(--prmr-size-h3);line-height:1.4;margin:0 0 var(--prmr-space-3)}
+.lead{max-width:var(--prmr-measure);color:var(--prmr-text-muted);line-height:1.7;font-size:var(--prmr-size-lead)}
+/* Avertissement de portée : tireté, comme toute construction exploratoire. */
+.note{background:var(--prmr-hypothesis-bg);border-left:3px dashed var(--prmr-hypothesis);color:var(--prmr-text);padding:var(--prmr-space-4);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;font-size:var(--prmr-size-small);line-height:1.75;margin:var(--prmr-space-5) 0;max-width:var(--prmr-measure)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-3);margin:var(--prmr-space-5) 0}
+.kpi{border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-4)}
+.kpi small{display:block;color:var(--prmr-text-muted);font-size:var(--prmr-size-micro)}
+.kpi b{display:block;font-size:28px;color:var(--prmr-text);margin:var(--prmr-space-3) 0;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+main section{margin-top:var(--prmr-space-7)}
+main section>p,.small{font-size:var(--prmr-size-small);line-height:1.75;color:var(--prmr-text-muted)}
+.panel{border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5);min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-4)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--prmr-space-3)}
+.selectors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-3);margin:var(--prmr-space-4) 0}
+.selectors label{display:block;margin-bottom:var(--prmr-space-1)}
+.flags{border-left:3px solid var(--prmr-measured);padding:var(--prmr-space-3) var(--prmr-space-4);background:var(--prmr-surface-sunken);color:var(--prmr-text-muted);font-size:var(--prmr-size-small);line-height:1.75;border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0}
+.flags.warning{background:var(--prmr-vigilance-bg);border-color:var(--prmr-vigilance);color:var(--prmr-text)}
+.badge{display:inline-flex;align-items:center;color:var(--prmr-computed);background:var(--prmr-computed-bg);border:1px solid currentColor;border-radius:999px;font-size:var(--prmr-size-micro);font-weight:600;padding:3px 9px;margin-bottom:var(--prmr-space-3)}
+.badge.warn{background:var(--prmr-hypothesis-bg);color:var(--prmr-hypothesis)}
+.comp-title{display:flex;justify-content:space-between;align-items:start;gap:var(--prmr-space-3);flex-wrap:wrap}
+/* Rapport d'exposition : grandeur relative sans unité biologique validée. */
+.ratio{font-size:var(--prmr-size-h2);color:var(--prmr-text);font-weight:700;letter-spacing:-.02em;margin:var(--prmr-space-2) 0 var(--prmr-space-1);font-variant-numeric:tabular-nums}
+.ratiogrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-3)}
+.ratiogrid>div{background:var(--prmr-surface-sunken);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);padding:var(--prmr-space-4);min-width:0}
+.ratiogrid small{display:block;font-size:var(--prmr-size-micro);color:var(--prmr-text-muted);line-height:1.6}
+.helptxt{font-size:var(--prmr-size-micro);color:var(--prmr-text-muted);line-height:1.65}
+.riskrow{padding:var(--prmr-space-4) 0;border-top:1px solid var(--prmr-line-soft);font-size:var(--prmr-size-small);color:var(--prmr-text-muted);line-height:1.65}
 .riskrow:last-child{padding-bottom:0}
-.riskrow strong{color:#91e2d0}
-table{width:100%;border-collapse:collapse}
-.tablewrap{overflow-x:auto;border:1px solid #315064;border-radius:11px}
-th,td{text-align:left;border-bottom:1px solid #2b4659;padding:14px;font-size:12px;line-height:1.6;vertical-align:top}
-th{background:#183548;color:#d4e7ef}td{background:#102638;color:#b9d0dc}
-tr:last-child td{border-bottom:0}
-.bar{height:9px;background:#315063;border-radius:20px;margin-top:8px;overflow:hidden}.bar>span{height:100%;display:block;background:#66dfca}
-.education{border:1px solid #358271;background:#15372f;border-radius:13px;padding:24px}
-.education p{font-size:14px;line-height:1.9;color:#d7eae6}
-ul{padding-left:22px}li{line-height:1.8;color:#bed1da;font-size:13px}
-details{border-top:1px solid #315064;padding:15px 0}
-summary{cursor:pointer;font-size:13px;color:#90dfd4;font-weight:800}
-footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:11px;color:#99b3c0;line-height:1.75}
+.riskrow strong{color:var(--prmr-text)}
+.tablewrap{overflow-x:auto;border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);background:var(--prmr-surface);scrollbar-color:var(--prmr-line) transparent}
+.tablewrap table{width:100%;border-collapse:collapse;font-size:var(--prmr-size-small)}
+.tablewrap th{position:sticky;top:0;z-index:1;text-align:left;background:var(--prmr-surface-raised);color:var(--prmr-text);font-size:var(--prmr-size-micro);font-weight:600;padding:var(--prmr-space-3) var(--prmr-space-4);border-bottom:1px solid var(--prmr-line);white-space:nowrap}
+.tablewrap td{text-align:left;border-bottom:1px solid var(--prmr-line-soft);padding:var(--prmr-space-3) var(--prmr-space-4);line-height:1.55;vertical-align:top;color:var(--prmr-text-muted)}
+.tablewrap td.numeric{text-align:right;font-variant-numeric:tabular-nums;color:var(--prmr-text)}
+.tablewrap tbody tr:nth-child(even) td{background:#ffffff05}
+.tablewrap tbody tr:hover td{background:#5fe3c60d}
+.tablewrap tr:last-child td{border-bottom:0}
+.bar{height:9px;background:var(--prmr-line);border-radius:20px;margin-top:var(--prmr-space-2);overflow:hidden}
+.bar>span{height:100%;display:block;background:var(--prmr-signal)}
+.education{border:1px solid var(--prmr-signal-dim);background:var(--prmr-computed-bg);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5)}
+.education p{font-size:var(--prmr-size-body);line-height:1.8;color:var(--prmr-text)}
+main ul{padding-left:var(--prmr-space-5)}
+main li{line-height:1.75;color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0;background:none;padding:var(--prmr-space-4) 0}
 @media(max-width:920px){.selectors{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.selectors,.kpis,.grid2,.grid3,.ratiogrid{grid-template-columns:1fr}.panel{padding:17px}}
+@media(max-width:600px){.selectors,.kpis,.grid2,.grid3,.ratiogrid{grid-template-columns:1fr}.panel{padding:var(--prmr-space-4)}}
 </style><script type="module" src="./src/r04_embedded.mjs?v=r12-20261117"></script>
 <link rel="stylesheet" href="./prmr-route.css?v=r12-20261117">
 <script type="module" src="./src/prmr_route.mjs?v=r12-20261117"></script>
@@ -66,7 +72,7 @@ footer{margin-top:50px;padding-top:20px;border-top:1px solid #2b4054;font-size:1
 <div class="kicker">PRMR-R03 · Physiologie comparée · Analyse computationnelle / 16 novembre 2026</div>
 <h1>Risque rénal, hépatique et <span>bénéfice potentiel.</span></h1>
 <p class="lead">Stress-test quantitatif de l'exposition de trois associations issues de PRMR-R02 chez des analogues de souris et de rats de différentes masses et différents états physiologiques. Il compare les signaux de pharmacocinétique et les mécanismes possibles, sans inventer de toxicités, de guérison ni de nouvelles observations animales.</p>
-<p class="lead"><a href="./species-r04.html">Accéder au laboratoire anatomique 3D du chien</a></p>
+<p class="lead"><a href="./species-r04.html">Ouvrir l'anatomie comparée 3D des six espèces</a></p>
 <div class="note"><strong>Frontière scientifique essentielle :</strong> les chiffres d'exposition proviennent de données <strong>humaines</strong>, puis sont soumis à une extrapolation de sensibilité <strong>arbitraire</strong> vers des profils animaux. Les pourcentages calculés ne sont PAS des probabilités de lésions rénales, d'hépatotoxicité, de guérison ou d'efficacité. Il manque des courbes dose–réponse et des concentrations tissulaires validées des combinaisons.</div>
 <div class="kpis">
  <div class="kpi"><small>Espèces animales de référence</small><b>2</b><small>Souris et rats, analogues hypothétiques</small></div>

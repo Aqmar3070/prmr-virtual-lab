@@ -58,8 +58,8 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  root.replaceChildren();
  const shell=make("div","r4-st-workbench"+(compact?" r4-st-home":""));
  const heading=make("div","r4-st-heading");
- const title=make("div");title.append(make("span","r4-st-eyebrow","PRMR · RECHERCHE RÉNALE / WORKBENCH R04"),make("h2",null,"Un modèle vivant. Une étude transparente."));
- const kicker=make("span","r4-st-verification","CALCULS IN SILICO · NON VALIDÉS BIOLOGIQUEMENT");
+ const title=make("div");title.append(make("span","r4-st-eyebrow","Poste de travail · recherche rénale"),make("h2",null,"Un modèle vivant. Une étude transparente."));
+ const kicker=make("span","r4-st-verification","Calculs in silico · non validés biologiquement");
  heading.append(title,kicker);shell.append(heading);
  const chooser=make("div","r4-st-species");
  chooser.setAttribute("role","group");chooser.setAttribute("aria-label","Sélectionnez une espèce pour recalculer son profil");
@@ -76,10 +76,10 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  }
  shell.append(chooser);
  const stats=make("div","r4-st-stats");
- stats.append(statCard("ARCHITECTURE","Rein","Comparaison anatomique"),
- statCard("AXES MOLÉCULAIRES","3 régimes","Hypothèses R02"),
- statCard("TECHNOLOGIE","3D interactive","RDKit + organes conceptuels"),
- statCard("TOXICITÉ / GUÉRISON","Indéterminées","Aucune probabilité calculée"));shell.append(stats);
+ stats.append(statCard("Architecture","Rein","Comparaison anatomique"),
+ statCard("Axes moléculaires","3 régimes","Hypothèses R02"),
+ statCard("Technologie","3D interactive","RDKit + organes conceptuels"),
+ statCard("Toxicité et guérison","Indéterminées","Aucune probabilité calculée"));shell.append(stats);
  const grid=make("div","r4-st-main-grid");shell.append(grid);
  const large=make("div","r4-st-panel r4-st-profile");grid.append(large);
  const largeTop=make("div","r4-st-paneltop");
@@ -99,7 +99,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  const animalCanvas=make("canvas","r5-animal-sculpture r8-anatomy-canvas");
  animalCanvas.setAttribute("aria-label","Atlas anatomique 3D transparent : silhouette filaire et organes internes ; flèches pour orienter, molette pour agrandir");
  portrait.append(animalCanvas);
- const sceneLabel=make("span","r5-scene-hint","MAILLAGE TRANSPARENT · GLISSER POUR ORIENTER · MOLETTE POUR ZOOMER");
+ const sceneLabel=make("span","r5-scene-hint","Maillage transparent · glisser pour orienter · molette pour zoomer");
  portrait.append(sceneLabel);
  let anatomy=null,organFocus="kidneys";
  const organToolbar=make("div","r8-organ-switch");
@@ -146,7 +146,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  const sourceLine=make("p","r09-source-line","Maillage 3D indépendant. Précision anatomique variable ; aucune lésion constatée.");
  portraitPanel.append(portrait,organToolbar,sceneOptions,organDescription,sourceLine,portraitOverlay);profileGrid.append(portraitPanel);
  const info=make("div","r4-st-props");profileGrid.append(info);
- const decision=make("div","r4-st-insight");decision.append(make("span",null,"AXE SCIENTIFIQUE"),make("strong","r4-st-decision","Approche mécanistique"),make("p","r4-st-remark","La réponse dépend de l'espèce et de la maladie."));
+ const decision=make("div","r4-st-insight");decision.append(make("span",null,"Axe scientifique"),make("strong","r4-st-decision","Approche mécanistique"),make("p","r4-st-remark","La réponse dépend de l'espèce et de la maladie."));
  info.append(decision);
  const meta=make("div","r4-st-annotations");info.append(meta);
  const controls=make("div","r4-st-mini-controls");
@@ -229,7 +229,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
    portrait.dataset.mode="anatomy";portrait.dataset.rendered=String(count);
    portrait.dataset.viewSource=source||"unknown";
    const isDogScan=source==="canine-CT-derived-hybrid-GLB";
-   sceneLabel.textContent=(isDogScan?"ANATOMIE CANINE CT MODIFIÉE":"MAILLAGES PÉDAGOGIQUES 3D")+" · GLISSER POUR TOURNER · ZOOM";
+   sceneLabel.textContent=(isDogScan?"Anatomie canine, surfaces CT modifiées":"MAILLAGES PÉDAGOGIQUES 3D")+" · GLISSER POUR TOURNER · ZOOM";
    sourceLine.textContent=isDogScan
     ?"Chien : modèles vétérinaires dérivés de CT (Massey/Cornell/pixelbeaker/Vet Atlas selon pièces), recalés et modifiés. Certaines structures sont schématiques."
     :"Modèles volumiques 3D par espèce ; non segmentés à partir d’imagerie spécifique et non validés anatomiquement.";
