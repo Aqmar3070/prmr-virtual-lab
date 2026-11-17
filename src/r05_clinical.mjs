@@ -288,6 +288,7 @@ function setupReferenceControls(){
  controls.append(artery,veins);
  for(const b of document.querySelectorAll("[data-sex]"))b.addEventListener("click",()=>{if(refSex!==b.dataset.sex)loadReference(b.dataset.sex)});
  $("show-all-layers").addEventListener("click",()=>{refLayers=Object.fromEntries(Object.keys(refSystems).map(k=>[k,true]));refVesselRoles={arteries:true,veins:true};isolated=false;if(refModel)updateReference()});
+ $("reload-reference")?.addEventListener("click",()=>loadReference(refSex));
  $("structure-search").addEventListener("input",()=>{if(refModel)refSearch()});
  $("toggle-body").addEventListener("click",()=>{if(refModel){refLayers.skin=!refLayers.skin;updateReference()}});
  $("reset-view").addEventListener("click",()=>{if(refModel){refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};refVesselRoles={arteries:true,veins:true};isolated=false;updateReference();refFrame()}});
