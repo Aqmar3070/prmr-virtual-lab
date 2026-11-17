@@ -8,7 +8,7 @@ const style=readFileSync(new URL("r04-gallery.css",root),"utf8");
 const r03=readFileSync(new URL("risk-r03.html",root),"utf8");
 test("Original PRMR PNG visuals are directly visible on the R04 HTML page, even without JS",()=>{
  assert.match(page,/<section id="r4-original-gallery"/);
- assert.match(page,/<img id="r4-poster-main-img" src="\.\/assets\/illustrations\/r04\/comparaison-especes\.png"/);
+ assert.ok(page.includes('src="./assets/illustrations/r04/comparaison-especes.png?v=prmr-20261117-assets"'));
  assert.match(page,/href="\.\/r04-gallery\.css"/);
  for(const [species,filename] of Object.entries({mouse:"comparaison-especes.png",rat:"comparaison-especes.png",pig:"porc.png",dog:"chien.png",nhp:"primate.png",rabbit:"lapin.png"})){
   assert.ok(page.includes('data-r4-gallery-species="'+species+'"'));
@@ -35,7 +35,7 @@ test("Main lab entrances expose original poster images without an interactive de
  for(const name of ["index.html","research.html"]){
   const html=readFileSync(new URL(name,root),"utf8");
   assert.match(html,/class="r4-home-promo"/);
-  assert.match(html,/src="\.\/assets\/illustrations\/r04\/comparaison-especes\.png"/);
+  assert.ok(html.includes('src="./assets/illustrations/r04/comparaison-especes.png?v=prmr-20261117-assets"'));
   assert.match(html,/href="\.\/species-r04\.html\?v=gallery-20261117"/);
   assert.match(html,/href="r04-home-promo\.css"/);
  }
