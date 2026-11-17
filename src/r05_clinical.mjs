@@ -3,6 +3,7 @@ import * as T from "../vendor/three/build/three.module.js";
 import {OrbitControls} from "../vendor/three/examples/jsm/controls/OrbitControls.js";
 import {GLTFLoader} from "../vendor/three/examples/jsm/loaders/GLTFLoader.js";
 import {MeshoptDecoder} from "../vendor/three/examples/jsm/libs/meshopt_decoder.module.js";
+import {buildLocalHuman} from "./r08_human_local.mjs";
 const $=id=>document.getElementById(id);
 const CATALOG=[
 {key:"ace",name:"IEC : ramipril, lisinopril, énalapril",type:"established",target:"SRAA / hypertension / albuminurie",trial:"KDIGO 2024 ; essais REIN/AIPRI",result:"Réduction du risque de progression chez des groupes avec albuminurie ; traitement de fond selon indication.",limit:"Surveiller potassium, tension, créatinine. Ne pas associer IEC + ARA2.",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
@@ -122,9 +123,40 @@ update();resize();animate();status.textContent="Initialisation de la base anatom
    female skin MakeHuman CC0; modified by open-anatomy-3d CC BY 4.0.
    Not a patient scan or a diagnosis tool. */
 let refModel=null,refGroups=new Map(),refMeshes=[],refCatalog=[],refSex="male",refToken=0;
+
+let referenceSource="local";
+function installLocalBody(sex){
+ const built=buildLocalHuman(T,sex);
+ if(refModel)scene.remove(refModel);
+ refModel=built.root;referenceSource="local";scene.add(refModel);
+ refGroups=new Map();refMeshes=[];
+ const known=new Map(refCatalog.map(x=>[x.key,x]));
+ for(const [id,g]of Object.entries(built.groups)){
+  const system=id==="skin"?"skin":id.startsWith("arteries")||id.startsWith("veins")||["aorta","coronary_arteries","vena_cava_inferior","vena_cava_superior","carotid_l","carotid_r"].includes(id)?"vessels":id.startsWith("nerves")?"nerves":["skull","ribs","spine_thoracic","femur_l","femur_r","pelvis"].includes(id)?"skeleton":id.startsWith("muscles")?"muscles":"organs";
+  const record=known.get(id)||{key:id,label:id.replaceAll("_"," "),system};
+  if(!known.has(id))refCatalog.push(record);
+  g.traverse(mesh=>{
+   if(!mesh.isMesh)return;
+   const normal=mesh.material,transparent=normal.clone(),highlight=normal.clone();
+   transparent.transparent=true;transparent.opacity=.10;transparent.depthWrite=false;
+   highlight.transparent=false;highlight.opacity=1;highlight.depthWrite=true;
+   if(highlight.emissive){highlight.emissive.setHex(0x1f9e96);highlight.emissiveIntensity=.4}
+   mesh.userData.prmrKey=id;
+   refMeshes.push({mesh,rec:record,normal,transparent,highlight});
+   if(!refGroups.has(id))refGroups.set(id,[]);
+   refGroups.get(id).push(mesh);
+  });
+ }
+ if(!refGroups.has(chosen))chosen=refGroups.has("kidney_l")?"kidney_l":"heart";
+ isolated=false;refLayers={skin:true,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};
+ body.visible=false;structures.visible=false;
+ updateReference();refSearch();refFrame();
+ status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" 3D local affiché ("+refGroups.size+" structures). Modèle éducatif ; chargement de la référence anatomique…";
+}
+
 let refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};
 let refVesselRoles={arteries:true,veins:true};
-const refNames={arteries_abdomen:"Artères abdominales",arteries_thorax:"Artères thoraciques",carotid_l:"Carotide gauche",carotid_r:"Carotide droite",coronary_arteries:"Artères coronaires",veins_abdomen:"Veines abdominales",veins_thorax:"Veines thoraciques",pulmonary_vessels:"Vaisseaux pulmonaires",ureter_l:"Uretère gauche",ureter_r:"Uretère droit",colon:"Côlon",small_intestine:"Intestin grêle",trachea:"Trachée",kidney_l:"Rein gauche",kidney_r:"Rein droit",heart:"Cœur",lung_l:"Poumon gauche",lung_r:"Poumon droit",liver:"Foie",brain:"Cerveau",pancreas:"Pancréas",stomach:"Estomac",spleen:"Rate",bladder:"Vessie",aorta:"Aorte",vena_cava_inferior:"Veine cave inférieure",vena_cava_superior:"Veine cave supérieure",uterus:"Utérus"};
+const refNames={skull:"Crâne",ribs:"Cage thoracique",pelvis:"Bassin",nerves_spinal:"Nerfs spinaux",muscles_torso:"Muscles du tronc",gallbladder:"Vésicule biliaire",adrenal_l:"Surrénale gauche",adrenal_r:"Surrénale droite",arteries_abdomen:"Artères abdominales",arteries_thorax:"Artères thoraciques",carotid_l:"Carotide gauche",carotid_r:"Carotide droite",coronary_arteries:"Artères coronaires",veins_abdomen:"Veines abdominales",veins_thorax:"Veines thoraciques",pulmonary_vessels:"Vaisseaux pulmonaires",ureter_l:"Uretère gauche",ureter_r:"Uretère droit",colon:"Côlon",small_intestine:"Intestin grêle",trachea:"Trachée",kidney_l:"Rein gauche",kidney_r:"Rein droit",heart:"Cœur",lung_l:"Poumon gauche",lung_r:"Poumon droit",liver:"Foie",brain:"Cerveau",pancreas:"Pancréas",stomach:"Estomac",spleen:"Rate",bladder:"Vessie",aorta:"Aorte",vena_cava_inferior:"Veine cave inférieure",vena_cava_superior:"Veine cave supérieure",uterus:"Utérus"};
 const refSystems={skin:"Peau",skeleton:"Squelette",muscles:"Muscles",organs:"Organes",vessels:"Artères et veines",nerves:"Nerfs"};
 function refLabel(x){return refNames[x.key]||x.label||x.key}
 function updateReference(){
@@ -174,7 +206,8 @@ function refFrame(){
 }
 async function loadReference(sex){
  const token=++refToken;refSex=sex;
- status.textContent="Chargement du corps "+(sex==="female"?"féminin":"masculin")+" de référence (organes, vaisseaux, nerfs, muscles, squelette)…";
+ installLocalBody(sex);
+ status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" visible ; téléchargement des structures de référence en cours…";
  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
  let gltf=null;
  const tail="anatomy-"+sex+".glb";
@@ -182,9 +215,9 @@ async function loadReference(sex){
  "https://raw.githubusercontent.com/MervinR07/open-anatomy-3d/main/packages/open-anatomy-3d/models/"+tail];
  for(const url of urls){try{gltf=await loader.loadAsync(url);break}catch(err){console.warn("[PRMR R06] Source de modèle indisponible",url,err)}}
  if(token!==refToken)return;
- if(!gltf){refSex=refModel?(refSex==="female"?"male":"female"):sex;status.textContent="Téléchargement des maillages anatomiques indisponible ; "+(refModel?"modèle précédent conservé.":"aperçu schématique de secours affiché.")+" Connexion réseau requise pour le modèle détaillé.";if(refModel)updateReference();return}
+ if(!gltf){status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" 3D local actif ; modèle anatomique de référence non disponible sur ce réseau. Sélection, rotation et organes restent fonctionnels.";updateReference();return}
  if(refModel)scene.remove(refModel);
- refModel=gltf.scene;scene.add(refModel);refGroups=new Map();refMeshes=[];
+ refModel=gltf.scene;referenceSource="reference";scene.add(refModel);refGroups=new Map();refMeshes=[];
  const map=new Map(refCatalog.map(x=>[x.key,x]));
  const box=new T.Box3().setFromObject(refModel);
  const center=box.getCenter(new T.Vector3());
@@ -206,7 +239,7 @@ async function loadReference(sex){
   if(!refGroups.has(rec.key))refGroups.set(rec.key,[]);
   refGroups.get(rec.key).push(node);
  });
- if(!refMeshes.length){scene.remove(refModel);refModel=null;status.textContent="Modèle téléchargé, mais structure des maillages non reconnue : aperçu schématique conservé.";return}
+ if(!refMeshes.length){scene.remove(refModel);installLocalBody(sex);status.textContent="Noms des structures du modèle distant incompatibles : modèle local détaillé conservé.";return}
  if(!refGroups.has(chosen))chosen=refGroups.has("kidney_l")?"kidney_l":refMeshes[0].rec.key;
  isolated=false;updateReference();refSearch();refFrame();
  status.textContent="Atlas humain "+(sex==="female"?"féminin":"masculin")+" chargé : "+refGroups.size+" structures anatomiques, "+refMeshes.length+" maillages. Source : BodyParts3D / HuBMAP, CC BY 4.0. Non validé pour diagnostiquer une maladie.";
