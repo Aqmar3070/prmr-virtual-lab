@@ -2,7 +2,7 @@
 import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} from "./r04_engine.mjs";
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createVisualAtlas} from "./r04_atlas.mjs";
+import {createVisualAtlas} from "./r04_atlas.mjs?v=refonte-20261117";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
 const state={...DEFAULT_R04};
