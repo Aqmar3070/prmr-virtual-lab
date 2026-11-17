@@ -2,6 +2,19 @@
 
 **Date : 17 novembre 2026.**
 
+## Vérification de publication après importation — 17 novembre 2026
+
+**Les six modèles GLB et les six textures WebP ont été réellement transférés dans GitHub et publiés.** Les mentions plus bas d'un import encore nécessaire décrivent l'état historique avant la réception du ZIP et sont désormais remplacées par cette vérification.
+
+- Archive reçue : `incoming/PRMR_R07_modeles_3D_textures_legers.zip` (853 057 octets).
+- <https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44003338939> : workflow d'importation terminé avec succès, vérification SHA-256 et extraction des douze fichiers.
+- <https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44003697167> : vérification automatisée des six maillages GLB réels, triangles, normales, UV, images WebP et signatures, réussie.
+- <https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44003697221> : vérification Chromium réussie. Les profils porc et chien ont chargé le mode phototexturé `photo3d` plutôt que la sculpture de secours ; contrôles interactifs, autres espèces et viewport mobile vérifiés.
+- <https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44003696537> : publication GitHub Pages réussie.
+- Les six lignes du registre privé Supabase `public.prmr_visual_assets` sont désormais au statut **`published_verified`**.
+
+**Statut scientifique inchangé :** les six modèles sont des reliefs 3D artistiques issus d'une seule vue, dont les parties cachées sont estimées et non anatomiquement validées.
+
 ## Travaux réellement effectués
 
 Six nouveaux fichiers de maillage **glTF 2.0 binaire (.glb)** ont été générés localement à partir des six PNG réalistes approuvés dans la conversation :
