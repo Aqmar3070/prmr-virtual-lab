@@ -68,13 +68,20 @@ organe et son recalage.
 
 ### Corps humain
 
-Le corps humain de la phase 5 est aujourd'hui une reconstruction procédurale, non
-une imagerie segmentée. Une anatomie réellement acquise est accessible : le jeu
-**TotalSegmentator** (CC BY 4.0, Wasserthal et al., Radiology: AI 2023) couvre 104
-structures segmentées à partir d'examens CT. Le workflow
-`.github/workflows/import-r12-human-anatomy.yml` l'importe, le vérifie et consigne
-ce qu'il a reçu. Marche à suivre et limites :
-[docs/PRMR_R12_ANATOMIE_HUMAINE.md](docs/PRMR_R12_ANATOMIE_HUMAINE.md).
+La phase 5 affiche un atlas anatomique humain sous licence de **147 structures** —
+squelette, organes, vaisseaux — assemblé à partir de BodyParts3D (© DBCLS, CC BY 4.0),
+de HRA / HuBMAP (CC BY 4.0) et de MakeHuman (CC0). Ce sont des structures segmentées,
+pas des formes sculptées.
+
+Cet atlas ne s'affichait jamais : une variable déclarée après son premier usage
+interrompait l'initialisation du module, et la zone d'anatomie restait vide sans
+message visible. Le défaut est corrigé et couvert par un test.
+
+Le modèle est encore téléchargé depuis un CDN ; si celui-ci est injoignable, la page
+bascule sur une reconstruction procédurale de secours. Le workflow
+`.github/workflows/import-r12-human-anatomy.yml` importe une anatomie segmentée dans
+le dépôt — TotalSegmentator, CC BY 4.0 — pour supprimer cette dépendance réseau.
+Détails et limites : [docs/PRMR_R12_ANATOMIE_HUMAINE.md](docs/PRMR_R12_ANATOMIE_HUMAINE.md).
 
 **Obligations de licence** : attribution pour les sources CC BY et CC BY-SA, partage à
 l'identique pour les organes modélisés, citation demandée pour l'atlas cérébral CC0.

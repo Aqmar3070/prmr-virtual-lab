@@ -1,76 +1,96 @@
-# Anatomie humaine : état actuel et voie vers une anatomie réelle
+# Anatomie humaine : état réel et robustesse
 
 Date : 17 novembre 2026.
 
-## État actuel
+## Ce qui était cassé
 
-Le corps humain affiché dans la phase 5 est construit par `src/r08_human_local.mjs`.
-Son propre en-tête le dit : *educational reconstruction, not segmented medical imagery*.
-Concrètement, il s'agit d'ellipsoïdes et de tubes placés selon une posture de
-référence, à l'échelle arbitraire de 5,5 unités de scène. Les positions relatives
-sont plausibles, les volumes ne sont pas mesurés, et aucune structure ne provient
-d'un examen d'imagerie.
+La phase 5 charge un atlas anatomique humain sous licence, de 147 structures :
+squelette complet, organes, vaisseaux. Ce modèle **n'apparaissait jamais**.
 
-Le catalogue `research-data/r05_human_anatomy_catalog.json` décrit 147 entrées
-documentaires. Ce sont des descriptions, pas des géométries acquises.
+`src/r05_clinical.mjs` déclarait `refModel` avec `let` après les fonctions
+`select()` et `update()` et après l'appel initial à `update()`. Cet appel entrait
+donc dans la zone morte temporelle de la variable, l'initialisation du module
+s'arrêtait sur `Cannot access 'refModel' before initialization`, et la zone
+d'anatomie restait vide. Aucune des commandes de la page ne fonctionnait.
 
-## Ce qu'une anatomie réelle exige
+La déclaration a été remontée avant sa première utilisation. L'atlas se charge et
+s'affiche désormais : squelette, organes internes, réseau vasculaire, sélection
+au clic, rotation et zoom.
 
-Une anatomie humaine exacte ne se sculpte pas : elle se segmente à partir
-d'images. Il faut donc un jeu d'imagerie, une segmentation par structure, et une
-licence qui autorise la redistribution.
+Un test de non-régression couvre cet ordre de déclaration, car l'échec était
+silencieux pour qui ne regardait pas la console : la page semblait seulement
+afficher un cadre vide.
 
-Ce jeu existe et il est ouvert.
+## Ce que montre réellement cet atlas
 
-**TotalSegmentator** (Jakob Wasserthal, Zenodo, doi 10.5281/zenodo.10047263)
-publie sous **CC BY 4.0** des examens CT accompagnés de segmentations de
-référence couvrant 104 structures anatomiques. La publication de référence est
+| Élément | Origine | Licence |
+| --- | --- | --- |
+| Corps masculin, structures | BodyParts3D © DBCLS | CC BY 4.0 |
+| Corps féminin, structures | HRA / HuBMAP | CC BY 4.0 |
+| Peau du corps féminin | MakeHuman | CC0 |
+| Assemblage et conversion | open-anatomy-3d | CC BY 4.0 |
+
+Le catalogue `research-data/r05_human_anatomy_catalog.json` décrit les 147
+structures et leurs points d'ancrage. Ce sont des structures anatomiques
+segmentées, non des formes sculptées : l'anatomie humaine du laboratoire repose
+donc bien sur des données réelles.
+
+Elle ne devient pas pour autant un support clinique. Ce corps n'est celui
+d'aucune personne suivie, ne mesure l'état d'aucun individu et ne sert à aucun
+diagnostic.
+
+## La fragilité qui demeure
+
+Le modèle est téléchargé à l'exécution depuis un CDN, avec un dépôt public en
+second recours. Si aucune des deux sources n'est joignable — réseau d'entreprise
+filtrant, version retirée, panne —, la page bascule silencieusement sur la
+reconstruction procédurale de `src/r08_human_local.mjs`, faite d'ellipsoïdes et
+de tubes. Son en-tête l'annonce : *educational reconstruction, not segmented
+medical imagery*.
+
+Le repli est un bon comportement ; sa discrétion ne l'est pas. Un visiteur peut
+croire regarder une anatomie segmentée alors qu'il regarde des ellipsoïdes. Le
+message de statut distingue déjà les deux cas : il doit le rester, et la
+distinction mérite d'être aussi visible que les jetons de provenance employés
+ailleurs dans le laboratoire.
+
+## Rendre l'anatomie humaine indépendante du réseau
+
+Le workflow `.github/workflows/import-r12-human-anatomy.yml` importe une
+anatomie humaine segmentée **dans le dépôt**, de la même façon que les surfaces
+canines sont déjà versionnées. Le laboratoire cesse alors de dépendre d'un CDN
+pour sa structure la plus importante.
+
+Source retenue : le jeu **TotalSegmentator** (Jakob Wasserthal, Zenodo,
+doi 10.5281/zenodo.10047263, **CC BY 4.0**), qui couvre 104 structures
+segmentées à partir d'examens CT, via le dépôt **open-anatomy** (code
+Apache-2.0) qui en construit des glTF par script. Publication à citer :
 Wasserthal J. et al., *TotalSegmentator: Robust Segmentation of 104 Anatomic
 Structures in CT Images*, Radiology: Artificial Intelligence, 2023,
 doi 10.1148/ryai.230024.
 
-Le dépôt **open-anatomy** (Opening Science, code sous Apache-2.0) construit par
-script des glTF à partir de ce jeu et les publie en version téléchargeable. Chaque
-étape, de la segmentation au fichier livré, est un script du dépôt, ce qui rend la
-construction rejouable.
-
-## Pourquoi l'import passe par GitHub Actions
-
-L'environnement de développement utilisé pour cette refonte n'a pas accès à
-Zenodo ni aux fichiers de publication GitHub : ces hôtes sont hors de la liste
-d'autorisation du réseau. Les runners GitHub Actions, eux, ont un accès réseau
-complet, et le dépôt importe déjà ses modèles canins de cette façon.
-
-Le workflow `.github/workflows/import-r12-human-anatomy.yml` applique le même
-schéma, avec une différence volontaire : il ne code en dur ni nom de fichier ni
-empreinte, parce qu'aucune de ces valeurs n'a pu être vérifiée au préalable
-depuis cet environnement. Il interroge la publication la plus récente, contrôle
-que le fichier reçu est bien un glTF binaire exploitable, puis **consigne ce
-qu'il a réellement obtenu** dans `assets/human3d/manifest.json` : empreinte
-SHA-256, taille, nombre de maillages et noms des nœuds. En cas d'anomalie il
-échoue, plutôt que d'ajouter au dépôt un fichier dont l'origine n'est pas établie.
+L'import passe par GitHub Actions parce que Zenodo et les fichiers de
+publication GitHub sont hors de la liste d'autorisation réseau de
+l'environnement de développement, alors que les runners disposent d'un accès
+complet. Le workflow ne code en dur ni nom de fichier ni empreinte, puisque
+aucune de ces valeurs n'a pu être vérifiée au préalable : il interroge la
+publication la plus récente, contrôle que le fichier reçu est un glTF binaire
+exploitable, puis consigne empreinte SHA-256, taille, nombre de maillages et
+noms de nœuds tels qu'obtenus, dans `assets/human3d/manifest.json`. En cas
+d'anomalie il échoue plutôt que d'ajouter au dépôt un fichier dont l'origine
+n'est pas établie.
 
 Lancement : onglet Actions du dépôt, workflow « PRMR R12 import de l'anatomie
 humaine segmentée », bouton *Run workflow*.
 
-## Après l'import
+### Après l'import
 
-L'import ne branche volontairement pas le maillage dans le visualiseur. L'ordre
-correct est :
-
-1. Lancer le workflow et lire le manifeste produit, en particulier la liste des
-   nœuds : elle dit quelles structures sont réellement présentes.
-2. Confronter ces noms au vocabulaire employé dans `clinical.html` et dans le
-   catalogue documentaire, puis établir la correspondance structure par structure.
-3. Brancher le chargement GLB dans le visualiseur humain, en conservant la
-   reconstruction procédurale en repli lorsque WebGL ou le fichier manquent.
-4. Afficher l'attribution exigée par CC BY 4.0 à côté du modèle, avec la citation
-   de l'article, comme cela est fait pour les surfaces canines.
-
-## Ce que cela ne rendra pas vrai
-
-Même importée, cette anatomie reste le corps d'une personne anonyme recalé sur une
-silhouette générique. Elle n'est le corps d'aucun patient suivi, ne mesure l'état
-d'aucun individu, et ne devient à aucun moment un support de diagnostic. Elle
-remplace une forme inventée par une forme acquise : c'est un gain de véracité
-anatomique, pas un gain de portée clinique.
+1. Lire le manifeste produit, en particulier la liste des nœuds : elle dit
+   quelles structures sont réellement présentes.
+2. Établir la correspondance entre ces noms et les clés du catalogue des 147
+   structures.
+3. Brancher le chargement local **avant** les deux sources distantes, en les
+   conservant en recours, et garder la reconstruction procédurale en dernier
+   repli.
+4. Afficher l'attribution exigée par CC BY 4.0 à côté du modèle, avec la
+   citation de l'article, comme pour les surfaces canines.
