@@ -33,19 +33,26 @@ test("Text labels are native, separate and responsive",()=>{
  assert.ok(css.includes("@media(max-width:520px)"));
  assert.ok(css.includes("@media(max-width:780px)"));
 });
-test("True GPU animal viewer, species-specific meshes and fallback",()=>{
- assert.match(atlas,/createPhotoAnimalViewer/);
- assert.ok(atlas.includes("assets/animals-photo/"));
- assert.ok(atlas.includes("sculpture.set({species:id})"));
- assert.match(atlas,/r5-webgl-active/);
- assert.ok(atlas.includes("phototexturées"));
- assert.ok(atlas.includes("non anatomiquement validés"));
- assert.match(webgl,/createShader/);
- assert.ok(webgl.includes("gl.drawArrays(gl.TRIANGLES"));
- assert.match(webgl,/pointermove/);
- assert.match(webgl,/IntersectionObserver/);
- assert.match(webgl,/supported:false/);
- assert.ok(app.includes('createPhotoAnimalViewer($("r4-body-3d")'));
+test("Transparent anatomical grid and organs replace the old 3D external animal photo",()=>{
+ const anatomy=readFileSync(new URL("src/r08_anatomy.mjs",base),"utf8");
+ assert.match(atlas,/createAnatomyViewer/);
+ assert.match(atlas,/r8-organ-switch/);
+ assert.match(atlas,/r8-anatomy-fallback/);
+ assert.match(atlas,/setOrgan\(id\)/);
+ assert.match(atlas,/onOrganChange/);
+ assert.ok(atlas.includes('portrait.dataset.mode="anatomy"'));
+ assert.ok(app.includes('createAnatomyViewer($("r4-body-3d")'));
+ assert.match(anatomy,/Canvas2D/);
+ assert.match(anatomy,/rotatePoint/);
+ assert.match(anatomy,/organDefinitions/);
+ assert.match(anatomy,/pointermove/);
+ assert.match(anatomy,/ResizeObserver/);
+ assert.match(anatomy,/reins|Reins/);
+ assert.match(anatomy,/Cœur/);
+ assert.match(anatomy,/Poumons/);
+ assert.ok(!atlas.includes('createPhotoAnimalViewer('));
+ assert.ok(!app.includes('createPhotoAnimalViewer('));
+ assert.match(css,/\.r8-organ-button/);
 });
 test("Shared physiological state, unknown probabilities and molecular 3D remain intact",()=>{
  for(const key of ["age","sex","disease","renal"])assert.ok(atlas.includes('["'+key+'"'));
