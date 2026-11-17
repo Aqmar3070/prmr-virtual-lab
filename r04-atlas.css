@@ -177,3 +177,16 @@
 .r4-st-mini-controls select{font-size:11px;min-height:37px}
 .r4-st-mini-controls label span{line-height:1.4}
 @media(max-width:530px){.r5-advanced-grid{grid-template-columns:1fr}.r5-range-control{min-width:0}}
+
+/* PRMR-R07 — photo-textured single-view 3D assets, on-demand and carefully labelled */
+.r4-st-art .r5-animal-asset{object-fit:contain;object-position:center;width:100%;height:100%;max-height:100%;image-rendering:auto}
+.r5-animal-static{width:100%;height:100%;object-fit:contain;object-position:center}
+.r4-st-portrait[data-mode="loading"] .r5-animal-static{opacity:1}
+.r4-st-portrait[data-mode="photo3d"] .r5-animal-static{opacity:0}
+.r4-st-portrait[data-mode="stylized"] .r5-animal-static{opacity:0}
+.r4-st-portrait[data-mode="static"] .r5-animal-static{opacity:1}
+.r4-st-portrait .r5-scene-hint{font-size:10px;max-width:93%;white-space:normal;line-height:1.4;background:#082e3bde;color:#e2f9f3;border-color:#398c93;text-wrap:balance}
+.r4-st-portrait[data-mode="photo3d"] .r5-scene-hint{color:#b5ffe0;border-color:#54cbae}
+.r4-st-portrait[data-mode="stylized"] .r5-scene-hint{color:#eed2a3;border-color:#9b7643}
+.r4-st-portrait .r5-animal-sculpture{border-radius:9px}
+@media(prefers-reduced-motion:reduce){.r5-animal-sculpture{scroll-behavior:auto}}
