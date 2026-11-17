@@ -186,7 +186,7 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
       node.updateWorldMatrix(true,false);
       const copy=node.clone(false);
       copy.geometry=node.geometry;copy.material=node.material?.clone?.()||node.material;
-      copy.matrix.copy(node.matrixWorld);copy.matrixAutoUpdate=false;
+      const inv=new T.Matrix4().copy(visceral.scene.matrixWorld).invert();copy.matrix.multiplyMatrices(inv,node.matrixWorld);copy.matrixAutoUpdate=false;
       keyed[id].add(copy);targetNames[node.name]=id;
      }
     }
@@ -204,7 +204,8 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
    mode="canine-CT-derived-hybrid-GLB";
    sourceStatus="CT_DERIVED_AND_MODELED_NOT_DIAGNOSTIC";
    // If a subset is absent, preserve an explicitly synthetic placeholder, never mislabel it.
-   for(const [id,g]of Object.entries(makeSpeciesGroups("dog").organs)){
+   const fallbackDog=makeSpeciesGroups("dog");disposeOrganGroup(fallbackDog.body);
+   for(const [id,g]of Object.entries(fallbackDog.organs)){
     if(!organs[id]){g.userData.fallback=true;organs[id]=g;root.add(g)}
     else disposeOrganGroup(g);
    }
