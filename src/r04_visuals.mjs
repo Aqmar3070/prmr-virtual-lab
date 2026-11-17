@@ -154,7 +154,20 @@ export function create3D(canvas,{kind="kidney",model=null,species="mouse",renal=
  const up=e=>{dragging=false;if(canvas.hasPointerCapture(e.pointerId))canvas.releasePointerCapture(e.pointerId)};
  canvas.addEventListener("pointerdown",down);canvas.addEventListener("pointermove",move);canvas.addEventListener("pointerup",up);
  canvas.addEventListener("pointercancel",up);canvas.style.touchAction="none";
- document.addEventListener("visibilitychange",()=>{if(document.hidden){enabled=false;cancelAnimationFrame(raf)}else if(!enabled){enabled=true;paint()}});
+ // Stop the render loop for hidden panels and offscreen molecule cards.
+ let inViewport=true;
+ const stop=()=>{enabled=false;cancelAnimationFrame(raf)};
+ const resume=()=>{if(!enabled&&inViewport&&!document.hidden){enabled=true;lastFrame=0;paint()}};
+ const onVisibility=()=>{if(document.hidden)stop();else resume()};
+ let observer=null;
+ if(typeof IntersectionObserver!=="undefined"){
+  observer=new IntersectionObserver(entries=>{
+   inViewport=entries.some(entry=>entry.isIntersecting);
+   if(inViewport)resume();else stop();
+  },{rootMargin:"120px"});
+  observer.observe(canvas);
+ }
+ document.addEventListener("visibilitychange",onVisibility);
  paint();
- return {set(next){current={...current,...next};geometryCache=null},reset(){yaw=.25;pitch=-.18},destroy(){enabled=false;cancelAnimationFrame(raf);canvas.removeEventListener("pointerdown",down);canvas.removeEventListener("pointermove",move);canvas.removeEventListener("pointerup",up);canvas.removeEventListener("pointercancel",up)}};
+ return {set(next){current={...current,...next};geometryCache=null},reset(){yaw=.25;pitch=-.18},destroy(){stop();observer?.disconnect();document.removeEventListener("visibilitychange",onVisibility);canvas.removeEventListener("pointerdown",down);canvas.removeEventListener("pointermove",move);canvas.removeEventListener("pointerup",up);canvas.removeEventListener("pointercancel",up)}};
 }
