@@ -1,0 +1,58 @@
+
+/* PRMR R04 visual atlas — faithful screen composition, no fictive efficacy scores. */
+.r4-visual-atlas{margin:19px 0 26px}
+.r4-atlas-wrap{background:radial-gradient(ellipse at 88% 4%,#1150646b,transparent 45%),linear-gradient(145deg,#071e2e,#082332);border:1px solid #18798a;border-radius:17px;padding:16px 18px 19px;box-shadow:inset 0 0 0 1px #7afde20b,0 14px 36px #06131e88;overflow:hidden}
+.r4-atlas-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.r4-atlas-brand{font-size:11px;color:#76eddc;letter-spacing:.13em;font-weight:900;text-transform:uppercase}
+.r4-atlas-heading{font-size:clamp(22px,3vw,37px);line-height:1.13;letter-spacing:-.04em;margin:12px 0 4px}
+.r4-atlas-heading span{color:#8affdd}
+.r4-atlas-subtitle{color:#d1e8eb;font-size:13px;line-height:1.6;margin:0 0 15px}
+.r4-atlas-species-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin:11px 0 14px}
+.r4-atlas-species-button{background:#0e3544;border:1px solid #286a77;border-radius:10px;color:#dceff0;padding:6px;display:flex;gap:5px;align-items:center;text-align:left;min-width:0;transition:box-shadow .18s,background .18s}
+.r4-atlas-species-button:hover,.r4-atlas-species-button[aria-pressed=true]{border-color:#83ffde;background:#145562;box-shadow:0 0 11px #31d8ca55}
+.r4-atlas-species-button img{width:38px;height:38px;border-radius:7px;object-fit:cover;background:#153748;flex-shrink:0}
+.r4-atlas-species-button b{font-size:11px;line-height:1.15;display:block}
+.r4-atlas-species-button small{color:#9eb9c1;font-size:9px;display:block;line-height:1.2;margin-top:2px}
+.r4-atlas-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:9px 0 15px}
+.r4-atlas-kpi{background:linear-gradient(150deg,#0b4c5a,#0e3340);border:1px solid #368a93;box-shadow:inset 0 2px 0 #54f6d21c;border-radius:10px;padding:11px 12px;min-width:0}
+.r4-atlas-kpi small{display:block;color:#aad2db;font-size:10px}.r4-atlas-kpi b{display:block;font-size:clamp(12px,1.5vw,17px);font-weight:820;margin:3px 0;color:#f0fffc;line-height:1.25;overflow-wrap:anywhere}
+.r4-atlas-main-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:11px}
+.r4-atlas-pane{background:#082b39;border:1px solid #2c8991;border-radius:12px;padding:12px;min-width:0}
+.r4-atlas-pane h3{margin:0 0 3px;font-size:16px;color:#e2fffb}.r4-atlas-pane p{color:#a9cbd4;font-size:11px;margin:0 0 9px}
+.r4-atlas-left{display:grid;grid-template-columns:minmax(145px,.83fr) minmax(190px,1.17fr);gap:10px;margin-top:12px}
+.r4-atlas-portrait{background:radial-gradient(ellipse at center,#1c6a7788,#071c2e 75%);border:1px solid #367982;border-radius:11px;overflow:hidden;min-height:298px;position:relative}
+.r4-atlas-portrait>img{width:100%;height:100%;min-height:298px;position:absolute;inset:0;object-fit:cover;object-position:center;filter:saturate(.93) contrast(1.08)}
+.r4-atlas-portrait:after{position:absolute;inset:0;content:"";background:linear-gradient(transparent 50%,#061e2f 100%);pointer-events:none}
+.r4-atlas-portrait>div{position:absolute;bottom:13px;left:10px;right:10px;z-index:2;display:flex;align-items:center;gap:6px;background:#062e39d9;border:1px solid #49f6d5;border-radius:8px;padding:8px;font-size:12px;font-weight:800;line-height:1.25;color:#f0fffc;box-shadow:0 0 15px #26d2c34c}
+.r4-atlas-meta-rows{display:flex;flex-direction:column;gap:8px}
+.r4-atlas-meta-row{border:1px solid #367584;border-radius:9px;background:#0a3543;padding:9px 10px}
+.r4-atlas-meta-row-label{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#d9f4f0;font-size:11px;line-height:1.4}
+.r4-atlas-meta-row-label strong{font-size:11px;color:#d5fcf4;white-space:nowrap}
+.r4-atlas-meta-row-track{height:9px;overflow:hidden;background:#143f49;border:1px solid #396c71;border-radius:10px;margin-top:7px}
+.r4-atlas-meta-row-track span{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#26dcca,#96fa97);box-shadow:0 0 10px #5af2bb88}
+.r4-atlas-meta-disclaimer{font-size:10px;line-height:1.5;color:#ecc994;border:1px dashed #785c42;padding:9px;border-radius:7px}
+.r4-atlas-insight{background:linear-gradient(130deg,#11513ee8,#0b3a38);border:1px solid #43bf9b;border-radius:11px;padding:13px 15px;margin-bottom:9px}
+.r4-atlas-insight strong{font-size:12px;color:#94efbc}.r4-atlas-insight p{color:#e0f3e9;margin:4px 0 0;font-size:12px;line-height:1.55}
+.r4-atlas-kidney{position:relative;min-height:211px;border-radius:10px;background:radial-gradient(ellipse at 54% 56%,#104f60 3%,#071e2e 68%);border:1px solid #21778a;overflow:hidden}
+.r4-atlas-kidney svg{width:100%;height:205px;display:block;filter:drop-shadow(0 0 11px #39d9cf55)}
+.r4-atlas-kidney:after{content:"";position:absolute;bottom:19px;left:8%;width:84%;height:1px;background:linear-gradient(90deg,transparent,#41babe,transparent);box-shadow:0 0 14px #41e4d9;pointer-events:none}
+.r4-atlas-kidney-caption{position:absolute;top:10px;left:10px;background:#082738da;border:1px solid #2a7d8d;border-radius:7px;padding:6px 8px;font-size:10px;color:#c2fdf7}
+.r4-atlas-kidney-comparison{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;font-size:10px;margin:7px 0}
+.r4-atlas-kidney-comparison span{background:#0c3544;border:1px solid #306d7a;border-radius:7px;padding:5px 7px;color:#c4e6e8}
+.r4-atlas-bottom{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.95fr);gap:10px;margin-top:11px}
+.r4-atlas-callouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:7px}
+.r4-atlas-callout{border:1px solid #2f7687;border-radius:9px;padding:12px;background:#093445;min-width:0}
+.r4-atlas-callout:first-child{border-color:#7c83ce;background:#232b44}
+.r4-atlas-callout:nth-child(2){border-color:#3aadaa}
+.r4-atlas-callout:last-child{border-color:#4dac77;background:#113f38}
+.r4-atlas-callout b{display:block;color:#a2f4d9;font-size:12px;margin-bottom:5px}.r4-atlas-callout span{font-size:11px;color:#d7ecec;line-height:1.55}
+.r4-atlas-summary{border:1px solid #2f8c75;border-radius:10px;background:#0b423e;padding:12px 15px}
+.r4-atlas-summary strong{color:#9af2d3}.r4-atlas-summary p{font-size:12px;color:#def8ee;line-height:1.65;margin:5px 0}
+.r4-atlas-complement{border:1px solid #2a7681;border-radius:9px;padding:10px;background:#0b3244;display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:9px}
+.r4-atlas-complement span{font-size:11px;color:#c3e1e9;line-height:1.6}
+.r4-atlas-complement button{background:#185b63;border:1px solid #63dcd0;color:#d9fff8;padding:9px 10px;border-radius:9px;font-weight:750;font-size:11px;white-space:nowrap}
+.r4-atlas-attribution{font-size:10px;color:#9dbfc7;line-height:1.6;margin-top:11px}.r4-atlas-attribution a{color:#91dfed}
+.r4-atlas-visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:1180px){.r4-atlas-main-grid{grid-template-columns:1fr}.r4-atlas-portrait{min-height:330px}.r4-atlas-portrait>img{min-height:330px}.r4-atlas-bottom{grid-template-columns:1fr}}
+@media(max-width:820px){.r4-atlas-species-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.r4-atlas-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.r4-atlas-wrap{padding:11px}.r4-atlas-left{grid-template-columns:1fr}.r4-atlas-portrait{height:240px;min-height:240px}.r4-atlas-portrait>img{min-height:240px}.r4-atlas-callouts{grid-template-columns:1fr}.r4-atlas-species-button img{width:31px;height:31px}.r4-atlas-species-button b{font-size:10px}}
