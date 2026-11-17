@@ -1,4 +1,12 @@
 # PRMR Virtual Lab · Research Workspace 2.0
+## PRMR-R06 — Matériaux 3D améliorés
+
+Le moteur animal WebGL a été enrichi avec une tessellation plus fine, un éclairage studio, des matériaux différenciés pour le pelage, la peau et les yeux, une microtexture procédurale et des contrôles de zoom/recentrage. La navigation et les quatre modèles moléculaires RDKit restent inchangés.
+
+**Limite :** cette version améliore les sculptures stylisées, mais ne remplace pas de vrais maillages animaliers photoréalistes sculptés et texturés. Les données biologiques R01–R04 et les probabilités inconnues restent inchangées.
+
+[Description de la mise à jour R06](docs/PRMR_R06_3D_RENDERING.md).
+
 ## PRMR-R05 — Visuels animaux autonomes et finition du laboratoire (17 novembre 2026)
 
 - **[Accueil interactif PRMR-R05](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r05-standalone-20261117)** · [**Simulation animale R04/R05**](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r05-standalone-20261117) · [**Journal des corrections visuelles**](docs/PRMR_R05_UI_FINISHING.md).
