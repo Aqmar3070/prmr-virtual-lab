@@ -18,17 +18,17 @@
 <div class="shell">
 <aside class="sidebar" id="sidebar">
   <div class="identity"><div class="identity-mark">P<span>.</span></div><div><strong>PRMR <em>Virtual Lab</em></strong><small>RESEARCH ENVIRONMENT / 2.0</small></div></div>
-  <div class="workspace-label">ESPACE DE RECHERCHE <span>PERSONNEL</span></div>
+  <div class="workspace-label">RECHERCHE RÉNALE <span>PAR PHASES</span></div>
   <nav class="navigation" aria-label="Sections du laboratoire">
-    <button class="navitem selected" data-view="overview"><span class="navicon">◫</span> Vue générale</button>
-    <div class="navgroup">DÉCOUVERTE MOLÉCULAIRE</div>
+    <button class="navitem selected" data-view="overview"><span class="navicon">◫</span> Parcours de recherche</button>
+    <div class="navgroup">OUTILS DE LA PHASE 3</div>
     <button class="navitem" data-view="molecules"><span class="navicon">⬡</span> Atelier moléculaire <span class="navmini">RDKit</span></button>
     <button class="navitem" data-view="library"><span class="navicon">▤</span> Bibliothèque de structures</button>
     <button class="navitem" data-view="combinations"><span class="navicon">◇</span> Comparaison de molécules</button>
-    <div class="navgroup">MODÉLISATION & BIOLOGIE</div>
+    <div class="navgroup">OUTILS DE LA PHASE 4</div>
     <button class="navitem" data-view="pkpd"><span class="navicon">⌁</span> Simulation PK/PD</button>
     <button class="navitem" data-view="systems"><span class="navicon">◎</span> Atlas physiologique</button>
-    <div class="navgroup">RECHERCHE & QUALITÉ</div>
+    <div class="navgroup">PARCOURS & DOSSIERS</div>
     <a class="navitem" href="./clinical.html?v=r08-visible-human-20261117" style="text-decoration:none"><span class="navicon">✚</span> Recherche clinique humaine <span class="navmini">PHASE 5</span></a>
     <a class="navitem" href="./species-r04.html" style="text-decoration:none"><span class="navicon">◉</span> Laboratoire 3D interactif <span class="navmini">R04</span></a>
     <a class="navitem" href="./risk-r03.html" style="text-decoration:none"><span class="navicon">⚖</span> Toxicité &amp; PK/PD <span class="navmini">R03</span></a>
@@ -47,13 +47,18 @@
 </header>
 <main class="main">
 <section class="view" id="view-overview">
- <header class="r5-home-header">
-  <div><span class="r4-st-eyebrow">PRMR VIRTUAL LAB · ATELIER DE RECHERCHE INTÉGRÉ</span>
-   <h1>Molécules en 3D. <span>Physiologie animale interactive.</span></h1>
-   <p>La présentation de recherche PRMR est maintenant l'interface du laboratoire : sélectionnez une espèce ou une molécule, modifiez les variables et consultez directement les résultats et leurs limites.</p>
-  </div>
-  <div class="r5-home-actions"><a id="r5-home-stage-deep" href="./species-r04.html?v=full-workbench-20261117">Ouvrir la console complète</a><a href="./screening.html">165 associations R02</a></div>
- </header>
+ <section class="prmr-journey" aria-label="Tableau de bord de progression scientifique">
+ <div class="prmr-journey-heading"><div><span class="prmr-kicker">TABLEAU DE BORD · PROGRAMME PRMR</span><h1>Un laboratoire. Cinq étapes. Un parcours clair.</h1><p>Départ : les preuves. Arrivée : la préparation méthodologique d'une recherche clinique humaine. Chaque étape sépare les connaissances publiées, les calculs exploratoires et les données encore manquantes.</p></div><div class="prmr-current-phase"><strong>POSITION ACTUELLE</strong><span>Phase 5 · Évaluation scientifique humaine</span><small>Atlas et bibliothèque initiale disponibles. Validation biologique et autorisations cliniques non acquises.</small></div></div>
+ <div class="prmr-path" aria-label="Les cinq phases de la recherche">
+  <a href="./preclinical.html" class="prmr-stage"><span class="prmr-stage-num">01 / PREUVES</span><strong>Comprendre ce qui est établi</strong><span>Études publiées, résultats mesurés, limites et sources.</span><em>Ouvrir la recherche documentaire</em></a>
+  <a href="./species-r04.html" class="prmr-stage"><span class="prmr-stage-num">02 / ANATOMIE PRÉCLINIQUE</span><strong>Observer le modèle canin</strong><span>Chien 3D, organes et scénario mécanistique non validé.</span><em>Ouvrir le modèle canin</em></a>
+  <a href="./screening.html" class="prmr-stage"><span class="prmr-stage-num">03 / MOLÉCULES</span><strong>Élaborer des hypothèses</strong><span>Bibliothèque et associations candidates, calculs de structure.</span><em>Examiner les candidats</em></a>
+  <a href="./risk-r03.html" class="prmr-stage"><span class="prmr-stage-num">04 / MODÉLISATION</span><strong>Étudier les scénarios</strong><span>Exposition et sensibilité PK/PD ; anciennes simulations R03 identifiées.</span><em>Ouvrir les scénarios</em></a>
+  <a href="./clinical.html?v=r08-visible-human-20261117" class="prmr-stage prmr-stage-current"><span class="prmr-stage-num">05 / HUMAIN & CLINIQUE</span><strong>Explorer l'humain et les preuves</strong><span>Deux corps 3D, systèmes internes, néphron, essais publiés, hypothèses.</span><em>Accéder au laboratoire humain</em></a>
+ </div>
+ <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
+ </section>
+ <div class="prmr-secondary"><h2>Ateliers spécialisés</h2><p>Les outils historiques restent accessibles ci-dessous, séparés du parcours principal pour éviter de confondre leurs résultats.</p></div>
  <section id="r5-home-stage" aria-label="Laboratoire interactif : modèle canin, pharmacocinétique et molécules en trois dimensions"></section>
  <div class="notice"><strong>Précision absolue : impossible scientifiquement.</strong> Une molécule nouvelle ne peut pas être déclarée efficace, sûre ou thérapeutique par un calcul de structure seul. Les modules non validés sont identifiés.</div>
  <div class="overview-kpis"><div class="kpi"><span>OUTIL CHIMIQUE</span><strong id="kpi-rdkit">Initialisation</strong><small>RDKit WebAssembly</small></div><div class="kpi"><span>MODÈLE NUMÉRIQUE</span><strong>PK/PD 1C</strong><small>Hypothèses explicites</small></div><div class="kpi"><span>STRUCTURES EN SESSION</span><strong id="kpi-library">0</strong><small>Bibliothèque temporaire</small></div><div class="kpi"><span>DOMAINES BIOLOGIQUES</span><strong>12</strong><small>Atlas de recherche, non simulé</small></div></div>
