@@ -32,6 +32,12 @@ const fs=require("node:fs");
   assert.ok((await page.locator("#r5-home-stage .r4-st-renal-details").innerText()).includes("multipapillaire"));
   const scene=page.locator("#r5-home-stage .r5-animal-sculpture");
   await scene.waitFor();assert.ok((await scene.boundingBox()).height>=220);
+  await page.waitForFunction(
+   ()=>document.querySelector("#r5-home-stage .r4-st-portrait")?.dataset.mode==="photo3d",
+   {timeout:20000}
+  );
+  assert.equal(await page.locator("#r5-home-stage .r4-st-portrait").getAttribute("data-mode"),"photo3d",
+    "Le porc doit utiliser le GLB phototexturé, pas la sculpture de secours");
   const renderer=await scene.evaluate(canvas=>({
    hasWebGL:!!canvas.getContext("webgl"),
    isActive:canvas.closest(".r4-st-portrait")?.classList.contains("r5-webgl-active")
@@ -63,6 +69,12 @@ const fs=require("node:fs");
   await page.locator("#r4-sex").selectOption("female");
   await page.waitForFunction(()=>document.querySelector("#r4-visual-atlas .r4-st-annotations")?.textContent.includes("Femelle"));
   assert.match(await page.locator('#r4-visual-atlas .r5-animal-static').getAttribute("src"),/\/dog\.(svg|webp)$/);
+  await page.waitForFunction(
+   ()=>document.querySelector("#r4-visual-atlas .r4-st-portrait")?.dataset.mode==="photo3d",
+   {timeout:20000}
+  );
+  assert.equal(await page.locator("#r4-visual-atlas .r4-st-portrait").getAttribute("data-mode"),"photo3d",
+   "Le chien doit charger le maillage GLB plutôt que le fallback R06");
   await page.screenshot({path:"/tmp/prmr-r05-r04-desktop.png",fullPage:false});
   step="R04 molecules";
   const molecules=page.locator("#r4-molecules .r4-molecule canvas");
@@ -92,7 +104,7 @@ const fs=require("node:fs");
    await page.waitForSelector(root+" .r4-st-species-card",{timeout:45000});
    assert.equal(await page.locator(root+" .r4-st-species-card").count(),6);
   }
-  console.log("PASS PRMR-R05 — six images propres, zero posters recadres, texte non tronque 1440px et 390px, WebGL / repli, trois modules moleculaires");
+  console.log("PASS PRMR-R07 — vrais GLB phototexturés porc/chien, contrôles 3D, 6 espèces, 390 px mobile, molécules RDKit");
   if(jsErrors.length)console.log("Page errors observed: "+jsErrors.slice(0,6).join(" | "));
  }catch(error){
   console.error("PRMR-R07 UI FAIL at "+step+": "+(error.stack||error));
