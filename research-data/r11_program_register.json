@@ -1,0 +1,122 @@
+{
+  "schema": "prmr-program-register-v1",
+  "updated_utc": "2026-11-17",
+  "program": "PRMR Virtual Lab",
+  "scope": "Human CKD scientific discovery; preclinical exploration; research evidence",
+  "clinical_trial_authorized": false,
+  "research_stage": "literature-and-computational-exploration",
+  "modules": [
+    {
+      "id": "P1",
+      "title": "Existing literature and preclinical evidence",
+      "url": "preclinical.html",
+      "data_status": "initial_curated_review",
+      "limitations": [
+        "not systematic",
+        "no newly performed experiments"
+      ]
+    },
+    {
+      "id": "P2",
+      "title": "Preclinical 3D anatomy",
+      "url": "species-r04.html",
+      "species_active": [
+        "dog"
+      ],
+      "data_status": "canine_3d_ct_derived_hybrid",
+      "limitations": [
+        "not diagnostic",
+        "numerical parameters exploratory"
+      ]
+    },
+    {
+      "id": "P3",
+      "title": "Molecule analysis and candidate hypotheses",
+      "url": "screening.html",
+      "data_status": "rdkit_and_curated_compounds",
+      "limitations": [
+        "not evidence of efficacy",
+        "not formulation quality verified"
+      ]
+    },
+    {
+      "id": "P4",
+      "title": "Pharmacokinetic sensitivity exploration",
+      "url": "risk-r03.html",
+      "data_status": "historical_uncalibrated_mouse_rat_model",
+      "limitations": [
+        "historical mouse-rat scenarios retained as archival",
+        "no human-dose recommendations"
+      ]
+    },
+    {
+      "id": "P5",
+      "title": "Human CKD evidence and anatomy",
+      "url": "clinical.html",
+      "data_status": "human_atlas_with_local_fallback_and_external_reference",
+      "limitations": [
+        "runtime browser visual validation pending",
+        "anatomy not physiologically validated",
+        "no patient-specific data",
+        "no in-human PRMR trial"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "id": "evidence",
+      "status": "partial",
+      "requirement": "systematic clinical evidence review with source traceability"
+    },
+    {
+      "id": "human_anatomy",
+      "status": "partial",
+      "requirement": "technical runtime validation and anatomy provenance"
+    },
+    {
+      "id": "human_physiology",
+      "status": "not_validated",
+      "requirement": "calibrated kidney physiological and pathophysiological model"
+    },
+    {
+      "id": "molecule_selection",
+      "status": "hypothesis_only",
+      "requirement": "chemistry identity, PK/PD, novelty, rationale, reproducibility"
+    },
+    {
+      "id": "preclinical_efficacy",
+      "status": "not_demonstrated",
+      "requirement": "controlled replicable efficacy experiments for selected PRMR combination"
+    },
+    {
+      "id": "toxicology",
+      "status": "not_demonstrated",
+      "requirement": "candidate-specific GLP/nonclinical safety package as applicable"
+    },
+    {
+      "id": "clinical_protocol",
+      "status": "not_created",
+      "requirement": "population, controls, outcomes, risk management, monitoring and consent"
+    },
+    {
+      "id": "ethics_regulatory",
+      "status": "no_authorization",
+      "requirement": "authorizations by ethics committee and competent regulator prior to human involvement"
+    }
+  ],
+  "provenance": [
+    "index.html",
+    "clinical.html",
+    "src/r05_clinical.mjs",
+    "src/r07_nephron.mjs",
+    "src/r08_human_local.mjs",
+    "research-data/r05_human_anatomy_catalog.json"
+  ],
+  "validation": {
+    "static_module_syntax": "passed_2026-11-17",
+    "page_link_integrity": "static_manual_2026-11-17",
+    "browser_render": "not_verified",
+    "external_model_download_at_runtime": "not_verified",
+    "clinical_efficacy": "not_established"
+  }
+}
