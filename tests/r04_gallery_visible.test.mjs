@@ -1,43 +1,47 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import {readFileSync, existsSync} from "node:fs";
-const root=new URL("../",import.meta.url);
-const page=readFileSync(new URL("species-r04.html",root),"utf8");
-const logic=readFileSync(new URL("src/r04_app.mjs",root),"utf8");
-const style=readFileSync(new URL("r04-gallery.css",root),"utf8");
-const r03=readFileSync(new URL("risk-r03.html",root),"utf8");
-test("Original PRMR PNG visuals are directly visible on the R04 HTML page, even without JS",()=>{
- assert.match(page,/<section id="r4-original-gallery"/);
- assert.ok(page.includes('src="./assets/illustrations/r04/comparaison-especes.png?v=prmr-20261117-assets"'));
- assert.match(page,/href="\.\/r04-gallery\.css"/);
- for(const [species,filename] of Object.entries({mouse:"comparaison-especes.png",rat:"comparaison-especes.png",pig:"porc.png",dog:"chien.png",nhp:"primate.png",rabbit:"lapin.png"})){
-  assert.ok(page.includes('data-r4-gallery-species="'+species+'"'));
-  assert.ok(page.includes('href="./assets/illustrations/r04/'+filename+'"'));
-  assert.ok(existsSync(new URL("assets/illustrations/r04/"+filename,root)),filename);
+import {readFileSync,existsSync} from "node:fs";
+const base=new URL("../",import.meta.url);
+const r04=readFileSync(new URL("species-r04.html",base),"utf8");
+const r03=readFileSync(new URL("risk-r03.html",base),"utf8");
+const r02=readFileSync(new URL("screening.html",base),"utf8");
+const r01=readFileSync(new URL("preclinical.html",base),"utf8");
+const app=readFileSync(new URL("src/r04_app.mjs",base),"utf8");
+const embedded=readFileSync(new URL("src/r04_embedded.mjs",base),"utf8");
+test("Previous pasted poster galleries have been removed",()=>{
+ assert.ok(!r04.includes('id="r4-original-gallery"'));
+ assert.ok(!r04.includes('r4-poster-gallery'));
+ assert.ok(!r04.includes('r04-gallery.css'));
+ assert.ok(!r03.includes('id="r03-original-poster"'));
+ assert.ok(!r03.includes('<figure class="r4-original-poster"'));
+ assert.match(r04,/id="r4-visual-atlas"/);
+ assert.match(r04,/src="\.\/src\/r04_app\.mjs\?v=r04-refonte/);
+});
+test("Every user-facing research interface uses the same integrated workstation",()=>{
+ for(const [file,id] of [["index.html","r5-home-stage"],["research.html","r5-home-stage"],["risk-r03.html","r5-risk-stage"],["screening.html","r5-screening-stage"],["preclinical.html","r5-preclinical-stage"]]){
+  const body=readFileSync(new URL(file,base),"utf8");
+  assert.ok(body.includes('id="'+id+'"'),file);
+  assert.ok(body.includes("r04-atlas.css"),file);
+  assert.ok(body.includes("src/r04_embedded.mjs"),file);
  }
+ assert.ok(embedded.includes("r5-home-stage"));
+ assert.ok(embedded.includes("r5-risk-stage"));
+ assert.ok(embedded.includes("r5-screening-stage"));
+ assert.ok(embedded.includes("r5-preclinical-stage"));
 });
-test("Species interaction changes poster and animal calculation together",()=>{
- assert.match(logic,/enableOriginalPosterNavigation\(\)/);
- assert.match(logic,/setSpecies\(a\.dataset\.r4GallerySpecies\)/);
- assert.match(logic,/refreshOriginalPoster\(result\.species\.id\)/);
- assert.match(logic,/ORIGINAL_POSTERS_R04/);
- assert.match(page,/r04-original-posters-20261117/);
-});
-test("The R03 poster is displayed without waiting for JavaScript",()=>{
- assert.match(r03,/<figure class="r4-original-poster" id="r03-original-poster">/);
- assert.ok(!r03.includes('id="r03-original-poster" hidden'));
- assert.match(r03,/assets\/illustrations\/r04\/tableau-pkpd\.png/);
- assert.ok(existsSync(new URL("assets/illustrations/r04/tableau-pkpd.png",root)));
- assert.match(style,/r4-poster-gallery-grid/);
-});
-
-test("Main lab entrances expose original poster images without an interactive dependency",()=>{
- for(const name of ["index.html","research.html"]){
-  const html=readFileSync(new URL(name,root),"utf8");
-  assert.match(html,/class="r4-home-promo"/);
-  assert.ok(html.includes('src="./assets/illustrations/r04/comparaison-especes.png?v=prmr-20261117-assets"'));
-  assert.match(html,/href="\.\/species-r04\.html\?v=gallery-20261117"/);
-  assert.match(html,/href="r04-home-promo\.css"/);
+test("Home route enters a functional species and molecule workbench",()=>{
+ for(const file of ["index.html","research.html"]){
+  const h=readFileSync(new URL(file,base),"utf8");
+  assert.match(h,/Molécules en 3D/);
+  assert.match(h,/r5-home-stage/);
+  assert.ok(!h.includes("r4-home-promo"));
+  assert.ok(!h.includes("galerie placardée"));
  }
- assert.ok(existsSync(new URL("r04-home-promo.css",root)));
+ assert.ok(app.includes("function setSpecies("));
+ assert.ok(app.includes("initMolecules()"));
+});
+test("Original illustrations remain available as source material, not standalone gallery",()=>{
+ for(const name of ["comparaison-especes.png","porc.png","chien.png","primate.png","lapin.png","tableau-pkpd.png"]){
+  assert.ok(existsSync(new URL("assets/illustrations/r04/"+name,base)),name);
+ }
 });
