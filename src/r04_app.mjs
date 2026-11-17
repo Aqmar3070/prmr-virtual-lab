@@ -2,9 +2,11 @@
 import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} from "./r04_engine.mjs";
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
+import {createVisualAtlas} from "./r04_atlas.mjs";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
 const state={...DEFAULT_R04};
+let atlas=null;
 const colors=["#58dabe","#ffb877","#f07886"];
 const fmt=(x,p=2)=>Number(x).toLocaleString("fr-FR",{maximumFractionDigits:p,minimumFractionDigits:p});
 let kidney=null,body=null,molecule=null,coords=null,moleculeId="irbesartan";
@@ -159,6 +161,7 @@ function update(){
  try{result=computeR04(state)}catch(e){$("r4-profile-detail").textContent=e.message;return}
  updateCard(result);updateExposure(result);updatePdGraph(result);
  body?.set({species:state.species,renal:state.renal,hepatic:state.hepatic});
+ atlas?.render(result);
  const c=document.querySelector(".r4-banner");
  c.textContent="STATUT SCIENTIFIQUE — "+result.species.label+" : stress-test fondé sur des rapports AUC humains et un transfert arbitraire. Les changements âge / sexe / constitution sont documentés mais sans coefficient PK inventé. Probabilités de toxicité, d'efficacité ou de guérison : non estimables.";
  // make selected species visible
@@ -191,7 +194,7 @@ function selectMolecule(id){
  if(molecule)molecule.set({kind:"molecule",model:con});else molecule=create3D($("r4-molecule-3d"),{kind:"molecule",model:con});
 }
 function init(){
- initSpecies();setOptions();kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
+ initSpecies();setOptions();atlas=createVisualAtlas({onChoose:setSpecies,getResult:()=>computeR04(state)});kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
  body=create3D($("r4-body-3d"),{kind:"animal",species:state.species,renal:state.renal,hepatic:state.hepatic});
  updateHumanGraph();
  const requested=new URLSearchParams(location.search).get("species");
