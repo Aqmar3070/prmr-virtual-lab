@@ -68,6 +68,8 @@ footer{border-top:1px solid #2f4456;padding-top:25px;margin-top:48px;color:#92b0
 @media(max-width:850px){.stats,.steps{grid-template-columns:repeat(2,1fr)}#molecule-list{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.twocol,.stats,.steps,#molecule-list{grid-template-columns:1fr}.panelx{padding:17px}.rfield{max-width:100%;width:100%}.controls{align-items:stretch}}
 </style>
+<link rel="stylesheet" href="./r04-atlas.css">
+<script type="module" src="./src/r04_embedded.mjs?v=refonte-20261117"></script>
 </head>
 <body>
 <div id="app">
@@ -84,7 +86,7 @@ footer{border-top:1px solid #2f4456;padding-top:25px;margin-top:48px;color:#92b0
 <main>
 <div class="eyebrow">PRMR-R02 / Criblage computationnel original / 16 novembre 2026</div>
 <h1>Des molécules existantes. <span>Des combinaisons calculées.</span></h1>
-<p class="lead">Première recherche <em>in silico</em> indépendante : les structures PubChem de dix médicaments ont été analysées avec RDKit, puis toutes les associations de deux ou trois agents ont été générées et triées selon des mécanismes distincts et des alertes connues. Aucun résultat des études animales combinatoires de R01 n'entre dans le calcul du classement R02.</p>
+<p class="lead">Laboratoire moléculaire interactif et première recherche <em>in silico</em> indépendante : les structures PubChem de dix médicaments ont été analysées avec RDKit, puis toutes les associations de deux ou trois agents ont été générées et triées selon des mécanismes distincts et des alertes connues. Aucun résultat des études animales combinatoires de R01 n'entre dans le calcul du classement R02.</p>
 <div class="hnotice"><strong>Ce que l'application n'a pas fait :</strong> elle n'a ni traité d'animal, ni cultivé de cellules, ni modélisé une interaction médicamenteuse, ni prédit une synergie, ni démontré de guérison. L'indice d'exploration est une règle de classement explicitement choisie pour préparer des expériences biologiques, sans calibration sur une efficacité observée.</div>
 <div class="stats">
 <div class="stat"><label>Molécules de départ</label><strong id="n-molecules">10</strong><small>Structures vérifiées dans PubChem</small></div>
@@ -113,6 +115,7 @@ footer{border-top:1px solid #2f4456;padding-top:25px;margin-top:48px;color:#92b0
 </div>
 <div class="info" style="margin-top:15px"><strong>Test de sensibilité interne :</strong> 2 000 perturbations déterministes des coefficients de recherche (±20 % sur les composantes exploratoires). Parmi dix triples représentatifs, R02-A arrive première dans 58,05 % des perturbations et R02-B dans 41,95 %. Les pourcentages représentent la stabilité du <em>classement choisi</em>, pas une probabilité d'efficacité ou de guérison. De faibles modifications des hypothèses peuvent inverser ces deux pistes.</div>
 </section>
+<section id="r5-screening-stage" aria-label="Molécules 3D et comparateur animal PRMR intégré" style="margin-top:26px"></section>
 <section id="all-combinations">
 <h2>165 combinaisons : registre filtrable</h2>
 <p>Les associations sont classées par indice de priorisation purement méthodologique. Les configurations « suspendues » ne doivent pas être interprétées comme des prescriptions ; certaines contiennent des contre-indications ou nécessitent un contexte clinique qui n'est pas défini.</p>
