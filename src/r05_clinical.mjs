@@ -158,6 +158,29 @@ let refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,n
 let refVesselRoles={arteries:true,veins:true};
 const refNames={skull:"Crâne",ribs:"Cage thoracique",pelvis:"Bassin",nerves_spinal:"Nerfs spinaux",muscles_torso:"Muscles du tronc",gallbladder:"Vésicule biliaire",adrenal_l:"Surrénale gauche",adrenal_r:"Surrénale droite",arteries_abdomen:"Artères abdominales",arteries_thorax:"Artères thoraciques",carotid_l:"Carotide gauche",carotid_r:"Carotide droite",coronary_arteries:"Artères coronaires",veins_abdomen:"Veines abdominales",veins_thorax:"Veines thoraciques",pulmonary_vessels:"Vaisseaux pulmonaires",ureter_l:"Uretère gauche",ureter_r:"Uretère droit",colon:"Côlon",small_intestine:"Intestin grêle",trachea:"Trachée",kidney_l:"Rein gauche",kidney_r:"Rein droit",heart:"Cœur",lung_l:"Poumon gauche",lung_r:"Poumon droit",liver:"Foie",brain:"Cerveau",pancreas:"Pancréas",stomach:"Estomac",spleen:"Rate",bladder:"Vessie",aorta:"Aorte",vena_cava_inferior:"Veine cave inférieure",vena_cava_superior:"Veine cave supérieure",uterus:"Utérus"};
 const refSystems={skin:"Peau",skeleton:"Squelette",muscles:"Muscles",organs:"Organes",vessels:"Artères et veines",nerves:"Nerfs"};
+
+const CLINICAL_ANATOMY={
+ kidney_l:{structure:"Rein gauche : organe rétropéritonéal, cortex, médulla, pyramides, calices, bassinet et uretère.",function:"Filtration glomérulaire, réabsorption et sécrétion tubulaires ; régulation de la volémie, des électrolytes, du pH, de la rénine et de l'érythropoïétine.",research:"MRC : DFG mesuré/estimé, albuminurie, lésions glomérulaires et fibrose. Une géométrie 3D ne mesure aucune de ces fonctions."},
+ kidney_r:{structure:"Rein droit : situé habituellement un peu plus bas que le gauche ; cortex, médulla et système collecteur.",function:"Participe à la filtration sanguine et à l'équilibre hydroélectrolytique avec le rein gauche.",research:"Les mécanismes tubuloglomérulaires doivent être évalués par des données biologiques et histologiques, non par une texture 3D."},
+ heart:{structure:"Quatre cavités, valves, septa, circulation coronaire et voies de conduction.",function:"Débit cardiaque et pression de perfusion systémique ; relations cardiorénales bidirectionnelles.",research:"Surveillance de l'insuffisance cardiaque, de la pression artérielle et des effets hémodynamiques."},
+ lung_l:{structure:"Poumon gauche : deux lobes, bronches, bronchioles, alvéoles et réseau capillaire pulmonaire.",function:"Hématose et équilibre acido-basique avec les reins.",research:"La surcharge hydrosodée peut entraîner un œdème pulmonaire ; non simulé dans les maillages."},
+ lung_r:{structure:"Poumon droit : trois lobes, réseau bronchique et vascularisation pulmonaire.",function:"Échanges gazeux, régulation de la PaCO₂ et contribution au pH sanguin.",research:"Évaluer cliniquement les interactions cardio-pulmono-rénales."},
+ liver:{structure:"Lobes hépatiques, sinusoïdes, arbre portal et voies biliaires.",function:"Biotransformation des médicaments, synthèse protéique, métabolisme et détoxification.",research:"Une atteinte hépatique peut modifier les expositions PK ; aucun coefficient n'est déduit du modèle 3D."},
+ pancreas:{structure:"Tête, corps, queue, îlots endocrines et acini exocrines.",function:"Sécrétion d'insuline et de glucagon ; métabolisme énergétique.",research:"L'hyperglycémie chronique contribue aux mécanismes de néphropathie diabétique."},
+ bladder:{structure:"Réservoir musculaire pelvien, trigone, uretères et urètre.",function:"Stocke et évacue l'urine produite par les reins.",research:"Les troubles obstructifs sont distincts de la filtration rénale."},
+ brain:{structure:"Hémisphères, cortex, structures profondes et vascularisation cérébrale.",function:"Régulation neurologique, autonomie cardiovasculaire et homéostasie.",research:"Une urémie sévère peut produire des manifestations neurologiques ; la géométrie n'est pas diagnostique."},
+ aorta:{structure:"Aorte ascendante, crosse, aorte thoracique et abdominale, branches viscérales.",function:"Acheminement du sang artériel vers les organes, notamment les reins via les artères rénales.",research:"La pression et les débits sont des paramètres dynamiques absents du maillage."},
+ vena_cava_inferior:{structure:"Tronc veineux inférieur recevant le retour veineux abdominal et des membres inférieurs.",function:"Retour du sang vers l'oreillette droite.",research:"Congestion veineuse et pression de remplissage : paramètres hémodynamiques à mesurer."},
+ arteries_abdomen:{structure:"Branches artérielles régionales incluant l'environnement des artères rénales et digestives.",function:"Distribution de la perfusion abdominale.",research:"Le réseau est une approximation des trajets macroscopiques, pas une microangiographie."},
+ veins_abdomen:{structure:"Veines du territoire abdominal, incluant connexions cave et portale selon le jeu de données.",function:"Drainage veineux abdominal.",research:"Ne pas déduire une congestion à partir de la couleur du réseau."},
+ small_intestine:{structure:"Duodénum, jéjunum et iléon, villosités et circulation mésentérique.",function:"Absorption des nutriments, de l'eau et de certains médicaments.",research:"La biodisponibilité dépend d'autres facteurs que le maillage anatomique."},
+ colon:{structure:"Cæcum, côlon ascendant, transverse, descendant et sigmoïde.",function:"Absorption d'eau, transport et métabolisme microbien.",research:"Axe intestin–rein : métabolites urémiques et microbiote, mécanismes en investigation."},
+ spleen:{structure:"Organe lymphoïde de l'hypocondre gauche.",function:"Filtration du sang et réponses immunitaires.",research:"Composante immunitaire systémique ; rôle différent de la fonction rénale."},
+ ureter_l:{structure:"Conduit musculaire gauche reliant le bassinet rénal à la vessie.",function:"Propulsion de l'urine par péristaltisme.",research:"Obstruction urinaire et hydronéphrose sont des phénomènes distincts de la MRC glomérulaire."},
+ ureter_r:{structure:"Conduit musculaire droit reliant le bassinet rénal à la vessie.",function:"Transport de l'urine à basse pression.",research:"L'imagerie d'un uretère ne mesure pas le DFG."},
+ coronary_arteries:{structure:"Vascularisation épicardique du myocarde.",function:"Approvisionnement du muscle cardiaque en oxygène.",research:"La MRC augmente le risque cardiovasculaire ; les artères réelles varient selon les individus."}
+};
+
 function refLabel(x){return refNames[x.key]||x.label||x.key}
 function updateReference(){
  body.visible=false;structures.visible=false;
@@ -177,7 +200,15 @@ function updateReference(){
  $("toggle-body").textContent=refLayers.skin?"Masquer la peau":"Afficher la peau";$("toggle-body").setAttribute("aria-pressed",String(refLayers.skin));
  const selected=refCatalog.find(x=>x.key===chosen);
  const info=$("organ-info");info.replaceChildren();
- if(selected){const p=document.createElement("p");p.className="muted";p.textContent=refLabel(selected)+" · "+(refSystems[selected.system]||selected.system)+" · Maillage anatomique de référence, non clinique. Aucun diagnostic, débit sanguin ni lésion n'est représenté.";info.append(p);
+ if(selected){
+  const title=document.createElement("strong");title.textContent=refLabel(selected)+" — "+(refSystems[selected.system]||selected.system);info.append(title);
+  const detail=CLINICAL_ANATOMY[selected.key];
+  for(const [label,value] of [
+   ["Anatomie",detail?.structure||"Structure macroscopique présente dans le catalogue anatomique. La forme ne reflète pas un sujet particulier."],
+   ["Fonction physiologique",detail?.function||"Son rôle physiologique dépend du système, des tissus et de leurs interactions, non représentés dynamiquement."],
+   ["Interprétation rénale / scientifique",detail?.research||"Maillage éducatif ; aucune donnée de fonction, perfusion, lésion ou guérison ne peut être déduite de sa géométrie."]
+  ]){const p=document.createElement("p");p.className="muted";const b=document.createElement("strong");b.textContent=label+" : ";p.append(b,document.createTextNode(value));info.append(p)}
+  const origin=document.createElement("p");origin.className="muted";origin.textContent="Source du rendu : "+(referenceSource==="reference"?"maillage de référence BodyParts3D/HuBMAP (licences indiquées ci-dessous)":"reconstruction locale procédurale, non validée par imagerie")+". Aucun diagnostic automatisé.";info.append(origin);
  if(["kidney_l","kidney_r","ureter_l","ureter_r"].includes(selected.key)){const b=document.createElement("button");b.type="button";b.textContent="Explorer le néphron en 3D";b.addEventListener("click",()=>document.getElementById("microanatomy")?.scrollIntoView({behavior:"smooth",block:"start"}));info.append(b)}
  }else{info.textContent="Sélectionner une structure anatomique."}
 }
@@ -274,7 +305,7 @@ async function launchReference(){
    $("human-organs").append(b);
   }
   await loadReference("male");
- }catch(e){status.textContent="Atlas anatomique détaillé inaccessible : "+e.message+". Modèle schématique conservé."}
+ }catch(e){refCatalog=[];installLocalBody("male");status.textContent="Catalogue externe indisponible : corps local 3D conservé. "+e.message;}
 }
 
 launchReference();
