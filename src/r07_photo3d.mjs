@@ -35,7 +35,7 @@ function program(gl){
  return p;
 }
 const TYPES={VEC3:3,VEC2:2,SCALAR:1};
-function unpack(data){
+export function unpack(data){
  const view=new DataView(data);
  if(view.byteLength<28||view.getUint32(0,true)!==0x46546c67||view.getUint32(4,true)!==2||
  view.getUint32(8,true)!==view.byteLength)throw Error("Fichier GLB invalide");
