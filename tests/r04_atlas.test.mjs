@@ -23,7 +23,7 @@ test("The integrated workbench shares species, physiology and molecular state",(
  assert.match(atlas,/createVisualAtlas/);
  assert.match(atlas,/choose\(sp\.id\)/);
  assert.match(atlas,/onEdit/);
- assert.match(atlas,/\.render\(result\)/);
+ assert.match(atlas,/render\(getResult\(\)\)/);
  assert.match(app,/atlas\?\.render\(result\)/);
  assert.match(app,/onChoose:setSpecies/);
  assert.match(app,/onEdit:patch/);
