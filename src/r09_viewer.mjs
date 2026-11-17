@@ -221,12 +221,12 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
  }
  function setSpecies(id){
   if(!SPECIES_ANATOMY[id])return;
-  current=id;const token=++sceneToken;
+  current=id;canvas.dataset.anatomySpecies=id;const token=++sceneToken;
   generated(id);if(id==="dog")dogScanned(token);
  }
  function select(id){
   if(!ORGAN_MODES[id])return;
-  focus=id;organVisibility();
+  focus=id;canvas.dataset.anatomyOrgan=id;organVisibility();
  }
  const onPick=e=>{
   if(pointerStart&&Math.hypot(e.clientX-pointerStart[0],e.clientY-pointerStart[1])>8)return;
