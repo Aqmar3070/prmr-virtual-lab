@@ -156,10 +156,38 @@ function updateCard(result){
  ];
  notes.slice(0,9).forEach(n=>{const div=el("div",undefined,"r4-reason");div.append(el("b",n.name),el("span",n.detail));list.append(div)});
 }
+const ORIGINAL_POSTERS_R04={
+ mouse:["comparaison-especes.png","Souris — comparaison des espèces"],
+ rat:["comparaison-especes.png","Rat — comparaison des espèces"],
+ pig:["porc.png","Porc / miniporc — affiche originale"],
+ dog:["chien.png","Chien — affiche originale"],
+ nhp:["primate.png","Primate non humain — affiche originale"],
+ rabbit:["lapin.png","Lapin — affiche originale"]
+};
+function refreshOriginalPoster(speciesId){
+ const item=ORIGINAL_POSTERS_R04[speciesId];
+ if(!item)return;
+ const image=$("r4-poster-main-img"),link=$("r4-poster-image-link"),fullscreen=$("r4-poster-fullscreen");
+ const url="./assets/illustrations/r04/"+item[0];
+ if(image&&image.getAttribute("src")!==url){image.src=url}
+ if(image)image.alt=item[1]+". Illustration de présentation et non résultat expérimental.";
+ if(link)link.href=url;
+ if(fullscreen)fullscreen.href=url;
+ safeText("r4-poster-title",item[1]);
+ document.querySelectorAll("[data-r4-gallery-species]").forEach(a=>a.setAttribute("aria-current",String(a.dataset.r4GallerySpecies===speciesId)));
+}
+function enableOriginalPosterNavigation(){
+ document.querySelectorAll("[data-r4-gallery-species]").forEach(a=>a.addEventListener("click",event=>{
+  if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  event.preventDefault();
+  setSpecies(a.dataset.r4GallerySpecies);
+ }));
+}
+
 function update(){
  let result;
  try{result=computeR04(state)}catch(e){$("r4-profile-detail").textContent=e.message;return}
- updateCard(result);updateExposure(result);updatePdGraph(result);
+ updateCard(result);updateExposure(result);updatePdGraph(result);refreshOriginalPoster(result.species.id);
  body?.set({species:state.species,renal:state.renal,hepatic:state.hepatic});
  atlas?.render(result);
  const c=document.querySelector(".r4-banner");
@@ -194,7 +222,7 @@ function selectMolecule(id){
  if(molecule)molecule.set({kind:"molecule",model:con});else molecule=create3D($("r4-molecule-3d"),{kind:"molecule",model:con});
 }
 function init(){
- initSpecies();setOptions();atlas=createVisualAtlas({onChoose:setSpecies,getResult:()=>computeR04(state)});kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
+ initSpecies();setOptions();enableOriginalPosterNavigation();atlas=createVisualAtlas({onChoose:setSpecies,getResult:()=>computeR04(state)});kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
  body=create3D($("r4-body-3d"),{kind:"animal",species:state.species,renal:state.renal,hepatic:state.hepatic});
  updateHumanGraph();
  const requested=new URLSearchParams(location.search).get("species");
