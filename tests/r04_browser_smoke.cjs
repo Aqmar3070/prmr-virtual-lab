@@ -32,6 +32,15 @@ const fs=require("node:fs");
   assert.ok((await page.locator("#r5-home-stage .r4-st-renal-details").innerText()).includes("multipapillaire"));
   const scene=page.locator("#r5-home-stage .r5-animal-sculpture");
   await scene.waitFor();assert.ok((await scene.boundingBox()).height>=220);
+  const renderer=await scene.evaluate(canvas=>({
+   hasWebGL:!!canvas.getContext("webgl"),
+   isActive:canvas.closest(".r4-st-portrait")?.classList.contains("r5-webgl-active")
+  }));
+  if(renderer.hasWebGL){
+   assert.ok(renderer.isActive,"WebGL context exists but the animal mesh or material shader did not initialize");
+   await scene.hover();await page.mouse.wheel(0,-160);
+   await scene.dblclick();
+  }
   step="texte et physiologie à l'accueil";
   const controls=page.locator("#r5-home-stage .r4-st-mini-controls select");
   await controls.nth(0).selectOption("old");
