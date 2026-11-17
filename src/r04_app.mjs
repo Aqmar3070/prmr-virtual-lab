@@ -13,16 +13,7 @@ let kidney=null,body=null,molecule=null,coords=null,moleculeId="irbesartan";
 const safeText=(id,text)=>{const e=$(id);if(e)e.textContent=text};
 function el(tag,name,cls){const x=document.createElement(tag);if(name!==undefined)x.textContent=name;if(cls)x.className=cls;return x}
 function speciesIcon(id){
- const color={mouse:"#cadce3",rat:"#9fb4c5",pig:"#f4aea3",dog:"#d7ad75",nhp:"#c2a78e",rabbit:"#e1d7dd"}[id];
- const shape={
- mouse:'<ellipse cx="50" cy="32" rx="27" ry="12"/><circle cx="26" cy="29" r="12"/><circle cx="18" cy="18" r="7"/><circle cx="30" cy="17" r="6"/><path d="M76 31 Q94 27 93 7" fill="none" stroke-width="4"/>',
- rat:'<ellipse cx="51" cy="32" rx="30" ry="14"/><circle cx="26" cy="29" r="12"/><circle cx="18" cy="17" r="6"/><circle cx="32" cy="18" r="6"/><path d="M76 34 Q106 30 94 2" fill="none" stroke-width="3"/>',
- pig:'<ellipse cx="50" cy="33" rx="30" ry="16"/><circle cx="25" cy="28" r="17"/><path d="M13 18 L12 5 L26 16 Z M31 14 L42 8 L38 25 Z"/><ellipse cx="15" cy="33" rx="10" ry="7" fill="#f1c1b4"/>',
- dog:'<ellipse cx="54" cy="31" rx="28" ry="16"/><circle cx="25" cy="25" r="14"/><ellipse cx="33" cy="17" rx="8" ry="15" fill="#7a777b"/><ellipse cx="13" cy="31" rx="10" ry="7"/>',
- nhp:'<ellipse cx="62" cy="37" rx="21" ry="14"/><circle cx="30" cy="26" r="17"/><circle cx="12" cy="29" r="8"/><circle cx="48" cy="29" r="8"/><ellipse cx="30" cy="32" rx="13" ry="9" fill="#edc0a8"/>',
- rabbit:'<ellipse cx="56" cy="35" rx="27" ry="14"/><circle cx="29" cy="28" r="13"/><ellipse cx="22" cy="9" rx="5" ry="18"/><ellipse cx="35" cy="9" rx="5" ry="18"/><circle cx="83" cy="32" r="6" fill="#ffffff"/>'
- }[id]||'';
- return '<svg viewBox="0 0 104 55" aria-hidden="true"><g fill="'+color+'" stroke="#73d3d6" stroke-width=".7">'+shape+'</g><circle cx="23" cy="29" r="2" fill="#08313e"/><path d="M32 43 L31 51 M61 43 L60 51" stroke="'+color+'" stroke-width="4" stroke-linecap="round"/></svg>';
+ return '<div class="r4-st-art" data-species="'+id+'" role="img" aria-label="Visuel original de l’espèce '+id+' intégré au sélecteur"></div>';
 }
 function initSpecies(){
  for(const sp of SPECIES_R04){
@@ -156,38 +147,10 @@ function updateCard(result){
  ];
  notes.slice(0,9).forEach(n=>{const div=el("div",undefined,"r4-reason");div.append(el("b",n.name),el("span",n.detail));list.append(div)});
 }
-const ORIGINAL_POSTERS_R04={
- mouse:["comparaison-especes.png","Souris — comparaison des espèces"],
- rat:["comparaison-especes.png","Rat — comparaison des espèces"],
- pig:["porc.png","Porc / miniporc — affiche originale"],
- dog:["chien.png","Chien — affiche originale"],
- nhp:["primate.png","Primate non humain — affiche originale"],
- rabbit:["lapin.png","Lapin — affiche originale"]
-};
-function refreshOriginalPoster(speciesId){
- const item=ORIGINAL_POSTERS_R04[speciesId];
- if(!item)return;
- const image=$("r4-poster-main-img"),link=$("r4-poster-image-link"),fullscreen=$("r4-poster-fullscreen");
- const url="./assets/illustrations/r04/"+item[0];
- if(image&&image.dataset.posterPath!==url){image.src=url+"?v=prmr-20261117-assets";image.dataset.posterPath=url}
- if(image)image.alt=item[1]+". Illustration de présentation et non résultat expérimental.";
- if(link)link.href=url;
- if(fullscreen)fullscreen.href=url;
- safeText("r4-poster-title",item[1]);
- document.querySelectorAll("[data-r4-gallery-species]").forEach(a=>a.setAttribute("aria-current",String(a.dataset.r4GallerySpecies===speciesId)));
-}
-function enableOriginalPosterNavigation(){
- document.querySelectorAll("[data-r4-gallery-species]").forEach(a=>a.addEventListener("click",event=>{
-  if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-  event.preventDefault();
-  setSpecies(a.dataset.r4GallerySpecies);
- }));
-}
-
 function update(){
  let result;
  try{result=computeR04(state)}catch(e){$("r4-profile-detail").textContent=e.message;return}
- updateCard(result);updateExposure(result);updatePdGraph(result);refreshOriginalPoster(result.species.id);
+ updateCard(result);updateExposure(result);updatePdGraph(result);
  body?.set({species:state.species,renal:state.renal,hepatic:state.hepatic});
  atlas?.render(result);
  const c=document.querySelector(".r4-banner");
@@ -196,19 +159,19 @@ function update(){
  document.querySelectorAll("#species-grid button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.species===state.species)));
 }
 async function initMolecules(){
- const host=$("r4-molecules");
- let data=null;
+ const host=$("r4-molecules");let data=null;
  try{
-  const resp=await fetch("./research-data/r04_molecular_3d.json");
-  if(!resp.ok)throw Error("HTTP "+resp.status);
-  data=await resp.json();coords=data;
- }catch(err){$("r4-molecule-data").textContent="Coordonnées moléculaires 3D indisponibles : "+err.message;return}
+  const response=await fetch("./research-data/r04_molecular_3d.json");
+  if(!response.ok)throw Error("HTTP "+response.status);
+  data=await response.json();coords=data;
+ }catch(e){$("r4-molecule-data").textContent="Conformères indisponibles : "+e.message;return}
  for(const mol of MOLECULES_R04){
-  const button=document.createElement("button");button.className="r4-molecule";button.type="button";button.dataset.molecule=mol.id;
-  const img=document.createElement("img");img.loading="lazy";img.alt="Structure 2D PubChem de "+mol.name;img.src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/"+mol.cid+"/PNG?image_size=200x200";
-  img.addEventListener("error",()=>{img.style.display="none";button.insertBefore(el("div","Structure 2D : PubChem non disponible","r4-empty"),button.firstChild)});
-  button.append(img,el("b",mol.name),el("small",mol.axis));
-  button.addEventListener("click",()=>selectMolecule(mol.id));host.append(button);
+  const btn=document.createElement("button");btn.className="r4-molecule";btn.type="button";btn.dataset.molecule=mol.id;
+  const canvas=document.createElement("canvas");canvas.className="r4-molecule-thumb3d";
+  canvas.setAttribute("role","img");canvas.setAttribute("aria-label","Conformère 3D manipulable de "+mol.name);
+  btn.append(canvas,el("h3",mol.name),el("p",mol.axis));
+  btn.addEventListener("click",()=>selectMolecule(mol.id));host.append(btn);
+  if(data[mol.id])create3D(canvas,{kind:"molecule",model:data[mol.id]});
  }
  selectMolecule("irbesartan");
 }
@@ -222,7 +185,17 @@ function selectMolecule(id){
  if(molecule)molecule.set({kind:"molecule",model:con});else molecule=create3D($("r4-molecule-3d"),{kind:"molecule",model:con});
 }
 function init(){
- initSpecies();setOptions();enableOriginalPosterNavigation();atlas=createVisualAtlas({onChoose:setSpecies,getResult:()=>computeR04(state)});kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
+ initSpecies();setOptions();atlas=createVisualAtlas({
+  onChoose:setSpecies,
+  getResult:()=>computeR04(state),
+  onEdit:patch=>{
+   Object.assign(state,patch);
+   for(const [key,value] of Object.entries(patch)){
+    const field=$("r4-"+key);if(field)field.value=value;
+   }
+   update();
+  }
+ });kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
  body=create3D($("r4-body-3d"),{kind:"animal",species:state.species,renal:state.renal,hepatic:state.hepatic});
  updateHumanGraph();
  const requested=new URLSearchParams(location.search).get("species");
