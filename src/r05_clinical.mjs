@@ -1,6 +1,8 @@
 // PRMR Phase 5 / Human clinical renal research. Educational anatomy, not segmented human medical imaging.
 import * as T from "../vendor/three/build/three.module.js";
 import {OrbitControls} from "../vendor/three/examples/jsm/controls/OrbitControls.js";
+import {GLTFLoader} from "../vendor/three/examples/jsm/loaders/GLTFLoader.js";
+import {MeshoptDecoder} from "../vendor/three/examples/jsm/libs/meshopt_decoder.module.js";
 const $=id=>document.getElementById(id);
 const CATALOG=[
 {key:"ace",name:"IEC : ramipril, lisinopril, énalapril",type:"established",target:"SRAA / hypertension / albuminurie",trial:"KDIGO 2024 ; essais REIN/AIPRI",result:"Réduction du risque de progression chez des groupes avec albuminurie ; traitement de fond selon indication.",limit:"Surveiller potassium, tension, créatinine. Ne pas associer IEC + ARA2.",url:"https://kdigo.org/guidelines/ckd-evaluation-and-management/"},
@@ -91,8 +93,9 @@ const pancreas=organ("pancreas");const pan=ell(pancreas,.02,-.08,.08,.33,.08,.11
 const bladder=organ("bladder");ell(bladder,0,-.75,.11,.17,.17,.15,"#d99b80");
 const spleen=organ("spleen");const sp=ell(spleen,-.43,.20,-.06,.10,.25,.12,"#994d76");sp.rotation.z=-.3;
 const vessels=organ("vessels");tube(vessels,[[0,.92,-.15],[.1,.45,-.22],[.05,.05,-.23],[.04,-.48,-.18],[0,-.75,-.1]],.036,"#d55c64");tube(vessels,[[-.08,.92,-.25],[-.08,.45,-.25],[-.09,-.12,-.25],[-.06,-.65,-.23]],.042,"#557cca");
-function select(id){if(!organs[id])return;chosen=id;update();}
+function select(id){if(!organs[id]&&!refGroups.has(id))return;chosen=id;update();}
 function update(){
+ if(refModel){updateReference();return;}
  for(const [id,g]of Object.entries(organs)){g.visible=!isolated||id===chosen;g.traverse(o=>{if(!o.isMesh)return;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.opacity=(id===chosen?1:.30);m.transparent=m.opacity<1;m.depthWrite=m.opacity>=1;}});}
  body.visible=shellVisible&&!isolated;
  for(const b of $("human-organs").querySelectorAll("button"))b.setAttribute("aria-pressed",String(b.dataset.organ===chosen));
@@ -107,9 +110,129 @@ $("toggle-isolate").addEventListener("click",()=>{isolated=!isolated;update()});
 $("reset-view").addEventListener("click",()=>{camera.position.set(3,2.1,8);controls.target.set(0,0,0);controls.update()});
 const raycaster=new T.Raycaster(),pointer=new T.Vector2();let down=null;
 canvas.addEventListener("pointerdown",e=>{down=[e.clientX,e.clientY]});
-canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);const meshes=[];for(const [id,g]of Object.entries(organs))if(g.visible)g.traverse(o=>{if(o.isMesh){o.userData.organ=id;meshes.push(o)}});const hits=raycaster.intersectObjects(meshes);if(hits.length)select(hits[0].object.userData.organ)});
+canvas.addEventListener("pointerup",e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>6)return;const r=canvas.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);const meshes=[];for(const [id,g]of Object.entries(organs))if(g.visible)g.traverse(o=>{if(o.isMesh){o.userData.organ=id;meshes.push(o)}});if(refModel){meshes.length=0;for(const item of refMeshes)if(item.mesh.visible)meshes.push(item.mesh)}const hits=raycaster.intersectObjects(meshes);if(hits.length)select(refModel?hits[0].object.userData.prmrKey:hits[0].object.userData.organ)});
 function resize(){const box=canvas.getBoundingClientRect();if(box.width<10||box.height<10)return;renderer.setSize(box.width,box.height,false);camera.aspect=box.width/box.height;camera.updateProjectionMatrix();}
 const obs=typeof ResizeObserver!=="undefined"?new ResizeObserver(resize):null;obs?.observe(canvas);window.addEventListener("resize",resize);
 let active=true;const viewport=typeof IntersectionObserver!=="undefined"?new IntersectionObserver(entries=>{active=entries.some(e=>e.isIntersecting)},{rootMargin:"100px"}):null;viewport?.observe(canvas);
 function animate(){requestAnimationFrame(animate);if(!active||document.hidden)return;controls.update();renderer.render(scene,camera);}
-update();resize();animate();status.textContent="Atlas humain 3D pédagogique actif · 11 groupes anatomiques · modèle procédural non issu de CT.";
+update();resize();animate();status.textContent="Initialisation de la base anatomique de référence…";
+
+/* R06 reference atlas: licensed 147-structure catalog, male/female meshopt GLBs.
+   BodyParts3D © DBCLS CC BY 4.0; female HRA/HuBMAP CC BY 4.0;
+   female skin MakeHuman CC0; modified by open-anatomy-3d CC BY 4.0.
+   Not a patient scan or a diagnosis tool. */
+let refModel=null,refGroups=new Map(),refMeshes=[],refCatalog=[],refSex="male",refToken=0;
+let refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};
+const refNames={kidney_l:"Rein gauche",kidney_r:"Rein droit",heart:"Cœur",lung_l:"Poumon gauche",lung_r:"Poumon droit",liver:"Foie",brain:"Cerveau",pancreas:"Pancréas",stomach:"Estomac",spleen:"Rate",bladder:"Vessie",aorta:"Aorte",vena_cava_inferior:"Veine cave inférieure",vena_cava_superior:"Veine cave supérieure",uterus:"Utérus"};
+const refSystems={skin:"Peau",skeleton:"Squelette",muscles:"Muscles",organs:"Organes",vessels:"Artères et veines",nerves:"Nerfs"};
+function refLabel(x){return refNames[x.key]||x.label||x.key}
+function updateReference(){
+ body.visible=false;structures.visible=false;
+ for(const item of refMeshes){
+  const picked=item.rec.key===chosen;
+  item.mesh.visible=isolated?picked:refLayers[item.rec.system]===true;
+  item.mesh.material=picked?item.highlight:item.rec.system==="skin"?item.transparent:item.normal;
+ }
+ for(const b of document.querySelectorAll("[data-system-layer]")){
+  const on=refLayers[b.dataset.systemLayer];b.setAttribute("aria-pressed",String(on));
+  b.textContent=(on?"✓ ":"○ ")+refSystems[b.dataset.systemLayer];
+ }
+ for(const b of document.querySelectorAll("[data-sex]"))b.setAttribute("aria-pressed",String(b.dataset.sex===refSex));
+ for(const b of document.querySelectorAll("[data-structure]"))b.setAttribute("aria-pressed",String(b.dataset.structure===chosen));
+ $("toggle-isolate").textContent=isolated?"Réafficher les systèmes":"Isoler la structure";$("toggle-isolate").setAttribute("aria-pressed",String(isolated));
+ $("toggle-body").textContent=refLayers.skin?"Masquer la peau":"Afficher la peau";$("toggle-body").setAttribute("aria-pressed",String(refLayers.skin));
+ const selected=refCatalog.find(x=>x.key===chosen);
+ $("organ-info").textContent=selected?refLabel(selected)+" · "+(refSystems[selected.system]||selected.system)+" · Maillage anatomique de référence, non clinique. Aucun diagnostic, débit sanguin ni lésion n'est représenté.":"Sélectionner une structure anatomique.";
+}
+function refSearch(){
+ const root=$("structure-list");root.replaceChildren();
+ const term=$("structure-search").value.trim().toLowerCase();
+ for(const r of refCatalog.filter(x=>x.system!=="joints"&&(!x.sex||x.sex===refSex)&&([refLabel(x),x.key,x.system].join(" ").toLowerCase().includes(term))).slice(0,90)){
+  const b=document.createElement("button");b.className="structure-chip";b.type="button";b.dataset.structure=r.key;b.textContent=refLabel(r);
+  b.addEventListener("click",()=>{select(r.key);refFocus(r.key)});
+  root.append(b);
+ }
+ updateReference();
+}
+function refFocus(id){
+ const nodes=refGroups.get(id)||[];if(!nodes.length)return;
+ const box=new T.Box3();for(const node of nodes)box.expandByObject(node);
+ const center=box.getCenter(new T.Vector3()),length=Math.max(.06,...box.getSize(new T.Vector3()).toArray());
+ controls.target.copy(center);camera.position.copy(center).add(new T.Vector3(length*1.6,length*.7,length*2.3));
+ camera.near=.001;camera.far=100;camera.updateProjectionMatrix();controls.update();
+}
+function refFrame(){
+ const box=new T.Box3().setFromObject(refModel),center=box.getCenter(new T.Vector3());
+ const length=Math.max(.7,...box.getSize(new T.Vector3()).toArray());
+ controls.target.copy(center);camera.position.copy(center).add(new T.Vector3(length*.85,length*.22,length*1.7));
+ controls.minDistance=length*.08;controls.maxDistance=length*7;camera.near=.001;camera.far=100;camera.updateProjectionMatrix();controls.update();
+}
+async function loadReference(sex){
+ const token=++refToken;refSex=sex;
+ status.textContent="Chargement du corps "+(sex==="female"?"féminin":"masculin")+" de référence (organes, vaisseaux, nerfs, muscles, squelette)…";
+ const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
+ let gltf=null;
+ const tail="anatomy-"+sex+".glb";
+ const urls=["https://cdn.jsdelivr.net/npm/open-anatomy-3d@0.1.0/models/"+tail,
+ "https://raw.githubusercontent.com/MervinR07/open-anatomy-3d/main/packages/open-anatomy-3d/models/"+tail];
+ for(const url of urls){try{gltf=await loader.loadAsync(url);break}catch(err){console.warn("[PRMR R06] Source de modèle indisponible",url,err)}}
+ if(token!==refToken)return;
+ if(!gltf){status.textContent="Téléchargement des maillages anatomiques indisponible ; aperçu schématique de secours affiché. Connexion réseau requise pour le modèle détaillé.";return}
+ if(refModel)scene.remove(refModel);
+ refModel=gltf.scene;scene.add(refModel);refGroups=new Map();refMeshes=[];
+ const map=new Map(refCatalog.map(x=>[x.key,x]));
+ const box=new T.Box3().setFromObject(refModel);
+ const center=box.getCenter(new T.Vector3());
+ refModel.position.set(-center.x,-center.y,-center.z);
+ refModel.updateMatrixWorld(true);
+ refModel.traverse(node=>{
+  if(!node.isMesh)return;
+  let ancestor=node,rec=null;
+  while(ancestor){if(map.has(ancestor.name)){rec=map.get(ancestor.name);break}ancestor=ancestor.parent}
+  if(!rec)return;
+  const raw=Array.isArray(node.material)?node.material[0]:node.material;
+  const normal=(raw||new T.MeshStandardMaterial()).clone();
+  if(rec.system==="skin"){normal.transparent=true;normal.opacity=.13;normal.depthWrite=false;normal.side=T.DoubleSide}
+  const transparent=normal.clone();transparent.transparent=true;transparent.opacity=rec.system==="skin"?.13:.24;transparent.depthWrite=false;
+  const highlight=normal.clone();highlight.transparent=false;highlight.opacity=1;highlight.depthWrite=true;
+  if(highlight.emissive){highlight.emissive.setHex(0x158a83);highlight.emissiveIntensity=.40}
+  node.material=normal;node.userData.prmrKey=rec.key;
+  refMeshes.push({mesh:node,rec,normal,transparent,highlight});
+  if(!refGroups.has(rec.key))refGroups.set(rec.key,[]);
+  refGroups.get(rec.key).push(node);
+ });
+ if(!refMeshes.length){scene.remove(refModel);refModel=null;status.textContent="Modèle téléchargé, mais structure des maillages non reconnue : aperçu schématique conservé.";return}
+ if(!refGroups.has(chosen))chosen=refGroups.has("kidney_l")?"kidney_l":refMeshes[0].rec.key;
+ isolated=false;updateReference();refSearch();refFrame();
+ status.textContent="Atlas humain "+(sex==="female"?"féminin":"masculin")+" chargé : "+refGroups.size+" structures anatomiques, "+refMeshes.length+" maillages. Source : BodyParts3D / HuBMAP, CC BY 4.0. Non validé pour diagnostiquer une maladie.";
+}
+function setupReferenceControls(){
+ const controls=$("human-systems");
+ for(const [key,name] of Object.entries(refSystems)){
+  const b=document.createElement("button");b.dataset.systemLayer=key;b.type="button";b.textContent=name;
+  b.addEventListener("click",()=>{refLayers[key]=!refLayers[key];isolated=false;if(refModel)updateReference()});
+  controls.append(b);
+ }
+ for(const b of document.querySelectorAll("[data-sex]"))b.addEventListener("click",()=>{if(refSex!==b.dataset.sex)loadReference(b.dataset.sex)});
+ $("show-all-layers").addEventListener("click",()=>{refLayers=Object.fromEntries(Object.keys(refSystems).map(k=>[k,true]));isolated=false;if(refModel)updateReference()});
+ $("structure-search").addEventListener("input",()=>{if(refModel)refSearch()});
+ $("toggle-body").addEventListener("click",()=>{if(refModel){refLayers.skin=!refLayers.skin;updateReference()}});
+ $("reset-view").addEventListener("click",()=>{if(refModel){refLayers={skin:false,skeleton:true,muscles:false,organs:true,vessels:true,nerves:false};isolated=false;updateReference();refFrame()}});
+}
+async function launchReference(){
+ setupReferenceControls();
+ try{
+  const res=await fetch("./research-data/r05_human_anatomy_catalog.json",{cache:"force-cache"});
+  if(!res.ok)throw Error("Catalogue indisponible");
+  refCatalog=await res.json();
+  $("human-organs").replaceChildren();
+  for(const r of refCatalog.filter(x=>["kidney_l","kidney_r","heart","lung_l","lung_r","liver","brain","pancreas","stomach","spleen","bladder","aorta"].includes(x.key))){
+   const b=document.createElement("button");b.dataset.structure=r.key;b.type="button";b.textContent=refLabel(r);
+   b.addEventListener("click",()=>{select(r.key);refFocus(r.key)});
+   $("human-organs").append(b);
+  }
+  await loadReference("male");
+ }catch(e){status.textContent="Atlas anatomique détaillé inaccessible : "+e.message+". Modèle schématique conservé."}
+}
+
+launchReference();
