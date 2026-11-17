@@ -4,6 +4,9 @@ on:
     branches: [main]
     paths:
       - "src/r04_*.mjs"
+      - "src/r05_*.mjs"
+      - "assets/animals/*.svg"
+      - "tests/r04_*.test.mjs"
       - "r04-atlas.css"
       - "species-r04.html"
       - "index.html"
@@ -33,6 +36,17 @@ jobs:
           sleep 2
       - name: Test live browser interactions
         run: node tests/r04_browser_smoke.cjs
+      - name: Upload desktop and mobile visual review
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prmr-r05-visual-review
+          path: |
+            /tmp/prmr-r05-home-desktop.png
+            /tmp/prmr-r05-home-pig-desktop.png
+            /tmp/prmr-r05-r04-desktop.png
+            /tmp/prmr-r05-mobile.png
+          if-no-files-found: warn
       - name: Upload failure screenshot
         if: failure()
         uses: actions/upload-artifact@v4
