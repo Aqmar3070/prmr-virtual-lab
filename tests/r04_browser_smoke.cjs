@@ -35,6 +35,7 @@ const {chromium}=require("playwright");
   await page.waitForFunction(()=>document.querySelector("#r5-home-stage .r8-anatomy-canvas")?.dataset.anatomySpecies==="pig");
   assert.ok((await page.locator("#r5-home-stage .r4-st-renal-details").innerText()).includes("multipapillaire"));
   assert.equal(await page.locator("#r5-home-stage .r8-anatomy-canvas").getAttribute("data-anatomy-organ"),"kidneys");
+  await page.locator("#r5-home-stage .r4-st-portrait").scrollIntoViewIfNeeded();
   await page.screenshot({path:"/tmp/prmr-r05-home-pig-desktop.png",fullPage:false});
   step="switch coeur / foie / poumons / tous";
   const root="#r5-home-stage",scene=root+" .r8-anatomy-canvas";
@@ -47,6 +48,10 @@ const {chromium}=require("playwright");
    const n=await hash(scene);
    assert.notEqual(n,previous,"Anatomical painting unchanged after organ switch "+mode);
    previous=n;
+   if(mode==="all"){
+    await page.locator(scene).scrollIntoViewIfNeeded();
+    await page.screenshot({path:"/tmp/prmr-r08-all-organs.png",fullPage:false});
+   }
   }
   step="gestes de rotation et zoom";
   const before=Number(await page.locator(scene).getAttribute("data-anatomy-render"));
@@ -99,6 +104,7 @@ const {chromium}=require("playwright");
   assert.ok(mobile.documentWidth<=mobile.viewport+5,"Mobile horizontal overflow: "+JSON.stringify(mobile));
   assert.deepEqual(mobile.clipped,[],"Mobile text clipped: "+mobile.clipped.join(","));
   assert.ok(mobile.card>=125&&mobile.canvas>=250);
+  await page.locator("#r4-visual-atlas .r4-st-portrait").scrollIntoViewIfNeeded();
   await page.screenshot({path:"/tmp/prmr-r05-mobile.png",fullPage:false});
   step="autres modules R01 R02 R03";
   await page.setViewportSize({width:1440,height:900});
