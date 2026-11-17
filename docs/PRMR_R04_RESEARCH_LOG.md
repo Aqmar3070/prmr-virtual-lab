@@ -63,3 +63,16 @@ Les étapes pertinentes avant des études in vivo sont les organoïdes et systè
 ## Langage enfant
 
 Nous avons dessiné en 3D des molécules qui existent et des dessins de reins. L'ordinateur montre ce qu'on sait des souris, rats, porcs, chiens, lapins et singes. Quand on change l'animal, la maladie ou son poids, l'écran change. Quand les chercheurs ne connaissent pas la réponse, l'écran l'écrit au lieu de la deviner. **Aucun animal n'a été guéri dans ce programme R04.**
+
+
+## Enrichissement de l'atlas visuel par espèce — 17 novembre 2026
+
+- Ajout de l'atlas illustré à la page publique \`species-r04.html\`, au-dessus des contrôles R04, avec une présentation graphique cohérente avec les maquettes discutées.
+- Six portraits d'animaux tirés **de Wikimedia Commons** (et non les fichiers PNG des maquettes originales). Source, crédit et licence affichés dans l'interface et archivés dans \`research-data/r04_animal_portraits.json\`. Les URL des photographies sont externes et nécessitent un accès réseau du navigateur.
+- La comparaison des reins a été **redessinée en SVG conceptuel** afin de demeurer manipulable par espèce. Elle ne représente ni un scan, ni une image médicale validée, ni l'exact visuel raster du poster produit auparavant.
+- Déclinaison dynamique des bandeaux, portraits, données qualitatives d'anatomie et choix des espèces avec navigation vers les contrôles originaux : \`src/r04_atlas.mjs\` et \`r04-atlas.css\`.
+- Les barres de représentation de l'atlas portent **des catégories qualitatives éditoriales**, aucune probabilité numérique ni note scientifique n'a été fabriquée. Une absence de mesure PK dans les groupes triples reste inscrite « Non mesurée ».
+- Le changement de sexe, âge, constitution, maladie et état de santé conserve les graphiques réellement calculables et actualise les explications. En absence de coefficient d'espèce validé, aucune variation pharmacocinétique numérique n'est inventée.
+- Les fichiers \`tests/r04_atlas.test.mjs\` et les vérifications syntaxiques exécutées par GitHub Actions protègent la traçabilité des six sources.
+
+**Intégrité de la demande iconographique :** la maquette picturale d'illustration générée précédemment dans la conversation n'a pas été ajoutée *octet par octet* au dépôt ; les visuels web publiés sont une reconstruction interactive inspirée de ces maquettes, avec photographies sous licence et schémas SVG. Il ne faut pas prétendre autrement. Pour une copie exacte des affiches PNG, les fichiers binaires des quatre maquettes devront être transférés dans \`assets/\` par un outil de transfert binaire autorisé.
