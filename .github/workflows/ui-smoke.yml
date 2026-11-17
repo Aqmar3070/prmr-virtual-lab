@@ -7,6 +7,11 @@ on:
       - "src/r05_*.mjs"
       - "src/r07_*.mjs"
       - "src/r08_*.mjs"
+      - "src/r09_*.mjs"
+      - "vendor/three/**"
+      - "assets/vet3d/**"
+      - "research-data/r09_*.json"
+      - "tests/r09_*.test.mjs"
       - "tests/r08_*.test.mjs"
       - "assets/animals-3d/*.glb"
       - "assets/animals-photo/*.webp"
@@ -45,7 +50,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: prmr-r08-anatomy-visual-review
+          name: prmr-r09-volumetric-anatomy-review
           path: |
             /tmp/prmr-r05-home-desktop.png
             /tmp/prmr-r05-home-pig-desktop.png
