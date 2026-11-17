@@ -163,3 +163,17 @@
 @media(max-width:780px){.r4-st-species{grid-template-columns:repeat(3,minmax(0,1fr))}.r4-st-art{min-height:110px}.r4-st-profile-body{grid-template-columns:minmax(0,1fr)}.r4-st-portrait{height:285px}.r4-st-species-card>span{min-height:60px}.r4-st-molecule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.r4-st-species{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.r4-st-art{min-height:110px}.r4-st-species-card strong{font-size:12px}.r4-st-species-card small{font-size:10px}.r4-st-portrait{height:250px}.r4-st-profile-body{grid-template-columns:1fr}.r4-st-molecule-card canvas{height:120px}.r4-st-annotations{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.r4-st-species-card{transition:none}}
+
+/* R05 — Advanced simulation controls, integrated into the actual animal profile. */
+.r5-advanced-controls{background:#0b3442;border:1px solid #31798a;border-radius:11px;padding:0;min-width:0;overflow:visible}
+.r5-advanced-controls summary{cursor:pointer;display:list-item;list-style:revert;list-style-position:inside;color:#b3f5e8;font-weight:800;font-size:11px;line-height:1.6;padding:11px 12px;border-radius:10px}
+.r5-advanced-controls summary::marker{color:#62e1cb}
+.r5-advanced-controls[open] summary{background:#125060;border-bottom:1px solid #337b86;border-radius:10px 10px 0 0}
+.r5-advanced-grid{padding:11px;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:9px}
+.r5-range-control{display:flex;flex-direction:column;gap:3px;min-width:0}
+.r5-range-control .r5-range-value{font-size:12px;color:#b5f7e5;line-height:1.35}
+.r5-range-control input{width:100%;accent-color:#6cddcd;cursor:pointer}
+.r5-advanced-disclaimer{grid-column:1/-1;font-size:10px;line-height:1.65;color:#ecd1a7;margin:4px 0 0;padding:9px;border-radius:8px;background:#302c21}
+.r4-st-mini-controls select{font-size:11px;min-height:37px}
+.r4-st-mini-controls label span{line-height:1.4}
+@media(max-width:530px){.r5-advanced-grid{grid-template-columns:1fr}.r5-range-control{min-width:0}}
