@@ -1,8 +1,9 @@
 // PRMR-R04 — Integrated scientific workbench, replacing external animal photos / poster galleries.
-// The original generated artwork is CROPPED as visual texture; all labels, statuses and
-// scientific charts are live controls. No rendered poster score is interpreted as evidence.
+// All six animal assets are standalone SVG illustrations; no poster cropping and no embedded text.
+// Scientific values remain live HTML/SVG outputs, never inferred from artwork.
 import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
 import {create3D} from "./r04_visuals.mjs";
+import {createAnimalSculpture} from "./r05_animal3d.mjs";
 export const ANIMAL_ART={
  mouse:"comparaison-especes.png",
  rat:"comparaison-especes.png",
@@ -70,7 +71,10 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  chooser.setAttribute("role","group");chooser.setAttribute("aria-label","Sélectionnez une espèce pour recalculer son profil");
  for(const sp of SPECIES_R04){
   const btn=make("button","r4-st-species-card");btn.type="button";btn.dataset.stageSpecies=sp.id;
-  const art=make("div","r4-st-art");art.dataset.species=sp.id;art.setAttribute("role","img");art.setAttribute("aria-label","Animal "+sp.label+" : détail de l'illustration PRMR");
+  const art=make("div","r4-st-art");art.dataset.species=sp.id;
+  const picture=make("img","r5-animal-asset");picture.src="./assets/animals/"+sp.id+".svg";
+  picture.alt="Illustration autonome de "+sp.label+", sans texte ni recadrage";picture.loading="eager";
+  picture.width=840;picture.height=560;art.append(picture);
   const caption=make("span");caption.append(make("strong",null,sp.label),make("small",null,sp.latin));
   btn.append(art,caption);btn.addEventListener("click",()=>choose(sp.id));chooser.append(btn)
  }
@@ -86,9 +90,17 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  largeTop.append(make("h3",null,"Profil de l’espèce — paramètres modifiables"),make("span","r4-st-chip","Espèce sélectionnée"));
  large.append(largeTop);
  const profileGrid=make("div","r4-st-profile-body");large.append(profileGrid);
- const portrait=make("div","r4-st-portrait");portrait.dataset.species="mouse";portrait.setAttribute("role","img");portrait.setAttribute("aria-label","Portrait de l'animal sélectionné, détail des affiches PRMR");
+ const portraitPanel=make("div","r5-animal-profile-panel");
+ const portrait=make("div","r4-st-portrait");portrait.dataset.species="mouse";
+ const standAloneImage=make("img","r5-animal-static");standAloneImage.src="./assets/animals/mouse.svg";
+ standAloneImage.alt="Illustration autonome de la souris, sans texte ni fragments de poster";standAloneImage.width=840;standAloneImage.height=560;standAloneImage.loading="eager";
+ portrait.append(standAloneImage);
+ const animalCanvas=make("canvas","r5-animal-sculpture");
+ animalCanvas.setAttribute("aria-label","Sculpture 3D éducative de l'animal, orientable au toucher ou à la souris");
+ portrait.append(animalCanvas);
+ const sceneLabel=make("span","r5-scene-hint","MODÈLE 3D CONCEPTUEL · GLISSER POUR TOURNER");portrait.append(sceneLabel);
  const portraitOverlay=make("div","r4-st-portrait-label");portraitOverlay.append(make("strong","r4-st-species-name","Souris"),make("small","r4-st-latin","Mus musculus"));
- portrait.append(portraitOverlay);profileGrid.append(portrait);
+ portraitPanel.append(portrait,portraitOverlay);profileGrid.append(portraitPanel);
  const info=make("div","r4-st-props");profileGrid.append(info);
  const decision=make("div","r4-st-insight");decision.append(make("span",null,"AXE SCIENTIFIQUE"),make("strong","r4-st-decision","Approche mécanistique"),make("p","r4-st-remark","La réponse dépend de l'espèce et de la maladie."));
  info.append(decision);
@@ -139,6 +151,9 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  moleculePanel.append(citations);shell.append(moleculePanel);
  root.append(shell);
  renal=create3D(organCanvas,{kind:"kidney"});
+ const sculpture=createAnimalSculpture(animalCanvas,{species:"mouse"});
+ if(sculpture.supported)portrait.classList.add("r5-webgl-active");
+ else sceneLabel.textContent="ILLUSTRATION ÉDUCATIVE · VUE FIXE";
  atomFetch().then(data=>{
   if(!root.isConnected)return;
   for(const mol of MOLECULES_R04){
@@ -149,7 +164,11 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
  function render(result){
   if(!result)return;
   last=result;const id=result.species.id,metaData=LABS[id];
-  portrait.dataset.species=id;portraitOverlay.querySelector("strong").textContent=result.species.label;
+  portrait.dataset.species=id;
+  standAloneImage.src="./assets/animals/"+id+".svg";
+  standAloneImage.alt="Illustration autonome de "+result.species.label;
+  sculpture.set({species:id});
+  portraitOverlay.querySelector("strong").textContent=result.species.label;
   portraitOverlay.querySelector("small").textContent=result.species.latin+" · "+MASS(result.inputs.mass_kg);
   for(const btn of chooser.querySelectorAll("button"))btn.setAttribute("aria-pressed",String(btn.dataset.stageSpecies===id));
   decision.querySelector("strong").textContent=metaData.title;
@@ -180,5 +199,5 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,hostId="r4-vis
   tr.textContent="Bénéfice net : indéterminé. "+result.indication.markers+". Pas de dose–lésion calibrée.";
  }
  render(getResult());
- return {render,destroy(){renal?.destroy();for(const viewer of molecules)viewer.destroy();root.replaceChildren()},get current(){return last}};
+ return {render,destroy(){sculpture.destroy();renal?.destroy();for(const viewer of molecules)viewer.destroy();root.replaceChildren()},get current(){return last}};
 }
