@@ -45,7 +45,7 @@ test("True GPU animal viewer, species-specific meshes and fallback",()=>{
  assert.match(webgl,/pointermove/);
  assert.match(webgl,/IntersectionObserver/);
  assert.match(webgl,/supported:false/);
- assert.ok(app.includes('createAnimalSculpture($("r4-body-3d")'));
+ assert.ok(app.includes('createPhotoAnimalViewer($("r4-body-3d")'));
 });
 test("Shared physiological state, unknown probabilities and molecular 3D remain intact",()=>{
  for(const key of ["age","sex","disease","renal"])assert.ok(atlas.includes('["'+key+'"'));
