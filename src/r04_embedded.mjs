@@ -21,4 +21,4 @@ function bind(hostId){
  sessions.push(stage);
  update();
 }
-for(const id of ["r5-home-stage","r5-risk-stage","r5-screening-stage"])bind(id);
+for(const id of ["r5-home-stage","r5-risk-stage","r5-screening-stage","r5-preclinical-stage"])bind(id);
