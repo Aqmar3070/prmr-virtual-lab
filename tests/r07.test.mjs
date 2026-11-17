@@ -83,3 +83,24 @@ test("WebGL GLB parser decodes a real binary mesh, UVs and embedded WebP",async(
  assert.equal(parsed.image.type,"image/webp");
  assert.equal(parsed.image.size,38);
 });
+
+
+test("All six imported PRMR-R07 GLBs decode as real triangle meshes with embedded WebP",async()=>{
+ const {unpack}=await import("../src/r07_photo3d.mjs");
+ for(const a of catalog.assets){
+  const file=new URL(a.asset,root);
+  assert.ok(existsSync(file),a.species_id+" GLB missing");
+  const raw=readFileSync(file);
+  const buffer=raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength);
+  const m=unpack(buffer);
+  assert.ok(m.pos.length>=900,a.species_id+" vertices unexpectedly few");
+  assert.equal(m.pos.length%3,0,a.species_id+" position dimension");
+  assert.equal(m.normal.length,m.pos.length,a.species_id+" normals");
+  assert.equal(m.uv.length*3,m.pos.length*2,a.species_id+" UV pair counts");
+  assert.equal(m.indices.length%3,0,a.species_id+" triangle indices");
+  assert.ok(m.indices.length>900,a.species_id+" face count");
+  assert.ok(m.image.size>1000,a.species_id+" embedded image");
+  assert.equal(m.image.type,"image/webp");
+  assert.ok([...m.pos].every(Number.isFinite),a.species_id+" invalid vertex");
+ }
+});
