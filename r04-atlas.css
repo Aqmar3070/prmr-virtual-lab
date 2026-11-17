@@ -1,5 +1,4 @@
-/* PRMR integrated interactive workbench. Art is derived from the user's original PRMR R04 PNGs.
-   Cropped images illustrate anatomy; HTML supplies ALL interactive/scientific data. */
+/* PRMR-R05: standalone SVG species art + smooth WebGL. No poster slicing or image text. */
 .r4-st-workbench{
  --st-teal:#67eee2;--st-mute:#aacdd6;--st-line:#228e9e;
  border:1px solid #329fa7;border-radius:18px;padding:clamp(12px,1.8vw,25px);
@@ -19,12 +18,6 @@
 .r4-st-species-card>span{display:block;padding:8px 9px 10px;background:#0c3140;min-height:51px}
 .r4-st-species-card strong{display:block;font-size:12px;color:#f1fffa;white-space:normal;line-height:1.28}
 .r4-st-species-card small{display:block;color:#93c2c8;font-size:9px;margin-top:3px;white-space:normal;line-height:1.25}
-.r4-st-art[data-species=mouse],.r4-st-portrait[data-species=mouse]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:900% auto;background-position:15% 38%}
-.r4-st-art[data-species=rat],.r4-st-portrait[data-species=rat]{background-image:url("./assets/illustrations/r04/comparaison-especes.png");background-size:900% auto;background-position:25% 38%}
-.r4-st-art[data-species=pig],.r4-st-portrait[data-species=pig]{background-image:url("./assets/illustrations/r04/porc.png");background-size:470% auto;background-position:0% 46%}
-.r4-st-art[data-species=dog],.r4-st-portrait[data-species=dog]{background-image:url("./assets/illustrations/r04/chien.png");background-size:470% auto;background-position:0% 45%}
-.r4-st-art[data-species=nhp],.r4-st-portrait[data-species=nhp]{background-image:url("./assets/illustrations/r04/primate.png");background-size:470% auto;background-position:0% 46%}
-.r4-st-art[data-species=rabbit],.r4-st-portrait[data-species=rabbit]{background-image:url("./assets/illustrations/r04/lapin.png");background-size:470% auto;background-position:0% 46%}
 .r4-st-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
 .r4-st-stat{background:linear-gradient(125deg,#124e5b,#0d3646);border:1px solid #328899;border-radius:11px;padding:11px 13px;min-width:0}
 .r4-st-stat span{display:block;color:#8ad4d7;font-size:9px;letter-spacing:.055em;font-weight:800}
@@ -124,3 +117,49 @@
 .r4-molecule h3{font-size:13px;margin:8px 0 5px;color:#e9fffb}
 .r4-molecule p{font-size:11px;line-height:1.35;color:#acd0d8;margin:0}
 @media(max-width:700px){.r5-home-header h1{font-size:28px}.r4-molecule-thumb3d{height:130px}.r5-home-actions a{flex:1;text-align:center}}
+
+/* R05: independent illustration system; every animal is a complete picture. */
+.r4-st-workbench{max-width:100%;isolation:isolate}
+.r4-st-heading h2{max-width:850px;overflow-wrap:break-word;text-wrap:balance}
+.r4-st-species-card{display:flex;flex-direction:column;min-width:0;overflow:visible;border-radius:15px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;outline-offset:3px}
+.r4-st-art{height:auto;min-height:120px;aspect-ratio:6/4;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 52% 42%,#144959,#0a2434 77%);border-radius:14px 14px 0 0;padding:6px}
+.r4-st-art:after{display:none!important}
+.r4-st-art .r5-animal-asset{display:block;max-width:100%;height:100%;width:100%;object-fit:contain;object-position:center;transform:none!important;filter:none!important}
+.r4-st-species-card>span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;flex:1;text-align:center;padding:11px 8px 12px;background:linear-gradient(#0b3644,#0b2b3a);border-top:1px solid #296c77;min-height:66px;overflow:visible}
+.r4-st-species-card strong{font-weight:850;font-size:12px;line-height:1.35;white-space:normal;overflow:visible;overflow-wrap:break-word}
+.r4-st-species-card small{display:block;font-size:10px;line-height:1.4;color:#a9cbd4;overflow:visible;white-space:normal;overflow-wrap:anywhere}
+.r4-st-species-card[aria-pressed=true]{background:#12505a;box-shadow:0 0 0 1px #a6f9e29c,0 10px 25px #052c348a}
+.r5-animal-profile-panel{display:flex;flex-direction:column;min-width:0;gap:0;min-height:0;background:#0c3040;border:1px solid #368d95;border-radius:13px;overflow:hidden}
+.r4-st-portrait{display:block;position:relative;height:325px;min-height:0;border:0;border-radius:0;overflow:hidden;background:radial-gradient(ellipse at 52% 48%,#1a5a6c,#082839 71%);box-shadow:inset 0 1px #9bffdc25}
+.r4-st-portrait:before{content:"";position:absolute;left:12%;right:12%;bottom:11%;height:11%;border-radius:50%;background:#051723a8;filter:blur(12px)}
+.r4-st-portrait:after{display:none}
+.r5-animal-static,.r5-animal-sculpture{position:absolute;inset:0;width:100%;height:100%;display:block}
+.r5-animal-static{object-fit:contain;object-position:center;padding:8px;z-index:1}
+.r5-animal-sculpture{z-index:2;touch-action:none;cursor:grab;pointer-events:auto}
+.r5-animal-sculpture:active{cursor:grabbing}
+.r4-st-portrait.r5-webgl-active .r5-animal-static{opacity:0}
+.r4-st-portrait:not(.r5-webgl-active) .r5-animal-sculpture{display:none}
+.r5-scene-hint{position:absolute;z-index:3;bottom:8px;left:50%;transform:translateX(-50%);white-space:normal;min-width:0;width:max-content;max-width:94%;text-align:center;border:1px solid #348a92;background:#0a2739d9;border-radius:20px;padding:7px 10px;color:#c2e8e5;font-size:9px;letter-spacing:.05em;pointer-events:none}
+.r4-st-portrait-label{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;position:static!important;z-index:auto;border:0;border-top:1px solid #337280;border-radius:0;box-shadow:none;background:#0d3949;padding:12px 11px 14px;min-height:71px;overflow:visible}
+.r4-st-portrait-label strong{font-size:16px;line-height:1.35;color:#e9fff9;max-width:100%;white-space:normal;overflow-wrap:break-word}
+.r4-st-portrait-label small{font-size:11px;line-height:1.4;color:#b3dce1;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.r4-st-profile-body{grid-template-columns:minmax(245px,.82fr) minmax(0,1.18fr);align-items:stretch;gap:13px}
+.r4-st-profile-body>.r4-st-props{min-width:0}
+.r4-st-field span,.r4-st-field strong{overflow-wrap:break-word;white-space:normal}
+.r4-st-insight p{overflow-wrap:break-word}
+.r4-st-mini-controls{align-items:end}
+.r4-st-control select{white-space:normal}
+.r4-st-molecule-card{border-radius:13px;display:flex;flex-direction:column;padding:10px;overflow:visible;min-width:0}
+.r4-st-molecule-card canvas{height:160px;max-height:160px;width:100%;border:1px solid #2b6475;background:#082b3a}
+.r4-st-molecule-card strong{line-height:1.4;overflow-wrap:anywhere;white-space:normal}
+.r4-st-molecule-card small{line-height:1.5;overflow-wrap:anywhere;white-space:normal}
+.r4-st-panel{overflow:visible}
+.r4-st-species-card:focus-visible{outline:2px solid #c4ffee;outline-offset:3px}
+.r4-species .r4-st-art{height:auto;width:100%;min-height:70px;aspect-ratio:6/4;padding:0;border-radius:7px}
+.r4-species .r4-st-art img{height:100%;width:100%;object-fit:contain}
+.r4-species button span{white-space:normal;overflow-wrap:break-word;line-height:1.4}
+.r5-home-header h1,.r5-home-header p{overflow-wrap:break-word;white-space:normal}
+@media(max-width:1160px){.r4-st-art{min-height:108px}.r4-st-profile-body{grid-template-columns:minmax(215px,.86fr) minmax(0,1.14fr)}}
+@media(max-width:780px){.r4-st-species{grid-template-columns:repeat(3,minmax(0,1fr))}.r4-st-art{min-height:110px}.r4-st-profile-body{grid-template-columns:minmax(0,1fr)}.r4-st-portrait{height:285px}.r4-st-species-card>span{min-height:60px}.r4-st-molecule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.r4-st-species{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.r4-st-art{min-height:110px}.r4-st-species-card strong{font-size:12px}.r4-st-species-card small{font-size:10px}.r4-st-portrait{height:250px}.r4-st-profile-body{grid-template-columns:1fr}.r4-st-molecule-card canvas{height:120px}.r4-st-annotations{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.r4-st-species-card{transition:none}}
