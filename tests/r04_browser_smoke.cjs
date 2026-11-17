@@ -25,7 +25,7 @@ const fs=require("node:fs");
   await page.locator("#r5-home-stage button[data-stage-species=pig]").click();
   await page.waitForFunction(()=>document.querySelector("#r5-home-stage .r4-st-species-name")?.textContent.includes("Porc"));
   const portrait=page.locator("#r5-home-stage .r5-animal-static");
-  assert.ok((await portrait.getAttribute("src")).endsWith("pig.svg"));
+  assert.match(await portrait.getAttribute("src"),/\/pig\.(svg|webp)$/);
   assert.equal(await portrait.evaluate(el=>getComputedStyle(el).objectFit),"contain");
   const sourceBG=await page.locator("#r5-home-stage .r4-st-portrait").evaluate(el=>getComputedStyle(el).backgroundImage);
   assert.ok(!sourceBG.includes(".png"),"No poster-based background crops");
@@ -62,7 +62,7 @@ const fs=require("node:fs");
   assert.equal(await page.locator("#r4-mass").inputValue(),"10");
   await page.locator("#r4-sex").selectOption("female");
   await page.waitForFunction(()=>document.querySelector("#r4-visual-atlas .r4-st-annotations")?.textContent.includes("Femelle"));
-  assert.ok((await page.locator('#r4-visual-atlas .r5-animal-static').getAttribute("src")).endsWith("dog.svg"));
+  assert.match(await page.locator('#r4-visual-atlas .r5-animal-static').getAttribute("src"),/\/dog\.(svg|webp)$/);
   await page.screenshot({path:"/tmp/prmr-r05-r04-desktop.png",fullPage:false});
   step="R04 molecules";
   const molecules=page.locator("#r4-molecules .r4-molecule canvas");
@@ -95,7 +95,7 @@ const fs=require("node:fs");
   console.log("PASS PRMR-R05 — six images propres, zero posters recadres, texte non tronque 1440px et 390px, WebGL / repli, trois modules moleculaires");
   if(jsErrors.length)console.log("Page errors observed: "+jsErrors.slice(0,6).join(" | "));
  }catch(error){
-  console.error("PRMR-R05 UI FAIL at "+step+": "+(error.stack||error));
+  console.error("PRMR-R07 UI FAIL at "+step+": "+(error.stack||error));
   try{await page.screenshot({path:"/tmp/prmr-ui-error.png",fullPage:false})}catch{}
   process.exitCode=1;
  }finally{await browser.close()}
