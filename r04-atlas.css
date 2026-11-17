@@ -247,3 +247,26 @@
  .r8-anatomy-note{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){.r8-organ-button{transition:none}}
+
+/* R09 volumetric anatomical WebGL: organ isolation and visibility controls. */
+.r4-st-profile-body{grid-template-columns:minmax(300px,1fr) minmax(0,.96fr)}
+.r4-st-portrait[data-mode="anatomy"]{height:420px;background:radial-gradient(ellipse at 54% 46%,#20546b,#092735 70%);position:relative}
+.r4-st-portrait[data-mode="anatomy"] canvas{touch-action:none;outline-offset:-2px}
+.r09-scene-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px;background:#0d3241;border-bottom:1px solid #226d78}
+.r09-scene-toggle{appearance:none;background:#113845;border:1px solid #367587;color:#b5dbe0;border-radius:9px;padding:10px 7px;min-height:43px;text-wrap:balance;font-size:10px;line-height:1.4;font-weight:750;text-align:center}
+.r09-scene-toggle[aria-pressed=true]{color:#e4fff9;background:#1b5861;border-color:#7de7d9;box-shadow:inset 0 0 0 1px #b5fdfb32}
+.r09-scene-toggle:hover,.r09-scene-toggle:focus-visible{border-color:#bcfff2}
+.r09-source-line{margin:0;padding:11px 13px;color:#b9e0e2;background:#102e3e;border-top:1px solid #32697a;border-bottom:1px solid #33657a;font-size:11px;line-height:1.62;text-align:left}
+.r4-st-organbox{position:relative;min-height:365px;display:block;background:radial-gradient(ellipse at 49% 40%,#154657,#061b2b 72%);overflow:hidden}
+.r4-st-organbox .r09-isolated-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;cursor:grab;touch-action:none;z-index:1}
+.r4-st-organbox .r09-isolated-canvas:active{cursor:grabbing}
+.r4-st-organbox .r4-st-3d-label{position:absolute;z-index:2;bottom:8px;left:12px;right:12px;max-width:calc(100% - 24px);pointer-events:none;text-wrap:balance}
+.r8-organ-switch{justify-content:center;gap:7px}
+.r8-organ-button{flex:1 1 95px;min-width:80px;max-width:160px;min-height:42px;padding:9px 10px}
+.r4-st-portrait[data-mode="anatomy"] .r5-scene-hint{font-size:10px;line-height:1.4;letter-spacing:0;bottom:9px;max-width:96%;pointer-events:none}
+.r4-st-profile-body .r4-st-props{min-width:0}
+.r4-st-portrait-label{padding:13px}
+.r4-st-portrait[data-mode="anatomy"] canvas[data-anatomy-source="canine-CT-derived-hybrid-GLB"]{image-rendering:auto}
+@media(max-width:1020px){.r4-st-profile-body{grid-template-columns:minmax(0,1fr)}.r4-st-organbox{min-height:335px}}
+@media(max-width:780px){.r4-st-portrait[data-mode="anatomy"]{height:345px}.r4-st-organbox{min-height:305px}.r09-scene-options{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:520px){.r4-st-portrait[data-mode="anatomy"]{height:315px}.r4-st-organbox{min-height:285px}.r09-scene-options{grid-template-columns:1fr}.r09-scene-toggle{min-height:36px}.r8-organ-button{flex:1 1 41%;font-size:11px}.r09-source-line{font-size:10px}}
