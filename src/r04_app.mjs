@@ -2,7 +2,7 @@
 import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} from "./r04_engine.mjs";
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createPhotoAnimalViewer} from "./r07_photo3d.mjs?v=r07-photo-20261117";
+import {createAnatomyViewer} from "./r08_anatomy.mjs?v=r08-atlas-20261117";
 import {createVisualAtlas} from "./r04_atlas.mjs?v=r07-photo-20261117";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
@@ -155,7 +155,7 @@ function update(){
  let result;
  try{result=computeR04(state)}catch(e){$("r4-profile-detail").textContent=e.message;return}
  updateCard(result);updateExposure(result);updatePdGraph(result);
- body?.set({species:state.species,renal:state.renal,hepatic:state.hepatic});
+ body?.set({species:state.species});
  atlas?.render(result);
  const c=document.querySelector(".r4-banner");
  c.textContent="STATUT SCIENTIFIQUE — "+result.species.label+" : stress-test fondé sur des rapports AUC humains et un transfert arbitraire. Les changements âge / sexe / constitution sont documentés mais sans coefficient PK inventé. Probabilités de toxicité, d'efficacité ou de guérison : non estimables.";
@@ -191,6 +191,7 @@ function selectMolecule(id){
 function init(){
  initSpecies();setOptions();atlas=createVisualAtlas({
   onChoose:setSpecies,
+  onOrganChange:id=>body?.set({organ:id}),
   getResult:()=>computeR04(state),
   onEdit:patch=>{
    Object.assign(state,patch);
@@ -200,15 +201,19 @@ function init(){
    update();
   }
  });kidney=create3D($("r4-kidney-3d"),{kind:"kidney"});
- body=createPhotoAnimalViewer($("r4-body-3d"),{
-  species:state.species,
-  onMode:(kind,detail)=>{
+ body=createAnatomyViewer($("r4-body-3d"),{
+  species:state.species,organ:"kidneys",
+  onRender:({species,organ,count})=>{
    const target=$("r4-body-render-status");
-   if(target)target.textContent=detail;
-   const viewer=$("r4-body-3d");if(viewer)viewer.dataset.renderMode=kind;
+   if(target)target.textContent="Corps en grille 3D transparente — "+organ+" internes (schéma non validé).";
+   const viewer=$("r4-body-3d");
+   if(viewer)viewer.dataset.renderMode="anatomy";
   }
  });
- if(!body.supported)body=create3D($("r4-body-3d"),{kind:"animal",species:state.species,renal:state.renal,hepatic:state.hepatic});
+ if(!body.supported){
+  const target=$("r4-body-render-status");
+  if(target)target.textContent="Vue fixe disponible sur la fiche d'espèce : Canvas 2D indisponible";
+ }
  updateHumanGraph();
  const requested=new URLSearchParams(location.search).get("species");
  setSpecies(SPECIES_R04.some(x=>x.id===requested)?requested:state.species);
