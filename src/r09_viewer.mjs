@@ -1,7 +1,7 @@
 /**
  * PRMR R09 — a real interactive WebGL 3D scene (Three.js MIT, vendored locally).
  * Dog: licensed CT-derived organ GLBs + sculpted coat; fully provenance-tagged.
- * Other five animals: independent animated-free 3D anatomical *concept meshes*.
+ * Only the canine model is available for selection.
  * No image billboards, cropped posters, or false claims of lesion detection.
  */
 import * as T from "../vendor/three/build/three.module.js";
@@ -33,9 +33,9 @@ function disposeMeshes(root){
   }
  });
 }
-function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRender=null,onOrganPick=null}={}){
+function makeViewer(canvas,{species="dog",organ="kidneys",isolated=false,onRender=null,onOrganPick=null}={}){
  const unsupported={supported:false,isTrue3D:false,set(){},setOrgan(){},setBodyVisible(){},setIsolated(){},setLinksVisible(){},destroy(){},get mode(){return "unavailable"}};
- if(!canvas||!SPECIES_ANATOMY[species])species="mouse";
+ if(!canvas||!SPECIES_ANATOMY[species])species="dog";
  let renderer;
  try{renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance",preserveDrawingBuffer:true})}catch(err){
   const simple=fallback2D(canvas,{species,organ:ORGAN_MODES[organ]&&["kidneys","heart","liver","lungs","all"].includes(organ)?organ:"all",onRender});
