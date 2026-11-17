@@ -1,4 +1,15 @@
 # PRMR Virtual Lab · Research Workspace 2.0
+## PRMR-R09 — Atlas WebGL des organes 3D indépendants (17 novembre 2026)
+
+**[Ouvrir l’atlas R09](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r09-real-organ-scenes-20261117)** · [**Accueil](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r09-real-organ-scenes-20261117)** · [**Journal des sources et limites](docs/PRMR_R09_ORGAN_ATLAS.md)**.
+
+- Six espèces, sept ensembles d’organes par espèce, **42 associations espèce–organe** enregistrées dans le dépôt (`research-data/r09_organ_registry.json`) et dans la base Supabase privée (`public.prmr_anatomy_assets`).
+- Nouveau lecteur **WebGL Three.js 0.181.0**, livré localement avec le site : modèles réellement tridimensionnels en triangles, rotation libre, zoom, sélection des organes au clic, affichage simultané, isolement de l’organe, enveloppe corporelle masquable et liens conceptuels entre organes.
+- Chien : **24 nœuds anatomiques de référence** (dont **23 chargés dans le test Chromium**) via `assets/vet3d/dog-visceral.glb`, surfaces hybrides **CT / modifiées / modélisées**, assorties du corps canin `dog-coat.glb`. Les fichiers originaux Vet Atlas sont contrôlés par empreintes SHA1 Git et SHA256, décompressés en WebGL avec Meshopt sous licence MIT. Source et auteurs : [Vet Atlas / sources originales](https://github.com/Ketbome/vet-atlas/blob/main/content/sources.json).
+- Souris, rat, porc, lapin, primate : **maillages synthétiques 3D propres à chaque espèce, non vérifiés anatomiquement** ; ils ne sont **pas** des scans, des jumeaux numériques, ni des reconstructions vétérinaires parfaites.
+- Les couleurs de zones d’intérêt et les liaisons entre organes restent **strictement hypothétiques**. Aucun diagnostic, résultat animal, probabilité de guérison ou de toxicité n’est revendiqué.
+- **[Tests Chromium réussis](https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44075402004)** : 23 nœuds canins décodés, 7 modes organiques, sélection des six espèces, rotation, isolement, liens, rendu mobile 390 px et préservation RDKit.
+
 ## PRMR-R08 — Atlas transparent 3D et organes internes (17 novembre 2026)
 
 **[Ouvrir l'atlas 3D transparent](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r08-anatomy-polish-20261117)** · [**Accueil PRMR**](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r08-anatomy-polish-20261117) · [**Journal R08**](docs/PRMR_R08_TRANSPARENT_ANATOMY.md).
