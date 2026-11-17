@@ -21,12 +21,18 @@
       "title": "Preclinical 3D anatomy",
       "url": "species-r04.html",
       "species_active": [
-        "dog"
+        "mouse",
+        "rat",
+        "pig",
+        "dog",
+        "nhp",
+        "rabbit"
       ],
-      "data_status": "canine_3d_ct_derived_hybrid",
+      "data_status": "canine_3d_ct_derived_hybrid_plus_procedural_concept_meshes",
       "limitations": [
         "not diagnostic",
-        "numerical parameters exploratory"
+        "numerical parameters exploratory",
+        "only the canine meshes are CT-derived; the five other species are procedural anatomical hypotheses"
       ]
     },
     {

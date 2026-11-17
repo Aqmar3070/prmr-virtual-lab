@@ -3,7 +3,7 @@ import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} fr
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
 import {createAnatomyViewer} from "./r09_viewer.mjs";
-import {createVisualAtlas} from "./r04_atlas.mjs?v=r10-canine-only-20261117";
+import {createVisualAtlas} from "./r04_atlas.mjs?v=r12-restored-species-20261117";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
 const state={...DEFAULT_R04};
