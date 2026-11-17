@@ -1,0 +1,67 @@
+{
+  "version": "r04-visual-atlas-v1",
+  "status": "Photographies tierces sous licence, pas les affiches générées dans ChatGPT",
+  "license_notes": "Les auteurs et licences sont indiqués pour chaque photographie; les visuels de reins HTML/SVG sont des schémas conceptuels.",
+  "sources": {
+    "mouse": {
+      "name": "Souris C57BL/6",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/White%20lab%20mouse.jpg?width=640",
+      "credit": "Pogrebnoj-Alexandroff",
+      "license": "CC BY-SA",
+      "page": "https://commons.wikimedia.org/wiki/File:White_lab_mouse.jpg",
+      "note": "Criblage mécanistique et génétique",
+      "anatomy": "Rein unipapillaire ; transposition humaine limitée",
+      "ethics": "Raffinement et remplacement à privilégier"
+    },
+    "rat": {
+      "name": "Rat Sprague–Dawley",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Lab%20rat%20180202%282%29.jpg?width=640",
+      "credit": "Leiem",
+      "license": "CC0",
+      "page": "https://commons.wikimedia.org/wiki/File:Lab_rat_180202(2).jpg",
+      "note": "Hémodynamique et physiologie longitudinale",
+      "anatomy": "Rein unipapillaire ; métabolisme propre au rat",
+      "ethics": "Justifier le modèle et les points d'arrêt"
+    },
+    "pig": {
+      "name": "Porc / miniporc",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Mini_Pigs.jpg/1280px-Mini_Pigs.jpg",
+      "credit": "Fcobmz",
+      "license": "CC BY-SA 4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Mini_Pigs.jpg",
+      "note": "Architecture et perfusion rénale transposables",
+      "anatomy": "Rein multipapillaire avec calices, plus proche de l'humain",
+      "ethics": "Coût et complexité supérieurs à ceux des rongeurs"
+    },
+    "dog": {
+      "name": "Chien Beagle",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle%20puppy%20portrait.jpg?width=640",
+      "credit": "Tim Lloyd",
+      "license": "CC BY 2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Beagle_puppy_portrait.jpg",
+      "note": "Toxicologie non-rongeur si justifiée",
+      "anatomy": "Rein unipapillaire, différente architecture de l'humain",
+      "ethics": "Études uniquement si aucune alternative mieux adaptée"
+    },
+    "nhp": {
+      "name": "Primate non humain",
+      "src": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Long-tailed_macaque_%28Macaca_fascicularis%29_male_head_Angkor.jpg",
+      "credit": "Charles J. Sharp",
+      "license": "CC BY-SA 4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Long-tailed_macaque_(Macaca_fascicularis)_male_head_Angkor.jpg",
+      "note": "Pharmacologie de cibles spécifiques au primate",
+      "anatomy": "Physiologie parfois plus proche de l'humain, jamais identique",
+      "ethics": "Justification scientifique et éthique renforcée"
+    },
+    "rabbit": {
+      "name": "Lapin",
+      "src": "https://commons.wikimedia.org/wiki/Special:FilePath/Rabbit%20portrait%20%288189337243%29.jpg?width=640",
+      "credit": "Berit Watkin",
+      "license": "CC BY 2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Rabbit_portrait_(8189337243).jpg",
+      "note": "Modèle alternatif selon la question ciblée",
+      "anatomy": "Physiologie et transporteurs rénaux spécifiques",
+      "ethics": "Aucune supériorité universelle démontrée"
+    }
+  }
+}
