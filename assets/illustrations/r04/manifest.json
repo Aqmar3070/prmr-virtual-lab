@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "display": "Affiches originales PRMR R04, exactes, non des données experimentales",
+  "origin": "Archive générée PRMR_R04_images_originales_pour_plateforme.zip",
+  "files": {
+    "porc.png": "04ce538ed4907c68e8535cde69e8232af803f5b052a7ca3760ba23a27f5234f7",
+    "chien.png": "4593b1d002f7a0fdc556b4845d2928e150e60702d212460dbe1ac489925a9b5f",
+    "primate.png": "4736d31274aafd20a92a30541c0aa72d9cf5b500d96194c6afb450aad91d281a",
+    "lapin.png": "19b4e2e81d1c319e8a174650ad51869f7ab2110a4c6ff4ac3c427cf92f1fd686",
+    "comparaison-especes.png": "a902193f7f2c031327a069a0d634815878f253c7004740c308002f5afecaa4bb",
+    "tableau-pkpd.png": "9e3ab5c3f045a81db8032a6c39f0d112cd963437650105f977afcbdd4d095dd6"
+  }
+}
