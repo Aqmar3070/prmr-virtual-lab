@@ -6,6 +6,7 @@
 <title>PRMR-R04 | Laboratoire 3D interactif et comparaison des espèces</title>
 <link rel="stylesheet" href="./r04.css">
 <link rel="stylesheet" href="./r04-atlas.css">
+<link rel="stylesheet" href="./r04-gallery.css">
 <script type="module" src="./src/r04_app.mjs"></script>
 </head><body>
 <div class="r4-shell">
@@ -38,6 +39,36 @@
  <div class="r4-kpi"><small>Modèles moléculaires</small><b>4 conformères</b><em>Coordonnées 3D RDKit</em></div>
  <div class="r4-kpi"><small>État de la recherche</small><b>In silico</b><em>Calculs reproductibles, non expérimentaux</em></div>
 </div>
+<section id="r4-original-gallery" class="r4-poster-gallery" aria-labelledby="r4-original-heading">
+  <div class="r4-poster-gallery-top">
+    <div>
+      <span class="r4-gallery-kicker">GALERIE DES AFFICHES ORIGINALES PRMR</span>
+      <h2 id="r4-original-heading">Les illustrations exactes, intégrées au laboratoire</h2>
+      <p>Sélectionner une espèce pour afficher son affiche originale, puis modifier ses paramètres dans le simulateur ci-dessous.</p>
+    </div>
+    <span class="r4-tag">Six fichiers PNG intégrés</span>
+  </div>
+  <div class="r4-poster-gallery-grid">
+    <div class="r4-poster-main">
+      <div class="r4-poster-main-toolbar">
+        <span id="r4-poster-title">Comparaison générale des espèces</span>
+        <a id="r4-poster-fullscreen" href="./assets/illustrations/r04/comparaison-especes.png" target="_blank" rel="noopener noreferrer">Voir en grand</a>
+      </div>
+      <a id="r4-poster-image-link" href="./assets/illustrations/r04/comparaison-especes.png" target="_blank" rel="noopener noreferrer" title="Ouvrir l'affiche originale">
+        <img id="r4-poster-main-img" src="./assets/illustrations/r04/comparaison-especes.png" alt="Affiche PRMR originale comparant les modèles animaux ; schémas et scores sont des illustrations, pas des mesures expérimentales" width="1672" height="941" loading="eager" fetchpriority="high">
+      </a>
+      <p class="r4-poster-disclaimer">Affiche de présentation graphique. Les scores représentés dans l'image ne sont pas des résultats expérimentaux et ne doivent pas être interprétés comme des probabilités. Les analyses numériques validables se trouvent dans le simulateur.</p>
+    </div>
+    <div class="r4-poster-thumbnails" aria-label="Choisir une affiche par espèce">
+      <a data-r4-gallery-species="mouse" href="./assets/illustrations/r04/comparaison-especes.png" class="r4-poster-thumb" aria-current="true"><img src="./assets/illustrations/r04/comparaison-especes.png" alt="Affiche souris et comparaison générale" loading="eager"><span><strong>Souris</strong><small>Comparaison</small></span></a>
+      <a data-r4-gallery-species="rat" href="./assets/illustrations/r04/comparaison-especes.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/comparaison-especes.png" alt="Affiche rat et comparaison générale" loading="eager"><span><strong>Rat</strong><small>Comparaison</small></span></a>
+      <a data-r4-gallery-species="pig" href="./assets/illustrations/r04/porc.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/porc.png" alt="Affiche originale PRMR du porc / miniporc" loading="eager"><span><strong>Porc / miniporc</strong><small>Profil détaillé</small></span></a>
+      <a data-r4-gallery-species="dog" href="./assets/illustrations/r04/chien.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/chien.png" alt="Affiche originale PRMR du chien" loading="eager"><span><strong>Chien</strong><small>Profil détaillé</small></span></a>
+      <a data-r4-gallery-species="nhp" href="./assets/illustrations/r04/primate.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/primate.png" alt="Affiche originale PRMR du primate non humain" loading="eager"><span><strong>Primate</strong><small>Profil détaillé</small></span></a>
+      <a data-r4-gallery-species="rabbit" href="./assets/illustrations/r04/lapin.png" class="r4-poster-thumb"><img src="./assets/illustrations/r04/lapin.png" alt="Affiche originale PRMR du lapin" loading="eager"><span><strong>Lapin</strong><small>Profil détaillé</small></span></a>
+    </div>
+  </div>
+</section>
 <p class="r4-banner"><strong>Statut des résultats :</strong> les références AUC proviennent de données humaines ; leur projection entre espèces est un <strong>stress-test non calibré</strong>. Modifier un animal ou un paramètre met à jour l'analyse, mais ne prédit ni toxicité réelle, ni efficacité, ni guérison. Les courbes non disponibles restent identifiées comme inconnues.</p>
 <section id="r4-visual-atlas" class="r4-visual-atlas" aria-labelledby="r4-atlas-heading" aria-live="polite"></section>
 <div class="r4-grid">
