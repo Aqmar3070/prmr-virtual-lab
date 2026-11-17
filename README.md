@@ -1,12 +1,22 @@
 # PRMR Virtual Lab · Research Workspace 2.0
+## PRMR-R05 — Visuels animaux autonomes et finition du laboratoire (17 novembre 2026)
+
+- **[Accueil interactif PRMR-R05](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r05-standalone-20261117)** · [**Simulation animale R04/R05**](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r05-standalone-20261117) · [**Journal des corrections visuelles**](docs/PRMR_R05_UI_FINISHING.md).
+- Six illustrations animales **indépendantes** au format SVG (souris, rat, porc, chien, primate et lapin), sans poster recadré ni texte incrusté : `assets/animals/*.svg`.
+- Cartes, titres et noms latins séparés et centrés en HTML ; affichage complet `object-fit:contain` ; dispositions adaptatives vérifiées en Chromium à **1440 px et 390 px**, sans libellés tronqués dans les blocs contrôlés.
+- Sculptures d'animaux **WebGL lisses, orientables** avec éclairage artistique, repli sur les illustrations SVG lorsque WebGL est indisponible. Ces représentations ne sont pas des modèles anatomiques validés.
+- Comparaison des espèces et molécules RDKit 3D maintenues sur l'accueil, R01, R02, R03 et R04 ; contrôles physiologiques complets, avec limites numériques explicites.
+- Les six anciennes affiches PNG restent **archivées uniquement**, sans découpe pour produire les portraits. Les taux de toxicité et de guérison restent inconnus en l'absence de données biologiques.
+- Validation : `PRMR numerical tests` et `PRMR browser UI smoke`, avec captures desktop et mobile disponibles dans les artefacts du pipeline.
+
 
 ## Refonte des interfaces scientifiques — 17 novembre 2026
 
 **[Ouvrir le nouveau laboratoire PRMR](https://aqmar3070.github.io/prmr-virtual-lab/index.html)** · [**Console animaux et molécules 3D**](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html) · [**Journal de la refonte**](docs/PRMR_R04_UI_REBUILD.md)
 
-La galerie autonome d'affiches a été **retirée**. Les visuels d'origine sont désormais les fonds artistiques recadrés des sélecteurs et profils des six espèces, avec des éléments scientifiques HTML vivants. La même architecture interactive apparaît dès l'accueil, dans R01, R02, R03 et R04. L'ancienne vue générale avec promotion de galerie a été remplacée.
+La galerie autonome d'affiches a été **retirée**. R05 a ensuite éliminé tous les fonds obtenus par recadrage des anciens posters. Les animaux possèdent maintenant leurs propres SVG sans texte, des profils HTML séparés et une sculpture 3D WebGL orientable avec repli. La même architecture interactive apparaît dès l'accueil, dans R01, R02, R03 et R04.
 
-- Six portraits animaux originaux intégrés aux boutons, fiches de profil et tableaux ; aucune photo Wikimedia dans l'interface principale. Les PNG sources restent versionnés et vérifiés par SHA256.
+- Six illustrations SVG autonomes intégrées aux boutons et aux fiches ; aucune photographie Wikimedia ni morceau de poster dans l'interface principale. Les PNG historiques restent versionnés, non utilisés comme cartes.
 - Espèce, âge, sexe, constitution, maladie, rein, foie, poids, hydratation et association : paramètres disponibles selon les modules ; seuls les facteurs dotés de données se répercutent numériquement.
 - Graphiques SVG, rein conceptuel 3D, sculptures animales conceptuelles 3D distinctes et quatre conformères chimiques **RDKit 3D** cliquables, directement dans l'atelier de l'application.
 - Cliquer sur un conformère de référence dans l'atelier moléculaire remplit les champs du modèle RDKit.js avec le nom et le SMILES correspondants. L'analyse 2D reste utilisée pour vérifier les structures libres sans conformation 3D.
@@ -16,7 +26,7 @@ La galerie autonome d'affiches a été **retirée**. Les visuels d'origine sont 
 ## PRMR-R04 — Laboratoire 3D interactif et physiologie comparée (16 novembre 2026)
 
 - **[Lancer le nouveau laboratoire interactif 3D](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html)** : simulation exploratoire 6 espèces — souris, rat, miniporc, chien, macaque cynomolgus, lapin.
-- **Interface intégrée** : les six profils animaux utilisent les zones visuelles des affiches originales directement dans les cartes et les panneaux physiologiques, pas une galerie séparée.
+- **Interface intégrée R05** : les six profils animaux utilisent un SVG indépendant et un modèle WebGL stylisé, avec textes hors image. Aucun découpage des anciennes affiches.
 - **3D et interaction** : reins et sculptures animales conceptuelles orientables, plus quatre molécules aux coordonnées conformères RDKit. Les annotations et graphiques HTML sont les véritables données de l’application.
 - Paramètres manipulables : espèce, masse, âge, sexe, constitution, déshydratation, fonction rénale, fonction hépatique, maladie, association et concentration libre illustrative.
 - Cartes d'espèces cliquables, graphiques SVG recalculés, trois visualiseurs 3D Canvas à rotation par glissement et quatre molécules réelles conformées par RDKit.
