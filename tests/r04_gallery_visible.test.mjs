@@ -15,7 +15,7 @@ test("Previous pasted poster galleries have been removed",()=>{
  assert.ok(!r03.includes('id="r03-original-poster"'));
  assert.ok(!r03.includes('<figure class="r4-original-poster"'));
  assert.match(r04,/id="r4-visual-atlas"/);
- assert.ok(r04.includes("src=\"./src/r04_app.mjs?v=r06-studio-20261117\""));
+ assert.ok(r04.includes("src=\"./src/r04_app.mjs?v=r07-photo-20261117\""));
 });
 test("Every user-facing research interface uses the same integrated workstation",()=>{
  for(const [file,id] of [["index.html","r5-home-stage"],["research.html","r5-home-stage"],["risk-r03.html","r5-risk-stage"],["screening.html","r5-screening-stage"],["preclinical.html","r5-preclinical-stage"]]){
