@@ -1,4 +1,14 @@
 # PRMR Virtual Lab · Research Workspace 2.0
+## PRMR-R07 — Modèles 3D phototexturés (17 novembre 2026)
+
+**Code intégré — transfert des modèles binaires encore nécessaire.** Six vrais maillages GLB ont été construits à partir des rendus réalistes de la conversation (de **305 à 429 Ko** chacun), avec textures WebP intégrées, rotation à 360°, zoom et réinitialisation. Il s'agit de **reliefs 2.5D créés à partir d'une seule vue**, dont le dos et l'épaisseur sont estimés, **pas** d'anatomie validée à 360°.
+
+Le lecteur natif léger `src/r07_photo3d.mjs` est désormais relié aux écrans d'accueil/R01/R02/R03/R04 et utilise un rendu de secours lorsqu'un GLB manque. L'ancienne étude PK/PD et les conformères RDKit ne sont pas modifiés.
+
+**[Archive R07 à installer (lien dans la conversation)](incoming/README.md)** : déposer une seule fois `PRMR_R07_modeles_3D_textures_legers.zip` dans `incoming/`. Le workflow GitHub [`import-r07.yml`](.github/workflows/import-r07.yml) vérifie les 12 fichiers et les installe ; le téléchargement des GLB par le navigateur démarre alors automatiquement. **Le code est publié, mais les six binaires n'ont pas encore été transférés dans GitHub.** Le registre privé Supabase `public.prmr_visual_assets` porte actuellement le statut exact `locally_generated_pending_upload`.
+
+[Détails techniques, limitations, hashes, étapes d'importation](docs/PRMR_R07_PHOTOTEXTURED_3D.md).
+
 ## PRMR-R06 — Matériaux 3D améliorés
 
 Le moteur animal WebGL a été enrichi avec une tessellation plus fine, un éclairage studio, des matériaux différenciés pour le pelage, la peau et les yeux, une microtexture procédurale et des contrôles de zoom/recentrage. La navigation et les quatre modèles moléculaires RDKit restent inchangés.
