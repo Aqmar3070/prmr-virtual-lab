@@ -3,7 +3,7 @@
 // Scientific values remain live HTML/SVG outputs, never inferred from artwork.
 import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
 import {create3D} from "./r04_visuals.mjs";
-import {createAnatomyViewer,ORGAN_MODES} from "./r08_anatomy.mjs?v=r08-atlas-20261117";
+import {createAnatomyViewer,ORGAN_MODES} from "./r08_anatomy.mjs?v=r08-anatomy-20261117";
 export const ANIMAL_ART=Object.fromEntries(SPECIES_R04.map(species=>[species.id,"./assets/animals/"+species.id+".svg"]));
 const $=id=>document.getElementById(id);
 const n=(tag,txt,cls)=>{let x=document.createElement(tag);if(txt!==undefined)x.textContent=txt;if(cls)x.className=cls;return x};
