@@ -109,6 +109,7 @@ function build(host, data) {
   let dose = substance.typical_dose;
   let durationIndex = 3;
   let weight = 70;
+  let dfg = 90;
 
   const layout = el("div", "r13-layout");
   const controls = el("div", "r13-controls");
@@ -137,6 +138,70 @@ function build(host, data) {
   doseField.append(doseLabel, doseRange, doseValue);
   controls.append(doseField);
 
+  /* Personne ne compte sa caféine en milligrammes : on compte des tasses.
+     Chaque portion de référence ajoute sa teneur à la dose, et la dose
+     choisie est reconvertie en portions. Les teneurs varient d'un café à
+     l'autre — la conversion est un ordre de grandeur, et sa source est
+     citée comme n'importe quel autre chiffre de ce registre. */
+  const portionField = el("div", "r13-field r13-portions");
+  const portionLabel = el("p", "r13-portions-label", "Compter en portions");
+  const portionList = el("div", "r13-portion-buttons");
+  const portionEcho = el("p", "prmr-small r13-portion-echo");
+  const portionSources = el("p", "prmr-small r13-portion-sources");
+  portionField.append(portionLabel, portionList, portionEcho, portionSources);
+  controls.append(portionField);
+
+  function renderPortions() {
+    const portions = substance.portions || [];
+    portionField.hidden = portions.length === 0;
+    if (!portions.length) return;
+    portionList.replaceChildren();
+    for (const portion of portions) {
+      const button = el("button", "r13-portion");
+      button.type = "button";
+      button.append(
+        el("span", "r13-portion-name", portion.label),
+        el("span", "r13-portion-mg", portion.mg + " " + substance.unit.split("/")[0])
+      );
+      button.title = portion.detail + " — " + portion.source;
+      button.addEventListener("click", () => {
+        /* Le curseur n'accepte que des multiples de son pas : sans cet
+           arrondi, la valeur interne et la valeur affichée divergeaient
+           silencieusement — deux cafés ajoutaient 90 mg et le curseur en
+           montrait 100. */
+        const pas = substance.dose_step;
+        const brut = Math.min(substance.dose_range[1], dose + portion.mg);
+        dose = Math.round(brut / pas) * pas;
+        render();
+      });
+      portionList.append(button);
+    }
+    const repere = portions[0];
+    const nombre = dose / repere.mg;
+    /* L'accord se lit dans le registre : « 3,2 tasse » se voyait, et aucune
+       règle générale ne met au pluriel « canette de boisson énergisante ». */
+    const nom = nombre >= 2 ? (repere.plural || repere.label.toLowerCase()) : repere.label.toLowerCase();
+    portionEcho.textContent = dose
+      ? "La dose choisie équivaut à " +
+        nombre.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) +
+        " " + nom + " par jour."
+      : "Ajoutez des portions ou déplacez le curseur.";
+    portionSources.replaceChildren(
+      document.createTextNode("Teneurs de référence : "));
+    const vues = new Map();
+    for (const portion of portions) if (!vues.has(portion.source)) vues.set(portion.source, portion.url);
+    let premier = true;
+    for (const [source, url] of vues) {
+      if (!premier) portionSources.append(document.createTextNode(" · "));
+      const lien = el("a", null, source);
+      lien.href = url;
+      lien.target = "_blank";
+      lien.rel = "noopener noreferrer";
+      portionSources.append(lien);
+      premier = false;
+    }
+  }
+
   // Durée
   const durationField = el("div", "r13-field");
   const durationLabel = el("label", null, "Durée de la prise");
@@ -164,6 +229,24 @@ function build(host, data) {
   weightInput.value = String(weight);
   weightField.append(weightLabel, weightInput);
   controls.append(weightField);
+
+  /* Pour certaines substances, le repère opposé à la dose n'est pas un
+     plafond unique : c'est une table indexée sur la fonction rénale. Le
+     réglage n'apparaît que pour celles-là, pour ne pas suggérer qu'il
+     change quelque chose là où aucune table n'est publiée. */
+  const dfgField = el("div", "r13-field");
+  const dfgLabel = el("label", null, "Débit de filtration glomérulaire");
+  dfgLabel.htmlFor = "r13-dfg";
+  const dfgRange = el("input");
+  dfgRange.type = "range";
+  dfgRange.id = "r13-dfg";
+  dfgRange.min = "10";
+  dfgRange.max = "120";
+  dfgRange.step = "1";
+  dfgRange.value = String(dfg);
+  const dfgValue = el("output", "r13-value");
+  dfgField.append(dfgLabel, dfgRange, dfgValue);
+  controls.append(dfgField);
 
   /* La figure accompagne les repères : elle montre quels organes ils
      concernent, sans rien dire de leur état. */
@@ -226,6 +309,17 @@ function build(host, data) {
     if (substance.chronic_warning && duration.days >= substance.chronic_warning.after_days && crossed.length) {
       marques.push(substance.chronic_warning);
     }
+    renderPortions();
+
+    /* Le plafond selon la fonction rénale, quand il existe. */
+    const bands = substance.renal_bands;
+    dfgField.hidden = !bands;
+    let band = null;
+    if (bands) {
+      dfgValue.textContent = dfg + " mL/min";
+      dfgRange.value = String(dfg);
+      band = bands.find(b => dfg >= b.min && (b.max === null || dfg <= b.max)) || null;
+    }
     const concernes = bodyMap.update(organStates(marques));
     bodyLegend.textContent = concernes.length
       ? "Organes concernés par les repères franchis : " + concernes.join(", ") + ". La couleur indique la nature du repère, jamais l\u2019état d\u2019un organe."
@@ -280,6 +374,25 @@ function build(host, data) {
     if (substance.chronic_warning && duration.days >= substance.chronic_warning.after_days && crossed.length) {
       findings.append(findingBlock(substance.chronic_warning));
     }
+    if (band) {
+      findings.append(el("h3", null, "Plafond selon la fonction rénale"));
+      const contreIndique = band.max_daily === 0;
+      const depasse = !contreIndique && dose > band.max_daily;
+      const bloc = findingBlock({
+        status: contreIndique || depasse ? "toxique_etabli" : "reglementaire",
+        title: band.label + " — DFG " + band.min + (band.max === null ? " mL/min et plus" : " à " + band.max + " mL/min"),
+        detail: (contreIndique
+          ? "À ce débit, aucune dose n'est prévue par le résumé des caractéristiques du produit. "
+          : "Dose journalière totale maximale à ce débit : " +
+            band.max_daily.toLocaleString("fr-FR") + " mg, à répartir en 2 à 3 prises. " +
+            (depasse
+              ? "La dose réglée, " + dose.toLocaleString("fr-FR") + " mg, dépasse ce plafond. "
+              : "La dose réglée ne dépasse pas ce plafond. ")) + band.note,
+        source: substance.renal_bands_source.source,
+        url: substance.renal_bands_source.url
+      });
+      findings.append(bloc);
+    }
     if (substance.renal_note) {
       findings.append(el("h3", null, "Fonction rénale"));
       findings.append(findingBlock(substance.renal_note));
@@ -308,6 +421,7 @@ function build(host, data) {
     render();
   });
   doseRange.addEventListener("input", () => { dose = Number(doseRange.value); render(); });
+  dfgRange.addEventListener("input", () => { dfg = Number(dfgRange.value); render(); });
   durationRange.addEventListener("input", () => { durationIndex = Number(durationRange.value); render(); });
   weightInput.addEventListener("input", () => {
     const value = Number(weightInput.value);

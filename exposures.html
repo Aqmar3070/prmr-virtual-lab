@@ -39,6 +39,15 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 .r13-findings .prmr-evidence p{font-size:var(--prmr-size-small)}
 /* Un repère non atteint est montré en retrait : il existe, il n'est pas franchi. */
 .r13-not-crossed{opacity:.6}
+[hidden]{display:none!important}
+.r13-portions{margin-top:var(--prmr-space-4);padding-top:var(--prmr-space-4);border-top:1px solid var(--prmr-line-soft)}
+.r13-portions-label{margin:0 0 var(--prmr-space-3);color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.r13-portion-buttons{display:flex;flex-wrap:wrap;gap:var(--prmr-space-2)}
+.r13-portion{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:var(--prmr-space-2) var(--prmr-space-3);border:1px solid var(--prmr-line);background:var(--prmr-surface-raised);border-radius:var(--prmr-radius-control);color:var(--prmr-text);font-size:var(--prmr-size-small);text-align:left;cursor:pointer}
+.r13-portion:hover{border-color:var(--prmr-signal-dim)}
+.r13-portion-mg{color:var(--prmr-text-faint);font-size:var(--prmr-size-micro);font-variant-numeric:tabular-nums}
+.r13-portion-echo{margin:var(--prmr-space-3) 0 0;color:var(--prmr-text)}
+.r13-portion-sources{margin:var(--prmr-space-2) 0 0;color:var(--prmr-text-faint)}
 .r13-bodypanel{margin-top:var(--prmr-space-4);padding-top:var(--prmr-space-4);border-top:1px solid var(--prmr-line-soft)}
 .r13-bodymap{display:block;width:100%;max-width:170px;margin:0 auto}
 .r13-bodymap-silhouette{fill:var(--prmr-surface-sunken);stroke:var(--prmr-line);stroke-width:1}

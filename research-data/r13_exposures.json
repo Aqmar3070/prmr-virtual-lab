@@ -93,9 +93,9 @@
         0,
         1200
       ],
-      "dose_step": 25,
+      "dose_step": 5,
       "typical_dose": 200,
-      "reference_intake": "Une tasse de café filtre apporte environ 90 mg de caféine ; un expresso environ 70 mg",
+      "reference_intake": "Une tasse de café filtre de 200 mL apporte environ 90 mg de caféine, un expresso environ 80 mg (portions de référence EFSA)",
       "organs": [
         "brain",
         "heart"
@@ -141,7 +141,65 @@
         }
       ],
       "evidence_horizon_days": 3650,
-      "horizon_note": "Les études d'observation suivent des populations sur plusieurs années, mais elles décrivent des moyennes de groupe. Aucune ne prédit l'état d'un organe chez une personne donnée."
+      "horizon_note": "Les études d'observation suivent des populations sur plusieurs années, mais elles décrivent des moyennes de groupe. Aucune ne prédit l'état d'un organe chez une personne donnée.",
+      "portions": [
+        {
+          "label": "Tasse de café filtre",
+          "detail": "200 mL",
+          "mg": 90,
+          "source": "EFSA, portions de référence pour la caféine",
+          "url": "https://www.efsa.europa.eu/en/topics/topic/caffeine",
+          "plural": "tasses de café filtre"
+        },
+        {
+          "label": "Expresso",
+          "detail": "60 mL",
+          "mg": 80,
+          "source": "EFSA, portions de référence pour la caféine",
+          "url": "https://www.efsa.europa.eu/en/topics/topic/caffeine",
+          "plural": "expressos"
+        },
+        {
+          "label": "Canette de boisson énergisante",
+          "detail": "250 mL",
+          "mg": 80,
+          "source": "BfR, questions fréquentes sur la caféine",
+          "url": "https://www.bfr.bund.de/assets/01_Ver%C3%B6ffentlichungen/FAQ_englisch/frequently-asked-questions-on-caffeine-and-foods-containing-caffeine-including-energy-drinks.pdf",
+          "plural": "canettes de boisson énergisante"
+        },
+        {
+          "label": "Tasse de café instantané",
+          "detail": "125 mL",
+          "mg": 45,
+          "source": "Vidal, teneur en caféine des aliments",
+          "url": "https://www.vidal.fr/parapharmacie/complements-alimentaires/cafeine-theine.html",
+          "plural": "tasses de café instantané"
+        },
+        {
+          "label": "Tasse de thé noir",
+          "detail": "220 mL",
+          "mg": 50,
+          "source": "EFSA, portions de référence pour la caféine",
+          "url": "https://www.efsa.europa.eu/en/topics/topic/caffeine",
+          "plural": "tasses de thé noir"
+        },
+        {
+          "label": "Canette de cola",
+          "detail": "330 mL",
+          "mg": 35,
+          "source": "BfR, questions fréquentes sur la caféine",
+          "url": "https://www.bfr.bund.de/assets/01_Ver%C3%B6ffentlichungen/FAQ_englisch/frequently-asked-questions-on-caffeine-and-foods-containing-caffeine-including-energy-drinks.pdf",
+          "plural": "canettes de cola"
+        },
+        {
+          "label": "Tablette de chocolat noir",
+          "detail": "50 g",
+          "mg": 25,
+          "source": "EFSA, portions de référence pour la caféine",
+          "url": "https://www.efsa.europa.eu/en/topics/topic/caffeine",
+          "plural": "tablettes de chocolat noir"
+        }
+      ]
     },
     {
       "id": "ibuprofene",
@@ -227,6 +285,103 @@
           "url": "https://revistanefrologia.com/es-acute-kidney-injury-secondary-combination-articulo-S2013251415000139"
         }
       ]
+    },
+    {
+      "id": "metformine",
+      "label": "Metformine",
+      "family": "Antidiabétique oral",
+      "unit": "mg/jour",
+      "dose_range": [
+        0,
+        3500
+      ],
+      "dose_step": 250,
+      "typical_dose": 2000,
+      "reference_intake": "500 à 1000 mg par prise, 2 à 3 prises par jour, pendant ou après le repas",
+      "organs": [
+        "kidneys",
+        "liver"
+      ],
+      "renal_bands": [
+        {
+          "min": 90,
+          "max": null,
+          "max_daily": 3000,
+          "label": "Fonction rénale normale",
+          "note": "Dose maximale recommandée : 3 g par jour, en trois prises distinctes."
+        },
+        {
+          "min": 60,
+          "max": 89,
+          "max_daily": 3000,
+          "label": "Insuffisance rénale légère",
+          "note": "Une diminution de la dose peut être envisagée selon la détérioration de la fonction rénale."
+        },
+        {
+          "min": 45,
+          "max": 59,
+          "max_daily": 2000,
+          "label": "Insuffisance rénale modérée",
+          "note": "Les facteurs augmentant le risque d'acidose lactique doivent être passés en revue avant l'instauration. La dose d'initiation ne peut dépasser la moitié de la dose maximale."
+        },
+        {
+          "min": 30,
+          "max": 44,
+          "max_daily": 1000,
+          "label": "Insuffisance rénale modérée avancée",
+          "note": "Surveillance renforcée de la fonction rénale, tous les 3 à 6 mois."
+        },
+        {
+          "min": 0,
+          "max": 29,
+          "max_daily": 0,
+          "label": "Insuffisance rénale sévère",
+          "note": "La metformine est contre-indiquée."
+        }
+      ],
+      "renal_bands_source": {
+        "source": "ANSM, résumé des caractéristiques du produit, metformine",
+        "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0418665.htm"
+      },
+      "thresholds": [
+        {
+          "value": 3000,
+          "status": "reglementaire",
+          "organ": "kidneys",
+          "title": "Dose maximale chez l'adulte à fonction rénale normale",
+          "detail": "3 g par jour au maximum, en trois prises distinctes, lorsque le débit de filtration glomérulaire est d'au moins 90 mL/min. Ce plafond baisse dès que la fonction rénale baisse.",
+          "source": "ANSM, résumé des caractéristiques du produit, metformine",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0418665.htm"
+        },
+        {
+          "value": 1,
+          "status": "reglementaire",
+          "organ": "kidneys",
+          "title": "Le plafond dépend du débit de filtration glomérulaire",
+          "detail": "Le DFG doit être évalué avant toute instauration, puis au moins une fois par an, et tous les 3 à 6 mois chez les personnes âgées ou dont l'insuffisance rénale risque de progresser. La dose maximale est fixée par ce chiffre, pas par le poids.",
+          "source": "ANSM, résumé des caractéristiques du produit, metformine",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0418665.htm"
+        },
+        {
+          "value": 1,
+          "status": "toxique_etabli",
+          "organ": "liver",
+          "title": "Risque d'acidose lactique",
+          "detail": "La metformine expose à un risque très rare d'acidose lactique, parfois fatal. Les facteurs de risque incluent l'insuffisance rénale, le choc, l'insuffisance cardiaque sévère, la déshydratation, l'infection grave et l'intoxication alcoolique aiguë.",
+          "source": "ANSM, metformine et risque d'acidose lactique en cas d'insuffisance rénale",
+          "url": "https://ansm.sante.fr/actualites/metformine-et-risque-dacidose-lactique-en-cas-dinsuffisance-renale"
+        }
+      ],
+      "renal_note": {
+        "status": "reglementaire",
+        "organ": "kidneys",
+        "title": "Ce que la fonction rénale commande",
+        "detail": "Contrairement au paracétamol ou à l'ibuprofène, la metformine n'a pas un plafond unique : le DFG fixe la dose maximale, et en dessous de 30 mL/min le médicament est contre-indiqué. Le réglage du DFG change donc le repère opposé à la dose.",
+        "source": "ANSM, résumé des caractéristiques du produit, metformine",
+        "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0418665.htm"
+      },
+      "evidence_horizon_days": 365,
+      "horizon_note": "Les textes cités fixent une dose maximale selon la fonction rénale et demandent une réévaluation au moins annuelle. Ils ne décrivent pas l'état d'un rein après plusieurs années à dose donnée."
     }
   ]
 }
