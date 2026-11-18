@@ -296,5 +296,43 @@
         "vessels"
       ]
     }
+  },
+  "verifications": {
+    "date": "2026-11-18",
+    "methode": "Chaque maillage a été rendu isolément, hors de la page, pour comparer ce que porte le fichier à ce que son nom annonce.",
+    "constat": [
+      {
+        "noeuds": [
+          "lung_l",
+          "lung_r"
+        ],
+        "annonce": "poumon gauche / poumon droit",
+        "contenu_reel": "arbre vasculaire et bronchique intrapulmonaire ; le parenchyme alvéolaire est absent",
+        "verifie_sur": [
+          "anatomy-male.glb",
+          "anatomy-female.glb"
+        ],
+        "consequence": "Les intitulés de l'interface ont été corrigés en « arbre vasculaire ». Aucun volume pulmonaire n'est dérivé de ces maillages.",
+        "triangles": {
+          "lung_l": 5800,
+          "lung_r": 10264,
+          "heart_pour_comparaison": 14832
+        }
+      },
+      {
+        "noeuds": [
+          "heart",
+          "liver",
+          "kidney_l",
+          "kidney_r"
+        ],
+        "annonce": "organes pleins",
+        "contenu_reel": "volumes fermés conformes à l'intitulé",
+        "verifie_sur": [
+          "anatomy-male.glb"
+        ]
+      }
+    ],
+    "manque_identifie": "Parenchyme pulmonaire et lobes séparés. Les segmentations TotalSegmentator (CC BY 4.0) les contiennent, mais leur construction demande le téléchargement du jeu de données complet, hors de ce dépôt."
   }
 }
