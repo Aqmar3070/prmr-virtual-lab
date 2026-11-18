@@ -647,3 +647,89 @@ footer {
     background: #fff;
   }
 }
+
+/* --------------------------------------------------------------------------
+   8. Rubriques de page
+   --------------------------------------------------------------------------
+   Les pages déroulaient sept à onze sections d'un bloc. Les rubriques n'en
+   montrent qu'une à la fois, avec les mêmes intitulés partout.
+   -------------------------------------------------------------------------- */
+
+.prmr-tabs {
+  margin: var(--prmr-space-6) 0 var(--prmr-space-5);
+  border-bottom: 1px solid var(--prmr-line);
+}
+
+.prmr-tablist {
+  display: flex;
+  gap: var(--prmr-space-1);
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--prmr-line) transparent;
+}
+
+.prmr-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: var(--prmr-radius-control) var(--prmr-radius-control) 0 0;
+  padding: var(--prmr-space-3) var(--prmr-space-4);
+  margin-bottom: -1px;
+  color: var(--prmr-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.prmr-tab:hover {
+  color: var(--prmr-text);
+  background: var(--prmr-surface);
+}
+
+.prmr-tab-label {
+  font-size: var(--prmr-size-body);
+  font-weight: 600;
+}
+
+/* La ligne d'aide dit en clair ce qu'on trouve derrière l'onglet : personne ne
+   devrait avoir à cliquer pour le découvrir. */
+.prmr-tab-hint {
+  font-size: var(--prmr-size-micro);
+  color: var(--prmr-text-faint);
+  font-weight: 400;
+}
+
+.prmr-tab[aria-selected="true"] {
+  color: var(--prmr-text);
+  border-bottom-color: var(--prmr-signal);
+  background: var(--prmr-surface);
+}
+
+.prmr-tab[aria-selected="true"] .prmr-tab-hint {
+  color: var(--prmr-text-muted);
+}
+
+section[role="tabpanel"]:focus {
+  outline: none;
+}
+
+/* Respiration entre les sections d'une même rubrique. */
+section[role="tabpanel"] + section[role="tabpanel"] {
+  margin-top: var(--prmr-space-7);
+  padding-top: var(--prmr-space-6);
+  border-top: 1px solid var(--prmr-line-soft);
+}
+
+@media (max-width: 560px) {
+  .prmr-tab {
+    padding: var(--prmr-space-2) var(--prmr-space-3);
+  }
+
+  .prmr-tab-hint {
+    display: none;
+  }
+}

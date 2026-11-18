@@ -1,0 +1,135 @@
+{
+  "schema": "prmr-documented-exposures-v1",
+  "updated_utc": "2026-11-18",
+  "purpose": "Repères d'exposition réellement documentés pour quelques substances courantes : seuils réglementaires, doses toxiques établies, organes concernés et horizon au-delà duquel aucune donnée n'existe.",
+  "what_this_is_not": "Ce registre ne prédit l'état d'aucune personne. Il ne calcule pas l'effet d'une dose sur un organe au bout d'un an : aucun modèle validé ne fait cela. Il indique, pour une dose et une durée choisies, quels repères publiés sont franchis et ce que les études couvrent réellement.",
+  "status_scale": {
+    "reglementaire": "Seuil fixé par une agence dans un texte officiel : résumé des caractéristiques du produit, avis scientifique.",
+    "toxique_etabli": "Dose à partir de laquelle une atteinte d'organe est établie et décrite dans la littérature clinique.",
+    "association_observee": "Association rapportée par des études d'observation. Une association n'est pas une relation de cause à effet.",
+    "non_documente": "Aucune donnée publiée ne couvre cette combinaison de dose et de durée."
+  },
+  "substances": [
+    {
+      "id": "paracetamol",
+      "label": "Paracétamol",
+      "family": "Antalgique et antipyrétique",
+      "unit": "mg/jour",
+      "dose_range": [0, 12000],
+      "dose_step": 250,
+      "typical_dose": 3000,
+      "reference_intake": "500 à 1000 mg par prise, 4 heures d'intervalle minimum",
+      "organs": ["liver", "kidneys"],
+      "thresholds": [
+        {
+          "value": 3000,
+          "status": "reglementaire",
+          "organ": "liver",
+          "title": "Dose journalière maximale usuelle",
+          "detail": "Les résumés des caractéristiques du produit retiennent 3 g par jour chez l'adulte de plus de 50 kg, avec un intervalle minimal de 4 heures entre les prises. Au-delà, la dose relève d'un avis médical.",
+          "source": "ANSM, résumé des caractéristiques du produit, Dafalgan 1000 mg",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0342184.htm"
+        },
+        {
+          "value": 4000,
+          "status": "reglementaire",
+          "organ": "liver",
+          "title": "Plafond absolu chez l'adulte sans facteur de risque",
+          "detail": "La dose peut être portée à 4 g par jour en cas de douleurs plus intenses, sauf chez les sujets dénutris ou consommant de l'alcool de façon chronique, dont le foie est atteint à des doses plus faibles. En cas d'atteinte hépatique, le plafond redescend à 3 g, et à 2 g en dessous de 50 kg.",
+          "source": "ANSM et Centre belge d'information pharmacothérapeutique",
+          "url": "https://www.cbip.be/fr/intoxications-involontaires-au-paracetamol/"
+        },
+        {
+          "value": 6000,
+          "status": "toxique_etabli",
+          "organ": "liver",
+          "title": "Dose minimale toxique décrite chez l'adulte",
+          "detail": "Une hépatotoxicité est décrite à partir de 6 g chez l'adulte, et au-delà de 100 mg/kg chez l'enfant.",
+          "source": "ANSM, résumé des caractéristiques du produit",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0392097.htm"
+        },
+        {
+          "value": 10000,
+          "status": "toxique_etabli",
+          "organ": "liver",
+          "title": "Seuil d'intoxication aiguë",
+          "detail": "En prise aiguë, une atteinte hépatique est attendue à partir de 10 g chez l'adulte et de 150 mg/kg chez l'enfant. L'antidote est la N-acétylcystéine, dose de charge 150 mg/kg.",
+          "source": "Centre belge d'information pharmacothérapeutique",
+          "url": "https://www.cbip.be/fr/intoxications-involontaires-au-paracetamol/"
+        }
+      ],
+      "chronic_warning": {
+        "status": "toxique_etabli",
+        "organ": "liver",
+        "after_days": 1,
+        "title": "L'usage prolongé ne protège pas du plafond",
+        "detail": "En présence de facteurs de risque, une toxicité peut apparaître à des doses plus faibles, et même lors d'une utilisation chronique à la dose journalière maximale habituelle de 4 g.",
+        "source": "Centre belge d'information pharmacothérapeutique",
+        "url": "https://www.cbip.be/fr/intoxications-involontaires-au-paracetamol/"
+      },
+      "renal_note": {
+        "status": "reglementaire",
+        "organ": "kidneys",
+        "title": "L'intervalle entre prises dépend de la fonction rénale",
+        "detail": "La clairance de la créatinine commande l'espacement des prises : 1000 mg toutes les 4 heures au-dessus de 50 mL/min, toutes les 6 heures entre 10 et 50, toutes les 8 heures en dessous de 10. La dose totale ne doit pas dépasser 3 g par jour.",
+        "source": "ANSM, résumé des caractéristiques du produit, Dafalgan 1000 mg",
+        "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0342184.htm"
+      },
+      "evidence_horizon_days": 180,
+      "horizon_note": "Les repères ci-dessus portent sur la dose journalière et sur l'intoxication, non sur une durée d'exposition. Aucun des textes cités ne décrit l'état d'un organe après plusieurs années à dose donnée."
+    },
+    {
+      "id": "cafeine",
+      "label": "Caféine",
+      "family": "Stimulant du système nerveux central",
+      "unit": "mg/jour",
+      "dose_range": [0, 1200],
+      "dose_step": 25,
+      "typical_dose": 200,
+      "reference_intake": "Une tasse de café filtre apporte environ 90 mg de caféine ; un expresso environ 70 mg",
+      "organs": ["brain", "heart"],
+      "thresholds": [
+        {
+          "value": 400,
+          "status": "reglementaire",
+          "organ": "brain",
+          "title": "Repère journalier sans préoccupation de sécurité",
+          "detail": "L'Autorité européenne de sécurité des aliments retient 400 mg par jour, toutes sources confondues et réparties dans la journée, pour un adulte en bonne santé — soit environ 5,7 mg/kg pour une personne de 70 kg.",
+          "source": "EFSA, avis scientifique sur la sécurité de la caféine, 2015",
+          "url": "https://www.efsa.europa.eu/fr/efsajournal/pub/4102"
+        },
+        {
+          "value": 200,
+          "status": "reglementaire",
+          "organ": "brain",
+          "title": "Repère pour une prise unique",
+          "detail": "Une prise unique allant jusqu'à 200 mg, soit environ 3 mg/kg, ne soulève pas de problème de sécurité chez l'adulte en bonne santé, y compris moins de deux heures avant un exercice intense. Des effets à court terme sur le sommeil restent possibles.",
+          "source": "EFSA, avis scientifique sur la sécurité de la caféine, 2015",
+          "url": "https://www.efsa.europa.eu/fr/efsajournal/pub/4102"
+        },
+        {
+          "value": 200,
+          "status": "reglementaire",
+          "organ": "brain",
+          "title": "Repère réduit pendant la grossesse et l'allaitement",
+          "detail": "Pendant la grossesse et l'allaitement, le repère journalier descend à 200 mg, toutes sources confondues.",
+          "source": "EFSA, avis scientifique sur la sécurité de la caféine, 2015",
+          "url": "https://www.efsa.europa.eu/fr/efsajournal/pub/4102",
+          "condition": "grossesse"
+        }
+      ],
+      "observational": [
+        {
+          "status": "association_observee",
+          "organ": "heart",
+          "title": "Consommation habituelle et mortalité toutes causes",
+          "detail": "Une méta-analyse d'études d'observation rapporte un risque relatif de mortalité toutes causes de 0,83 à trois tasses par jour comparé à l'absence de consommation. L'association est constante, mais la causalité n'est pas établie : ces études ne permettent pas de conclure que boire du café en soit la cause.",
+          "source": "Poole R. et al., BMJ, 2017",
+          "url": "https://www.bmj.com/content/359/bmj.j5024"
+        }
+      ],
+      "evidence_horizon_days": 3650,
+      "horizon_note": "Les études d'observation suivent des populations sur plusieurs années, mais elles décrivent des moyennes de groupe. Aucune ne prédit l'état d'un organe chez une personne donnée."
+    }
+  ]
+}

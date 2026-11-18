@@ -82,6 +82,7 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <script type="module" src="./src/r04_embedded.mjs?v=r10-canine-only-20261117"></script>
 <link rel="stylesheet" href="./prmr-route.css?v=r11-20261117">
 <script type="module" src="./src/prmr_route.mjs?v=r11-20261117"></script>
+<script type="module" src="./src/prmr_tabs.mjs?v=r13-20261118"></script>
 </head>
 <body>
 <div id="app">
@@ -97,7 +98,7 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <div class="stat"><label>Hypothèses ouvertes</label><strong id="n-active">44</strong><small>Après critères de tri conservateur</small></div>
 <div class="stat"><label>Écartées ou conditionnelles</label><strong id="n-suspended">121</strong><small>Motifs consultables ci-dessous</small></div>
 </div>
-<section>
+<section data-prmr-tab="montre">
 <h2>Deux pistes issues du calcul</h2>
 <p>Les dix molécules et les 165 associations restent consultables. Ces deux pistes servent à poser des hypothèses falsifiables dans un futur modèle cellulaire rénal, pas à sélectionner un traitement.</p>
 <div class="twocol">
@@ -119,7 +120,7 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <div class="info" style="margin-top:15px"><strong>Test de sensibilité interne :</strong> 2 000 perturbations déterministes des coefficients de recherche (±20 % sur les composantes exploratoires). Parmi dix triples représentatifs, R02-A arrive première dans 58,05 % des perturbations et R02-B dans 41,95 %. Les pourcentages représentent la stabilité du <em>classement choisi</em>, pas une probabilité d'efficacité ou de guérison. De faibles modifications des hypothèses peuvent inverser ces deux pistes.</div>
 </section>
 <section id="r5-screening-stage" aria-label="Molécules 3D et comparateur animal PRMR intégré" style="margin-top:26px"></section>
-<section id="all-combinations">
+<section id="all-combinations" data-prmr-tab="donnees">
 <h2>165 combinaisons : registre filtrable</h2>
 <p>Les associations sont classées par indice de priorisation purement méthodologique. Les configurations « suspendues » ne doivent pas être interprétées comme des prescriptions ; certaines contiennent des contre-indications ou nécessitent un contexte clinique qui n'est pas défini.</p>
 <div class="controls">
@@ -134,12 +135,12 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <div id="results"><table><thead><tr><th>Combinaison</th><th>Axes distincts</th><th>Indice d'exploration</th><th>Statut / motif</th></tr></thead><tbody id="results-body"><tr><td colspan="4">Chargement des données source…</td></tr></tbody></table></div>
 <div id="pager"><button id="more" type="button">Afficher davantage</button><span class="small" id="shown"></span></div>
 </section>
-<section>
+<section data-prmr-tab="donnees">
 <h2>Molécules de départ et calculs RDKit</h2>
 <p>Les valeurs sont des descripteurs physicochimiques calculés, pas des valeurs de bioactivité ni des doses. Chaque fiche renvoie à son identité moléculaire PubChem.</p>
 <div id="molecule-list" aria-live="polite"></div>
 </section>
-<section>
+<section data-prmr-tab="methode">
 <h2>Procédure computationnelle</h2>
 <div class="steps">
 <div class="step"><div class="index">ÉTAPE 01</div><h3>Structures</h3><p>Sélection de dix molécules déjà existantes ; collecte des SMILES et identifiants PubChem.</p></div>
@@ -152,14 +153,14 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <p class="small">Un groupe « hypothèse ouverte » peut rester dangereux ou inadapté : ce filtre n'est pas une analyse exhaustive des interactions, de la toxicité ADMET, de l'effet des métabolites ni des contre-indications individuelles.</p>
 </details>
 </section>
-<section>
+<section data-prmr-tab="methode">
 <h2>Prochaine validation préclinique requise</h2>
 <div class="info">
 <p>Une preuve expérimentale originale n'existera qu'après des mesures indépendantes. Le premier palier pertinent est <strong>un système cellulaire rénal validé</strong>, avec comparaison témoin, agents seuls, associations, plusieurs niveaux d'exposition et lectures de viabilité, inflammation, matrice extracellulaire et intégrité cellulaire. Les tests de synergie exigent ensuite un modèle d'interaction défini (par exemple Bliss ou Loewe), avec leurs hypothèses et incertitudes.</p>
 <p>La transition vers une étude animale suppose un modèle correspondant à la maladie visée, un protocole préenregistré, un calcul d'effectif, des critères d'arrêt, des autorisations éthiques et le respect des 3R. Aucun animal n'a été utilisé pour ce criblage.</p>
 </div>
 </section>
-<section>
+<section data-prmr-tab="methode">
 <div class="education">
 <h2>Comprendre les résultats très simplement</h2>
 <p>Nous avons pris dix médicaments qui existent déjà. L'ordinateur a examiné leur forme chimique et a imaginé toutes les façons de les regrouper par deux ou par trois.</p>
@@ -167,7 +168,7 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <p><strong>Ce qui a été découvert :</strong> des combinaisons intéressantes à tester. <strong>Ce qui n'a pas été découvert :</strong> nous ne savons pas encore si elles soignent un rein malade, si elles sont sûres ensemble ou si elles guérissent quoi que ce soit. Pour le savoir, il faut de véritables expériences biologiques.</p>
 </div>
 </section>
-<section>
+<section data-prmr-tab="sources">
 <h2>Sources, transparence et traçabilité</h2>
 <p class="muted">Les sources chimiques proviennent des pages individuelles PubChem liées aux dix fiches. Les indications générales et les risques sont contextualisés par KDIGO 2024, DailyMed et CKD-FIX. Les publications concernant des combinaisons thérapeutiques n'ont pas été utilisées comme données d'entraînement ou de résultat de R02.</p>
 <ul>
