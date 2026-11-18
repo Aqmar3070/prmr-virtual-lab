@@ -18,8 +18,12 @@ const {chromium}=require("playwright");
  },selector,{timeout:45000});
  try{
   page.setDefaultTimeout(35000);
-  step="accueil R09";
-  await page.goto("http://127.0.0.1:4173/index.html?v=prmr-r09",{waitUntil:"domcontentloaded"});
+  // R11 a remplacé l'accueil par le tableau de bord des cinq étapes et déplacé
+  // le poste de travail intégré sur research.html. Ce test visait toujours
+  // index.html et attendait 45 s un atelier qui n'y est plus : il échouait sur
+  // main depuis cette refonte.
+  step="poste de travail intégré";
+  await page.goto("http://127.0.0.1:4173/research.html?v=prmr-r09",{waitUntil:"domcontentloaded"});
   await page.waitForSelector("#r5-home-stage .r4-st-species-card",{timeout:45000});
   assert.equal(await page.locator("#r5-home-stage .r4-st-species-card").count(),6);
   assert.equal(await page.locator("#r5-home-stage .r4-st-molecule-card").count(),4);
