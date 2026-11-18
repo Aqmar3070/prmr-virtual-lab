@@ -733,3 +733,11 @@ section[role="tabpanel"] + section[role="tabpanel"] {
     display: none;
   }
 }
+
+/* 9. Passerelle vers l'étape qui porte réellement un outil, plutôt que de
+   répéter cet outil en réduction sur les pages voisines. */
+.prmr-handoff{display:flex;align-items:center;justify-content:space-between;gap:var(--prmr-space-4);flex-wrap:wrap;margin:var(--prmr-space-5) 0;padding:var(--prmr-space-4);border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-panel)}
+.prmr-handoff strong{display:block;color:var(--prmr-text);font-size:var(--prmr-size-body)}
+.prmr-handoff p{margin:var(--prmr-space-2) 0 0;color:var(--prmr-text-muted);font-size:var(--prmr-size-small);max-width:62ch}
+.prmr-handoff-link{flex:none;padding:var(--prmr-space-2) var(--prmr-space-4);border:1px solid var(--prmr-signal-dim);border-radius:var(--prmr-radius-control);color:var(--prmr-signal);text-decoration:none;font-weight:600;font-size:var(--prmr-size-small)}
+.prmr-handoff-link:hover{background:var(--prmr-computed-bg)}

@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#09111e">
 <meta name="description" content="PRMR-R02 : calcul original RDKit sur 10 molécules existantes et 165 associations précliniques in silico. Résultats, filtres, méthodes, incertitudes et hypothèses.">
 <title>PRMR-R02 | Criblage original de molécules</title>
-<link rel="stylesheet" href="./prmr-design-system.css?v=3e85eb3a76">
+<link rel="stylesheet" href="./prmr-design-system.css?v=270adec8a5">
 <link rel="stylesheet" href="./laboratory.css?v=97e0d68df6">
 <style>
 /* Styles propres à PRMR-R02. Palette, typographie, tableaux, statuts et
@@ -79,10 +79,10 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 @media(max-width:620px){.twocol,.stats,.steps{grid-template-columns:1fr}.panelx{padding:var(--prmr-space-4)}.rfield{max-width:100%;width:100%}.controls{align-items:stretch}}
 </style>
 <link rel="stylesheet" href="./r04-atlas.css?v=eb56269b53">
-<script type="module" src="./src/r04_embedded.mjs?v=7f86716bca"></script>
-<link rel="stylesheet" href="./prmr-route.css?v=5894fb13db">
-<script type="module" src="./src/prmr_route.mjs?v=36f175ac29"></script>
-<script type="module" src="./src/prmr_tabs.mjs?v=91ccf64223"></script>
+
+<link rel="stylesheet" href="./prmr-route.css?v=0908e32e96">
+<script type="module" src="./src/prmr_route.mjs?v=ea3a8a4035"></script>
+<script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 </head>
 <body>
 <div id="app">
@@ -119,7 +119,7 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 </div>
 <div class="info" style="margin-top:15px"><strong>Test de sensibilité interne :</strong> 2 000 perturbations déterministes des coefficients de recherche (±20 % sur les composantes exploratoires). Parmi dix triples représentatifs, R02-A arrive première dans 58,05 % des perturbations et R02-B dans 41,95 %. Les pourcentages représentent la stabilité du <em>classement choisi</em>, pas une probabilité d'efficacité ou de guérison. De faibles modifications des hypothèses peuvent inverser ces deux pistes.</div>
 </section>
-<section id="r5-screening-stage" aria-label="Molécules 3D et comparateur animal PRMR intégré" style="margin-top:26px"></section>
+<section class="prmr-handoff" aria-label="Anatomie comparée"><div><strong>L'anatomie comparée du chien et du chat vit à l'étape 02.</strong><p>Le poste 3D — espèces, organes issus de scanners, profils modifiables — s'ouvre en entier plutôt que répété en réduction sur chaque page.</p></div><a class="prmr-handoff-link" href="./species-r04.html">Ouvrir l'anatomie comparée</a></section>
 <section id="all-combinations" data-prmr-tab="donnees">
 <h2>165 combinaisons : registre filtrable</h2>
 <p>Les associations sont classées par indice de priorisation purement méthodologique. Les configurations « suspendues » ne doivent pas être interprétées comme des prescriptions ; certaines contiennent des contre-indications ou nécessitent un contexte clinique qui n'est pas défini.</p>

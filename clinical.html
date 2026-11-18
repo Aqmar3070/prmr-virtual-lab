@@ -48,9 +48,6 @@ main h3{font-size:var(--prmr-size-body);margin:0 0 var(--prmr-space-3)}
 .structure-list{display:flex;flex-wrap:wrap;gap:var(--prmr-space-2);max-height:225px;overflow:auto;padding:var(--prmr-space-1) 0 var(--prmr-space-3)}
 .source-note{font-size:var(--prmr-size-micro);line-height:1.65;color:var(--prmr-text-muted);padding:var(--prmr-space-3) 0}
 /* Sommaire de la page : repère de position à l'intérieur de la phase 5. */
-.prmr-clinical-index{display:flex;flex-wrap:wrap;gap:var(--prmr-space-2)}
-.prmr-clinical-index a{padding:var(--prmr-space-2) var(--prmr-space-3);border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-control);font-size:var(--prmr-size-small);text-decoration:none;color:var(--prmr-text-muted)}
-.prmr-clinical-index a:hover{background:var(--prmr-surface-raised);color:var(--prmr-text)}
 html{scroll-behavior:smooth}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media(max-width:900px){.grid,.evidence,.stepgrid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.viewer{height:510px;min-height:400px}}
@@ -58,15 +55,12 @@ html{scroll-behavior:smooth}
 </style>
 <script type="module" src="./src/r05_clinical.mjs?v=a92eab2cfb"></script>
 <script type="module" src="./src/r07_nephron.mjs?v=571c1042b0"></script>
-<link rel="stylesheet" href="./prmr-design-system.css?v=3e85eb3a76">
-<link rel="stylesheet" href="./prmr-route.css?v=5894fb13db">
-<script type="module" src="./src/prmr_route.mjs?v=36f175ac29"></script>
-<script type="module" src="./src/prmr_tabs.mjs?v=91ccf64223"></script>
+<link rel="stylesheet" href="./prmr-design-system.css?v=270adec8a5">
+<link rel="stylesheet" href="./prmr-route.css?v=0908e32e96">
+<script type="module" src="./src/prmr_route.mjs?v=ea3a8a4035"></script>
+<script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 </head><body>
 <main class="wrap">
-<nav class="prmr-clinical-index" aria-label="Plan de la phase 5" style="display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 22px;padding:13px 0;border-bottom:1px solid #355365">
-<a href="#human-anatomy">A · Anatomie humaine</a><a href="#microanatomy">B · Néphron 3D</a><a href="#clinical-evidence">C · Études et molécules</a><a href="#clinical-hypotheses">D · Hypothèses PRMR</a><a href="#clinical-readiness">E · Conditions avant essai humain</a>
-</nav>
 <div class="hero"><div class="eyebrow">Phase 5 / Recherche clinique humaine / Revue initiale : 17 novembre 2026</div><h1>Insuffisance rénale chronique : <span style="color:var(--mint)">preuves, mécanismes et nouvelles hypothèses.</span></h1>
 <p>Explorer les traitements documentés, leurs résultats mesurés et les questions scientifiques encore ouvertes. L'atlas humain distingue les organes et les interactions systémiques. Cette phase du laboratoire est un <strong>programme de recherche documentaire et computationnelle</strong>, pas un essai clinique autorisé.</p></div>
 <div class="notice"><strong>Limite scientifique essentielle.</strong> Une diminution de l'albuminurie, un ralentissement du déclin du DFG (eGFR) ou une baisse du risque d'insuffisance terminale ne prouvent pas la régénération intégrale des néphrons. À ce jour, aucune combinaison pharmacologique n'a démontré la restauration complète et reproductible de reins chroniquement lésés. Aucun résultat de cette page n'est une recommandation thérapeutique individualisée.</div>

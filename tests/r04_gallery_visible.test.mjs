@@ -19,19 +19,24 @@ test("Previous pasted poster galleries have been removed",()=>{
  // chaque révision la change, et un test qui la code en dur casse à chaque publication.
  assert.match(r04,/src="\.\/src\/r04_app\.mjs\?v=[\w.-]+"/);
 });
-test("Every user-facing research interface uses the same integrated workstation",()=>{
- // L'accueil n'embarque plus le poste de travail : R11 l'a remplacé par le tableau de bord
- // des cinq étapes de recherche, qui oriente vers chaque module au lieu de les dupliquer.
- for(const [file,id] of [["research.html","r5-home-stage"],["risk-r03.html","r5-risk-stage"],["screening.html","r5-screening-stage"],["preclinical.html","r5-preclinical-stage"]]){
-  const body=readFileSync(new URL(file,base),"utf8");
-  assert.ok(body.includes('id="'+id+'"'),file);
-  assert.ok(body.includes("r04-atlas.css"),file);
-  assert.ok(body.includes("src/r04_embedded.mjs"),file);
- }
+test("le poste animal n'est embarqué qu'aux endroits qui en sont le sujet",()=>{
+ /* Le même poste 3D chien/chat était répété en réduction sur l'accueil, les
+    preuves précliniques, le criblage et les simulations : quatre copies d'un
+    outil lourd, qui noyaient le sujet propre de chaque page. Il vit désormais
+    à l'étape 02, qui porte l'anatomie comparée, et sur la console de
+    recherche. Les autres pages y renvoient par une passerelle. */
+ const body=readFileSync(new URL("research.html",base),"utf8");
+ assert.ok(body.includes('id="r5-home-stage"'));
+ assert.ok(body.includes("r04-atlas.css"));
+ assert.ok(body.includes("src/r04_embedded.mjs"));
  assert.ok(embedded.includes("r5-home-stage"));
- assert.ok(embedded.includes("r5-risk-stage"));
- assert.ok(embedded.includes("r5-screening-stage"));
- assert.ok(embedded.includes("r5-preclinical-stage"));
+
+ for(const file of ["preclinical.html","screening.html","risk-r03.html"]){
+  const page=readFileSync(new URL(file,base),"utf8");
+  assert.ok(!page.includes("src/r04_embedded.mjs"),file+" embarque encore le poste animal");
+  assert.ok(page.includes('class="prmr-handoff"'),file+" doit renvoyer vers l'étape 02");
+  assert.ok(page.includes('href="./species-r04.html"'),file);
+ }
 });
 test("Home route enters a functional species and molecule workbench",()=>{
  // research.html reste la porte d'entrée du poste de travail intégré.
