@@ -39,6 +39,16 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 .r13-findings .prmr-evidence p{font-size:var(--prmr-size-small)}
 /* Un repère non atteint est montré en retrait : il existe, il n'est pas franchi. */
 .r13-not-crossed{opacity:.6}
+.r13-bodypanel{margin-top:var(--prmr-space-4);padding-top:var(--prmr-space-4);border-top:1px solid var(--prmr-line-soft)}
+.r13-bodymap{display:block;width:100%;max-width:170px;margin:0 auto}
+.r13-bodymap-silhouette{fill:var(--prmr-surface-sunken);stroke:var(--prmr-line);stroke-width:1}
+.r13-bodymap-organ{fill:var(--prmr-line);stroke:var(--prmr-line-soft);stroke-width:.6;transition:fill .2s}
+.r13-bodymap-organ[data-status]{stroke:none}
+.r13-bodykey{list-style:none;margin:var(--prmr-space-3) 0 0;padding:0;display:flex;flex-direction:column;gap:var(--prmr-space-2);font-size:var(--prmr-size-small);color:var(--prmr-text-muted)}
+.r13-bodykey li{display:flex;align-items:center;gap:var(--prmr-space-2)}
+.r13-bodykey-dot{width:10px;height:10px;border-radius:3px;flex:none}
+.r13-bodylegend{margin:var(--prmr-space-3) 0 0;color:var(--prmr-text-muted)}
+@media(prefers-reduced-motion:reduce){.r13-bodymap-organ{transition:none}}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 </head>
