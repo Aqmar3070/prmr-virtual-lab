@@ -184,8 +184,18 @@ function build(host, data) {
 
     /* Repères franchis, et repères qui restent au-dessus de la dose choisie :
        montrer les deux évite de laisser croire qu'il n'existe rien d'autre. */
-    const crossed = substance.thresholds.filter(t => dose >= t.value);
-    const ahead = substance.thresholds.filter(t => dose < t.value);
+    /* Le classement se fait ici, et non dans le registre : « le plus élevé »
+       doit rester vrai quel que soit l'ordre dans lequel les repères ont été
+       saisis. Un repère écrit en dernier était annoncé comme le plus élevé. */
+    /* À valeur égale, deux repères ne se valent pas : un plafond officiel dit
+       quelque chose de la dose, une observation rassurante non. Le second
+       rang évite d'annoncer « le plus élevé est : seuil en deçà duquel le
+       risque n'est pas augmenté ». */
+    const gravite = { toxique_etabli: 3, reglementaire: 2, association_observee: 1 };
+    const parValeur = (a, b) =>
+      a.value - b.value || (gravite[a.status] || 0) - (gravite[b.status] || 0);
+    const crossed = substance.thresholds.filter(t => dose >= t.value).sort(parValeur);
+    const ahead = substance.thresholds.filter(t => dose < t.value).sort(parValeur);
     const perKg = (dose / weight);
 
     summary.replaceChildren();

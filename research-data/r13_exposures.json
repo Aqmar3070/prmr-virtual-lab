@@ -15,11 +15,17 @@
       "label": "Paracétamol",
       "family": "Antalgique et antipyrétique",
       "unit": "mg/jour",
-      "dose_range": [0, 12000],
+      "dose_range": [
+        0,
+        12000
+      ],
       "dose_step": 250,
       "typical_dose": 3000,
       "reference_intake": "500 à 1000 mg par prise, 4 heures d'intervalle minimum",
-      "organs": ["liver", "kidneys"],
+      "organs": [
+        "liver",
+        "kidneys"
+      ],
       "thresholds": [
         {
           "value": 3000,
@@ -83,11 +89,17 @@
       "label": "Caféine",
       "family": "Stimulant du système nerveux central",
       "unit": "mg/jour",
-      "dose_range": [0, 1200],
+      "dose_range": [
+        0,
+        1200
+      ],
       "dose_step": 25,
       "typical_dose": 200,
       "reference_intake": "Une tasse de café filtre apporte environ 90 mg de caféine ; un expresso environ 70 mg",
-      "organs": ["brain", "heart"],
+      "organs": [
+        "brain",
+        "heart"
+      ],
       "thresholds": [
         {
           "value": 400,
@@ -130,6 +142,91 @@
       ],
       "evidence_horizon_days": 3650,
       "horizon_note": "Les études d'observation suivent des populations sur plusieurs années, mais elles décrivent des moyennes de groupe. Aucune ne prédit l'état d'un organe chez une personne donnée."
+    },
+    {
+      "id": "ibuprofene",
+      "label": "Ibuprofène",
+      "family": "Anti-inflammatoire non stéroïdien",
+      "unit": "mg/jour",
+      "dose_range": [
+        0,
+        3600
+      ],
+      "dose_step": 100,
+      "typical_dose": 1200,
+      "reference_intake": "200 à 400 mg par prise, 6 heures d'intervalle minimum",
+      "organs": [
+        "kidneys",
+        "heart",
+        "stomach"
+      ],
+      "thresholds": [
+        {
+          "value": 1200,
+          "status": "reglementaire",
+          "organ": "kidneys",
+          "title": "Plafond en automédication chez l'adulte",
+          "detail": "Trois prises de 400 mg par jour au maximum, espacées d'au moins six heures. Au-delà, la dose relève d'une prescription.",
+          "source": "ANSM, résumé des caractéristiques du produit, Nurofenflash 400 mg",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0413848.htm"
+        },
+        {
+          "value": 1200,
+          "status": "association_observee",
+          "organ": "heart",
+          "title": "Seuil en deçà duquel le risque artériel n'est pas augmenté",
+          "detail": "Les études épidémiologiques ne montrent pas d'association entre les doses inférieures ou égales à 1200 mg par jour et une augmentation du risque de thrombose artérielle.",
+          "source": "ANSM, résumé des caractéristiques du produit, Nurofenflash 400 mg",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0413848.htm"
+        },
+        {
+          "value": 2400,
+          "status": "association_observee",
+          "organ": "heart",
+          "title": "Dose élevée associée à un risque artériel accru",
+          "detail": "À 2400 mg par jour, les études cliniques suggèrent une légère augmentation du risque d'infarctus du myocarde et d'accident vasculaire cérébral. Cette dose doit être évitée chez les personnes ayant une maladie cardiovasculaire ou une hypertension non contrôlée.",
+          "source": "ANSM, résumé des caractéristiques du produit, Nurofenflash 400 mg",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0413848.htm"
+        },
+        {
+          "value": 1,
+          "status": "toxique_etabli",
+          "organ": "kidneys",
+          "title": "Le rein est touché par le mécanisme même du médicament",
+          "detail": "En inhibant l'action vasodilatatrice des prostaglandines rénales, l'ibuprofène réduit la filtration glomérulaire. Cet effet est dose-dépendant et existe dès les doses usuelles : ce n'est pas un surdosage, c'est le mode d'action.",
+          "source": "ANSM, résumé des caractéristiques du produit, Nurofenflash 400 mg",
+          "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0413848.htm"
+        }
+      ],
+      "chronic_warning": {
+        "status": "reglementaire",
+        "organ": "stomach",
+        "after_days": 5,
+        "title": "La durée sans avis médical est courte",
+        "detail": "Cinq jours au maximum contre la douleur chez l'adulte, trois jours contre la fièvre. Au-delà, un avis médical est nécessaire. La dose efficace la plus faible doit être utilisée pendant la durée la plus courte possible.",
+        "source": "ANSM, résumé des caractéristiques du produit, Nurofenflash 400 mg",
+        "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0413848.htm"
+      },
+      "renal_note": {
+        "status": "reglementaire",
+        "organ": "kidneys",
+        "title": "Situations où la fonction rénale doit être surveillée",
+        "detail": "Surveillance de la diurèse et de la fonction rénale en début de traitement ou après augmentation de dose chez : les personnes âgées ; en association à un IEC, un sartan ou un diurétique ; en cas d'hypovolémie, d'insuffisance cardiaque, d'insuffisance rénale chronique, de syndrome néphrotique, de néphropathie lupique ou de cirrhose décompensée. L'insuffisance rénale sévère est une contre-indication.",
+        "source": "ANSM, résumé des caractéristiques du produit, Nurofenflash 400 mg",
+        "url": "https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0413848.htm"
+      },
+      "evidence_horizon_days": 5,
+      "horizon_note": "Les textes cités portent sur la dose journalière et sur quelques jours de traitement. Aucun ne décrit l'état d'un rein après des mois ou des années à dose donnée : au-delà de cinq jours, l'outil n'a plus de repère publié à opposer à votre réglage.",
+      "observational": [
+        {
+          "status": "association_observee",
+          "organ": "kidneys",
+          "title": "Associé à un diurétique et à un bloqueur du système rénine-angiotensine",
+          "detail": "Dans une série hospitalière d'insuffisances rénales aiguës communautaires, le rapport de cotes était de 8,82 (IC 95 % : 4,4 à 17,3) pour la triple association, de 8,99 (3,16 à 25,3) pour AINS et diurétique, et de 6,87 (4,81 à 9,82) pour IEC ou sartan avec diurétique. Ce sont des associations observées, pas une relation de cause à effet établie, et le risque dépend du patient.",
+          "source": "García Camín R. et coll., Nefrología, 2015",
+          "url": "https://revistanefrologia.com/es-acute-kidney-injury-secondary-combination-articulo-S2013251415000139"
+        }
+      ]
     }
   ]
 }
