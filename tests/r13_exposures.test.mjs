@@ -59,3 +59,23 @@ test("R13 : les quatre natures de preuve restent distinctes à l'affichage",()=>
  assert.equal(obs.status,"association_observee");
  assert.match(obs.detail,/causalité n'est pas établie|pas de conclure/);
 });
+
+test("le repère annoncé comme le plus élevé l'est vraiment", () => {
+  /* « Le plus élevé est : … » lisait la derniere entree du registre, pas la
+     plus haute en valeur. Un repere ecrit en dernier — par exemple un effet
+     renal present des les doses usuelles, donc de valeur 1 — etait annonce
+     comme le plus eleve des reperes franchis. Le classement se fait
+     desormais sur la valeur, dans le module. */
+  const src = readFileSync(new URL("../src/r13_exposures.mjs", import.meta.url), "utf8");
+  assert.match(src, /\.filter\(t => dose >= t\.value\)\.sort\(parValeur\)/);
+  assert.match(src, /\.filter\(t => dose < t\.value\)\.sort\(parValeur\)/);
+  assert.match(src, /gravite\[a\.status\]/, "à valeur égale, le repère le plus grave doit primer");
+
+  const data = JSON.parse(readFileSync(new URL("../research-data/r13_exposures.json", import.meta.url), "utf8"));
+  for (const substance of data.substances) {
+    for (const t of substance.thresholds) {
+      assert.ok(typeof t.value === "number" && t.value >= 0, substance.id + " : seuil sans valeur numérique");
+      assert.ok(t.source && t.url, substance.id + " : seuil sans source");
+    }
+  }
+});
