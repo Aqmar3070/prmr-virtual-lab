@@ -14,6 +14,7 @@
  * vont, puis annonce franchement qu'au-delà rien n'est documenté.
  */
 
+import { createBodyMap, organStates, ORGAN_FILL } from "./r13_body_map.mjs";
 const el = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -164,6 +165,24 @@ function build(host, data) {
   weightField.append(weightLabel, weightInput);
   controls.append(weightField);
 
+  /* La figure accompagne les repères : elle montre quels organes ils
+     concernent, sans rien dire de leur état. */
+  const bodyMap = createBodyMap();
+  const bodyPanel = el("div", "r13-bodypanel");
+  const bodyLegend = el("p", "prmr-small r13-bodylegend");
+  /* Clé des couleurs : sans elle, un organe en rouge se lit comme un organe
+     abîmé. Elle dit que la teinte qualifie le repère, pas l'organe. */
+  const bodyKey = el("ul", "r13-bodykey");
+  for (const status of ["toxique_etabli", "association_observee", "reglementaire"]) {
+    const item = el("li");
+    const puce = el("span", "r13-bodykey-dot");
+    puce.style.background = ORGAN_FILL[status];
+    item.append(puce, el("span", null, STATUS_LABEL[status]));
+    bodyKey.append(item);
+  }
+  bodyPanel.append(bodyMap.svg, bodyKey, bodyLegend);
+  controls.append(bodyPanel);
+
   const results = el("div", "r13-results");
   const summary = el("div", "r13-summary");
   const findings = el("div", "r13-findings");
@@ -197,6 +216,20 @@ function build(host, data) {
     const crossed = substance.thresholds.filter(t => dose >= t.value).sort(parValeur);
     const ahead = substance.thresholds.filter(t => dose < t.value).sort(parValeur);
     const perKg = (dose / weight);
+
+    /* La figure ne montre que ce que le verdict compte : les repères
+       réellement franchis à ce réglage, et l'avertissement de durée quand sa
+       condition est remplie. Les mises en garde permanentes — fonction
+       rénale, associations observées — restent dans le texte : les porter sur
+       la figure laisserait croire qu'elles dépendent de la dose choisie. */
+    const marques = crossed.slice();
+    if (substance.chronic_warning && duration.days >= substance.chronic_warning.after_days && crossed.length) {
+      marques.push(substance.chronic_warning);
+    }
+    const concernes = bodyMap.update(organStates(marques));
+    bodyLegend.textContent = concernes.length
+      ? "Organes concernés par les repères franchis : " + concernes.join(", ") + ". La couleur indique la nature du repère, jamais l\u2019état d\u2019un organe."
+      : "Aucun repère franchi à ce réglage : aucun organe n\u2019est marqué.";
 
     summary.replaceChildren();
     const head = el("div", "r13-summary-head");
