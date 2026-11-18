@@ -1,0 +1,143 @@
+name: PRMR R12 import de l'anatomie humaine segmentée
+
+# Importe une anatomie humaine issue de segmentations CT réelles, pour remplacer
+# la reconstruction procédurale actuelle (src/r08_human_local.mjs, explicitement
+# « educational reconstruction, not segmented medical imagery »).
+#
+# Source : dépôt open-anatomy (Apache-2.0), qui publie des glTF construits par
+# script à partir du jeu TotalSegmentator (CC BY 4.0, Wasserthal et al.,
+# Radiology: Artificial Intelligence, 2023, doi 10.1148/ryai.230024).
+#
+# Ce workflow ne présume d'aucun nom de fichier ni d'aucune empreinte : il
+# interroge la publication la plus récente, vérifie que ce qu'il reçoit est bien
+# un glTF binaire exploitable, puis consigne ce qu'il a réellement obtenu. Si
+# quoi que ce soit ne se vérifie pas, il échoue au lieu d'ajouter au dépôt un
+# fichier dont l'origine n'est pas établie.
+
+on:
+  workflow_dispatch:
+    inputs:
+      asset_pattern:
+        description: "Motif du fichier de la publication à importer (ex. organs)"
+        required: false
+        default: "organs"
+
+permissions:
+  contents: write
+
+jobs:
+  import-human-anatomy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Résoudre la publication la plus récente d'open-anatomy
+        id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PATTERN: ${{ inputs.asset_pattern || 'organs' }}
+        run: |
+          set -euo pipefail
+          gh api repos/Opening-Science/open-anatomy/releases/latest > /tmp/release.json
+          tag=$(jq -r '.tag_name' /tmp/release.json)
+          echo "Publication : $tag"
+          jq -r '.assets[] | "\(.name)\t\(.size)"' /tmp/release.json
+          url=$(jq -r --arg p "$PATTERN" \
+            '[.assets[] | select(.name | test($p)) | select(.name | endswith(".glb"))][0].browser_download_url' \
+            /tmp/release.json)
+          name=$(jq -r --arg p "$PATTERN" \
+            '[.assets[] | select(.name | test($p)) | select(.name | endswith(".glb"))][0].name' \
+            /tmp/release.json)
+          if [ "$url" = "null" ] || [ -z "$url" ]; then
+            echo "::error::Aucun fichier .glb ne correspond au motif « $PATTERN » dans la publication $tag."
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
+      - name: Télécharger le maillage
+        run: |
+          set -euo pipefail
+          mkdir -p assets/human3d
+          curl --fail --location --retry 4 --silent --show-error \
+            "${{ steps.resolve.outputs.url }}" -o assets/human3d/human-organs.glb
+
+      - name: Vérifier le fichier et consigner ce qui a réellement été reçu
+        env:
+          RELEASE_TAG: ${{ steps.resolve.outputs.tag }}
+          ASSET_NAME: ${{ steps.resolve.outputs.name }}
+          ASSET_URL: ${{ steps.resolve.outputs.url }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, struct
+          from pathlib import Path
+
+          path = Path("assets/human3d/human-organs.glb")
+          raw = path.read_bytes()
+
+          # Un glTF binaire commence par « glTF » ; en dessous de 100 Ko il ne peut
+          # pas porter un jeu d'organes segmentés.
+          assert raw[:4] == b"glTF", "le fichier reçu n'est pas un glTF binaire"
+          assert len(raw) > 100_000, f"fichier trop petit : {len(raw)} octets"
+
+          header = struct.unpack("<5I", raw[:20])
+          model = json.loads(raw[20:20 + header[3]].decode("utf-8").strip("\x00 "))
+          nodes = sorted(n.get("name", "") for n in model.get("nodes", []) if n.get("name"))
+          meshes = len(model.get("meshes", []))
+          assert meshes > 0, "aucun maillage dans le fichier"
+
+          manifest = {
+              "schema": "prmr-human-anatomy-v1",
+              "file": "human-organs.glb",
+              "upstream_repository": "https://github.com/Opening-Science/open-anatomy",
+              "upstream_release": os.environ["RELEASE_TAG"],
+              "upstream_asset": os.environ["ASSET_NAME"],
+              "upstream_url": os.environ["ASSET_URL"],
+              "sha256": hashlib.sha256(raw).hexdigest(),
+              "bytes": len(raw),
+              "mesh_count": meshes,
+              "nodes": nodes,
+              "fidelity": "segmentations CT réelles, recalées sur un corps de référence générique",
+              "origin_dataset": {
+                  "name": "TotalSegmentator v2.0.1",
+                  "author": "Jakob Wasserthal",
+                  "license": "CC BY 4.0",
+                  "doi_dataset": "10.5281/zenodo.10047263",
+                  "citation": ("Wasserthal J. et al. TotalSegmentator: Robust Segmentation of 104 "
+                               "Anatomic Structures in CT Images. Radiology: Artificial Intelligence, "
+                               "2023. doi 10.1148/ryai.230024")
+              },
+              "builder_license": "Apache-2.0 (code open-anatomy)",
+              "attribution_required": True,
+              "not_claimed": ("Ce corps n'est le corps d'aucun patient identifié et ne constitue "
+                              "ni un diagnostic ni une mesure individuelle."),
+          }
+          Path("assets/human3d/manifest.json").write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+          print(f"Importé : {len(raw)} octets, {meshes} maillages, {len(nodes)} nœuds nommés")
+          for n in nodes[:40]:
+              print("  -", n)
+          PY
+
+      - name: Publier l'import vérifié
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/human3d
+          if git diff --cached --quiet; then
+            echo "Aucun changement : le fichier importé est identique à celui déjà présent."
+            exit 0
+          fi
+          git commit -m "Importe l'anatomie humaine segmentée vérifiée (${{ steps.resolve.outputs.tag }})
+
+          Source : open-anatomy, construite à partir de TotalSegmentator (CC BY 4.0,
+          Wasserthal et al., Radiology: AI 2023). Empreinte SHA-256, taille, nombre
+          de maillages et noms de nœuds consignés dans assets/human3d/manifest.json
+          tels qu'ils ont été reçus."
+          git push

@@ -15,10 +15,14 @@ test("Previous pasted poster galleries have been removed",()=>{
  assert.ok(!r03.includes('id="r03-original-poster"'));
  assert.ok(!r03.includes('<figure class="r4-original-poster"'));
  assert.match(r04,/id="r4-visual-atlas"/);
- assert.ok(r04.includes("src=\"./src/r04_app.mjs?v=r09-real-organ-scenes-20261117\""));
+ // Le module applicatif doit être chargé avec une empreinte de cache, sans figer sa valeur :
+ // chaque révision la change, et un test qui la code en dur casse à chaque publication.
+ assert.match(r04,/src="\.\/src\/r04_app\.mjs\?v=[\w.-]+"/);
 });
 test("Every user-facing research interface uses the same integrated workstation",()=>{
- for(const [file,id] of [["index.html","r5-home-stage"],["research.html","r5-home-stage"],["risk-r03.html","r5-risk-stage"],["screening.html","r5-screening-stage"],["preclinical.html","r5-preclinical-stage"]]){
+ // L'accueil n'embarque plus le poste de travail : R11 l'a remplacé par le tableau de bord
+ // des cinq étapes de recherche, qui oriente vers chaque module au lieu de les dupliquer.
+ for(const [file,id] of [["research.html","r5-home-stage"],["risk-r03.html","r5-risk-stage"],["screening.html","r5-screening-stage"],["preclinical.html","r5-preclinical-stage"]]){
   const body=readFileSync(new URL(file,base),"utf8");
   assert.ok(body.includes('id="'+id+'"'),file);
   assert.ok(body.includes("r04-atlas.css"),file);
@@ -30,15 +34,25 @@ test("Every user-facing research interface uses the same integrated workstation"
  assert.ok(embedded.includes("r5-preclinical-stage"));
 });
 test("Home route enters a functional species and molecule workbench",()=>{
- for(const file of ["index.html","research.html"]){
-  const h=readFileSync(new URL(file,base),"utf8");
-  assert.match(h,/Molécules en 3D/);
-  assert.match(h,/r5-home-stage/);
-  assert.ok(!h.includes("r4-home-promo"));
-  assert.ok(!h.includes("galerie placardée"));
- }
+ // research.html reste la porte d'entrée du poste de travail intégré.
+ const h=readFileSync(new URL("research.html",base),"utf8");
+ assert.match(h,/Molécules en 3D/);
+ assert.match(h,/r5-home-stage/);
+ assert.ok(!h.includes("r4-home-promo"));
+ assert.ok(!h.includes("galerie placardée"));
  assert.ok(app.includes("function setSpecies("));
  assert.ok(app.includes("initMolecules()"));
+});
+test("La page d'accueil oriente vers les cinq étapes de recherche sans dupliquer les modules",()=>{
+ const home=readFileSync(new URL("index.html",base),"utf8");
+ assert.match(home,/class="prmr-stage prmr-stage-current"/);
+ assert.match(home,/prmr-route\.css/);
+ assert.match(home,/prmr_route\.mjs/);
+ // Les cinq étapes doivent chacune mener à leur module réel.
+ for(const target of ["preclinical.html","species-r04.html","screening.html","risk-r03.html","clinical.html"]){
+  assert.ok(home.includes(target),target);
+ }
+ assert.ok(!home.includes("r4-home-promo"));
 });
 test("Original illustrations remain available as source material, not standalone gallery",()=>{
  for(const name of ["comparaison-especes.png","porc.png","chien.png","primate.png","lapin.png","tableau-pkpd.png"]){

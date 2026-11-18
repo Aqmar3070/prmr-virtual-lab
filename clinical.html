@@ -3,33 +3,60 @@
 <meta name="description" content="PRMR Phase 5 : preuves cliniques sur la maladie rénale chronique, hypothèses de recherche et atlas humain 3D pédagogique interactif.">
 <title>PRMR Phase 5 | Recherche clinique rénale humaine</title>
 <style>
-:root{color-scheme:dark;--bg:#07121d;--panel:#102636;--line:#29485a;--text:#e6f6f5;--muted:#a8c2cb;--mint:#65e6c9;--amber:#ffd09a}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% 0,#133b4a 0,transparent 33%),var(--bg);font-family:Inter,system-ui,Arial,sans-serif;color:var(--text)}
-a{color:#8ddfdf}button,input,select{font:inherit}button{cursor:pointer}.wrap{width:min(1450px,calc(100% - 36px));margin:auto}
-header{border-bottom:1px solid var(--line);padding:16px 0;background:#071925c9}header .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.brand{font-weight:900;letter-spacing:-.05em;font-size:19px}.brand span{color:var(--mint)}nav{display:flex;gap:10px;flex-wrap:wrap}nav a{padding:8px 11px;border:1px solid #315565;text-decoration:none;border-radius:8px;font-size:12px}
-main{padding-bottom:70px}.eyebrow{color:var(--mint);text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:.13em}
-.hero{padding:44px 0 18px}.hero h1{font-size:clamp(30px,4vw,58px);line-height:1.07;max-width:980px;letter-spacing:-.055em;margin:13px 0}.hero p{line-height:1.8;max-width:1050px;color:var(--muted)}
-.panel{background:linear-gradient(145deg,#122d3e,#0b1d2b);border:1px solid var(--line);border-radius:15px;padding:22px;min-width:0}.notice{border-left:4px solid var(--amber);padding:17px 20px;background:#2b281f;border-radius:8px;line-height:1.7;color:#eadbc2;margin:16px 0 24px;font-size:13px}
-h2{font-size:clamp(20px,2.3vw,29px);letter-spacing:-.03em;margin:0 0 15px}h3{font-size:16px;margin:0 0 11px}p{line-height:1.65}.muted{color:var(--muted);font-size:13px}
-.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin:19px 0 24px}
-.viewer{height:min(650px,65vw);min-height:420px;position:relative;border-radius:12px;overflow:hidden;border:1px solid #345366;background:radial-gradient(ellipse at center,#204754,#091d2b 65%)}canvas{width:100%;height:100%;display:block;touch-action:none}
-.viewer span{position:absolute;bottom:13px;left:13px;font-size:11px;background:#061721d9;padding:9px;border-radius:7px;color:#d2eae9;pointer-events:none}
-.tools{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}button,.tools select{background:#17374a;color:var(--text);border:1px solid #426879;border-radius:9px;padding:11px 13px;font-size:12px}
-button[aria-pressed="true"]{background:#25645f;border-color:var(--mint);color:white}
-.organs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.organs button{text-align:left}
-#organ-info{min-height:105px;border:1px solid #345367;padding:13px;margin:15px 0;border-radius:10px;background:#0a202e}
-.section{margin-top:28px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 26px}.metrics>div{background:#102838;border:1px solid var(--line);border-radius:11px;padding:16px}.metrics strong{font-size:18px;display:block}.metrics small{display:block;color:var(--muted);margin-top:5px}
-.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}.filters input,.filters select{background:#0a1c2b;color:white;border:1px solid #416173;padding:11px;border-radius:8px;min-height:42px}.filters input{flex:1;min-width:240px}
-.evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.entry{padding:17px;border:1px solid #355469;background:#0b2131;border-radius:12px}.entry h3{margin:0 0 7px;font-size:16px}.entry .tag{display:inline-block;border:1px solid #49677b;border-radius:5px;font-size:10px;letter-spacing:.03em;padding:4px 7px;color:#c0e5e1;margin:0 0 8px}.entry p{margin:8px 0;font-size:13px;color:#c5dae0}.entry a{font-size:12px}.stepgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stepgrid .panel{padding:17px}
-footer{padding:25px 0 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
-@media(max-width:900px){.grid,.evidence{grid-template-columns:1fr}.stepgrid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.viewer{height:510px;min-height:400px}}@media(max-width:520px){.metrics,.organs{grid-template-columns:1fr}.viewer{height:440px}.wrap{width:calc(100% - 24px)}}
- .structure-list{display:flex;flex-wrap:wrap;gap:6px;max-height:225px;overflow:auto;padding:4px 0 12px}.structure-chip{font-size:11px;padding:7px 9px}.source-note{font-size:11px;line-height:1.65;color:#bbd0d6;padding:12px 0}.source-note a{color:#92e4d9}  .prmr-clinical-index a{padding:9px 11px;border:1px solid #426776;background:#113141;border-radius:7px;font-size:12px;text-decoration:none;color:#bdece5}.prmr-clinical-index a:hover{background:#24545a}html{scroll-behavior:smooth} </style>
-<script type="module" src="./src/r05_clinical.mjs?v=r08-visible-human-20261117"></script>
-<script type="module" src="./src/r07_nephron.mjs?v=r07-human-renal-20261117"></script>
-<link rel="stylesheet" href="./prmr-route.css?v=r11-20261117">
-<script type="module" src="./src/prmr_route.mjs?v=r11-20261117"></script>
-</head><body><header><div class="wrap"><div class="brand">PRMR <span>Virtual Lab</span> / Phase 5</div><nav><a href="./index.html">Laboratoire</a><a href="./species-r04.html">R04 · Chien 3D</a><a href="./risk-r03.html">R03 · PK/PD</a><a href="./clinical.html" aria-current="page">Phase 5 · Humain</a></nav></div></header>
+/* Styles propres à la phase 5. Palette, typographie, tableaux, statuts et
+   contrôles viennent de prmr-design-system.css.
+   Les sélecteurs d'élément sont cantonnés à main : des règles nues comme
+   « nav a » s'appliquaient à la barre de parcours injectée et la déformaient. */
+body{background:radial-gradient(circle at 75% 0,#133b4a 0,transparent 33%),var(--prmr-abyss)}
+.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+main{padding-bottom:var(--prmr-space-7)}
+main a{color:var(--prmr-signal)}
+.eyebrow{color:var(--prmr-text-muted);font-size:var(--prmr-size-small);font-weight:600}
+.hero{padding:var(--prmr-space-7) 0 var(--prmr-space-4)}
+.hero h1{max-width:20ch}
+.hero p{line-height:1.7;max-width:var(--prmr-measure);color:var(--prmr-text-muted)}
+.panel{background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5);min-width:0}
+/* Limite scientifique : filet tireté, comme toute affirmation non démontrée. */
+.notice{border-left:3px dashed var(--prmr-hypothesis);padding:var(--prmr-space-4);background:var(--prmr-hypothesis-bg);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;line-height:1.7;color:var(--prmr-text);margin:var(--prmr-space-4) 0 var(--prmr-space-5);font-size:var(--prmr-size-small);max-width:var(--prmr-measure)}
+main h2{margin:0 0 var(--prmr-space-4)}
+main h3{font-size:var(--prmr-size-body);margin:0 0 var(--prmr-space-3)}
+.muted{color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--prmr-space-4);margin:var(--prmr-space-5) 0}
+.viewer{height:min(650px,65vw);min-height:420px;position:relative;border-radius:var(--prmr-radius-panel);overflow:hidden;border:1px solid var(--prmr-line);background:radial-gradient(ellipse at center,#204754,var(--prmr-surface-sunken) 65%)}
+.viewer canvas{width:100%;height:100%;display:block;touch-action:none}
+.viewer span{position:absolute;bottom:13px;left:13px;font-size:var(--prmr-size-micro);background:#061721d9;padding:var(--prmr-space-2);border-radius:var(--prmr-radius-control);color:var(--prmr-text-muted);pointer-events:none}
+.tools{display:flex;gap:var(--prmr-space-2);flex-wrap:wrap;margin:var(--prmr-space-3) 0}
+.organs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-2)}
+.organs button{text-align:left}
+#organ-info{min-height:105px;border:1px solid var(--prmr-line);padding:var(--prmr-space-3);margin:var(--prmr-space-4) 0;border-radius:var(--prmr-radius-control);background:var(--prmr-surface-sunken)}
+.section{margin-top:var(--prmr-space-6)}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--prmr-space-3);margin:var(--prmr-space-3) 0 var(--prmr-space-5)}
+.metrics>div{background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-4)}
+.metrics strong{font-size:var(--prmr-size-h3);display:block;font-variant-numeric:tabular-nums}
+.metrics small{display:block;color:var(--prmr-text-muted);margin-top:var(--prmr-space-1)}
+.filters{display:flex;flex-wrap:wrap;gap:var(--prmr-space-3);margin-bottom:var(--prmr-space-4)}
+.filters input{flex:1;min-width:240px}
+.filters input,.filters select{min-height:42px;width:auto}
+.evidence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-3)}
+.stepgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--prmr-space-3)}
+.stepgrid .panel{padding:var(--prmr-space-4)}
+.structure-list{display:flex;flex-wrap:wrap;gap:var(--prmr-space-2);max-height:225px;overflow:auto;padding:var(--prmr-space-1) 0 var(--prmr-space-3)}
+.source-note{font-size:var(--prmr-size-micro);line-height:1.65;color:var(--prmr-text-muted);padding:var(--prmr-space-3) 0}
+/* Sommaire de la page : repère de position à l'intérieur de la phase 5. */
+.prmr-clinical-index{display:flex;flex-wrap:wrap;gap:var(--prmr-space-2)}
+.prmr-clinical-index a{padding:var(--prmr-space-2) var(--prmr-space-3);border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-control);font-size:var(--prmr-size-small);text-decoration:none;color:var(--prmr-text-muted)}
+.prmr-clinical-index a:hover{background:var(--prmr-surface-raised);color:var(--prmr-text)}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:900px){.grid,.evidence,.stepgrid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.viewer{height:510px;min-height:400px}}
+@media(max-width:520px){.metrics,.organs{grid-template-columns:1fr}.viewer{height:440px}.wrap{width:calc(100% - 24px)}}
+</style>
+<script type="module" src="./src/r05_clinical.mjs?v=r12-20261117"></script>
+<script type="module" src="./src/r07_nephron.mjs?v=r12-20261117"></script>
+<link rel="stylesheet" href="./prmr-design-system.css?v=r12-20261117">
+<link rel="stylesheet" href="./prmr-route.css?v=r12-20261117">
+<script type="module" src="./src/prmr_route.mjs?v=r12-20261117"></script>
+</head><body>
 <main class="wrap">
 <nav class="prmr-clinical-index" aria-label="Plan de la phase 5" style="display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 22px;padding:13px 0;border-bottom:1px solid #355365">
 <a href="#human-anatomy">A · Anatomie humaine</a><a href="#microanatomy">B · Néphron 3D</a><a href="#clinical-evidence">C · Études et molécules</a><a href="#clinical-hypotheses">D · Hypothèses PRMR</a><a href="#clinical-readiness">E · Conditions avant essai humain</a>

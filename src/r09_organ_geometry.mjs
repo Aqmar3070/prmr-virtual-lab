@@ -7,6 +7,7 @@
  * loaded in r09_viewer.mjs, has CT-derived anatomical source geometry.
  */
 import * as T from "../vendor/three/build/three.module.js";
+import {buildBodySurface} from "./r12_body_surface.mjs";
 import {SPECIES_ANATOMY} from "./r09_organ_catalog.mjs";
 const PI=Math.PI,TAU=PI*2;
 const COL={
@@ -262,7 +263,7 @@ export function makeSpeciesGroups(species){
   liver:liver(config),brain:brain(config),digestive:digestive(config),pancreas:pancreas(config)
  };
  const centers={};for(const [id,g]of Object.entries(organs)){centers[id]=new T.Box3().setFromObject(g).getCenter(new T.Vector3())}
- return {organs,body:body(config),centers};
+ return {organs,body:buildBodySurface(config),centers};
 }
 export function disposeOrganGroup(root){
  root?.traverse(obj=>{

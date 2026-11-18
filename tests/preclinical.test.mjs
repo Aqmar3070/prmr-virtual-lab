@@ -10,7 +10,11 @@ const research=readFileSync(new URL("../research.html",import.meta.url),"utf8");
 test("the renal preclinical dossier is linked from both laboratory entrypoints",()=>{
  assert.match(main,/href="\.\/preclinical\.html"/);
  assert.match(research,/href="\.\/preclinical\.html"/);
- assert.match(page,/href="\.\/index\.html\?view=cloud"/);
+ // L'accès à l'espace privé est servi par la navigation partagée, présente
+ // sur chaque page, et non plus par un en-tête propre au dossier.
+ const route=readFileSync(new URL("../src/prmr_route.mjs",import.meta.url),"utf8");
+ assert.match(route,/index\.html\?view=cloud/);
+ assert.ok(page.includes("src/prmr_route.mjs"));
 });
 
 test("each selected animal study has its primary source and PMID",()=>{

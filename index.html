@@ -5,13 +5,14 @@
 <meta name="theme-color" content="#07121f">
 <meta name="description" content="PRMR Virtual Lab : chimie moléculaire RDKit, explorateur de données PubChem/ChEMBL et modèles PK/PD exploratoires.">
 <title>PRMR Virtual Lab | Research Workspace 2.0</title>
+<link rel="stylesheet" href="./prmr-design-system.css?v=r12-20261117">
 <link rel="stylesheet" href="laboratory.css">
-<link rel="stylesheet" href="r04-atlas.css?v=r10-canine-only-20261117">
-<script type="module" src="./src/r04_molecule_deck.mjs?v=r10-canine-only-20261117"></script>
+<link rel="stylesheet" href="r04-atlas.css?v=r12-20261117">
+<script type="module" src="./src/r04_molecule_deck.mjs?v=r12-20261117"></script>
 <script defer src="https://unpkg.com/@rdkit/rdkit@2026.9.2/dist/RDKit_minimal.js"></script>
 <script type="module" src="src/lab.mjs"></script>
-<link rel="stylesheet" href="./prmr-route.css?v=r11-20261117">
-<script type="module" src="./src/prmr_route.mjs?v=r11-20261117"></script>
+<link rel="stylesheet" href="./prmr-route.css?v=r12-20261117">
+<script type="module" src="./src/prmr_route.mjs?v=r12-20261117"></script>
 </head>
 <body>
 <div class="shell">
@@ -29,10 +30,10 @@
     <button class="navitem" data-view="systems"><span class="navicon">◎</span> Atlas physiologique</button>
     <div class="navgroup">PARCOURS & DOSSIERS</div>
     <a class="navitem" href="./preclinical.html" style="text-decoration:none"><span class="navicon">01</span> Preuves précliniques <span class="navmini">01</span></a>
-    <a class="navitem" href="./species-r04.html" style="text-decoration:none"><span class="navicon">02</span> Anatomie canine <span class="navmini">02</span></a>
+    <a class="navitem" href="./species-r04.html" style="text-decoration:none"><span class="navicon">02</span> Anatomie comparée <span class="navmini">02</span></a>
     <a class="navitem" href="./screening.html" style="text-decoration:none"><span class="navicon">03</span> Criblage des molécules <span class="navmini">03</span></a>
     <a class="navitem" href="./risk-r03.html" style="text-decoration:none"><span class="navicon">04</span> Simulations historiques <span class="navmini">04</span></a>
-    <a class="navitem" href="./clinical.html?v=r11-clinical-path-20261117" style="text-decoration:none"><span class="navicon">05</span> Anatomie et preuves humaines <span class="navmini">05</span></a>
+    <a class="navitem" href="./clinical.html?v=r12-20261117" style="text-decoration:none"><span class="navicon">05</span> Anatomie et preuves humaines <span class="navmini">05</span></a>
     <button class="navitem" data-view="data"><span class="navicon">⛁</span> Données & connecteurs</button>
     <button class="navitem" data-view="cloud"><span class="navicon">☁</span> Espace de recherche privé <span class="navmini">Cloud</span></button>
     <button class="navitem" data-view="quality"><span class="navicon">☷</span> Traçabilité scientifique</button>
@@ -50,10 +51,10 @@
  <div class="prmr-journey-heading"><div><span class="prmr-kicker">TABLEAU DE BORD · PROGRAMME PRMR</span><h1>Un laboratoire. Cinq étapes. Un parcours clair.</h1><p>Départ : les preuves. Arrivée : la préparation méthodologique d'une recherche clinique humaine. Chaque étape sépare les connaissances publiées, les calculs exploratoires et les données encore manquantes.</p></div><div class="prmr-current-phase"><strong>POSITION ACTUELLE</strong><span>Phase 5 · Évaluation scientifique humaine</span><small>Atlas et bibliothèque initiale disponibles. Validation biologique et autorisations cliniques non acquises.</small></div></div>
  <div class="prmr-path" aria-label="Les cinq phases de la recherche">
   <a href="./preclinical.html" class="prmr-stage"><span class="prmr-stage-num">01 / PREUVES</span><strong>Comprendre ce qui est établi</strong><span>Études publiées, résultats mesurés, limites et sources.</span><em>Ouvrir la recherche documentaire</em></a>
-  <a href="./species-r04.html" class="prmr-stage"><span class="prmr-stage-num">02 / ANATOMIE PRÉCLINIQUE</span><strong>Observer le modèle canin</strong><span>Chien 3D, organes et scénario mécanistique non validé.</span><em>Ouvrir le modèle canin</em></a>
+  <a href="./species-r04.html" class="prmr-stage"><span class="prmr-stage-num">02 / ANATOMIE PRÉCLINIQUE</span><strong>Comparer les modèles animaux</strong><span>Six espèces en 3D, organes internes et scénario mécanistique non validé.</span><em>Ouvrir l'anatomie comparée</em></a>
   <a href="./screening.html" class="prmr-stage"><span class="prmr-stage-num">03 / MOLÉCULES</span><strong>Élaborer des hypothèses</strong><span>Bibliothèque et associations candidates, calculs de structure.</span><em>Examiner les candidats</em></a>
   <a href="./risk-r03.html" class="prmr-stage"><span class="prmr-stage-num">04 / MODÉLISATION</span><strong>Étudier les scénarios</strong><span>Exposition et sensibilité PK/PD ; anciennes simulations R03 identifiées.</span><em>Ouvrir les scénarios</em></a>
-  <a href="./clinical.html?v=r08-visible-human-20261117" class="prmr-stage prmr-stage-current"><span class="prmr-stage-num">05 / HUMAIN & CLINIQUE</span><strong>Explorer l'humain et les preuves</strong><span>Deux corps 3D, systèmes internes, néphron, essais publiés, hypothèses.</span><em>Accéder au laboratoire humain</em></a>
+  <a href="./clinical.html?v=r12-20261117" class="prmr-stage prmr-stage-current"><span class="prmr-stage-num">05 / HUMAIN & CLINIQUE</span><strong>Explorer l'humain et les preuves</strong><span>Deux corps 3D, systèmes internes, néphron, essais publiés, hypothèses.</span><em>Accéder au laboratoire humain</em></a>
  </div>
  <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
  </section>

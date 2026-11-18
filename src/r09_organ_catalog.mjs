@@ -15,7 +15,12 @@ export const ORGAN_MODES=Object.freeze({
  all:{label:"Tous les organes",color:"#f1f4ff",role:"Systémique",group:["kidneys","heart","lungs","liver","brain","digestive","pancreas"]}
 });
 export const SPECIES_ANATOMY=Object.freeze({
- dog:{label:"Chien",latin:"Canis lupus familiaris",torso:[1.42,.71,.58],head:[-1.30,.38,.0,.55,.48,.46],ear:"floppy",tail:1.07,legs:.90,brain:"folded",leftLung:3,rightLung:4,cecum:"small",kidney:"unipapillary",gallbladder:true,bodyColor:0xc6a78d}
+ mouse:{label:"Souris",latin:"Mus musculus",torso:[1.28,.60,.55],head:[-1.15,.27,.0,.47,.46,.39],ear:"round",tail:1.65,legs:.56,brain:"smooth",leftLung:1,rightLung:4,cecum:"large",kidney:"unipapillary",gallbladder:true,bodyColor:0xced7d5},
+ rat:{label:"Rat",latin:"Rattus norvegicus",torso:[1.44,.61,.57],head:[-1.26,.25,.0,.50,.44,.40],ear:"round",tail:1.78,legs:.61,brain:"smooth",leftLung:1,rightLung:4,cecum:"large",kidney:"unipapillary",gallbladder:false,bodyColor:0xb1a095},
+ pig:{label:"Porc / miniporc",latin:"Sus scrofa domesticus",torso:[1.55,.82,.74],head:[-1.40,.20,.0,.64,.61,.51],ear:"triangular",tail:.55,legs:.66,brain:"folded",leftLung:2,rightLung:4,cecum:"spiral-colon",kidney:"multipapillary",gallbladder:true,bodyColor:0xe9b1b6},
+ dog:{label:"Chien",latin:"Canis lupus familiaris",torso:[1.42,.71,.58],head:[-1.30,.38,.0,.55,.48,.46],ear:"floppy",tail:1.07,legs:.90,brain:"folded",leftLung:3,rightLung:4,cecum:"small",kidney:"unipapillary",gallbladder:true,bodyColor:0xc6a78d},
+ nhp:{label:"Primate non humain",latin:"Macaca sp. (référence illustrative)",torso:[1.13,.75,.58],head:[-1.08,.59,.0,.53,.55,.46],ear:"small",tail:1.11,legs:.83,brain:"folded",leftLung:2,rightLung:3,cecum:"moderate",kidney:"species-dependent",gallbladder:true,bodyColor:0xa39186},
+ rabbit:{label:"Lapin",latin:"Oryctolagus cuniculus",torso:[1.33,.63,.54],head:[-1.14,.31,.0,.49,.47,.42],ear:"long",tail:.16,legs:.62,brain:"smooth",leftLung:3,rightLung:4,cecum:"very-large",kidney:"unipapillary",gallbladder:true,bodyColor:0xe4e7e9}
 });
 export const ORGAN_IDS=Object.freeze(Object.keys(ORGAN_MODES).filter(k=>k!=="all"));
 export const SPECIES_IDS=Object.freeze(Object.keys(SPECIES_ANATOMY));

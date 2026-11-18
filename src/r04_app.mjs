@@ -3,7 +3,7 @@ import {computeR04,validateR04,SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04} fr
 import {ANCHORS} from "./r03_model.mjs";
 import {create3D} from "./r04_visuals.mjs";
 import {createAnatomyViewer} from "./r09_viewer.mjs";
-import {createVisualAtlas} from "./r04_atlas.mjs?v=r10-canine-only-20261117";
+import {createVisualAtlas} from "./r04_atlas.mjs?v=r12-restored-species-20261117";
 const $=id=>document.getElementById(id);
 const svgNS="http://www.w3.org/2000/svg";
 const state={...DEFAULT_R04};
@@ -120,7 +120,11 @@ function updatePdGraph(result){
  const ic=result.species.ic50,left=58,right=563,top=26,bottom=176,scale=10;
  for(let t=0;t<=5;t++){const y=bottom-t/5*(bottom-top);html+='<line x1="'+left+'" x2="'+right+'" y1="'+y+'" y2="'+y+'" stroke="#245368"/><text x="51" y="'+(y+4)+'" text-anchor="end" fill="#b7d5de" font-size="10">'+(t*20)+'%</text>'}
  let points=[];
- for(let c=0;c<=10.0001;c+=.1){const x=left+c/scale*(right-left),v=c/(ic+c),y=bottom-v*(bottom-top);points.push(fmt(x,2)+","+fmt(y,2))}
+ // Les coordonnées SVG s'écrivent avec un point décimal. fmt() est un
+ // formateur d'affichage français : il produisait « 123,46 », et chaque point
+ // de la courbe devenait « 123,46,78,90 », donc quatre coordonnées au lieu de
+ // deux. La courbe d'engagement SGLT2 s'affichait en dents de scie.
+ for(let c=0;c<=10.0001;c+=.1){const x=left+c/scale*(right-left),v=c/(ic+c),y=bottom-v*(bottom-top);points.push(x.toFixed(2)+","+y.toFixed(2))}
  html+='<polyline points="'+points.join(" ")+'" fill="none" stroke="#64e4cf" stroke-width="3"/>';
  const x=left+result.inputs.free_nM/scale*(right-left),y=bottom-result.sglt2_occupancy*(bottom-top);
  html+='<line x1="'+x+'" x2="'+x+'" y1="23" y2="'+bottom+'" stroke="#eabb79" stroke-dasharray="4 5"/><circle cx="'+x+'" cy="'+y+'" r="6" fill="#ffce85"/>';

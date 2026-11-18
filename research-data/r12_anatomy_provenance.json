@@ -1,0 +1,127 @@
+{
+  "schema": "prmr-anatomy-provenance-v1",
+  "updated_utc": "2026-11-17",
+  "purpose": "Origine réelle de chaque organe affiché dans l'atlas 3D, organe par organe et espèce par espèce. Établi en inspectant le dépôt source en amont, pas en reprenant ses pages de présentation.",
+  "method": "Clone de github.com/Ketbome/vet-atlas au commit 424cfcc. Lecture de content/sources.json et de content/species/dog/structures/*/meta.json. Empreintes des deux fichiers importés recontrôlées : les SHA de blob Git enregistrés dans assets/vet3d/manifest.json correspondent aux objets du dépôt amont.",
+  "verification": {
+    "dog-visceral.glb": {
+      "claimed_upstream_blob_sha": "5b34701bc790a0c78aeab39736d42ac11ca96458",
+      "upstream_object_found": true,
+      "upstream_object_bytes": 1758360,
+      "recorded_bytes": 1758360,
+      "match": true
+    },
+    "dog-coat.glb": {
+      "claimed_upstream_blob_sha": "f908353992baa2074f6d8c2d35dd74324f5a75ff",
+      "upstream_object_found": true,
+      "recorded_bytes": 400720,
+      "match": true
+    }
+  },
+  "fidelity_scale": {
+    "scan": "Surface dérivée d'une acquisition réelle (CT, IRM, photogrammétrie) sur un animal ou un spécimen.",
+    "modeled": "Maillage construit à partir de références anatomiques et recalé sur une structure réelle, sans acquisition propre de cet organe.",
+    "illustrative": "Forme schématique générée par script là où aucune acquisition exploitable n'existe. Non exacte anatomiquement.",
+    "procedural-hypothesis": "Maillage produit par le laboratoire PRMR. Hypothèse pédagogique, jamais une segmentation."
+  },
+  "upstream_review_status": "Les 100 structures canines du dépôt amont portent review.status = \"draft\". Aucune n'a été validée par une relecture anatomique en amont, y compris celles issues de scans.",
+  "species": {
+    "dog": {
+      "label": "Chien",
+      "overall": "Seule espèce dont certains organes proviennent d'acquisitions réelles.",
+      "organs": {
+        "kidneys": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chien (abdomen caudal au bassin)",
+          "source_id": "pixelbeaker-canine-abdomen",
+          "license": "CC BY 4.0",
+          "commercial_use": true,
+          "derivatives": true
+        },
+        "liver": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chien (même acquisition abdominale)",
+          "source_id": "pixelbeaker-canine-abdomen",
+          "license": "CC BY 4.0",
+          "commercial_use": true,
+          "derivatives": true
+        },
+        "heart": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT du cœur et de la racine des gros vaisseaux d'un chien de grande race",
+          "source_id": "pixelbeaker-canine-heart",
+          "license": "CC BY 4.0",
+          "commercial_use": true,
+          "derivatives": true
+        },
+        "brain": {
+          "fidelity": "modeled",
+          "origin": "Gabarit IRM de population de 30 chiens, maillé par script ; cerveau, cervelet et tronc séparés",
+          "source_id": "cornell-canine-brain-atlas",
+          "license": "CC0 1.0",
+          "citation_requested": "Johnson, Philippa J. and Erica F. Barry (2019), Cortical Atlas of the Canine Brain [dataset]",
+          "commercial_use": true,
+          "derivatives": true
+        },
+        "lungs": {
+          "fidelity": "modeled",
+          "origin": "Modélisé par script faute d'acquisition ouverte exploitable",
+          "source_id": "vet-atlas-procedural-viscera",
+          "license": "CC BY-SA 4.0",
+          "commercial_use": true,
+          "derivatives": true
+        },
+        "stomach": {
+          "fidelity": "modeled",
+          "origin": "Modélisé par script",
+          "source_id": "vet-atlas-procedural-viscera",
+          "license": "CC BY-SA 4.0",
+          "commercial_use": true,
+          "derivatives": true
+        },
+        "pancreas": {
+          "fidelity": "illustrative",
+          "origin": "Forme schématique générée par script. Non exacte anatomiquement.",
+          "source_id": "vet-atlas-procedural-viscera",
+          "license": "CC BY-SA 4.0",
+          "commercial_use": true,
+          "derivatives": true
+        },
+        "spleen": {
+          "fidelity": "illustrative",
+          "origin": "Forme schématique générée par script. Non exacte anatomiquement.",
+          "source_id": "vet-atlas-procedural-viscera",
+          "license": "CC BY-SA 4.0",
+          "commercial_use": true,
+          "derivatives": true
+        }
+      },
+      "body_surface": {
+        "fidelity": "modeled",
+        "origin": "Maillage de base chien/loup sculpté à la main et retopologisé par un auteur tiers. Ce n'est pas un scan.",
+        "source_id": "lovadahn-canine-model",
+        "license": "CC BY 4.0",
+        "commercial_use": true,
+        "derivatives": true,
+        "note": "Conséquence directe : l'aspect réaliste extérieur du chien provient d'une sculpture d'artiste, pas d'une acquisition. Une silhouette sculptée de qualité équivalente pour les autres espèces serait donc aussi légitime que celle du chien, à condition d'être étiquetée de la même façon."
+      }
+    },
+    "mouse": { "label": "Souris", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false },
+    "rat": { "label": "Rat", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false, "candidate_source": { "name": "3DAnatomicalRatModel, TU Hamburg, Zenodo 10.5281/zenodo.3598649", "license": "CC BY-NC 4.0", "usable": false, "reason": "Licence non commerciale, incompatible avec un usage commercial du laboratoire. À réévaluer si PRMR reste strictement non commercial." } },
+    "pig": { "label": "Porc / miniporc", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false },
+    "rabbit": { "label": "Lapin", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false },
+    "nhp": { "label": "Primate non humain", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false }
+  },
+  "upstream_species_checked": {
+    "available_upstream": ["dog", "cat", "cow", "horse"],
+    "needed_by_prmr_and_missing": ["mouse", "rat", "pig", "rabbit", "nhp"],
+    "conclusion": "Les quatre espèces disponibles en amont ne sont pas des modèles précliniques de la recherche rénale PRMR. Les cinq espèces dont PRMR a besoin n'ont pas d'équivalent dans cette source."
+  },
+  "obligations": {
+    "attribution": "Les sources CC BY 4.0 et CC BY-SA 4.0 exigent de citer auteur, licence et origine à côté de l'élément affiché.",
+    "share_alike": "Les organes issus de vet-atlas-procedural-viscera sont CC BY-SA 4.0 : toute version dérivée distribuée doit rester sous la même licence.",
+    "cc0_citation": "L'atlas cérébral Cornell est CC0, mais ses auteurs demandent à être cités.",
+    "project_level_note": "Le projet vet-atlas se déclare non commercial parce que d'autres de ses sources sont NC ou ND (scan de membre antérieur CC BY-NC-SA, microCT de chat MorphoSource InC-NC). Aucune de ces sources NC/ND n'alimente les deux fichiers importés par PRMR : les organes et la silhouette canine utilisés ici sont CC BY, CC BY-SA ou CC0. L'obligation qui demeure est l'attribution, et le partage à l'identique pour les organes modélisés."
+  },
+  "what_real_parity_would_require": "Pour que souris, rat, porc, lapin et primate atteignent la qualité des organes canins, il faudrait, par espèce, un jeu de données d'imagerie (microCT ou IRM) sous licence permissive, sa segmentation par organe, puis un recalage dans un référentiel commun. Sans cela, un maillage photoréaliste produit par PRMR aurait l'apparence d'une acquisition sans en être une : c'est précisément ce que ce registre sert à empêcher."
+}

@@ -94,6 +94,13 @@ const pancreas=organ("pancreas");const pan=ell(pancreas,.02,-.08,.08,.33,.08,.11
 const bladder=organ("bladder");ell(bladder,0,-.75,.11,.17,.17,.15,"#d99b80");
 const spleen=organ("spleen");const sp=ell(spleen,-.43,.20,-.06,.10,.25,.12,"#994d76");sp.rotation.z=-.3;
 const vessels=organ("vessels");tube(vessels,[[0,.92,-.15],[.1,.45,-.22],[.05,.05,-.23],[.04,-.48,-.18],[0,-.75,-.1]],.036,"#d55c64");tube(vessels,[[-.08,.92,-.25],[-.08,.45,-.25],[-.09,-.12,-.25],[-.06,-.65,-.23]],.042,"#557cca");
+/* Ces variables sont lues par select(), update() et le gestionnaire de clic,
+   tous appelés plus bas avant la section de l'atlas de référence. Déclarées
+   après ces appels, elles plaçaient update() dans leur zone morte temporelle :
+   l'initialisation du module échouait sur « Cannot access 'refModel' before
+   initialization » et la zone d'anatomie humaine restait vide. */
+let refModel=null,refGroups=new Map(),refMeshes=[],refCatalog=[],refSex="male",refToken=0;
+let referenceSource="local";
 function select(id){if(!organs[id]&&!refGroups.has(id))return;chosen=id;update();}
 function update(){
  if(refModel){updateReference();return;}
@@ -122,9 +129,6 @@ update();resize();animate();status.textContent="Initialisation de la base anatom
    BodyParts3D © DBCLS CC BY 4.0; female HRA/HuBMAP CC BY 4.0;
    female skin MakeHuman CC0; modified by open-anatomy-3d CC BY 4.0.
    Not a patient scan or a diagnosis tool. */
-let refModel=null,refGroups=new Map(),refMeshes=[],refCatalog=[],refSex="male",refToken=0;
-
-let referenceSource="local";
 function installLocalBody(sex){
  const built=buildLocalHuman(T,sex);
  if(refModel)scene.remove(refModel);

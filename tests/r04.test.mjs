@@ -98,3 +98,18 @@ test("Live interactive dashboard is linked from the lab, and displays correct ca
  const main=readFileSync(new URL("index.html",root),"utf8");
  assert.ok(main.includes('href="./species-r04.html"'));
 });
+
+test("Les coordonnées SVG n'utilisent jamais le formateur d'affichage français",()=>{
+ // fmt() produit « 123,46 » : employé dans un attribut points/d/x/y, il
+ // transformait chaque point en quatre coordonnées et la courbe Emax
+ // d'engagement SGLT2 s'affichait en dents de scie.
+ const app=readFileSync(new URL("src/r04_app.mjs",root),"utf8");
+ assert.doesNotMatch(app,/points\.push\([^)]*\bfmt\(/,"coordonnée construite avec fmt()");
+ assert.doesNotMatch(app,/fmt\([^)]*\)\s*\+\s*","\s*\+\s*fmt\(/,"paire de coordonnées construite avec fmt()");
+ // La courbe doit rester un échantillonnage dense et monotone de C/(IC50+C).
+ const ic=2.3,pts=[];
+ for(let c=0;c<=10.0001;c+=.1)pts.push(c/(ic+c));
+ assert.ok(pts.length>100);
+ assert.ok(pts.every((v,i)=>i===0||v>=pts[i-1]),"la courbe Emax doit être monotone croissante");
+ assert.equal(Number((3/(ic+3)).toFixed(3)),0.566);
+});

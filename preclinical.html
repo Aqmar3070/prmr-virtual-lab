@@ -6,83 +6,85 @@
 <meta name="theme-color" content="#09111e">
 <meta name="description" content="PRMR-R01 : revue de trois études précliniques publiées sur les associations de molécules et la protection rénale chez les rongeurs, avec traçabilité des sources et vulgarisation.">
 <title>PRMR-R01 | Recherche préclinique rénale</title>
+<link rel="stylesheet" href="./prmr-design-system.css?v=r12-20261117">
 <link rel="stylesheet" href="./laboratory.css">
 <style>
-:root{--r-bg:#09111e;--r-panel:#101d2b;--r-line:#284052;--r-soft:#a5bbca;--r-accent:#58dfc5}
-*{box-sizing:border-box}
-body{background:var(--r-bg);color:#e8f2f5;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.rwrap{max-width:1220px;margin:auto;padding:25px clamp(15px,3vw,42px) 65px}
-.rtop{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between;margin:8px 0 36px}
-.rbrand{font-size:17px;font-weight:800;color:#e6f5f6;text-decoration:none}.rbrand span{color:#58dfc5}
-.rtoplinks{display:flex;gap:9px;flex-wrap:wrap}
-.rtoplinks a,.rbtn{border-radius:9px;text-decoration:none;padding:11px 14px;background:#152c3e;border:1px solid #35546a;color:#e0f2f6;font-weight:650;font-size:12px;cursor:pointer}
-.rtoplinks a:hover,.rbtn:hover{border-color:#5edcc6}
-.rbtn.active{background:#16473f;border-color:#42a995;color:#bafff0}
-.rhero{padding:28px 0 23px;border-bottom:1px solid #2b4358}
-.rkicker{font-size:11px;font-weight:800;letter-spacing:.13em;color:#69d9c6}
-h1{font-size:clamp(30px,5.3vw,55px);line-height:1.08;letter-spacing:-.047em;max-width:980px;margin:15px 0 17px}
-h1 span{color:#6fe3d0}
-.rlead{line-height:1.75;color:#a4bdcc;font-size:15px;max-width:900px}
-.rpill{display:inline-flex;font-size:11px;font-weight:800;border:1px solid #36546a;background:#162d3f;color:#acd0df;padding:6px 10px;border-radius:99px;margin-right:7px;margin-bottom:8px}
-.rpill.evidence{background:#153d36;border-color:#2b7668;color:#8cebd7}
-.rwarning{border-left:3px solid #b69c6b;background:#2b291c;padding:15px 19px;border-radius:9px;color:#eedbb0;line-height:1.7;font-size:13px;margin:22px 0}
-.rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:22px 0}
-.rmetric{background:#112337;border:1px solid #2a4156;border-radius:13px;padding:20px}
-.rmetric small{display:block;font-size:11px;color:#9eb6c8;line-height:1.4}.rmetric strong{font-size:30px;letter-spacing:-.03em;display:block;margin:10px 0;color:#82e5d3}.rmetric span{display:block;font-size:11px;color:#a0b8c7}
-.rsection{margin:44px 0 0}.rsection h2{font-size:25px;letter-spacing:-.03em;margin:0 0 12px}
-.rsection>p{color:#a3b9c8;line-height:1.75;max-width:900px}
-.rcontrols{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
-.rstudy{border:1px solid #2b4256;background:#0f1f30;border-radius:15px;padding:23px;margin:15px 0}
+/* Styles propres à la phase 01. Palette, typographie, tableaux, statuts et
+   contrôles viennent de prmr-design-system.css. Les classes de cette page sont
+   préfixées « r », elles n'atteignent donc pas la barre de parcours. */
+.rwrap{max-width:1180px;margin:auto;padding:var(--prmr-space-6) clamp(15px,3vw,42px) var(--prmr-space-7)}
+.rbtn{border-radius:var(--prmr-radius-control);text-decoration:none;padding:var(--prmr-space-2) var(--prmr-space-4);background:var(--prmr-surface-raised);border:1px solid var(--prmr-line);color:var(--prmr-text);font-weight:600;font-size:var(--prmr-size-small);cursor:pointer}
+.rbtn:hover{border-color:var(--prmr-signal-dim)}
+.rbtn.active{border-color:var(--prmr-signal);color:var(--prmr-signal)}
+.rhero{padding:var(--prmr-space-6) 0 var(--prmr-space-5);border-bottom:1px solid var(--prmr-line-soft)}
+.rkicker{font-size:var(--prmr-size-small);font-weight:600;color:var(--prmr-text-muted)}
+.rwrap h1{max-width:20ch;margin:var(--prmr-space-4) 0}
+.rwrap h1 span{color:var(--prmr-signal)}
+.rlead{line-height:1.7;color:var(--prmr-text-muted);font-size:var(--prmr-size-lead);max-width:var(--prmr-measure)}
+/* Jetons de nature de la source, au contact du titre du dossier. */
+.rpill{display:inline-flex;align-items:center;font-size:var(--prmr-size-micro);font-weight:600;border:1px solid var(--prmr-line);background:var(--prmr-surface-raised);color:var(--prmr-text-muted);padding:3px 9px;border-radius:999px;margin:0 var(--prmr-space-2) var(--prmr-space-2) 0}
+.rpill.evidence{background:var(--prmr-measured-bg);border-color:currentColor;color:var(--prmr-measured)}
+.rwarning{border-left:3px solid var(--prmr-hypothesis);background:var(--prmr-hypothesis-bg);padding:var(--prmr-space-4);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;color:var(--prmr-text);line-height:1.7;font-size:var(--prmr-size-small);margin:var(--prmr-space-5) 0;max-width:var(--prmr-measure)}
+.rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--prmr-space-4);margin:var(--prmr-space-5) 0}
+.rmetric{background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-4)}
+.rmetric small{display:block;font-size:var(--prmr-size-micro);color:var(--prmr-text-muted);line-height:1.4}
+/* Ces valeurs sont mesurées dans des publications : elles peuvent occuper la
+   place visuelle principale, contrairement aux indices exploratoires. */
+.rmetric strong{font-size:30px;letter-spacing:-.02em;display:block;margin:var(--prmr-space-2) 0;color:var(--prmr-measured);font-variant-numeric:tabular-nums}
+.rmetric span{display:block;font-size:var(--prmr-size-micro);color:var(--prmr-text-muted)}
+.rsection{margin:var(--prmr-space-7) 0 0}
+.rsection h2{margin:0 0 var(--prmr-space-3)}
+.rsection>p{color:var(--prmr-text-muted);line-height:1.7;max-width:var(--prmr-measure)}
+.rcontrols{display:flex;gap:var(--prmr-space-2);flex-wrap:wrap;margin:var(--prmr-space-4) 0}
+.rstudy{border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5);margin:var(--prmr-space-4) 0}
 .rstudy[hidden]{display:none}
-.rstudyhead{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-.rstudy h3{font-size:20px;letter-spacing:-.02em;margin:10px 0}.rstudy p{line-height:1.7;color:#a8bfce;font-size:13px}
-.rstat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:18px 0}
-.rstat>div{border:1px solid #30506a;border-radius:10px;padding:16px;background:#132b3c}
-.rstat b{font-size:23px;display:block;color:#7ae1ce}.rstat small{font-size:11px;color:#a5bece}
-.rstudy details{border-top:1px solid #31495b;padding:17px 0 2px}
-.rstudy summary{cursor:pointer;font-weight:700;font-size:13px;color:#93ded4}
-.rstudy details p,.rstudy details li{line-height:1.7;color:#a9c0d0;font-size:12px}
-.rstudy ul,.rsimple ul{padding-left:20px;line-height:1.8}
-.rstudy a,.rsources a{color:#8ee0ec;overflow-wrap:anywhere}
-.rtablewrap{overflow-x:auto;border-radius:12px;border:1px solid #30475b}
-.rtable{border-collapse:collapse;width:100%;min-width:660px;background:#102132}
-.rtable th,.rtable td{padding:16px 14px;border-bottom:1px solid #2b4356;text-align:left;vertical-align:top;font-size:12px;line-height:1.6}
-.rtable th{background:#183145;color:#b7d0dd;font-weight:800}
-.rtable td{color:#bbcfda}
-.rbar{height:12px;background:#243d4d;border-radius:99px;overflow:hidden;min-width:130px;margin:7px 0}
-.rbar>i{display:block;height:100%;background:#5ed9c4;border-radius:99px}
-.rsimple{border:1px solid #296d64;background:#12312f;border-radius:14px;padding:23px}
-.rsimple h3{font-size:18px;margin:5px 0 13px;color:#b2f1e5}
-.rsimple p,.rsimple li{color:#c7e2de;font-size:14px;line-height:1.85}
-.rmethod{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
-.rstep{border:1px solid #2e4a5c;background:#132737;padding:17px;border-radius:12px}
-.rstep small{display:block;color:#60d4c1;font-size:10px;font-weight:800;letter-spacing:.08em}
-.rstep h3{font-size:14px;margin:10px 0}.rstep p{font-size:12px;color:#aac0ce;line-height:1.7}
-.rnote{font-size:12px;line-height:1.75;color:#9fb8c7}
-.rfooter{border-top:1px solid #284056;margin-top:48px;padding-top:19px;font-size:11px;line-height:1.6;color:#9db4c4}
+.rstudyhead{display:flex;gap:var(--prmr-space-3);flex-wrap:wrap;align-items:center;justify-content:space-between}
+.rstudy h3{font-size:var(--prmr-size-h3);margin:var(--prmr-space-2) 0}
+.rstudy p{line-height:1.7;color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.rstat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--prmr-space-3);margin:var(--prmr-space-4) 0}
+.rstat>div{border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);padding:var(--prmr-space-4);background:var(--prmr-surface-sunken)}
+.rstat b{font-size:var(--prmr-size-h2);display:block;color:var(--prmr-measured);font-variant-numeric:tabular-nums}
+.rstat small{font-size:var(--prmr-size-micro);color:var(--prmr-text-muted)}
+.rstudy details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0;background:none;padding:var(--prmr-space-4) 0 2px}
+.rstudy summary{cursor:pointer;font-weight:600;font-size:var(--prmr-size-small)}
+.rstudy details p,.rstudy details li{line-height:1.7;color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.rstudy ul,.rsimple ul{padding-left:var(--prmr-space-5);line-height:1.8}
+.rstudy a,.rsources a{overflow-wrap:anywhere}
+.rtablewrap{overflow-x:auto;border-radius:var(--prmr-radius-panel);border:1px solid var(--prmr-line);background:var(--prmr-surface);scrollbar-color:var(--prmr-line) transparent}
+.rtable{border-collapse:collapse;width:100%;min-width:660px;font-size:var(--prmr-size-small)}
+.rtable th,.rtable td{padding:var(--prmr-space-3) var(--prmr-space-4);border-bottom:1px solid var(--prmr-line-soft);text-align:left;vertical-align:top;line-height:1.6}
+.rtable th{position:sticky;top:0;z-index:1;background:var(--prmr-surface-raised);color:var(--prmr-text);font-weight:600;font-size:var(--prmr-size-micro);border-bottom-color:var(--prmr-line);white-space:nowrap}
+.rtable td{color:var(--prmr-text-muted)}
+.rtable td.numeric{text-align:right;font-variant-numeric:tabular-nums;color:var(--prmr-text)}
+.rtable tbody tr:nth-child(even){background:#ffffff05}
+.rtable tbody tr:hover{background:#5fe3c60d}
+.rtable tbody tr:last-child td{border-bottom:0}
+.rbar{height:12px;background:var(--prmr-line);border-radius:99px;overflow:hidden;min-width:130px;margin:var(--prmr-space-2) 0}
+.rbar>i{display:block;height:100%;background:var(--prmr-measured);border-radius:99px}
+.rsimple{border:1px solid var(--prmr-signal-dim);background:var(--prmr-computed-bg);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5)}
+.rsimple h3{font-size:var(--prmr-size-h3);margin:var(--prmr-space-1) 0 var(--prmr-space-3)}
+.rsimple p,.rsimple li{color:var(--prmr-text);font-size:var(--prmr-size-body);line-height:1.8}
+.rmethod{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-3)}
+.rstep{border:1px solid var(--prmr-line);background:var(--prmr-surface);padding:var(--prmr-space-4);border-radius:var(--prmr-radius-panel)}
+/* La numérotation est conservée : la sélection documentaire est une séquence. */
+.rstep small{display:block;color:var(--prmr-signal);font-size:var(--prmr-size-micro);font-weight:600;font-variant-numeric:tabular-nums}
+.rstep h3{font-size:var(--prmr-size-body);margin:var(--prmr-space-2) 0}
+.rstep p{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);line-height:1.7}
+.rnote{font-size:var(--prmr-size-small);line-height:1.7;color:var(--prmr-text-muted)}
+.rfooter{border-top:1px solid var(--prmr-line-soft);margin-top:var(--prmr-space-7);padding-top:var(--prmr-space-4);font-size:var(--prmr-size-small);line-height:1.6;color:var(--prmr-text-faint)}
 .rhide{display:none!important}
-@media(max-width:780px){.rgrid,.rstat{grid-template-columns:1fr 1fr}.rmethod{grid-template-columns:1fr 1fr}.rstat b{font-size:20px}}
-@media(max-width:500px){.rgrid,.rstat,.rmethod{grid-template-columns:1fr}.rstudy{padding:16px}.rsection{margin-top:32px}.rtop{margin-bottom:20px}}
-@media print{body{background:white;color:black}.rwrap{max-width:100%}.rbtn,.rtoplinks{display:none!important}.rstudy,.rmetric,.rstep,.rsimple{background:white;color:black;border-color:#bbb}.rstudy p,.rstep p,.rsimple p,.rsimple li{color:#333}details{display:block}}
+@media(max-width:780px){.rgrid,.rstat,.rmethod{grid-template-columns:1fr 1fr}.rstat b{font-size:var(--prmr-size-h3)}}
+@media(max-width:500px){.rgrid,.rstat,.rmethod{grid-template-columns:1fr}.rstudy{padding:var(--prmr-space-4)}.rsection{margin-top:var(--prmr-space-6)}}
+@media print{.rwrap{max-width:100%}.rbtn{display:none!important}.rstudy,.rmetric,.rstep,.rsimple{background:#fff;color:#000;border-color:#bbb}.rstudy p,.rstep p,.rsimple p,.rsimple li{color:#333}details{display:block}}
 </style>
-<link rel="stylesheet" href="./r04-atlas.css?v=r10-canine-only-20261117">
-<script type="module" src="./src/r04_embedded.mjs?v=r10-canine-only-20261117"></script>
-<link rel="stylesheet" href="./prmr-route.css?v=r11-20261117">
-<script type="module" src="./src/prmr_route.mjs?v=r11-20261117"></script>
+<link rel="stylesheet" href="./r04-atlas.css?v=r12-20261117">
+<script type="module" src="./src/r04_embedded.mjs?v=r12-20261117"></script>
+<link rel="stylesheet" href="./prmr-route.css?v=r12-20261117">
+<script type="module" src="./src/prmr_route.mjs?v=r12-20261117"></script>
 </head>
 <body>
 <div class="rwrap">
-<header class="rtop">
- <a class="rbrand" href="./index.html">P<span>.</span> PRMR Virtual Lab</a>
- <nav class="rtoplinks" aria-label="Navigation de recherche">
-  <a href="./index.html">Laboratoire principal</a>
-  <a href="./index.html?view=cloud">Espace privé / Projet R01</a>
-  <a href="./screening.html">Recherche computationnelle originale R02</a>
-<a href="./risk-r03.html">Étude toxicologique simulée R03</a>
-<a href="./species-r04.html">Atelier 3D espèces R04</a>
-  <a href="https://github.com/Aqmar3070/prmr-virtual-lab" target="_blank" rel="noopener noreferrer">Traçabilité du code</a>
- </nav>
-</header>
+
 <main>
 <div class="rhero">
  <div class="rkicker">PRMR / REGISTRE DE RECHERCHE / DOSSIER R01 · 16 NOVEMBRE 2026</div>

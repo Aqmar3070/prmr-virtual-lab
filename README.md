@@ -1,120 +1,123 @@
-# PRMR Virtual Lab · Research Workspace 2.0
-## PRMR-R09 — Atlas WebGL des organes 3D indépendants (17 novembre 2026)
+# PRMR Virtual Lab
 
-**[Ouvrir l’atlas R09](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r09-real-organ-scenes-20261117)** · **[Accueil](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r09-real-organ-scenes-20261117)** · **[Journal des sources et limites](docs/PRMR_R09_ORGAN_ATLAS.md)**.
+Laboratoire scientifique numérique consacré à la maladie rénale chronique : preuves
+précliniques publiées, anatomie comparée en 3D, criblage moléculaire par RDKit et
+stress-tests d'exposition pharmacocinétique.
 
-- Six espèces, sept ensembles d’organes par espèce, **42 associations espèce–organe** enregistrées dans le dépôt (`research-data/r09_organ_registry.json`) et dans la base Supabase privée (`public.prmr_anatomy_assets`).
-- Nouveau lecteur **WebGL Three.js 0.181.0**, livré localement avec le site : modèles réellement tridimensionnels en triangles, rotation libre, zoom, sélection des organes au clic, affichage simultané, isolement de l’organe, enveloppe corporelle masquable et liens conceptuels entre organes.
-- Chien : **24 nœuds anatomiques de référence** (dont **23 chargés dans le test Chromium**) via `assets/vet3d/dog-visceral.glb`, surfaces hybrides **CT / modifiées / modélisées**, assorties du corps canin `dog-coat.glb`. Les fichiers originaux Vet Atlas sont contrôlés par empreintes SHA1 Git et SHA256, décompressés en WebGL avec Meshopt sous licence MIT. Source et auteurs : [Vet Atlas / sources originales](https://github.com/Ketbome/vet-atlas/blob/main/content/sources.json).
-- Souris, rat, porc, lapin, primate : **maillages synthétiques 3D propres à chaque espèce, non vérifiés anatomiquement** ; ils ne sont **pas** des scans, des jumeaux numériques, ni des reconstructions vétérinaires parfaites.
-- Les couleurs de zones d’intérêt et les liaisons entre organes restent **strictement hypothétiques**. Aucun diagnostic, résultat animal, probabilité de guérison ou de toxicité n’est revendiqué.
-- **[Tests Chromium réussis](https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44075402004)** : 23 nœuds canins décodés, 7 modes organiques, sélection des six espèces, rotation, isolement, liens, rendu mobile 390 px et préservation RDKit.
+**[Ouvrir le laboratoire](https://aqmar3070.github.io/prmr-virtual-lab/index.html)**
 
-## PRMR-R08 — Atlas transparent 3D et organes internes (17 novembre 2026)
+## Ce que ce laboratoire est, et ce qu'il n'est pas
 
-**[Ouvrir l'atlas 3D transparent](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r08-anatomy-polish-20261117)** · [**Accueil PRMR**](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r08-anatomy-polish-20261117) · [**Journal R08**](docs/PRMR_R08_TRANSPARENT_ANATOMY.md).
+Il réunit des résultats publiés, des calculs chimiques reproductibles et des
+visualisations exploratoires. Il **ne démontre aucune efficacité thérapeutique**, ne
+calcule aucune probabilité de guérison ou de toxicité, et aucun essai clinique PRMR
+sur des personnes n'est autorisé. Les scores de priorisation qu'il affiche sont des
+règles de classement choisies pour organiser un criblage, sans calibration sur une
+quelconque mesure biologique.
 
-La représentation extérieure GLB phototexturée R07 a été remplacée dans les postes de recherche par une **silhouette animale en grille transparente**, qui montre directement les organes internes. La zone d'affichage ne dépend plus de WebGL ni de textures externes et dispose d'un SVG de secours. Les portraits réalistes du sélecteur supérieur restent conservés.
+Cette réserve n'est pas une formalité : elle est intégrée à l'interface. Chaque
+valeur affichée porte son statut de provenance, et la forme de son marqueur distingue
+une donnée mesurée d'une hypothèse, même en l'absence de couleur.
 
-**Modes interactifs :** `Reins` (par défaut), `Cœur`, `Foie`, `Poumons`, `Tous`. Le corps utilise des coordonnées 3D projetées, rotation au doigt/souris, zoom molette/clavier. Les six espèces sont disponibles ; la seconde vue R04 suit aussi la sélection d'organe. Les modèles GLB R07 restent archivés et les molécules RDKit continuent à fonctionner.
+| Statut | Signification |
+| --- | --- |
+| **Mesuré** | Donnée expérimentale publiée, reprise d'une source externe identifiée. |
+| **Calculé** | Sortie déterministe et reproductible : RDKit, modèle analytique. |
+| **Hypothèse** | Paramètre, score ou scénario exploratoire, non calibré. |
+| **Indisponible** | La donnée n'existe pas. Elle n'est pas remplacée par une estimation. |
 
-**Attention scientifique :** volumes et implantations internes **schématiques non calibrés**. Ils ne sont pas une imagerie réelle ni une prédiction biologique. Les choix d'organe n'affectent pas les résultats PK/PD ou les probabilités inconnues de toxicité/guérison.
+## Le parcours en cinq phases
 
-## PRMR-R07 — Modèles 3D phototexturés (17 novembre 2026)
+| Phase | Page | Contenu | Nature |
+| --- | --- | --- | --- |
+| 01 | [Preuves précliniques](preclinical.html) | Trois études animales externes, avec PMID, DOI et résultats mesurés | Mesuré |
+| 02 | [Anatomie comparée 3D](species-r04.html) | Six espèces, organes internes, physiologie manipulable | Mixte, voir ci-dessous |
+| 03 | [Criblage moléculaire](screening.html) | Dix molécules, 165 associations, descripteurs et similarités RDKit | Calculé |
+| 04 | [Exposition et sensibilité](risk-r03.html) | Stress-test PK/PD sur 144 profils et 432 comparaisons | Hypothèse |
+| 05 | [Conditions d'entrée en clinique](clinical.html) | Anatomie humaine, critères encore manquants | Mixte |
 
-**Importation terminée — six modèles GLB et six aperçus WebP publiés.** Six vrais maillages GLB ont été construits à partir des rendus réalistes de la conversation (de **305 à 429 Ko** chacun), avec textures WebP intégrées, rotation à 360°, zoom et réinitialisation. Il s'agit de **reliefs 2.5D créés à partir d'une seule vue**, dont le dos et l'épaisseur sont estimés, **pas** d'anatomie validée à 360°.
+La navigation est servie par un module unique, `src/prmr_route.mjs`, qui nomme chaque
+destination d'une seule façon sur toutes les pages.
 
-Le lecteur natif léger `src/r07_photo3d.mjs` est désormais relié aux écrans d'accueil/R01/R02/R03/R04 et utilise un rendu de secours lorsqu'un GLB manque. L'ancienne étude PK/PD et les conformères RDKit ne sont pas modifiés.
+## Origine des surfaces 3D
 
-**Les 12 fichiers sont importés et publiés.** Le [workflow automatique R07](https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44003338939) a installé et vérifié les six GLB et six WebP. Le [déploiement Pages](https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44003368891) a réussi. Les [tests Chromium R07](https://github.com/Aqmar3070/prmr-virtual-lab/actions/runs/44003697221) prouvent que le porc et le chien utilisent le mode `photo3d` et que les six maillages sont décodables. Dans Supabase, les six fiches `public.prmr_visual_assets` ont le statut `published_verified`.
+Le registre complet se trouve dans
+[`research-data/r12_anatomy_provenance.json`](research-data/r12_anatomy_provenance.json)
+et s'affiche dans la phase 02. Il a été établi en inspectant le dépôt source en amont,
+et non en reprenant ses pages de présentation.
 
-[Détails techniques, limitations, hashes, étapes d'importation](docs/PRMR_R07_PHOTOTEXTURED_3D.md).
+**Chien** — seule espèce partiellement issue d'imagerie réelle :
 
-## PRMR-R06 — Matériaux 3D améliorés
+| Organe | Origine |
+| --- | --- |
+| Reins, foie, cœur | Segmentations CT d'un chien, CC BY 4.0 |
+| Cerveau | Gabarit IRM de population de 30 chiens, CC0 |
+| Poumons, estomac | Modélisés d'après des références, CC BY-SA 4.0 |
+| Pancréas, rate | Formes schématiques, non exactes anatomiquement |
+| Silhouette extérieure | Maillage sculpté à la main par un auteur tiers, CC BY 4.0 |
 
-Le moteur animal WebGL a été enrichi avec une tessellation plus fine, un éclairage studio, des matériaux différenciés pour le pelage, la peau et les yeux, une microtexture procédurale et des contrôles de zoom/recentrage. La navigation et les quatre modèles moléculaires RDKit restent inchangés.
+Les cent structures canines du dépôt amont portent le statut `draft` : aucune n'a été
+validée par une relecture anatomique, y compris celles issues de scans.
 
-**Limite :** cette version améliore les sculptures stylisées, mais ne remplace pas de vrais maillages animaliers photoréalistes sculptés et texturés. Les données biologiques R01–R04 et les probabilités inconnues restent inchangées.
+**Souris, rat, porc, lapin, primate** — organes et silhouette construits par PRMR. Ce
+sont des hypothèses anatomiques pédagogiques, ni scans ni segmentations. Aucune source
+d'imagerie sous licence utilisable n'a été trouvée pour ces cinq espèces ; le modèle de
+rat le plus proche est sous licence non commerciale. Une parité réelle avec le chien
+exigerait, par espèce, un jeu d'imagerie sous licence permissive, sa segmentation par
+organe et son recalage.
 
-[Description de la mise à jour R06](docs/PRMR_R06_3D_RENDERING.md).
+### Corps humain
 
-## PRMR-R05 — Visuels animaux autonomes et finition du laboratoire (17 novembre 2026)
+La phase 5 affiche un atlas anatomique humain sous licence de **147 structures** —
+squelette, organes, vaisseaux — assemblé à partir de BodyParts3D (© DBCLS, CC BY 4.0),
+de HRA / HuBMAP (CC BY 4.0) et de MakeHuman (CC0). Ce sont des structures segmentées,
+pas des formes sculptées.
 
-- **[Accueil interactif PRMR-R05](https://aqmar3070.github.io/prmr-virtual-lab/index.html?v=r05-standalone-20261117)** · [**Simulation animale R04/R05**](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html?v=r05-standalone-20261117) · [**Journal des corrections visuelles**](docs/PRMR_R05_UI_FINISHING.md).
-- Six illustrations animales **indépendantes** au format SVG (souris, rat, porc, chien, primate et lapin), sans poster recadré ni texte incrusté : `assets/animals/*.svg`.
-- Cartes, titres et noms latins séparés et centrés en HTML ; affichage complet `object-fit:contain` ; dispositions adaptatives vérifiées en Chromium à **1440 px et 390 px**, sans libellés tronqués dans les blocs contrôlés.
-- Sculptures d'animaux **WebGL lisses, orientables** avec éclairage artistique, repli sur les illustrations SVG lorsque WebGL est indisponible. Ces représentations ne sont pas des modèles anatomiques validés.
-- Comparaison des espèces et molécules RDKit 3D maintenues sur l'accueil, R01, R02, R03 et R04 ; contrôles physiologiques complets, avec limites numériques explicites.
-- Les six anciennes affiches PNG restent **archivées uniquement**, sans découpe pour produire les portraits. Les taux de toxicité et de guérison restent inconnus en l'absence de données biologiques.
-- Validation : `PRMR numerical tests` et `PRMR browser UI smoke`, avec captures desktop et mobile disponibles dans les artefacts du pipeline.
+Cet atlas ne s'affichait jamais : une variable déclarée après son premier usage
+interrompait l'initialisation du module, et la zone d'anatomie restait vide sans
+message visible. Le défaut est corrigé et couvert par un test.
 
+Le modèle est encore téléchargé depuis un CDN ; si celui-ci est injoignable, la page
+bascule sur une reconstruction procédurale de secours. Le workflow
+`.github/workflows/import-r12-human-anatomy.yml` importe une anatomie segmentée dans
+le dépôt — TotalSegmentator, CC BY 4.0 — pour supprimer cette dépendance réseau.
+Détails et limites : [docs/PRMR_R12_ANATOMIE_HUMAINE.md](docs/PRMR_R12_ANATOMIE_HUMAINE.md).
 
-## Refonte des interfaces scientifiques — 17 novembre 2026
+**Obligations de licence** : attribution pour les sources CC BY et CC BY-SA, partage à
+l'identique pour les organes modélisés, citation demandée pour l'atlas cérébral CC0.
 
-**[Ouvrir le nouveau laboratoire PRMR](https://aqmar3070.github.io/prmr-virtual-lab/index.html)** · [**Console animaux et molécules 3D**](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html) · [**Journal de la refonte**](docs/PRMR_R04_UI_REBUILD.md)
+## Reproduire les calculs
 
-La galerie autonome d'affiches a été **retirée**. R05 a ensuite éliminé tous les fonds obtenus par recadrage des anciens posters. Les animaux possèdent maintenant leurs propres SVG sans texte, des profils HTML séparés et une sculpture 3D WebGL orientable avec repli. La même architecture interactive apparaît dès l'accueil, dans R01, R02, R03 et R04.
+```bash
+pip install -r requirements-r02.txt
+python research-tools/prmr_r02_validate.py      # revalide structures, descripteurs, 165 associations
+python research-tools/prmr_r02_sensitivity.py   # recalcule les 2 000 scénarios de pondération
+node --test tests/*.test.mjs                    # 68 contrôles numériques et documentaires
+```
 
-- Six illustrations SVG autonomes intégrées aux boutons et aux fiches ; aucune photographie Wikimedia ni morceau de poster dans l'interface principale. Les PNG historiques restent versionnés, non utilisés comme cartes.
-- Espèce, âge, sexe, constitution, maladie, rein, foie, poids, hydratation et association : paramètres disponibles selon les modules ; seuls les facteurs dotés de données se répercutent numériquement.
-- Graphiques SVG, rein conceptuel 3D, sculptures animales conceptuelles 3D distinctes et quatre conformères chimiques **RDKit 3D** cliquables, directement dans l'atelier de l'application.
-- Cliquer sur un conformère de référence dans l'atelier moléculaire remplit les champs du modèle RDKit.js avec le nom et le SMILES correspondants. L'analyse 2D reste utilisée pour vérifier les structures libres sans conformation 3D.
-- Conservation intégrale des résultats/limites scientifiques R01-R04, de la traçabilité, de l'espace de recherche privé et des autres modules.
-- Les scores imprimés dans les anciennes maquettes ne sont **pas** repris comme résultats réels. Aucune simulation biochimique ne démontre une guérison ni ne fournit un taux de toxicité animal validé.
+La validation chimique rejoue les SMILES, formules, masses, cLogP, TPSA, empreintes de
+Morgan et indices de priorité, et échoue si un seul chiffre publié diffère.
 
-## PRMR-R04 — Laboratoire 3D interactif et physiologie comparée (16 novembre 2026)
+## Structure du dépôt
 
-- **[Lancer le nouveau laboratoire interactif 3D](https://aqmar3070.github.io/prmr-virtual-lab/species-r04.html)** : simulation exploratoire 6 espèces — souris, rat, miniporc, chien, macaque cynomolgus, lapin.
-- **Interface intégrée R05** : les six profils animaux utilisent un SVG indépendant et un modèle WebGL stylisé, avec textes hors image. Aucun découpage des anciennes affiches.
-- **3D et interaction** : reins et sculptures animales conceptuelles orientables, plus quatre molécules aux coordonnées conformères RDKit. Les annotations et graphiques HTML sont les véritables données de l’application.
-- Paramètres manipulables : espèce, masse, âge, sexe, constitution, déshydratation, fonction rénale, fonction hépatique, maladie, association et concentration libre illustrative.
-- Cartes d'espèces cliquables, graphiques SVG recalculés, trois visualiseurs 3D Canvas à rotation par glissement et quatre molécules réelles conformées par RDKit.
-- [Conformères 3D chimiques](research-data/r04_molecular_3d.json) · [Moteur R04](src/r04_engine.mjs) · [Visualiseur 3D](src/r04_visuals.mjs) · [Journal scientifique R04](docs/PRMR_R04_RESEARCH_LOG.md).
-- Les mesures pharmacocinétiques sont **humaines** et leur extrapolation aux animaux est un stress-test **non calibré**. Les facteurs âge, sexe et constitution modifient les questions et avertissements mais pas des AUC chiffrées en l'absence de coefficients validés. **Aucune probabilité biologique ni guérison n'est calculée.**
-- Résumé R04 enregistré dans `public.simulation_runs` du projet privé R01. Pas de nouvelle expérience animale.
+```
+*.html                     Les pages du parcours
+prmr-design-system.css     Jetons, styles de base, tableaux, statuts, contrôles
+laboratory.css r04*.css    Styles des modules, bâtis sur les jetons
+prmr-route.css             Barre de parcours et tableau de bord d'accueil
+src/                       Modules applicatifs (moteurs, visualiseurs, navigation)
+research-data/             Registres de référence en JSON
+research-tools/            Scripts Python de revalidation
+tests/                     Contrôles Node et fumée navigateur
+docs/                      Journaux scientifiques et historique des versions
+assets/ vendor/            Illustrations, modèles 3D, Three.js vendorisé
+```
 
-## PRMR-R03 — Sensibilité PK/PD et risque–bénéfice (16 novembre 2026)
+Une seule feuille définit les variables de couleur, de typographie et d'espacement ;
+les autres les consomment. Toute page doit donc charger `prmr-design-system.css` en
+premier.
 
-- [Ouvrir le stress-test interactif R03](https://aqmar3070.github.io/prmr-virtual-lab/risk-r03.html) : deux espèces (souris et rats), masses corporelles, quatre états rénaux, trois états hépatiques, hydratation, limites d'âge/sexe/constitution.
-- **144 profils** et **432 comparaisons de combinaisons** ; un indicateur d'exposition relative par métabolite et son analyse de sensibilité, **pas** la probabilité de toxicité.
-- [Source reproductible du modèle](src/r03_model.mjs) et [tests automatiques de validité](tests/r03.test.mjs).
-- [Journal scientifique complet](docs/PRMR_R03_RESEARCH_LOG.md) : données pharmacocinétiques humaines originales, IC₅₀ animales SGLT2 in vitro, équations et limites des extrapolations.
-- Enregistrement privé dans `simulation_runs`, lié au projet R01, provenance `calculated:conditional_exposure_not_toxicity_probability`.
-- **Aucun nouvel essai animal, aucune dose, aucune prédiction individuelle de lésion ou de guérison.**
-
-
-## PRMR-R02 — Criblage moléculaire original (16 novembre 2026)
-
-- **[Ouvrir l'interface PRMR-R02](https://aqmar3070.github.io/prmr-virtual-lab/screening.html)** — calculs RDKit à partir de 10 molécules existantes, 165 combinaisons, 44 hypothèses ouvertes et 121 associations suspendues.
-- [Registre complet des 165 combinaisons](research-data/prmr-r02-screen.json), calculs de chimie et statut scientifique explicites.
-- [Journal de recherche et limites](docs/PRMR_R02_RESEARCH_LOG.md).
-- [Reproduction chimique par RDKit](research-tools/prmr_r02_validate.py) et [2000 perturbations de sensibilité](research-tools/prmr_r02_sensitivity.py).
-- Dossiers `R02-A`, `R02-B`, `R02-C` enregistrés dans Supabase, sous `evidence_type=calculated`. Les résultats publiés précédemment pour R01 sont sous `external_reference`.
-- **Pas d'expérience animale, pas de culture cellulaire, pas de prédiction biologique validée, pas de traitement curatif démontré.** Les scores classent des hypothèses selon des règles exploratoires arbitraires.
-
-
-## PRMR-R01 · Recherche préclinique rénale (16 novembre 2026)
-
-- [Ouvrir le dossier interactif sur le site](https://aqmar3070.github.io/prmr-virtual-lab/preclinical.html) : résultats animaux publiés, comparaisons, filtres, explications simplifiées et export de données.
-- [Consulter le journal scientifique](docs/PRMR_R01_RESEARCH_LOG.md) : méthode de sélection documentaire, provenance, protocoles et limites.
-- Trois études animales externes archivées sous `external_reference` dans le projet privé Supabase PRMR-R01, sans revendication d'essai animal effectué par PRMR, ni de guérison.
-- Contrôles automatiques dans `tests/preclinical.test.mjs`.
-
-
-## Cloud Research Workspace — Supabase (intégration initiale)
-
-- Module **Espace de recherche privé** dans la navigation GitHub Pages.
-- Supabase Auth : inscription par e-mail/mot de passe, confirmation d'e-mail, session, déconnexion.
-- Projets et travaux persistants dans `research_projects`, `molecules`, `experiments` et `simulation_runs`.
-- Sauvegarde des structures **calculées** par RDKit.js et des prédictions PK/PD **hypothétiques**, sans prétendre à une validation clinique.
-- Accès limité au propriétaire via RLS pour les 4 tables; clés `service_role` jamais publiées.
-- **Vérification d'intégration requise** : les paramètres de redirection Auth du Dashboard et un vrai essai de confirmation d'e-mail/connexion/enregistrement doivent encore être effectués. Documentation : [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md).
-- Limites du SMTP d'essai Supabase : adresse de membre de l'organisation uniquement, 2 messages/h tant qu'un SMTP personnalisé n'est pas configuré.
-
-
-Site Web scientifique exploratoire accessible dans Chrome via GitHub Pages.
-
-## Modules ajoutés à l'interface (version 2.0)
+## Modules de l'interface
 - Cockpit de recherche et navigation modulaire.
 - Analyse des structures SMILES et des descripteurs physicochimiques par **RDKit.js MinimalLib 2026.9.2** exécuté en WebAssembly dans le navigateur; la bibliothèque est chargée via un CDN externe. Le site signale explicitement son indisponibilité.
 - Énumération déterministe de 16 structures aromatiques virtuelles **sans affirmation de nouveauté chimique, de synthétisabilité, de sécurité ou d'efficacité**. Ne pas confondre cette énumération avec une intelligence artificielle de conception de médicaments.
@@ -128,15 +131,6 @@ Site Web scientifique exploratoire accessible dans Chrome via GitHub Pages.
 ## Limites majeures
 Aucune précision absolue n'est scientifiquement possible pour prévoir les effets d'une nouvelle molécule dans le corps humain. Les résultats de structure RDKit ne démontrent ni activité pharmacologique, ni toxicité, ni biodisponibilité, ni aptitude à la synthèse. Les paramètres PK/PD ne sont pas calibrés sur les molécules sélectionnées. Il n'existe pas de moteur de simulation clinique ou de recommandation de dosage.
 
-## Conventions de provenance
-- **Base externe** : données effectivement retournées par PubChem ou ChEMBL avec identifiants et liens officiels.
-- **Calcul** : résultats déterministes de RDKit.js et du modèle PK/PD analytique.
-- **Hypothèse** : paramètres, candidats virtuels et scénarios exploratoires.
-- **Non disponible** : modèle rénal mécanistique, PBPK multi-organes, activité biologique ou interaction médicamenteuse prédictive.
-
-## Vérification
-Les modules JavaScript ont été contrôlés syntaxiquement et huit vérifications ciblées sur la chimie et le modèle PK/PD ont été exécutées lors de cette évolution. Les tests GitHub Actions, le chargement effectif de RDKit.js sur Chrome et les réponses en direct des services externes doivent encore être confirmés; ne pas considérer les modules comme validés scientifiquement.
-
 ## Feuille de route
 1. Tests fonctionnels en navigateur et assurance qualité sur données de référence.
 2. Ajout de recherche de bioactivité par cible documentée, traçabilité des jeux de données et filtrage d'applicabilité.
@@ -145,50 +139,13 @@ Les modules JavaScript ont été contrôlés syntaxiquement et huit vérificatio
 5. Modèles multi-organes uniquement après calibration et validation expérimentale par domaine.
 
 ---
-## Archive historique 1.1
-# PRMR Virtual Lab · Version Web 1.1
 
-Plateforme expérimentale de simulation pharmacocinétique à un compartiment, gratuite et exécutable entièrement dans un navigateur moderne. **Non clinique : aucune molécule, espèce ou population calibrée.**
+## Journaux scientifiques
 
-## Fonctionnalités réelles
-- Calcul concentration-temps après entrée fictive extravasculaire avec absorption de premier ordre et clairance linéaire.
-- Cmax, Tmax, demi-vie, AUC, clairance, indice Emax illustratif.
-- Contrôles modifiables, graphique SVG réactif, export JSON.
-- Enveloppe déterministe de 27 scénarios (variations hypothétiques ±20 % de F, CLh, CLr); **pas un intervalle de confiance**.
-- Tests numériques reproductibles avec Node.js : `node --test tests/*.test.mjs`.
-
-## Modèle, unités et hypothèses
-
-| Paramètre | Unité | Provenance |
-| --- | --- | --- |
-| Quantité fictive Dose | mg | hypothèse illustrative |
-| Biodisponibilité F | fraction | hypothèse illustrative |
-| Constante d'absorption ka | h⁻¹ | hypothèse illustrative |
-| Volume apparent V | L | hypothèse illustrative |
-| Clairance hépatique CLh | L/h | hypothèse illustrative |
-| Clairance rénale CLr | L/h | hypothèse illustrative |
-| Facteur rénal | sans unité | hypothèse illustrative (n'est pas DFG) |
-| Inhibition hépatique | fraction | hypothèse illustrative |
-| EC50 | mg/L | hypothèse illustrative |
-
-CL = CLh × (1 − inhibition) + CLr × facteur rénal
-
-kₑ = CL/V ; AUC₀–∞ = F × Dose / CL ; demi-vie = ln(2)/kₑ
-
-C(t) = (F×Dose/V) × kₐ/(kₐ−kₑ) × [exp(−kₑt) − exp(−kₐt)].
-
-Si kₐ ≈ kₑ, limite analytique : C(t) = (F×Dose/V) × kₐ×t×exp(−kₑt).
-
-**Limites** : non PBPK, aucun compartiment tissulaire, aucune élimination saturable, aucune filtration glomérulaire mécanistique, aucun transporteur, aucune voie de fibrose/inflammation et aucune démonstration de régénération rénale. L'indice Emax n'est pas une efficacité clinique. Pas de protocole de dose humaine ou animale.
-
-## Déploiement sur GitHub Pages (gratuit pour dépôt public)
-Dans **Settings → Pages**, choisir **Deploy from a branch**, `main` et `/(root)`, puis **Save**. Une fois la publication terminée, l'URL habituelle est visible dans GitHub Settings → Pages. Le dépôt public est lisible par tous; ne jamais publier de données confidentielles.
-
-## Étapes futures (non intégrées)
-1. Régression et tests d'incertitude élargis; registre de provenance reproductible.
-2. RDKit via service scientifique séparé.
-3. PK-Sim/MoBi via moteur dédié.
-4. Renal Engine mécanistique : filtration, sécrétion/réabsorption, transporteurs, inflammation, fibrose.
-
-## Usage
-Ouvrir `index.html` sur un serveur statique (GitHub Pages) ou un serveur local. Aucun backend, aucune dépendance front-end, aucun service externe requis.
+- [Phase 01 — recherche préclinique rénale](docs/PRMR_R01_RESEARCH_LOG.md)
+- [Phase 03 — criblage computationnel](docs/PRMR_R02_RESEARCH_LOG.md)
+- [Phase 04 — sensibilité PK/PD](docs/PRMR_R03_RESEARCH_LOG.md)
+- [Phase 02 — physiologie comparée](docs/PRMR_R04_RESEARCH_LOG.md) · [atlas des organes](docs/PRMR_R09_ORGAN_ATLAS.md) · [anatomie transparente](docs/PRMR_R08_TRANSPARENT_ANATOMY.md)
+- [Anatomie humaine : état et voie vers une anatomie réelle](docs/PRMR_R12_ANATOMIE_HUMAINE.md)
+- [Espace de recherche privé Supabase](docs/SUPABASE_SETUP.md)
+- [Historique des versions R01 à R09](docs/HISTORIQUE_VERSIONS.md)
