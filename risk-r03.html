@@ -65,6 +65,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 </style><script type="module" src="./src/r04_embedded.mjs?v=r12-20261117"></script>
 <link rel="stylesheet" href="./prmr-route.css?v=r12-20261117">
 <script type="module" src="./src/prmr_route.mjs?v=r12-20261117"></script>
+<script type="module" src="./src/prmr_tabs.mjs?v=r13-20261118"></script>
 </head>
 <body>
 <main>
@@ -82,7 +83,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 </div>
 <section id="r5-risk-stage" aria-label="Comparateur interactif d'animaux et de molécules en 3D"></section>
 <p class="r4-banner" style="margin-top:15px">Le laboratoire 3D actuel présente uniquement le chien. La section R03 ci-dessous est une archive historique de calculs sur des profils souris/rat, et non un catalogue de modèles anatomiques actifs. Aucun des deux ne détermine une probabilité biologique de guérison.</p>
-<section id="assumptions">
+<section id="assumptions" data-prmr-tab="donnees">
 <h2>Données pharmacocinétiques de départ</h2>
 <p>Rapports AUC tirés de documents pharmacologiques relatifs à des personnes. Un rapport AUC plus haut indique une exposition plus forte au composé concerné, <strong>pas</strong> un pourcentage de toxicité.</p>
 <div class="tablewrap"><table>
@@ -94,7 +95,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 </tbody></table></div>
 <p class="small">Des molécules et des métabolites différents n'ont pas la même toxicité par unité d'exposition : ces multiples ne sont pas directement des scores de risque comparables. La catégorie « sévère » hépatique n'est pas extrapolée.</p>
 </section>
-<section id="simulator">
+<section id="simulator" data-prmr-tab="montre">
 <h2>Simulateur de profils animaux</h2>
 <p>Les contrôles appliquent le même modèle descriptif aux trois associations. La déshydratation déclenche un avertissement hémodynamique sans coefficient pharmacocinétique inventé.</p>
 <div class="panel">
@@ -118,13 +119,13 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 </div>
 <p class="small">Intervalles 5–95 % = fourchettes de tirages du scénario choisi, pas intervalles de confiance ni valeurs observées chez les animaux. « Au-dessus de ×2 » et « au-dessus de ×5 » = seules fréquences d'exposition <strong>conditionnelles aux hypothèses</strong> du modèle, et non seuils de toxicité. Un signal « non estimable » remplace toute toxicité non calibrée.</p>
 </section>
-<section id="pharmacodynamics">
+<section id="pharmacodynamics" data-prmr-tab="montre">
 <h2>Pharmacodynamie : engagement de cible SGLT2</h2>
 <p>Calcul Emax à partir des IC₅₀ expérimentales in vitro de la dapagliflozine : 2,3 nM chez la souris et 3,0 nM chez le rat. Les concentrations libres de 1, 3 et 10 nM sont choisies <strong>uniquement comme illustrations mathématiques</strong>. Elles ne découlent d'aucune dose animale.</p>
 <div class="panel"><div id="sglt2" aria-live="polite"></div></div>
 <p class="small">Une inhibition théorique de SGLT2 ne prédit ni la filtration glomérulaire, ni le bénéfice antifibrotique, ni les éventuelles lésions hépatiques, ni une réparation complète du rein. La relation entre réponse SGLT2, glucosurie, DFG et progression rénale dépend du modèle pathologique.</p>
 </section>
-<section id="balance">
+<section id="balance" data-prmr-tab="montre">
 <h2>Balance risque–bénéfice : décision exploratoire</h2>
 <div class="grid3">
  <div class="panel">
@@ -145,7 +146,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 </div>
 <div class="note" id="balance-assessment" style="margin-top:16px">Aucune balance individuelle n'est déterminable en l'absence d'une efficacité rénale supplémentaire mesurée et de modèles exposition–toxicité validés.</div>
 </section>
-<section>
+<section data-prmr-tab="donnees">
 <h2>Principaux facteurs de physiologie et limites</h2>
 <div class="grid2">
 <div class="panel"><h3>Pris en compte dans l'expérience numérique</h3><ul>
@@ -166,7 +167,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 </ul></div>
 </div>
 </section>
-<section>
+<section data-prmr-tab="methode">
 <h2>La méthode : connaître les hypothèses et les limites</h2>
 <details><summary>Voir les équations et les échantillonnages</summary>
 <p class="small">AUC ≈ F × dose / clairance pour une exposition linéaire simplifiée. À dose nominale en mg/kg et clairance théorique proportionnelle à la masse^0,75, AUC relative est proportionnelle à masse^0,25. En raison de l'absence d'une calibration PK/PD propre à chaque composé chez chaque souche, R03 ne calcule ni concentration plasmatique réelle ni dose ni marge de sécurité.</p>
@@ -178,13 +179,13 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 <p class="small">Pour une balance : bénéfice net = bénéfice rénal mesuré et cliniquement pertinent − dommages mesurés, sur un horizon défini et dans une maladie précise. Les paramètres actuels ne permettent pas de calculer ce bénéfice net.</p>
 </details>
 </section>
-<section class="education">
+<section class="education" data-prmr-tab="methode">
 <h2>Explication simple : pourquoi l'ordinateur ne peut pas encore annoncer une guérison</h2>
 <p>Deux animaux peuvent peser différemment et ne pas éliminer les médicaments au même rythme. Si leurs reins ou leur foie sont malades, certaines substances peuvent rester plus longtemps dans leur corps.</p>
 <p>Nous avons étudié ces situations avec un modèle numérique, puis testé ce qui change lorsque ses hypothèses changent. Cela aide à repérer des situations qu'il faudra surveiller, mais **l'ordinateur n'a pas observé de rein guéri**.</p>
 <p>Les deux groupes de trois médicaments pourraient un jour produire un bénéfice supplémentaire. Ils pourraient aussi provoquer des problèmes. Sans mesures sur de vrais modèles biologiques, aucun des deux résultats n'est certain.</p>
 </section>
-<section>
+<section data-prmr-tab="sources">
 <h2>Sources et journal scientifique</h2>
 <ul>
 <li><a href="https://www.medicines.org.uk/emc/product/13875/smpc" target="_blank" rel="noopener noreferrer">Pirfénidone — pharmacocinétique, atteinte rénale/hépatique et métabolites (SmPC)</a></li>

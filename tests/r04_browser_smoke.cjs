@@ -2,6 +2,25 @@
 // Desktop/mobile, six species, all internal organ modes and untouched RDKit controls.
 const assert=require("node:assert/strict");
 const {chromium}=require("playwright");
+
+/* Les pages regroupent leurs sections en rubriques : une seule est ouverte à la
+   fois. Avant d'agir sur un élément, on ouvre la rubrique qui le contient,
+   comme le ferait quelqu'un qui consulte la page. */
+async function ouvrirRubrique(page,selector){
+ const ok=await page.evaluate(sel=>{
+  const node=document.querySelector(sel);
+  if(!node)return "absent";
+  const section=node.closest('section[role="tabpanel"]');
+  if(!section)return "toujours visible";
+  if(!section.hidden)return "déjà ouverte";
+  const tab=document.getElementById(section.getAttribute("aria-labelledby"));
+  if(!tab)return "onglet introuvable";
+  tab.click();
+  return "ouverte";
+ },selector);
+ if(ok==="ouverte")await page.waitForTimeout(1200);
+ return ok;
+}
 (async()=>{
  const browser=await chromium.launch({headless:true,args:["--disable-dev-shm-usage","--no-sandbox","--enable-webgl","--use-gl=angle","--use-angle=swiftshader"]});
  const page=await browser.newPage({viewport:{width:1440,height:900},deviceScaleFactor:1});
@@ -111,6 +130,7 @@ const {chromium}=require("playwright");
   await page.waitForFunction(()=>document.querySelector("#r4-visual-atlas .r4-st-annotations")?.textContent.includes("Femelle"));
   await page.screenshot({path:"/tmp/prmr-r05-r04-desktop.png",fullPage:false});
   step="ateliers moléculaires préservés";
+  await ouvrirRubrique(page,"#r4-molecules");
   const mols=page.locator("#r4-molecules .r4-molecule canvas");
   await mols.first().waitFor({timeout:45000});
   assert.equal(await mols.count(),4);

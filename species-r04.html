@@ -14,6 +14,7 @@ import {mountProvenancePanel} from "./src/r12_provenance_panel.mjs?v=r12-2026111
 mountProvenancePanel("r12-provenance");
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=r12-20261117"></script>
+<script type="module" src="./src/prmr_tabs.mjs?v=r13-20261118"></script>
 </head><body>
 <div class="r4-shell">
 
@@ -60,7 +61,7 @@ mountProvenancePanel("r12-provenance");
  <div class="r4-evidence">Sexe, âge et constitution : leur modification ajuste les questions biologiques et avertissements. Les ratios AUC ne changent pas artificiellement faute de paramètres validés par espèce.</div>
 </aside>
 <div class="r4-main">
- <section class="r4-panel r4-c7" aria-labelledby="organ-heading">
+ <section class="r4-panel r4-c7" aria-labelledby="organ-heading" data-prmr-tab="montre">
   <div class="r4-panel-title"><h2 id="organ-heading">Rein : mécanismes et lésions</h2><span class="r4-tag">3D conceptuelle · faire pivoter</span></div>
   <div class="r4-viz"><canvas id="r4-kidney-3d" aria-label="Représentation 3D conceptuelle de rein, rotation au glissement" role="img"></canvas><span class="r4-viz-label">Cortex · médulla · néphrons</span><span class="r4-viz-foot">Glisser pour faire tourner</span></div>
   <div class="r4-figure-text">
@@ -70,36 +71,36 @@ mountProvenancePanel("r12-provenance");
    <div class="r4-callout"><strong>Transport tubulaire</strong><span>Réponse SGLT2 dépendante de la cible et du glucose.</span></div>
   </div>
  </section>
- <section class="r4-panel r4-c5" aria-labelledby="body-heading">
+ <section class="r4-panel r4-c5" aria-labelledby="body-heading" data-prmr-tab="montre">
   <div class="r4-panel-title"><h2 id="body-heading">Organisme transparent / organes internes</h2><span class="r4-tag">Maillage filaire 3D</span></div>
   <div class="r4-viz"><canvas id="r4-body-3d" aria-label="Grille anatomique 3D de l'organisme transparent, avec reins, cœur, foie, poumons à l'intérieur" tabindex="0" role="img"></canvas><span class="r4-viz-label" id="r4-3d-species">Espèce · organes internes</span><span class="r4-viz-foot">Fil de fer · structures schématiques</span></div><p id="r4-body-render-status" class="r4-evidence">Le modèle filaire transparent montrera les organes internes de l’espèce sélectionnée ; positions non mesurées.</p>
   <div class="r4-indicator"><strong id="r4-anatomy">Architecture rénale</strong><p id="r4-focus">Indication expérimentale</p><a id="r4-source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8285645/" target="_blank" rel="noopener noreferrer" style="font-size:11px">Source de l'espèce</a></div>
  </section>
- <section class="r4-panel r4-c8" aria-labelledby="pk-heading">
+ <section class="r4-panel r4-c8" aria-labelledby="pk-heading" data-prmr-tab="donnees">
   <div class="r4-panel-title"><h2 id="pk-heading">Expositions PK simulées</h2><span class="r4-tag alert">Non calibrées chez l'animal</span></div>
   <p>Exposition médiane relative sous les hypothèses de transfert R03. <strong>Les molécules et leurs métabolites ne partagent pas un seuil de toxicité comparable.</strong></p>
   <svg id="r4-exposure-chart" class="r4-graph" role="img" aria-label="Graphique dynamique d'exposition relative des trois associations"></svg>
   <div class="r4-legend"><span><i class="r4-dot" style="background:#52dcb4"></i>Doublet : dapagliflozine</span><span><i class="r4-dot" style="background:#ffbe80"></i>R02-A : métabolite 5-carboxy</span><span><i class="r4-dot" style="background:#f17a85"></i>R02-B : métabolite V</span></div>
   <div id="r4-exposure-note" class="r4-indicator" aria-live="polite">Résultats de sensibilité en cours…</div>
  </section>
- <section class="r4-panel r4-c4" aria-labelledby="decision-heading">
+ <section class="r4-panel r4-c4" aria-labelledby="decision-heading" data-prmr-tab="donnees">
   <div class="r4-panel-title"><h2 id="decision-heading">Balance risque / bénéfice</h2><span class="r4-tag alert">Preuve limitée</span></div>
   <div class="r4-current"><span>Association :</span><strong id="r4-active-name">R02-A</strong></div>
   <p id="r4-risk-decision">Évaluation en cours...</p>
   <div id="r4-observations" class="r4-reasons" aria-live="polite"></div>
   <div class="r4-evidence"><strong>Résultat net :</strong> non estimable. Absence de mesures de réduction de fibrose, de toxicité animale et d'interaction des trois agents.</div>
  </section>
- <section class="r4-panel r4-c6" aria-labelledby="reference-heading">
+ <section class="r4-panel r4-c6" aria-labelledby="reference-heading" data-prmr-tab="donnees">
   <div class="r4-panel-title"><h2 id="reference-heading">Ancrages humains : évolution rénale</h2><span class="r4-tag">Données de la littérature</span></div>
   <p>Modification de l'AUC selon la sévérité rénale chez l'humain, non une courbe animale. Changer la maladie ou l'espèce n'altère pas ces observations historiques.</p>
   <svg id="r4-human-graph" class="r4-graph" role="img" aria-label="Graphique ancrages pharmacocinétiques humains par état rénal"></svg>
  </section>
- <section class="r4-panel r4-c6" aria-labelledby="pd-heading">
+ <section class="r4-panel r4-c6" aria-labelledby="pd-heading" data-prmr-tab="donnees">
   <div class="r4-panel-title"><h2 id="pd-heading">PD / Engagement de SGLT2</h2><span class="r4-tag">Modèle Emax illustratif</span></div>
   <p id="r4-pd-note">Cible et disponibilité des paramètres selon l'espèce.</p>
   <svg id="r4-pd-graph" class="r4-graph" role="img" aria-label="Courbe d'inhibition théorique de la cible SGLT2"></svg>
  </section>
- <section class="r4-panel r4-c12" aria-labelledby="molecules-heading">
+ <section class="r4-panel r4-c12" aria-labelledby="molecules-heading" data-prmr-tab="donnees">
   <div class="r4-panel-title"><h2 id="molecules-heading">Atelier moléculaire : véritables conformères 3D</h2><span class="r4-tag">RDKit · pivoter et sélectionner</span></div>
   <p>Quatre molécules existantes, chacune présentée directement en 3D manipulable. Les conformères ont été construits par RDKit ETKDG puis optimisés par MMFF. Ces structures ne représentent ni des liaisons moléculaires entre médicaments ni une interaction mesurée avec leurs cibles.</p>
   <div id="r4-molecules" class="r4-molecules" role="group" aria-label="Choisir une molécule à explorer"></div>
@@ -114,16 +115,16 @@ mountProvenancePanel("r12-provenance");
    </div>
   </div>
  </section>
- <section class="r4-panel r4-c12" aria-labelledby="comparison-heading">
+ <section class="r4-panel r4-c12" aria-labelledby="comparison-heading" data-prmr-tab="montre">
   <div class="r4-panel-title"><h2 id="comparison-heading">Profil anatomique de l'espèce sélectionnée</h2><span class="r4-tag">Faits qualitatifs, pas notes fictives</span></div>
   <div class="r4-scroll"><table class="r4-table"><thead><tr><th>Espèce</th><th>Structure rénale</th><th>Intérêt du modèle</th><th>PK des triples PRMR</th></tr></thead><tbody id="r4-species-table"></tbody></table></div>
   <div class="r4-indicator"><strong>Interprétation scientifique</strong><p>Le porc est pertinent pour l'architecture multipapillaire, la perfusion et certains modèles de néphropathie. Le chien est un modèle non-rongeur de toxicologie, non un substitut universel du rein humain. Un primate non humain n'est justifié que si la question ne peut pas être résolue autrement. Aucune de ces espèces ne dispose ici d'une PK validée des associations R02-A/R02-B.</p></div>
  </section>
- <section class="r4-panel r4-c12" aria-labelledby="provenance-heading">
+ <section class="r4-panel r4-c12" aria-labelledby="provenance-heading" data-prmr-tab="methode">
   <div class="r4-panel-title"><h2 id="provenance-heading">D'où viennent ces surfaces 3D</h2></div>
   <div id="r12-provenance"></div>
  </section>
- <section class="r4-panel r4-c12" aria-labelledby="plan-heading">
+ <section class="r4-panel r4-c12" aria-labelledby="plan-heading" data-prmr-tab="sources">
   <div class="r4-panel-title"><h2 id="plan-heading">Parcours scientifique et traçabilité</h2><span class="r4-tag">Étude numérique réellement exécutée</span></div>
   <div class="r4-steps">
    <div class="r4-step"><b>1 · Molécules</b><span>Structures PubChem et conformères RDKit réels.</span></div>
