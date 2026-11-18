@@ -5,48 +5,58 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Explorateur d'expositions documentées — PRMR Virtual Lab</title>
 <meta name="description" content="Pour une substance, une dose et une durée, les repères réellement publiés : seuils officiels, doses toxiques établies, associations observées, et l'endroit où les données s'arrêtent.">
-<link rel="stylesheet" href="./prmr-design-system.css?v=r13-20261118">
-<link rel="stylesheet" href="./prmr-route.css?v=r13-20261118">
+<link rel="stylesheet" href="./prmr-design-system.css?v=3e85eb3a76">
+<link rel="stylesheet" href="./prmr-route.css?v=5894fb13db">
 <style>
-main{max-width:1180px;margin:auto;padding:var(--prmr-space-6) clamp(15px,3vw,42px) var(--prmr-space-7)}
-.kicker{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);font-weight:600}
-main h1{margin:var(--prmr-space-4) 0;max-width:22ch}
-main h1 span{color:var(--prmr-signal)}
+main{max-width:1500px;margin:auto;padding:var(--prmr-space-5) clamp(15px,3vw,36px) var(--prmr-space-7)}
+.kicker{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);font-weight:600;margin:0}
+.r13-head{max-width:var(--prmr-measure)}
+.r13-head h1{margin:var(--prmr-space-2) 0 var(--prmr-space-3);font-size:clamp(23px,2.4vw,31px)}
+.r13-head h1 span{color:var(--prmr-signal)}
+.lead{color:var(--prmr-text-muted);line-height:1.6;margin:0 0 var(--prmr-space-3)}
+/* L'avertissement de portée se lit une fois, puis se replie : il occupait un
+   tiers du premier écran devant l'outil qu'il commente. */
+.r13-scope{border-left:3px dashed var(--prmr-hypothesis);border-top:0;border-right:0;border-bottom:0;background:var(--prmr-hypothesis-bg);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;margin:0 0 var(--prmr-space-5)}
+.r13-scope summary{color:var(--prmr-hypothesis)}
+.r13-scope p{color:var(--prmr-text);font-size:var(--prmr-size-small);line-height:1.7;max-width:var(--prmr-measure)}
 main h2{margin:0 0 var(--prmr-space-3)}
-main h3{font-size:var(--prmr-size-body);margin:var(--prmr-space-5) 0 var(--prmr-space-3);color:var(--prmr-text-muted)}
-.lead{max-width:var(--prmr-measure);color:var(--prmr-text-muted);line-height:1.7;font-size:var(--prmr-size-lead)}
-main section{margin-top:var(--prmr-space-7)}
-main p,main li{color:var(--prmr-text-muted);line-height:1.75}
-/* Avertissement de portée : tireté, comme toute construction exploratoire. */
-.scope{border-left:3px dashed var(--prmr-hypothesis);background:var(--prmr-hypothesis-bg);color:var(--prmr-text);padding:var(--prmr-space-4);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;font-size:var(--prmr-size-small);line-height:1.75;margin:var(--prmr-space-5) 0;max-width:var(--prmr-measure)}
-.scope p{color:inherit}
-.r13-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-4);background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5)}
+main h3{font-size:var(--prmr-size-small);margin:var(--prmr-space-5) 0 var(--prmr-space-3);color:var(--prmr-text-muted);text-transform:none}
+main section{margin-top:var(--prmr-space-6)}
+main p,main li{color:var(--prmr-text-muted);line-height:1.7}
+/* Deux volets : les réglages à gauche, qui restent sous les yeux pendant qu'on
+   lit les repères à droite. La page n'utilisait qu'un tiers de sa largeur. */
+.r13-workspace{margin-top:var(--prmr-space-4)}
+.r13-layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:var(--prmr-space-5);align-items:start}
+.r13-controls{display:flex;flex-direction:column;gap:var(--prmr-space-4);background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5);position:sticky;top:var(--prmr-space-3)}
 .r13-field{display:flex;flex-direction:column;gap:var(--prmr-space-2);min-width:0}
 .r13-field input[type=range]{width:100%;accent-color:var(--prmr-signal)}
 .r13-value{font-size:var(--prmr-size-lead);font-weight:700;color:var(--prmr-text);font-variant-numeric:tabular-nums}
-.r13-summary{margin:var(--prmr-space-5) 0}
+.r13-results{min-width:0}
+.r13-summary{margin:0 0 var(--prmr-space-4)}
 .r13-summary-head{display:flex;align-items:baseline;gap:var(--prmr-space-3);flex-wrap:wrap;margin-bottom:var(--prmr-space-2)}
 .r13-summary-head strong{font-size:var(--prmr-size-h3)}
 .r13-finding-head{display:flex;align-items:center;gap:var(--prmr-space-3);flex-wrap:wrap;margin-bottom:var(--prmr-space-2)}
+.r13-findings .prmr-evidence p{font-size:var(--prmr-size-small)}
 /* Un repère non atteint est montré en retrait : il existe, il n'est pas franchi. */
-.r13-not-crossed{opacity:.62}
-@media(max-width:900px){.r13-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.r13-controls{grid-template-columns:1fr}}
+.r13-not-crossed{opacity:.6}
+@media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 </head>
 <body>
 <main>
- <p class="kicker">Explorateur d'expositions / Repères publiés uniquement</p>
- <h1>Quelle dose, pendant combien de temps, <span>et que dit vraiment la littérature ?</span></h1>
- <p class="lead">Choisissez une substance, une dose journalière et une durée. L'explorateur affiche les repères réellement publiés que ce régime franchit, les organes qu'ils concernent, et l'endroit précis où les données s'arrêtent.</p>
+ <header class="r13-head">
+  <p class="kicker">Explorateur d'expositions · repères publiés uniquement</p>
+  <h1>Quelle dose, pendant combien de temps, <span>et que dit la littérature ?</span></h1>
+  <p class="lead">Les repères réellement publiés que votre réglage franchit, les organes qu'ils concernent, et l'endroit où les données s'arrêtent.</p>
+  <details class="r13-scope">
+   <summary>Ce que cet outil ne fait pas — à lire une fois</summary>
+   <p>Il ne calcule pas l'état de votre foie ou de vos reins au bout d'un an. Aucun modèle validé ne prédit l'atteinte d'un organe chez une personne donnée à partir d'une dose et d'une durée. Un curseur qui annoncerait « foie : 23 % d'atteinte à deux ans » inventerait une précision, et le soin apporté à l'affichage la rendrait d'autant plus crédible.</p>
+   <p>Le curseur de durée sert donc à l'inverse : il montre jusqu'où vont les études, puis dit franchement qu'au-delà rien n'est documenté. Pour toute décision concernant une personne réelle, c'est un médecin ou un pharmacien qui décide, pas cette page.</p>
+  </details>
+ </header>
 
- <div class="scope">
-  <p><strong>Ce que cet outil ne fait pas.</strong> Il ne calcule pas l'état de votre foie ou de vos reins au bout d'un an. Aucun modèle validé ne prédit l'atteinte d'un organe chez une personne donnée à partir d'une dose et d'une durée. Un curseur qui annoncerait « foie : 23 % d'atteinte à deux ans » inventerait une précision, et le soin apporté à l'affichage la rendrait d'autant plus crédible.</p>
-  <p>Le curseur de durée sert donc à l'inverse : il montre jusqu'où vont les études, puis dit franchement qu'au-delà rien n'est documenté. Pour toute décision concernant une personne réelle, c'est un médecin ou un pharmacien qui décide, pas cette page.</p>
- </div>
-
- <section aria-labelledby="explorer-heading" data-prmr-tab="montre">
-  <h2 id="explorer-heading">Explorateur</h2>
+ <section class="r13-workspace" aria-labelledby="explorer-heading">
+  <h2 id="explorer-heading" class="prmr-visually-hidden">Explorateur d'expositions</h2>
   <div id="r13-explorer"></div>
  </section>
 
@@ -81,7 +91,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.75}
 import {mountExposureExplorer} from "./src/r13_exposures.mjs?v=r13-20261118";
 mountExposureExplorer("r13-explorer");
 </script>
-<script type="module" src="./src/prmr_route.mjs?v=r13-20261118"></script>
-<script type="module" src="./src/prmr_tabs.mjs?v=r13-20261118"></script>
+<script type="module" src="./src/prmr_route.mjs?v=36f175ac29"></script>
+<script type="module" src="./src/prmr_tabs.mjs?v=91ccf64223"></script>
 </body>
 </html>

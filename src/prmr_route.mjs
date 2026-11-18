@@ -24,7 +24,7 @@ const PHASES = [
     phase: "02",
     name: "Anatomie",
     full: "Anatomie comparée 3D",
-    summary: "Six espèces, organes internes, physiologie manipulable."
+    summary: "Chien et chat, organes issus de CT, physiologie manipulable."
   },
   {
     file: "screening.html",
