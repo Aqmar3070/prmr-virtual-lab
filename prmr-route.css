@@ -3,7 +3,7 @@
    on part des preuves publiées pour arriver aux conditions d'entrée en clinique. */
 .prmr-routebar{position:relative;z-index:100;background:var(--prmr-surface);border-bottom:1px solid var(--prmr-line)}
 .prmr-routebar *{box-sizing:border-box}
-.prmr-route-inner{display:flex;align-items:center;gap:var(--prmr-space-5);max-width:1500px;margin:auto;padding:var(--prmr-space-3) clamp(12px,3vw,30px);flex-wrap:wrap}
+.prmr-route-inner{display:flex;align-items:center;gap:var(--prmr-space-5);max-width:1500px;margin:auto;padding:var(--prmr-space-3) clamp(12px,3vw,30px) var(--prmr-space-2);flex-wrap:wrap}
 .prmr-route-brand{display:inline-flex;align-items:baseline;gap:6px;text-decoration:none;white-space:nowrap}
 .prmr-route-brand strong{color:var(--prmr-signal);font-size:var(--prmr-size-body);font-weight:700;letter-spacing:-.01em}
 .prmr-route-brand span{color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
@@ -18,13 +18,13 @@
 .prmr-route-step[aria-current="page"]{color:var(--prmr-signal);border-color:var(--prmr-signal-dim);background:var(--prmr-computed-bg)}
 .prmr-route-step[aria-current="page"] .prmr-route-num{border-color:var(--prmr-signal);color:var(--prmr-signal)}
 
-.prmr-route-aside{display:flex;gap:var(--prmr-space-2);margin-left:auto;flex-wrap:wrap}
+.prmr-route-aside{display:flex;align-items:center;gap:var(--prmr-space-2);margin-left:auto;flex-wrap:wrap;min-width:0}
 .prmr-route-aside-link{color:var(--prmr-text-muted);text-decoration:none;font-size:var(--prmr-size-small);padding:var(--prmr-space-2) var(--prmr-space-3);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);white-space:nowrap}
 .prmr-route-aside-link:hover{color:var(--prmr-text);border-color:var(--prmr-signal-dim);text-decoration:none}
 
 /* Le stade réel du programme suit l'utilisateur sur chaque page. */
-.prmr-route-state{display:flex;align-items:center;gap:var(--prmr-space-2);flex-wrap:wrap;max-width:none;margin:0;padding:var(--prmr-space-2) clamp(12px,3vw,30px);background:var(--prmr-surface-sunken);border-top:1px solid var(--prmr-line-soft);font-size:var(--prmr-size-small)}
-.prmr-route-state-text{color:var(--prmr-text-muted)}
+.prmr-route-state{display:flex;align-items:center;gap:var(--prmr-space-2);margin:0;padding:0 clamp(12px,3vw,30px) var(--prmr-space-2);max-width:1500px;margin-inline:auto;font-size:var(--prmr-size-micro)}
+.prmr-route-state-text{color:var(--prmr-text-faint)}
 .prmr-route-skip{position:absolute;left:-99999px;top:0}
 .prmr-route-skip:focus{left:var(--prmr-space-2);top:var(--prmr-space-2);z-index:1000;background:var(--prmr-signal);color:#04221d;padding:var(--prmr-space-2) var(--prmr-space-3);border-radius:var(--prmr-radius-control);font-weight:600}
 

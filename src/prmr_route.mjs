@@ -113,19 +113,23 @@ for (const link of ASIDE) {
   }
   aside.append(a);
 }
-inner.append(aside);
-bar.append(inner);
-
-/* Rappel permanent du stade réel du programme, visible depuis chaque page. */
+/* Rappel permanent du stade réel du programme. Il tenait sa propre bande
+   pleine largeur sous la navigation : trois bandeaux se superposaient avant
+   le premier contenu de chaque page. Le rappel est désormais une puce dans
+   la même rangée, avec la phrase complète en infobulle et lisible par les
+   lecteurs d'écran. */
 const state = el("p", "prmr-route-state");
+state.title = "Aucun essai clinique PRMR sur des personnes n’est autorisé.";
 state.append(
   el("span", "prmr-status prmr-status-hypothesis", "Recherche exploratoire"),
   el(
     "span",
     "prmr-route-state-text",
-    "Aucun essai clinique PRMR sur des personnes n’est autorisé."
+    "Aucun essai clinique sur des personnes n’est autorisé."
   )
 );
+inner.append(aside);
+bar.append(inner);
 bar.append(state);
 
 document.body.prepend(bar);

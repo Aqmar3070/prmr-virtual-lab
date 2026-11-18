@@ -5,35 +5,29 @@
 <meta name="theme-color" content="#07121f">
 <meta name="description" content="PRMR Virtual Lab : chimie moléculaire RDKit, explorateur de données PubChem/ChEMBL et modèles PK/PD exploratoires.">
 <title>PRMR Virtual Lab | Research Workspace 2.0</title>
-<link rel="stylesheet" href="./prmr-design-system.css?v=3e85eb3a76">
+<link rel="stylesheet" href="./prmr-design-system.css?v=270adec8a5">
 <link rel="stylesheet" href="laboratory.css">
 <link rel="stylesheet" href="r04-atlas.css?v=r12-20261117">
 <script type="module" src="./src/r04_molecule_deck.mjs?v=0737c936df"></script>
 <script defer src="https://unpkg.com/@rdkit/rdkit@2026.9.2/dist/RDKit_minimal.js"></script>
 <script type="module" src="src/lab.mjs"></script>
-<link rel="stylesheet" href="./prmr-route.css?v=5894fb13db">
-<script type="module" src="./src/prmr_route.mjs?v=36f175ac29"></script>
+<link rel="stylesheet" href="./prmr-route.css?v=0908e32e96">
+<script type="module" src="./src/prmr_route.mjs?v=ea3a8a4035"></script>
 </head>
 <body>
 <div class="shell">
 <aside class="sidebar" id="sidebar">
-  <div class="identity"><div class="identity-mark">P<span>.</span></div><div><strong>PRMR <em>Virtual Lab</em></strong><small>RESEARCH ENVIRONMENT / 2.0</small></div></div>
-  <div class="workspace-label">RECHERCHE RÉNALE <span>PAR PHASES</span></div>
+  <div class="workspace-label">ATELIERS <span>DE CE POSTE</span></div>
   <nav class="navigation" aria-label="Sections du laboratoire">
     <button class="navitem selected" data-view="overview"><span class="navicon">◫</span> Parcours de recherche</button>
-    <div class="navgroup">OUTILS DE LA PHASE 3</div>
+    <div class="navgroup">ATELIERS MOLÉCULAIRES</div>
     <button class="navitem" data-view="molecules"><span class="navicon">⬡</span> Atelier moléculaire <span class="navmini">RDKit</span></button>
     <button class="navitem" data-view="library"><span class="navicon">▤</span> Bibliothèque de structures</button>
     <button class="navitem" data-view="combinations"><span class="navicon">◇</span> Comparaison de molécules</button>
-    <div class="navgroup">OUTILS DE LA PHASE 4</div>
+    <div class="navgroup">MODÉLISATION</div>
     <button class="navitem" data-view="pkpd"><span class="navicon">⌁</span> Simulation PK/PD</button>
     <button class="navitem" data-view="systems"><span class="navicon">◎</span> Atlas physiologique</button>
-    <div class="navgroup">PARCOURS & DOSSIERS</div>
-    <a class="navitem" href="./preclinical.html" style="text-decoration:none"><span class="navicon">01</span> Preuves précliniques <span class="navmini">01</span></a>
-    <a class="navitem" href="./species-r04.html" style="text-decoration:none"><span class="navicon">02</span> Anatomie comparée <span class="navmini">02</span></a>
-    <a class="navitem" href="./screening.html" style="text-decoration:none"><span class="navicon">03</span> Criblage des molécules <span class="navmini">03</span></a>
-    <a class="navitem" href="./risk-r03.html" style="text-decoration:none"><span class="navicon">04</span> Simulations historiques <span class="navmini">04</span></a>
-    <a class="navitem" href="./clinical.html?v=r12-20261117" style="text-decoration:none"><span class="navicon">05</span> Anatomie et preuves humaines <span class="navmini">05</span></a>
+    <div class="navgroup">RÉFÉRENCE</div>
     <button class="navitem" data-view="data"><span class="navicon">⛁</span> Données & connecteurs</button>
     <button class="navitem" data-view="cloud"><span class="navicon">☁</span> Espace de recherche privé <span class="navmini">Cloud</span></button>
     <button class="navitem" data-view="quality"><span class="navicon">☷</span> Traçabilité scientifique</button>
@@ -58,19 +52,14 @@
  </div>
  <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
  </section>
- <div class="prmr-secondary"><h2>Ateliers complémentaires</h2><p>Les outils moléculaires restent disponibles sans encombrer le parcours principal. Les visualisations animales se consultent uniquement à la phase 2.</p></div>
-
- <div class="notice"><strong>Précision absolue : impossible scientifiquement.</strong> Une molécule nouvelle ne peut pas être déclarée efficace, sûre ou thérapeutique par un calcul de structure seul. Les modules non validés sont identifiés.</div>
- <div class="overview-kpis"><div class="kpi"><span>OUTIL CHIMIQUE</span><strong id="kpi-rdkit">Initialisation</strong><small>RDKit WebAssembly</small></div><div class="kpi"><span>MODÈLE NUMÉRIQUE</span><strong>PK/PD 1C</strong><small>Hypothèses explicites</small></div><div class="kpi"><span>STRUCTURES EN SESSION</span><strong id="kpi-library">0</strong><small>Bibliothèque temporaire</small></div><div class="kpi"><span>DOMAINES BIOLOGIQUES</span><strong>12</strong><small>Atlas de recherche, non simulé</small></div></div>
-<div class="section-heading"><div><span class="overline">OUTILS COMPLÉMENTAIRES</span><h2>Ateliers techniques</h2></div></div>
+ <div class="prmr-secondary"><h2>Ateliers de ce poste</h2><p>Les outils moléculaires et le simulateur restent à portée, sans encombrer le parcours. Les visualisations animales se consultent à l'étape 02.</p></div>
  <div class="workflow-grid">
   <button class="workflow" data-jump="molecules"><span class="workflow-index">01 / STRUCTURE</span><strong>Atelier moléculaire</strong><p>Entrée SMILES, représentation 2D, descripteurs RDKit et exploration de structures virtuelles.</p><span class="workflow-arrow">Ouvrir l'atelier →</span></button>
   <button class="workflow" data-jump="combinations"><span class="workflow-index">02 / COMPARAISON</span><strong>Comparer deux structures</strong><p>Similarité d'empreintes, propriétés et scénarios pharmacocinétiques indépendants.</p><span class="workflow-arrow">Comparer →</span></button>
   <button class="workflow" data-jump="pkpd"><span class="workflow-index">03 / MODÉLISATION</span><strong>Simulateur PK/PD</strong><p>Concentrations dans le temps, sensibilité paramétrique et export de calculs traçables.</p><span class="workflow-arrow">Simuler →</span></button>
   <button class="workflow" data-jump="data"><span class="workflow-index">04 / DONNÉES</span><strong>Explorer PubChem</strong><p>Retrouver une structure référencée et ses propriétés depuis une API scientifique publique.</p><span class="workflow-arrow">Rechercher →</span></button>
  </div>
- <div class="two-col"><div class="panel"><div class="panel-header"><div><span class="overline">ARCHITECTURE</span><h2>État des moteurs</h2></div></div><div class="engine-line"><span>RDKit.js</span><b id="engine-rdkit">Chargement…</b></div><div class="engine-line"><span>PK/PD 1 compartiment</span><b class="ok">Disponible</b></div><div class="engine-line"><span>PubChem & ChEMBL</span><b>Requêtes à la demande</b></div><div class="engine-line"><span>PK-Sim / MoBi</span><b class="muted">Non connectés</b></div><div class="engine-line"><span>Modèles rénaux mécanistiques</span><b class="muted">Non connectés</b></div></div>
- <div class="panel"><div class="panel-header"><div><span class="overline">CADRE SCIENTIFIQUE</span><h2>Provenance des résultats</h2></div></div><div class="provenance"><i class="source-dot ext"></i><div><strong>Mesures / références externes</strong><small>Uniquement si une réponse PubChem ou ChEMBL a effectivement été obtenue</small></div></div><div class="provenance"><i class="source-dot calc"></i><div><strong>Calculs reproductibles</strong><small>Descripteurs moléculaires et solutions du modèle analytique</small></div></div><div class="provenance"><i class="source-dot hypo"></i><div><strong>Hypothèses exploratoires</strong><small>Paramètres PK/PD, variantes virtuelles, absence de données biologiques</small></div></div></div></div>
+ <div class="overview-kpis"><div class="kpi"><span>OUTIL CHIMIQUE</span><strong id="kpi-rdkit">Initialisation</strong><small>RDKit WebAssembly</small></div><div class="kpi"><span>MODÈLE NUMÉRIQUE</span><strong>PK/PD 1C</strong><small>Hypothèses explicites</small></div><div class="kpi"><span>STRUCTURES EN SESSION</span><strong id="kpi-library">0</strong><small>Bibliothèque temporaire</small></div><div class="kpi"><span>DOMAINES BIOLOGIQUES</span><strong>12</strong><small>Atlas de recherche, non simulé</small></div></div>
 </section>
 
 <section class="view" id="view-molecules" hidden>
@@ -163,6 +152,8 @@
  <div class="pagehead"><span class="overline">SCIENTIFIC INTEGRITY / MODULE 07</span><h1>Validation & traçabilité</h1><p>Le laboratoire sépare explicitement méthodes, données, hypothèses et capacités absentes.</p></div>
  <div class="two-col"><div class="panel"><h2>Ce qui est effectivement calculé</h2><div class="engine-line"><span>Validation SMILES et descripteurs</span><b>RDKit.js si chargé</b></div><div class="engine-line"><span>Empreintes Morgan & Tanimoto</span><b>RDKit.js si chargé</b></div><div class="engine-line"><span>Profils PK à un compartiment</span><b>Modèle analytique</b></div><div class="engine-line"><span>Propriétés PubChem</span><b>Si requête réussie</b></div><div class="engine-line"><span>Références de cibles ChEMBL</span><b>Si requête réussie</b></div></div>
  <div class="panel"><h2>Ce qui n'est pas prédictible actuellement</h2><div class="engine-line"><span>Activité biologique de nouvelles molécules</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Synergie et interactions complexes</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Toxicité, ADMET validé</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Synthétisabilité confirmée</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Régénération d'organes / efficacité clinique</span><b class="muted">Non disponible</b></div></div></div>
+ <div class="two-col"><div class="panel"><div class="panel-header"><div><span class="overline">ARCHITECTURE</span><h2>État des moteurs</h2></div></div><div class="engine-line"><span>RDKit.js</span><b id="engine-rdkit">Chargement…</b></div><div class="engine-line"><span>PK/PD 1 compartiment</span><b class="ok">Disponible</b></div><div class="engine-line"><span>PubChem & ChEMBL</span><b>Requêtes à la demande</b></div><div class="engine-line"><span>PK-Sim / MoBi</span><b class="muted">Non connectés</b></div><div class="engine-line"><span>Modèles rénaux mécanistiques</span><b class="muted">Non connectés</b></div></div>
+ <div class="panel"><div class="panel-header"><div><span class="overline">CADRE SCIENTIFIQUE</span><h2>Provenance des résultats</h2></div></div><div class="provenance"><i class="source-dot ext"></i><div><strong>Mesures / références externes</strong><small>Uniquement si une réponse PubChem ou ChEMBL a effectivement été obtenue</small></div></div><div class="provenance"><i class="source-dot calc"></i><div><strong>Calculs reproductibles</strong><small>Descripteurs moléculaires et solutions du modèle analytique</small></div></div><div class="provenance"><i class="source-dot hypo"></i><div><strong>Hypothèses exploratoires</strong><small>Paramètres PK/PD, variantes virtuelles, absence de données biologiques</small></div></div></div></div>
  <div class="panel spacer-panel"><h2>Protocole d'assurance qualité</h2><p>Les tests numériques du moteur PK/PD sont présents dans le dépôt et configurés pour GitHub Actions. Le statut du dernier cycle CI doit être vérifié dans GitHub : leur présence ne signifie pas automatiquement qu'ils sont passés.</p><p>Des validations supplémentaires sont nécessaires : benchmarks de RDKit, comparaison à références expérimentales, contrôle de versions et qualification des sources.</p><div class="actionrow"><a class="btn secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Aqmar3070/prmr-virtual-lab/actions">Consulter les tests GitHub</a><a class="btn secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Aqmar3070/prmr-virtual-lab">Code et historique</a></div></div>
 </section>
 <footer class="footer">PRMR Virtual Lab / 2.0 · Recherche computationnelle exploratoire · Aucune revendication de précision absolue, d'efficacité ou de sécurité clinique.</footer>

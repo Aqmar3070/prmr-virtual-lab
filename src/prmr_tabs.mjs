@@ -87,8 +87,15 @@ export function mountTabs(root = document) {
     buttons.get(key).setAttribute("aria-controls", ids.join(" "));
   });
 
+  /* La barre doit occuper toute la largeur de la page. Insérée juste avant sa
+     section, elle se retrouvait à l'intérieur d'une grille — coincée dans une
+     colonne, avec un grand vide à côté. On remonte donc jusqu'au bloc de
+     premier niveau qui contient cette section, et on se place avant lui. */
   const firstSection = groups.get(keys[0])[0];
-  firstSection.parentNode.insertBefore(nav, firstSection);
+  const page = firstSection.closest("main") || document.body;
+  let anchor = firstSection;
+  while (anchor.parentNode && anchor.parentNode !== page) anchor = anchor.parentNode;
+  anchor.parentNode.insertBefore(nav, anchor);
 
   let active = null;
   function show(key, { focus = false } = {}) {
