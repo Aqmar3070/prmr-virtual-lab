@@ -50,6 +50,7 @@ const PHASES = [
 ];
 
 const ASIDE = [
+  { href: "./exposures.html", label: "Expositions" },
   { href: "./index.html?view=cloud", label: "Espace privé" },
   {
     href: "https://github.com/Aqmar3070/prmr-virtual-lab",

@@ -35,6 +35,14 @@ une donnée mesurée d'une hypothèse, même en l'absence de couleur.
 | 03 | [Criblage moléculaire](screening.html) | Dix molécules, 165 associations, descripteurs et similarités RDKit | Calculé |
 | 04 | [Exposition et sensibilité](risk-r03.html) | Stress-test PK/PD sur 144 profils et 432 comparaisons | Hypothèse |
 | 05 | [Conditions d'entrée en clinique](clinical.html) | Anatomie humaine, critères encore manquants | Mixte |
+| — | [Explorateur d'expositions](exposures.html) | Dose, durée et repères publiés par substance | Mesuré et observé |
+
+L'explorateur d'expositions est un outil de référence transversal plutôt qu'une phase :
+pour une substance, une dose et une durée, il affiche les repères réellement publiés qui
+sont franchis — seuils d'agence, doses toxiques établies, associations observées — et
+l'endroit où les données s'arrêtent. Il ne prédit l'état d'aucun organe : aucun modèle
+validé ne le permet, et son curseur de durée sert précisément à montrer où s'arrête la
+littérature.
 
 La navigation est servie par un module unique, `src/prmr_route.mjs`, qui nomme chaque
 destination d'une seule façon sur toutes les pages.

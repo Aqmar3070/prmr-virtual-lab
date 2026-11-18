@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Explorateur d'expositions documentées — PRMR Virtual Lab</title>
+<meta name="description" content="Pour une substance, une dose et une durée, les repères réellement publiés : seuils officiels, doses toxiques établies, associations observées, et l'endroit où les données s'arrêtent.">
+<link rel="stylesheet" href="./prmr-design-system.css?v=r13-20261118">
+<link rel="stylesheet" href="./prmr-route.css?v=r13-20261118">
+<style>
+main{max-width:1180px;margin:auto;padding:var(--prmr-space-6) clamp(15px,3vw,42px) var(--prmr-space-7)}
+.kicker{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);font-weight:600}
+main h1{margin:var(--prmr-space-4) 0;max-width:22ch}
+main h1 span{color:var(--prmr-signal)}
+main h2{margin:0 0 var(--prmr-space-3)}
+main h3{font-size:var(--prmr-size-body);margin:var(--prmr-space-5) 0 var(--prmr-space-3);color:var(--prmr-text-muted)}
+.lead{max-width:var(--prmr-measure);color:var(--prmr-text-muted);line-height:1.7;font-size:var(--prmr-size-lead)}
+main section{margin-top:var(--prmr-space-7)}
+main p,main li{color:var(--prmr-text-muted);line-height:1.75}
+/* Avertissement de portée : tireté, comme toute construction exploratoire. */
+.scope{border-left:3px dashed var(--prmr-hypothesis);background:var(--prmr-hypothesis-bg);color:var(--prmr-text);padding:var(--prmr-space-4);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;font-size:var(--prmr-size-small);line-height:1.75;margin:var(--prmr-space-5) 0;max-width:var(--prmr-measure)}
+.scope p{color:inherit}
+.r13-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-4);background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5)}
+.r13-field{display:flex;flex-direction:column;gap:var(--prmr-space-2);min-width:0}
+.r13-field input[type=range]{width:100%;accent-color:var(--prmr-signal)}
+.r13-value{font-size:var(--prmr-size-lead);font-weight:700;color:var(--prmr-text);font-variant-numeric:tabular-nums}
+.r13-summary{margin:var(--prmr-space-5) 0}
+.r13-summary-head{display:flex;align-items:baseline;gap:var(--prmr-space-3);flex-wrap:wrap;margin-bottom:var(--prmr-space-2)}
+.r13-summary-head strong{font-size:var(--prmr-size-h3)}
+.r13-finding-head{display:flex;align-items:center;gap:var(--prmr-space-3);flex-wrap:wrap;margin-bottom:var(--prmr-space-2)}
+/* Un repère non atteint est montré en retrait : il existe, il n'est pas franchi. */
+.r13-not-crossed{opacity:.62}
+@media(max-width:900px){.r13-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.r13-controls{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+ <p class="kicker">Explorateur d'expositions / Repères publiés uniquement</p>
+ <h1>Quelle dose, pendant combien de temps, <span>et que dit vraiment la littérature ?</span></h1>
+ <p class="lead">Choisissez une substance, une dose journalière et une durée. L'explorateur affiche les repères réellement publiés que ce régime franchit, les organes qu'ils concernent, et l'endroit précis où les données s'arrêtent.</p>
+
+ <div class="scope">
+  <p><strong>Ce que cet outil ne fait pas.</strong> Il ne calcule pas l'état de votre foie ou de vos reins au bout d'un an. Aucun modèle validé ne prédit l'atteinte d'un organe chez une personne donnée à partir d'une dose et d'une durée. Un curseur qui annoncerait « foie : 23 % d'atteinte à deux ans » inventerait une précision, et le soin apporté à l'affichage la rendrait d'autant plus crédible.</p>
+  <p>Le curseur de durée sert donc à l'inverse : il montre jusqu'où vont les études, puis dit franchement qu'au-delà rien n'est documenté. Pour toute décision concernant une personne réelle, c'est un médecin ou un pharmacien qui décide, pas cette page.</p>
+ </div>
+
+ <section aria-labelledby="explorer-heading" data-prmr-tab="montre">
+  <h2 id="explorer-heading">Explorateur</h2>
+  <div id="r13-explorer"></div>
+ </section>
+
+ <section aria-labelledby="lecture-heading" data-prmr-tab="methode">
+  <h2 id="lecture-heading">Comment lire les résultats</h2>
+  <p>Chaque affirmation porte la nature de ce qui la fonde. Cette distinction est la raison d'être de l'outil : un seuil fixé par une agence, une dose toxique établie en clinique et une association relevée dans une population ne se valent pas, même lorsqu'ils s'affichent côte à côte.</p>
+  <ul>
+   <li><strong>Seuil officiel</strong> — fixé par une agence dans un texte réglementaire : résumé des caractéristiques du produit, avis scientifique.</li>
+   <li><strong>Toxicité établie</strong> — dose à partir de laquelle une atteinte d'organe est décrite dans la littérature clinique.</li>
+   <li><strong>Association observée</strong> — relevée dans des études d'observation. Une association n'est pas une relation de cause à effet, et une moyenne de groupe ne dit rien d'une personne.</li>
+   <li><strong>Non documenté</strong> — aucune donnée publiée ne couvre cette combinaison de dose et de durée. L'explorateur s'arrête là plutôt que d'extrapoler.</li>
+  </ul>
+  <p>Les repères non atteints à la dose choisie restent affichés, en retrait. Les masquer laisserait croire qu'il n'existe rien au-dessus.</p>
+ </section>
+
+ <section aria-labelledby="extension-heading" data-prmr-tab="methode">
+  <h2 id="extension-heading">Étendre le registre</h2>
+  <p>Les substances vivent dans <code>research-data/r13_exposures.json</code>. Une nouvelle entrée demande, pour chaque repère : sa valeur, l'organe concerné, la nature de la preuve, et la source exacte avec son lien. Un repère sans source n'a pas sa place dans ce registre — c'est ce qui sépare cet outil d'un simulateur d'impressions.</p>
+ </section>
+
+ <section aria-labelledby="sources-heading" data-prmr-tab="sources">
+  <h2 id="sources-heading">Sources</h2>
+  <ul>
+   <li>ANSM, résumés des caractéristiques du produit du paracétamol — doses journalières maximales, adaptation à la clairance de la créatinine, dose minimale toxique.</li>
+   <li>Centre belge d'information pharmacothérapeutique — intoxications involontaires au paracétamol, seuils aigus et usage chronique.</li>
+   <li>EFSA, avis scientifique sur la sécurité de la caféine, 2015 — repères journalier et par prise, grossesse et allaitement.</li>
+   <li>Poole R. et coll., <em>BMJ</em>, 2017 — méta-analyse d'études d'observation sur la consommation de café.</li>
+  </ul>
+ </section>
+</main>
+<script type="module">
+import {mountExposureExplorer} from "./src/r13_exposures.mjs?v=r13-20261118";
+mountExposureExplorer("r13-explorer");
+</script>
+<script type="module" src="./src/prmr_route.mjs?v=r13-20261118"></script>
+<script type="module" src="./src/prmr_tabs.mjs?v=r13-20261118"></script>
+</body>
+</html>
