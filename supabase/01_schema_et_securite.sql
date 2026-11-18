@@ -14,7 +14,8 @@
 -- Un projet appartient à la personne qui l'a créé : owner_id prend la valeur
 -- de auth.uid() par défaut, car l'application n'envoie pas ce champ.
 
-create extension if not exists "pgcrypto";
+-- gen_random_uuid() fait partie du coeur de PostgreSQL depuis la version 13 :
+-- aucune extension a installer, et donc aucun droit particulier a demander.
 
 -- 1. Projets de recherche ----------------------------------------------------
 
@@ -26,9 +27,6 @@ create table if not exists public.research_projects (
   status        text not null default 'active',
   created_at    timestamptz not null default now()
 );
-
-create index if not exists research_projects_owner_idx
-  on public.research_projects (owner_id, created_at desc);
 
 -- 2. Molécules ---------------------------------------------------------------
 
@@ -42,9 +40,6 @@ create table if not exists public.molecules (
   descriptors      jsonb not null default '{}'::jsonb,
   created_at       timestamptz not null default now()
 );
-
-create index if not exists molecules_project_idx
-  on public.molecules (project_id, created_at desc);
 
 -- 3. Simulations -------------------------------------------------------------
 
@@ -64,9 +59,6 @@ create table if not exists public.simulation_runs (
   created_at    timestamptz not null default now()
 );
 
-create index if not exists simulation_runs_project_idx
-  on public.simulation_runs (project_id, created_at desc);
-
 -- 4. Expériences et hypothèses ----------------------------------------------
 
 create table if not exists public.experiments (
@@ -80,6 +72,55 @@ create table if not exists public.experiments (
   created_at    timestamptz not null default now()
 );
 
+-- 4 bis. Mise à niveau des tables déjà présentes ---------------------------
+-- « create table if not exists » ne touche pas une table qui existe déjà :
+-- si elle avait été créée autrement, il lui manquerait des colonnes, et la
+-- création des règles de sécurité échouerait sur une colonne introuvable.
+-- Ces ajouts sont sans effet sur une base neuve, et complètent une base
+-- existante sans rien supprimer ni réécrire.
+
+alter table public.research_projects add column if not exists owner_id      uuid default auth.uid();
+alter table public.research_projects add column if not exists research_area text not null default 'general';
+alter table public.research_projects add column if not exists status        text not null default 'active';
+alter table public.research_projects add column if not exists created_at    timestamptz not null default now();
+
+alter table public.molecules add column if not exists smiles           text;
+alter table public.molecules add column if not exists source_type      text not null default 'calculated';
+alter table public.molecules add column if not exists source_reference text;
+alter table public.molecules add column if not exists descriptors      jsonb not null default '{}'::jsonb;
+alter table public.molecules add column if not exists created_at       timestamptz not null default now();
+
+alter table public.simulation_runs add column if not exists model_version text not null default '1.0';
+alter table public.simulation_runs add column if not exists status        text not null default 'completed';
+alter table public.simulation_runs add column if not exists parameters    jsonb not null default '{}'::jsonb;
+alter table public.simulation_runs add column if not exists results       jsonb not null default '{}'::jsonb;
+alter table public.simulation_runs add column if not exists uncertainty   jsonb not null default '{}'::jsonb;
+alter table public.simulation_runs add column if not exists provenance    text;
+alter table public.simulation_runs add column if not exists finished_at   timestamptz;
+alter table public.simulation_runs add column if not exists created_at    timestamptz not null default now();
+
+alter table public.experiments add column if not exists method        text;
+alter table public.experiments add column if not exists evidence_type text not null default 'hypothesis';
+alter table public.experiments add column if not exists status        text not null default 'planned';
+alter table public.experiments add column if not exists protocol      jsonb not null default '{}'::jsonb;
+alter table public.experiments add column if not exists created_at    timestamptz not null default now();
+
+-- Les projets déjà enregistrés sans propriétaire resteraient invisibles à
+-- tout le monde une fois les règles actives. Ils sont laissés tels quels :
+-- leur attribuer un compte au hasard serait inventer une donnée. La requête
+-- finale les signale s'il y en a.
+
+-- 4 ter. Index ------------------------------------------------------------
+-- Créés après la mise à niveau des colonnes, et non à la suite de chaque
+-- table : sur une base où les tables existaient déjà sans ces colonnes,
+-- l'index échouait avant même que la colonne ait été ajoutée.
+
+create index if not exists research_projects_owner_idx
+  on public.research_projects (owner_id, created_at desc);
+create index if not exists molecules_project_idx
+  on public.molecules (project_id, created_at desc);
+create index if not exists simulation_runs_project_idx
+  on public.simulation_runs (project_id, created_at desc);
 create index if not exists experiments_project_idx
   on public.experiments (project_id, created_at desc);
 
@@ -114,46 +155,93 @@ create policy "projets supprimables par leur proprietaire"
 
 -- Les trois tables rattachées suivent le projet : on y accède si et seulement
 -- si le projet parent appartient à la personne connectée.
+--
+-- Ces règles sont écrites une par une plutôt que générées par une boucle
+-- PL/pgSQL. La boucle était plus courte, mais elle imbriquait des chaînes
+-- entre dollars dans une autre chaîne entre dollars, ce qu'un éditeur SQL web
+-- ne transmet pas toujours intact. Répétitif et lisible vaut mieux qu'habile
+-- et fragile.
 
-do $$
-declare
-  t text;
-begin
-  foreach t in array array['molecules', 'simulation_runs', 'experiments'] loop
-    execute format('drop policy if exists %I on public.%I', t || ' lisibles via le projet', t);
-    execute format('drop policy if exists %I on public.%I', t || ' crees via le projet', t);
-    execute format('drop policy if exists %I on public.%I', t || ' modifiables via le projet', t);
-    execute format('drop policy if exists %I on public.%I', t || ' supprimables via le projet', t);
+drop policy if exists "molecules lisibles via le projet"     on public.molecules;
+drop policy if exists "molecules crees via le projet"        on public.molecules;
+drop policy if exists "molecules modifiables via le projet"  on public.molecules;
+drop policy if exists "molecules supprimables via le projet" on public.molecules;
 
-    execute format($f$
-      create policy %I on public.%I for select
-      using (exists (
-        select 1 from public.research_projects p
-        where p.id = %I.project_id and p.owner_id = auth.uid()
-      ))$f$, t || ' lisibles via le projet', t, t);
+create policy "molecules lisibles via le projet"
+  on public.molecules for select
+  using (exists (select 1 from public.research_projects p
+                 where p.id = molecules.project_id and p.owner_id = auth.uid()));
 
-    execute format($f$
-      create policy %I on public.%I for insert
-      with check (exists (
-        select 1 from public.research_projects p
-        where p.id = project_id and p.owner_id = auth.uid()
-      ))$f$, t || ' crees via le projet', t);
+create policy "molecules crees via le projet"
+  on public.molecules for insert
+  with check (exists (select 1 from public.research_projects p
+                      where p.id = project_id and p.owner_id = auth.uid()));
 
-    execute format($f$
-      create policy %I on public.%I for update
-      using (exists (
-        select 1 from public.research_projects p
-        where p.id = %I.project_id and p.owner_id = auth.uid()
-      ))$f$, t || ' modifiables via le projet', t, t);
+create policy "molecules modifiables via le projet"
+  on public.molecules for update
+  using (exists (select 1 from public.research_projects p
+                 where p.id = molecules.project_id and p.owner_id = auth.uid()))
+  with check (exists (select 1 from public.research_projects p
+                      where p.id = molecules.project_id and p.owner_id = auth.uid()));
 
-    execute format($f$
-      create policy %I on public.%I for delete
-      using (exists (
-        select 1 from public.research_projects p
-        where p.id = %I.project_id and p.owner_id = auth.uid()
-      ))$f$, t || ' supprimables via le projet', t, t);
-  end loop;
-end $$;
+create policy "molecules supprimables via le projet"
+  on public.molecules for delete
+  using (exists (select 1 from public.research_projects p
+                 where p.id = molecules.project_id and p.owner_id = auth.uid()));
+
+drop policy if exists "simulation_runs lisibles via le projet"     on public.simulation_runs;
+drop policy if exists "simulation_runs crees via le projet"        on public.simulation_runs;
+drop policy if exists "simulation_runs modifiables via le projet"  on public.simulation_runs;
+drop policy if exists "simulation_runs supprimables via le projet" on public.simulation_runs;
+
+create policy "simulation_runs lisibles via le projet"
+  on public.simulation_runs for select
+  using (exists (select 1 from public.research_projects p
+                 where p.id = simulation_runs.project_id and p.owner_id = auth.uid()));
+
+create policy "simulation_runs crees via le projet"
+  on public.simulation_runs for insert
+  with check (exists (select 1 from public.research_projects p
+                      where p.id = project_id and p.owner_id = auth.uid()));
+
+create policy "simulation_runs modifiables via le projet"
+  on public.simulation_runs for update
+  using (exists (select 1 from public.research_projects p
+                 where p.id = simulation_runs.project_id and p.owner_id = auth.uid()))
+  with check (exists (select 1 from public.research_projects p
+                      where p.id = simulation_runs.project_id and p.owner_id = auth.uid()));
+
+create policy "simulation_runs supprimables via le projet"
+  on public.simulation_runs for delete
+  using (exists (select 1 from public.research_projects p
+                 where p.id = simulation_runs.project_id and p.owner_id = auth.uid()));
+
+drop policy if exists "experiments lisibles via le projet"     on public.experiments;
+drop policy if exists "experiments crees via le projet"        on public.experiments;
+drop policy if exists "experiments modifiables via le projet"  on public.experiments;
+drop policy if exists "experiments supprimables via le projet" on public.experiments;
+
+create policy "experiments lisibles via le projet"
+  on public.experiments for select
+  using (exists (select 1 from public.research_projects p
+                 where p.id = experiments.project_id and p.owner_id = auth.uid()));
+
+create policy "experiments crees via le projet"
+  on public.experiments for insert
+  with check (exists (select 1 from public.research_projects p
+                      where p.id = project_id and p.owner_id = auth.uid()));
+
+create policy "experiments modifiables via le projet"
+  on public.experiments for update
+  using (exists (select 1 from public.research_projects p
+                 where p.id = experiments.project_id and p.owner_id = auth.uid()))
+  with check (exists (select 1 from public.research_projects p
+                      where p.id = experiments.project_id and p.owner_id = auth.uid()));
+
+create policy "experiments supprimables via le projet"
+  on public.experiments for delete
+  using (exists (select 1 from public.research_projects p
+                 where p.id = experiments.project_id and p.owner_id = auth.uid()));
 
 -- 6. Vérification ------------------------------------------------------------
 -- Les quatre tables doivent apparaître avec rowsecurity = true.
@@ -163,3 +251,9 @@ from pg_tables
 where schemaname = 'public'
   and tablename in ('research_projects', 'molecules', 'simulation_runs', 'experiments')
 order by tablename;
+
+-- Projets sans propriétaire : ils existaient avant les règles de sécurité et
+-- ne seront visibles par personne. Zéro est le résultat attendu.
+select count(*) as projets_sans_proprietaire
+from public.research_projects
+where owner_id is null;
