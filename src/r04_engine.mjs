@@ -2,12 +2,11 @@
 import {stress,ANCHORS,REGIMENS} from "./r03_model.mjs";
 export const VERSION_R04="r04-v1.0";
 export const SPECIES_R04=[
-{id:"mouse",label:"Souris",latin:"Mus musculus",breed:"C57BL/6",ref_kg:0.025,min_kg:0.015,max_kg:0.055,anatomy:"Rein unilobulaire, unipapillaire",focus:"Génétique, mécanismes et modèles de maladie",ic50:2.3,source:"https://pmc.ncbi.nlm.nih.gov/articles/PMC8285645/"},
-{id:"rat",label:"Rat",latin:"Rattus norvegicus",breed:"Sprague–Dawley",ref_kg:0.25,min_kg:0.10,max_kg:0.8,anatomy:"Rein unilobulaire, unipapillaire",focus:"Physiologie, hémodynamique, études longitudinales",ic50:3.0,source:"https://www.ncbi.nlm.nih.gov/books/NBK573735/"},
-{id:"pig",label:"Porc / miniporc",latin:"Sus scrofa domesticus",breed:"Miniporc",ref_kg:30,min_kg:10,max_kg:80,anatomy:"Rein multipapillaire, architecture et calices proches de l'humain",focus:"Perfusion, procédures translationales et architecture rénale",ic50:null,source:"https://pmc.ncbi.nlm.nih.gov/articles/PMC8285645/"},
+// Seules les espèces dont l'anatomie 3D provient de modèles réellement
+// acquis sont conservées. Les cinq autres n'avaient que des maillages
+// construits, faute d'imagerie sous licence utilisable.
 {id:"dog",label:"Chien",latin:"Canis lupus familiaris",breed:"Beagle",ref_kg:10,min_kg:4,max_kg:30,anatomy:"Rein principalement unipapillaire",focus:"Toxicologie non-rongeur, uniquement si modèle justifié",ic50:null,source:"https://pubmed.ncbi.nlm.nih.gov/32758521/"},
-{id:"nhp",label:"Primate non humain",latin:"Macaca fascicularis",breed:"Macaque cynomolgus",ref_kg:4,min_kg:2,max_kg:12,anatomy:"Physiologie de primate ; maladie et pharmacologie non interchangeables",focus:"Uniquement si la cible et la question exigent un modèle primate",ic50:null,source:"https://pubmed.ncbi.nlm.nih.gov/34977487/"},
-{id:"rabbit",label:"Lapin",latin:"Oryctolagus cuniculus",breed:"Néo-Zélandais",ref_kg:3,min_kg:1.5,max_kg:6,anatomy:"Anatomie et transporteurs différents",focus:"Modèle alternatif si mécanisme et données le justifient",ic50:null,source:"https://pubmed.ncbi.nlm.nih.gov/32758521/"}
+{id:"cat",label:"Chat",latin:"Felis catus",breed:"Européen",ref_kg:4,min_kg:2.5,max_kg:8,anatomy:"Rein unipapillaire ; maladie rénale chronique spontanée fréquente",focus:"Modèle spontané de maladie rénale chronique, non un modèle induit",ic50:null,source:"https://pubmed.ncbi.nlm.nih.gov/27197015/"}
 ];
 export const OPTIONS={
 age:{juvenile:"Jeune",adult:"Adulte",old:"Âgé"},
@@ -25,7 +24,7 @@ fibrotic:{target:"Matrice extracellulaire, collagène, inflammation",markers:"CO
 alport:{target:"Membrane basale glomérulaire, collagène IV",markers:"Albuminurie, DFG, histologie, survie"},
 ischemic:{target:"Perfusion, inflammation, réparation tubulaire",markers:"KIM-1, NGAL, DFG, lésions histologiques"}
 };
-export const DEFAULT_R04={species:"mouse",mass_kg:0.025,age:"adult",sex:"unknown",constitution:"normal",renal:"moderate",hepatic:"normal",hydration:"normal",disease:"fibrotic",regimen:"R02-A",free_nM:3};
+export const DEFAULT_R04={species:"dog",mass_kg:10,age:"adult",sex:"unknown",constitution:"normal",renal:"moderate",hepatic:"normal",hydration:"normal",disease:"fibrotic",regimen:"R02-A",free_nM:3};
 export const MOLECULES_R04=[
 {id:"irbesartan",name:"Irbesartan",cid:3749,axis:"SRAA / récepteur AT1",colour:"#53e4d1"},
 {id:"dapagliflozine",name:"Dapagliflozine",cid:9887712,axis:"SGLT2 / tubule rénal",colour:"#66b6ff"},
@@ -71,7 +70,7 @@ export function computeR04(v){
  ...(v.renal==="severe"?["Affection rénale sévère : vigilance pour accumulation métabolique et hémodynamique."]:[]),
  ...(v.hepatic==="severe"?["Foie sévèrement altéré : résultat hépatique indisponible, ne pas extrapoler."]:[]),
  ...(v.hydration==="depleted"?["Hypovolémie : alerte qualitative liée au doublet SRAA + SGLT2."]:[]),
- ...(v.species==="nhp"?["Primate non humain : justification éthique scientifique renforcée; envisager alternatives non animales."]:[])
+ ...(v.species==="cat"?["Chat : la maladie rénale chronique y est spontanée et fréquente ; ce n'est pas un modèle induit, et la transposition demande prudence."]:[])
  ];
  return {version:VERSION_R04,inputs:{...v,mass_kg:mass},species,indication:DISEASE_INFO[v.disease],
   regimens:arr,active,mass_factor,sglt2_occupancy:occupancy,observations,warnings,

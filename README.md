@@ -31,7 +31,7 @@ une donnée mesurée d'une hypothèse, même en l'absence de couleur.
 | Phase | Page | Contenu | Nature |
 | --- | --- | --- | --- |
 | 01 | [Preuves précliniques](preclinical.html) | Trois études animales externes, avec PMID, DOI et résultats mesurés | Mesuré |
-| 02 | [Anatomie comparée 3D](species-r04.html) | Six espèces, organes internes, physiologie manipulable | Mixte, voir ci-dessous |
+| 02 | [Anatomie comparée 3D](species-r04.html) | Chien et chat, organes internes issus de CT, physiologie manipulable | Mesuré et modélisé, voir ci-dessous |
 | 03 | [Criblage moléculaire](screening.html) | Dix molécules, 165 associations, descripteurs et similarités RDKit | Calculé |
 | 04 | [Exposition et sensibilité](risk-r03.html) | Stress-test PK/PD sur 144 profils et 432 comparaisons | Hypothèse |
 | 05 | [Conditions d'entrée en clinique](clinical.html) | Anatomie humaine, critères encore manquants | Mixte |
@@ -46,42 +46,40 @@ Le registre complet se trouve dans
 et s'affiche dans la phase 02. Il a été établi en inspectant le dépôt source en amont,
 et non en reprenant ses pages de présentation.
 
-**Chien** — seule espèce partiellement issue d'imagerie réelle :
+Le laboratoire conserve **deux espèces animales**, celles dont l'anatomie provient de
+modèles réellement acquis : le chien et le chat.
 
-| Organe | Origine |
-| --- | --- |
-| Reins, foie, cœur | Segmentations CT d'un chien, CC BY 4.0 |
-| Cerveau | Gabarit IRM de population de 30 chiens, CC0 |
-| Poumons, estomac | Modélisés d'après des références, CC BY-SA 4.0 |
-| Pancréas, rate | Formes schématiques, non exactes anatomiquement |
-| Silhouette extérieure | Maillage sculpté à la main par un auteur tiers, CC BY 4.0 |
+| Organe | Chien | Chat |
+| --- | --- | --- |
+| Reins | Segmentation CT | Segmentation CT |
+| Foie | Segmentation CT | Segmentation CT |
+| Cœur | Segmentation CT | Schématique |
+| Estomac | Modélisé | Segmentation CT |
+| Rate | Schématique | Segmentation CT |
+| Intestin grêle | Modélisé | Segmentation CT |
+| Vessie | Modélisé | Segmentation CT |
+| Poumons | Modélisés | Schématiques |
+| Cerveau | Gabarit IRM de 30 chiens | Modélisé |
+| Silhouette extérieure | Sculptée | Sculptée |
+
+Pour la recherche rénale, le chat est le mieux couvert des deux : reins, foie, rate,
+estomac, intestin grêle et vessie proviennent tous de scanners. La maladie rénale
+chronique y est par ailleurs spontanée et fréquente, ce qui en fait un modèle observé
+plutôt qu'induit.
 
 Les cent structures canines du dépôt amont portent le statut `draft` : aucune n'a été
 validée par une relecture anatomique, y compris celles issues de scans.
 
-**Souris, rat, porc, lapin, primate** — organes et silhouette construits par PRMR. Ce
-sont des hypothèses anatomiques pédagogiques, ni scans ni segmentations. Aucune source
-d'imagerie sous licence utilisable n'a été trouvée pour ces cinq espèces ; le modèle de
-rat le plus proche est sous licence non commerciale. Une parité réelle avec le chien
-exigerait, par espèce, un jeu d'imagerie sous licence permissive, sa segmentation par
-organe et son recalage.
+**Souris, rat, porc, lapin et primate ont été retirés de l'atlas 3D.** Aucune imagerie
+anatomique sous licence utilisable n'existe pour ces espèces : leurs organes n'étaient
+que des maillages construits par le laboratoire, affichés à côté d'un chien issu de
+scanners, ce qui faussait toute comparaison entre espèces. Vache et cheval ont été
+examinés puis écartés : leurs squelettes sont réels, mais leurs organes abdominaux sont
+majoritairement schématiques.
 
-### Corps humain
-
-La phase 5 affiche un atlas anatomique humain sous licence de **147 structures** —
-squelette, organes, vaisseaux — assemblé à partir de BodyParts3D (© DBCLS, CC BY 4.0),
-de HRA / HuBMAP (CC BY 4.0) et de MakeHuman (CC0). Ce sont des structures segmentées,
-pas des formes sculptées.
-
-Cet atlas ne s'affichait jamais : une variable déclarée après son premier usage
-interrompait l'initialisation du module, et la zone d'anatomie restait vide sans
-message visible. Le défaut est corrigé et couvert par un test.
-
-Le modèle est encore téléchargé depuis un CDN ; si celui-ci est injoignable, la page
-bascule sur une reconstruction procédurale de secours. Le workflow
-`.github/workflows/import-r12-human-anatomy.yml` importe une anatomie segmentée dans
-le dépôt — TotalSegmentator, CC BY 4.0 — pour supprimer cette dépendance réseau.
-Détails et limites : [docs/PRMR_R12_ANATOMIE_HUMAINE.md](docs/PRMR_R12_ANATOMIE_HUMAINE.md).
+Ce retrait ne concerne que l'atlas anatomique. **Souris et rats restent présents dans les
+couches scientifiques qui reposent sur des publications réelles** : les études
+précliniques de la phase 01 et le modèle pharmacocinétique de la phase 04.
 
 **Obligations de licence** : attribution pour les sources CC BY et CC BY-SA, partage à
 l'identique pour les organes modélisés, citation demandée pour l'atlas cérébral CC0.

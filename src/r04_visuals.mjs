@@ -1,4 +1,4 @@
-// PRMR R04 native Canvas 3D: mouse/touch rotation. No external 3D runtime.
+// PRMR R04 native Canvas 3D: pointer/touch rotation. No external 3D runtime.
 // Molecules use true RDKit/ETKDG/MMFF conformer coordinates, not PK measurements.
 // Anatomical scenes are conceptual geometries, not volumetric clinical imaging.
 const PALETTE={C:"#a8c3d2",O:"#ff7e85",N:"#72aaff",Cl:"#76dc95",S:"#f8cd76",P:"#ebc87a",H:"#eff9ff"};
@@ -48,8 +48,8 @@ function body(species,renal,hepatic){
  // Species-specific procedural 3D educational sculpture, NOT anatomical reconstruction.
  const kidneyColour=renal==="severe"?"#ff687b":renal==="moderate"?"#ffc17b":"#66f7da";
  const liverColour=hepatic==="severe"?"#f15e76":hepatic==="moderate"?"#f4b471":"#cd8cb4";
- const coat={mouse:"#b2d9d9",rat:"#a7bcc7",pig:"#d9a4ab",dog:"#cba778",nhp:"#947d75",rabbit:"#e4ced0"}[species]||"#9dc0c9";
- const details={mouse:"#8ec5c7",rat:"#7996a3",pig:"#e7b3b9",dog:"#8b7053",nhp:"#6c5655",rabbit:"#d7b7bb"}[species]||"#6ac4cc";
+ const coat={dog:"#cba778",cat:"#b9a596"}[species]||"#9dc0c9";
+ const details={dog:"#8b7053",cat:"#8a7a6d"}[species]||"#6ac4cc";
  const atoms=[],bonds=[];
  const add=(x,y,z,sx,sy,sz,colour,res=7)=>atoms.push(...ellipsoid(x,y,z,sx,sy,sz,colour,res));
  const wire=(p,q,steps,color,r=.045)=>{
@@ -60,27 +60,21 @@ function body(species,renal,hepatic){
   }
  };
  const config={
- mouse:{body:[1.38,.62,.53],head:[-.99,.23,.02,.53,.49,.46],nose:-1.48,legs:.72,ear:.42,tail:1.8},
- rat:{body:[1.58,.55,.51],head:[-1.15,.26,0,.53,.42,.43],nose:-1.73,legs:.75,ear:.25,tail:2.1},
- pig:{body:[1.86,.84,.76],head:[-1.55,.21,0,.76,.72,.68],nose:-2.27,legs:.84,ear:.38,tail:.65},
  dog:{body:[1.74,.69,.56],head:[-1.47,.48,0,.62,.65,.49],nose:-2.18,legs:1.14,ear:.48,tail:1.08},
- nhp:{body:[1.18,.78,.61],head:[-1.2,.71,0,.64,.68,.53],nose:-1.7,legs:1.16,ear:.2,tail:1.6},
- rabbit:{body:[1.53,.66,.56],head:[-1.23,.36,0,.54,.55,.46],nose:-1.73,legs:.72,ear:.87,tail:.20}
+ cat:{body:[1.58,.60,.50],head:[-1.33,.42,0,.56,.58,.47],nose:-1.96,legs:.92,ear:.42,tail:1.22}
  }[species]||{body:[1.5,.7,.6],head:[-1,.3,0,.6,.6,.5],nose:-1.7,legs:1,ear:.3,tail:.6};
  add(0,0,0,config.body[0],config.body[1],config.body[2],coat,9);
  const h=config.head;add(...h,details,8);
  // Frontal muzzle and ears, which make each species identifiable in silhouette.
- add(config.nose,.08,.14,species==="pig"?.45:.27,species==="pig"?.30:.20,.28,details,7);
- if(species==="pig")add(config.nose-.25,.10,.14,.1,.2,.34,"#f0a6b1",7);
- if(species==="dog")add(-1.76,.02,.25,.42,.28,.28,"#ede4d0",7);
- if(species==="nhp")add(-1.7,.54,.22,.32,.29,.32,"#bb9b8c",7);
- // Ear pair: long on rabbit, round on mouse/rat, drooping on dog.
- const ears=(species==="rabbit"||species==="dog")?[
+ add(config.nose,.08,.14,.27,.20,.28,details,7);
+  if(species==="dog")add(-1.76,.02,.25,.42,.28,.28,"#ede4d0",7);
+  // Ear pair: drooping on the dog, upright and triangular on the cat.
+ const ears=species==="dog"?[
   [h[0]-.12,h[1]+h[4]+config.ear*.5,.28,.17,config.ear,.18],
   [h[0]+.18,h[1]+h[4]+config.ear*.45,-.25,.15,config.ear*.83,.17]]:
   [[h[0]-.11,h[1]+h[4]+.2,.28,.23,config.ear,.19],
    [h[0]+.25,h[1]+h[4]+.1,-.28,.22,config.ear,.20]];
- ears.forEach(e=>add(...e,species==="pig"?"#e7b2b7":details,7));
+ ears.forEach(e=>add(...e,details,7));
  // Four articulated limbs, species-dependent stride. NHP arms are longer.
  const footY=-config.body[1]-config.legs*.8;
  for(const x of [-1.0,1.1])for(const z of [-.36,.36]){
@@ -88,17 +82,16 @@ function body(species,renal,hepatic){
   add(limbStart[0],(limbStart[1]+limbEnd[1])/2,z,.19,Math.abs(limbStart[1]-limbEnd[1])*.57,.18,details,6);
   add(limbEnd[0],footY-.02,z+.12,.28,.14,.19,details,6);
  }
- // Distinctive curled pig tail, long thin rodent tail, short rabbit tail.
+ // Tail: the dog carries it higher and thicker than the cat.
  const tailStart=[config.body[0]*.94,.20,-.08],base=atoms.length;
- if(species==="rabbit")add(config.body[0]+.10,.15,-.1,.28,.28,.27,"#f2e3e4",8);
- else{
+ {
   const steps=27;
   for(let j=0;j<=steps;j++){
    const t=j/steps;
    const x=tailStart[0]+config.tail*t;
-   const y=species==="pig"?.21+.25*Math.sin(3.2*Math.PI*t):species==="dog"?.2+.74*Math.sin(Math.PI*t):.2+.26*Math.sin(1.4*Math.PI*t);
+   const y=species==="dog"?.2+.74*Math.sin(Math.PI*t):.2+.46*Math.sin(1.1*Math.PI*t);
    const z=-.08+.20*Math.sin(2*Math.PI*t);
-   atoms.push({p:[x,y,z],c:details,r:species==="pig"?.07:.045});
+   atoms.push({p:[x,y,z],c:details,r:.045});
    if(j)bonds.push([base+j-1,base+j,1]);
   }
  }
@@ -110,7 +103,7 @@ function body(species,renal,hepatic){
  wire([-.12,-.15,config.body[2]+.05],[1.27,-.02,config.body[2]+.02],22,"#78ece3",.028);
  return {atoms,bonds,kind:"animal"};
 }
-export function create3D(canvas,{kind="kidney",model=null,species="mouse",renal="normal",hepatic="normal"}={}){
+export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="normal",hepatic="normal"}={}){
  const ctx=canvas.getContext("2d");
  if(!ctx)throw Error("Canvas 2D indisponible");
  let current={kind,model,species,renal,hepatic},yaw=.25,pitch=-.18,dragging=false,lastX=0,lastY=0,raf=0,enabled=true,lastFrame=0,geometryCache=null;

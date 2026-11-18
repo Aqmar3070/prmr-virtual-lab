@@ -106,16 +106,82 @@
         "note": "Conséquence directe : l'aspect réaliste extérieur du chien provient d'une sculpture d'artiste, pas d'une acquisition. Une silhouette sculptée de qualité équivalente pour les autres espèces serait donc aussi légitime que celle du chien, à condition d'être étiquetée de la même façon."
       }
     },
-    "mouse": { "label": "Souris", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false },
-    "rat": { "label": "Rat", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false, "candidate_source": { "name": "3DAnatomicalRatModel, TU Hamburg, Zenodo 10.5281/zenodo.3598649", "license": "CC BY-NC 4.0", "usable": false, "reason": "Licence non commerciale, incompatible avec un usage commercial du laboratoire. À réévaluer si PRMR reste strictement non commercial." } },
-    "pig": { "label": "Porc / miniporc", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false },
-    "rabbit": { "label": "Lapin", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false },
-    "nhp": { "label": "Primate non humain", "organs": "procedural-hypothesis", "body_surface": "procedural-hypothesis", "real_acquisition_available": false }
+    "cat": {
+      "label": "Chat",
+      "overall": "Seconde espèce dont une partie des organes provient d'acquisitions réelles. Pour la recherche rénale, ses organes abdominaux sont mieux couverts que ceux du chien.",
+      "organs": {
+        "kidneys": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chat",
+          "license": "CC BY 4.0"
+        },
+        "liver": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chat",
+          "license": "CC BY 4.0"
+        },
+        "heart": {
+          "fidelity": "illustrative",
+          "origin": "Forme schématique générée par script. Non exacte anatomiquement.",
+          "license": "CC BY-SA 4.0"
+        },
+        "lungs": {
+          "fidelity": "illustrative",
+          "origin": "Forme schématique générée par script. Non exacte anatomiquement.",
+          "license": "CC BY-SA 4.0"
+        },
+        "brain": {
+          "fidelity": "modeled",
+          "origin": "Modélisé d'après des références anatomiques",
+          "license": "CC BY-SA 4.0"
+        },
+        "stomach": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chat",
+          "license": "CC BY 4.0"
+        },
+        "pancreas": {
+          "fidelity": "modeled",
+          "origin": "Modélisé d'après des références anatomiques",
+          "license": "CC BY-SA 4.0"
+        },
+        "spleen": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chat",
+          "license": "CC BY 4.0"
+        },
+        "small-intestine": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chat",
+          "license": "CC BY 4.0"
+        },
+        "urinary-bladder": {
+          "fidelity": "scan",
+          "origin": "Segmentation CT d'un chat",
+          "license": "CC BY 4.0"
+        }
+      },
+      "body_surface": {
+        "fidelity": "modeled",
+        "origin": "Silhouette extérieure sculptée, non issue d'acquisition",
+        "license": "CC BY 4.0"
+      }
+    }
   },
   "upstream_species_checked": {
-    "available_upstream": ["dog", "cat", "cow", "horse"],
-    "needed_by_prmr_and_missing": ["mouse", "rat", "pig", "rabbit", "nhp"],
-    "conclusion": "Les quatre espèces disponibles en amont ne sont pas des modèles précliniques de la recherche rénale PRMR. Les cinq espèces dont PRMR a besoin n'ont pas d'équivalent dans cette source."
+    "available_upstream": [
+      "dog",
+      "cat",
+      "cow",
+      "horse"
+    ],
+    "organ_scan_coverage": {
+      "dog": "reins, foie, cœur",
+      "cat": "reins, foie, rate, estomac, intestin grêle, vessie",
+      "cow": "cœur et pré-estomacs ; reins et foie schématiques",
+      "horse": "cœur seul ; organes abdominaux schématiques"
+    },
+    "conclusion": "Seuls le chien et le chat disposent d'organes abdominaux réellement segmentés. Vache et cheval ont de vrais squelettes mais des organes majoritairement schématiques : les inclure aurait reproduit le défaut que ce retrait corrige."
   },
   "obligations": {
     "attribution": "Les sources CC BY 4.0 et CC BY-SA 4.0 exigent de citer auteur, licence et origine à côté de l'élément affiché.",
@@ -123,5 +189,17 @@
     "cc0_citation": "L'atlas cérébral Cornell est CC0, mais ses auteurs demandent à être cités.",
     "project_level_note": "Le projet vet-atlas se déclare non commercial parce que d'autres de ses sources sont NC ou ND (scan de membre antérieur CC BY-NC-SA, microCT de chat MorphoSource InC-NC). Aucune de ces sources NC/ND n'alimente les deux fichiers importés par PRMR : les organes et la silhouette canine utilisés ici sont CC BY, CC BY-SA ou CC0. L'obligation qui demeure est l'attribution, et le partage à l'identique pour les organes modélisés."
   },
-  "what_real_parity_would_require": "Pour que souris, rat, porc, lapin et primate atteignent la qualité des organes canins, il faudrait, par espèce, un jeu de données d'imagerie (microCT ou IRM) sous licence permissive, sa segmentation par organe, puis un recalage dans un référentiel commun. Sans cela, un maillage photoréaliste produit par PRMR aurait l'apparence d'une acquisition sans en être une : c'est précisément ce que ce registre sert à empêcher."
+  "what_real_parity_would_require": "Pour que souris, rat, porc, lapin et primate atteignent la qualité des organes canins, il faudrait, par espèce, un jeu de données d'imagerie (microCT ou IRM) sous licence permissive, sa segmentation par organe, puis un recalage dans un référentiel commun. Sans cela, un maillage photoréaliste produit par PRMR aurait l'apparence d'une acquisition sans en être une : c'est précisément ce que ce registre sert à empêcher.",
+  "removed_species": {
+    "species": [
+      "mouse",
+      "rat",
+      "pig",
+      "rabbit",
+      "nhp"
+    ],
+    "date": "2026-11-18",
+    "reason": "Aucune imagerie anatomique sous licence utilisable n'existe pour ces cinq espèces. Leurs organes n'étaient que des maillages construits par PRMR, affichés à côté d'un chien issu de scanners : la comparaison entre espèces était donc faussée. Elles ont été retirées plutôt que d'être présentées au même niveau.",
+    "kept_elsewhere": "Souris et rat restent présents dans les couches scientifiques qui reposent sur des publications réelles : les études précliniques R01 et le modèle pharmacocinétique R03. Ce retrait concerne l'atlas anatomique 3D, pas les données publiées."
+  }
 }

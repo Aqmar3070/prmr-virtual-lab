@@ -11,12 +11,8 @@ const n=(tag,txt,cls)=>{let x=document.createElement(tag);if(txt!==undefined)x.t
 const num=(v,d=2)=>Number(v).toLocaleString("fr-FR",{maximumFractionDigits:d,minimumFractionDigits:d});
 const MASS=v=>v<1?num(v*1000,0)+" g":num(v,2)+" kg";
 const LABS={
- mouse:{title:"Modèle mécanistique",remark:"Génétique et mécanismes rénaux : un rein unipapillaire, pas un modèle humain miniaturisé",terms:["Modèles génétiques","Mesures de fibrose","Différences métaboliques"],palette:"teal"},
- rat:{title:"Physiologie longitudinale",remark:"Mesures rénales et hémodynamiques ; la PK reste spécifique du rat",terms:["Suivi de la fonction","Pression & perfusion","Transporteurs"],palette:"blue"},
- pig:{title:"Anatomie translationnelle",remark:"Rein multipapillaire, architecture plus comparable à l’humain ; PK du triple inconnue",terms:["Rein multipapillaire","Perfusion & imagerie","Mesures translationnelles"],palette:"pink"},
  dog:{title:"Toxicologie non-rongeur",remark:"Intérêt de certaines mesures de tolérance, mais physiologie non interchangeable",terms:["Exposition systémique","Toxicité d’organe","Choix justifié"],palette:"gold"},
- nhp:{title:"Pertinence ciblée",remark:"Certaines cibles proches de l’humain ; justification scientifique et éthique exceptionnelle",terms:["Cibles spécialisées","Alternatives prioritaires","Éthique renforcée"],palette:"purple"},
- rabbit:{title:"Modèle complémentaire",remark:"Alternative pour une question ciblée ; aucune supériorité universelle",terms:["Physiologie distincte","Critères spécifiques","Alternatives 3R"],palette:"rose"}
+ cat:{title:"Maladie rénale spontanée",remark:"Maladie rénale chronique fréquente et spontanée chez cette espèce ; ce n’est pas un modèle induit",terms:["Atteinte spontanée","Suivi clinique vétérinaire","Transposition prudente"],palette:"blue"}
 };
 const REGIMEN_LABEL={"R02-DUO":"Irbesartan + Dapagliflozine","R02-A":"Doublet + Pirfénidone","R02-B":"Doublet + Pentoxifylline"};
 function make(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
@@ -87,7 +83,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  large.append(largeTop);
  const profileGrid=make("div","r4-st-profile-body");large.append(profileGrid);
  const portraitPanel=make("div","r5-animal-profile-panel");
- const portrait=make("div","r4-st-portrait");portrait.dataset.species="mouse";portrait.dataset.mode="anatomy";portrait.classList.add("r5-webgl-active");
+ const portrait=make("div","r4-st-portrait");portrait.dataset.species="dog";portrait.dataset.mode="anatomy";portrait.classList.add("r5-webgl-active");
  // Canvas2D anatomy replaces the previous GLB viewer. SVG fallback prevents a blank box.
  const fallbackSvg=document.createElementNS("http://www.w3.org/2000/svg","svg");
  fallbackSvg.setAttribute("class","r8-anatomy-fallback");
@@ -105,7 +101,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  const organToolbar=make("div","r8-organ-switch");
  organToolbar.setAttribute("role","group");organToolbar.setAttribute("aria-label","Organe interne à mettre en évidence");
  const organButtons={};
- const organDescription=make("p","r8-anatomy-note","Vue 3D rotative par espèce. Le chien dispose de surfaces issues de CT modifiées ; les autres espèces présentent des maillages pédagogiques indépendants.");
+ const organDescription=make("p","r8-anatomy-note","Vue 3D rotative par espèce. Chien et chat disposent l'un et l'autre de surfaces issues de CT vétérinaires, modifiées et créditées. L'origine exacte de chaque organe est détaillée plus bas.");
  const organCopy={
   kidneys:"Reins, artères et uretères en 3D. Surlignage éventuel = question biologique, jamais lésion confirmée.",
   heart:"Myocarde et gros vaisseaux modélisés. Interactions hémodynamiques conceptuelles.",
@@ -132,7 +128,7 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
   organButtons[id]=button;organToolbar.append(button);
  }
  portrait.dataset.mode="anatomy";root.dataset.focusOrgan="kidneys";
- const portraitOverlay=make("div","r4-st-portrait-label");portraitOverlay.append(make("strong","r4-st-species-name","Souris"),make("small","r4-st-latin","Mus musculus"));
+ const portraitOverlay=make("div","r4-st-portrait-label");portraitOverlay.append(make("strong","r4-st-species-name","Chien"),make("small","r4-st-latin","Canis lupus familiaris"));
  const sceneOptions=make("div","r09-scene-options");
  const makeToggle=(label,initial,change)=>{
   const button=make("button","r09-scene-toggle",label);button.type="button";
@@ -222,17 +218,22 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
   "Molécules : conformères RDKit. Chien : surfaces vétérinaires CT modifiées et maillages supplétifs. Autres espèces : modèles 3D pédagogiques non validés. Les couleurs d’alerte sont des hypothèses, pas des lésions diagnostiquées.");
  moleculePanel.append(citations);shell.append(moleculePanel);
  root.append(shell);
- renal=createAnatomyViewer(organCanvas,{species:"mouse",organ:"kidneys",isolated:true});
- anatomy=createAnatomyViewer(animalCanvas,{species:"mouse",organ:"kidneys",
+ renal=createAnatomyViewer(organCanvas,{species:"dog",organ:"kidneys",isolated:true});
+ anatomy=createAnatomyViewer(animalCanvas,{species:"dog",organ:"kidneys",
   onOrganPick:id=>{if(organButtons[id])organButtons[id].click()},
   onRender:({species,organ,count,source})=>{
    portrait.dataset.mode="anatomy";portrait.dataset.rendered=String(count);
    portrait.dataset.viewSource=source||"unknown";
-   const isDogScan=source==="canine-CT-derived-hybrid-GLB";
-   sceneLabel.textContent=(isDogScan?"Anatomie canine, surfaces CT modifiées":"MAILLAGES PÉDAGOGIQUES 3D")+" · GLISSER POUR TOURNER · ZOOM";
-   sourceLine.textContent=isDogScan
-    ?"Chien : modèles vétérinaires dérivés de CT (Massey/Cornell/pixelbeaker/Vet Atlas selon pièces), recalés et modifiés. Certaines structures sont schématiques."
-    :"Modèles volumiques 3D par espèce ; non segmentés à partir d’imagerie spécifique et non validés anatomiquement.";
+   // Les deux espèces conservées proviennent de modèles réellement acquis.
+   // L'étiquette « maillages pédagogiques » valait pour les espèces
+   // procédurales, qui ont été retirées du laboratoire.
+   const scanned={"canine-CT-derived-hybrid-GLB":"Chien","feline-CT-derived-hybrid-GLB":"Chat"}[source];
+   sceneLabel.textContent=(scanned?"Anatomie "+(scanned==="Chien"?"canine":"féline")+", surfaces issues de CT":"Chargement du modèle")+" · GLISSER POUR TOURNER · ZOOM";
+   sourceLine.textContent=scanned==="Chien"
+    ?"Chien : modèles vétérinaires dérivés de CT (Massey/Cornell/pixelbeaker/Vet Atlas selon pièces), recalés et modifiés. Reins, foie et cœur sont issus de scanners ; poumons, cerveau et estomac sont modélisés ; pancréas et rate restent schématiques."
+    :scanned==="Chat"
+    ?"Chat : modèles vétérinaires dérivés de CT. Reins, foie, rate, estomac et intestin grêle sont issus de scanners ; cœur et poumons restent schématiques."
+    :"Modèle en cours de chargement.";
   }
  });
  if(!anatomy.supported){

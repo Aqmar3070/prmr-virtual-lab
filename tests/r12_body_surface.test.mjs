@@ -7,7 +7,7 @@ import * as T from "../vendor/three/build/three.module.js";
 const species=Object.keys(SPECIES_ANATOMY);
 
 test("R12 : chaque espèce produit une enveloppe corporelle complète",()=>{
- assert.equal(species.length,6);
+ assert.equal(species.length,2,"chien et chat uniquement");
  for(const id of species){
   const g=buildBodySurface({...SPECIES_ANATOMY[id],id});
   // tronc continu + 4 membres + 4 pieds + 2 oreilles (+ queue si l'espèce en a une)
@@ -45,7 +45,7 @@ test("R12 : les proportions restent propres à chaque espèce",()=>{
   // Un corps d'animal est plus long que haut.
   assert.ok(s.x>s.y,`${id}: tronc plus haut que long`);
  }
- // Le porc est le plus corpulent, la souris le plus petit tronc.
- assert.ok(boxes.pig.hauteur>boxes.mouse.hauteur);
- assert.ok(boxes.rat.longueur>boxes.mouse.longueur);
+ // Le chien est plus grand que le chat dans les trois dimensions.
+ assert.ok(boxes.dog.hauteur>boxes.cat.hauteur);
+ assert.ok(boxes.dog.longueur>boxes.cat.longueur);
 });

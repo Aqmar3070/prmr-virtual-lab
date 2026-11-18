@@ -14,10 +14,21 @@ import {createAnatomyViewer as fallback2D} from "./r08_anatomy.mjs";
 const ORGAN_ORDER=Object.keys(ORGAN_MODES).filter(x=>x!=="all");
 const C=Math.PI;
 const IDs=new Set(ORGAN_ORDER);
+/* Espèces dont l'anatomie provient de modèles réels importés, et non d'une
+   construction procédurale. Les cinq espèces procédurales ont été retirées :
+   seule une anatomie acquise est affichée dans ce laboratoire. */
+export const SCANNED_SPECIES=Object.freeze({
+ dog:{visceral:"./assets/vet3d/dog-visceral.glb",coat:"./assets/vet3d/dog-coat.glb",
+  mode:"canine-CT-derived-hybrid-GLB",
+  scanOrgans:["kidneys","liver","heart"]},
+ cat:{visceral:"./assets/vet3d/cat-visceral.glb",coat:"./assets/vet3d/cat-coat.glb",
+  mode:"feline-CT-derived-hybrid-GLB",
+  scanOrgans:["kidneys","liver","digestive"]}
+});
 function kindFromName(name){
  const n=(name||"").toLowerCase();
  if(/kidney|renal|urinary-bladder/.test(n))return "kidneys";
- if(/heart|aorta|venae-cavae|pulmonary-trunk|pulmonary-veins/.test(n))return "heart";
+ if(/heart|aorta|venae-cavae|great-vessels|pulmonary-trunk|pulmonary-veins/.test(n))return "heart";
  if(/lungs|trachea|thyroid/.test(n))return "lungs";
  if(/liver/.test(n))return "liver";
  if(/brain/.test(n))return "brain";
@@ -33,9 +44,9 @@ function disposeMeshes(root){
   }
  });
 }
-function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRender=null,onOrganPick=null}={}){
+function makeViewer(canvas,{species="dog",organ="kidneys",isolated=false,onRender=null,onOrganPick=null}={}){
  const unsupported={supported:false,isTrue3D:false,set(){},setOrgan(){},setBodyVisible(){},setIsolated(){},setLinksVisible(){},destroy(){},get mode(){return "unavailable"}};
- if(!canvas||!SPECIES_ANATOMY[species])species="mouse";
+ if(!canvas||!SPECIES_ANATOMY[species])species="dog";
  let renderer;
  try{renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance",preserveDrawingBuffer:true})}catch(err){
   const simple=fallback2D(canvas,{species,organ:ORGAN_MODES[organ]&&["kidneys","heart","liver","lungs","all"].includes(organ)?organ:"all",onRender});
@@ -100,7 +111,7 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
   if(box.isEmpty())return;
   const center=box.getCenter(new T.Vector3()),size=box.getSize(new T.Vector3()),radius=Math.max(size.x,size.y,size.z,.1);
   controls.target.copy(center);
-  camera.position.copy(center).add(current==="dog"&&mode==="canine-CT-derived-hybrid-GLB"
+  camera.position.copy(center).add(SCANNED_SPECIES[current]&&mode===SCANNED_SPECIES[current].mode
     ?new T.Vector3(radius*1.62,radius*.56,radius*.48)
     :new T.Vector3(radius*.87,radius*.46,radius*1.44));
   camera.near=Math.max(.01,radius/1000);camera.far=Math.max(100,radius*80);camera.updateProjectionMatrix();
@@ -162,19 +173,20 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
   sourceStatus="EDUCATIONAL_NOT_VALIDATED";
   organVisibility();
  }
- async function dogScanned(token){
+ async function scannedSpecies(token,species){
+  const spec=SCANNED_SPECIES[species];if(!spec)return;
   const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
   const load=url=>new Promise((resolve,reject)=>loader.load(url,resolve,undefined,reject));
   try{
    const [visceral,coat]=await Promise.all([
-    load("./assets/vet3d/dog-visceral.glb"),load("./assets/vet3d/dog-coat.glb")
+    load(spec.visceral),load(spec.coat)
    ]);
-   if(!alive||token!==sceneToken||current!=="dog"){disposeMeshes(visceral.scene);disposeMeshes(coat.scene);return}
+   if(!alive||token!==sceneToken||current!==species){disposeMeshes(visceral.scene);disposeMeshes(coat.scene);return}
    clear();
    // Both GLBs share the original source coordinates: retain their relative registration.
    const raw=new T.Group();raw.add(visceral.scene,coat.scene);
    const coatBox=new T.Box3().setFromObject(coat.scene);
-   if(coatBox.isEmpty())throw new Error("Mauvaise géométrie canine");
+   if(coatBox.isEmpty())throw new Error("Géométrie importée inexploitable pour "+species);
    const center=coatBox.getCenter(new T.Vector3()),size=coatBox.getSize(new T.Vector3());
    const scale=4.65/Math.max(size.x,size.y,size.z,.1);
    raw.scale.setScalar(scale);raw.position.copy(center).multiplyScalar(-scale);
@@ -230,14 +242,14 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
     if(obj.material.length===1)obj.material=obj.material[0];
    });
    ghost=null;dogReal={coat:coat.scene,raw,meshGroups:collected};
-   mode="canine-CT-derived-hybrid-GLB";
+   mode=spec.mode;
    sourceStatus="CT_DERIVED_AND_MODELED_NOT_DIAGNOSTIC";
    canvas.dataset.anatomySource=mode;
    canvas.dataset.anatomyModelFidelity=sourceStatus;
    delete canvas.dataset.anatomyLoadingError;
    // If a subset is absent, preserve an explicitly synthetic placeholder, never mislabel it.
-   const fallbackDog=makeSpeciesGroups("dog");disposeOrganGroup(fallbackDog.body);
-   for(const [id,g]of Object.entries(fallbackDog.organs)){
+   const fallback=makeSpeciesGroups(species);disposeOrganGroup(fallback.body);
+   for(const [id,g]of Object.entries(fallback.organs)){
     if(!organs[id]){g.userData.fallback=true;organs[id]=g;root.add(g)}
     else disposeOrganGroup(g);
    }
@@ -256,7 +268,7 @@ function makeViewer(canvas,{species="mouse",organ="kidneys",isolated=false,onRen
  function setSpecies(id){
   if(!SPECIES_ANATOMY[id])return;
   current=id;canvas.dataset.anatomySpecies=id;const token=++sceneToken;
-  generated(id);if(id==="dog")dogScanned(token);
+  generated(id);if(SCANNED_SPECIES[id])scannedSpecies(token,id);
  }
  function select(id){
   if(!ORGAN_MODES[id])return;

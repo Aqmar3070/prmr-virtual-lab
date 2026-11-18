@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import {existsSync,readFileSync} from "node:fs";
 import {SPECIES_ANATOMY,SPECIES_IDS,ORGAN_IDS,ORGAN_MODES,organAssessment} from "../src/r09_organ_catalog.mjs";
 import {makeSpeciesGroups,disposeOrganGroup} from "../src/r09_organ_geometry.mjs";
-test("R09: 6 species own 7 separately rotatable volumetric 3D organ groups",()=>{
- assert.equal(SPECIES_IDS.length,6);assert.equal(ORGAN_IDS.length,7);
+test("R09 : les espèces conservées possèdent 7 groupes d'organes rotatifs",()=>{
+ assert.equal(SPECIES_IDS.length,2);assert.equal(ORGAN_IDS.length,7);
  assert.equal(Object.keys(ORGAN_MODES).length,8);
  for(const species of SPECIES_IDS){
   const s=makeSpeciesGroups(species);
@@ -20,15 +20,22 @@ test("R09: 6 species own 7 separately rotatable volumetric 3D organ groups",()=>
   disposeOrganGroup(s.body);
  }
 });
-test("R09: species-specific anatomical distinctions are explicit",()=>{
- assert.equal(SPECIES_ANATOMY.rat.gallbladder,false,"Rat has no gallbladder");
- assert.equal(SPECIES_ANATOMY.mouse.gallbladder,true);
- assert.equal(SPECIES_ANATOMY.rabbit.gallbladder,true,"Rabbit has a gallbladder");
- assert.equal(SPECIES_ANATOMY.pig.kidney,"multipapillary");
- assert.equal(SPECIES_ANATOMY.mouse.kidney,"unipapillary");
- for(const x of ["mouse","rat","rabbit"])assert.equal(SPECIES_ANATOMY[x].brain,"smooth");
- assert.equal(SPECIES_ANATOMY.pig.cecum,"spiral-colon");
- assert.equal(SPECIES_ANATOMY.rabbit.cecum,"very-large");
+test("R09 : les distinctions anatomiques entre espèces restent explicites",()=>{
+ // Chien et chat sont les deux seules espèces dont l'anatomie provient de
+ // modèles réellement acquis. Les distinctions comparatives conservées sont
+ // celles de ces deux espèces.
+ assert.deepEqual(Object.keys(SPECIES_ANATOMY),["dog","cat"]);
+ for(const x of ["dog","cat"]){
+  assert.equal(SPECIES_ANATOMY[x].gallbladder,true,x+" possède une vésicule biliaire");
+  assert.equal(SPECIES_ANATOMY[x].kidney,"unipapillary");
+  assert.equal(SPECIES_ANATOMY[x].brain,"folded");
+ }
+ // Lobation pulmonaire : identique chez ces deux carnivores domestiques.
+ assert.equal(SPECIES_ANATOMY.dog.leftLung,3);
+ assert.equal(SPECIES_ANATOMY.dog.rightLung,4);
+ // Le cæcum les sépare : fonctionnel mais réduit chez le chien, vestigial chez le chat.
+ assert.equal(SPECIES_ANATOMY.dog.cecum,"small");
+ assert.equal(SPECIES_ANATOMY.cat.cecum,"vestigial");
 });
 test("R09: all-organ visualization and interest colors never invent confirmed injuries",()=>{
  const x=organAssessment({disease:"diabetic",renal:"severe",hepatic:"moderate"});
