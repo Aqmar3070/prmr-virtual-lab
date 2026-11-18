@@ -257,7 +257,7 @@ function body(sp){
  g.userData={species:sp.id,validation:"outline illustration not anatomically validated"};return g;
 }
 export function makeSpeciesGroups(species){
- const config={...(SPECIES_ANATOMY[species]||SPECIES_ANATOMY.mouse),id:species};
+ const config={...(SPECIES_ANATOMY[species]||SPECIES_ANATOMY.dog),id:species};
  const organs={
   kidneys:kidney(config),heart:heart(config),lungs:lungs(config),
   liver:liver(config),brain:brain(config),digestive:digestive(config),pancreas:pancreas(config)

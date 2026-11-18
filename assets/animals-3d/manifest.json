@@ -1,87 +1,28 @@
 {
-  "version": "R07-1",
-  "created_utc": "2026-11-17",
-  "asset_count": 6,
-  "source": "user approved generated PNGs",
-  "status": "Binaries imported and verified in repository",
-  "is_anatomical": false,
-  "photorelief": true,
-  "manipulation": "WebGL drag 360deg / wheel zoom / double click reset",
-  "disclaimer": "Depth and unseen sides estimated. No morphometric, anatomical or biomedical validation.",
-  "assets": [
-    {
-      "species_id": "mouse",
-      "asset": "assets/animals-3d/mouse.glb",
-      "poster": "assets/animals-photo/mouse.webp",
-      "size_bytes": 344604,
-      "poster_bytes": 17736,
-      "sha256": "a9c687c882c723d407a59ba16ff52569a9ff0983c4378a3ef39832f201cec48b",
-      "format": "GLB glTF 2.0",
-      "texture": "Embedded WebP 512x384",
-      "origin": "PRMR generated 2D animal cutout",
-      "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
-    },
-    {
-      "species_id": "rat",
-      "asset": "assets/animals-3d/rat.glb",
-      "poster": "assets/animals-photo/rat.webp",
-      "size_bytes": 312440,
-      "poster_bytes": 17542,
-      "sha256": "64f06695ca20b70200ad8ef9fbf8189b04bb40b052c0a74dfaf5c21db373d60c",
-      "format": "GLB glTF 2.0",
-      "texture": "Embedded WebP 512x384",
-      "origin": "PRMR generated 2D animal cutout",
-      "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
-    },
-    {
-      "species_id": "pig",
-      "asset": "assets/animals-3d/pig.glb",
-      "poster": "assets/animals-photo/pig.webp",
-      "size_bytes": 438316,
-      "poster_bytes": 18868,
-      "sha256": "dd429a8f5aea61dccd5b679444249376d9a7c0ec53ecc183f55d4bc936bd4605",
-      "format": "GLB glTF 2.0",
-      "texture": "Embedded WebP 512x384",
-      "origin": "PRMR generated 2D animal cutout",
-      "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
-    },
-    {
-      "species_id": "dog",
-      "asset": "assets/animals-3d/dog.glb",
-      "poster": "assets/animals-photo/dog.webp",
-      "size_bytes": 343880,
-      "poster_bytes": 18560,
-      "sha256": "a3dce6cbf1b80be9fb2fec78f578183deff667a634eda766956fc4212d96ed02",
-      "format": "GLB glTF 2.0",
-      "texture": "Embedded WebP 512x384",
-      "origin": "PRMR generated 2D animal cutout",
-      "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
-    },
-    {
-      "species_id": "nhp",
-      "asset": "assets/animals-3d/nhp.glb",
-      "poster": "assets/animals-photo/nhp.webp",
-      "size_bytes": 435844,
-      "poster_bytes": 29636,
-      "sha256": "bf49a8e08a67ccea00d9154c9bb8effb29685144cb2e71175f297e8793cba7e2",
-      "format": "GLB glTF 2.0",
-      "texture": "Embedded WebP 512x384",
-      "origin": "PRMR generated 2D animal cutout",
-      "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
-    },
-    {
-      "species_id": "rabbit",
-      "asset": "assets/animals-3d/rabbit.glb",
-      "poster": "assets/animals-photo/rabbit.webp",
-      "size_bytes": 437268,
-      "poster_bytes": 17724,
-      "sha256": "4644d7fd65d9dd2f99e857d3b99021d2309c012d3f36b50e24ee300ace64474b",
-      "format": "GLB glTF 2.0",
-      "texture": "Embedded WebP 512x384",
-      "origin": "PRMR generated 2D animal cutout",
-      "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
-    }
-  ],
-  "package_zip_sha256": "20fa1c28e92730a31dad545c428d138f05d5d50863cfe83ecd19896575ec9d64",
-  "deployment": "The binary files are committed to the repository; verify GitHub Pages separately"
+ "version": "R07-1",
+ "created_utc": "2026-11-17",
+ "asset_count": 6,
+ "source": "user approved generated PNGs",
+ "status": "Binaries imported and verified in repository",
+ "is_anatomical": false,
+ "photorelief": true,
+ "manipulation": "WebGL drag 360deg / wheel zoom / double click reset",
+ "disclaimer": "Depth and unseen sides estimated. No morphometric, anatomical or biomedical validation.",
+ "assets": [
+  {
+   "species_id": "dog",
+   "asset": "assets/animals-3d/dog.glb",
+   "poster": "assets/animals-photo/dog.webp",
+   "size_bytes": 343880,
+   "poster_bytes": 18560,
+   "sha256": "a3dce6cbf1b80be9fb2fec78f578183deff667a634eda766956fc4212d96ed02",
+   "format": "GLB glTF 2.0",
+   "texture": "Embedded WebP 512x384",
+   "origin": "PRMR generated 2D animal cutout",
+   "geometry": "reconstructed embossed 3D surface from one view; mirrored backside, not anatomical"
+  }
+ ],
+ "package_zip_sha256": "20fa1c28e92730a31dad545c428d138f05d5d50863cfe83ecd19896575ec9d64",
+ "deployment": "The binary files are committed to the repository; verify GitHub Pages separately",
+ "note": "Couche R07 historique. Les espèces sans anatomie réellement acquise ont été retirées du laboratoire ; seul le relief canin subsiste. Ces reliefs ne sont pas anatomiques et ne servent plus à l'interface, remplacée par les modèles R09."
 }

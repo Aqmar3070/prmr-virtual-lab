@@ -55,13 +55,13 @@ function statusChip(kind) {
   return chip;
 }
 
-function dogTable(dog) {
+function dogTable(dog, label = "Chien") {
   const wrap = el("div", "prmr-table-wrap");
   const table = el("table", "prmr-table");
   const caption = el(
     "caption",
     null,
-    "Chien — origine de chaque organe affiché. Seule espèce dont une partie provient d'imagerie."
+    label + " — origine de chaque organe affiché, relevée dans le dépôt source."
   );
   table.append(caption);
 
@@ -108,26 +108,24 @@ export function mountProvenancePanel(hostId, dataUrl = "./research-data/r12_anat
       const intro = el(
         "p",
         null,
-        "Un atlas 3D peut donner à une forme inventée l'autorité d'un scanner. Ce tableau dit, organe par organe, d'où vient ce qui est affiché."
+        "Un atlas 3D peut donner à une forme inventée l'autorité d'un scanner. Ces tableaux disent, organe par organe, d'où vient ce qui est affiché."
       );
       host.append(intro);
-      host.append(dogTable(data.species.dog));
+      host.append(dogTable(data.species.dog, "Chien"));
 
-      const others = el("div", "prmr-evidence prmr-evidence-hypothesis");
-      others.append(el("strong", null, "Les cinq autres espèces"));
-      const names = ["mouse", "rat", "pig", "rabbit", "nhp"]
-        .map(k => data.species[k].label)
-        .join(", ");
-      others.append(
-        el(
-          "p",
-          null,
-          names +
-            " : organes et silhouette construits par PRMR. Ce sont des hypothèses anatomiques pédagogiques, ni scans ni segmentations. " +
-            data.what_real_parity_would_require
-        )
-      );
-      host.append(others);
+      const cat = data.species.cat;
+      if (cat && cat.organs) {
+        host.append(dogTable(cat, "Chat"));
+      }
+
+      const removed = data.removed_species;
+      if (removed) {
+        const note = el("div", "prmr-evidence prmr-evidence-unavailable");
+        note.append(el("strong", null, "Espèces retirées"));
+        note.append(el("p", null, removed.reason));
+        note.append(el("p", null, removed.kept_elsewhere));
+        host.append(note);
+      }
 
       const review = el("p", "prmr-caveat", data.upstream_review_status);
       host.append(review);

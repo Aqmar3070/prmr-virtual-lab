@@ -8,8 +8,11 @@ const atlas=readFileSync(new URL("src/r04_atlas.mjs",base),"utf8");
 const css=readFileSync(new URL("r04-atlas.css",base),"utf8");
 const app=readFileSync(new URL("src/r04_app.mjs",base),"utf8");
 const webgl=readFileSync(new URL("src/r05_animal3d.mjs",base),"utf8");
-test("Six independent SVG animal assets replace every cropped poster",()=>{
- assert.equal(SPECIES_R04.length,6);
+test("Chaque espèce conservée possède son illustration SVG indépendante",()=>{
+ // Deux espèces seulement : celles dont l'anatomie 3D provient de modèles
+ // réellement acquis. Chaque illustration reste un dessin original, sans texte
+ // intégré ni recadrage d'affiche.
+ assert.equal(SPECIES_R04.length,2);
  for(const s of SPECIES_R04){
   const path="assets/animals/"+s.id+".svg";
   assert.equal(ANIMAL_ART[s.id],"./"+path);

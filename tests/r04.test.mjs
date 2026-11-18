@@ -8,8 +8,12 @@ const script=readFileSync(new URL("src/r04_app.mjs",root),"utf8");
 const css=readFileSync(new URL("r04.css",root),"utf8");
 const visual=readFileSync(new URL("src/r04_visuals.mjs",root),"utf8");
 const molecules=JSON.parse(readFileSync(new URL("research-data/r04_molecular_3d.json",root),"utf8"));
-test("Six real-world species categories, independently configurable",()=>{
- assert.deepEqual(SPECIES_R04.map(x=>x.id),["mouse","rat","pig","dog","nhp","rabbit"]);
+test("Seules les espèces à anatomie réellement acquise sont proposées",()=>{
+ // Souris, rat, porc, primate et lapin ont été retirés : leur anatomie 3D
+ // n'était que des maillages construits, aucune imagerie sous licence
+ // utilisable n'existant pour ces espèces. Chien et chat disposent l'un et
+ // l'autre de surfaces issues de scanners.
+ assert.deepEqual(SPECIES_R04.map(x=>x.id),["dog","cat"]);
  for(const s of SPECIES_R04){
   assert.ok(s.source.startsWith("https://"));
   assert.ok(s.ref_kg>=s.min_kg&&s.ref_kg<=s.max_kg);
@@ -35,21 +39,24 @@ test("Renal / hepatic disease and weight drive declared illustrative exposure ch
  assert.ok(severe.active.renal.median>baseline.active.renal.median);
  const severeHep=computeR04({...DEFAULT_R04,hepatic:"severe"});
  assert.equal(severeHep.active.hepatic,null);
- const size=computeR04({...DEFAULT_R04,mass_kg:0.035});
+ const size=computeR04({...DEFAULT_R04,mass_kg:22});
  assert.notEqual(size.mass_factor,1);
  assert.notEqual(size.active.renal.median,severe.active.renal.median);
  const dry=computeR04({...DEFAULT_R04,hydration:"depleted"});
  assert.ok(dry.warnings.some(w=>w.includes("Hypovolémie")));
 });
-test("Species and disease selections visibly change specific contextual outputs",()=>{
- const mouse=computeR04(DEFAULT_R04);
- const pig=computeR04({...DEFAULT_R04,species:"pig",mass_kg:30,disease:"ischemic"});
- assert.equal(mouse.sglt2_occupancy,0.566);
- assert.equal(pig.sglt2_occupancy,null);
- assert.notEqual(mouse.indication.markers,pig.indication.markers);
- assert.notEqual(mouse.species.anatomy,pig.species.anatomy);
- assert.ok(pig.species.anatomy.includes("multipapillaire"));
- assert.equal(computeR04({...DEFAULT_R04,species:"rat",mass_kg:.25}).sglt2_occupancy,0.5);
+test("Le choix d'espèce et de pathologie change bien les sorties contextuelles",()=>{
+ const dog=computeR04(DEFAULT_R04);
+ const cat=computeR04({...DEFAULT_R04,species:"cat",mass_kg:4,disease:"ischemic"});
+ assert.notEqual(dog.indication.markers,cat.indication.markers);
+ assert.notEqual(dog.species.anatomy,cat.species.anatomy);
+ assert.ok(cat.species.anatomy.includes("unipapillaire"));
+ // Conséquence directe du retrait des rongeurs : l'occupation de SGLT2 n'était
+ // calculable que pour la souris et le rat, seules espèces disposant d'une
+ // CI50 publiée. Elle doit donc être déclarée indisponible, jamais estimée.
+ assert.equal(dog.sglt2_occupancy,null);
+ assert.equal(cat.sglt2_occupancy,null);
+ for(const s of SPECIES_R04)assert.equal(s.ic50,null,s.id+" ne doit pas porter de CI50 inventée");
 });
 test("Toxicity cure benefit probability is unknown across all profiles, including NHP",()=>{
  for(const s of SPECIES_R04)for(const renal of Object.keys(OPTIONS.renal))for(const hepatic of Object.keys(OPTIONS.hepatic)){
