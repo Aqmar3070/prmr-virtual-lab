@@ -246,7 +246,13 @@ async function loadReference(sex){
  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
  let gltf=null;
  const tail="anatomy-"+sex+".glb";
- const urls=["https://cdn.jsdelivr.net/npm/open-anatomy-3d@0.1.0/models/"+tail,
+ // La copie versionnée dans le dépôt passe en premier. Les deux sources
+ // distantes restent en secours, mais elles ne décident plus de ce que voit le
+ // visiteur : sur un réseau filtrant le CDN, la page retombait sans le dire sur
+ // la reconstruction procédurale, et un corps d'ellipsoïdes pouvait être pris
+ // pour une anatomie segmentée.
+ const urls=["./assets/human3d/"+tail,
+ "https://cdn.jsdelivr.net/npm/open-anatomy-3d@0.1.0/models/"+tail,
  "https://raw.githubusercontent.com/MervinR07/open-anatomy-3d/main/packages/open-anatomy-3d/models/"+tail];
  for(const url of urls){try{gltf=await loader.loadAsync(url);break}catch(err){console.warn("[PRMR R06] Source de modèle indisponible",url,err)}}
  if(token!==refToken)return;
