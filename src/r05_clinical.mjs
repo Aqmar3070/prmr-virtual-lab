@@ -64,6 +64,11 @@ const key=new T.DirectionalLight(0xfff4e9,3.2);key.position.set(-4,8,6);scene.ad
 const rim=new T.DirectionalLight(0x75d8e3,2.4);rim.position.set(4,2,-6);scene.add(rim);
 const body=new T.Group();scene.add(body);const structures=new T.Group();scene.add(structures);
 const organs={};let chosen="kidneys",isolated=false,shellVisible=true;
+// Une structure est sélectionnée dès le chargement pour alimenter le panneau
+// d'information. Sans ce drapeau, la mise en retrait s'appliquait dès l'ouverture
+// et tout le corps apparaissait estompé : les poumons et les autres organes
+// semblaient absents alors que rien ne les masquait.
+let userPicked=false;
 const mat=(color,opacity=1)=>new T.MeshStandardMaterial({color,metalness:.04,roughness:.62,transparent:opacity<1,opacity,side:T.DoubleSide,depthWrite:opacity>=1});
 function ell(group,x,y,z,sx,sy,sz,color,opacity=1){const mesh=new T.Mesh(new T.SphereGeometry(1,28,18),mat(color,opacity));mesh.position.set(x,y,z);mesh.scale.set(sx,sy,sz);group.add(mesh);return mesh;}
 function tube(group,coords,r,color,opacity=1){const curve=new T.CatmullRomCurve3(coords.map(c=>new T.Vector3(...c)));const m=new T.Mesh(new T.TubeGeometry(curve,Math.max(16,coords.length*9),r,9,false),mat(color,opacity));group.add(m);return m;}
@@ -101,7 +106,7 @@ const vessels=organ("vessels");tube(vessels,[[0,.92,-.15],[.1,.45,-.22],[.05,.05
    initialization » et la zone d'anatomie humaine restait vide. */
 let refModel=null,refGroups=new Map(),refMeshes=[],refCatalog=[],refSex="male",refToken=0;
 let referenceSource="local";
-function select(id){if(!organs[id]&&!refGroups.has(id))return;chosen=id;update();}
+function select(id){if(!organs[id]&&!refGroups.has(id))return;chosen=id;userPicked=true;update();}
 function update(){
  if(refModel){updateReference();return;}
  for(const [id,g]of Object.entries(organs)){g.visible=!isolated||id===chosen;g.traverse(o=>{if(!o.isMesh)return;for(const m of Array.isArray(o.material)?o.material:[o.material]){m.opacity=(id===chosen?1:.30);m.transparent=m.opacity<1;m.depthWrite=m.opacity>=1;}});}
@@ -142,11 +147,12 @@ function installLocalBody(sex){
   g.traverse(mesh=>{
    if(!mesh.isMesh)return;
    const normal=mesh.material,transparent=normal.clone(),highlight=normal.clone();
+   const dimmed=normal.clone();dimmed.transparent=true;dimmed.opacity=.08;dimmed.depthWrite=false;
    transparent.transparent=true;transparent.opacity=.10;transparent.depthWrite=false;
    highlight.transparent=false;highlight.opacity=1;highlight.depthWrite=true;
-   if(highlight.emissive){highlight.emissive.setHex(0x1f9e96);highlight.emissiveIntensity=.4}
+   if(highlight.emissive){highlight.emissive.set(record.color||"#1f9e96").multiplyScalar(.55);highlight.emissiveIntensity=.65}
    mesh.userData.prmrKey=id;
-   refMeshes.push({mesh,rec:record,normal,transparent,highlight});
+   refMeshes.push({mesh,rec:record,normal,transparent,highlight,dimmed});
    if(!refGroups.has(id))refGroups.set(id,[]);
    refGroups.get(id).push(mesh);
   });
@@ -191,7 +197,9 @@ function updateReference(){
  for(const item of refMeshes){
   const picked=item.rec.key===chosen;
   item.mesh.visible=isolated?picked:(refLayers[item.rec.system]===true&&(item.rec.system!=="vessels"||refVesselRoles[/^(vena|veins)/.test(item.rec.key)?"veins":"arteries"]));
-  item.mesh.material=picked?item.highlight:item.rec.system==="skin"?item.transparent:item.normal;
+  item.mesh.material=picked?item.highlight
+   :userPicked&&!isolated?(item.dimmed||item.transparent)
+   :item.rec.system==="skin"?item.transparent:item.normal;
  }
  for(const b of document.querySelectorAll("[data-system-layer]")){
   const on=refLayers[b.dataset.systemLayer];b.setAttribute("aria-pressed",String(on));
@@ -219,9 +227,22 @@ function updateReference(){
 function refSearch(){
  const root=$("structure-list");root.replaceChildren();
  const term=$("structure-search").value.trim().toLowerCase();
+ // Le catalogue décrit 147 structures, mais le modèle chargé n'en contient pas
+ // toutes : dix-neuf d'entre elles — articulations, organes propres à l'autre
+ // sexe — n'ont aucun maillage. Leurs boutons restaient cliquables et ne
+ // faisaient rien, sans que rien n'indique pourquoi.
  for(const r of refCatalog.filter(x=>x.system!=="joints"&&(!x.sex||x.sex===refSex)&&([refLabel(x),x.key,x.system].join(" ").toLowerCase().includes(term))).slice(0,90)){
   const b=document.createElement("button");b.className="structure-chip";b.type="button";b.dataset.structure=r.key;b.textContent=refLabel(r);
-  b.addEventListener("click",()=>{select(r.key);refFocus(r.key)});
+  const present=refGroups.has(r.key);
+  if(!present){
+   b.disabled=true;b.classList.add("structure-chip-absent");
+   b.title="Cette structure est décrite au catalogue mais absente du modèle 3D chargé.";
+  }else{
+   b.addEventListener("click",()=>{select(r.key);refFocus(r.key)});
+   // Pastille de la couleur de l'organe : on retrouve dans la liste la couleur
+   // qu'il prend dans le corps.
+   if(r.color){const dot=document.createElement("i");dot.className="structure-dot";dot.style.background=r.color;b.prepend(dot)}
+  }
   root.append(b);
  }
  updateReference();
@@ -241,8 +262,12 @@ function refFrame(){
 }
 async function loadReference(sex){
  const token=++refToken;refSex=sex;
- installLocalBody(sex);
- status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" visible ; téléchargement des structures de référence en cours…";
+ // Le corps de secours n'est plus affiché pendant le chargement. Il l'était
+ // pour ne pas laisser la zone vide tant que le modèle arrivait du réseau ;
+ // depuis que l'atlas est versionné dans le dépôt, il apparaissait une fraction
+ // de seconde sous sa forme d'ellipsoïdes avant d'être remplacé, ce qui se
+ // lisait comme un défaut d'affichage. Il ne sert désormais qu'en cas d'échec.
+ status.textContent="Chargement de l'atlas anatomique "+(sex==="female"?"féminin":"masculin")+"…";
  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
  let gltf=null;
  const tail="anatomy-"+sex+".glb";
@@ -256,7 +281,7 @@ async function loadReference(sex){
  "https://raw.githubusercontent.com/MervinR07/open-anatomy-3d/main/packages/open-anatomy-3d/models/"+tail];
  for(const url of urls){try{gltf=await loader.loadAsync(url);break}catch(err){console.warn("[PRMR R06] Source de modèle indisponible",url,err)}}
  if(token!==refToken)return;
- if(!gltf){status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" 3D local actif ; modèle anatomique de référence non disponible sur ce réseau. Sélection, rotation et organes restent fonctionnels.";updateReference();return}
+ if(!gltf){installLocalBody(sex);status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" 3D local actif ; modèle anatomique de référence non disponible sur ce réseau. Sélection, rotation et organes restent fonctionnels.";updateReference();return}
  if(refModel)scene.remove(refModel);
  refModel=gltf.scene;referenceSource="reference";scene.add(refModel);refGroups=new Map();refMeshes=[];
  const map=new Map(refCatalog.map(x=>[x.key,x]));
@@ -271,12 +296,23 @@ async function loadReference(sex){
   if(!rec)return;
   const raw=Array.isArray(node.material)?node.material[0]:node.material;
   const normal=(raw||new T.MeshStandardMaterial()).clone();
+  // Le catalogue porte une couleur propre à chaque structure — poumons, cœur,
+  // foie, reins — mais le visualiseur gardait les matières grises du fichier
+  // importé : rien ne permettait d'identifier un organe, et la sélection se
+  // réduisait à un même reflet turquoise pour les 147 structures.
+  if(rec.color&&normal.color)normal.color.set(rec.color);
   if(rec.system==="skin"){normal.transparent=true;normal.opacity=.13;normal.depthWrite=false;normal.side=T.DoubleSide}
   const transparent=normal.clone();transparent.transparent=true;transparent.opacity=rec.system==="skin"?.13:.24;transparent.depthWrite=false;
+  // Mise en retrait : quand une structure est sélectionnée, tout le reste
+  // s'efface au lieu de rester opaque devant elle.
+  const dimmed=normal.clone();dimmed.transparent=true;dimmed.opacity=rec.system==="skin"?.05:rec.system==="organs"?.17:.11;dimmed.depthWrite=false;
   const highlight=normal.clone();highlight.transparent=false;highlight.opacity=1;highlight.depthWrite=true;
-  if(highlight.emissive){highlight.emissive.setHex(0x158a83);highlight.emissiveIntensity=.40}
+  if(highlight.color&&rec.color)highlight.color.set(rec.color).offsetHSL(0,.12,.10);
+  // L'émission reprend la teinte de l'organe : il s'éclaire de sa propre
+  // couleur au lieu d'être repeint d'un turquoise uniforme.
+  if(highlight.emissive){highlight.emissive.set(rec.color||"#1f9e96").multiplyScalar(.55);highlight.emissiveIntensity=.65}
   node.material=normal;node.userData.prmrKey=rec.key;
-  refMeshes.push({mesh:node,rec,normal,transparent,highlight});
+  refMeshes.push({mesh:node,rec,normal,transparent,highlight,dimmed});
   if(!refGroups.has(rec.key))refGroups.set(rec.key,[]);
   refGroups.get(rec.key).push(node);
  });
