@@ -1,5 +1,40 @@
 name: PRMR browser UI smoke
 on:
+  # Ce contrôle ne s'exécutait que sur main. Une refonte de l'interface pouvait
+  # donc le casser sans que rien n'apparaisse avant la fusion : c'est ce qui
+  # s'est produit avec R11, qui a déplacé le poste de travail hors de l'accueil
+  # alors que le test continuait de l'y attendre. Il s'exécute désormais aussi
+  # sur les pull requests, et peut être relancé à la main.
+  #
+  # Les deux listes de chemins sont volontairement identiques : GitHub Actions
+  # n'interprète pas les ancres YAML, une ancre y produit un fichier illisible
+  # et une exécution sans aucune tâche.
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "src/r04_*.mjs"
+      - "src/r05_*.mjs"
+      - "src/r07_*.mjs"
+      - "src/r08_*.mjs"
+      - "src/r09_*.mjs"
+      - "vendor/three/**"
+      - "assets/vet3d/**"
+      - "research-data/r09_*.json"
+      - "tests/r09_*.test.mjs"
+      - "tests/r08_*.test.mjs"
+      - "assets/animals-3d/*.glb"
+      - "assets/animals-photo/*.webp"
+      - "assets/animals/*.svg"
+      - "tests/r04_*.test.mjs"
+      - "r04-atlas.css"
+      - "species-r04.html"
+      - "index.html"
+      - "research.html"
+      - "tests/r04_browser_smoke.cjs"
+      - ".github/workflows/ui-smoke.yml"
+      - "risk-r03.html"
+      - "screening.html"
+      - "preclinical.html"
   push:
     branches: [main]
     paths:
@@ -21,12 +56,12 @@ on:
       - "species-r04.html"
       - "index.html"
       - "research.html"
+      - "tests/r04_browser_smoke.cjs"
+      - ".github/workflows/ui-smoke.yml"
       - "risk-r03.html"
       - "screening.html"
       - "preclinical.html"
-      - "tests/r04_browser_smoke.cjs"
-      - ".github/workflows/ui-smoke.yml"
-  workflow_dispatch:
+
 jobs:
   ui-browser:
     runs-on: ubuntu-24.04
