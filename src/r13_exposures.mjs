@@ -109,6 +109,7 @@ function build(host, data) {
   let durationIndex = 3;
   let weight = 70;
 
+  const layout = el("div", "r13-layout");
   const controls = el("div", "r13-controls");
 
   // Substance
@@ -163,13 +164,12 @@ function build(host, data) {
   weightField.append(weightLabel, weightInput);
   controls.append(weightField);
 
-  host.append(controls);
-
+  const results = el("div", "r13-results");
   const summary = el("div", "r13-summary");
-  host.append(summary);
-
   const findings = el("div", "r13-findings");
-  host.append(findings);
+  results.append(summary, findings);
+  layout.append(controls, results);
+  host.append(layout);
 
   function render() {
     doseRange.min = String(substance.dose_range[0]);
