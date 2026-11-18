@@ -149,13 +149,24 @@ async function ouvrirRubrique(page,selector){
   assert.ok(mobile.card>=125&&mobile.canvas>=250);
   await page.locator("#r4-visual-atlas .r4-st-portrait").scrollIntoViewIfNeeded();
   await page.screenshot({path:"/tmp/prmr-r05-mobile.png",fullPage:false});
+  /* Le poste animal n'est plus embarque en reduction sur R01, R02 et R03 :
+     il vit a l'etape 02. Ces pages doivent porter la passerelle qui y mene,
+     et aucune d'elles ne doit recharger le poste. */
   step="autres modules R01 R02 R03";
   await page.setViewportSize({width:1440,height:900});
   for(const path of ["risk-r03.html","screening.html","preclinical.html"]){
    await page.goto("http://127.0.0.1:4173/"+path+"?v=prmr-r08",{waitUntil:"domcontentloaded"});
-   const selector={"risk-r03.html":"#r5-risk-stage","screening.html":"#r5-screening-stage","preclinical.html":"#r5-preclinical-stage"}[path];
-   await onCanvas(selector+" .r8-anatomy-canvas");
-   assert.equal(await page.locator(selector+" .r4-st-species-card").count(),2);
+   const lien=page.locator('.prmr-handoff a[href="./species-r04.html"]');
+   await lien.first().waitFor({timeout:15000});
+   assert.equal(await page.locator(".r4-st-species-card").count(),0,path+" embarque encore le poste animal");
+   assert.equal(await page.locator(".prmr-tablist").count(),1,path+" doit avoir une seule barre de rubriques");
+  }
+  step="une seule navigation sur l'accueil";
+  await page.goto("http://127.0.0.1:4173/index.html?v=prmr-r08",{waitUntil:"domcontentloaded"});
+  await page.waitForSelector(".prmr-routebar",{timeout:15000});
+  for(const file of ["preclinical.html","species-r04.html","screening.html","risk-r03.html","clinical.html"]){
+   assert.equal(await page.locator('aside.sidebar a[href^="./'+file+'"]').count(),0,
+    "le rail reprend encore "+file+" : la barre du haut la porte deja");
   }
   assert.deepEqual(errors,[],"Browser JS errors: "+errors.join(" | "));
   console.log("PASS PRMR-R09 — True Three.js WebGL, canine licensed CT GLB, 7 independent organ systems, les deux espèces acquises, isolation d'organe, physiological links, mobile and R04 RDKit");
