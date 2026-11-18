@@ -25,7 +25,8 @@ const {chromium}=require("playwright");
   step="poste de travail intégré";
   await page.goto("http://127.0.0.1:4173/research.html?v=prmr-r09",{waitUntil:"domcontentloaded"});
   await page.waitForSelector("#r5-home-stage .r4-st-species-card",{timeout:45000});
-  assert.equal(await page.locator("#r5-home-stage .r4-st-species-card").count(),6);
+  // Deux espèces : celles dont l'anatomie provient de modèles réellement acquis.
+  assert.equal(await page.locator("#r5-home-stage .r4-st-species-card").count(),2);
   assert.equal(await page.locator("#r5-home-stage .r4-st-molecule-card").count(),4);
   assert.equal(await page.locator("#r5-home-stage .r8-organ-button").count(),8);
   assert.equal(await page.locator("#r5-home-stage .r5-animal-static").count(),0,"Former 3D photo should not cover the anatomical grid");
@@ -35,13 +36,13 @@ const {chromium}=require("playwright");
   assert.equal(await page.locator("#r5-home-stage .r8-anatomy-canvas").getAttribute("data-anatomy-engine"),"webgl-three");
   assert.ok(first>0,"WebGL 3D canvas should contain visible pixels");
   await page.screenshot({path:"/tmp/prmr-r05-home-desktop.png",fullPage:false});
-  step="sélection du porc, reins internes";
-  await page.locator("#r5-home-stage button[data-stage-species=pig]").click();
-  await page.waitForFunction(()=>document.querySelector("#r5-home-stage .r8-anatomy-canvas")?.dataset.anatomySpecies==="pig");
-  assert.ok((await page.locator("#r5-home-stage .r4-st-renal-details").innerText()).includes("multipapillaire"));
+  step="sélection du chat, reins internes";
+  await page.locator("#r5-home-stage button[data-stage-species=cat]").click();
+  await page.waitForFunction(()=>document.querySelector("#r5-home-stage .r8-anatomy-canvas")?.dataset.anatomySpecies==="cat");
+  assert.ok((await page.locator("#r5-home-stage .r4-st-renal-details").innerText()).includes("unipapillaire"));
   assert.equal(await page.locator("#r5-home-stage .r8-anatomy-canvas").getAttribute("data-anatomy-organ"),"kidneys");
   await page.locator("#r5-home-stage .r4-st-portrait").scrollIntoViewIfNeeded();
-  await page.screenshot({path:"/tmp/prmr-r05-home-pig-desktop.png",fullPage:false});
+  await page.screenshot({path:"/tmp/prmr-r05-home-cat-desktop.png",fullPage:false});
   step="switch coeur / foie / poumons / tous";
   const root="#r5-home-stage",scene=root+" .r8-anatomy-canvas";
   let previous=await hash(scene);
@@ -91,7 +92,7 @@ const {chromium}=require("playwright");
   await page.goto("http://127.0.0.1:4173/species-r04.html?v=prmr-r08",{waitUntil:"domcontentloaded"});
   await page.waitForSelector("#r4-visual-atlas .r8-anatomy-canvas",{timeout:45000});
   await onCanvas("#r4-visual-atlas .r8-anatomy-canvas");await onCanvas("#r4-body-3d");
-  for(const name of ["mouse","rat","pig","dog","nhp","rabbit"]){
+  for(const name of ["dog","cat"]){
    await page.locator('#r4-visual-atlas button[data-stage-species="'+name+'"]').click();
    await page.waitForFunction(id=>document.querySelector("#r4-visual-atlas .r8-anatomy-canvas")?.dataset.anatomySpecies===id,name);
    await page.waitForFunction(id=>document.querySelector("#r4-body-3d")?.dataset.anatomySpecies===id,name);
@@ -134,10 +135,10 @@ const {chromium}=require("playwright");
    await page.goto("http://127.0.0.1:4173/"+path+"?v=prmr-r08",{waitUntil:"domcontentloaded"});
    const selector={"risk-r03.html":"#r5-risk-stage","screening.html":"#r5-screening-stage","preclinical.html":"#r5-preclinical-stage"}[path];
    await onCanvas(selector+" .r8-anatomy-canvas");
-   assert.equal(await page.locator(selector+" .r4-st-species-card").count(),6);
+   assert.equal(await page.locator(selector+" .r4-st-species-card").count(),2);
   }
   assert.deepEqual(errors,[],"Browser JS errors: "+errors.join(" | "));
-  console.log("PASS PRMR-R09 — True Three.js WebGL, canine licensed CT GLB, 7 independent organ systems, all six species, organ isolation, physiological links, mobile and R04 RDKit");
+  console.log("PASS PRMR-R09 — True Three.js WebGL, canine licensed CT GLB, 7 independent organ systems, les deux espèces acquises, isolation d'organe, physiological links, mobile and R04 RDKit");
  }catch(err){
   console.error("PRMR R09 browser failure — "+step+": "+(err.stack||err));
   try{await page.screenshot({path:"/tmp/prmr-ui-error.png",fullPage:false})}catch{}
