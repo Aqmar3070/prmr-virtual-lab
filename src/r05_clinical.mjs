@@ -262,8 +262,12 @@ function refFrame(){
 }
 async function loadReference(sex){
  const token=++refToken;refSex=sex;
- installLocalBody(sex);
- status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" visible ; téléchargement des structures de référence en cours…";
+ // Le corps de secours n'est plus affiché pendant le chargement. Il l'était
+ // pour ne pas laisser la zone vide tant que le modèle arrivait du réseau ;
+ // depuis que l'atlas est versionné dans le dépôt, il apparaissait une fraction
+ // de seconde sous sa forme d'ellipsoïdes avant d'être remplacé, ce qui se
+ // lisait comme un défaut d'affichage. Il ne sert désormais qu'en cas d'échec.
+ status.textContent="Chargement de l'atlas anatomique "+(sex==="female"?"féminin":"masculin")+"…";
  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
  let gltf=null;
  const tail="anatomy-"+sex+".glb";
@@ -277,7 +281,7 @@ async function loadReference(sex){
  "https://raw.githubusercontent.com/MervinR07/open-anatomy-3d/main/packages/open-anatomy-3d/models/"+tail];
  for(const url of urls){try{gltf=await loader.loadAsync(url);break}catch(err){console.warn("[PRMR R06] Source de modèle indisponible",url,err)}}
  if(token!==refToken)return;
- if(!gltf){status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" 3D local actif ; modèle anatomique de référence non disponible sur ce réseau. Sélection, rotation et organes restent fonctionnels.";updateReference();return}
+ if(!gltf){installLocalBody(sex);status.textContent="Corps "+(sex==="female"?"féminin":"masculin")+" 3D local actif ; modèle anatomique de référence non disponible sur ce réseau. Sélection, rotation et organes restent fonctionnels.";updateReference();return}
  if(refModel)scene.remove(refModel);
  refModel=gltf.scene;referenceSource="reference";scene.add(refModel);refGroups=new Map();refMeshes=[];
  const map=new Map(refCatalog.map(x=>[x.key,x]));
