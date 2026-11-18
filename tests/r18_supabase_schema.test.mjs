@@ -62,3 +62,29 @@ test("aucune clé privilégiée n'est versionnée", () => {
       fichier + " : une clé service_role contournerait toutes les règles de sécurité");
   }
 });
+
+test("les index viennent après la mise à niveau des colonnes", () => {
+  /* Sur une base où les tables existaient déjà sans ces colonnes, l'index se
+     créait avant que la colonne ait été ajoutée, et tout le script s'arrêtait
+     sur « column owner_id does not exist ». */
+  const miseANiveau = sql.indexOf("add column if not exists owner_id");
+  const premierIndex = sql.indexOf("create index if not exists");
+  assert.ok(miseANiveau > 0, "la mise à niveau des colonnes doit exister");
+  assert.ok(premierIndex > miseANiveau,
+    "un index sur une colonne ajoutée par le script doit venir après son ajout");
+});
+
+test("le script ne demande aucun droit qu'un éditeur SQL n'a pas", () => {
+  assert.ok(!/create extension/i.test(sql),
+    "installer une extension demande des droits que l'éditeur n'a pas toujours");
+  assert.ok(!/\bdo\s+\$\$/.test(sql),
+    "un bloc dynamique imbrique des chaînes entre dollars qu'un éditeur web peut tronquer");
+});
+
+test("une table déjà présente est complétée, jamais recréée", () => {
+  for (const table of TABLES) {
+    assert.match(sql, new RegExp("create table if not exists public\\." + table));
+  }
+  assert.ok(!/drop table/i.test(sql), "aucune table ne doit être supprimée");
+  assert.ok(!/alter table [^\n]+ drop column/i.test(sql), "aucune colonne ne doit être supprimée");
+});

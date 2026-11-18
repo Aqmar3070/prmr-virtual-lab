@@ -41,9 +41,15 @@ comptes distincts.
 bash supabase/verifier_securite.sh
 ```
 
-Il échoue si le propriétaire ne retrouve pas ses données, si un autre compte
-en voit la moindre, ou si un compte parvient à créer un projet au nom d'un
-autre. Il ne touche à aucune base distante.
+Il éprouve les deux situations qui comptent : une base neuve, et une base où
+les tables existent déjà mais incomplètes — le cas réel, puisque l'espace
+privé fonctionne depuis des mois. C'est cette seconde situation qui faisait
+échouer la première version du script : les index se créaient avant que les
+colonnes manquantes aient été ajoutées.
+
+Il échoue si la migration ne passe pas, si le propriétaire ne retrouve pas ses
+données, si un autre compte en voit la moindre, ou si un compte parvient à
+créer un projet au nom d'un autre. Il ne touche à aucune base distante.
 
 ## Clés
 

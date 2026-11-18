@@ -26,17 +26,35 @@ trap nettoyer EXIT
 su postgres -c "$BIN/initdb -D $DONNEES -U postgres" >/dev/null 2>&1
 su postgres -c "$BIN/pg_ctl -D $DONNEES -o '-p $PORT -k /tmp' -l $DONNEES/log start" >/dev/null
 su postgres -c "psql -h /tmp -p $PORT -U postgres -qc 'create database prmr'"
+su postgres -c "psql -h /tmp -p $PORT -U postgres -qc 'create database prmr_neuve'"
 
 # -q et client_min_messages taisent les « NOTICE ... skipping » attendus d'un
 # script réexécutable ; dernier() ne garde que la dernière ligne, car psql
 # imprime aussi les étiquettes SET et INSERT des instructions qui précèdent.
-psql_() { su postgres -c "PGOPTIONS='-c client_min_messages=warning' psql -h /tmp -p $PORT -U postgres -d prmr -v ON_ERROR_STOP=1 -q -tA $*"; }
+BASE=prmr
+psql_() { su postgres -c "PGOPTIONS='-c client_min_messages=warning' psql -h /tmp -p $PORT -U postgres -d $BASE -v ON_ERROR_STOP=1 -q -tA $*"; }
 dernier() { tail -n 1; }
 
 psql_ "-c \"create schema auth;
 create table auth.users (id uuid primary key);
 create function auth.uid() returns uuid language sql stable as \\\$\\\$
   select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid \\\$\\\$;\"" >/dev/null
+BASE=prmr_neuve
+psql_ "-c \"create schema auth;
+create table auth.users (id uuid primary key);
+create function auth.uid() returns uuid language sql stable as \\\$\\\$
+  select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid \\\$\\\$;\"" >/dev/null
+# D'abord une base neuve : le script doit pouvoir partir de rien.
+psql_ "-f $RACINE/supabase/01_schema_et_securite.sql" >/dev/null
+echo "Base neuve : migration appliquée."
+BASE=prmr
+
+# Cas réel : les tables existent déjà, créées autrement et incomplètes.
+# « create table if not exists » les laisse telles quelles, et sans les ajouts
+# de colonnes la création des règles échouerait sur une colonne introuvable.
+psql_ "-c \"create table public.research_projects (id uuid primary key default gen_random_uuid(), title text not null);
+create table public.molecules (id uuid primary key default gen_random_uuid(), project_id uuid references public.research_projects(id) on delete cascade, name text not null);\"" >/dev/null
+echo "Tables préexistantes et incomplètes simulées."
 
 psql_ "-f $RACINE/supabase/01_schema_et_securite.sql" >/dev/null
 echo "Migration appliquée."
