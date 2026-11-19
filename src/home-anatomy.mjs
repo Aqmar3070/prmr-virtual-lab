@@ -69,6 +69,9 @@ async function mount() {
     new ResizeObserver(resize).observe(viewport);
     frame.classList.add("ready");
     status.textContent = "Modèle 3D chargé";
+    import("./home-console-scene.mjs?v=1")
+      .then(({mountConsole}) => mountConsole(frame.closest(".prmr-home"), body))
+      .catch(error => console.warn("Décor 3D indisponible", error));
     viewport.addEventListener("keydown", event => {
       const offset = camera.position.clone().sub(controls.target);
       const polar = new T.Spherical().setFromVector3(offset);

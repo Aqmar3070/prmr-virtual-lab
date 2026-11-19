@@ -105,3 +105,13 @@ body:has(#view-overview:not([hidden])) .main { width: 100%; max-width: none; pad
   .home-panel::before { animation:home-border 6.7s ease-in-out infinite alternate; animation-delay:var(--delay,0s); }
   @keyframes home-border { from {opacity:.7} to {opacity:1} }
 }
+.home-console-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+.home-heading,.home-rail,.home-model,.home-panels .home-panel { z-index:2; }
+.console-depth .home-platform { box-shadow:none; opacity:.6; }
+.console-depth .home-panel::before,.console-depth .home-panel::after { display:none; }
+.console-depth .panel-molecules .panel-art,.console-depth .panel-models .panel-art { visibility:hidden; }
+.console-depth .home-panel:is(:hover,:focus-visible) span { text-shadow:0 0 .6em #60d4f9,0 2px 4px #04121e; }
+@media(forced-colors:active) {
+  .home-console-canvas { display:none; }
+  .home-panel { background:Canvas; border:1px solid LinkText; }
+}
