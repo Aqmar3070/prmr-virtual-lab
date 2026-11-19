@@ -50,7 +50,8 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 .r13-portion-sources{margin:var(--prmr-space-2) 0 0;color:var(--prmr-text-faint)}
 .r13-bodypanel{margin-top:var(--prmr-space-4);padding-top:var(--prmr-space-4);border-top:1px solid var(--prmr-line-soft)}
 .r13-bodymap{display:block;width:100%;max-width:170px;margin:0 auto}
-.r13-bodymap-silhouette{fill:var(--prmr-surface-sunken);stroke:var(--prmr-line);stroke-width:1}
+.r13-bodymap-silhouette{fill:rgba(56,189,220,.07);stroke:rgba(126,214,233,.55);stroke-width:.8;stroke-linejoin:round}
+.r13-bodymap-frame{fill:none;stroke:rgba(126,214,233,.28);stroke-width:.7;stroke-linecap:round}
 .r13-bodymap-organ{fill:var(--prmr-line);stroke:var(--prmr-line-soft);stroke-width:.6;transition:fill .2s}
 .r13-bodymap-organ[data-status]{stroke:none}
 .r13-bodykey{list-style:none;margin:var(--prmr-space-3) 0 0;padding:0;display:flex;flex-direction:column;gap:var(--prmr-space-2);font-size:var(--prmr-size-small);color:var(--prmr-text-muted)}
@@ -58,6 +59,32 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 .r13-bodykey-dot{width:10px;height:10px;border-radius:3px;flex:none}
 .r13-bodylegend{margin:var(--prmr-space-3) 0 0;color:var(--prmr-text-muted)}
 @media(prefers-reduced-motion:reduce){.r13-bodymap-organ{transition:none}}
+/* Console : réglages à gauche, corps au centre, lecture à droite — comme on
+   lit un poste de travail, et non comme on remplit un formulaire. */
+.r13-layout{grid-template-columns:300px minmax(380px,1fr) minmax(340px,440px);gap:var(--prmr-space-5);align-items:start}
+.r13-stage{position:relative;padding:var(--prmr-space-5);border:1px solid var(--prmr-line);
+ border-radius:var(--prmr-radius-panel);
+ background:radial-gradient(ellipse at 50% 42%,rgba(56,189,220,.13),transparent 62%),var(--prmr-surface-sunken)}
+/* Coins marqués : le repère visuel des consoles, obtenu avec des dégradés
+   plutôt qu'avec huit éléments vides. */
+.r13-stage::before,.r13-stage::after{content:"";position:absolute;width:18px;height:18px;pointer-events:none;
+ border-color:var(--prmr-signal);opacity:.7}
+.r13-stage::before{top:8px;left:8px;border-top:2px solid;border-left:2px solid}
+.r13-stage::after{bottom:8px;right:8px;border-bottom:2px solid;border-right:2px solid}
+.r13-readouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:var(--prmr-space-3);
+ margin-bottom:var(--prmr-space-5)}
+.r13-readout{display:flex;flex-direction:column;gap:2px;padding:var(--prmr-space-3);
+ border:1px solid var(--prmr-line-soft);border-radius:var(--prmr-radius-control);background:var(--prmr-surface)}
+.r13-readout-title{color:var(--prmr-text-faint);font-size:var(--prmr-size-micro);text-transform:uppercase;letter-spacing:.08em}
+.r13-readout-value{color:var(--prmr-signal);font-size:1.7rem;line-height:1.05;font-variant-numeric:tabular-nums}
+.r13-readout-unit{color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.r13-stage .r13-bodypanel{margin-top:0;padding-top:0;border-top:0}
+.r13-stage .r13-bodymap{max-width:330px}
+/* La lueur ne décore pas : elle ne s'allume que sur les organes marqués. */
+.r13-bodymap-organ[data-status]{filter:drop-shadow(0 0 7px currentColor)}
+.r13-stage .r13-bodykey{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:var(--prmr-space-4)}
+.r13-stage .r13-bodylegend{text-align:center;max-width:46ch;margin-inline:auto}
+@media(max-width:1180px){.r13-layout{grid-template-columns:1fr 1fr}.r13-stage{grid-column:1/-1;order:-1}}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 </head>

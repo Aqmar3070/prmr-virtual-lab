@@ -36,27 +36,43 @@ export const ORGAN_FILL = Object.freeze({
   reglementaire: "var(--prmr-signal)"
 });
 
-/* Schéma de repérage, vue de face, viewBox 120 × 260. Le corps est fait de
-   formes simples plutôt que d'un tracé unique : une silhouette approximative
-   suffit à situer un organe, et un tracé complexe mal maîtrisé donnait une
-   figure que personne ne reconnaissait. Vue de face : le foie est donc à
-   gauche de l'image, du côté droit de la personne. */
+/* Schéma de repérage, vue de face, viewBox 120 × 260.
+ *
+ * Première version : des rectangles arrondis pour les membres et un bloc pour
+ * le torse. Lisible en vignette, mais une fois la figure mise au centre et
+ * agrandie, elle faisait dessin d'enfant. Les contours sont donc tracés avec
+ * des courbes — épaules, taille, hanches, membres fuselés — et une cage
+ * thoracique et une colonne en filigrane situent les organes sans prétendre
+ * à l'exactitude anatomique : c'est un repère, pas une planche.
+ *
+ * Vue de face : le foie est à gauche de l'image, du côté droit de la personne.
+ */
 const BODY = [
-  ["circle", { cx: 60, cy: 24, r: 15 }],
-  ["rect", { x: 55, y: 36, width: 10, height: 10 }],
-  ["path", { d: "M40 46h40c3 0 5 2 5 5l2 38c0 4-1 8-2 12l-2 32c0 4-2 7-5 7H42c-3 0-5-3-5-7l-2-32c-1-4-2-8-2-12l2-38c0-3 2-5 5-5z" }],
-  ["rect", { x: 23, y: 50, width: 11, height: 80, rx: 5.5 }],
-  ["rect", { x: 86, y: 50, width: 11, height: 80, rx: 5.5 }],
-  ["rect", { x: 45, y: 136, width: 13, height: 100, rx: 6.5 }],
-  ["rect", { x: 62, y: 136, width: 13, height: 100, rx: 6.5 }]
+  ["ellipse", { cx: 60, cy: 22, rx: 11, ry: 14 }],
+  ["path", { d: "M56 34q4 4 8 0l2 10q-10 3-12 0z" }],
+  ["path", { d: "M60 43q13 0 18 6 3 4 3 10l-2 20q-1 8-3 14l-2 8q-1 5-1 10l1 18q0 4-4 4H50q-4 0-4-4l1-18q0-5-1-10l-2-8q-2-6-3-14l-2-20q0-6 3-10 5-6 18-6z" }],
+  ["path", { d: "M43 49q-5 2-6 8l-5 30q-1 7 0 13l2 14q0 3-3 3t-3-3l-3-15q-1-7 0-14l5-30q1-7 7-9z" }],
+  ["path", { d: "M77 49q5 2 6 8l5 30q1 7 0 13l-2 14q0 3 3 3t3-3l3-15q1-7 0-14l-5-30q-1-7-7-9z" }],
+  ["path", { d: "M48 133h11l-1 34q0 9-1 17l-3 36q0 5 0 10 0 3-3.5 3T47 230q0-6 .5-12l2-33q1-10 .5-19z" }],
+  ["path", { d: "M72 133H61l1 34q0 9 1 17l3 36q0 5 0 10 0 3 3.5 3t3.5-3q0-6-.5-12l-2-33q-1-10-.5-19z" }]
+];
+
+/* Cage thoracique et colonne : décor structurant, jamais cliquable. */
+const REPERES = [
+  ["path", { d: "M60 48v85" }],
+  ["path", { d: "M60 57q-7 1-10 8" }], ["path", { d: "M60 57q7 1 10 8" }],
+  ["path", { d: "M60 66q-8 1-12 9" }], ["path", { d: "M60 66q8 1 12 9" }],
+  ["path", { d: "M60 76q-9 1-13 10" }], ["path", { d: "M60 76q9 1 13 10" }],
+  ["path", { d: "M60 86q-8 1-12 9" }], ["path", { d: "M60 86q8 1 12 9" }],
+  ["path", { d: "M48 129h24" }]
 ];
 
 const SHAPES = {
-  brain: "M51 22c0-5 4-9 9-9s9 4 9 9c0 3-1 5-3 6-1 1-3 2-6 2s-5-1-6-2c-2-1-3-3-3-6z",
-  heart: "M55 64c-4-4-10-2-10 4 0 6 6 11 10 14 4-3 10-8 10-14 0-6-6-8-10-4z",
-  liver: "M41 86c9-4 17-3 22 1 1 4-1 9-5 11-6 3-14 2-17-2-2-3-2-8 0-10z",
-  stomach: "M68 85c5 0 9 4 9 9 0 6-4 11-8 12-3 1-5-1-4-4 2-4 3-8 2-10-2-3-3-7 1-7z",
-  kidneys: "M50 105c3 0 5 4 5 9s-2 8-5 8-4-3-4-8 1-9 4-9zm20 0c3 0 4 4 4 9s-1 8-4 8-5-3-5-8 2-9 5-9z"
+  brain: "M52 20q0-6 8-6t8 6q0 4-3 5-2 1-5 1t-5-1q-3-1-3-5z",
+  heart: "M57 62q-4-5-9-1-4 4 0 10 3 5 9 9 6-4 9-9 4-6 0-10-5-4-9 1z",
+  liver: "M46 86q9-4 16 0 2 4 0 8-5 5-12 4-5-1-6-5t2-7z",
+  stomach: "M68 85q5 1 6 6 1 6-3 10-3 3-5 1t0-5q2-4 1-7-2-4 1-5z",
+  kidneys: "M52 103q3 0 3.5 7t-3 7-3.5-7 3-7zm16 0q3 0 3.5 7t-3 7-3.5-7 3-7z"
 };
 
 const node = (name, attrs) => {
@@ -69,7 +85,7 @@ const node = (name, attrs) => {
    fonction de la dose : seule la liste des organes concernés change. */
 export function createBodyMap() {
   const svg = node("svg", {
-    viewBox: "0 0 120 260",
+    viewBox: "0 0 120 250",
     class: "r13-bodymap",
     role: "img",
     focusable: "false"
@@ -79,6 +95,9 @@ export function createBodyMap() {
 
   for (const [tag, attrs] of BODY) {
     svg.append(node(tag, { ...attrs, class: "r13-bodymap-silhouette" }));
+  }
+  for (const [tag, attrs] of REPERES) {
+    svg.append(node(tag, { ...attrs, class: "r13-bodymap-frame" }));
   }
 
   const organs = new Map();
