@@ -332,3 +332,17 @@ button.workflow,
 .r4-st-console .r4-st-organbox {
   margin-top: var(--prmr-space-3);
 }
+
+/* Thin etched tracks follow the lower rim of the instrument panels. */
+:is(.prmr-panel,.r13-stage,.r4-st-panel,.prmr-journey,.prmr-gate,.workflow,.r13-readout)::after {
+  content:"";
+  position:absolute;
+  right:7px; bottom:4px;
+  width:min(34%,130px); height:9px;
+  pointer-events:none; border:0; opacity:.58;
+  background:
+    radial-gradient(circle at 2px 7px,#a0eafd 1px,transparent 1.4px),
+    linear-gradient(#59acca,#59acca) 2px 7px / 28% 1px no-repeat,
+    linear-gradient(135deg,transparent 43%,#69bdd6 46% 54%,transparent 57%) 30% 1px / 7px 7px no-repeat,
+    linear-gradient(#65b1ce,#65b1ce) right 1px / 67% 1px no-repeat;
+}
