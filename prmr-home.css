@@ -1,65 +1,55 @@
+/* The home console uses the approved artwork at its native aspect ratio. */
+body:has(#view-overview:not([hidden])) { display: flex; flex-direction: column; }
+body:has(#view-overview:not([hidden])) .shell { display: block; }
+body:has(#view-overview:not([hidden])) .sidebar { display: none; }
+body:has(#view-overview:not([hidden])) .prmr-routebar { order: 2; position: static; }
+body:has(#view-overview:not([hidden])) .right { display: flex; flex-direction: column; }
+body:has(#view-overview:not([hidden])) .topbar { position: static; order: 2; }
+body:has(#view-overview:not([hidden])) #menu-toggle { display: none; }
+body:has(#view-overview:not([hidden])) .main { width: 100%; max-width: none; padding: 0; }
+#view-overview > :not(.prmr-home) { max-width: 95rem; margin-inline: auto; padding-inline: clamp(1rem,3vw,3rem); }
 #view-overview .prmr-home {
-  color: #eaf9ff;
-  border: 1px solid #36758a;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-block-end: 1.5rem;
-  background: radial-gradient(ellipse at 50% 62%, #0c344c, #051423 70%);
+  position: relative; isolation: isolate; width: 100%; aspect-ratio: 1672/941;
+  background: #031326 url("./assets/home/console.webp") center / 100% 100% no-repeat;
 }
-#view-overview .home-heading {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: .5rem 1rem;
-  padding: 1.25rem clamp(1rem, 3vw, 2.5rem);
-  border-bottom: 1px solid #2a6179;
+.home-hit { position: absolute; left: var(--x); top: var(--y); width: var(--w); height: var(--h); border-radius: .65rem; }
+.home-hit:hover { background-color: #8be8ff15; box-shadow: inset 0 0 1.5rem #59e4ff38; }
+.home-hit:focus-visible, .home-viewport:focus-visible { outline: 3px solid #fff; outline-offset: -4px; }
+.home-heading, .home-hit span {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
 }
-#view-overview .home-heading h1 { margin: 0; color: #f1fbff; font-size: clamp(1.7rem, 3vw, 3rem); }
-#view-overview .home-heading p { margin: 0; color: #8cdcea; }
-#view-overview .home-console {
-  display: grid;
-  grid-template-columns: minmax(0,1fr) minmax(0,.95fr) minmax(0,1fr);
-  grid-template-areas: "step1 anatomy step3" "step2 anatomy step4" "step6 anatomy step5";
-  align-items: center;
-  gap: 1rem;
-  padding: clamp(1rem, 2.5vw, 2rem);
+.home-model { position: absolute; inset: 8.1% 35.35% 20.2% 38.45%; }
+.home-viewport { position: absolute; inset: 0; cursor: grab; touch-action: none; }
+.home-viewport:active { cursor: grabbing; }
+.home-viewport canvas { display: block; width: 100%; height: 100%; position: relative; }
+.home-model.ready::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 84%, #0b4563, #041d31 64%, #031627);
+  clip-path: polygon(36% 0,65% 0,66% 11%,70% 12%,85% 18%,87% 39%,100% 76%,100% 86%,82% 86%,76% 71%,77% 100%,21% 100%,22% 73%,15% 89%,0 89%,0 78%,15% 40%,16% 19%,32% 12%);
 }
-#view-overview .home-anatomy {
-  grid-area: anatomy; width: 100%; height: auto; max-height: 34rem; object-fit: contain;
-  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+.home-model-status { position: absolute; bottom: 1%; left: 50%; transform: translateX(-50%); color: #d3f9ff; background: #021628e8; font-size: .85rem; white-space: nowrap; padding: .2rem .5rem; pointer-events: none; }
+.home-model.ready .home-model-status { display: none; }
+.home-tools, .home-extra { display: flex; flex-wrap: wrap; gap: 1rem; padding-block: .85rem; }
+.home-tools { justify-content: space-between; }
+.home-tools a, .home-extra a { color: #8de9ff; }
+@media (max-width: 720px) {
+  #view-overview .prmr-home { aspect-ratio: auto; background: radial-gradient(ellipse at 50% 20%,#10364c,#031526 43%); padding: 1rem; }
+  .home-heading { position: static; width: auto; height: auto; clip-path: none; white-space: normal; border-bottom: 1px solid #50c9e6; }
+  .home-heading p { color: #8ee8ff; margin: 0; }
+  .home-heading h1 { color: white; margin: .15rem 0 .5rem; font-size: 1.65rem; }
+  .home-rail { display: none; }
+  .home-model { position: relative; inset: auto; margin: .5rem auto; width: min(100%,18rem); height: 18rem; background: url("./assets/prmr-home-anatomy.webp") center / contain no-repeat; }
+  .home-model.ready { background: none; }
+  .home-model.ready::before { display: none; }
+  .home-panels { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); align-items: center; gap: .65rem; }
+  .home-panels .home-hit { position: relative; inset: auto; width: 100%; height: auto; aspect-ratio: var(--ratio); background: url("./assets/home/console.webp") var(--pos) / var(--size) no-repeat; }
+  .home-panels .home-hit:last-child { grid-column: 1/-1; max-width: 29rem; justify-self: center; }
 }
-#view-overview .home-entry {
-  display: grid;
-  align-content: center;
-  gap: .45rem;
-  min-height: 6.5rem;
-  padding: 1rem;
-  color: #f2fbff;
-  text-decoration: none;
-  background: linear-gradient(115deg, #10364c, #081e30);
-  border: 1px solid #397992;
-  border-inline-start: 3px solid #5dd3eb;
-  border-radius: 7px;
+@media (max-width: 480px) {
+  .home-panels { grid-template-columns: 1fr; }
+  .home-panels .home-hit { width: min(100%,23rem); justify-self: center; }
 }
-#view-overview .home-entry strong { color: inherit; font-size: clamp(1rem, 1.6vw, 1.4rem); line-height: 1.2; }
-#view-overview .home-entry span { color: #c0d8e4; font-size: .95rem; line-height: 1.45; }
-#view-overview .home-entry:last-child { border-inline-start-color: #f0b379; }
-#view-overview .home-entry:hover, #view-overview .home-entry:focus-visible { background: #15435b; border-color: #9deaff; }
-#view-overview .home-entry:focus-visible { outline: 3px solid white; outline-offset: 3px; }
-@media (max-width: 900px) {
-  #view-overview .home-console {
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    grid-template-areas: "anatomy step1" "anatomy step2" "step3 step4" "step5 step6";
-    align-items: stretch;
-  }
-  #view-overview .home-anatomy { align-self: center; max-height: 18rem; }
-}
-@media (max-width: 520px) {
-  #view-overview .home-console {
-    grid-template-columns: minmax(0,1fr);
-    grid-template-areas: "anatomy" "step1" "step2" "step3" "step4" "step5" "step6";
-  }
-  #view-overview .home-anatomy { max-height: 13rem; }
-  #view-overview .home-entry { min-height: auto; }
+@media (forced-colors: active) {
+  .home-hit span { position: static; clip-path: none; width: auto; height: auto; }
+  .home-hit { background: Canvas; border: 1px solid LinkText; }
 }

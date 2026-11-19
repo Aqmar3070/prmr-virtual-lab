@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <link rel="stylesheet" href="./prmr-console.css?v=57a9ac70e7">
-<link rel="stylesheet" href="./prmr-home.css?v=1">
+<link rel="stylesheet" href="./prmr-home.css?v=2">
+<script type="module" src="./src/home-anatomy.mjs?v=1"></script>
 </head>
 <body>
 <div class="shell">
@@ -44,28 +45,42 @@
 <main class="main">
 <section class="view" id="view-overview">
  <section class="prmr-home" aria-labelledby="home-title">
-  <header class="home-heading"><h1 id="home-title">Accueil du laboratoire</h1><p>PRMR Virtual Lab</p></header>
-  <nav class="home-console" aria-label="Parcours de recherche et explorateur d’expositions">
-   <img class="home-anatomy" src="./assets/prmr-home-anatomy.webp" width="363" height="654" alt="Illustration anatomique du corps humain, reins en surbrillance">
-   <a class="home-entry" href="./preclinical.html" style="grid-area: step1"><strong>Preuves précliniques</strong><span>Consulter les études, leurs résultats et leurs limites.</span></a>
-   <a class="home-entry" href="./species-r04.html" style="grid-area: step2"><strong>Anatomie comparée</strong><span>Explorer les organes du chien et du chat en 3D.</span></a>
-   <a class="home-entry" href="./screening.html" style="grid-area: step3"><strong>Criblage moléculaire</strong><span>Examiner les structures et associations candidates.</span></a>
-   <a class="home-entry" href="./risk-r03.html" style="grid-area: step4"><strong>Modélisation</strong><span>Étudier les scénarios d’exposition et de sensibilité PK/PD.</span></a>
-   <a class="home-entry" href="./clinical.html?v=r12-20261117" style="grid-area: step5"><strong>Recherche clinique</strong><span>Parcourir l’atlas humain, le néphron et les essais publiés.</span></a>
-   <a class="home-entry" href="./exposures.html" style="grid-area: step6"><strong>Explorer une exposition</strong><span>Choisir une substance, une dose et une durée pour consulter les repères publiés.</span></a>
+  <header class="home-heading"><p>PRMR VIRTUAL LAB</p><h1 id="home-title">Accueil du laboratoire</h1></header>
+  <nav class="home-rail" aria-label="Navigation du laboratoire">
+    <a class="home-hit" style="--x:0.598%;--y:16.472%;--w:12.081%;--h:6.801%" href="./index.html"><span>Accueil</span></a>
+    <a class="home-hit" style="--x:0.598%;--y:24.123%;--w:12.081%;--h:6.801%" href="./preclinical.html"><span>Preuves</span></a>
+    <a class="home-hit" style="--x:0.598%;--y:30.818%;--w:12.081%;--h:6.801%" href="./species-r04.html"><span>Anatomie comparée</span></a>
+    <a class="home-hit" style="--x:0.598%;--y:37.832%;--w:12.081%;--h:6.801%" href="./screening.html"><span>Molécules</span></a>
+    <a class="home-hit" style="--x:0.598%;--y:44.952%;--w:12.081%;--h:6.801%" href="./risk-r03.html"><span>Modélisation</span></a>
+    <a class="home-hit" style="--x:0.598%;--y:50.903%;--w:12.081%;--h:6.801%" href="./clinical.html"><span>Recherche clinique</span></a>
+    <a class="home-hit" style="--x:0.598%;--y:60.786%;--w:12.081%;--h:6.801%" href="./exposures.html"><span>Exposition</span></a>
+  </nav>
+  <div class="home-model" id="home-model" aria-label="Atlas anatomique humain">
+   <div class="home-viewport" tabindex="0" role="group" aria-label="Corps humain en 3D. Glisser pour tourner, pincer pour zoomer. Au clavier, utiliser les flèches, plus, moins et Origine."></div>
+   <span class="home-model-status" role="status">Chargement 3D…</span>
+  </div>
+  <nav class="home-panels" aria-label="Interfaces du laboratoire">
+    <a class="home-hit" style="--x:14.055%;--y:12.327%;--w:25.718%;--h:25.186%;--ratio:430/237;--size:388.837% 397.046%;--pos:18.921% 16.477%" href="./preclinical.html"><span>Preuves</span></a>
+    <a class="home-hit" style="--x:13.935%;--y:38.895%;--w:24.222%;--h:27.099%;--ratio:405/255;--size:412.840% 369.020%;--pos:18.390% 53.353%" href="./species-r04.html"><span>Anatomie comparée</span></a>
+    <a class="home-hit" style="--x:65.431%;--y:7.226%;--w:32.715%;--h:22.848%;--ratio:547/215;--size:305.667% 437.674%;--pos:97.244% 9.366%" href="./screening.html"><span>Molécules</span></a>
+    <a class="home-hit" style="--x:66.986%;--y:30.818%;--w:31.459%;--h:22.423%;--ratio:526/211;--size:317.871% 445.972%;--pos:97.731% 39.726%" href="./risk-r03.html"><span>Modélisation</span></a>
+    <a class="home-hit" style="--x:65.191%;--y:53.348%;--w:33.014%;--h:21.148%;--ratio:552/199;--size:302.899% 472.864%;--pos:97.321% 67.655%" href="./clinical.html"><span>Recherche clinique</span></a>
+    <a class="home-hit" style="--x:30.263%;--y:79.171%;--w:39.474%;--h:13.709%;--ratio:660/129;--size:253.333% 729.457%;--pos:50.000% 91.749%" href="./exposures.html"><span>Explorer une exposition</span></a>
   </nav>
  </section>
+ <div class="home-tools"><a href="#home-workshops">Ateliers de ce poste</a><a href="./assets/human3d/ATTRIBUTION.md">Crédits du modèle 3D</a></div>
  <section aria-label="État du programme">
  <div class="prmr-current-phase"><strong>Position actuelle</strong><span>Phase 5 · Évaluation scientifique humaine</span></div>
  <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
  </section>
- <div class="prmr-secondary"><h2>Ateliers de ce poste</h2><p>Les outils moléculaires et le simulateur restent à portée, sans encombrer le parcours. Les visualisations animales se consultent à l'étape 02.</p></div>
+ <div class="prmr-secondary" id="home-workshops"><h2>Ateliers de ce poste</h2><p>Les outils moléculaires et le simulateur restent à portée, sans encombrer le parcours. Les visualisations animales se consultent à l'étape 02.</p></div>
  <div class="workflow-grid">
   <button class="workflow" data-jump="molecules"><span class="workflow-index">01 / STRUCTURE</span><strong>Atelier moléculaire</strong><p>Entrée SMILES, représentation 2D, descripteurs RDKit et exploration de structures virtuelles.</p><span class="workflow-arrow">Ouvrir l'atelier →</span></button>
   <button class="workflow" data-jump="combinations"><span class="workflow-index">02 / COMPARAISON</span><strong>Comparer deux structures</strong><p>Similarité d'empreintes, propriétés et scénarios pharmacocinétiques indépendants.</p><span class="workflow-arrow">Comparer →</span></button>
   <button class="workflow" data-jump="pkpd"><span class="workflow-index">03 / MODÉLISATION</span><strong>Simulateur PK/PD</strong><p>Concentrations dans le temps, sensibilité paramétrique et export de calculs traçables.</p><span class="workflow-arrow">Simuler →</span></button>
   <button class="workflow" data-jump="data"><span class="workflow-index">04 / DONNÉES</span><strong>Explorer PubChem</strong><p>Retrouver une structure référencée et ses propriétés depuis une API scientifique publique.</p><span class="workflow-arrow">Rechercher →</span></button>
  </div>
+ <nav class="home-extra" aria-label="Autres ateliers"><a href="?view=library">Bibliothèque de structures</a><a href="?view=systems">Atlas physiologique</a><a href="?view=cloud">Espace privé</a><a href="?view=quality">Traçabilité scientifique</a></nav>
  <div class="overview-kpis"><div class="kpi"><span>OUTIL CHIMIQUE</span><strong id="kpi-rdkit">Initialisation</strong><small>RDKit WebAssembly</small></div><div class="kpi"><span>MODÈLE NUMÉRIQUE</span><strong>PK/PD 1C</strong><small>Hypothèses explicites</small></div><div class="kpi"><span>STRUCTURES EN SESSION</span><strong id="kpi-library">0</strong><small>Bibliothèque temporaire</small></div><div class="kpi"><span>DOMAINES BIOLOGIQUES</span><strong>12</strong><small>Atlas de recherche, non simulé</small></div></div>
 </section>
 
