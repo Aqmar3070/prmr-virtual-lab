@@ -1,0 +1,1308 @@
+{
+ "schema": "prmr-atlas-labels-v1",
+ "provenance": {
+  "origine": "Carte produite hors session, livrée par l'utilisateur le 2026-11-19.",
+  "verification": "Les 147 clés ont été recoupées avec research-data/r05_human_anatomy_catalog.json : toutes existent, aucune ne manque, et les 12 coordonnées d'articulations sont identiques au chiffre près.",
+  "ancrages": "Le catalogue ne contient pas de point d'étiquette pour les 135 maillages. Aucune coordonnée n'a été inventée : la carte fournit une règle — dériver le point de la surface visible du maillage réellement chargé.",
+  "statut_textes": "Les intitulés, régions et descriptions fonctionnelles sont des propositions, pas des mesures d'imagerie.",
+  "atlas": "BodyParts3D (DBCLS) et Human Reference Atlas (HuBMAP), via open-anatomy-3d, CC BY 4.0."
+ },
+ "labels": [
+  {
+   "key": "ankle_l",
+   "system": "joints",
+   "fr": "Cheville gauche",
+   "region": "Entre tibia/fibula et tarse côté gauche",
+   "physiologie": "Articulation de flexion plantaire/dorsiflexion",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    0.0877,
+    0.0658,
+    -0.0368
+   ],
+   "ancre_female": [
+    0.129,
+    0.0691,
+    -0.0252
+   ]
+  },
+  {
+   "key": "ankle_r",
+   "system": "joints",
+   "fr": "Cheville droit",
+   "region": "Entre tibia/fibula et tarse côté droit",
+   "physiologie": "Articulation de flexion plantaire/dorsiflexion",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    -0.0867,
+    0.0658,
+    -0.0374
+   ],
+   "ancre_female": [
+    -0.129,
+    0.0691,
+    -0.0252
+   ]
+  },
+  {
+   "key": "elbow_l",
+   "system": "joints",
+   "fr": "Coude gauche",
+   "region": "Entre humérus et avant-bras côté gauche",
+   "physiologie": "Articulation de flexion/extension",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    0.2106,
+    1.1238,
+    -0.0315
+   ],
+   "ancre_female": [
+    0.1899,
+    1.0517,
+    -0.0307
+   ]
+  },
+  {
+   "key": "elbow_r",
+   "system": "joints",
+   "fr": "Coude droit",
+   "region": "Entre humérus et avant-bras côté droit",
+   "physiologie": "Articulation de flexion/extension",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    -0.2098,
+    1.1239,
+    -0.0319
+   ],
+   "ancre_female": [
+    -0.1899,
+    1.0519,
+    -0.0307
+   ]
+  },
+  {
+   "key": "hip_l",
+   "system": "joints",
+   "fr": "Hanche gauche",
+   "region": "Entre acétabulum et tête fémorale côté gauche",
+   "physiologie": "Articulation coxo-fémorale",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    0.0966,
+    0.8944,
+    -0.024
+   ],
+   "ancre_female": [
+    0.096,
+    0.8304,
+    -0.038
+   ]
+  },
+  {
+   "key": "hip_r",
+   "system": "joints",
+   "fr": "Hanche droit",
+   "region": "Entre acétabulum et tête fémorale côté droit",
+   "physiologie": "Articulation coxo-fémorale",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    -0.0948,
+    0.8943,
+    -0.0244
+   ],
+   "ancre_female": [
+    -0.096,
+    0.8305,
+    -0.038
+   ]
+  },
+  {
+   "key": "knee_l",
+   "system": "joints",
+   "fr": "Genou gauche",
+   "region": "Entre fémur et tibia côté gauche",
+   "physiologie": "Articulation portante",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    0.0765,
+    0.4495,
+    -0.025
+   ],
+   "ancre_female": [
+    0.1178,
+    0.4544,
+    -0.0071
+   ]
+  },
+  {
+   "key": "knee_r",
+   "system": "joints",
+   "fr": "Genou droit",
+   "region": "Entre fémur et tibia côté droit",
+   "physiologie": "Articulation portante",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    -0.074,
+    0.4496,
+    -0.025
+   ],
+   "ancre_female": [
+    -0.1178,
+    0.4544,
+    -0.007
+   ]
+  },
+  {
+   "key": "shoulder_l",
+   "system": "joints",
+   "fr": "Épaule gauche",
+   "region": "Entre glène et tête humérale côté gauche",
+   "physiologie": "Articulation gléno-humérale",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    0.1669,
+    1.3958,
+    -0.0212
+   ],
+   "ancre_female": [
+    0.1563,
+    1.2876,
+    -0.0346
+   ]
+  },
+  {
+   "key": "shoulder_r",
+   "system": "joints",
+   "fr": "Épaule droit",
+   "region": "Entre glène et tête humérale côté droit",
+   "physiologie": "Articulation gléno-humérale",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    -0.1648,
+    1.394,
+    -0.0181
+   ],
+   "ancre_female": [
+    -0.1563,
+    1.2878,
+    -0.0346
+   ]
+  },
+  {
+   "key": "wrist_l",
+   "system": "joints",
+   "fr": "Poignet gauche",
+   "region": "Entre avant-bras et carpe côté gauche",
+   "physiologie": "Articulation de la main",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    0.2519,
+    0.8912,
+    0.0137
+   ],
+   "ancre_female": [
+    0.2195,
+    0.8405,
+    -0.0155
+   ]
+  },
+  {
+   "key": "wrist_r",
+   "system": "joints",
+   "fr": "Poignet droit",
+   "region": "Entre avant-bras et carpe côté droit",
+   "physiologie": "Articulation de la main",
+   "ancrage": "catalog_explicit_joint_coordinate",
+   "ancre_male": [
+    -0.2533,
+    0.8911,
+    0.014
+   ],
+   "ancre_female": [
+    -0.2194,
+    0.8404,
+    -0.0155
+   ]
+  },
+  {
+   "key": "abdominal_muscles",
+   "system": "muscles",
+   "fr": "Muscles de la paroi abdominale",
+   "region": "Paroi abdominale antéro-latérale",
+   "physiologie": "Stabilité du tronc et pression abdominale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "back_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles du dos gauche",
+   "region": "Paroi dorsale du tronc côté gauche",
+   "physiologie": "Extension et stabilisation vertébrale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "back_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles du dos droit",
+   "region": "Paroi dorsale du tronc côté droit",
+   "physiologie": "Extension et stabilisation vertébrale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "calf_l",
+   "system": "muscles",
+   "fr": "Muscles du mollet gauche",
+   "region": "Loge postérieure de jambe côté gauche",
+   "physiologie": "Flexion plantaire et locomotion",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "calf_r",
+   "system": "muscles",
+   "fr": "Muscles du mollet droit",
+   "region": "Loge postérieure de jambe côté droit",
+   "physiologie": "Flexion plantaire et locomotion",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "chest_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles pectoraux gauche",
+   "region": "Paroi thoracique antérieure côté gauche",
+   "physiologie": "Mouvement de l’épaule et adduction du bras",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "chest_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles pectoraux droit",
+   "region": "Paroi thoracique antérieure côté droit",
+   "physiologie": "Mouvement de l’épaule et adduction du bras",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "deltoid_l",
+   "system": "muscles",
+   "fr": "Deltoïde gauche",
+   "region": "Épaule latérale côté gauche",
+   "physiologie": "Abduction et mouvement du bras",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "deltoid_r",
+   "system": "muscles",
+   "fr": "Deltoïde droit",
+   "region": "Épaule latérale côté droit",
+   "physiologie": "Abduction et mouvement du bras",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "diaphragm",
+   "system": "muscles",
+   "fr": "Diaphragme",
+   "region": "Séparation thorax–abdomen",
+   "physiologie": "Muscle respiratoire principal",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "foot_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles du pied gauche",
+   "region": "Plante et dos du pied côté gauche",
+   "physiologie": "Stabilité de la marche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "foot_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles du pied droit",
+   "region": "Plante et dos du pied côté droit",
+   "physiologie": "Stabilité de la marche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "forearm_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles de l’avant-bras gauche",
+   "region": "Avant-bras côté gauche",
+   "physiologie": "Flexion/extension du poignet et des doigts",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "forearm_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles de l’avant-bras droit",
+   "region": "Avant-bras côté droit",
+   "physiologie": "Flexion/extension du poignet et des doigts",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "gluteal_l",
+   "system": "muscles",
+   "fr": "Muscles glutéaux gauche",
+   "region": "Région fessière côté gauche",
+   "physiologie": "Extension et stabilisation de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "gluteal_r",
+   "system": "muscles",
+   "fr": "Muscles glutéaux droit",
+   "region": "Région fessière côté droit",
+   "physiologie": "Extension et stabilisation de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "hamstrings_l",
+   "system": "muscles",
+   "fr": "Ischio-jambiers gauche",
+   "region": "Face postérieure de cuisse côté gauche",
+   "physiologie": "Flexion du genou et extension de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "hamstrings_r",
+   "system": "muscles",
+   "fr": "Ischio-jambiers droit",
+   "region": "Face postérieure de cuisse côté droit",
+   "physiologie": "Flexion du genou et extension de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "hand_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles de la main gauche",
+   "region": "Paume et dos de la main côté gauche",
+   "physiologie": "Motricité fine des doigts",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "hand_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles de la main droit",
+   "region": "Paume et dos de la main côté droit",
+   "physiologie": "Motricité fine des doigts",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "iliopsoas_l",
+   "system": "muscles",
+   "fr": "Ilio-psoas gauche",
+   "region": "Bassin profond et face antérieure de hanche côté gauche",
+   "physiologie": "Flexion de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "iliopsoas_r",
+   "system": "muscles",
+   "fr": "Ilio-psoas droit",
+   "region": "Bassin profond et face antérieure de hanche côté droit",
+   "physiologie": "Flexion de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "adductors_l",
+   "system": "muscles",
+   "fr": "Adducteurs gauche",
+   "region": "Face médiale de cuisse côté gauche",
+   "physiologie": "Adduction de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "adductors_r",
+   "system": "muscles",
+   "fr": "Adducteurs droit",
+   "region": "Face médiale de cuisse côté droit",
+   "physiologie": "Adduction de hanche",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "intercostals_l",
+   "system": "muscles",
+   "fr": "Intercostaux gauche",
+   "region": "Espaces intercostaux côté gauche",
+   "physiologie": "Contribution mécanique à la respiration",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "intercostals_r",
+   "system": "muscles",
+   "fr": "Intercostaux droit",
+   "region": "Espaces intercostaux côté droit",
+   "physiologie": "Contribution mécanique à la respiration",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "neck_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles cervicaux gauche",
+   "region": "Région antéro-latérale du cou côté gauche",
+   "physiologie": "Mouvement et stabilité du cou",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "neck_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles cervicaux droit",
+   "region": "Région antéro-latérale du cou côté droit",
+   "physiologie": "Mouvement et stabilité du cou",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "pelvic_floor",
+   "system": "muscles",
+   "fr": "Plancher pelvien",
+   "region": "Sous le bassin",
+   "physiologie": "Soutien viscéral et continence",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "quadriceps_l",
+   "system": "muscles",
+   "fr": "Quadriceps gauche",
+   "region": "Face antérieure de cuisse côté gauche",
+   "physiologie": "Extension du genou",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "quadriceps_r",
+   "system": "muscles",
+   "fr": "Quadriceps droit",
+   "region": "Face antérieure de cuisse côté droit",
+   "physiologie": "Extension du genou",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "rotator_cuff_l",
+   "system": "muscles",
+   "fr": "Coiffe des rotateurs gauche",
+   "region": "Péri-articulaire de l’épaule côté gauche",
+   "physiologie": "Stabilisation gléno-humérale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "rotator_cuff_r",
+   "system": "muscles",
+   "fr": "Coiffe des rotateurs droit",
+   "region": "Péri-articulaire de l’épaule côté droit",
+   "physiologie": "Stabilisation gléno-humérale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "shin_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles de la loge tibiale gauche",
+   "region": "Face antérieure de jambe côté gauche",
+   "physiologie": "Dorsiflexion du pied",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "shin_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles de la loge tibiale droit",
+   "region": "Face antérieure de jambe côté droit",
+   "physiologie": "Dorsiflexion du pied",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "shoulder_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles de la ceinture scapulaire gauche",
+   "region": "Ceinture scapulaire côté gauche",
+   "physiologie": "Stabilisation de l’omoplate",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "shoulder_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles de la ceinture scapulaire droit",
+   "region": "Ceinture scapulaire côté droit",
+   "physiologie": "Stabilisation de l’omoplate",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "trapezius_l",
+   "system": "muscles",
+   "fr": "Trapèze gauche",
+   "region": "Dos supérieur et cou côté gauche",
+   "physiologie": "Positionnement scapulaire et cervical",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "trapezius_r",
+   "system": "muscles",
+   "fr": "Trapèze droit",
+   "region": "Dos supérieur et cou côté droit",
+   "physiologie": "Positionnement scapulaire et cervical",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "upper_arm_muscles_l",
+   "system": "muscles",
+   "fr": "Muscles du bras gauche",
+   "region": "Bras côté gauche",
+   "physiologie": "Flexion/extension du coude",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "upper_arm_muscles_r",
+   "system": "muscles",
+   "fr": "Muscles du bras droit",
+   "region": "Bras côté droit",
+   "physiologie": "Flexion/extension du coude",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "cranial_nerves",
+   "system": "nerves",
+   "fr": "Nerfs crâniens et oculaires",
+   "region": "Tête, base de l’encéphale et orbites",
+   "physiologie": "Transmission sensorielle, motrice et autonome",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "spinal_cord",
+   "system": "nerves",
+   "fr": "Moelle épinière",
+   "region": "Canal vertébral",
+   "physiologie": "Transmission nerveuse et réflexes",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "adrenal_l",
+   "system": "organs",
+   "fr": "Glande surrénale gauche",
+   "region": "Au-dessus du pôle supérieur du rein",
+   "physiologie": "Sécrétion de cortisol, aldostérone et catécholamines",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "adrenal_r",
+   "system": "organs",
+   "fr": "Glande surrénale droit",
+   "region": "Au-dessus du pôle supérieur du rein",
+   "physiologie": "Sécrétion de cortisol, aldostérone et catécholamines",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "appendix",
+   "system": "organs",
+   "fr": "Appendice vermiforme",
+   "region": "Fosse iliaque droite, appendu au cæcum",
+   "physiologie": "Tissu lymphoïde digestif, sans fonction de filtration rénale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "brain",
+   "system": "organs",
+   "fr": "Cerveau",
+   "region": "Cavité crânienne, au-dessus du tronc cérébral",
+   "physiologie": "Fonctions corticales, autonomiques et endocriniennes",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "brainstem",
+   "system": "organs",
+   "fr": "Tronc cérébral",
+   "region": "Base du cerveau, reliant encéphale et moelle",
+   "physiologie": "Contrôle de fonctions végétatives vitales",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "breast_l",
+   "system": "organs",
+   "fr": "Sein et glande mammaire gauche",
+   "region": "Paroi thoracique antérieure",
+   "physiologie": "Tissu glandulaire et adipeux de la glande mammaire",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "breast_r",
+   "system": "organs",
+   "fr": "Sein et glande mammaire droit",
+   "region": "Paroi thoracique antérieure",
+   "physiologie": "Tissu glandulaire et adipeux de la glande mammaire",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "bronchi",
+   "system": "organs",
+   "fr": "Bronches",
+   "region": "À la bifurcation trachéale, dans les deux poumons",
+   "physiologie": "Conduction de l’air vers les voies respiratoires distales",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "cerebellum",
+   "system": "organs",
+   "fr": "Cervelet",
+   "region": "Fosse crânienne postérieure, derrière le tronc",
+   "physiologie": "Coordination motrice et posturale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "esophagus",
+   "system": "organs",
+   "fr": "Œsophage",
+   "region": "En arrière de la trachée, du cou au cardia",
+   "physiologie": "Transport des aliments par péristaltisme",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "eye_l",
+   "system": "organs",
+   "fr": "Œil gauche",
+   "region": "Orbite antérieure du crâne",
+   "physiologie": "Transduction visuelle",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "eye_r",
+   "system": "organs",
+   "fr": "Œil droit",
+   "region": "Orbite antérieure du crâne",
+   "physiologie": "Transduction visuelle",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "fallopian_tubes",
+   "system": "organs",
+   "fr": "Trompes utérines",
+   "region": "Au-dessus des ovaires, de part et d’autre de l’utérus",
+   "physiologie": "Transport ovocytaire",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "gallbladder",
+   "system": "organs",
+   "fr": "Vésicule et voies biliaires",
+   "region": "Sous le foie, face viscérale",
+   "physiologie": "Stockage de bile et drainage biliaire",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "heart",
+   "system": "organs",
+   "fr": "Cœur",
+   "region": "Médiastin, légèrement à gauche de la ligne médiane",
+   "physiologie": "Pompe cardiaque, pression et débit systémique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "kidney_l",
+   "system": "organs",
+   "fr": "Rein gauche",
+   "region": "Rétropéritoine, de part et d’autre de la colonne lombaire",
+   "physiologie": "Filtration glomérulaire, transport tubulaire, homéostasie et fonctions endocrines",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "kidney_r",
+   "system": "organs",
+   "fr": "Rein droit",
+   "region": "Rétropéritoine, de part et d’autre de la colonne lombaire",
+   "physiologie": "Filtration glomérulaire, transport tubulaire, homéostasie et fonctions endocrines",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "colon",
+   "system": "organs",
+   "fr": "Côlon",
+   "region": "Cadre colique périphérique autour des anses grêles",
+   "physiologie": "Transport colique, absorption d’eau et microbiote",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "larynx",
+   "system": "organs",
+   "fr": "Larynx",
+   "region": "Cou antérieur, au-dessus de la trachée",
+   "physiologie": "Voix, protection des voies respiratoires",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "liver",
+   "system": "organs",
+   "fr": "Foie",
+   "region": "Hypocondre droit, sous le diaphragme",
+   "physiologie": "Biotransformation, métabolisme, synthèse et bile",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "lung_l",
+   "system": "organs",
+   "fr": "Poumon gauche",
+   "region": "Cavité thoracique, latéral au médiastin",
+   "physiologie": "Hématose et équilibre acido-basique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "lung_r",
+   "system": "organs",
+   "fr": "Poumon droit",
+   "region": "Cavité thoracique, latéral au médiastin",
+   "physiologie": "Hématose et équilibre acido-basique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "reproductive",
+   "system": "organs",
+   "fr": "Appareil reproducteur masculin",
+   "region": "Pelvis et région génitale, variante masculine",
+   "physiologie": "Fonction reproductive et hormonale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "ovary_l",
+   "system": "organs",
+   "fr": "Ovaire gauche",
+   "region": "Pelvis latéral, voisin de l’utérus",
+   "physiologie": "Fonction gonadique et hormones sexuelles",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "ovary_r",
+   "system": "organs",
+   "fr": "Ovaire droit",
+   "region": "Pelvis latéral, voisin de l’utérus",
+   "physiologie": "Fonction gonadique et hormones sexuelles",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "pancreas",
+   "system": "organs",
+   "fr": "Pancréas",
+   "region": "Rétropéritoine, derrière l’estomac",
+   "physiologie": "Enzymes digestives, insuline et glucagon",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "pharynx",
+   "system": "organs",
+   "fr": "Pharynx",
+   "region": "Carrefour oro- et nasopharyngé, en arrière de la cavité buccale",
+   "physiologie": "Déglutition et passage aérien",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "pituitary",
+   "system": "organs",
+   "fr": "Hypophyse",
+   "region": "Selle turcique, base du cerveau",
+   "physiologie": "Sécrétion d’hormones trophiques",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "prostate",
+   "system": "organs",
+   "fr": "Prostate",
+   "region": "Sous la vessie, autour de l’urètre proximal masculin",
+   "physiologie": "Sécrétion prostatique et rapports uro-génitaux",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "salivary_glands",
+   "system": "organs",
+   "fr": "Glandes salivaires",
+   "region": "Régions parotidienne, sous-mandibulaire et sublinguale",
+   "physiologie": "Sécrétion salivaire",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "small_intestine",
+   "system": "organs",
+   "fr": "Intestin grêle",
+   "region": "Centre de l’abdomen, duodénum–jéjunum–iléon",
+   "physiologie": "Absorption des nutriments, eau et molécules",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "spleen",
+   "system": "organs",
+   "fr": "Rate",
+   "region": "Hypocondre gauche, près de l’estomac",
+   "physiologie": "Filtration sanguine et immunité",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "stomach",
+   "system": "organs",
+   "fr": "Estomac",
+   "region": "Quadrant abdominal supérieur gauche, sous le diaphragme",
+   "physiologie": "Mélange et vidange gastrique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "thymus",
+   "system": "organs",
+   "fr": "Thymus",
+   "region": "Médiastin antérieur et supérieur",
+   "physiologie": "Maturation des lymphocytes T",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "tongue",
+   "system": "organs",
+   "fr": "Langue",
+   "region": "Plancher buccal",
+   "physiologie": "Déglutition, goût et articulation",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "trachea",
+   "system": "organs",
+   "fr": "Trachée",
+   "region": "Cou antérieur et médiastin supérieur",
+   "physiologie": "Conduction aérienne vers bronches",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "ureter_l",
+   "system": "organs",
+   "fr": "Uretère gauche",
+   "region": "Rétropéritoine entre bassinet rénal et vessie",
+   "physiologie": "Transport de l’urine par péristaltisme",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "ureter_r",
+   "system": "organs",
+   "fr": "Uretère droit",
+   "region": "Rétropéritoine entre bassinet rénal et vessie",
+   "physiologie": "Transport de l’urine par péristaltisme",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "bladder",
+   "system": "organs",
+   "fr": "Vessie",
+   "region": "Pelvis, derrière la symphyse pubienne",
+   "physiologie": "Stockage et vidange de l’urine",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "uterus",
+   "system": "organs",
+   "fr": "Utérus",
+   "region": "Centre du petit bassin, entre vessie et rectum",
+   "physiologie": "Gestation et cycle endométrial",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "vagina",
+   "system": "organs",
+   "fr": "Vagin",
+   "region": "Pelvis, entre col utérin et vestibule",
+   "physiologie": "Canal génital",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "spine_cervical",
+   "system": "skeleton",
+   "fr": "Vertèbres cervicales",
+   "region": "Cou",
+   "physiologie": "Support et protection de la moelle",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "clavicle_l",
+   "system": "skeleton",
+   "fr": "Clavicule gauche",
+   "region": "Ceinture scapulaire antérieure côté gauche",
+   "physiologie": "Transmission des forces du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "clavicle_r",
+   "system": "skeleton",
+   "fr": "Clavicule droit",
+   "region": "Ceinture scapulaire antérieure côté droit",
+   "physiologie": "Transmission des forces du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "foot_l",
+   "system": "skeleton",
+   "fr": "Os du pied gauche",
+   "region": "Extrémité distale du membre inférieur côté gauche",
+   "physiologie": "Portance et locomotion",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "foot_r",
+   "system": "skeleton",
+   "fr": "Os du pied droit",
+   "region": "Extrémité distale du membre inférieur côté droit",
+   "physiologie": "Portance et locomotion",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "forearm_l",
+   "system": "skeleton",
+   "fr": "Radius et ulna gauche",
+   "region": "Avant-bras côté gauche",
+   "physiologie": "Levier osseux de la prono-supination",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "forearm_r",
+   "system": "skeleton",
+   "fr": "Radius et ulna droit",
+   "region": "Avant-bras côté droit",
+   "physiologie": "Levier osseux de la prono-supination",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "hand_l",
+   "system": "skeleton",
+   "fr": "Os de la main gauche",
+   "region": "Extrémité distale du membre supérieur côté gauche",
+   "physiologie": "Préhension et motricité",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "hand_r",
+   "system": "skeleton",
+   "fr": "Os de la main droit",
+   "region": "Extrémité distale du membre supérieur côté droit",
+   "physiologie": "Préhension et motricité",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "mandible",
+   "system": "skeleton",
+   "fr": "Mandibule",
+   "region": "Mâchoire inférieure",
+   "physiologie": "Mastication et articulation",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "patella_l",
+   "system": "skeleton",
+   "fr": "Rotule gauche",
+   "region": "Avant du genou côté gauche",
+   "physiologie": "Transmission de force du quadriceps",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "patella_r",
+   "system": "skeleton",
+   "fr": "Rotule droit",
+   "region": "Avant du genou côté droit",
+   "physiologie": "Transmission de force du quadriceps",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "spine_lumbar",
+   "system": "skeleton",
+   "fr": "Vertèbres lombaires",
+   "region": "Bas du dos",
+   "physiologie": "Support et protection neurale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "pelvis",
+   "system": "skeleton",
+   "fr": "Bassin et sacrum",
+   "region": "Ceinture pelvienne",
+   "physiologie": "Support axial et protection viscérale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "ribs_l",
+   "system": "skeleton",
+   "fr": "Côtes gauche",
+   "region": "Paroi thoracique latérale côté gauche",
+   "physiologie": "Protection thoracique et mouvement respiratoire",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "ribs_r",
+   "system": "skeleton",
+   "fr": "Côtes droit",
+   "region": "Paroi thoracique latérale côté droit",
+   "physiologie": "Protection thoracique et mouvement respiratoire",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "lower_leg_l",
+   "system": "skeleton",
+   "fr": "Tibia et fibula gauche",
+   "region": "Jambe côté gauche",
+   "physiologie": "Transmission des charges",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "lower_leg_r",
+   "system": "skeleton",
+   "fr": "Tibia et fibula droit",
+   "region": "Jambe côté droit",
+   "physiologie": "Transmission des charges",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "scapula_l",
+   "system": "skeleton",
+   "fr": "Scapula gauche",
+   "region": "Dos supérieur, ceinture scapulaire côté gauche",
+   "physiologie": "Appui musculaire et mobilité de l’épaule",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "scapula_r",
+   "system": "skeleton",
+   "fr": "Scapula droit",
+   "region": "Dos supérieur, ceinture scapulaire côté droit",
+   "physiologie": "Appui musculaire et mobilité de l’épaule",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "skull",
+   "system": "skeleton",
+   "fr": "Crâne",
+   "region": "Tête",
+   "physiologie": "Protection cérébrale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "sternum",
+   "system": "skeleton",
+   "fr": "Sternum",
+   "region": "Paroi thoracique antérieure",
+   "physiologie": "Protection et insertion costale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "teeth",
+   "system": "skeleton",
+   "fr": "Dents et gencives",
+   "region": "Arcades dentaires",
+   "physiologie": "Mastication",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "femur_l",
+   "system": "skeleton",
+   "fr": "Fémur gauche",
+   "region": "Cuisse côté gauche",
+   "physiologie": "Portance et propulsion",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "femur_r",
+   "system": "skeleton",
+   "fr": "Fémur droit",
+   "region": "Cuisse côté droit",
+   "physiologie": "Portance et propulsion",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "spine_thoracic",
+   "system": "skeleton",
+   "fr": "Vertèbres thoraciques",
+   "region": "Dos thoracique",
+   "physiologie": "Support et protection neurale",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "humerus_l",
+   "system": "skeleton",
+   "fr": "Humérus gauche",
+   "region": "Bras côté gauche",
+   "physiologie": "Levier osseux du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "humerus_r",
+   "system": "skeleton",
+   "fr": "Humérus droit",
+   "region": "Bras côté droit",
+   "physiologie": "Levier osseux du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "skin",
+   "system": "skin",
+   "fr": "Peau / enveloppe corporelle",
+   "region": "Ensemble de la surface corporelle",
+   "physiologie": "Barrière cutanée et thermorégulation",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "aorta",
+   "system": "vessels",
+   "fr": "Aorte",
+   "region": "Du cœur vers la région abdominale",
+   "physiologie": "Distribution sanguine artérielle systémique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_abdomen",
+   "system": "vessels",
+   "fr": "Réseau artériel abdominal",
+   "region": "Abdomen, branches viscérales",
+   "physiologie": "Irrigation des organes abdominaux et des reins",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_thorax",
+   "system": "vessels",
+   "fr": "Réseau artériel thoracique",
+   "region": "Thorax",
+   "physiologie": "Irrigation thoracique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_head",
+   "system": "vessels",
+   "fr": "Artères de la tête et du cou",
+   "region": "Cou et crâne",
+   "physiologie": "Perfusion céphalique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_arm_l",
+   "system": "vessels",
+   "fr": "Artères du bras gauche",
+   "region": "Membre supérieur côté gauche",
+   "physiologie": "Perfusion du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_leg_l",
+   "system": "vessels",
+   "fr": "Artères de la jambe gauche",
+   "region": "Membre inférieur côté gauche",
+   "physiologie": "Perfusion du membre inférieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_pelvis",
+   "system": "vessels",
+   "fr": "Artères pelviennes",
+   "region": "Pelvis",
+   "physiologie": "Perfusion pelvienne",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_arm_r",
+   "system": "vessels",
+   "fr": "Artères du bras droit",
+   "region": "Membre supérieur côté droit",
+   "physiologie": "Perfusion du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "arteries_leg_r",
+   "system": "vessels",
+   "fr": "Artères de la jambe droit",
+   "region": "Membre inférieur côté droit",
+   "physiologie": "Perfusion du membre inférieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "carotid_l",
+   "system": "vessels",
+   "fr": "Artère carotide gauche",
+   "region": "Cou latéral côté gauche",
+   "physiologie": "Perfusion des territoires céphaliques",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "carotid_r",
+   "system": "vessels",
+   "fr": "Artère carotide droit",
+   "region": "Cou latéral côté droit",
+   "physiologie": "Perfusion des territoires céphaliques",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "coronary_arteries",
+   "system": "vessels",
+   "fr": "Artères coronaires",
+   "region": "Surface du cœur",
+   "physiologie": "Perfusion myocardique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "vena_cava_inferior",
+   "system": "vessels",
+   "fr": "Veine cave inférieure",
+   "region": "Abdomen vers atrium droit",
+   "physiologie": "Retour veineux sous-diaphragmatique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "pulmonary_vessels",
+   "system": "vessels",
+   "fr": "Vaisseaux pulmonaires",
+   "region": "Entre cœur et poumons",
+   "physiologie": "Circulation pulmonaire; artères et veines groupées non séparables ici",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "vena_cava_superior",
+   "system": "vessels",
+   "fr": "Veine cave supérieure",
+   "region": "Médiastin supérieur vers atrium droit",
+   "physiologie": "Retour veineux sus-diaphragmatique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "veins_abdomen",
+   "system": "vessels",
+   "fr": "Réseau veineux abdominal",
+   "region": "Abdomen",
+   "physiologie": "Drainage veineux viscéral",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "veins_thorax",
+   "system": "vessels",
+   "fr": "Réseau veineux thoracique",
+   "region": "Thorax",
+   "physiologie": "Retour veineux thoracique",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "veins_arm_l",
+   "system": "vessels",
+   "fr": "Veines du bras gauche",
+   "region": "Membre supérieur côté gauche",
+   "physiologie": "Retour veineux du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "veins_leg_l",
+   "system": "vessels",
+   "fr": "Veines de la jambe gauche",
+   "region": "Membre inférieur côté gauche",
+   "physiologie": "Retour veineux du membre inférieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "veins_pelvis",
+   "system": "vessels",
+   "fr": "Veines du pelvis",
+   "region": "Pelvis",
+   "physiologie": "Drainage veineux pelvien",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "veins_arm_r",
+   "system": "vessels",
+   "fr": "Veines du bras droit",
+   "region": "Membre supérieur côté droit",
+   "physiologie": "Retour veineux du membre supérieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  },
+  {
+   "key": "veins_leg_r",
+   "system": "vessels",
+   "fr": "Veines de la jambe droit",
+   "region": "Membre inférieur côté droit",
+   "physiologie": "Retour veineux du membre inférieur",
+   "ancrage": "derive_from_loaded_mesh_not_provided_by_catalog"
+  }
+ ]
+}

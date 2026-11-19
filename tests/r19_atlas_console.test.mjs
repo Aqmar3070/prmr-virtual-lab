@@ -64,3 +64,45 @@ test("les teintes CSS sont résolues avant d'atteindre WebGL", () => {
   const src = read("src/r13_exposures.mjs");
   assert.match(src, /getComputedStyle\(document\.documentElement\)\.getPropertyValue/);
 });
+
+test("la carte d'étiquettes couvre le catalogue, clé pour clé", () => {
+  /* Carte produite hors session et livrée par l'utilisateur. Elle n'entre
+     dans le dépôt que recoupée : une clé inventée poserait une étiquette sur
+     un organe qui n'existe pas. */
+  const carte = JSON.parse(read("research-data/r19_atlas_labels.json"));
+  const catalogue = JSON.parse(read("research-data/r05_human_anatomy_catalog.json"));
+  const connues = new Set(catalogue.map(e => e.key));
+  assert.equal(carte.labels.length, catalogue.length,
+    "la carte doit couvrir exactement le catalogue");
+  for (const l of carte.labels) {
+    assert.ok(connues.has(l.key), "clé inconnue du catalogue : " + l.key);
+    assert.ok(l.fr && l.region, l.key + " : intitulé ou région manquant");
+  }
+  const vues = new Set(carte.labels.map(l => l.key));
+  for (const e of catalogue) assert.ok(vues.has(e.key), "clé absente de la carte : " + e.key);
+});
+
+test("les coordonnées livrées sont celles du catalogue, pas des inventions", () => {
+  const carte = JSON.parse(read("research-data/r19_atlas_labels.json"));
+  const catalogue = new Map(JSON.parse(read("research-data/r05_human_anatomy_catalog.json")).map(e => [e.key, e]));
+  const avecCoordonnees = carte.labels.filter(l => l.ancre_male);
+  assert.equal(avecCoordonnees.length, 12,
+    "seules les 12 articulations ont un point dans le catalogue ; aucune autre ne doit en recevoir");
+  for (const l of avecCoordonnees) {
+    assert.deepEqual(l.ancre_male, catalogue.get(l.key).anchor, l.key + " : coordonnée divergente");
+    assert.deepEqual(l.ancre_female, catalogue.get(l.key).anchorFemale, l.key + " : coordonnée divergente");
+  }
+  assert.match(carte.provenance.ancrages, /Aucune coordonnée n'a été inventée/);
+});
+
+test("les étiquettes s'écartent au lieu de se recouvrir", () => {
+  /* Posée chacune à la hauteur de son organe, trois organes voisins donnaient
+     trois boîtes empilées au même endroit, dont deux illisibles. */
+  const src = read("src/r13_exposures.mjs");
+  assert.match(src, /colonnes\[point\.x < rect\.width \/ 2 \? "gauche" : "droite"\]/,
+    "les étiquettes doivent se répartir par côté");
+  assert.match(src, /plancher = y \+ h \+ ECART;/,
+    "elles doivent s'écarter verticalement");
+  assert.match(src, /if \(debord > 0\)/,
+    "une pile qui déborde doit être remontée, pas tronquée");
+});

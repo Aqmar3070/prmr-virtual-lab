@@ -141,16 +141,46 @@ export async function mountBodyViewer(canvas, { onStatus } = {}) {
   observer.observe(canvas);
   resize();
 
+  /* Les étiquettes doivent suivre la rotation : l'appelant s'abonne à la
+     boucle plutôt que d'en ouvrir une seconde. */
+  const rappels = [];
   (function boucle() {
     if (disposed) return;
     requestAnimationFrame(boucle);
     controls.update();
     renderer.render(scene, camera);
+    for (const rappel of rappels) rappel();
   })();
 
   onStatus?.(null);
 
+  /* Point d'ancrage d'un organe, en pixels du canevas : le centre de ses
+     maillages projeté à l'écran. Recalculé à chaque appel, puisque le corps
+     tourne. z vaut la profondeur normalisée — au-delà de 1, l'organe est
+     derrière la caméra et son étiquette n'a pas lieu d'être. */
+  const _v = new T.Vector3();
+  const _box = new T.Box3();
+
   return {
+    ancres() {
+      const rect = canvas.getBoundingClientRect();
+      const points = {};
+      for (const [key, meshes] of cibles) {
+        if (!meshes.length) continue;
+        _box.makeEmpty();
+        for (const mesh of meshes) _box.expandByObject(mesh);
+        _box.getCenter(_v);
+        _v.project(camera);
+        points[key] = {
+          x: (_v.x * 0.5 + 0.5) * rect.width,
+          y: (-_v.y * 0.5 + 0.5) * rect.height,
+          visible: _v.z < 1
+        };
+      }
+      return points;
+    },
+    onFrame(callback) { rappels.push(callback); },
+
     /* states : { organKey: "#rrggbb" } — la couleur vient de l'appelant, qui
        seul sait quelle nature de repère a été franchie. */
     setStates(states) {

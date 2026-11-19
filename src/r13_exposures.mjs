@@ -14,8 +14,8 @@
  * vont, puis annonce franchement qu'au-delà rien n'est documenté.
  */
 
-import { createBodyMap, organStates, ORGAN_FILL } from "./r13_body_map.mjs";
-import { mountBodyViewer } from "./r19_body_viewer.mjs";
+import { createBodyMap, organStates, ORGAN_FILL, ORGAN_LABELS } from "./r13_body_map.mjs";
+import { mountBodyViewer, ORGAN_NODES } from "./r19_body_viewer.mjs";
 const el = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -280,7 +280,16 @@ function build(host, data) {
     "Atlas anatomique humain en trois dimensions ; glisser pour tourner, molette pour agrandir");
   canvas3d.tabIndex = 0;
   const chargement = el("p", "prmr-small r13-chargement", "Chargement de l’atlas anatomique…");
-  stage.append(readouts, canvas3d, chargement, bodyPanel);
+  /* Les étiquettes se posent au-dessus du rendu, reliées à leur organe par un
+     trait. Elles vivent en HTML et non dans la scène : le texte reste net à
+     tout niveau de zoom, sélectionnable et lisible par un lecteur d'écran. */
+  const scene3d = el("div", "r13-scene");
+  const calque = el("div", "r13-calque");
+  const traits = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  traits.setAttribute("class", "r13-traits");
+  traits.setAttribute("aria-hidden", "true");
+  scene3d.append(canvas3d, traits, calque);
+  stage.append(readouts, scene3d, chargement, bodyPanel);
   bodyPanel.hidden = true;
 
   /* Les couleurs sont définies en CSS ; WebGL ne sait pas lire var(). */
@@ -290,10 +299,107 @@ function build(host, data) {
     return getComputedStyle(document.documentElement).getPropertyValue(nom[1]).trim() || "#7ed6e9";
   };
 
+  /* Une étiquette par organe allumé : son nom, et le repère qui le concerne.
+     Les traits partent de l'organe et rejoignent la boîte, placée à gauche ou
+     à droite selon le côté où se trouve l'organe à l'écran. */
+  function dessinerEtiquettes(viewer) {
+    const ancres = viewer.ancres();
+    const actifs = Object.keys(etatsCourants);
+    if (calque.childElementCount !== actifs.length) {
+      calque.replaceChildren();
+      traits.replaceChildren();
+      for (const organe of actifs) {
+        const boite = el("div", "r13-etiquette");
+        boite.dataset.organe = organe;
+        const premier = marquesCourantes.find(m => m.organ === organe);
+        const cle = ORGAN_NODES[organe]?.[0];
+        const fiche = intitules[cle];
+        boite.append(el("strong", null, ORGAN_LABELS[organe] || organe));
+        if (fiche?.region) boite.append(el("span", "r13-etiquette-region", fiche.region));
+        if (premier) boite.append(el("span", "r13-etiquette-repere", premier.title));
+        boite.style.borderColor = etatsCourants[organe];
+        calque.append(boite);
+        const trait = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+        trait.setAttribute("stroke", etatsCourants[organe]);
+        traits.append(trait);
+      }
+    }
+    const rect = canvas3d.getBoundingClientRect();
+    traits.setAttribute("viewBox", "0 0 " + rect.width + " " + rect.height);
+
+    /* Posées chacune à la hauteur de son organe, les boîtes se recouvraient :
+       trois organes voisins donnaient trois étiquettes empilées au même
+       endroit. On les répartit par côté, puis on les écarte verticalement en
+       partant de la hauteur souhaitée. */
+    const colonnes = { gauche: [], droite: [] };
+    actifs.forEach((organe, index) => {
+      const point = ancres[organe];
+      const boite = calque.children[index];
+      const trait = traits.children[index];
+      if (!boite) return;
+      if (!point || !point.visible) {
+        boite.hidden = true;
+        if (trait) trait.setAttribute("points", "");
+        return;
+      }
+      boite.hidden = false;
+      colonnes[point.x < rect.width / 2 ? "gauche" : "droite"].push({ organe, point, boite, trait });
+    });
+
+    const ECART = 8;
+    for (const [cote, membres] of Object.entries(colonnes)) {
+      membres.sort((a, b) => a.point.y - b.point.y);
+      let plancher = 4;
+      for (const m of membres) {
+        const h = m.boite.offsetHeight;
+        let y = Math.max(m.point.y - h / 2, plancher);
+        y = Math.min(y, rect.height - h - 4);
+        m.y = y;
+        plancher = y + h + ECART;
+      }
+      /* Si la dernière déborde, on remonte la pile d'autant. */
+      const derniere = membres[membres.length - 1];
+      if (derniere) {
+        const debord = derniere.y + derniere.boite.offsetHeight + 4 - rect.height;
+        if (debord > 0) {
+          let haut = 4;
+          for (const m of membres) {
+            m.y = Math.max(m.y - debord, haut);
+            haut = m.y + m.boite.offsetHeight + ECART;
+          }
+        }
+      }
+      for (const m of membres) {
+        const aGauche = cote === "gauche";
+        const bx = aGauche ? 8 : rect.width - m.boite.offsetWidth - 8;
+        m.boite.style.left = bx + "px";
+        m.boite.style.top = m.y + "px";
+        const ax = aGauche ? bx + m.boite.offsetWidth : bx;
+        const ay = m.y + m.boite.offsetHeight / 2;
+        const coude = aGauche ? ax + 18 : ax - 18;
+        m.trait?.setAttribute("points", [ax, ay, coude, ay, m.point.x, m.point.y].join(" "));
+      }
+    }
+  }
+
   let atlas = null;
   let etatsCourants = {};
+  let marquesCourantes = [];
+  /* Intitulés français et régions : carte vérifiée clé par clé contre le
+     catalogue du dépôt (research-data/r19_atlas_labels.json). */
+  let intitules = {};
+  fetch("./research-data/r19_atlas_labels.json")
+    .then(r => r.json())
+    .then(carte => {
+      for (const l of carte.labels) intitules[l.key] = l;
+    })
+    .catch(() => {});
   mountBodyViewer(canvas3d, { onStatus: m => { chargement.textContent = m || ""; chargement.hidden = !m; } })
-    .then(viewer => { atlas = viewer; viewer.setStates(etatsCourants); })
+    .then(viewer => {
+      atlas = viewer;
+      viewer.setStates(etatsCourants);
+      viewer.onFrame(() => dessinerEtiquettes(viewer));
+    })
     .catch(erreur => {
       console.warn("[PRMR-R13] atlas 3D indisponible :", erreur);
       canvas3d.hidden = true;
@@ -355,6 +461,7 @@ function build(host, data) {
       dfgRange.value = String(dfg);
       band = bands.find(b => dfg >= b.min && (b.max === null || dfg <= b.max)) || null;
     }
+    marquesCourantes = marques;
     const etats = organStates(marques);
     const concernes = bodyMap.update(etats);
     etatsCourants = Object.fromEntries(
