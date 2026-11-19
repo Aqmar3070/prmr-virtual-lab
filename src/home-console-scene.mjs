@@ -26,16 +26,14 @@ export function mountConsole(host, body) {
   const glass = new T.MeshPhysicalMaterial({color:0x051521, metalness:.23, roughness:.23, clearcoat:1, transparent:true, opacity:.91});
   const edge = new T.LineBasicMaterial({color:0xa2f6ff,transparent:true,opacity:.95});
   const engraving=new T.LineBasicMaterial({color:0x72bfd7,transparent:true,opacity:.53,depthWrite:false});
-  const beacons = new T.PointsMaterial({color:0x98eaff,size:2.4,sizeAttenuation:false,transparent:true,opacity:.88});
   const fine = new T.LineBasicMaterial({color:0x4c9fbd,transparent:true,opacity:.50});
-  const bright = new T.MeshBasicMaterial({color:0x90f2ff});
-  const aqua = new T.MeshPhongMaterial({color:0x57c4e7,emissive:0x072c40,shininess:95});
   const glowMap=document.createElement("canvas");glowMap.width=128;glowMap.height=48;
   const ink=glowMap.getContext("2d");ink.scale(128,48);
   const flare=ink.createRadialGradient(.5,.5,0,.5,.5,.5);
   flare.addColorStop(0,"#efffff");flare.addColorStop(.09,"#adffff");flare.addColorStop(.25,"rgba(30,198,255,.60)");flare.addColorStop(1,"rgba(0,132,210,0)");
   ink.fillStyle=flare;ink.fillRect(0,0,1,1);
   const glowMaterial=new T.SpriteMaterial({map:new T.CanvasTexture(glowMap),transparent:true,depthWrite:false,blending:T.AdditiveBlending});
+  const ambientGlow=glowMaterial.clone();ambientGlow.opacity=.33;
   const renal=renalAtlas(body);
   const renalGeometry=new Set();
   renal.model.traverse(node=>{if(node.isMesh)renalGeometry.add(node.geometry);});
@@ -56,10 +54,6 @@ export function mountConsole(host, body) {
     const path=new T.Shape(outline(w,h,0).map(([x,y])=>new T.Vector2(x,y)));
     const geometry=new T.ExtrudeGeometry(path,{depth,bevelEnabled:true,bevelSegments:2,steps:1,bevelSize:1.4,bevelThickness:1.4});
     const mesh=new T.Mesh(geometry,material); mesh.position.z=z; group.add(mesh);
-  }
-  function ring(group,r,t,material,z) {
-    const mesh=new T.Mesh(new T.TorusGeometry(r,t,8,128),material);
-    mesh.position.z=z;group.add(mesh);return mesh;
   }
   function organView(group,w,h) {
     const model=renal.model.clone();
@@ -86,33 +80,65 @@ export function mountConsole(host, body) {
     }
   }
 
+  const floorInk=new T.LineBasicMaterial({color:0x59b6d3,vertexColors:true,transparent:true,opacity:.46,depthWrite:false});
+  const floorLights=new T.PointsMaterial({color:0xabeaff,map:glowMaterial.map,size:5,sizeAttenuation:false,transparent:true,opacity:.75,depthWrite:false,blending:T.AdditiveBlending});
   function floorNetwork(group,w,h) {
-    // Two peripheral meshes leave a clear optical path to the atlas.
-    for(const side of [-1,1]) {
-      const rows=[],points=[],segments=[];
-      for(let j=0;j<4;j++) {
+    const segments=[],colors=[],stars=[];
+    for(const side of [-1,1]){
+      const rows=[];
+      for(let j=0;j<3;j++){
         const row=[];
-        for(let i=0;i<12;i++) {
-          const wave=Math.sin(i*1.57+j*.91)*.017+Math.cos(i*.88-j)*.014;
-          const x=side*w*(.16+i*.035+j*.009);
-          const y=h*(-.215-j*.046+wave);
-          const v=[x,y,-60-j*13+i*.9];
-          row.push(v);points.push(...v);
-          if(i)segments.push(...row[i-1],...v);
-          if(j){
-            segments.push(...rows[j-1][i],...v);
-            if(i && (i+j)%2===0)segments.push(...rows[j-1][i-1],...v);
+        for(let i=0;i<11;i++){
+          const x=side*w*(.19+i*.034+.008*Math.sin(i*2+j));
+          const y=h*(-.225-j*.039+.012*Math.sin(i*1.18+j*.83));
+          const v=[x,y,-90-j*4];row.push(v);
+          const k=.22+.66*Math.pow(.5+.5*Math.sin(i*1.4+j*2),2);
+          function strand(start,strength){
+            segments.push(...start,...v);
+            colors.push(strength*.5,strength*.78,strength,k*.5,k*.78,k);
           }
+          if(i && (i+j)%6!==0)strand(row[i-1],k*.65);
+          if(j && (i+j)%3===0)strand(rows[j-1][i],k*.32);
+          if(j && i && (i+j)%4===0)strand(rows[j-1][i-1],k*.4);
+          if((i+j)%3===0)stars.push(...v);
         }
         rows.push(row);
       }
-      const net=new T.BufferGeometry();
-      net.setAttribute("position",new T.Float32BufferAttribute(segments,3));
-      group.add(new T.LineSegments(net,fine));
-      const geometry=new T.BufferGeometry();
-      geometry.setAttribute("position",new T.Float32BufferAttribute(points,3));
-      group.add(new T.Points(geometry,beacons));
     }
+    const net=new T.BufferGeometry();
+    net.setAttribute("position",new T.Float32BufferAttribute(segments,3));
+    net.setAttribute("color",new T.Float32BufferAttribute(colors,3));
+    group.add(new T.LineSegments(net,floorInk));
+    const points=new T.BufferGeometry();
+    points.setAttribute("position",new T.Float32BufferAttribute(stars,3));
+    group.add(new T.Points(points,floorLights));
+  }
+
+  // A translucent emitter with a narrow white core, glass lip and reflected light.
+  // UV space keeps the aperture aligned with the atlas even on compact layouts.
+  const projector=new T.ShaderMaterial({
+    uniforms:{energy:{value:1}},transparent:true,depthWrite:false,blending:T.AdditiveBlending,
+    vertexShader:`varying vec2 st; void main(){st=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+    fragmentShader:`varying vec2 st; uniform float energy;
+      float beam(vec2 p,vec2 span){vec2 q=p/span;return exp(-dot(q,q));}
+      void main(){
+        vec2 p=st-vec2(.5,.46);
+        float pool=beam(p+vec2(0.,.055),vec2(.35,.105));
+        float light=beam(p,vec2(.135,.013));
+        float core=beam(p,vec2(.195,.0038));
+        float mist=beam(p-vec2(0.,.09),vec2(.122,.17))*smoothstep(-.012,.035,p.y);
+        float r=length(vec2(p.x/.34,(p.y+.058)/.079));
+        float rim=exp(-abs(r-1.)*92.)*(.24+.55*pow(abs(p.x/.34),2.));
+        float inner=length(vec2(p.x/.255,(p.y+.027)/.042));
+        float glass=exp(-abs(inner-1.)*55.)*.43;
+        float reflection=beam(p+vec2(0.,.115),vec2(.20,.013))*.26;
+        vec3 L=vec3(.025,.32,.54)*pool+vec3(.12,.73,1.)*(light+rim+glass+reflection)
+              +vec3(.80,1.,1.)*core+vec3(.04,.37,.56)*mist;
+        gl_FragColor=vec4(L*energy,1.);
+      }`
+  });
+  function spill(group,x,y,z,width,height,material=glowMaterial){
+    const light=new T.Sprite(material);light.position.set(x,y,z);light.scale.set(width,height,1);group.add(light);
   }
   // Draw these marks on the inner glass face, beneath the anatomy.
   function panelEngraving(group,w,h,kind) {
@@ -170,22 +196,24 @@ export function mountConsole(host, body) {
     halo.position.z=-75;
     halo.rotation.set(.08,-.20,-.13);
     instrument(halo,Math.min(modelW*.49,modelH*.28),4);
-    const [base,bw,bh]=place(pedestal);
-    base.rotation.x=1.30;
-    const r=bw*.47;
-    const disk=new T.Mesh(new T.CylinderGeometry(r,r*.96,Math.max(5,bh*.16),128),metal);
-    disk.rotation.x=Math.PI/2;base.add(disk);
-    for(const [ratio,dia,z] of [[1,.006,4],[.94,.003,6],[.78,.007,9],[.65,.003,11],[.53,.005,14]])ring(base,r*ratio,Math.max(.65,r*dia),bright,z);
-    ring(base,r*.84,Math.max(.8,r*.012),aqua,9);
-    instrument(base,r*1.075,8);
-    for(let i=0;i<72;i++){
-      const a=i*Math.PI/36,outer=r*.91,inner=r*(i%6===0?.856:.885);
-      line(base,[[inner*Math.cos(a),inner*Math.sin(a),8],[outer*Math.cos(a),outer*Math.sin(a),8]],edge);
+    const radius=Math.min(modelW*.49,modelH*.28);
+    const arcGlow=ambientGlow;
+    for(const angle of [.56,2.43,3.74,5.42]){
+      spill(halo,radius*Math.cos(angle),radius*Math.sin(angle),3,modelW*.17,modelW*.07,arcGlow);
+    }
+    const bw=pedestal.getBoundingClientRect().width;
+    const sheetHeight=modelH*.61;
+    const aperture=new T.Mesh(new T.PlaneGeometry(bw*1.35,sheetHeight),projector);
+    // Anchor the bright slit to the lower edge of the body canvas.
+    aperture.position.set(halo.position.x,halo.position.y-modelH*.5+sheetHeight*.04,-25);
+    assembly.add(aperture);
+    if(w>800){
+      spill(assembly,-w*.33,-h*.245,-80,w*.25,h*.09,arcGlow);
+      spill(assembly,w*.36,-h*.29,-80,w*.20,h*.07,arcGlow);
     }
     panels.forEach((el,index)=>{
       const [g,pw,ph]=place(el);el._consolePosition=g.position;
       const kind=["proof","anatomy","molecule","models","clinical","exposure"][index];
-      if(w>800)g.rotation.set([.08,.035,-.05,.035,.055,0][index],[.19,.12,-.17,-.10,-.14,0][index],[-.052,.015,.033,.007,-.023,0][index]);
       plate(g,pw-3,ph-3,-6,4,metal);plate(g,pw-8,ph-8,0,2,glass);
       line(g,outline(pw-3,ph-3,1),edge,true);line(g,outline(pw-13,ph-13,4),fine,true);
       if(!el.classList.contains("panel-exposure")) panelEngraving(g,pw,ph,kind);
@@ -213,7 +241,8 @@ export function mountConsole(host, body) {
     job=0;if(!visible||document.hidden)return;
     if(time-lastFrame>=50 || motion.matches) {
       const brightness=motion.matches?.5:.5+.5*Math.sin(time*.00075);
-      aqua.emissiveIntensity=.7+brightness*.65;
+      projector.uniforms.energy.value=.91+brightness*.13;
+      ambientGlow.opacity=.25+brightness*.15;
       if(selected && selected._consolePosition){highlight.position.copy(selected._consolePosition);highlight.position.z=95;highlight.intensity=32;}
       else highlight.intensity=0;
       if(assembly) renderer.render(scene,camera);

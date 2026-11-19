@@ -39,3 +39,26 @@
  .panel-molecules .mol-home-link {padding-inline-start:1rem;}
  .panel-molecules .mol-home-link small {margin-inline-start:1.7em;}
 }
+
+/* The projection reaches the floor at the bottom edge of the atlas. */
+#view-overview .prmr-home {
+ background-image:url("./assets/home/console-traces.svg"),
+   radial-gradient(ellipse at 51% 81%,#10506b 0%,#0a2433 17%,transparent 43%),
+   radial-gradient(ellipse at 29% 33%,#0a2431 0%,transparent 34%),
+   radial-gradient(ellipse at 81% 46%,#0c2332 0%,transparent 37%),
+   linear-gradient(110deg,#02070a,#06121b 35%,#020708 68%,#06131e);
+}
+.home-floor {opacity:.26;background-size:6cqw 6cqw;mask-image:radial-gradient(ellipse,#000 2%,transparent 62%);}
+.home-floor::after {display:none;}
+.home-model.ready .home-viewport {mask-image:linear-gradient(to bottom,#000 0 94%,#000b 98%,transparent);}
+.home-platform {background:radial-gradient(ellipse at 50% 50%,#bbfaff 0%,#35cfff 3%,#14638080 19%,transparent 68%);box-shadow:none;}
+.console-depth .home-platform {background:none;box-shadow:none;}
+@media(min-width:801px) {
+  .panel-proof,.panel-anatomy {left:14.4%;width:24%;}
+  .panel-molecules,.panel-models,.panel-clinical {left:66%;width:31.7%;}
+  .panel-exposure {left:51.55%;top:85%;width:max-content;max-width:36%;height:7%;min-height:2.85rem;padding:.55em 1.1em;transform:translateX(-50%);}
+  .home-panels .panel-exposure .home-caption {font-size:clamp(.98rem,1.6cqw,1.65rem);}
+}
+@media(max-width:800px){
+ .home-panels .panel-exposure {justify-self:center;width:max-content;max-width:100%;height:3rem;padding-inline:1rem;}
+}
