@@ -741,3 +741,20 @@ section[role="tabpanel"] + section[role="tabpanel"] {
 .prmr-handoff p{margin:var(--prmr-space-2) 0 0;color:var(--prmr-text-muted);font-size:var(--prmr-size-small);max-width:62ch}
 .prmr-handoff-link{flex:none;padding:var(--prmr-space-2) var(--prmr-space-4);border:1px solid var(--prmr-signal-dim);border-radius:var(--prmr-radius-control);color:var(--prmr-signal);text-decoration:none;font-weight:600;font-size:var(--prmr-size-small)}
 .prmr-handoff-link:hover{background:var(--prmr-computed-bg)}
+
+/* 10. Bloc d'entrée : l'outil que l'on vient chercher, annoncé avant le
+   récit du programme. Sans lui, la page d'accueil ne parlait que des cinq
+   étapes et l'explorateur restait introuvable. */
+.prmr-lead{display:flex;align-items:center;justify-content:space-between;gap:var(--prmr-space-5);flex-wrap:wrap;
+ margin:0 0 var(--prmr-space-5);padding:var(--prmr-space-5);text-decoration:none;
+ border:1px solid var(--prmr-signal);border-radius:var(--prmr-radius-panel);
+ background:linear-gradient(135deg,var(--prmr-computed-bg),var(--prmr-surface))}
+.prmr-lead:hover{border-color:var(--prmr-signal);background:var(--prmr-computed-bg)}
+.prmr-lead-body{flex:1 1 420px;min-width:0}
+.prmr-lead h2{margin:var(--prmr-space-2) 0 0;color:var(--prmr-text);font-size:var(--prmr-size-h2);line-height:1.2}
+.prmr-lead p{margin:var(--prmr-space-3) 0 0;color:var(--prmr-text-muted);max-width:70ch}
+.prmr-lead-tags{list-style:none;display:flex;flex-wrap:wrap;gap:var(--prmr-space-2);margin:var(--prmr-space-4) 0 0;padding:0}
+.prmr-lead-tags li{padding:2px var(--prmr-space-3);border:1px solid var(--prmr-line);border-radius:999px;
+ color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
+.prmr-lead-action{flex:none;padding:var(--prmr-space-3) var(--prmr-space-5);border-radius:var(--prmr-radius-control);
+ background:var(--prmr-signal);color:var(--prmr-abyss);font-weight:600}
