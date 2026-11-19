@@ -50,7 +50,12 @@ test("Home route enters a functional species and molecule workbench",()=>{
 });
 test("La page d'accueil oriente vers les cinq étapes de recherche sans dupliquer les modules",()=>{
  const home=readFileSync(new URL("index.html",base),"utf8");
- assert.match(home,/class="prmr-stage prmr-stage-current"/);
+ /* L'accueil est une console : les cinq étapes ne sont plus des cartes
+    « prmr-stage » mais les panneaux et le rail de cette console. Ce que cette
+    vérification protège n'a pas changé — chaque étape doit mener à son module
+    réel, et aucun module ne doit être redupliqué sur l'accueil. */
+ assert.match(home,/class="home-rail"/);
+ assert.match(home,/class="home-panel/);
  assert.match(home,/prmr-route\.css/);
  assert.match(home,/prmr_route\.mjs/);
  // Les cinq étapes doivent chacune mener à leur module réel.
