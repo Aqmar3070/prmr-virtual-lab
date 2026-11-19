@@ -310,8 +310,23 @@ function makeViewer(canvas,{species="dog",organ="kidneys",isolated=false,onRende
  document.addEventListener("visibilitychange",vis);
  canvas.style.touchAction="none";canvas.tabIndex=0;
  resize();setSpecies(species);
+ /* Point d'ancrage d'un organe, en pixels du canevas : le centre de son
+    groupe projeté à l'écran. L'étiquette posée par src/r20_callouts.mjs s'y
+    rattache. Recalculé à la demande, puisque l'animal tourne. */
+ const _a=new T.Vector3(),_b=new T.Box3();
+ function ancres(){
+  const rect=canvas.getBoundingClientRect(),points={};
+  for(const [id,groupe] of Object.entries(organs)){
+   if(!groupe.visible)continue;
+   _b.makeEmpty();_b.expandByObject(groupe);
+   if(_b.isEmpty())continue;
+   _b.getCenter(_a);_a.project(camera);
+   points[id]={x:(_a.x*.5+.5)*rect.width,y:(-_a.y*.5+.5)*rect.height,visible:_a.z<1};
+  }
+  return points;
+ }
  return {
-  supported:true,isTrue3D:true,
+  supported:true,isTrue3D:true,ancres,
   set(p){
    if(p.species&&p.species!==current)setSpecies(p.species);
    if(p.organ&&p.organ!==focus)select(p.organ);

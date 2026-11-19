@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Explorateur d'expositions documentées — PRMR Virtual Lab</title>
 <meta name="description" content="Pour une substance, une dose et une durée, les repères réellement publiés : seuils officiels, doses toxiques établies, associations observées, et l'endroit où les données s'arrêtent.">
-<link rel="stylesheet" href="./prmr-design-system.css?v=0be4d0e0f0">
+<link rel="stylesheet" href="./prmr-design-system.css?v=f78a88c284">
 <link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
 <style>
 main{max-width:1500px;margin:auto;padding:var(--prmr-space-5) clamp(15px,3vw,36px) var(--prmr-space-7)}
@@ -80,19 +80,6 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 .r13-readout-unit{color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
 .r13-scene{position:relative}
 .r13-canvas3d{display:block;width:100%;height:min(62vh,560px);border-radius:var(--prmr-radius-control);outline:none;touch-action:none}
-/* Le calque et les traits laissent passer la souris : le corps doit rester
-   saisissable sous les étiquettes. */
-.r13-traits,.r13-calque{position:absolute;inset:0;pointer-events:none}
-.r13-traits{width:100%;height:100%;fill:none;stroke-width:1.1;opacity:.75}
-.r13-etiquette{position:absolute;max-width:min(42%,230px);display:flex;flex-direction:column;gap:2px;
- padding:var(--prmr-space-2) var(--prmr-space-3);border:1px solid var(--prmr-line);border-left-width:3px;
- border-radius:var(--prmr-radius-control);background:rgba(8,22,32,.88);backdrop-filter:blur(2px)}
-.r13-etiquette strong{color:var(--prmr-text);font-size:var(--prmr-size-small)}
-.r13-etiquette-region{color:var(--prmr-text-faint);font-size:var(--prmr-size-micro)}
-.r13-etiquette-repere{color:var(--prmr-text-muted);font-size:var(--prmr-size-micro);line-height:1.3}
-@media(max-width:700px){.r13-etiquette{position:static;max-width:none;margin-top:var(--prmr-space-2)}
- .r13-calque{position:static;display:flex;flex-direction:column}.r13-traits{display:none}}
-.r13-canvas3d:focus-visible{outline:2px solid var(--prmr-signal);outline-offset:2px}
 .r13-chargement{text-align:center;color:var(--prmr-text-muted);margin:var(--prmr-space-4) 0 0}
 .r13-stage .r13-bodypanel{margin-top:0;padding-top:0;border-top:0}
 .r13-stage .r13-bodymap{max-width:330px}

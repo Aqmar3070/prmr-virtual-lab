@@ -16,6 +16,7 @@
 
 import { createBodyMap, organStates, ORGAN_FILL, ORGAN_LABELS } from "./r13_body_map.mjs";
 import { mountBodyViewer, ORGAN_NODES } from "./r19_body_viewer.mjs";
+import { createCallouts } from "./r20_callouts.mjs";
 const el = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -283,12 +284,10 @@ function build(host, data) {
   /* Les étiquettes se posent au-dessus du rendu, reliées à leur organe par un
      trait. Elles vivent en HTML et non dans la scène : le texte reste net à
      tout niveau de zoom, sélectionnable et lisible par un lecteur d'écran. */
+  let etiquettes = null;
   const scene3d = el("div", "r13-scene");
-  const calque = el("div", "r13-calque");
-  const traits = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  traits.setAttribute("class", "r13-traits");
-  traits.setAttribute("aria-hidden", "true");
-  scene3d.append(canvas3d, traits, calque);
+  scene3d.append(canvas3d);
+  etiquettes = createCallouts(scene3d, canvas3d);
   stage.append(readouts, scene3d, chargement, bodyPanel);
   bodyPanel.hidden = true;
 
@@ -299,87 +298,24 @@ function build(host, data) {
     return getComputedStyle(document.documentElement).getPropertyValue(nom[1]).trim() || "#7ed6e9";
   };
 
-  /* Une étiquette par organe allumé : son nom, et le repère qui le concerne.
-     Les traits partent de l'organe et rejoignent la boîte, placée à gauche ou
-     à droite selon le côté où se trouve l'organe à l'écran. */
+  /* Les étiquettes viennent du module partagé : la console de doses et la
+     page des espèces posent les mêmes, il n'en existe qu'un exemplaire. */
   function dessinerEtiquettes(viewer) {
+    if (!etiquettes) return;
     const ancres = viewer.ancres();
-    const actifs = Object.keys(etatsCourants);
-    if (calque.childElementCount !== actifs.length) {
-      calque.replaceChildren();
-      traits.replaceChildren();
-      for (const organe of actifs) {
-        const boite = el("div", "r13-etiquette");
-        boite.dataset.organe = organe;
-        const premier = marquesCourantes.find(m => m.organ === organe);
-        const cle = ORGAN_NODES[organe]?.[0];
-        const fiche = intitules[cle];
-        boite.append(el("strong", null, ORGAN_LABELS[organe] || organe));
-        if (fiche?.region) boite.append(el("span", "r13-etiquette-region", fiche.region));
-        if (premier) boite.append(el("span", "r13-etiquette-repere", premier.title));
-        boite.style.borderColor = etatsCourants[organe];
-        calque.append(boite);
-        const trait = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
-        trait.setAttribute("stroke", etatsCourants[organe]);
-        traits.append(trait);
-      }
-    }
-    const rect = canvas3d.getBoundingClientRect();
-    traits.setAttribute("viewBox", "0 0 " + rect.width + " " + rect.height);
-
-    /* Posées chacune à la hauteur de son organe, les boîtes se recouvraient :
-       trois organes voisins donnaient trois étiquettes empilées au même
-       endroit. On les répartit par côté, puis on les écarte verticalement en
-       partant de la hauteur souhaitée. */
-    const colonnes = { gauche: [], droite: [] };
-    actifs.forEach((organe, index) => {
-      const point = ancres[organe];
-      const boite = calque.children[index];
-      const trait = traits.children[index];
-      if (!boite) return;
-      if (!point || !point.visible) {
-        boite.hidden = true;
-        if (trait) trait.setAttribute("points", "");
-        return;
-      }
-      boite.hidden = false;
-      colonnes[point.x < rect.width / 2 ? "gauche" : "droite"].push({ organe, point, boite, trait });
-    });
-
-    const ECART = 8;
-    for (const [cote, membres] of Object.entries(colonnes)) {
-      membres.sort((a, b) => a.point.y - b.point.y);
-      let plancher = 4;
-      for (const m of membres) {
-        const h = m.boite.offsetHeight;
-        let y = Math.max(m.point.y - h / 2, plancher);
-        y = Math.min(y, rect.height - h - 4);
-        m.y = y;
-        plancher = y + h + ECART;
-      }
-      /* Si la dernière déborde, on remonte la pile d'autant. */
-      const derniere = membres[membres.length - 1];
-      if (derniere) {
-        const debord = derniere.y + derniere.boite.offsetHeight + 4 - rect.height;
-        if (debord > 0) {
-          let haut = 4;
-          for (const m of membres) {
-            m.y = Math.max(m.y - debord, haut);
-            haut = m.y + m.boite.offsetHeight + ECART;
-          }
-        }
-      }
-      for (const m of membres) {
-        const aGauche = cote === "gauche";
-        const bx = aGauche ? 8 : rect.width - m.boite.offsetWidth - 8;
-        m.boite.style.left = bx + "px";
-        m.boite.style.top = m.y + "px";
-        const ax = aGauche ? bx + m.boite.offsetWidth : bx;
-        const ay = m.y + m.boite.offsetHeight / 2;
-        const coude = aGauche ? ax + 18 : ax - 18;
-        m.trait?.setAttribute("points", [ax, ay, coude, ay, m.point.x, m.point.y].join(" "));
-      }
-    }
+    etiquettes.update(Object.keys(etatsCourants).map(organe => {
+      const cle = ORGAN_NODES[organe]?.[0];
+      const fiche = intitules[cle];
+      const repere = marquesCourantes.find(m => m.organ === organe);
+      return {
+        id: organe,
+        titre: ORGAN_LABELS[organe] || organe,
+        detail: fiche?.region,
+        note: repere?.title,
+        couleur: etatsCourants[organe],
+        point: ancres[organe]
+      };
+    }));
   }
 
   let atlas = null;
