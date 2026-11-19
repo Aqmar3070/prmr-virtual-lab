@@ -28,6 +28,8 @@ export function mountConsole(host, body) {
   const fine = new T.LineBasicMaterial({color:0x4c9fbd,transparent:true,opacity:.50});
   const bright = new T.MeshBasicMaterial({color:0x90f2ff});
   const aqua = new T.MeshPhongMaterial({color:0x57c4e7,emissive:0x072c40,shininess:95});
+  const renalSurface = new T.MeshPhongMaterial({color:0x287497,emissive:0x062338,shininess:100,specular:0xb2edff});
+  const renalWire = new T.MeshBasicMaterial({color:0xb1f4ff,wireframe:true,transparent:true,opacity:.13,depthWrite:false});
   const amber = new T.MeshPhongMaterial({color:0xffbd67,emissive:0x6b3516,shininess:100});
   const kidneys = [];
   body.updateMatrixWorld(true);
@@ -58,7 +60,7 @@ export function mountConsole(host, body) {
   }
   function molecule(group,w,h) {
     const sketch=new T.Group(); group.add(sketch);
-    sketch.position.set(w*.24,h*.05,16); sketch.rotation.set(.52,-.32,.24);
+    sketch.position.set(w*.24,h*.05,Math.max(28,h*.45)); sketch.rotation.set(.52,-.32,.24);
     const radius=Math.min(h*.33,w*.17);
     const points=Array.from({length:6},(_,i)=>new T.Vector3(Math.cos(i*Math.PI/3)*radius,Math.sin(i*Math.PI/3)*radius,0));
     const sphere=new T.SphereGeometry(1,20,14);
@@ -74,13 +76,15 @@ export function mountConsole(host, body) {
   function organView(group,w,h) {
     const organs=new T.Group();
     for(const node of kidneys) {
-      const mesh=new T.Mesh(node.geometry,aqua);mesh.applyMatrix4(node.matrixWorld);organs.add(mesh);
+      const mesh=new T.Mesh(node.geometry,renalSurface);
+      mesh.add(new T.Mesh(node.geometry,renalWire));
+      mesh.applyMatrix4(node.matrixWorld);organs.add(mesh);
     }
     if (!organs.children.length) return;
     const bounds=new T.Box3().setFromObject(organs),size=bounds.getSize(new T.Vector3());
     const model=new T.Group();organs.position.copy(bounds.getCenter(new T.Vector3())).negate();model.add(organs);
     model.scale.setScalar(Math.min(w*.46/size.x,h*.65/size.y));model.rotation.y=-.24;
-    model.position.set(w*.22,0,28);group.add(model);
+    model.position.set(w*.22,0,Math.max(35,h*.55));group.add(model);
   }
   function instrument(group, radius, sectors) {
     const segments=[];
@@ -170,7 +174,7 @@ export function mountConsole(host, body) {
       if(el.classList.contains("panel-molecules"))molecule(g,pw,ph);
       if(el.classList.contains("panel-models")) {
         organView(g,pw,ph);
-        const dial=new T.Group();dial.position.set(pw*.22,0,6);dial.rotation.y=.32;g.add(dial);
+        const dial=new T.Group();dial.position.set(pw*.22,0,ph*.20+8);dial.rotation.y=.32;g.add(dial);
         instrument(dial,Math.min(ph*.38,pw*.19),3);
       }
       if(el.classList.contains("panel-exposure"))return;
