@@ -59,20 +59,55 @@ html{scroll-behavior:smooth}
 <link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<link rel="stylesheet" href="./prmr-console.css?v=9d60be0ecc">
+<link rel="stylesheet" href="./prmr-console.css?v=452af2b904">
 </head><body>
 <main class="wrap">
 <div class="hero"><div class="eyebrow">Phase 5 / Recherche clinique humaine / Revue initiale : 17 novembre 2026</div><h1>Insuffisance rénale chronique : <span style="color:var(--mint)">preuves, mécanismes et nouvelles hypothèses.</span></h1>
 <p>Explorer les traitements documentés, leurs résultats mesurés et les questions scientifiques encore ouvertes. L'atlas humain distingue les organes et les interactions systémiques. Cette phase du laboratoire est un <strong>programme de recherche documentaire et computationnelle</strong>, pas un essai clinique autorisé.</p></div>
 <div class="notice"><strong>Limite scientifique essentielle.</strong> Une diminution de l'albuminurie, un ralentissement du déclin du DFG (eGFR) ou une baisse du risque d'insuffisance terminale ne prouvent pas la régénération intégrale des néphrons. À ce jour, aucune combinaison pharmacologique n'a démontré la restauration complète et reproductible de reins chroniquement lésés. Aucun résultat de cette page n'est une recommandation thérapeutique individualisée.</div>
 <div class="metrics"><div><strong>Preuves cliniques</strong><small>Essais randomisés et recommandations</small></div><div><strong>Hypothèses originales</strong><small>Non validées, à confronter aux publications</small></div><div><strong>Atlas humain 3D</strong><small>Référence anatomique sous licence, non diagnostique</small></div></div>
-<div class="grid" id="human-anatomy">
-<section class="panel" data-prmr-tab="montre"><div class="eyebrow">Atlas anatomique humain interactif</div><h2>Corps humain de référence : organes et systèmes anatomiques</h2><div class="viewer"><canvas id="human-canvas" aria-label="Modèle humain 3D pédagogique tournant, corps transparent et organes sélectionnables" tabindex="0"></canvas><span>Glisser : pivoter · molette : zoomer · cliquer une structure : sélectionner</span></div>
-<div class="tools"><button type="button" data-sex="male" aria-pressed="true">Corps masculin</button><button type="button" data-sex="female" aria-pressed="false">Corps féminin</button></div><div id="human-systems" class="tools" aria-label="Afficher ou masquer chaque système anatomique"></div><div class="tools"><button type="button" id="show-all-layers">Afficher toutes les couches</button><button type="button" id="reload-reference">Recharger les maillages anatomiques de référence</button></div><div class="tools"><button type="button" id="toggle-body" aria-pressed="true">Corps transparent : visible</button><button type="button" id="toggle-isolate" aria-pressed="false">Isoler l'organe</button><button type="button" id="reset-view">Réinitialiser la vue</button></div>
-<p id="model-status" class="muted" aria-live="polite">Préparation du corps humain 3D local et des modèles anatomiques de référence…</p><p class="prmr-evidence prmr-evidence-unavailable" style="margin:12px 0"><strong>Ce que cet atlas ne contient pas.</strong> Les maillages nommés « poumon gauche » et « poumon droit » sont les arbres vasculaires et bronchiques intrapulmonaires. Le parenchyme alvéolaire est absent des deux corps : c'est pourquoi on ne voit pas de poumon plein en les sélectionnant. Les intitulés le disent désormais, et aucun volume pulmonaire n'est calculé à partir d'eux.</p>
-<p class="muted"><strong>Deux niveaux de représentation :</strong> le corps local s’affiche immédiatement et reste une reconstruction éducative ; lorsque le réseau le permet, les maillages de référence BodyParts3D/HuBMAP remplacent cette reconstruction. Les informations scientifiques de l’organe sélectionné figurent dans le panneau latéral.</p></section>
-<aside class="panel"><div class="eyebrow">Structures disponibles</div><h2>Explorer chaque organe</h2><div class="organs" id="human-organs"></div><h3>Rechercher dans les structures anatomiques</h3><input type="search" id="structure-search" placeholder="Rein, artère, nerf, os…" aria-label="Recherche de structures 3D" style="width:100%;padding:11px;background:#0a1c2b;color:white;border:1px solid #416173;border-radius:8px;margin:8px 0"><div id="structure-list" class="structure-list"></div><div id="organ-info" aria-live="polite"></div><p class="muted">Modèles anatomiques humains de référence BodyParts3D et Human Reference Atlas, compressés et adaptés pour le web. Ils ne représentent pas les tissus microscopiques, la perfusion en temps réel, les lésions ni les paramètres biologiques d’un patient.</p>
-<div class="source-note"><strong>Sources et droits :</strong> BodyParts3D © Database Center for Life Science (CC BY 4.0) ; organes féminins : Human Reference Atlas / HuBMAP (CC BY 4.0) ; surface féminine : MakeHuman (CC0) ; adaptations et catalogue par <a href="https://github.com/MervinR07/open-anatomy-3d" target="_blank" rel="noopener noreferrer">open-anatomy-3d</a> (CC BY 4.0). <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Licence</a>. Chargement par CDN ; aperçu de secours si indisponible.</div><h3>Interactions biologiques pertinentes</h3><p class="muted"><strong>Rein–cœur :</strong> pression artérielle et débit circulatoire. <strong>Rein–foie :</strong> biotransformation et élimination. <strong>Rein–pancréas :</strong> métabolisme glucidique. <strong>Rein–os :</strong> équilibre phosphocalcique.</p></aside>
+<!-- Console anatomique. Le cahier des charges livré le 19/11/2026 décrit ce
+     plan : « Grand corps humain entier central (vue 3D) ; navigation des
+     systèmes et couches à gauche ; fiche détaillée, mesures d'études et
+     sources à droite ». La page empilait jusqu'ici deux panneaux, tous les
+     réglages entassés sous le canevas. Aucune logique ne change : les mêmes
+     identifiants, les mêmes commandes, recomposés. -->
+<div class="prmr-console" id="human-anatomy" data-prmr-tab="montre">
+
+ <div class="prmr-console-side prmr-panel">
+  <div class="overline">Modèle</div>
+  <div class="tools"><button type="button" data-sex="male" aria-pressed="true">Corps masculin</button><button type="button" data-sex="female" aria-pressed="false">Corps féminin</button></div>
+  <p id="model-status" class="muted" aria-live="polite">Préparation du corps humain 3D local et des modèles anatomiques de référence…</p>
+
+  <div class="overline">Couches</div>
+  <div id="human-systems" class="tools" aria-label="Afficher ou masquer chaque système anatomique"></div>
+  <div class="tools"><button type="button" id="show-all-layers">Toutes les couches</button><button type="button" id="toggle-body" aria-pressed="true">Corps transparent : visible</button><button type="button" id="toggle-isolate" aria-pressed="false">Isoler l'organe</button><button type="button" id="reset-view">Réinitialiser la vue</button><button type="button" id="reload-reference">Recharger les maillages</button></div>
+
+  <div class="overline">Structures</div>
+  <div class="organs" id="human-organs"></div>
+  <label class="prmr-field-label" for="structure-search">Rechercher parmi les 147 structures</label>
+  <input type="search" id="structure-search" class="prmr-input" placeholder="Rein, artère, nerf, os…" aria-label="Recherche de structures 3D">
+  <div id="structure-list" class="structure-list"></div>
+ </div>
+
+ <div class="prmr-console-stage prmr-panel">
+  <div class="viewer"><canvas id="human-canvas" aria-label="Modèle humain 3D pédagogique tournant, corps transparent et organes sélectionnables" tabindex="0"></canvas><span>Glisser : pivoter · molette : zoomer · cliquer une structure : sélectionner</span></div>
+ </div>
+
+ <div class="prmr-console-read prmr-panel">
+  <div class="overline">Fiche de structure</div>
+  <div id="organ-info" aria-live="polite"></div>
+
+  <p class="prmr-evidence prmr-evidence-unavailable"><strong>Ce que cet atlas ne contient pas.</strong> Les maillages nommés « poumon gauche » et « poumon droit » sont les arbres vasculaires et bronchiques intrapulmonaires. Le parenchyme alvéolaire est absent des deux corps : c'est pourquoi on ne voit pas de poumon plein en les sélectionnant. Les intitulés le disent désormais, et aucun volume pulmonaire n'est calculé à partir d'eux.</p>
+
+  <div class="overline">Interactions biologiques</div>
+  <p class="muted"><strong>Rein–cœur :</strong> pression artérielle et débit circulatoire. <strong>Rein–foie :</strong> biotransformation et élimination. <strong>Rein–pancréas :</strong> métabolisme glucidique. <strong>Rein–os :</strong> équilibre phosphocalcique.</p>
+
+  <div class="overline">Portée et limites</div>
+  <p class="muted">Modèles anatomiques humains de référence BodyParts3D et Human Reference Atlas, compressés et adaptés pour le web. Ils ne représentent pas les tissus microscopiques, la perfusion en temps réel, les lésions ni les paramètres biologiques d'un patient.</p>
+  <div class="source-note"><strong>Sources et droits :</strong> BodyParts3D © Database Center for Life Science (CC BY 4.0) ; organes féminins : Human Reference Atlas / HuBMAP (CC BY 4.0) ; surface féminine : MakeHuman (CC0) ; adaptations et catalogue par <a href="https://github.com/MervinR07/open-anatomy-3d" target="_blank" rel="noopener noreferrer">open-anatomy-3d</a> (CC BY 4.0). <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">Licence</a>.</div>
+ </div>
+
 </div>
 <section class="section" id="microanatomy" data-prmr-tab="montre"><div class="eyebrow">R07 / Exploration rénale humaine multi-échelle</div><h2>Du rein entier au néphron</h2>
 <p class="muted">Modèle 3D interactif pédagogique des principales parties du néphron, des artérioles afférente et efférente, des capillaires, du trajet du filtrat et de régions corticales et médullaires. Les positions, dimensions, proportions et géométries sont schématiques et ne proviennent pas d'un examen histologique ou d'une imagerie d'un rein humain réel.</p>

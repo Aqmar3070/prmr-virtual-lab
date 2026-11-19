@@ -171,3 +171,126 @@ button.workflow,
     text-shadow: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Console à trois colonnes
+   --------------------------------------------------------------------------
+   Le plan livré avec les images de référence : corps entier au centre,
+   navigation des systèmes et couches à gauche, fiche et sources à droite.
+   C'est la composition qui manquait — le laboratoire empilait des panneaux
+   pleine largeur, les captures montrent un sujet central entouré de modules.
+   -------------------------------------------------------------------------- */
+
+.prmr-console {
+  display: grid;
+  grid-template-columns: minmax(230px, 280px) minmax(360px, 1fr) minmax(300px, 390px);
+  gap: var(--prmr-space-4);
+  align-items: start;
+  margin: var(--prmr-space-5) 0;
+}
+
+.prmr-console > * {
+  padding: var(--prmr-space-4);
+  min-width: 0;
+}
+
+/* Les colonnes latérales défilent seules : le corps ne doit pas sortir de
+   l'écran parce qu'une liste de 147 structures est dépliée à côté. */
+.prmr-console-side,
+.prmr-console-read {
+  position: sticky;
+  top: var(--prmr-space-4);
+  max-height: calc(100vh - 2 * var(--prmr-space-4));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.prmr-console .overline {
+  display: block;
+  margin: var(--prmr-space-4) 0 var(--prmr-space-2);
+  padding-bottom: var(--prmr-space-2);
+  border-bottom: 1px solid var(--prmr-line-soft);
+}
+
+.prmr-console .overline:first-child {
+  margin-top: 0;
+}
+
+/* Le canevas prend la hauteur disponible : c'est lui le sujet. */
+.prmr-console-stage {
+  padding: var(--prmr-space-3);
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(63, 220, 245, .10), transparent 65%),
+    var(--prmr-surface-sunken);
+}
+
+.prmr-console-stage .viewer {
+  margin: 0;
+}
+
+.prmr-console-stage canvas {
+  display: block;
+  width: 100%;
+  height: min(74vh, 720px);
+  touch-action: none;
+}
+
+.prmr-console .tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--prmr-space-2);
+  margin: 0 0 var(--prmr-space-3);
+}
+
+.prmr-console .tools button {
+  font-size: var(--prmr-size-small);
+  padding: var(--prmr-space-2) var(--prmr-space-3);
+}
+
+.prmr-console .organs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--prmr-space-2);
+}
+
+.prmr-field-label {
+  display: block;
+  margin: var(--prmr-space-3) 0 var(--prmr-space-2);
+  color: var(--prmr-text-muted);
+  font-size: var(--prmr-size-small);
+}
+
+.prmr-input {
+  width: 100%;
+  padding: var(--prmr-space-2) var(--prmr-space-3);
+  border: 1px solid var(--prmr-line);
+  border-radius: var(--prmr-radius-control);
+  background: var(--prmr-surface-sunken);
+  color: var(--prmr-text);
+  font: inherit;
+  font-size: var(--prmr-size-small);
+}
+
+.prmr-input:focus-visible {
+  outline: 2px solid var(--prmr-signal);
+  outline-offset: 1px;
+}
+
+.prmr-console .structure-list {
+  max-height: 260px;
+  overflow-y: auto;
+  margin-top: var(--prmr-space-2);
+}
+
+/* Sous 1240 px la lecture passe sous le corps ; sous 900 px tout s'empile et
+   les colonnes cessent d'être collantes, sinon elles se chevauchent. */
+@media (max-width: 1240px) {
+  .prmr-console { grid-template-columns: minmax(220px, 260px) 1fr; }
+  .prmr-console-read { grid-column: 1 / -1; position: static; max-height: none; }
+}
+
+@media (max-width: 900px) {
+  .prmr-console { grid-template-columns: 1fr; }
+  .prmr-console-side { position: static; max-height: none; }
+  .prmr-console-stage canvas { height: min(60vh, 460px); }
+}
