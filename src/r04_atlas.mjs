@@ -4,6 +4,7 @@
 import {SPECIES_R04,MOLECULES_R04,OPTIONS,DEFAULT_R04,computeR04} from "./r04_engine.mjs";
 import {create3D} from "./r04_visuals.mjs";
 import {createAnatomyViewer,ORGAN_MODES} from "./r09_viewer.mjs";
+import {createCallouts} from "./r20_callouts.mjs";
 import {organAssessment} from "./r09_organ_catalog.mjs";
 export const ANIMAL_ART=Object.fromEntries(SPECIES_R04.map(species=>[species.id,"./assets/animals/"+species.id+".svg"]));
 const $=id=>document.getElementById(id);
@@ -95,6 +96,9 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  const animalCanvas=make("canvas","r5-animal-sculpture r8-anatomy-canvas");
  animalCanvas.setAttribute("aria-label","Atlas anatomique 3D transparent : silhouette filaire et organes internes ; flèches pour orienter, molette pour agrandir");
  portrait.append(animalCanvas);
+ /* L'organe sélectionné porte son nom, relié au modèle — le même mécanisme
+    que sur la console humaine, le même module. */
+ const etiquettesAnimal=createCallouts(portrait,animalCanvas);
  const sceneLabel=make("span","r5-scene-hint","Maillage transparent · glisser pour orienter · molette pour zoomer");
  portrait.append(sceneLabel);
  let anatomy=null,organFocus="kidneys";
@@ -223,6 +227,14 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
   onOrganPick:id=>{if(organButtons[id])organButtons[id].click()},
   onRender:({species,organ,count,source})=>{
    portrait.dataset.mode="anatomy";portrait.dataset.rendered=String(count);
+   if(anatomy?.ancres){
+    const ancres=anatomy.ancres();
+    const vise=organ==="all"?Object.keys(ancres):(ORGAN_MODES[organ]?.group||[organ]);
+    etiquettesAnimal.update(vise.filter(id=>ancres[id]).map(id=>({
+     id,titre:ORGAN_MODES[id]?.label||id,detail:ORGAN_MODES[id]?.role,
+     couleur:ORGAN_MODES[id]?.color,point:ancres[id]
+    })));
+   }
    portrait.dataset.viewSource=source||"unknown";
    // Les deux espèces conservées proviennent de modèles réellement acquis.
    // L'étiquette « maillages pédagogiques » valait pour les espèces

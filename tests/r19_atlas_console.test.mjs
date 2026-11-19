@@ -97,11 +97,12 @@ test("les coordonnées livrées sont celles du catalogue, pas des inventions", (
 
 test("les étiquettes s'écartent au lieu de se recouvrir", () => {
   /* Posée chacune à la hauteur de son organe, trois organes voisins donnaient
-     trois boîtes empilées au même endroit, dont deux illisibles. */
-  const src = read("src/r13_exposures.mjs");
+     trois boîtes empilées au même endroit, dont deux illisibles. Le placement
+     vit désormais dans le module partagé src/r20_callouts.mjs. */
+  const src = read("src/r20_callouts.mjs");
   assert.match(src, /colonnes\[point\.x < rect\.width \/ 2 \? "gauche" : "droite"\]/,
     "les étiquettes doivent se répartir par côté");
-  assert.match(src, /plancher = y \+ h \+ ECART;/,
+  assert.match(src, /plancher = m\.y \+ h \+ ECART;/,
     "elles doivent s'écarter verticalement");
   assert.match(src, /if \(debord > 0\)/,
     "une pile qui déborde doit être remontée, pas tronquée");
