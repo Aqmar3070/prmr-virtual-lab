@@ -3,17 +3,40 @@ import * as T from "../vendor/three/build/three.module.js";
 // Retain atlas triangles in the renal region, in the same coordinates as the kidneys.
 function regionalGeometry(node, box) {
   const source=node.geometry, positions=source.getAttribute("position"), index=source.index;
-  const count=index ? index.count : positions.count;
-  const vertices=[], triangle=[new T.Vector3(),new T.Vector3(),new T.Vector3()];
+  const count=index ? index.count : positions.count, vertices=[], normals=[];
+  const nd=source.getAttribute("normal"), normalMatrix=new T.Matrix3().getNormalMatrix(node.matrixWorld);
+  const planes=["x","y","z"].flatMap(axis=>[[axis,box.min[axis],1],[axis,box.max[axis],-1]]);
   for(let i=0;i<count;i+=3){
-    triangle.forEach((point,j)=>point.fromBufferAttribute(positions,index?index.getX(i+j):i+j).applyMatrix4(node.matrixWorld));
-    if(triangle.every(point=>box.containsPoint(point))) {
-      for(const point of triangle) vertices.push(point.x,point.y,point.z);
+    let polygon=[];
+    for(let j=0;j<3;j++){
+      const k=index?index.getX(i+j):i+j;
+      polygon.push({p:new T.Vector3().fromBufferAttribute(positions,k).applyMatrix4(node.matrixWorld),
+        n:nd?new T.Vector3().fromBufferAttribute(nd,k).applyNormalMatrix(normalMatrix):new T.Vector3()});
+    }
+    for(const [axis,bound,sign] of planes){
+      if(!polygon.length)break;
+      const clipped=[];
+      let last=polygon[polygon.length-1];
+      for(const next of polygon){
+        const d0=sign*(last.p[axis]-bound),d1=sign*(next.p[axis]-bound);
+        if((d0<0)!==(d1<0)){
+          const t=d0/(d0-d1);
+          clipped.push({p:last.p.clone().lerp(next.p,t),n:last.n.clone().lerp(next.n,t).normalize()});
+        }
+        if(d1>=0)clipped.push(next);
+        last=next;
+      }
+      polygon=clipped;
+    }
+    for(let j=1;j+1<polygon.length;j++){
+      for(const {p,n} of [polygon[0],polygon[j],polygon[j+1]]){vertices.push(p.x,p.y,p.z);normals.push(n.x,n.y,n.z);}
     }
   }
   if(!vertices.length)return null;
   const result=new T.BufferGeometry();
-  result.setAttribute("position",new T.Float32BufferAttribute(vertices,3));result.computeVertexNormals();
+  result.setAttribute("position",new T.Float32BufferAttribute(vertices,3));
+  if(nd)result.setAttribute("normal",new T.Float32BufferAttribute(normals,3));
+  else result.computeVertexNormals();
   return result;
 }
 
