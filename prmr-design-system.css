@@ -23,12 +23,12 @@
   color-scheme: dark;
 
   /* Surfaces, empilées par profondeur plutôt que par page */
-  --prmr-abyss: #060f19;
-  --prmr-surface: #0e1d2b;
-  --prmr-surface-raised: #15293a;
-  --prmr-surface-sunken: #0a1724;
-  --prmr-line: #244055;
-  --prmr-line-soft: #1b3346;
+  --prmr-abyss: #030a12;
+  --prmr-surface: #0a1a28;
+  --prmr-surface-raised: #11283a;
+  --prmr-surface-sunken: #06111c;
+  --prmr-line: #2d5f7d;
+  --prmr-line-soft: #1b3f56;
 
   /* Texte */
   --prmr-text: #e7f2f5;
@@ -36,23 +36,23 @@
   --prmr-text-faint: #6f8798;
 
   /* Accent d'identité du laboratoire */
-  --prmr-signal: #5fe3c6;
-  --prmr-signal-dim: #2e8f7d;
+  --prmr-signal: #3fdcf5;
+  --prmr-signal-dim: #1d7f96;
 
   /* Statuts de provenance — l'axe central du système.
      Mesuré : donnée expérimentale publiée, reprise d'une source externe.
      Calculé : sortie déterministe et reproductible (RDKit, modèle analytique).
      Hypothèse : paramètre, score ou scénario exploratoire non calibré.
      Indisponible : la donnée n'existe pas ; ne pas combler par une estimation. */
-  --prmr-measured: #7fc8ff;
+  --prmr-measured: #76c6ff;
   --prmr-measured-bg: #112c42;
-  --prmr-computed: #5fe3c6;
+  --prmr-computed: #43e8c0;
   --prmr-computed-bg: #0f3330;
-  --prmr-hypothesis: #f2c279;
+  --prmr-hypothesis: #ffc46b;
   --prmr-hypothesis-bg: #33281466;
   --prmr-unavailable: #93a6b4;
   --prmr-unavailable-bg: #1a2836;
-  --prmr-vigilance: #ff93a1;
+  --prmr-vigilance: #ff8a9c;
   --prmr-vigilance-bg: #351c26;
 
   /* Espacement */
@@ -66,8 +66,8 @@
 
   /* Rayons : deux seulement, pour que la hiérarchie reste lisible.
      Les contrôles sont plus serrés que les panneaux qui les contiennent. */
-  --prmr-radius-control: 6px;
-  --prmr-radius-panel: 12px;
+  --prmr-radius-control: 3px;
+  --prmr-radius-panel: 4px;
 
   /* Typographie */
   --prmr-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -81,6 +81,14 @@
   --prmr-size-h1: 34px;
 
   --prmr-measure: 72ch;
+
+  /* Habillage console. Les captures de référence ne sont pas sobres : fond
+     maillé, panneaux cernés d'un filet lumineux, coins marqués, intitulés
+     capitalisés et espacés. Ces trois jetons portent cet habillage pour
+     toutes les pages à la fois. */
+  --prmr-glow: 0 0 0 1px rgba(63,220,245,.10), 0 0 18px -6px rgba(63,220,245,.42);
+  --prmr-grid: rgba(63,220,245,.10);
+  --prmr-tracking: .10em;
 }
 
 /* --------------------------------------------------------------------------

@@ -1,0 +1,173 @@
+/* ==========================================================================
+   PRMR Virtual Lab — Habillage console
+   --------------------------------------------------------------------------
+   Cette feuille est chargée EN DERNIER sur chaque page, après ses styles
+   propres. Ce n'est pas un détail : le laboratoire a huit pages écrites à des
+   moments différents, chacune avec ses règles, et placé dans le système de
+   design cet habillage était écrasé par elles à spécificité égale. Il restait
+   invisible sans qu'aucune erreur ne le signale.
+
+   Le laboratoire était sobre et éditorial : panneaux plats, coins arrondis,
+   filets gris, intitulés en casse normale. Les captures de référence
+   fournies sont l'inverse — fond maillé, panneaux cernés d'un filet
+   lumineux, coins marqués, grands nombres, intitulés capitalisés et espacés.
+
+   Cette section porte cet habillage. Elle vise aussi les classes propres aux
+   pages (.panel, .kpi, .entry, .r4-st-panel) : le laboratoire a huit pages
+   écrites à des moments différents, et les reprendre une par une aurait
+   laissé des îlots à l'ancienne.
+
+   Ce qu'elle ne touche pas : la grammaire de provenance. Les quatre statuts
+   gardent leurs teintes distinctes et leur filet latéral. Un habillage ne
+   doit pas rendre un indice exploratoire plus affirmatif qu'il n'est.
+   ========================================================================== */
+
+/* Fond maillé, fixe, très discret : il donne la profondeur des consoles sans
+   entrer en concurrence avec le contenu. */
+body {
+  background-color: var(--prmr-abyss);
+  background-image:
+    linear-gradient(var(--prmr-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--prmr-grid) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(63, 220, 245, .10), transparent 70%);
+  background-size: 38px 38px, 38px 38px, 100% 100%;
+  background-attachment: fixed;
+}
+
+/* Panneaux : filet net, lueur contenue, et un trait d'accent en tête qui
+   signale le haut du bloc comme sur un instrument. */
+.prmr-panel,
+.panel,
+.entry,
+.r4-st-panel,
+.r13-readout,
+.r13-stage,
+.prmr-handoff,
+.prmr-journey,
+.prmr-stage,
+.prmr-current-phase,
+.prmr-gate,
+.workflow,
+.kpi,
+.r13-field,
+.prmr-callout {
+  position: relative;
+  border-radius: var(--prmr-radius-panel);
+  box-shadow: var(--prmr-glow);
+}
+
+.prmr-panel::before,
+.panel::before,
+.r4-st-panel::before,
+.r13-stage::before,
+.prmr-journey::before,
+.prmr-current-phase::before,
+.workflow::before,
+.kpi::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10px;
+  right: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--prmr-signal), transparent);
+  opacity: .55;
+  pointer-events: none;
+}
+
+/* Coins marqués : deux angles suffisent à donner le cadre d'instrument, et
+   deux pseudo-éléments suffisent à les tracer. */
+.prmr-panel::after,
+.r13-stage::after,
+.r4-st-panel::after,
+.prmr-journey::after,
+.prmr-gate::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid var(--prmr-signal);
+  border-bottom: 1px solid var(--prmr-signal);
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* Les cartes d'étape portent leur numéro en accent, comme les repères
+   numérotés des instruments. */
+.prmr-stage-num,
+.workflow-index {
+  color: var(--prmr-signal);
+}
+
+.prmr-stage,
+.workflow {
+  border-left: 2px solid var(--prmr-signal-dim);
+}
+
+.prmr-stage-current {
+  border-left-color: var(--prmr-signal);
+  box-shadow: var(--prmr-glow), inset 0 0 40px -22px var(--prmr-signal);
+}
+
+/* Intitulés : capitalisés, espacés, en retrait de couleur. C'est le signe le
+   plus reconnaissable des interfaces de référence, et il ne coûte rien à la
+   lisibilité tant qu'il reste réservé aux étiquettes courtes. */
+.overline,
+.prmr-kicker,
+.navgroup,
+.r13-readout-title,
+.r4-st-panel .r4-st-label,
+.workflow-index,
+.kpi span,
+.r13-portions-label {
+  text-transform: uppercase;
+  letter-spacing: var(--prmr-tracking);
+  font-size: var(--prmr-size-micro);
+  color: var(--prmr-signal);
+  opacity: .85;
+}
+
+/* Les nombres s'alignent en colonne : un chiffre qui danse quand la valeur
+   change donne une impression d'approximation. */
+.kpi strong,
+.r13-readout-value,
+.prmr-table td,
+output,
+.r4-st-panel strong {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Grands nombres : c'est ce qui se lit de loin sur les consoles. */
+.kpi strong,
+.r13-readout-value {
+  color: var(--prmr-signal);
+  text-shadow: 0 0 14px rgba(63, 220, 245, .35);
+}
+
+/* Les repères d'état gardent leur teinte propre et gagnent la même lueur. */
+.prmr-status {
+  box-shadow: 0 0 10px -3px currentColor;
+}
+
+/* Boutons et contrôles : le cadre prime sur le fond. */
+.prmr-button,
+button.workflow,
+.prmr-handoff-link,
+.prmr-route-aside-link {
+  border-radius: var(--prmr-radius-control);
+}
+
+.prmr-route-bar {
+  box-shadow: 0 1px 0 0 rgba(63, 220, 245, .18), 0 10px 30px -22px rgba(0, 0, 0, .9);
+}
+
+/* La lueur se retire pour qui demande moins d'effets, et les contrastes
+   restent portés par les filets. */
+@media (prefers-reduced-motion: reduce) {
+  .kpi strong,
+  .r13-readout-value {
+    text-shadow: none;
+  }
+}
