@@ -117,7 +117,7 @@ export function mountConsole(host, body) {
   // A translucent emitter with a narrow white core, glass lip and reflected light.
   // UV space keeps the aperture aligned with the atlas even on compact layouts.
   const projector=new T.ShaderMaterial({
-    uniforms:{energy:{value:1}},transparent:true,depthWrite:false,blending:T.AdditiveBlending,
+    uniforms:{energy:{value:1}},transparent:true,depthWrite:false,
     vertexShader:`varying vec2 st; void main(){st=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
     fragmentShader:`varying vec2 st; uniform float energy;
       float beam(vec2 p,vec2 span){vec2 q=p/span;return exp(-dot(q,q));}
@@ -134,7 +134,9 @@ export function mountConsole(host, body) {
         float reflection=beam(p+vec2(0.,.115),vec2(.20,.013))*.26;
         vec3 L=vec3(.025,.32,.54)*pool+vec3(.12,.73,1.)*(light+rim+glass+reflection)
               +vec3(.80,1.,1.)*core+vec3(.04,.37,.56)*mist;
-        gl_FragColor=vec4(L*energy,1.);
+        L*=energy;
+        float alpha=clamp(max(max(L.r,L.g),L.b),0.,1.);
+        gl_FragColor=vec4(L/max(alpha,.0001),alpha);
       }`
   });
   function spill(group,x,y,z,width,height,material=glowMaterial){
