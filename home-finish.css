@@ -1,0 +1,41 @@
+/* Signed contours, optical highlights and original section emblems. */
+#view-overview .prmr-home {
+  background-color:#02070d;
+  background-image:url("./assets/home/console-traces.svg"),
+    radial-gradient(ellipse at 51% 77%,#083849 0%,transparent 32%),
+    radial-gradient(ellipse at 71% 18%,#092635 0%,transparent 29%),
+    linear-gradient(114deg,#02070c 8%,#071520 34%,#020609 62%,#07121c 91%,#010406);
+  background-size:100% 100%;
+}
+.prmr-home::before {
+  background:radial-gradient(ellipse at var(--phase) 79%,#4fdcff29,transparent 34%),
+    radial-gradient(ellipse at 17% 16%,#1d779422,transparent 22%);
+}
+.home-heading {background:linear-gradient(103deg,#06121cf0,transparent 74%);}
+.home-symbols {position:absolute;width:0;height:0;overflow:hidden;}
+.home-icon {display:block;flex:none;width:1.22em;height:1.22em;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round;color:#b8efff;}
+.home-rail a::before {display:none;}
+.home-rail a {gap:.72em;}
+.home-rail .home-icon {width:1.22em;height:1.22em;}
+.home-panels .home-panel .home-caption {display:flex;align-items:center;gap:.48em;max-width:none;font-size:clamp(1rem,1.82cqw,2.52rem);line-height:1.08;}
+.home-caption b {font-weight:630;color:#edfaff;}
+.home-caption .home-icon {filter:drop-shadow(0 0 3px #55d5fc40);}
+.panel-clinical .home-caption b,.panel-anatomy .home-caption b {max-width:8.4ch;}
+.home-panels .panel-proof .panel-art,.home-panels .panel-anatomy .panel-art,.home-panels .panel-clinical .panel-art {
+  mask-image:none;mix-blend-mode:normal;animation:none;
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+  filter:drop-shadow(0 0 3px #52d4fc40);
+}
+.home-panels .panel-proof .panel-art {background-image:url("./assets/home/proof-alpha.webp");width:68%;height:72%;top:5%;right:5%;}
+.home-panels .panel-anatomy .panel-art {background-image:url("./assets/home/anatomy-alpha.webp");width:84%;height:55%;top:5%;right:7%;}
+.home-panels .panel-clinical .panel-art {background-image:url("./assets/home/clinical-alpha.webp");width:53%;height:80%;top:10%;right:3%;}
+.home-panels .panel-anatomy .home-caption b {max-width:none;}
+.home-panels .panel-models .home-caption {font-size:clamp(1rem,1.72cqw,2.3rem);}
+.panel-molecules .mol-home-link {padding-inline-start:1.2cqw;}
+.panel-molecules .mol-home-link small {margin-inline-start:2.9cqw;}
+@media(max-width:800px){
+ .home-panels .home-panel .home-caption {font-size:1rem;}
+ .home-panels .panel-anatomy .home-caption b {max-width:10ch;}
+ .panel-molecules .mol-home-link {padding-inline-start:1rem;}
+ .panel-molecules .mol-home-link small {margin-inline-start:1.7em;}
+}
