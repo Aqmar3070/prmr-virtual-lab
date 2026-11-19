@@ -76,7 +76,8 @@ async function start(){
     for(const button of byId("rows").children)button.setAttribute("aria-pressed",String(button.dataset.code===combo.code));
     byId("preview-id").textContent="· "+combo.code;byId("detail-id").textContent="· "+combo.code;
     select.replaceChildren(...combo.indices.map(i=>new Option(molecules[i].name,i)));
-    if(combo.indices.includes(preferred))select.value=String(preferred);
+    const member=combo.indices.includes(preferred)?preferred:combo.indices.find(i=>MOLECULES_R04.some(m=>m.cid===molecules[i].cid&&coords[m.id]));
+    if(member!==undefined)select.value=String(member);
     facts("details",[["Association",combo.agents.join(" + ")],["Axes étudiés",combo.axes.join(" · ")],["Indice exploratoire",fmt(combo.priority_index)],["Diversité structurale",fmt(combo.structural_diversity)],["Statut",combo.status==="hypothese_in_silico"?"Hypothèse à valider":"Suspendue · "+combo.reasons.map(s=>s.replaceAll("_"," ")).join(", ")]]);
     displayDrug();
   }
