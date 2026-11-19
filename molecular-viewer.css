@@ -1,4 +1,4 @@
-.panel-molecules .mol-home-link {color:inherit;text-decoration:none;position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:1.2cqw 1.5cqw;}
+.panel-molecules .mol-home-link {color:inherit;text-decoration:none;position:absolute;inset:0 60% 0 0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:1.2cqw 1.5cqw;}
 .panel-molecules .mol-home-link small {font-size:clamp(.75rem,1cqw,1.1rem);color:#a0dce9;}
 .panel-molecules canvas {position:absolute;right:2%;top:5%;width:59%;height:90%;visibility:hidden;}
 .panel-molecules.conformer-ready canvas {visibility:visible;}
