@@ -134,7 +134,8 @@ export function mountConsole(host, body) {
         float reflection=beam(p+vec2(0.,.115),vec2(.20,.013))*.26;
         vec3 L=vec3(.025,.32,.54)*pool+vec3(.12,.73,1.)*(light+rim+glass+reflection)
               +vec3(.80,1.,1.)*core+vec3(.04,.37,.56)*mist;
-        L*=energy;
+        vec2 margin=min(st,1.-st);
+        L*=energy*smoothstep(0.,.15,margin.x)*smoothstep(0.,.12,margin.y);
         float alpha=clamp(max(max(L.r,L.g),L.b),0.,1.);
         gl_FragColor=vec4(L/max(alpha,.0001),alpha);
       }`
