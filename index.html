@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <link rel="stylesheet" href="./prmr-console.css?v=57a9ac70e7">
-<link rel="stylesheet" href="./prmr-home.css?v=2">
-<script type="module" src="./src/home-anatomy.mjs?v=1"></script>
+<link rel="stylesheet" href="./prmr-home.css?v=3">
+<script type="module" src="./src/home-anatomy.mjs?v=2"></script>
 </head>
 <body>
 <div class="shell">
@@ -47,25 +47,27 @@
  <section class="prmr-home" aria-labelledby="home-title">
   <header class="home-heading"><p>PRMR VIRTUAL LAB</p><h1 id="home-title">Accueil du laboratoire</h1></header>
   <nav class="home-rail" aria-label="Navigation du laboratoire">
-    <a class="home-hit" style="--x:0.598%;--y:16.472%;--w:12.081%;--h:6.801%" href="./index.html"><span>Accueil</span></a>
-    <a class="home-hit" style="--x:0.598%;--y:24.123%;--w:12.081%;--h:6.801%" href="./preclinical.html"><span>Preuves</span></a>
-    <a class="home-hit" style="--x:0.598%;--y:30.818%;--w:12.081%;--h:6.801%" href="./species-r04.html"><span>Anatomie comparée</span></a>
-    <a class="home-hit" style="--x:0.598%;--y:37.832%;--w:12.081%;--h:6.801%" href="./screening.html"><span>Molécules</span></a>
-    <a class="home-hit" style="--x:0.598%;--y:44.952%;--w:12.081%;--h:6.801%" href="./risk-r03.html"><span>Modélisation</span></a>
-    <a class="home-hit" style="--x:0.598%;--y:50.903%;--w:12.081%;--h:6.801%" href="./clinical.html"><span>Recherche clinique</span></a>
-    <a class="home-hit" style="--x:0.598%;--y:60.786%;--w:12.081%;--h:6.801%" href="./exposures.html"><span>Exposition</span></a>
+    <a class="home-hit" aria-current="page" href="./index.html"><span>Accueil</span></a>
+    <a class="home-hit" href="./preclinical.html"><span>Preuves</span></a>
+    <a class="home-hit" href="./species-r04.html"><span>Anatomie comparée</span></a>
+    <a class="home-hit" href="./screening.html"><span>Molécules</span></a>
+    <a class="home-hit" href="./risk-r03.html"><span>Modélisation</span></a>
+    <a class="home-hit" href="./clinical.html"><span>Recherche clinique</span></a>
+    <a class="home-hit" href="./exposures.html"><span>Exposition</span></a>
   </nav>
+  <div class="home-floor" aria-hidden="true"></div>
+  <div class="home-platform" aria-hidden="true"></div>
   <div class="home-model" id="home-model" aria-label="Atlas anatomique humain">
    <div class="home-viewport" tabindex="0" role="group" aria-label="Corps humain en 3D. Glisser pour tourner, pincer pour zoomer. Au clavier, utiliser les flèches, plus, moins et Origine."></div>
    <span class="home-model-status" role="status">Chargement 3D…</span>
   </div>
   <nav class="home-panels" aria-label="Interfaces du laboratoire">
-    <a class="home-hit" style="--x:14.055%;--y:12.327%;--w:25.718%;--h:25.186%;--ratio:430/237;--size:388.837% 397.046%;--pos:18.921% 16.477%" href="./preclinical.html"><span>Preuves</span></a>
-    <a class="home-hit" style="--x:13.935%;--y:38.895%;--w:24.222%;--h:27.099%;--ratio:405/255;--size:412.840% 369.020%;--pos:18.390% 53.353%" href="./species-r04.html"><span>Anatomie comparée</span></a>
-    <a class="home-hit" style="--x:65.431%;--y:7.226%;--w:32.715%;--h:22.848%;--ratio:547/215;--size:305.667% 437.674%;--pos:97.244% 9.366%" href="./screening.html"><span>Molécules</span></a>
-    <a class="home-hit" style="--x:66.986%;--y:30.818%;--w:31.459%;--h:22.423%;--ratio:526/211;--size:317.871% 445.972%;--pos:97.731% 39.726%" href="./risk-r03.html"><span>Modélisation</span></a>
-    <a class="home-hit" style="--x:65.191%;--y:53.348%;--w:33.014%;--h:21.148%;--ratio:552/199;--size:302.899% 472.864%;--pos:97.321% 67.655%" href="./clinical.html"><span>Recherche clinique</span></a>
-    <a class="home-hit" style="--x:30.263%;--y:79.171%;--w:39.474%;--h:13.709%;--ratio:660/129;--size:253.333% 729.457%;--pos:50.000% 91.749%" href="./exposures.html"><span>Explorer une exposition</span></a>
+   <a class="home-panel panel-proof" href="./preclinical.html"><i class="panel-art" aria-hidden="true"></i><span>Preuves</span></a>
+   <a class="home-panel panel-anatomy" href="./species-r04.html"><i class="panel-art" aria-hidden="true"></i><span>Anatomie comparée</span></a>
+   <a class="home-panel panel-molecules" href="./screening.html"><i class="panel-art" aria-hidden="true"></i><span>Molécules</span></a>
+   <a class="home-panel panel-models" href="./risk-r03.html"><i class="panel-art" aria-hidden="true"></i><span>Modélisation</span></a>
+   <a class="home-panel panel-clinical" href="./clinical.html"><i class="panel-art" aria-hidden="true"></i><span>Recherche clinique</span></a>
+   <a class="home-panel panel-exposure" href="./exposures.html"><span>Explorer une exposition</span></a>
   </nav>
  </section>
  <div class="home-tools"><a href="#home-workshops">Ateliers de ce poste</a><a href="./assets/human3d/ATTRIBUTION.md">Crédits du modèle 3D</a></div>

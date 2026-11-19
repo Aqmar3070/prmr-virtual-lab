@@ -92,6 +92,6 @@ async function mount() {
 const observer = new IntersectionObserver(entries => {
   if (!entries.some(entry => entry.isIntersecting)) return;
   observer.disconnect();
-  mount().catch(() => { status.textContent = "Illustration · 3D indisponible"; });
+  mount().catch(() => { frame.classList.add("unavailable"); status.textContent = "Illustration · 3D indisponible"; });
 });
 observer.observe(frame);
