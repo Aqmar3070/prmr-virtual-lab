@@ -50,7 +50,7 @@ const PHASES = [
 ];
 
 const ASIDE = [
-  { href: "./exposures.html", label: "Expositions" },
+  { href: "./exposures.html", label: "Doses et effets", primary: true },
   { href: "./index.html?view=cloud", label: "Espace privé" },
   {
     href: "https://github.com/Aqmar3070/prmr-virtual-lab",
@@ -105,7 +105,10 @@ inner.append(list);
 
 const aside = el("div", "prmr-route-aside");
 for (const link of ASIDE) {
-  const a = el("a", "prmr-route-aside-link", link.label);
+  /* « Expositions » est un mot d'épidémiologiste. L'outil se cherche avec les
+     mots de celui qui l'utilise : une substance, une dose, un effet. Et il ne
+     peut pas rester le plus petit lien de la page, à côté du code source. */
+  const a = el("a", "prmr-route-aside-link" + (link.primary ? " prmr-route-aside-primary" : ""), link.label);
   a.href = link.href;
   if (link.external) {
     a.target = "_blank";

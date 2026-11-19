@@ -5,14 +5,14 @@
 <meta name="theme-color" content="#07121f">
 <meta name="description" content="PRMR Virtual Lab : chimie moléculaire RDKit, explorateur de données PubChem/ChEMBL et modèles PK/PD exploratoires.">
 <title>PRMR Virtual Lab | Research Workspace 2.0</title>
-<link rel="stylesheet" href="./prmr-design-system.css?v=270adec8a5">
+<link rel="stylesheet" href="./prmr-design-system.css?v=0be4d0e0f0">
 <link rel="stylesheet" href="laboratory.css">
 <link rel="stylesheet" href="r04-atlas.css?v=r12-20261117">
 <script type="module" src="./src/r04_molecule_deck.mjs?v=0737c936df"></script>
 <script defer src="https://unpkg.com/@rdkit/rdkit@2026.9.2/dist/RDKit_minimal.js"></script>
 <script type="module" src="src/lab.mjs"></script>
-<link rel="stylesheet" href="./prmr-route.css?v=0908e32e96">
-<script type="module" src="./src/prmr_route.mjs?v=ea3a8a4035"></script>
+<link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
+<script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 </head>
 <body>
 <div class="shell">
@@ -41,6 +41,21 @@
 </header>
 <main class="main">
 <section class="view" id="view-overview">
+ <!-- L'outil le plus concret du laboratoire n'apparaissait que dans le plus
+      petit lien du coin supérieur droit, à côté de « Code source », sous le
+      nom « Expositions ». Personne ne le trouvait. Il ouvre désormais la
+      page, dit ce qu'il fait, et nomme les substances qu'il couvre. -->
+ <a class="prmr-lead" href="./exposures.html">
+  <div class="prmr-lead-body">
+   <span class="prmr-kicker">L'OUTIL LE PLUS DIRECT DU LABORATOIRE</span>
+   <h2>Une substance, une dose, une durée : ce que disent les sources.</h2>
+   <p>Réglez la dose au curseur et la durée de prise, et voyez quels repères publiés sont franchis et quels organes ils concernent. Comptez la caféine en tasses plutôt qu'en milligrammes. Pour la metformine, ajustez la fonction rénale et le plafond change avec elle.</p>
+   <ul class="prmr-lead-tags">
+    <li>Paracétamol</li><li>Ibuprofène</li><li>Caféine</li><li>Metformine</li>
+   </ul>
+  </div>
+  <span class="prmr-lead-action">Ouvrir l'explorateur de doses →</span>
+ </a>
  <section class="prmr-journey" aria-label="Tableau de bord de progression scientifique">
  <div class="prmr-journey-heading"><div><span class="prmr-kicker">TABLEAU DE BORD · PROGRAMME PRMR</span><h1>Un laboratoire. Cinq étapes. Un parcours clair.</h1><p>Départ : les preuves. Arrivée : la préparation méthodologique d'une recherche clinique humaine. Chaque étape sépare les connaissances publiées, les calculs exploratoires et les données encore manquantes.</p></div><div class="prmr-current-phase"><strong>POSITION ACTUELLE</strong><span>Phase 5 · Évaluation scientifique humaine</span><small>Atlas et bibliothèque initiale disponibles. Validation biologique et autorisations cliniques non acquises.</small></div></div>
  <div class="prmr-path" aria-label="Les cinq phases de la recherche">

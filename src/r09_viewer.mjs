@@ -255,6 +255,7 @@ function makeViewer(canvas,{species="dog",organ="kidneys",isolated=false,onRende
    }
    organVisibility();
    canvas.dataset.canineScanNodes=String(Object.keys(targetNames).length);
+   delete canvas.dataset.anatomyPending;
   }catch(e){
    if(!alive||token!==sceneToken)return;
    canvas.dataset.anatomyLoadingError=e.message||String(e);
@@ -262,13 +263,22 @@ function makeViewer(canvas,{species="dog",organ="kidneys",isolated=false,onRende
    console.warn("[PRMR-R09] Canine CT model unavailable:",e);
    mode="species-specific-procedural";
    sourceStatus="EDUCATIONAL_NOT_VALIDATED";
+   delete canvas.dataset.anatomyPending;
+   generated(current);
    request();
   }
  }
  function setSpecies(id){
   if(!SPECIES_ANATOMY[id])return;
   current=id;canvas.dataset.anatomySpecies=id;const token=++sceneToken;
-  generated(id);if(SCANNED_SPECIES[id])scannedSpecies(token,id);
+  // Le corps géométrique était construit d'abord, puis remplacé par les
+  // organes issus de scanner une fois le fichier arrivé : on voyait donc
+  // toujours la version brute clignoter avant la vraie. Quand un scanner
+  // existe pour cette espèce, on l'attend. La version géométrique ne
+  // revient que s'il échoue — c'est déjà ce que fait scannedSpecies dans
+  // son bloc d'erreur, en rappelant request().
+  if(SCANNED_SPECIES[id]){canvas.dataset.anatomyPending="1";scannedSpecies(token,id);return}
+  generated(id);
  }
  function select(id){
   if(!ORGAN_MODES[id])return;

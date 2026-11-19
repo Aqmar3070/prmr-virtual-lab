@@ -41,3 +41,30 @@ test("la barre de rubriques se place au premier niveau de la page", () => {
   assert.match(tabs, /while \(anchor\.parentNode && anchor\.parentNode !== page\)/,
     "la barre doit remonter hors des grilles, sinon elle est coincée dans une colonne");
 });
+
+test("l'explorateur de doses s'annonce sur l'accueil", () => {
+  /* Il n'apparaissait que dans le plus petit lien du coin supérieur droit, à
+     côté de « Code source », sous le nom « Expositions ». L'utilisateur ne le
+     trouvait pas et concluait que rien n'avait été fait. */
+  const home = read("index.html");
+  assert.match(home, /class="prmr-lead"/, "l'accueil doit annoncer l'explorateur");
+  assert.match(home, /href="\.\/exposures\.html"/);
+  for (const substance of ["Paracétamol", "Ibuprofène", "Caféine", "Metformine"]) {
+    assert.ok(home.includes(substance), "l'accueil doit nommer " + substance);
+  }
+  const route = read("src/prmr_route.mjs");
+  assert.match(route, /label: "Doses et effets", primary: true/,
+    "« Expositions » est un mot d'épidémiologiste, et le lien ne peut pas rester secondaire");
+});
+
+test("la version géométrique ne s'affiche pas avant le scanner", () => {
+  /* generated(id) puis scannedSpecies(token,id) : la version brute était
+     toujours construite d'abord, puis remplacée — d'où le clignotement. */
+  const viewer = read("src/r09_viewer.mjs");
+  assert.match(viewer, /if\(SCANNED_SPECIES\[id\]\)\{canvas\.dataset\.anatomyPending="1";scannedSpecies\(token,id\);return\}/,
+    "quand un scanner existe pour l'espèce, il doit être attendu");
+  assert.ok(!/generated\(id\);if\(SCANNED_SPECIES\[id\]\)/.test(viewer),
+    "la version géométrique ne doit plus précéder le scanner");
+  assert.match(viewer, /generated\(current\);\n\s*request\(\);/,
+    "elle doit revenir si le scanner échoue");
+});
