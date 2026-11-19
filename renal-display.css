@@ -1,5 +1,5 @@
 .renal-workspace {display:grid;grid-template-columns:minmax(0,3fr) minmax(14rem,1fr);overflow:hidden;border:1px solid #38728b;border-radius:12px;background:#071a2a;padding:0!important;}
-.renal-stage {position:relative;min-width:0;height:clamp(24rem,43vw,42rem);background:url("./assets/home/console-traces.svg") center/100% 100% no-repeat,radial-gradient(ellipse,#103b52,#051827 73%);}
+.renal-stage {position:relative;min-width:0;height:clamp(24rem,43vw,42rem);background:url("./assets/home/instrument-bed.svg") center/100% 100% no-repeat,radial-gradient(ellipse,#103b52,#051827 73%);}
 .renal-stage canvas {display:block;width:100%;height:100%;cursor:grab;touch-action:none;}
 .renal-stage canvas:focus-visible {outline:2px solid #8fe9ff;outline-offset:-3px;}
 .renal-controls {padding:clamp(1rem,2vw,2rem);align-self:center;}
@@ -10,5 +10,9 @@
 .prmr-home .home-floor::after {content:"";position:absolute;inset:0;background:url("./assets/home/console-traces.svg") center/78% 95% no-repeat;}
 #view-overview .prmr-home {background-image:url("./assets/home/console-traces.svg"),radial-gradient(ellipse at 51% 55%,#0b344d 0%,#061d32 39%,#031323 66%,#020b15 100%);background-size:100% 100%;}
 .mol-stage {position:relative;}
-.mol-stage::after {content:"";position:absolute;inset:0;background:url("./assets/home/console-traces.svg") center/100% 100% no-repeat;pointer-events:none;}
 @media(max-width:800px){.renal-workspace {grid-template-columns:1fr;}.renal-stage {height:clamp(18rem,72vw,27rem);}}
+
+.mol-stage {background:url("./assets/home/instrument-bed.svg") center/100% 100% no-repeat,radial-gradient(ellipse,#173c50,#081b2a 80%);}
+.prmr-home:not(.console-depth) .home-panel:not(.panel-exposure)::after {
+  background:url("./assets/home/instrument-bed.svg") center/100% 100% no-repeat,linear-gradient(120deg,#0c3244,#061c2d 54%,#0b3145);
+}

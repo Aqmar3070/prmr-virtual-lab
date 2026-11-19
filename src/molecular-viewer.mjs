@@ -15,7 +15,7 @@ async function mount(host) {
   const available = MOLECULES_R04.filter(m => coordinates[m.id]);
   if (!available.length) throw Error("Aucun conformère disponible");
   let automatic = !motion.matches;
-  const viewer = create3D(canvas,{kind:"molecule",model:coordinates[available[0].id],transparent:!select,fitConformer:true,autoRotate:automatic});
+  const viewer = create3D(canvas,{kind:"molecule",model:coordinates[available[0].id],transparent:true,fitConformer:true,autoRotate:automatic});
   function show(mol) {
     const model = coordinates[mol.id];
     viewer.set({kind:"molecule",model});

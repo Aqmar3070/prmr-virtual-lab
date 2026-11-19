@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" preserveAspectRatio="none" fill="none">
+<defs>
+ <pattern id="mesh" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M42 0H0v42" stroke="#589db3" stroke-opacity=".15"/><path d="M19 21h4m-2-2v4" stroke="#80cfdf" stroke-opacity=".16"/></pattern>
+ <pattern id="scale" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M1 9V4" stroke="#8fd6e6" stroke-width=".9"/></pattern>
+ <radialGradient id="fog"><stop stop-color="#4acbff" stop-opacity=".15"/><stop offset="1" stop-color="#22b7ff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="960" height="540" fill="url(#mesh)"/>
+<ellipse cx="479" cy="458" rx="296" ry="56" fill="url(#fog)"/>
+<g stroke="#78bdd6" opacity=".45" stroke-width="1">
+ <path d="M17 108h83l22 22h81l18-18h33m-233 3h73l24 24h43M942 136h-73l-23 23h-66l-19-19h-36m217 4h-69l-23 23h-35"/>
+ <path d="M19 368h85l19-19h52l20-20h39m704 36h-91l-21-21h-52l-21-21h-37"/>
+ <path d="M45 58h134m606 0h125M54 474h71l12 12h69m538-4h75l12-12h72"/>
+ <ellipse cx="480" cy="455" rx="225" ry="24"/><ellipse cx="480" cy="461" rx="246" ry="29" stroke-dasharray="112 12 49 18"/>
+</g>
+<g stroke="#82cce1" opacity=".34" stroke-width="1.2">
+ <circle cx="480" cy="262" r="175" stroke-dasharray="156 59 75 34 182 42"/>
+ <circle cx="480" cy="262" r="185" stroke-width="3.5" stroke-dasharray="1 12"/>
+ <path d="M300 258h14m332 0h14M479 80v11m0 342v12"/>
+</g>
+<path fill="url(#scale)" opacity=".55" d="M47 63h90v9H47zm771 403h82v9h-82z"/>
+<g fill="#95deef" opacity=".65"><circle cx="254" cy="112" r="2"/><circle cx="725" cy="140" r="2"/><circle cx="234" cy="329" r="2"/><circle cx="716" cy="323" r="2"/></g>
+</svg>

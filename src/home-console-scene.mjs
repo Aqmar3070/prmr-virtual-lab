@@ -25,6 +25,7 @@ export function mountConsole(host, body) {
   const metal = new T.MeshStandardMaterial({color:0x245578, metalness:.48, roughness:.25});
   const glass = new T.MeshPhysicalMaterial({color:0x0e334e, metalness:.23, roughness:.23, clearcoat:1, transparent:true, opacity:.91});
   const edge = new T.LineBasicMaterial({color:0x8cecff,transparent:true,opacity:.87});
+  const engraving=new T.LineBasicMaterial({color:0x72bfd7,transparent:true,opacity:.53,depthWrite:false});
   const beacons = new T.PointsMaterial({color:0x98eaff,size:2.4,sizeAttenuation:false,transparent:true,opacity:.88});
   const fine = new T.LineBasicMaterial({color:0x4c9fbd,transparent:true,opacity:.50});
   const bright = new T.MeshBasicMaterial({color:0x90f2ff});
@@ -107,6 +108,32 @@ export function mountConsole(host, body) {
       group.add(new T.Points(geometry,beacons));
     }
   }
+  // Draw these marks on the inner glass face, beneath the anatomy.
+  function panelEngraving(group,w,h,kind) {
+    const segments=[];
+    function track(points) {
+      for(let i=1;i<points.length;i++) {
+        for(const [x,y] of [points[i-1],points[i]])segments.push(x*w,y*h,4.6);
+      }
+    }
+    track([[-.45,.22],[-.34,.22],[-.30,.10],[-.19,.10],[-.16,.17]]);
+    track([[-.45,.17],[-.36,.17],[-.32,.05],[-.25,.05]]);
+    track([[.46,-.23],[.39,-.23],[.35,-.10],[.29,-.10]]);
+    for(let i=0;i<12;i++)track([[-.43+i*.014,.32],[-.43+i*.014,.32+(i%4===0?.055:.025)]]);
+    const x=kind==="molecule"?.17:.12;
+    for(const [rx,ry,y] of [[.24,.055,-.34],[.26,.075,-.35]]){
+      const arc=[];
+      for(let j=0;j<=56;j++){const a=j*2*Math.PI/56;arc.push([x+rx*Math.cos(a),y+ry*Math.sin(a)]);}
+      track(arc);
+    }
+    const geom=new T.BufferGeometry();
+    geom.setAttribute("position",new T.Float32BufferAttribute(segments,3));
+    group.add(new T.LineSegments(geom,engraving));
+    if(kind==="molecule"){
+      const dial=new T.Group();dial.position.set(x*w,.015*h,5);group.add(dial);
+      instrument(dial,Math.min(.24*w,.36*h),4);
+    }
+  }
   function layout() {
     const bounds=host.getBoundingClientRect(),w=bounds.width,h=bounds.height;
     if (!w || !h) return;
@@ -145,6 +172,7 @@ export function mountConsole(host, body) {
       g.rotation.y=w>800?(g.position.x<0?.095:-.095):0;
       plate(g,pw-3,ph-3,-6,4,metal);plate(g,pw-8,ph-8,0,2,glass);
       line(g,outline(pw-3,ph-3,1),edge,true);line(g,outline(pw-13,ph-13,4),fine,true);
+      if(!el.classList.contains("panel-exposure")) panelEngraving(g,pw,ph,el.classList.contains("panel-molecules")?"molecule":"panel");
       if(el.classList.contains("panel-models")) {
         organView(g,pw,ph);
         const dial=new T.Group();dial.position.set(pw*.15,0,ph*.20+8);dial.rotation.y=.32;g.add(dial);
