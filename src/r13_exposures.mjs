@@ -264,13 +264,19 @@ function build(host, data) {
     bodyKey.append(item);
   }
   bodyPanel.append(bodyMap.svg, bodyKey, bodyLegend);
-  controls.append(bodyPanel);
+
+  /* Le corps passe au centre, en grand. Il était relégué au bas de la colonne
+     des réglages, sous le poids et la fonction rénale : la figure que l'on
+     vient voir se trouvait après les formulaires. */
+  const stage = el("div", "r13-stage");
+  const readouts = el("div", "r13-readouts");
+  stage.append(readouts, bodyPanel);
 
   const results = el("div", "r13-results");
   const summary = el("div", "r13-summary");
   const findings = el("div", "r13-findings");
   results.append(summary, findings);
-  layout.append(controls, results);
+  layout.append(controls, stage, results);
   host.append(layout);
 
   function render() {
@@ -321,6 +327,26 @@ function build(host, data) {
       band = bands.find(b => dfg >= b.min && (b.max === null || dfg <= b.max)) || null;
     }
     const concernes = bodyMap.update(organStates(marques));
+
+    /* Quatre chiffres lisibles de loin, qui résument le réglage en cours.
+       Chacun est une donnée réelle du registre ou du réglage — jamais une
+       constante vitale, que ce laboratoire n'a pas à inventer. */
+    readouts.replaceChildren();
+    const chiffres = [
+      { valeur: dose.toLocaleString("fr-FR"), unite: substance.unit, titre: "Dose réglée" },
+      { valeur: duration.label, unite: "de prise", titre: "Durée" },
+      { valeur: String(crossed.length), unite: crossed.length > 1 ? "repères franchis" : "repère franchi", titre: "Repères publiés" },
+      { valeur: String(concernes.length), unite: concernes.length > 1 ? "organes concernés" : "organe concerné", titre: "Organes" }
+    ];
+    for (const c of chiffres) {
+      const bloc = el("div", "r13-readout");
+      bloc.append(
+        el("span", "r13-readout-title", c.titre),
+        el("strong", "r13-readout-value", c.valeur),
+        el("span", "r13-readout-unit", c.unite)
+      );
+      readouts.append(bloc);
+    }
     bodyLegend.textContent = concernes.length
       ? "Organes concernés par les repères franchis : " + concernes.join(", ") + ". La couleur indique la nature du repère, jamais l\u2019état d\u2019un organe."
       : "Aucun repère franchi à ce réglage : aucun organe n\u2019est marqué.";
