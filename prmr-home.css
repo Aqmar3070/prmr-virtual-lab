@@ -1,0 +1,65 @@
+#view-overview .prmr-home {
+  color: #eaf9ff;
+  border: 1px solid #36758a;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-block-end: 1.5rem;
+  background: radial-gradient(ellipse at 50% 62%, #0c344c, #051423 70%);
+}
+#view-overview .home-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  padding: 1.25rem clamp(1rem, 3vw, 2.5rem);
+  border-bottom: 1px solid #2a6179;
+}
+#view-overview .home-heading h1 { margin: 0; color: #f1fbff; font-size: clamp(1.7rem, 3vw, 3rem); }
+#view-overview .home-heading p { margin: 0; color: #8cdcea; }
+#view-overview .home-console {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,.95fr) minmax(0,1fr);
+  grid-template-areas: "step1 anatomy step3" "step2 anatomy step4" "step6 anatomy step5";
+  align-items: center;
+  gap: 1rem;
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+#view-overview .home-anatomy {
+  grid-area: anatomy; width: 100%; height: auto; max-height: 34rem; object-fit: contain;
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+#view-overview .home-entry {
+  display: grid;
+  align-content: center;
+  gap: .45rem;
+  min-height: 6.5rem;
+  padding: 1rem;
+  color: #f2fbff;
+  text-decoration: none;
+  background: linear-gradient(115deg, #10364c, #081e30);
+  border: 1px solid #397992;
+  border-inline-start: 3px solid #5dd3eb;
+  border-radius: 7px;
+}
+#view-overview .home-entry strong { color: inherit; font-size: clamp(1rem, 1.6vw, 1.4rem); line-height: 1.2; }
+#view-overview .home-entry span { color: #c0d8e4; font-size: .95rem; line-height: 1.45; }
+#view-overview .home-entry:last-child { border-inline-start-color: #f0b379; }
+#view-overview .home-entry:hover, #view-overview .home-entry:focus-visible { background: #15435b; border-color: #9deaff; }
+#view-overview .home-entry:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+@media (max-width: 900px) {
+  #view-overview .home-console {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-areas: "anatomy step1" "anatomy step2" "step3 step4" "step5 step6";
+    align-items: stretch;
+  }
+  #view-overview .home-anatomy { align-self: center; max-height: 18rem; }
+}
+@media (max-width: 520px) {
+  #view-overview .home-console {
+    grid-template-columns: minmax(0,1fr);
+    grid-template-areas: "anatomy" "step1" "step2" "step3" "step4" "step5" "step6";
+  }
+  #view-overview .home-anatomy { max-height: 13rem; }
+  #view-overview .home-entry { min-height: auto; }
+}
