@@ -52,3 +52,19 @@ test("sur écran étroit, rien ne reste collant", () => {
   /* Des colonnes collantes empilées se chevauchent. */
   assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.prmr-console-side \{ position: static/);
 });
+
+test("la page des espèces suit son propre plan", () => {
+  /* « Sélecteur espèce à gauche ; animal entier 3D central ; couches et
+     organes à droite ; PK exploratoire en bande secondaire. » Le sélecteur
+     barrait la page en bandeau, l'animal et ses paramètres partageaient un
+     panneau. */
+  const atlas = readFileSync(new URL("../src/r04_atlas.mjs", import.meta.url), "utf8");
+  assert.match(atlas, /colGauche\.append\(make\("div","overline","Espèce"\),chooser\)/,
+    "le sélecteur d'espèce doit être dans la colonne de gauche");
+  assert.match(atlas, /portraitPanel\.append\(portrait,portraitOverlay\);colCentre\.append\(portraitPanel\)/,
+    "l'animal doit occuper la colonne centrale, seul");
+  assert.match(atlas, /colDroite\.append\(make\("div","overline","Couches et organes"\),organToolbar/,
+    "couches et organes doivent être à droite");
+  assert.ok(!/profileGrid/.test(atlas), "l'ancien panneau profil doit être démonté, pas contourné");
+  assert.ok(!/shell\.append\(chooser\)/.test(atlas), "le sélecteur ne doit plus barrer la page");
+});
