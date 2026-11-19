@@ -71,18 +71,20 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
   const caption=make("span");caption.append(make("strong",null,sp.label),make("small",null,sp.latin));
   btn.append(art,caption);btn.addEventListener("click",()=>choose(sp.id));chooser.append(btn)
  }
- shell.append(chooser);
+ /* Le sélecteur ne barre plus la page : le plan livré avec les images le
+    place à gauche, l'animal au centre, les couches et organes à droite. */
  const stats=make("div","r4-st-stats");
  stats.append(statCard("Architecture","Rein","Comparaison anatomique"),
  statCard("Axes moléculaires","3 régimes","Hypothèses R02"),
  statCard("Technologie","3D interactive","RDKit + organes conceptuels"),
  statCard("Toxicité et guérison","Indéterminées","Aucune probabilité calculée"));shell.append(stats);
- const grid=make("div","r4-st-main-grid");shell.append(grid);
- const large=make("div","r4-st-panel r4-st-profile");grid.append(large);
- const largeTop=make("div","r4-st-paneltop");
- largeTop.append(make("h3",null,"Profil de l’espèce — paramètres modifiables"),make("span","r4-st-chip","Espèce sélectionnée"));
- large.append(largeTop);
- const profileGrid=make("div","r4-st-profile-body");large.append(profileGrid);
+ const grid=make("div","prmr-console r4-st-console");shell.append(grid);
+ const colGauche=make("div","prmr-console-side prmr-panel");grid.append(colGauche);
+ const colCentre=make("div","prmr-console-stage prmr-panel");grid.append(colCentre);
+ const colDroite=make("div","prmr-console-read prmr-panel");grid.append(colDroite);
+ colGauche.append(make("div","overline","Espèce"),chooser);
+ /* Le panneau « profil » contenait l'animal et ses paramètres côte à côte.
+    Il est démonté : l'animal occupe le centre, ses paramètres la gauche. */
  const portraitPanel=make("div","r5-animal-profile-panel");
  const portrait=make("div","r4-st-portrait");portrait.dataset.species="dog";portrait.dataset.mode="anatomy";portrait.classList.add("r5-webgl-active");
  // Canvas2D anatomy replaces the previous GLB viewer. SVG fallback prevents a blank box.
@@ -144,8 +146,8 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  makeToggle("Isoler la sélection",false,on=>anatomy?.setIsolated(on));
  makeToggle("Afficher les liens d’organes",false,on=>anatomy?.setLinksVisible(on));
  const sourceLine=make("p","r09-source-line","Maillage 3D indépendant. Précision anatomique variable ; aucune lésion constatée.");
- portraitPanel.append(portrait,organToolbar,sceneOptions,organDescription,sourceLine,portraitOverlay);profileGrid.append(portraitPanel);
- const info=make("div","r4-st-props");profileGrid.append(info);
+ portraitPanel.append(portrait,portraitOverlay);colCentre.append(portraitPanel);
+ const info=make("div","r4-st-props");colGauche.append(make("div","overline","Paramètres"),info);
  const decision=make("div","r4-st-insight");decision.append(make("span",null,"Axe scientifique"),make("strong","r4-st-decision","Approche mécanistique"),make("p","r4-st-remark","La réponse dépend de l'espèce et de la maladie."));
  info.append(decision);
  const meta=make("div","r4-st-annotations");info.append(meta);
@@ -191,7 +193,8 @@ export function createVisualAtlas({onChoose,getResult,onEdit=null,onOrganChange=
  const disclaimer=make("p","r5-advanced-disclaimer","Âge, sexe et constitution : aucune variation numérique de toxicité n’est produite sans données calibrées par espèce. Seuls les paramètres réellement pris en charge changent les chiffres.");
  advanceFields.append(disclaimer);
  advanced.append(advanceFields);info.append(advanced);
- const right=make("div","r4-st-panel r4-st-organ");grid.append(right);
+ colDroite.append(make("div","overline","Couches et organes"),organToolbar,sceneOptions,organDescription,sourceLine);
+ const right=make("div","r4-st-organ");colDroite.append(right);
  const organTop=make("div","r4-st-paneltop");organTop.append(make("h3",null,"Organe isolé — explorer et faire tourner"),make("span","r4-st-chip","3D INDÉPENDANTE · DRAG"));
  right.append(organTop);
  const organWrap=make("div","r4-st-organbox");

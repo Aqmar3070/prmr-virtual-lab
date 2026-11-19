@@ -294,3 +294,41 @@ button.workflow,
   .prmr-console-side { position: static; max-height: none; }
   .prmr-console-stage canvas { height: min(60vh, 460px); }
 }
+
+/* La page des espèces : mêmes colonnes, mais le sélecteur d'espèce s'empile
+   verticalement à gauche au lieu de s'étaler en bandeau. */
+.r4-st-console .r4-st-species {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--prmr-space-2);
+  margin: 0;
+}
+
+.r4-st-console .r4-st-art {
+  height: clamp(64px, 9vw, 96px);
+}
+
+.r4-st-console .prmr-console-stage {
+  display: flex;
+  align-items: stretch;
+}
+
+.r4-st-console .r5-animal-profile-panel,
+.r4-st-console .r4-st-portrait {
+  width: 100%;
+  margin: 0;
+}
+
+.r4-st-console .r4-st-portrait {
+  min-height: min(70vh, 660px);
+}
+
+.r4-st-console .r4-st-portrait canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.r4-st-console .r09-scene-options,
+.r4-st-console .r4-st-organbox {
+  margin-top: var(--prmr-space-3);
+}
