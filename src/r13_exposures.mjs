@@ -15,6 +15,7 @@
  */
 
 import { createBodyMap, organStates, ORGAN_FILL } from "./r13_body_map.mjs";
+import { mountBodyViewer } from "./r19_body_viewer.mjs";
 const el = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -270,7 +271,35 @@ function build(host, data) {
      vient voir se trouvait après les formulaires. */
   const stage = el("div", "r13-stage");
   const readouts = el("div", "r13-readouts");
-  stage.append(readouts, bodyPanel);
+
+  /* L'atlas réel prend la place du schéma. Celui-ci reste en réserve : si le
+     modèle ne se charge pas — réseau, WebGL indisponible — la console garde
+     une figure plutôt qu'un carré vide. */
+  const canvas3d = el("canvas", "r13-canvas3d");
+  canvas3d.setAttribute("aria-label",
+    "Atlas anatomique humain en trois dimensions ; glisser pour tourner, molette pour agrandir");
+  canvas3d.tabIndex = 0;
+  const chargement = el("p", "prmr-small r13-chargement", "Chargement de l’atlas anatomique…");
+  stage.append(readouts, canvas3d, chargement, bodyPanel);
+  bodyPanel.hidden = true;
+
+  /* Les couleurs sont définies en CSS ; WebGL ne sait pas lire var(). */
+  const teinteDe = valeur => {
+    const nom = String(valeur).match(/var\((--[\w-]+)\)/);
+    if (!nom) return valeur;
+    return getComputedStyle(document.documentElement).getPropertyValue(nom[1]).trim() || "#7ed6e9";
+  };
+
+  let atlas = null;
+  let etatsCourants = {};
+  mountBodyViewer(canvas3d, { onStatus: m => { chargement.textContent = m || ""; chargement.hidden = !m; } })
+    .then(viewer => { atlas = viewer; viewer.setStates(etatsCourants); })
+    .catch(erreur => {
+      console.warn("[PRMR-R13] atlas 3D indisponible :", erreur);
+      canvas3d.hidden = true;
+      chargement.hidden = true;
+      bodyPanel.hidden = false;
+    });
 
   const results = el("div", "r13-results");
   const summary = el("div", "r13-summary");
@@ -326,7 +355,11 @@ function build(host, data) {
       dfgRange.value = String(dfg);
       band = bands.find(b => dfg >= b.min && (b.max === null || dfg <= b.max)) || null;
     }
-    const concernes = bodyMap.update(organStates(marques));
+    const etats = organStates(marques);
+    const concernes = bodyMap.update(etats);
+    etatsCourants = Object.fromEntries(
+      Object.entries(etats).map(([organe, statut]) => [organe, teinteDe(ORGAN_FILL[statut])]));
+    atlas?.setStates(etatsCourants);
 
     /* Quatre chiffres lisibles de loin, qui résument le réglage en cours.
        Chacun est une donnée réelle du registre ou du réglage — jamais une
