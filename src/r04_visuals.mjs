@@ -103,7 +103,7 @@ function body(species,renal,hepatic){
  wire([-.12,-.15,config.body[2]+.05],[1.27,-.02,config.body[2]+.02],22,"#78ece3",.028);
  return {atoms,bonds,kind:"animal"};
 }
-export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="normal",hepatic="normal",transparent=false,autoRotate=true}={}){
+export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="normal",hepatic="normal",transparent=false,autoRotate=true,fitConformer=false}={}){
  const ctx=canvas.getContext("2d");
  if(!ctx)throw Error("Canvas 2D indisponible");
  let current={kind,model,species,renal,hepatic},yaw=.25,pitch=-.18,dragging=false,lastX=0,lastY=0,raf=0,enabled=true,lastFrame=0,geometryCache=null;
@@ -130,7 +130,14 @@ export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="n
   const values=content.atoms.map(x=>x.p),xs=values.map(v=>v[0]),ys=values.map(v=>v[1]);
   const extent=Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys),.6);
   const center=[(Math.max(...xs)+Math.min(...xs))/2,(Math.max(...ys)+Math.min(...ys))/2,0];
-  const scale=Math.min(w*.72,h*.73)/extent;
+  let scale=Math.min(w*.72,h*.73)/extent;
+  if(fitConformer){
+    const projected=values.map(p=>project([p[0]-center[0],p[1]-center[1],p[2]],0,0,1,pitch,yaw));
+    const rx=Math.max(.01,...projected.map(p=>Math.abs(p.x)));
+    const ry=Math.max(.01,...projected.map(p=>Math.abs(p.y)));
+    const padding=Math.min(18*dpr,Math.min(w,h)*.10);
+    scale=Math.min((w*.5-padding)/rx,(h*.5-padding)/ry,Math.min(w,h)*1.65/extent);
+  }
   const points=content.atoms.map(a=>({...project([a.p[0]-center[0],a.p[1]-center[1],a.p[2]],w,h,scale,pitch,yaw),r:a.r*scale,c:a.c}));
   ctx.lineCap="round";
   for(const b of content.bonds){const [i,j,order]=b,p=points[i],q=points[j];if(!p||!q)continue;

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" fill="none">
+<defs><pattern id="ticks" width="16" height="12" patternUnits="userSpaceOnUse"><path d="M0 11v-3m8 3v-6" stroke="#8cdef4" stroke-opacity=".38" stroke-width=".8"/></pattern></defs>
+<g stroke="#65c2e6" stroke-opacity=".36" stroke-width=".85">
+<path d="M0 98h115l29 29h151l29 29h64m-388-52h110l30 30h84M1200 123h-86l-37 37h-156l-25 25h-50m354-55h-79l-38 37h-88M0 436h122l30-30h96l33-33h53m866 48h-147l-29-29h-122l-27-27h-25"/>
+<path d="M31 48v-15h117m904 0h116v16M28 550v16h104m926 0h114v-19" />
+<path stroke-dasharray="2 8" d="M10 184h267m654 17h245M26 479h174m798-5h156"/>
+</g><g fill="#a6edff" fill-opacity=".70"><circle cx="388" cy="156" r="2"/><circle cx="846" cy="185" r="2"/><circle cx="334" cy="373" r="2"/><circle cx="850" cy="365" r="2"/></g>
+<path fill="url(#ticks)" d="M45 39h159v12H45zm940 508h165v12H985z"/></svg>

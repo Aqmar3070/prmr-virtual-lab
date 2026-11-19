@@ -1,4 +1,4 @@
-import {create3D} from "./r04_visuals.mjs?v=conformer1";
+import {create3D} from "./r04_visuals.mjs?v=conformer2";
 import {MOLECULES_R04} from "./r04_engine.mjs";
 
 async function mount(host) {
@@ -15,7 +15,7 @@ async function mount(host) {
   const available = MOLECULES_R04.filter(m => coordinates[m.id]);
   if (!available.length) throw Error("Aucun conformère disponible");
   let automatic = !motion.matches;
-  const viewer = create3D(canvas,{kind:"molecule",model:coordinates[available[0].id],transparent:!select,autoRotate:automatic});
+  const viewer = create3D(canvas,{kind:"molecule",model:coordinates[available[0].id],transparent:!select,fitConformer:true,autoRotate:automatic});
   function show(mol) {
     const model = coordinates[mol.id];
     viewer.set({kind:"molecule",model});

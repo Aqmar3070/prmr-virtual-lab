@@ -1,3 +1,4 @@
+import {renalAtlas} from "./renal-atlas.mjs";
 import * as T from "../vendor/three/build/three.module.js";
 
 // All console geometry is laid out against the actual link boxes. HTML owns
@@ -28,13 +29,9 @@ export function mountConsole(host, body) {
   const fine = new T.LineBasicMaterial({color:0x4c9fbd,transparent:true,opacity:.50});
   const bright = new T.MeshBasicMaterial({color:0x90f2ff});
   const aqua = new T.MeshPhongMaterial({color:0x57c4e7,emissive:0x072c40,shininess:95});
-  const renalSurface = new T.MeshPhongMaterial({color:0x287497,emissive:0x062338,shininess:100,specular:0xb2edff});
-  const renalWire = new T.MeshBasicMaterial({color:0xb1f4ff,wireframe:true,transparent:true,opacity:.13,depthWrite:false});
-  const kidneys = [];
-  body.updateMatrixWorld(true);
-  body.traverse(node => {
-    if (node.isMesh && /^kidney_[lr]$/.test(node.name)) kidneys.push(node);
-  });
+  const renal=renalAtlas(body);
+  const renalGeometry=new Set();
+  renal.model.traverse(node=>{if(node.isMesh)renalGeometry.add(node.geometry);});
   let assembly, selected, lastSize = "", job = 0, visible = true, lastFrame = -100;
   const motion = matchMedia("(prefers-reduced-motion: reduce)");
   const highlight = new T.PointLight(0x8cecff,0,420,1);
@@ -58,17 +55,10 @@ export function mountConsole(host, body) {
     mesh.position.z=z;group.add(mesh);return mesh;
   }
   function organView(group,w,h) {
-    const organs=new T.Group();
-    for(const node of kidneys) {
-      const mesh=new T.Mesh(node.geometry,renalSurface);
-      mesh.add(new T.Mesh(node.geometry,renalWire));
-      mesh.applyMatrix4(node.matrixWorld);organs.add(mesh);
-    }
-    if (!organs.children.length) return;
-    const bounds=new T.Box3().setFromObject(organs),size=bounds.getSize(new T.Vector3());
-    const model=new T.Group();organs.position.copy(bounds.getCenter(new T.Vector3())).negate();model.add(organs);
-    model.scale.setScalar(Math.min(w*.46/size.x,h*.65/size.y));model.rotation.y=-.24;
-    model.position.set(w*.22,0,Math.max(35,h*.55));group.add(model);
+    const model=renal.model.clone();
+    model.scale.setScalar(Math.min(w*.60/renal.size.x,h*.91/renal.size.y));
+    model.rotation.y=-.12;
+    model.position.set(w*.15,h*.035,Math.max(45,h*.64));group.add(model);
   }
   function instrument(group, radius, sectors) {
     const segments=[];
@@ -122,7 +112,7 @@ export function mountConsole(host, body) {
     if (!w || !h) return;
     const size=w+"x"+h;if(size===lastSize)return;lastSize=size;
     if(assembly) {
-      const used=new Set();assembly.traverse(o=>{if(o.geometry && !kidneys.some(k=>k.geometry===o.geometry))used.add(o.geometry);});
+      const used=new Set();assembly.traverse(o=>{if(o.geometry && !renalGeometry.has(o.geometry))used.add(o.geometry);});
       used.forEach(g=>g.dispose());scene.remove(assembly);
     }
     assembly=new T.Group();scene.add(assembly);
@@ -157,7 +147,7 @@ export function mountConsole(host, body) {
       line(g,outline(pw-3,ph-3,1),edge,true);line(g,outline(pw-13,ph-13,4),fine,true);
       if(el.classList.contains("panel-models")) {
         organView(g,pw,ph);
-        const dial=new T.Group();dial.position.set(pw*.22,0,ph*.20+8);dial.rotation.y=.32;g.add(dial);
+        const dial=new T.Group();dial.position.set(pw*.15,0,ph*.20+8);dial.rotation.y=.32;g.add(dial);
         instrument(dial,Math.min(ph*.38,pw*.19),3);
       }
       if(el.classList.contains("panel-exposure"))return;

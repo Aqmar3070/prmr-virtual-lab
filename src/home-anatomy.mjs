@@ -69,7 +69,7 @@ async function mount() {
     new ResizeObserver(resize).observe(viewport);
     frame.classList.add("ready");
     status.textContent = "Modèle 3D chargé";
-    import("./home-console-scene.mjs?v=3")
+    import("./home-console-scene.mjs?v=4")
       .then(({mountConsole}) => mountConsole(frame.closest(".prmr-home"), body))
       .catch(error => console.warn("Décor 3D indisponible", error));
     viewport.addEventListener("keydown", event => {

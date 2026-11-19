@@ -1,13 +1,13 @@
 .panel-molecules .mol-home-link {color:inherit;text-decoration:none;position:absolute;inset:0 60% 0 0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:1.2cqw 1.5cqw;}
 .panel-molecules .mol-home-link small {font-size:clamp(.75rem,1cqw,1.1rem);color:#a0dce9;}
-.panel-molecules canvas {position:absolute;right:2%;top:5%;width:59%;height:90%;visibility:hidden;}
+.panel-molecules canvas {position:absolute;right:1%;top:2%;width:66%;height:96%;visibility:hidden;}
 .panel-molecules.conformer-ready canvas {visibility:visible;}
 [data-mol-canvas] {display:block;cursor:grab;touch-action:none;}
 [data-mol-canvas]:active {cursor:grabbing;}
 [data-mol-canvas]:focus-visible,.mol-home-link:focus-visible {outline:2px solid #91ebff;outline-offset:-3px;}
 #conformeres.mol-workbench {display:grid;grid-template-columns:minmax(0,1.6fr) minmax(16rem,1fr);padding:0;overflow:hidden;border:1px solid #39778e;background:#071c2c;border-radius:12px;scroll-margin-top:6rem;}
 .mol-stage {min-width:0;display:flex;background:#0e2939;}
-.mol-stage canvas {width:100%;height:clamp(19rem,36vw,32rem);}
+.mol-stage canvas {width:100%;height:clamp(24rem,44vw,42rem);}
 .mol-inspector {padding:clamp(1rem,2.6vw,2.5rem);align-self:center;}
 .mol-inspector label {display:block;margin-bottom:.4rem;}
 .mol-inspector select {width:100%;color:#f0fbff;background:#0b3044;border:1px solid #44859c;border-radius:.4rem;padding:.65rem;font:inherit;}
@@ -15,4 +15,4 @@
 .mol-controls {display:flex;gap:.5rem;flex-wrap:wrap;}
 .mol-controls button {cursor:pointer;color:#eafaff;background:#0b2d42;border:1px solid #46778a;padding:.6rem .8rem;border-radius:.4rem;font:inherit;}
 .mol-controls button[aria-pressed=true] {border-color:#75e1f6;background:#10516b;}
-@media(max-width:700px){#conformeres.mol-workbench {grid-template-columns:1fr;} .mol-stage canvas {height:19rem;} .panel-molecules .mol-home-link{padding:1rem;}}
+@media(max-width:700px){#conformeres.mol-workbench {grid-template-columns:1fr;} .mol-stage canvas {height:23rem;} .panel-molecules .mol-home-link{padding:1rem;}}
