@@ -103,7 +103,7 @@ function body(species,renal,hepatic){
  wire([-.12,-.15,config.body[2]+.05],[1.27,-.02,config.body[2]+.02],22,"#78ece3",.028);
  return {atoms,bonds,kind:"animal"};
 }
-export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="normal",hepatic="normal"}={}){
+export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="normal",hepatic="normal",transparent=false,autoRotate=true}={}){
  const ctx=canvas.getContext("2d");
  if(!ctx)throw Error("Canvas 2D indisponible");
  let current={kind,model,species,renal,hepatic},yaw=.25,pitch=-.18,dragging=false,lastX=0,lastY=0,raf=0,enabled=true,lastFrame=0,geometryCache=null;
@@ -116,12 +116,14 @@ export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="n
   const w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));
   if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
   ctx.clearRect(0,0,w,h);
+  if(!transparent){
   const grad=ctx.createRadialGradient(w*.5,h*.52,0,w*.5,h*.5,w*.67);
   grad.addColorStop(0,"#1b4960");grad.addColorStop(.60,"#102839");grad.addColorStop(1,"#091722");
   ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
   // static science-grid backdrop
   ctx.lineWidth=dpr*.6;ctx.strokeStyle="#31798b1f";
   for(let i=0;i<12;i++){let y=h*i/12;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+  }
   const content=geometryCache||(geometryCache=current.kind==="molecule"&&current.model?
    {atoms:current.model.a.map((c,i)=>({p:current.model.p[i],c:PALETTE[c]||"#cfe7e0",r:c==="Cl"?.29:c==="O"?.22:.19})),bonds:current.model.b,kind:"molecule"}:
    current.kind==="animal"?body(current.species,current.renal,current.hepatic):kindney());
@@ -140,7 +142,7 @@ export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="n
    const r=Math.min(content.kind==="molecule"?16*dpr:14*dpr,Math.max(content.kind==="molecule"?3*dpr:1.7*dpr,a.r*(content.kind==="molecule"?1:.65)));
    lightBall(ctx,a.x,a.y,r,a.c,content.kind==="molecule"?5*dpr:2*dpr);
   }
-  if(!dragging){yaw+=.0045}
+  if(!dragging && autoRotate){yaw+=.0045}
  }
  const down=e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)};
  const move=e=>{if(!dragging)return;yaw+=(e.clientX-lastX)*.008;pitch=Math.max(-1.4,Math.min(1.4,pitch+(e.clientY-lastY)*.008));lastX=e.clientX;lastY=e.clientY};
@@ -162,5 +164,5 @@ export function create3D(canvas,{kind="kidney",model=null,species="dog",renal="n
  }
  document.addEventListener("visibilitychange",onVisibility);
  paint();
- return {set(next){current={...current,...next};geometryCache=null},reset(){yaw=.25;pitch=-.18},destroy(){stop();observer?.disconnect();document.removeEventListener("visibilitychange",onVisibility);canvas.removeEventListener("pointerdown",down);canvas.removeEventListener("pointermove",move);canvas.removeEventListener("pointerup",up);canvas.removeEventListener("pointercancel",up)}};
+ return {setAutoRotate(value){autoRotate=Boolean(value)},rotate(dx,dy){yaw+=dx;pitch=Math.max(-1.4,Math.min(1.4,pitch+dy))},set(next){current={...current,...next};geometryCache=null},reset(){yaw=.25;pitch=-.18},destroy(){stop();observer?.disconnect();document.removeEventListener("visibilitychange",onVisibility);canvas.removeEventListener("pointerdown",down);canvas.removeEventListener("pointermove",move);canvas.removeEventListener("pointerup",up);canvas.removeEventListener("pointercancel",up)}};
 }

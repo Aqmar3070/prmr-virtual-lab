@@ -30,7 +30,6 @@ export function mountConsole(host, body) {
   const aqua = new T.MeshPhongMaterial({color:0x57c4e7,emissive:0x072c40,shininess:95});
   const renalSurface = new T.MeshPhongMaterial({color:0x287497,emissive:0x062338,shininess:100,specular:0xb2edff});
   const renalWire = new T.MeshBasicMaterial({color:0xb1f4ff,wireframe:true,transparent:true,opacity:.13,depthWrite:false});
-  const amber = new T.MeshPhongMaterial({color:0xffbd67,emissive:0x6b3516,shininess:100});
   const kidneys = [];
   body.updateMatrixWorld(true);
   body.traverse(node => {
@@ -57,21 +56,6 @@ export function mountConsole(host, body) {
   function ring(group,r,t,material,z) {
     const mesh=new T.Mesh(new T.TorusGeometry(r,t,8,128),material);
     mesh.position.z=z;group.add(mesh);return mesh;
-  }
-  function molecule(group,w,h) {
-    const sketch=new T.Group(); group.add(sketch);
-    sketch.position.set(w*.24,h*.05,Math.max(28,h*.45)); sketch.rotation.set(.52,-.32,.24);
-    const radius=Math.min(h*.33,w*.17);
-    const points=Array.from({length:6},(_,i)=>new T.Vector3(Math.cos(i*Math.PI/3)*radius,Math.sin(i*Math.PI/3)*radius,0));
-    const sphere=new T.SphereGeometry(1,20,14);
-    function atom(v,r,m) {const o=new T.Mesh(sphere,m);o.scale.setScalar(r);o.position.copy(v);sketch.add(o);}
-    function bond(a,b) {
-      const axis=b.clone().sub(a);
-      const o=new T.Mesh(new T.CylinderGeometry(radius*.038,radius*.038,axis.length(),10),aqua);
-      o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),axis.normalize());
-      o.position.addVectors(a,b).multiplyScalar(.5);sketch.add(o);
-    }
-    points.forEach((p,i)=>{const end=p.clone().multiplyScalar(1.45);bond(p,points[(i+1)%6]);bond(p,end);atom(p,radius*.17,aqua);atom(end,radius*.10,amber);});
   }
   function organView(group,w,h) {
     const organs=new T.Group();
@@ -171,7 +155,6 @@ export function mountConsole(host, body) {
       g.rotation.y=w>800?(g.position.x<0?.095:-.095):0;
       plate(g,pw-3,ph-3,-6,4,metal);plate(g,pw-8,ph-8,0,2,glass);
       line(g,outline(pw-3,ph-3,1),edge,true);line(g,outline(pw-13,ph-13,4),fine,true);
-      if(el.classList.contains("panel-molecules"))molecule(g,pw,ph);
       if(el.classList.contains("panel-models")) {
         organView(g,pw,ph);
         const dial=new T.Group();dial.position.set(pw*.22,0,ph*.20+8);dial.rotation.y=.32;g.add(dial);
