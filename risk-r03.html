@@ -79,6 +79,12 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 #organ-overview figcaption{position:static;align-self:end;color:#9dbdc7;background:none;font-size:11px;line-height:1.3;padding:3px 0 6px}
 @media(max-width:740px){#organ-overview .organ-projection{height:auto;max-height:580px}}
 @media(max-width:510px){#organ-overview .organ-projection{height:clamp(340px,108vw,480px)}}
+.organ-signal[data-level="normal"]{display:none}
+.organ-signal[data-level="mild"]{fill:url(#signal-mild);opacity:.6}
+.organ-signal[data-level="moderate"]{fill:url(#signal-moderate);opacity:.85}
+.organ-signal[data-level="severe"]{fill:url(#signal-severe)}
+#scenario-organ-status{padding:5px 9px 8px;margin:0;text-align:center;color:#c3dce4;font-size:12px;line-height:1.45}
+#scenario-organ-status[data-active="true"]{color:#ffe1c9}
 </style>
 </head>
 <body>
@@ -100,6 +106,16 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 <figure id="organ-overview">
 <svg class="organ-projection" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 811" role="img" aria-label="Les reins et le foie en projection sur un socle lumineux">
  <defs>
+  <radialGradient id="signal-mild">
+   <stop stop-color="#ffd077" stop-opacity=".94"/><stop offset=".42" stop-color="#ffd077" stop-opacity=".8"/><stop offset="1" stop-color="#ffd077" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="signal-moderate">
+   <stop stop-color="#ff8236" stop-opacity=".94"/><stop offset=".42" stop-color="#ff8236" stop-opacity=".8"/><stop offset="1" stop-color="#ff8236" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="signal-severe">
+   <stop stop-color="#ff263e" stop-opacity=".94"/><stop offset=".42" stop-color="#ff263e" stop-opacity=".8"/><stop offset="1" stop-color="#ff263e" stop-opacity="0"/>
+  </radialGradient>
+
   <clipPath id="organ-silhouettes">
    <path d="M153 96 C183 90 205 105 209 128 C214 151 202 172 184 181 C173 187 178 194 192 200 C214 211 218 231 216 266 L214 330 L210 330 L208 262 C208 232 201 216 185 214 C169 212 163 221 168 234 C181 249 181 266 176 285 C170 308 151 321 128 319 C91 317 73 282 70 244 C65 196 80 145 109 119 C121 108 137 100 153 96 Z"/>
    <path d="M319 96 C294 92 273 106 269 130 C264 153 275 175 290 182 C304 188 299 194 286 199 C265 209 258 231 259 262 L260 328 L265 328 L268 260 C269 235 276 218 290 215 C307 210 315 221 308 236 C292 253 292 278 303 298 C314 317 332 322 350 319 C383 314 400 279 402 241 C408 199 392 154 370 128 C354 109 337 99 319 96 Z"/>
@@ -124,6 +140,14 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
   <path d="M25 359 H47 L52 353 L59 362 L66 331 L72 359 L77 353 L81 361 L86 356 H96 L101 363 L107 342 L113 358 H134 L139 350 L144 360 L149 356 H166 L172 351 L177 360 L182 358 H295 L301 353 L306 359 H327 L335 339 L341 361 L347 354 H362 L369 339 L375 361 L380 354 L386 360 H400 L409 327 L416 361 L421 354 L426 359 H452" stroke="#3af3b1" opacity=".75"/>
  </g>
  <image href="./assets/risk/renal-hepatic.webp" width="480" height="811" clip-path="url(#organ-silhouettes)"/>
+ <g clip-path="url(#organ-silhouettes)" aria-hidden="true">
+  <g id="renal-signal" class="organ-signal" data-level="normal">
+   <ellipse cx="116" cy="240" rx="43" ry="55"/><ellipse cx="356" cy="240" rx="43" ry="55"/>
+  </g>
+  <g id="hepatic-signal" class="organ-signal" data-level="normal">
+   <ellipse cx="165" cy="504" rx="72" ry="54"/>
+  </g>
+ </g>
  <g fill="none" stroke="url(#orbit-light)" stroke-width="1.55">
   <path d="M11 242 A226 41 0 0 0 463 242 M8 580 A228 45 0 0 0 464 580"/>
  </g>
@@ -147,7 +171,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
  <button id="renal-vessels" type="button" aria-pressed="true" disabled>Vaisseaux et uretères</button>
  <button id="renal-reset" type="button" disabled>Vue initiale</button>
  <p>Glisser pour tourner. Utiliser la molette ou pincer pour zoomer.</p>
- <a href="./assets/human3d/ATTRIBUTION.md">Source de l’atlas et crédits</a></div></div></div>
+ <a href="./assets/human3d/ATTRIBUTION.md">Source de l’atlas et crédits</a></div></div><p id="scenario-organ-status" role="status"></p></div>
 <div class="risk-read"><div class="risk-frame"><h2>Exposition simulée</h2><p>Médianes des rapports AUC · marqueurs rénaux</p><div id="summary-auc"></div></div>
 <div class="risk-frame"><h2>Engagement de SGLT2</h2><p>Inhibition théorique selon la concentration libre</p><div id="summary-pd"></div></div>
 <div class="risk-frame balance-read"><h2>Balance risque–bénéfice</h2><strong>Indéterminée</strong><p id="summary-balance"></p></div>
@@ -301,11 +325,23 @@ function chartRows(id,rows,max){
  });
  $(id).replaceChildren(...parts);
 }
+function updateOrganSignals(renal,hepatic){
+ const labels={normal:"conservée",mild:"légère",moderate:"modérée",severe:"sévère"};
+ $("renal-signal").dataset.level=renal;
+ $("hepatic-signal").dataset.level=hepatic;
+ const active=[];
+ if(renal!=="normal")active.push("altération rénale "+labels[renal]);
+ if(hepatic!=="normal")active.push("altération hépatique "+labels[hepatic]);
+ const status=$("scenario-organ-status");
+ status.dataset.active=String(active.length>0);
+ status.textContent=active.length?"Scénario : "+active.join(" et ")+". Halos illustratifs sur la vue Reins et foie. Localisation et toxicité non déterminées.":"Fonctions rénale et hépatique conservées dans le scénario.";
+}
 function refresh(){
  const query={species:$("species").value,mass_g:Number($("mass").value),renal:$("renal").value,hepatic:$("hepatic").value,hydration:$("hydration").value};
  const profile=data.profiles.find(p=>Object.keys(query).every(k=>p[k]===query[k]));
  if(!profile){$("profile-id").textContent="Profil non disponible";return}
  $("profile-id").textContent="Profil "+profile.id+" | Référence de masse : "+profile.ref_mass_g+" g | Modificateur allométrique central : ×"+f(massFactor(profile.mass_g,profile.ref_mass_g),3)+" (non validé)";
+ updateOrganSignals(profile.renal,profile.hepatic);
  let warn=[];
  if(profile.hepatic==="severe")warn.push("Foie sévèrement altéré : pas de calcul de marqueur hépatique, situation hors extrapolation.");
  if(profile.renal==="severe")warn.push("Rein sévèrement altéré : exposition de certains métabolites fortement augmentée dans les références humaines.");
@@ -341,6 +377,11 @@ function showPD(){
 }
 ["mass","renal","hepatic","hydration","sex","age","constitution"].forEach(id=>$(id).addEventListener("change",refresh));
 $("species").addEventListener("change",()=>{masses();showPD()});
+const requestedScenario=new URLSearchParams(location.search);
+for(const field of ["renal","hepatic"]){
+ const value=requestedScenario.get(field);
+ if(Array.from($(field).options).some(option=>option.value===value))$(field).value=value;
+}
 masses();showPD();
 function setView(three){
  if(three)import("./src/renal-viewer.mjs?v=atlas2").catch(()=>{$("renal-status").textContent="Chargement de l’atlas impossible.";});
