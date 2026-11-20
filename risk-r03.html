@@ -74,11 +74,11 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 .risk-anatomy:has(#organ-overview:not([hidden])){background:transparent;overflow:visible;border-radius:0}
 #organ-overview{display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;background:none;min-height:0;margin:0;position:relative}
 #organ-overview[hidden]{display:none}
-#organ-overview::before{content:"";position:absolute;pointer-events:none;inset:4% -8% 2%;background:radial-gradient(ellipse at 50% 37%,#14668533,transparent 66%),radial-gradient(ellipse 48% 7% at 50% 88%,#28c8e128,transparent);z-index:-1}
-#organ-overview .organ-projection{display:block;align-self:center;width:100%;height:100%;min-height:0;max-height:clamp(470px,72vh,760px);mix-blend-mode:screen}
+
+#organ-overview .organ-projection{display:block;align-self:center;width:100%;height:100%;min-height:0;max-height:clamp(470px,72vh,760px);overflow:visible}
 #organ-overview figcaption{position:static;align-self:end;color:#9dbdc7;background:none;font-size:11px;line-height:1.3;padding:3px 0 6px}
 @media(max-width:740px){#organ-overview .organ-projection{height:auto;max-height:580px}}
-@media(max-width:510px){#organ-overview .organ-projection{height:clamp(340px,108vw,480px)}#organ-overview::before{inset:2% 0}}
+@media(max-width:510px){#organ-overview .organ-projection{height:clamp(340px,108vw,480px)}}
 </style>
 </head>
 <body>
@@ -98,23 +98,47 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 <a class="risk-action" href="#simulator">Voir les résultats détaillés</a></div>
 <div class="risk-anatomy"><div class="risk-toggle" role="group" aria-label="Vue anatomique"><button id="overview-view" aria-pressed="true">Reins et foie</button><button id="renal-view" aria-pressed="false">Reins en 3D</button></div>
 <figure id="organ-overview">
- <svg class="organ-projection" viewBox="0 0 480 811" role="img" aria-label="Reins et foie sur deux plans lumineux">
-  <defs>
-   <filter id="remove-blue-field" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%">
-    <feComponentTransfer>
-     <feFuncR type="linear" slope="1.025" intercept="-0.025"/>
-     <feFuncG type="linear" slope="1.15" intercept="-0.15"/>
-     <feFuncB type="linear" slope="1.25" intercept="-0.25"/>
-    </feComponentTransfer>
-    <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  1.2 2.8 1.6 0 0"/>
-   </filter>
-   <linearGradient id="edge-x"><stop stop-color="black"/><stop offset=".065" stop-color="white"/><stop offset=".935" stop-color="white"/><stop offset="1" stop-color="black"/></linearGradient>
-   <linearGradient id="edge-y" x2="0" y2="1"><stop stop-color="black"/><stop offset=".045" stop-color="white"/><stop offset=".91" stop-color="white"/><stop offset="1" stop-color="black"/></linearGradient>
-   <mask id="fade-x"><rect width="480" height="811" fill="url(#edge-x)"/></mask>
-   <mask id="fade-y"><rect width="480" height="811" fill="url(#edge-y)"/></mask>
-  </defs>
-  <g mask="url(#fade-x)"><g mask="url(#fade-y)"><image width="480" height="811" href="./assets/risk/renal-hepatic.webp" filter="url(#remove-blue-field)"/></g></g>
- </svg>
+<svg class="organ-projection" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 811" role="img" aria-label="Les reins et le foie en projection sur un socle lumineux">
+ <defs>
+  <clipPath id="organ-silhouettes">
+   <path d="M153 96 C183 90 205 105 209 128 C214 151 202 172 184 181 C173 187 178 194 192 200 C214 211 218 231 216 266 L214 330 L210 330 L208 262 C208 232 201 216 185 214 C169 212 163 221 168 234 C181 249 181 266 176 285 C170 308 151 321 128 319 C91 317 73 282 70 244 C65 196 80 145 109 119 C121 108 137 100 153 96 Z"/>
+   <path d="M319 96 C294 92 273 106 269 130 C264 153 275 175 290 182 C304 188 299 194 286 199 C265 209 258 231 259 262 L260 328 L265 328 L268 260 C269 235 276 218 290 215 C307 210 315 221 308 236 C292 253 292 278 303 298 C314 317 332 322 350 319 C383 314 400 279 402 241 C408 199 392 154 370 128 C354 109 337 99 319 96 Z"/>
+   <path d="M65 553 C58 494 80 448 121 426 C159 406 198 413 237 422 C253 427 268 423 282 425 C298 426 304 427 317 426 C356 424 399 432 425 445 C437 451 441 461 431 469 C406 480 392 491 376 511 C352 545 319 565 279 566 C270 567 263 565 256 562 C235 573 215 577 189 582 C183 596 172 609 159 606 L151 602 C130 617 115 639 99 650 C87 658 78 651 75 636 C69 614 66 584 65 553 Z"/>
+  </clipPath>
+  <radialGradient id="emitter-glow"><stop stop-color="#efffff"/><stop offset=".08" stop-color="#97ffff"/><stop offset=".27" stop-color="#1ce2ff" stop-opacity=".65"/><stop offset="1" stop-color="#00bedb" stop-opacity="0"/></radialGradient>
+  <linearGradient id="orbit-light"><stop stop-color="#53dbe5" stop-opacity=".22"/><stop offset=".27" stop-color="#71f7ff"/><stop offset=".5" stop-color="#b2faff"/><stop offset=".8" stop-color="#50d4de"/><stop offset="1" stop-color="#34a7bd" stop-opacity=".18"/></linearGradient>
+  <linearGradient id="axis-light" x2="0" y2="1"><stop stop-color="#57d6f6" stop-opacity=".08"/><stop offset=".38" stop-color="#8ff7ff"/><stop offset=".74" stop-color="#3bdbe5" stop-opacity=".55"/><stop offset="1" stop-color="#70ffff"/></linearGradient>
+ </defs>
+ <g fill="none" stroke-linecap="round">
+  <g stroke="#3bc7df" opacity=".48">
+   <path d="M56 119 A213 213 0 0 1 420 144" stroke-dasharray="1 8"/>
+   <path d="M238 31 A206 206 0 0 1 339 59" stroke-width="5"/>
+   <path d="M32 477 A216 216 0 0 1 438 475 M409 564 A197 197 0 0 1 358 640" stroke-width="2"/>
+   <path d="M26 318 Q17 369 35 400 M447 313 Q458 362 443 400 M86 633 Q174 738 335 666" stroke-dasharray="1 7" stroke-width="2"/>
+  </g>
+  <g stroke="url(#orbit-light)" stroke-width="1.45">
+   <ellipse cx="237" cy="242" rx="226" ry="41"/>
+   <ellipse cx="236" cy="580" rx="228" ry="45"/>
+  </g>
+  <path d="M5 179 H27 L32 172 L38 182 L44 144 L50 204 L55 178 H60 L67 160 L72 177 H404 L411 164 L418 183 L424 176 L431 193 L445 143 L450 187 L455 178 H475" stroke="#f66396" opacity=".49"/>
+  <path d="M25 359 H47 L52 353 L59 362 L66 331 L72 359 L77 353 L81 361 L86 356 H96 L101 363 L107 342 L113 358 H134 L139 350 L144 360 L149 356 H166 L172 351 L177 360 L182 358 H295 L301 353 L306 359 H327 L335 339 L341 361 L347 354 H362 L369 339 L375 361 L380 354 L386 360 H400 L409 327 L416 361 L421 354 L426 359 H452" stroke="#3af3b1" opacity=".75"/>
+ </g>
+ <image href="./assets/risk/renal-hepatic.webp" width="480" height="811" clip-path="url(#organ-silhouettes)"/>
+ <g fill="none" stroke="url(#orbit-light)" stroke-width="1.55">
+  <path d="M11 242 A226 41 0 0 0 463 242 M8 580 A228 45 0 0 0 464 580"/>
+ </g>
+ <path d="M238 58 V713" stroke="url(#axis-light)" stroke-width="1.4"/>
+ <g fill="url(#emitter-glow)"><ellipse cx="238" cy="374" rx="33" ry="31"/><ellipse cx="238" cy="712" rx="129" ry="31"/></g>
+ <g fill="none" stroke="url(#orbit-light)">
+  <circle cx="238" cy="374" r="15"/>
+  <ellipse cx="238" cy="713" rx="45" ry="6"/>
+  <ellipse cx="238" cy="719" rx="101" ry="16" stroke-width="2"/>
+  <ellipse cx="238" cy="725" rx="127" ry="23" opacity=".55"/>
+  <ellipse cx="238" cy="731" rx="166" ry="36" stroke-width="1.3"/>
+  <path d="M57 736 A183 40 0 0 0 419 736" opacity=".36" stroke-dasharray="2 6"/>
+ </g>
+</svg>
+
  <figcaption>Illustration anatomique</figcaption>
 </figure>
 <div id="renal-work" hidden><div class="renal-stage"><span id="renal-status" role="status">Chargement des reins en 3D…</span></div>
