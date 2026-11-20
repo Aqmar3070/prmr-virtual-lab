@@ -76,28 +76,12 @@ test("la lueur se retire pour qui demande moins d'effets", () => {
   assert.match(read("prmr-console.css"), /@media \(prefers-reduced-motion: reduce\)/);
 });
 
-test("l'accueil tient en un écran", () => {
-  /* La console d'accueil a un rapport de forme fixe et prenait toute la
-     largeur : sur 1440 px elle mesurait 810 px de haut, et le bandeau, le fil
-     d'Ariane et les blocs qui suivaient la poussaient hors de l'écran. */
-  const skin = read("prmr-console.css");
-  assert.match(skin, /width: min\(100%, calc\(\(100svh - var\(--prmr-home-chrome\)\) \* var\(--prmr-home-ratio\)\)\)/,
-    "la console doit être bornée par la hauteur disponible, pas par la largeur");
-  assert.match(skin, /min-height: calc\(100svh - var\(--prmr-bar, 0px\)\)/,
-    "le corps de page doit déduire le bandeau, sinon la page fait toujours un écran de plus");
-
-  const fit = read("src/r23_home_fit.mjs");
-  assert.match(fit, /document\.documentElement\.scrollHeight - hauteurConsole/,
-    "la hauteur hors console doit être mesurée, pas écrite en dur");
-  assert.match(fit, /--prmr-bar/, "la hauteur du bandeau doit être publiée");
-  assert.ok(read("index.html").includes("r23_home_fit.mjs"), "l'accueil doit charger l'ajustement");
-});
-
-test("ce qui prolongeait l'accueil est replié, pas supprimé", () => {
-  const home = read("index.html");
-  assert.match(home, /<details class="prmr-fold">/, "l'état du programme doit rester atteignable");
-  assert.match(home, /État réel du programme/, "le rappel de stade ne doit pas disparaître");
-  assert.ok(!home.includes('id="home-workshops"'),
-    "les ateliers du poste doivent quitter l'accueil : le rail de gauche les porte déjà");
-  assert.ok(!home.includes('href="#home-workshops"'), "aucune ancre ne doit pointer vers un bloc retiré");
-});
+/* Deux vérifications ont été retirées ici : elles exigeaient que la console
+ * d'accueil soit bornée par la hauteur de l'écran, et que ce qui la suivait
+ * soit replié dans une rubrique.
+ *
+ * La contrainte de hauteur écrasait la console dans une boîte où les libellés
+ * se chevauchaient : l'accueil tenait en un écran et n'était plus lisible. La
+ * page est revenue à sa composition pleine largeur, et ces vérifications sont
+ * parties avec. Les figer aurait empêché de revenir en arrière.
+ */
