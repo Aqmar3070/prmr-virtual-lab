@@ -33,7 +33,8 @@ function setRdkitStatus(status,detail=""){
  const text=good?"RDKit · opérationnel":bad?"RDKit · indisponible":"RDKit · chargement";
  $("rdkit-status").textContent=text;
  $("rdkit-status").className="engine-pill"+(good?" ready":bad?" failed":"");
- $("kpi-rdkit").textContent=good?"En service":bad?"Indisponible":"Initialisation";
+ // Les compteurs d'en-tete ne figurent plus sur l'accueil, qui se limite a la console.
+ const kpiR=$("kpi-rdkit");if(kpiR)kpiR.textContent=good?"En service":bad?"Indisponible":"Initialisation";
  $("engine-rdkit").textContent=good?"Disponible dans le navigateur":bad?"Non chargé":"Chargement…";
  $("connector-rdkit").textContent=good?"Moteur local prêt":bad?"Indisponible":"En cours";
  if(bad)feedback("mol-feedback",detail||"RDKit non disponible; vérifiez la connexion réseau.","bad");
@@ -41,7 +42,7 @@ function setRdkitStatus(status,detail=""){
 }
 
 function syncLibraryCounters(){
- $("kpi-library").textContent=String(library.length);
+ const kpiL=$("kpi-library");if(kpiL)kpiL.textContent=String(library.length);
  $("library-count").textContent=library.length+" structure"+(library.length>1?"s":"");
 }
 function populateExamples(){
