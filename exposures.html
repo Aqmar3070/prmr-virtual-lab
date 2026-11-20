@@ -91,9 +91,42 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=57a9ac70e7">
+<link rel="stylesheet" href="./exposure-console.css">
 </head>
 <body>
+<header class="xp-head"><a href="./index.html"><strong>PRMR</strong> VIRTUAL LAB</a><h1>Explorateur d’exposition</h1><a href="#registre">Repères publiés</a></header>
 <main>
+<div class="xp-board" id="exposure-console">
+ <div class="xp-left">
+ <section class="xp-card"><h2>Profil du sujet <small>(simulation)</small></h2>
+ <div class="xp-profile"><span>Genre</span><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div>
+ <label for="xp-age">Âge</label><div><input id="xp-age" type="number" min="18" max="110" value="45"> ans</div>
+ <label for="xp-height">Taille</label><div><input id="xp-height" type="number" min="100" max="240" value="175"> cm</div>
+ <label for="xp-weight">Poids</label><div><input id="xp-weight" type="number" min="30" max="300" step=".1" value="72"> kg</div></div><small>Profil adulte descriptif. Aucune correction de dose individuelle.</small></section>
+ <section class="xp-card"><h2>Catalogue des expositions</h2><label class="xp-mode">Données <select id="xp-mode"><option value="demo">Scénario illustratif</option><option value="published">Repères documentés</option></select></label>
+ <div id="xp-categories" aria-label="Familles de prises"></div>
+ <h3>Liste des prises</h3><div id="xp-list"></div><button id="xp-add" type="button">＋ Ajouter une prise</button>
+ <form id="xp-editor" hidden><label>Substance ou aliment<select id="xp-substance"></select></label>
+ <label>Quantité journalière <span id="xp-unit"></span><input id="xp-dose" type="number" min=".01" step="any" required></label>
+ <label>Jour de début<input id="xp-start" type="number" min="0" max="365" required></label>
+ <label>Jour de réduction<input id="xp-reduce" type="number" min="0" max="365" required></label>
+ <label>Quantité après réduction<input id="xp-after" type="number" min="0" step="any" required></label>
+ <label>Jour d’arrêt<input id="xp-end" type="number" min="1" max="366" required></label>
+ <p id="xp-error" role="alert"></p><button>Enregistrer</button> <button type="button" id="xp-cancel">Annuler</button></form></section></div>
+ <figure class="xp-body"><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
+ <defs><radialGradient id="xp-base"><stop stop-color="#4bf6ff" stop-opacity=".7"/><stop offset="1" stop-color="#00bfff" stop-opacity="0"/></radialGradient>
+ <radialGradient id="xp-bad"><stop stop-color="#fff0aa"/><stop offset=".35" stop-color="#ffa123" stop-opacity=".94"/><stop offset="1" stop-color="#ff4523" stop-opacity="0"/></radialGradient>
+ <radialGradient id="xp-high"><stop stop-color="#fff5c0"/><stop offset=".32" stop-color="#ff4c39"/><stop offset="1" stop-color="#f1243f" stop-opacity="0"/></radialGradient>
+ <radialGradient id="xp-good"><stop stop-color="#aaffdb"/><stop offset=".35" stop-color="#10e6a6"/><stop offset="1" stop-color="#04b093" stop-opacity="0"/></radialGradient></defs>
+ <ellipse cx="310" cy="962" rx="271" ry="43" fill="url(#xp-base)"/><g fill="none" stroke="#42cee8"><ellipse cx="310" cy="962" rx="235" ry="33"/><ellipse cx="310" cy="963" rx="190" ry="23" stroke-width="3"/><ellipse cx="310" cy="964" rx="267" ry="40" opacity=".4"/></g>
+ <image id="xp-body-image" href="assets/exposure/male.webp" width="620" height="980"/><g id="xp-marks"></g></svg>
+ <figcaption><a href="./assets/human3d/ATTRIBUTION.md">Atlas PRMR · crédits anatomiques</a></figcaption></figure>
+ <section class="xp-card xp-right"><h2>Évolution dans le temps</h2><p id="xp-chart-title"></p><svg id="xp-plot" viewBox="0 0 410 196" role="img" aria-label="Courbe du scénario sélectionné"></svg>
+ <div id="xp-legend">━ Prise maintenue <span>━ Prise paramétrée</span></div><h3>Zones concernées <output id="xp-day-tag"></output></h3>
+ <div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div></section>
+ <section class="xp-card xp-time"><h2>Chronologie des prises</h2><button id="xp-play" aria-label="Lire la chronologie">▶</button><input id="xp-day" type="range" min="0" max="28" value="21" aria-label="Jour du scénario"><output id="xp-time-label">J21</output><label>Durée <input id="xp-duration" type="number" min="1" max="365" value="28"> j</label><button id="xp-compare" aria-pressed="true">Comparer les scénarios</button></section>
+</div>
+<details class="xp-reference" id="registre"><summary>Consulter le registre scientifique et les sources</summary>
  <header class="r13-head">
   <p class="kicker">Explorateur d'expositions · repères publiés uniquement</p>
   <h1>Quelle dose, pendant combien de temps, <span>et que dit la littérature ?</span></h1>
@@ -136,12 +169,17 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
    <li>Poole R. et coll., <em>BMJ</em>, 2017 — méta-analyse d'études d'observation sur la consommation de café.</li>
   </ul>
  </section>
-</main>
+</details></main>
 <script type="module">
 import {mountExposureExplorer} from "./src/r13_exposures.mjs?v=r13-20261118";
-mountExposureExplorer("r13-explorer");
+const register=document.getElementById("registre");
+function openRegister(){if(location.hash==="#registre"||register.contains(document.getElementById(location.hash.slice(1))))register.open=true;}
+window.addEventListener("hashchange",openRegister);openRegister();
+let mounted=false;function mount(){if(register.open&&!mounted){mounted=true;mountExposureExplorer("r13-explorer");}}
+register.addEventListener("toggle",mount);mount();
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
+<script type="module" src="./src/exposure-console.mjs"></script>
 </body>
 </html>
