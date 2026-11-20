@@ -66,25 +66,116 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 <link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
+<link rel="stylesheet" href="./prmr-console.css?v=7daefe8f94">
 <link rel="stylesheet" href="./renal-display.css?v=ca27c1cb43">
-<script type="module" src="./src/renal-viewer.mjs?v=dcf3106fd2"></script>
-<link rel="stylesheet" href="./prmr-console.css?v=2c6bc96a98">
+
+<link rel="stylesheet" href="./risk-console.css?v=f45d65216f">
+<style>
+.risk-anatomy:has(#organ-overview:not([hidden])){background:transparent;overflow:visible;border-radius:0}
+#organ-overview{display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;background:none;min-height:0;margin:0;position:relative}
+#organ-overview[hidden]{display:none}
+
+#organ-overview .organ-projection{display:block;align-self:center;width:100%;height:100%;min-height:0;max-height:clamp(470px,72vh,760px);overflow:visible}
+#organ-overview figcaption{position:static;align-self:end;color:#9dbdc7;background:none;font-size:11px;line-height:1.3;padding:3px 0 6px}
+@media(max-width:740px){#organ-overview .organ-projection{height:auto;max-height:580px}}
+@media(max-width:510px){#organ-overview .organ-projection{height:clamp(340px,108vw,480px)}}
+.organ-signal[data-level="normal"]{display:none}
+.organ-signal[data-level="mild"]{fill:url(#signal-mild);opacity:.6}
+.organ-signal[data-level="moderate"]{fill:url(#signal-moderate);opacity:.85}
+.organ-signal[data-level="severe"]{fill:url(#signal-severe)}
+#scenario-organ-status{padding:5px 9px 8px;margin:0;text-align:center;color:#c3dce4;font-size:12px;line-height:1.45}
+#scenario-organ-status[data-active="true"]{color:#ffe1c9}
+</style>
 </head>
 <body>
-<main>
+<header class="risk-head"><a href="./index.html"><b>PRMR</b> VIRTUAL LAB</a><h1>Modélisation des risques</h1></header>
+<div class="risk-layout"><nav class="risk-nav" aria-label="Navigation de modélisation"><a href="./index.html">Accueil</a><a href="#atlas-renal" aria-current="page">Modélisation des risques</a><a href="#scenario">Scénario</a><a href="#simulator">Résultats</a><a href="#assumptions">Données</a></nav><main>
+<div id="atlas-renal" class="risk-board">
+<div class="risk-frame" id="scenario"><h2>Console de scénario animal</h2><div class="selectors">
+ <div><label for="species">Espèce et souche de référence</label><select id="species"><option value="mouse">Souris C57BL/6</option><option value="rat">Rat Sprague–Dawley</option></select></div>
+ <div><label for="mass">Masse corporelle</label><select id="mass"></select></div>
+ <div><label for="renal">État de la fonction rénale</label><select id="renal"><option value="normal">Conservée</option><option value="mild">Altération légère</option><option value="moderate">Altération modérée</option><option value="severe">Altération sévère</option></select></div>
+ <div><label for="hepatic">État de la fonction hépatique</label><select id="hepatic"><option value="normal">Conservée</option><option value="moderate">Altération modérée</option><option value="severe">Altération sévère</option></select></div>
+ <div><label for="hydration">État volémique</label><select id="hydration"><option value="normal">Hydratation conservée</option><option value="depleted">Déplétion / déshydratation</option></select></div>
+ <div><label for="sex">Sexe animal (non calibré)</label><select id="sex"><option value="unspecified">Non précisé</option><option value="female">Femelle</option><option value="male">Mâle</option></select></div>
+ <div><label for="age">Âge physiologique (non calibré)</label><select id="age"><option value="adult">Adulte</option><option value="young">Jeune</option><option value="aged">Âgé</option></select></div>
+ <div><label for="constitution">Constitution (non calibrée)</label><select id="constitution"><option value="unspecified">Non précisée</option><option value="lean">Maigre</option><option value="adipose">Adiposité accrue</option></select></div>
+</div>
+<a class="risk-action" href="#simulator">Voir les résultats détaillés</a></div>
+<div class="risk-anatomy"><div class="risk-toggle" role="group" aria-label="Vue anatomique"><button id="overview-view" aria-pressed="true">Reins et foie</button><button id="renal-view" aria-pressed="false">Reins en 3D</button></div>
+<figure id="organ-overview">
+<svg class="organ-projection" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 811" role="img" aria-label="Les reins et le foie en projection sur un socle lumineux">
+ <defs>
+  <radialGradient id="signal-mild">
+   <stop stop-color="#ffd077" stop-opacity=".94"/><stop offset=".42" stop-color="#ffd077" stop-opacity=".8"/><stop offset="1" stop-color="#ffd077" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="signal-moderate">
+   <stop stop-color="#ff8236" stop-opacity=".94"/><stop offset=".42" stop-color="#ff8236" stop-opacity=".8"/><stop offset="1" stop-color="#ff8236" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="signal-severe">
+   <stop stop-color="#ff263e" stop-opacity=".94"/><stop offset=".42" stop-color="#ff263e" stop-opacity=".8"/><stop offset="1" stop-color="#ff263e" stop-opacity="0"/>
+  </radialGradient>
 
-<div class="kicker">PRMR-R03 · Physiologie comparée · Analyse computationnelle / 16 novembre 2026</div>
-<h1>Risque rénal, hépatique et <span>bénéfice potentiel.</span></h1>
-<p class="lead">Stress-test quantitatif de l'exposition de trois associations issues de PRMR-R02 chez des analogues de souris et de rats de différentes masses et différents états physiologiques. Il compare les signaux de pharmacocinétique et les mécanismes possibles, sans inventer de toxicités, de guérison ni de nouvelles observations animales.</p>
-<section class="renal-workspace" id="atlas-renal" aria-labelledby="renal-title">
- <div class="renal-stage"><span id="renal-status" role="status">Chargement des reins en 3D…</span></div>
+  <clipPath id="organ-silhouettes">
+   <path d="M153 96 C183 90 205 105 209 128 C214 151 202 172 184 181 C173 187 178 194 192 200 C214 211 218 231 216 266 L214 330 L210 330 L208 262 C208 232 201 216 185 214 C169 212 163 221 168 234 C181 249 181 266 176 285 C170 308 151 321 128 319 C91 317 73 282 70 244 C65 196 80 145 109 119 C121 108 137 100 153 96 Z"/>
+   <path d="M319 96 C294 92 273 106 269 130 C264 153 275 175 290 182 C304 188 299 194 286 199 C265 209 258 231 259 262 L260 328 L265 328 L268 260 C269 235 276 218 290 215 C307 210 315 221 308 236 C292 253 292 278 303 298 C314 317 332 322 350 319 C383 314 400 279 402 241 C408 199 392 154 370 128 C354 109 337 99 319 96 Z"/>
+   <path d="M65 553 C58 494 80 448 121 426 C159 406 198 413 237 422 C253 427 268 423 282 425 C298 426 304 427 317 426 C356 424 399 432 425 445 C437 451 441 461 431 469 C406 480 392 491 376 511 C352 545 319 565 279 566 C270 567 263 565 256 562 C235 573 215 577 189 582 C183 596 172 609 159 606 L151 602 C130 617 115 639 99 650 C87 658 78 651 75 636 C69 614 66 584 65 553 Z"/>
+  </clipPath>
+  <radialGradient id="emitter-glow"><stop stop-color="#efffff"/><stop offset=".08" stop-color="#97ffff"/><stop offset=".27" stop-color="#1ce2ff" stop-opacity=".65"/><stop offset="1" stop-color="#00bedb" stop-opacity="0"/></radialGradient>
+  <linearGradient id="orbit-light"><stop stop-color="#53dbe5" stop-opacity=".22"/><stop offset=".27" stop-color="#71f7ff"/><stop offset=".5" stop-color="#b2faff"/><stop offset=".8" stop-color="#50d4de"/><stop offset="1" stop-color="#34a7bd" stop-opacity=".18"/></linearGradient>
+  <linearGradient id="axis-light" x2="0" y2="1"><stop stop-color="#57d6f6" stop-opacity=".08"/><stop offset=".38" stop-color="#8ff7ff"/><stop offset=".74" stop-color="#3bdbe5" stop-opacity=".55"/><stop offset="1" stop-color="#70ffff"/></linearGradient>
+ </defs>
+ <g fill="none" stroke-linecap="round">
+  <g stroke="#3bc7df" opacity=".48">
+   <path d="M56 119 A213 213 0 0 1 420 144" stroke-dasharray="1 8"/>
+   <path d="M238 31 A206 206 0 0 1 339 59" stroke-width="5"/>
+   <path d="M32 477 A216 216 0 0 1 438 475 M409 564 A197 197 0 0 1 358 640" stroke-width="2"/>
+   <path d="M26 318 Q17 369 35 400 M447 313 Q458 362 443 400 M86 633 Q174 738 335 666" stroke-dasharray="1 7" stroke-width="2"/>
+  </g>
+  <g stroke="url(#orbit-light)" stroke-width="1.45">
+   <ellipse cx="237" cy="242" rx="226" ry="41"/>
+   <ellipse cx="236" cy="580" rx="228" ry="45"/>
+  </g>
+  <path d="M5 179 H27 L32 172 L38 182 L44 144 L50 204 L55 178 H60 L67 160 L72 177 H404 L411 164 L418 183 L424 176 L431 193 L445 143 L450 187 L455 178 H475" stroke="#f66396" opacity=".49"/>
+  <path d="M25 359 H47 L52 353 L59 362 L66 331 L72 359 L77 353 L81 361 L86 356 H96 L101 363 L107 342 L113 358 H134 L139 350 L144 360 L149 356 H166 L172 351 L177 360 L182 358 H295 L301 353 L306 359 H327 L335 339 L341 361 L347 354 H362 L369 339 L375 361 L380 354 L386 360 H400 L409 327 L416 361 L421 354 L426 359 H452" stroke="#3af3b1" opacity=".75"/>
+ </g>
+ <image href="./assets/risk/renal-hepatic.webp" width="480" height="811" clip-path="url(#organ-silhouettes)"/>
+ <g clip-path="url(#organ-silhouettes)" aria-hidden="true">
+  <g id="renal-signal" class="organ-signal" data-level="normal">
+   <ellipse cx="116" cy="240" rx="43" ry="55"/><ellipse cx="356" cy="240" rx="43" ry="55"/>
+  </g>
+  <g id="hepatic-signal" class="organ-signal" data-level="normal">
+   <ellipse cx="165" cy="504" rx="72" ry="54"/>
+  </g>
+ </g>
+ <g fill="none" stroke="url(#orbit-light)" stroke-width="1.55">
+  <path d="M11 242 A226 41 0 0 0 463 242 M8 580 A228 45 0 0 0 464 580"/>
+ </g>
+ <path d="M238 58 V713" stroke="url(#axis-light)" stroke-width="1.4"/>
+ <g fill="url(#emitter-glow)"><ellipse cx="238" cy="374" rx="33" ry="31"/><ellipse cx="238" cy="712" rx="129" ry="31"/></g>
+ <g fill="none" stroke="url(#orbit-light)">
+  <circle cx="238" cy="374" r="15"/>
+  <ellipse cx="238" cy="713" rx="45" ry="6"/>
+  <ellipse cx="238" cy="719" rx="101" ry="16" stroke-width="2"/>
+  <ellipse cx="238" cy="725" rx="127" ry="23" opacity=".55"/>
+  <ellipse cx="238" cy="731" rx="166" ry="36" stroke-width="1.3"/>
+  <path d="M57 736 A183 40 0 0 0 419 736" opacity=".36" stroke-dasharray="2 6"/>
+ </g>
+</svg>
+
+ <figcaption>Illustration anatomique</figcaption>
+</figure>
+<div id="renal-work" hidden><div class="renal-stage"><span id="renal-status" role="status">Chargement des reins en 3D…</span></div>
  <div class="renal-controls"><h2 id="renal-title">Atlas rénal 3D</h2>
  <p>Reins humains et vaisseaux abdominaux voisins. Le corail repère les artères et le bleu les veines.</p>
  <button id="renal-vessels" type="button" aria-pressed="true" disabled>Vaisseaux et uretères</button>
  <button id="renal-reset" type="button" disabled>Vue initiale</button>
  <p>Glisser pour tourner. Utiliser la molette ou pincer pour zoomer.</p>
- <a href="./assets/human3d/ATTRIBUTION.md">Source de l’atlas et crédits</a></div></section>
-<div class="note"><strong>Frontière scientifique essentielle :</strong> les chiffres d'exposition proviennent de données <strong>humaines</strong>, puis sont soumis à une extrapolation de sensibilité <strong>arbitraire</strong> vers des profils animaux. Les pourcentages calculés ne sont PAS des probabilités de lésions rénales, d'hépatotoxicité, de guérison ou d'efficacité. Il manque des courbes dose–réponse et des concentrations tissulaires validées des combinaisons.</div>
+ <a href="./assets/human3d/ATTRIBUTION.md">Source de l’atlas et crédits</a></div></div><p id="scenario-organ-status" role="status"></p></div>
+<div class="risk-read"><div class="risk-frame"><h2>Exposition simulée</h2><p>Médianes des rapports AUC · marqueurs rénaux</p><div id="summary-auc"></div></div>
+<div class="risk-frame"><h2>Engagement de SGLT2</h2><p>Inhibition théorique selon la concentration libre</p><div id="summary-pd"></div></div>
+<div class="risk-frame balance-read"><h2>Balance risque–bénéfice</h2><strong>Indéterminée</strong><p id="summary-balance"></p></div>
+<div class="risk-frame assumptions-read"><h2>Hypothèses du scénario</h2><p id="summary-warning"></p><a href="#assumptions">Consulter les données de départ</a></div></div></div><div class="note"><strong>Frontière scientifique essentielle :</strong> les chiffres d'exposition proviennent de données <strong>humaines</strong>, puis sont soumis à une extrapolation de sensibilité <strong>arbitraire</strong> vers des profils animaux. Les pourcentages calculés ne sont PAS des probabilités de lésions rénales, d'hépatotoxicité, de guérison ou d'efficacité. Il manque des courbes dose–réponse et des concentrations tissulaires validées des combinaisons.</div>
 <div class="kpis">
  <div class="kpi"><small>Espèces animales de référence</small><b>2</b><small>Souris et rats, analogues hypothétiques</small></div>
  <div class="kpi"><small>Profils expérimentaux simulés</small><b id="nprofiles">144</b><small>Masse × rein × foie × hydratation × espèce</small></div>
@@ -92,7 +183,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
  <div class="kpi"><small>Probabilité réelle de guérison</small><b>?</b><small>Non estimable avec les données disponibles</small></div>
 </div>
 <section class="prmr-handoff" aria-label="Anatomie comparée"><div><strong>L'anatomie comparée du chien et du chat vit à l'étape 02.</strong><p>Le poste 3D — espèces, organes issus de scanners, profils modifiables — s'ouvre en entier plutôt que répété en réduction sur chaque page.</p></div><a class="prmr-handoff-link" href="./species-r04.html">Ouvrir l'anatomie comparée</a></section>
-<p class="r4-banner" style="margin-top:15px">Le laboratoire 3D actuel présente uniquement le chien. La section R03 ci-dessous est une archive historique de calculs sur des profils souris/rat, et non un catalogue de modèles anatomiques actifs. Aucun des deux ne détermine une probabilité biologique de guérison.</p>
+<p class="r4-banner" style="margin-top:15px">L’atlas d’anatomie comparée présente le chien et le chat. La section R03 ci-dessous est une archive historique de calculs sur des profils souris/rat, et non un catalogue de modèles anatomiques actifs. Aucun des deux ne détermine une probabilité biologique de guérison.</p>
 <section id="assumptions" data-prmr-tab="donnees">
 <h2>Données pharmacocinétiques de départ</h2>
 <p>Rapports AUC tirés de documents pharmacologiques relatifs à des personnes. Un rapport AUC plus haut indique une exposition plus forte au composé concerné, <strong>pas</strong> un pourcentage de toxicité.</p>
@@ -109,16 +200,6 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 <h2>Simulateur de profils animaux</h2>
 <p>Les contrôles appliquent le même modèle descriptif aux trois associations. La déshydratation déclenche un avertissement hémodynamique sans coefficient pharmacocinétique inventé.</p>
 <div class="panel">
-<div class="selectors">
- <div><label for="species">Espèce et souche de référence</label><select id="species"><option value="mouse">Souris C57BL/6</option><option value="rat">Rat Sprague–Dawley</option></select></div>
- <div><label for="mass">Masse corporelle</label><select id="mass"></select></div>
- <div><label for="renal">État de la fonction rénale</label><select id="renal"><option value="normal">Conservée</option><option value="mild">Altération légère</option><option value="moderate">Altération modérée</option><option value="severe">Altération sévère</option></select></div>
- <div><label for="hepatic">État de la fonction hépatique</label><select id="hepatic"><option value="normal">Conservée</option><option value="moderate">Altération modérée</option><option value="severe">Altération sévère</option></select></div>
- <div><label for="hydration">État volémique</label><select id="hydration"><option value="normal">Hydratation conservée</option><option value="depleted">Déplétion / déshydratation</option></select></div>
- <div><label for="sex">Sexe animal (non calibré)</label><select id="sex"><option value="unspecified">Non précisé</option><option value="female">Femelle</option><option value="male">Mâle</option></select></div>
- <div><label for="age">Âge physiologique (non calibré)</label><select id="age"><option value="adult">Adulte</option><option value="young">Jeune</option><option value="aged">Âgé</option></select></div>
- <div><label for="constitution">Constitution (non calibrée)</label><select id="constitution"><option value="unspecified">Non précisée</option><option value="lean">Maigre</option><option value="adipose">Adiposité accrue</option></select></div>
-</div>
 <div class="flags" id="input-warning" aria-live="polite">Choisir un profil animal.</div>
 <p class="small" id="profile-id">Profil de calcul</p>
 </div>
@@ -209,7 +290,7 @@ main details{border:0;border-top:1px solid var(--prmr-line-soft);border-radius:0
 </ul>
 </section>
 <footer>PRMR-R03 · Stress-test exploratoire et non PBPK validé · Aucune administration animale réalisée · Aucun résultat de réparation ou de guérison · Aucun pourcentage de toxicité réelle inféré.</footer>
-</main>
+</main></div>
 <script type="module">
 
 
@@ -236,11 +317,31 @@ function groupCard(group){
  for(const flag of group.flags){const el=document.createElement("div");el.className="riskrow";el.textContent=flag;card.append(el)}
  return card;
 }
+function chartRows(id,rows,max){
+ const parts=rows.map(([label,value,unit])=>{
+  const item=document.createElement("div"),name=document.createElement("span"),number=document.createElement("b"),track=document.createElement("i"),bar=document.createElement("i");
+  item.className="risk-meter";name.textContent=label;number.textContent=unit==="%"?f(value,1)+" %":"×"+f(value);
+  bar.style.width=(100*value/max)+"%";track.append(bar);item.append(name,number,track);return item;
+ });
+ $(id).replaceChildren(...parts);
+}
+function updateOrganSignals(renal,hepatic){
+ const labels={normal:"conservée",mild:"légère",moderate:"modérée",severe:"sévère"};
+ $("renal-signal").dataset.level=renal;
+ $("hepatic-signal").dataset.level=hepatic;
+ const active=[];
+ if(renal!=="normal")active.push("altération rénale "+labels[renal]);
+ if(hepatic!=="normal")active.push("altération hépatique "+labels[hepatic]);
+ const status=$("scenario-organ-status");
+ status.dataset.active=String(active.length>0);
+ status.textContent=active.length?"Scénario : "+active.join(" et ")+". Halos illustratifs sur la vue Reins et foie. Localisation et toxicité non déterminées.":"Fonctions rénale et hépatique conservées dans le scénario.";
+}
 function refresh(){
  const query={species:$("species").value,mass_g:Number($("mass").value),renal:$("renal").value,hepatic:$("hepatic").value,hydration:$("hydration").value};
  const profile=data.profiles.find(p=>Object.keys(query).every(k=>p[k]===query[k]));
  if(!profile){$("profile-id").textContent="Profil non disponible";return}
  $("profile-id").textContent="Profil "+profile.id+" | Référence de masse : "+profile.ref_mass_g+" g | Modificateur allométrique central : ×"+f(massFactor(profile.mass_g,profile.ref_mass_g),3)+" (non validé)";
+ updateOrganSignals(profile.renal,profile.hepatic);
  let warn=[];
  if(profile.hepatic==="severe")warn.push("Foie sévèrement altéré : pas de calcul de marqueur hépatique, situation hors extrapolation.");
  if(profile.renal==="severe")warn.push("Rein sévèrement altéré : exposition de certains métabolites fortement augmentée dans les références humaines.");
@@ -258,9 +359,15 @@ function refresh(){
  if(profile.hepatic==="moderate")assessment+=" Dans les données humaines, l'AUC de la molécule mère est multipliée par 6,5 pour pentoxifylline et par 1,6 pour pirfénidone; aucune conclusion quantitative sur la toxicité comparative n'est permise.";
  if(profile.hepatic==="severe")assessment+=" L'insuffisance hépatique sévère n'est pas simulable avec cette base de données.";
  $("balance-assessment").textContent=assessment;
+ $("summary-balance").textContent="Les simulations estiment l’exposition. Le bénéfice supplémentaire et les probabilités de toxicité restent inconnus.";
+ $("summary-warning").textContent=warn.join(" ");
+ const markers=["Dapagliflozine","5-carboxypirfénidone","Métabolite V"];
+ const rows=profile.exposure_regimens.map((g,i)=>[g.regimen+" · "+markers[i],g.renal_exposure.median,"×"]);
+ chartRows("summary-auc",rows,Math.max(1,...rows.map(r=>r[1])));
 }
 function showPD(){
  const species=$("species").value,sd=SPECIES.find(s=>s.id===species);
+ chartRows("summary-pd",[1,3,10].map(c=>[c+" nM",100*sglt2Inhibition(species,c),"%"]),100);
  const el=$("sglt2");el.replaceChildren(para("Espèce : "+sd.label+" ; IC₅₀ sur SGLT2 = "+sd.sglt2_ic50_nM+" nM. Aucune concentration réellement mesurée ni liée à une dose."));
  for(const c of [1,3,10]){
    const occupancy=100*sglt2Inhibition(species,c);
@@ -270,5 +377,18 @@ function showPD(){
 }
 ["mass","renal","hepatic","hydration","sex","age","constitution"].forEach(id=>$(id).addEventListener("change",refresh));
 $("species").addEventListener("change",()=>{masses();showPD()});
+const requestedScenario=new URLSearchParams(location.search);
+for(const field of ["renal","hepatic"]){
+ const value=requestedScenario.get(field);
+ if(Array.from($(field).options).some(option=>option.value===value))$(field).value=value;
+}
 masses();showPD();
+function setView(three){
+ if(three)import("./src/renal-viewer.mjs?v=atlas2").catch(()=>{$("renal-status").textContent="Chargement de l’atlas impossible.";});
+ $("organ-overview").hidden=three;$("renal-work").hidden=!three;
+ $("overview-view").setAttribute("aria-pressed",String(!three));$("renal-view").setAttribute("aria-pressed",String(three));
+}
+$("overview-view").onclick=()=>setView(false);$("renal-view").onclick=()=>setView(true);
+const route=document.querySelector(".prmr-routebar");
+if(route)document.body.append(route);
 </script></body></html>

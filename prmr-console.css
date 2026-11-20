@@ -436,3 +436,27 @@ button.workflow,
   min-height: calc(100svh - var(--prmr-bar, 0px));
   height: calc(100svh - var(--prmr-bar, 0px));
 }
+
+/* Sur écran étroit, la rangée d'outils de l'atlas gardait ses éléments côte à
+   côte : la grille d'espèces y était écrasée à 134 px sur une page de 374, et
+   chaque vignette tombait à 64 px — illisible, et le libellé tronqué. Elle
+   passe à la ligne, et la grille reprend toute la largeur. */
+@media (max-width: 900px) {
+  .atlas-tools {
+    flex-wrap: wrap;
+  }
+
+  .atlas-tools > .r4-st-species {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  /* La grille d'espèces est posée en « display:flex » par la page : ses
+     colonnes déclarées restent inertes et les vignettes se réduisent à leur
+     contenu. On les fait partager la largeur plutôt que de rétablir une
+     grille, qui entrerait en conflit avec la mise en page de la page. */
+  .atlas-tools > .r4-st-species > * {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

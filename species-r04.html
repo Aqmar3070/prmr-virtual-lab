@@ -15,28 +15,27 @@ mountProvenancePanel("r12-provenance");
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<link rel="stylesheet" href="./prmr-console.css?v=2c6bc96a98">
-</head><body>
+<link rel="stylesheet" href="./prmr-console.css?v=7daefe8f94">
+<style>
+body.atlas-page{margin:0;background:radial-gradient(ellipse at 51% 26%,#0a3144 0,transparent 52%),#020e19;color:#e2f6fa;font-family:Inter,Arial,sans-serif}
+.atlas-page .atlas-brand{display:flex;align-items:center;gap:clamp(12px,2vw,32px);padding:14px 2vw;border-bottom:1px solid #459fb5;background:linear-gradient(110deg,#063243,#041623 60%,#063245);box-shadow:0 4px 22px #00c8ff13}
+.atlas-brand a{color:#8fe4f1;text-decoration:none;font-size:clamp(16px,2vw,28px);white-space:nowrap}.atlas-brand h1{margin:0;padding-left:2vw;border-left:1px solid #518595;font-size:clamp(18px,2.3vw,34px);color:#edfaff;line-height:1.1}
+.atlas-layout{display:grid;grid-template-columns:clamp(98px,9vw,145px) minmax(0,1fr);gap:12px;padding:12px 14px 0 0}.atlas-menu{align-self:start;position:sticky;top:8px;background:#041827;border:1px solid #204654}.atlas-menu a{display:block;color:#cae5eb;text-decoration:none;padding:17px 9px;border-bottom:1px solid #163c4c;font-size:13px}.atlas-menu a:hover,.atlas-menu a:focus-visible,.atlas-menu [aria-current]{background:#0b394a;box-shadow:inset 3px 0 #52edff}
+.atlas-page .r4-shell{max-width:none;min-width:0;width:100%;margin:0;padding:0}.atlas-page .r4-st-workbench{padding:0;border:0;background:transparent;box-shadow:none}.atlas-page .r4-st-heading,.atlas-page .r4-st-stats{display:none}
+.atlas-tools{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;margin:0 0 12px}.atlas-tools .r4-st-species,.atlas-tools .r09-scene-options{display:flex;flex-wrap:wrap;gap:6px;margin:0}.atlas-tools .r4-st-species-card{display:flex;align-items:center;gap:6px;width:auto;min-height:40px;padding:4px 12px;border-radius:7px}.atlas-tools .r4-st-art{width:38px;height:30px;min-height:0}.atlas-tools .r4-st-art img{width:100%;height:100%;object-fit:contain}.atlas-tools .r4-st-species-card>span{padding:0;min-height:0}.atlas-tools .r4-st-species-card small{display:none}
+.atlas-page .r4-st-console{display:grid;grid-template-columns:minmax(170px,.72fr) minmax(0,2fr) minmax(220px,1fr);gap:10px;align-items:start}.atlas-page .r4-st-console>.prmr-panel{position:static;grid-column:auto;min-width:0;max-height:none;border:1px solid #388496;border-radius:10px;background:linear-gradient(145deg,#092a39ed,#041522 70%);box-shadow:inset 0 1px 0 #72edff54,0 0 16px #19cbeb11}
+.atlas-page .r4-st-console .prmr-console-stage{padding:0;overflow:hidden}.atlas-page .r5-animal-profile-panel{display:block;padding:0;border:0}.atlas-page .r4-st-console .r4-st-portrait{height:clamp(340px,47vw,620px);min-height:0;border:0;background:radial-gradient(ellipse at 50% 65%,#0b4051,#031523 70%)}.atlas-page .r4-st-portrait-label{min-height:0;padding:8px}.atlas-page .prmr-console-side,.atlas-page .prmr-console-read{padding:12px}.atlas-page .r4-st-organbox{height:clamp(210px,23vw,350px);min-height:0;background:radial-gradient(ellipse,#123949,#041321 78%)}.atlas-page .r4-st-organ{margin:0 0 12px}.atlas-page .r4-st-console .overline{color:#97e8f3;margin:6px 0 10px}.atlas-page .r8-organ-button[aria-pressed=true],.atlas-page button[aria-pressed=true].r09-scene-toggle{border-color:#70edfc;box-shadow:inset 0 0 12px #00dfff26}
+.atlas-page .atlas-console-title{font-size:16px;color:#e3fbff;margin:0 0 14px}.atlas-page .r4-st-bottom-grid{margin-top:18px}.atlas-page .prmr-routebar{position:static}
+@media(max-width:1000px){.atlas-layout{display:block;padding:8px}.atlas-menu{display:flex;position:static;overflow:auto;margin-bottom:10px}.atlas-menu a{white-space:nowrap;padding:9px 12px}.atlas-page .r4-st-console{grid-template-columns:minmax(150px,.7fr) minmax(0,1.6fr) minmax(185px,1fr)}}
+@media(max-width:760px){.atlas-page .r4-st-console{grid-template-columns:1fr}.atlas-page .prmr-console-stage{order:-1}.atlas-page .prmr-console-read{order:0}.atlas-page .prmr-console-side{order:1}.atlas-tools{gap:5px}.atlas-brand{flex-wrap:wrap}.atlas-page .r4-st-console .r4-st-portrait{height:clamp(290px,64vw,430px)}}
+.atlas-page .prmr-console-side details{margin-top:14px}.atlas-page .prmr-console-side summary{cursor:pointer;color:#afeaf1;padding:7px 0}
+</style>
+</head><body class="atlas-page"><header class="atlas-brand"><a href="./index.html"><strong>PRMR</strong> VIRTUAL LAB</a><h1>Anatomie préclinique comparée</h1></header>
+<div class="atlas-layout"><nav class="atlas-menu" aria-label="Navigation anatomique"><a href="./index.html">Accueil</a><a href="#r4-visual-atlas" aria-current="page">Anatomie comparée</a><a href="#parameters-heading">Console expérimentale</a><a href="#pk-heading">Résultats</a><a href="#provenance-heading">Provenance</a><a href="./screening.html">Molécules</a></nav>
+
 <div class="r4-shell">
 
 <main>
-<div class="r4-head">
- <div><div class="r4-eye">Phase 02 du parcours / Anatomie comparée / modules R04 et R09</div>
- <h1>Chien et chat. <span>Organes internes issus de scanners.</span></h1>
- <p>Un véritable poste d’exploration : animal transparent en grille 3D, organes internes mis en évidence (reins, cœur, foie, poumons), molécules orientables en 3D et graphiques dynamiques. Le choix de l'animal et son état physiologique influencent les <strong>hypothèses de pharmacocinétique et de pharmacodynamie</strong>. Les structures moléculaires 3D sont générées depuis des conformères RDKit. Chien et chat disposent l’un et l’autre d’un atlas 3D de surfaces issues de CT vétérinaires, modifiées et créditées. Les espèces sans anatomie réellement acquise ont été retirées : l’origine de chaque organe est détaillée dans la rubrique « La méthode ».</p></div>
- <svg class="r4-head-icon" viewBox="0 0 160 100" role="img" aria-label="Schéma des deux reins"><defs><linearGradient id="kidGlow"><stop stop-color="#6dfbdc"/><stop offset="1" stop-color="#159cae"/></linearGradient></defs>
-  <path d="M61 8 C25 0 12 24 15 51 C17 78 44 91 59 74 C72 56 46 52 48 39 C50 29 69 23 61 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
-  <path d="M99 8 C135 0 148 24 145 51 C143 78 116 91 101 74 C88 56 114 52 112 39 C110 29 91 23 99 8 Z" fill="#12647e77" stroke="url(#kidGlow)" stroke-width="3"/>
-  <path d="M64 47 C77 52 74 71 78 90 M96 47 C83 52 86 71 82 90" stroke="#ffaf8f" fill="none" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="80" cy="88" r="6" fill="#62d9cc"/>
- </svg>
-</div>
-<div class="r4-kpis" aria-label="Résumé de la recherche R04">
- <div class="r4-kpi"><small>Espèces accessibles</small><b>2 espèces</b><em>Chien et chat · surfaces issues de CT vétérinaires</em></div>
- <div class="r4-kpi"><small>Protocoles R02 comparés</small><b>3 régimes</b><em>Doublet, R02-A, R02-B</em></div>
- <div class="r4-kpi"><small>Modèles moléculaires</small><b>4 conformères</b><em>Coordonnées 3D RDKit</em></div>
- <div class="r4-kpi"><small>État de la recherche</small><b>In silico</b><em>Calculs reproductibles, non expérimentaux</em></div>
-</div>
 <section id="r4-visual-atlas" class="r4-integrated-workbench" aria-label="Comparateur interactif intégré des animaux, molécules et paramètres physiologiques"></section>
 <p class="r4-banner"><strong>Statut des résultats :</strong> les références AUC proviennent de données humaines ; leur projection entre espèces est un <strong>stress-test non calibré</strong>. Modifier un animal ou un paramètre met à jour l'analyse, mais ne prédit ni toxicité réelle, ni efficacité, ni guérison. Les courbes non disponibles restent identifiées comme inconnues.</p>
 <div class="r4-grid">
@@ -147,4 +146,33 @@ mountProvenancePanel("r12-provenance");
 </main>
 <footer class="r4-footer">PRMR-R04 — Interface originale interactive. Aucune expérience animale n'est revendiquée. Les graphiques d'AUC exploratoires montrent uniquement la sensibilité d'un modèle non calibré ; les probabilités de toxicité, d'efficacité et de guérison restent inconnues.</footer>
 </div>
+</div><script type="module">
+const atlas=document.getElementById("r4-visual-atlas");
+const arrange=()=>{
+  const grid=atlas.querySelector(".r4-st-console");
+  if(!grid)return false;
+  const side=grid.querySelector(".prmr-console-side"),read=grid.querySelector(".prmr-console-read");
+  const toolbar=document.createElement("div");
+  toolbar.className="atlas-tools";
+  toolbar.append(side.querySelector(".r4-st-species"),read.querySelector(".r09-scene-options"));
+  grid.before(toolbar);
+  const title=document.createElement("h2");
+  title.className="atlas-console-title";title.textContent="Console expérimentale";
+  side.querySelector(".overline").replaceWith(title);
+  side.insertBefore(read.querySelector(".r8-organ-switch"),side.children[1]);
+  read.querySelector(".overline").remove();
+  read.prepend(read.querySelector(".r4-st-organ"));
+  const settings=document.createElement("details"),summary=document.createElement("summary");
+  summary.textContent="Paramètres physiologiques";settings.append(summary,side.querySelector(".r4-st-props"));
+  side.querySelector(".overline").replaceWith(settings);
+  window.dispatchEvent(new Event("resize"));
+  return true;
+};
+if(!arrange()){
+  const watcher=new MutationObserver(()=>{if(arrange())watcher.disconnect()});
+  watcher.observe(atlas,{childList:true,subtree:true});
+}
+const route=document.querySelector(".prmr-routebar");
+if(route)document.body.append(route);
+</script>
 </body></html>

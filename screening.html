@@ -2,119 +2,45 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#09111e">
-<meta name="description" content="PRMR-R02 : calcul original RDKit sur 10 molécules existantes et 165 associations précliniques in silico. Résultats, filtres, méthodes, incertitudes et hypothèses.">
-<title>PRMR-R02 | Criblage original de molécules</title>
-<link rel="stylesheet" href="./prmr-design-system.css?v=c83334b3ec">
-<link rel="stylesheet" href="./laboratory.css?v=97e0d68df6">
-<style>
-/* Styles propres à PRMR-R02. Palette, typographie, tableaux, statuts et
-   contrôles viennent de prmr-design-system.css : cette page ne redéfinit
-   que sa propre mise en page. */
-#app{max-width:1180px;padding:var(--prmr-space-6) clamp(16px,3vw,40px) var(--prmr-space-7);margin:auto}
-nav.headnav{display:flex;align-items:center;justify-content:space-between;gap:var(--prmr-space-4);flex-wrap:wrap;margin-bottom:var(--prmr-space-6)}
-.brand{text-decoration:none;font-size:var(--prmr-size-body);color:var(--prmr-text);font-weight:700}
-.brand span{color:var(--prmr-signal)}
-.navright{display:flex;gap:var(--prmr-space-2);flex-wrap:wrap}
-.navright a,.rbutton{background:var(--prmr-surface-raised);color:var(--prmr-text);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);font-size:var(--prmr-size-small);padding:var(--prmr-space-2) var(--prmr-space-3);text-decoration:none;font-weight:600;cursor:pointer}
-.navright a:hover,.rbutton:hover{border-color:var(--prmr-signal-dim)}
-.rbutton.active{border-color:var(--prmr-signal);color:var(--prmr-signal)}
-/* Ligne de contexte : phase, nature du travail, date. Lisible en casse
-   normale ; les capitales espacées rendaient cette information pénible à lire. */
-.eyebrow{color:var(--prmr-text-muted);font-size:var(--prmr-size-small);font-weight:600;margin:0}
-h1{margin:var(--prmr-space-3) 0 var(--prmr-space-4)}
-h1 span{color:var(--prmr-signal)}
-.lead{max-width:var(--prmr-measure);color:var(--prmr-text-muted);font-size:var(--prmr-size-lead);line-height:1.6}
-/* Avertissement de portée : filet tireté = construction exploratoire. */
-.hnotice{border-left:3px dashed var(--prmr-hypothesis);background:var(--prmr-hypothesis-bg);color:var(--prmr-text);border-radius:0 var(--prmr-radius-control) var(--prmr-radius-control) 0;padding:var(--prmr-space-4);font-size:var(--prmr-size-small);line-height:1.7;margin:var(--prmr-space-5) 0;max-width:var(--prmr-measure)}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-3);margin:var(--prmr-space-5) 0}
-.stat{background:var(--prmr-surface);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-4)}
-.stat label{font-size:var(--prmr-size-micro);display:block;color:var(--prmr-text-muted);margin:0}
-.stat strong{display:block;color:var(--prmr-text);font-size:30px;font-variant-numeric:tabular-nums;letter-spacing:-.02em;margin:var(--prmr-space-2) 0}
-.stat small{font-size:var(--prmr-size-micro);color:var(--prmr-text-muted);line-height:1.5}
-section{margin-top:var(--prmr-space-7)}
-section>p,.muted{font-size:var(--prmr-size-small);color:var(--prmr-text-muted);line-height:1.75}
-.twocol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-4)}
-.panelx{border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-5);background:var(--prmr-surface);min-width:0}
-.panelx h3{line-height:1.4}
-/* Jeton de statut, aligné sur la grammaire du système de design. */
-.pill{display:inline-flex;align-items:center;gap:var(--prmr-space-1);color:var(--prmr-computed);border:1px solid currentColor;background:var(--prmr-computed-bg);border-radius:999px;font-size:var(--prmr-size-micro);font-weight:600;padding:3px 9px;margin:2px var(--prmr-space-2) var(--prmr-space-2) 0}
-.pill.warn{color:var(--prmr-hypothesis);background:var(--prmr-hypothesis-bg)}
-/* L'indice de triage est une règle de classement inventée pour organiser le
-   criblage : il ne mesure rien. Il garde donc une taille de texte courant et
-   porte son statut, au lieu de dominer la carte comme un résultat. */
-.num-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--prmr-space-2);margin:var(--prmr-space-3) 0}
-.num{color:var(--prmr-text);font-size:var(--prmr-size-lead);font-variant-numeric:tabular-nums;font-weight:700}
-.num-label{color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
-.small{font-size:var(--prmr-size-micro);line-height:1.6;color:var(--prmr-text-muted)}
-.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--prmr-space-3);margin-top:var(--prmr-space-4)}
-.meta div{border-top:1px solid var(--prmr-line-soft);padding-top:var(--prmr-space-3)}
-.meta small{color:var(--prmr-text-muted);font-size:var(--prmr-size-micro);display:block}
-.meta b{font-size:var(--prmr-size-small);color:var(--prmr-text);display:block;margin-top:var(--prmr-space-1)}
-.info{padding:var(--prmr-space-4);border:1px solid var(--prmr-line);border-radius:var(--prmr-radius-control);background:var(--prmr-surface-sunken);color:var(--prmr-text-muted);line-height:1.75;font-size:var(--prmr-size-small)}
-ul{padding-left:var(--prmr-space-5)}
-li{line-height:1.7;color:var(--prmr-text-muted);font-size:var(--prmr-size-small)}
-.controls{display:flex;gap:var(--prmr-space-2);flex-wrap:wrap;margin:var(--prmr-space-5) 0 var(--prmr-space-4);align-items:center}
-.rfield{width:auto;max-width:260px;min-width:180px}
-#results{overflow-x:auto;border-radius:var(--prmr-radius-panel);border:1px solid var(--prmr-line);background:var(--prmr-surface);scrollbar-color:var(--prmr-line) transparent}
-#results table{border-collapse:collapse;width:100%;min-width:760px;font-size:var(--prmr-size-small)}
-#results th{position:sticky;top:0;z-index:1;background:var(--prmr-surface-raised);color:var(--prmr-text);font-size:var(--prmr-size-micro);font-weight:600;text-align:left;padding:var(--prmr-space-3) var(--prmr-space-4);border-bottom:1px solid var(--prmr-line);white-space:nowrap}
-#results td{text-align:left;border-bottom:1px solid var(--prmr-line-soft);padding:var(--prmr-space-3) var(--prmr-space-4);vertical-align:top;line-height:1.55;color:var(--prmr-text-muted)}
-#results td.numeric{text-align:right;font-variant-numeric:tabular-nums;color:var(--prmr-text)}
-#results tbody tr:nth-child(even){background:#ffffff05}
-#results tbody tr:hover{background:#5fe3c60d}
-#results tbody tr:last-child td{border-bottom:0}
-#pager{margin-top:var(--prmr-space-4);display:flex;gap:var(--prmr-space-3);align-items:center;flex-wrap:wrap}
-#pager button:disabled{opacity:.4;cursor:not-allowed}
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--prmr-space-3)}
-.step{border:1px solid var(--prmr-line);background:var(--prmr-surface);border-radius:var(--prmr-radius-panel);padding:var(--prmr-space-4)}
-/* La numérotation est conservée : ces étapes sont une séquence réelle. */
-.step .index{font-size:var(--prmr-size-micro);color:var(--prmr-signal);font-weight:700;font-variant-numeric:tabular-nums}
-.step h3{margin:var(--prmr-space-2) 0;font-size:var(--prmr-size-body)}
-.step p{color:var(--prmr-text-muted);font-size:var(--prmr-size-small);line-height:1.7}
-.education{border:1px solid var(--prmr-signal-dim);border-radius:var(--prmr-radius-panel);background:var(--prmr-computed-bg);padding:var(--prmr-space-5)}
-.education p,.education li{font-size:var(--prmr-size-body);line-height:1.8;color:var(--prmr-text)}
-details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prmr-line-soft);border-radius:0;background:none}
-@media(max-width:850px){.stats,.steps{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.twocol,.stats,.steps{grid-template-columns:1fr}.panelx{padding:var(--prmr-space-4)}.rfield{max-width:100%;width:100%}.controls{align-items:stretch}}
-</style>
-<link rel="stylesheet" href="./r04-atlas.css?v=eb56269b53">
-
-<link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
-<script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
-<script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<link rel="stylesheet" href="./molecular-viewer.css?v=820853787f">
-<script type="module" src="./src/molecular-viewer.mjs?v=1acb0f74ec"></script>
-<link rel="stylesheet" href="./renal-display.css?v=ca27c1cb43">
-<link rel="stylesheet" href="./prmr-console.css?v=2c6bc96a98">
+<meta name="theme-color" content="#031525">
+<title>Criblage moléculaire · PRMR Virtual Lab</title>
+<meta name="description" content="Registre des 165 combinaisons PRMR-R02, conformères moléculaires et descripteurs RDKit.">
+<link rel="stylesheet" href="./screening-console.css?v=f8185a8b08">
+<script type="module" src="./src/screening-console.mjs?v=3354368083"></script>
 </head>
 <body>
-<div id="app">
-
-<main>
-<div class="eyebrow">PRMR-R02 / Criblage computationnel original / 16 novembre 2026</div>
-<h1>Des molécules existantes. <span>Des combinaisons calculées.</span></h1>
-<section class="mol-workbench" id="conformeres" data-conformer aria-labelledby="conformer-title">
- <div class="mol-stage"><canvas data-mol-canvas tabindex="0" aria-label="Conformère 3D manipulable"></canvas></div>
- <div class="mol-inspector">
-  <h2 id="conformer-title">Conformère moléculaire 3D</h2>
-  <label for="conformer-select">Molécule</label>
-  <select id="conformer-select" disabled></select>
-  <p data-mol-meta role="status">Chargement des coordonnées…</p>
-  <div class="mol-controls"><button type="button" data-spin disabled>Rotation automatique</button><button type="button" data-reset disabled>Vue initiale</button></div>
-  <p>Glisser pour orienter la structure. Au clavier, utiliser les flèches.</p>
-  <a data-pubchem hidden>Fiche PubChem</a>
- </div>
+<a class="skip" href="#console">Aller à la console</a>
+<header><a href="./index.html"><b>PRMR</b> VIRTUAL LAB</a><h1>Criblage moléculaire</h1><div class="telemetry" aria-hidden="true"></div></header>
+<div class="shell">
+<nav aria-label="Navigation moléculaire">
+ <a href="./index.html"><i aria-hidden="true">⌂</i>Accueil</a><a class="current" href="#console"><i aria-hidden="true">⬡</i>Criblage moléculaire</a><a href="#all-combinations"><i aria-hidden="true">⌘</i>Combinaisons</a><a href="#bibliotheque"><i aria-hidden="true">▱</i>Fiches moléculaires</a><a href="#methode"><i aria-hidden="true">▦</i>Calcul</a><a href="#sources"><i aria-hidden="true">◎</i>Sources</a>
+</nav>
+<main id="console" data-source="./research-data/prmr-r02-screen.json">
+<div class="board">
+<section class="frame register" id="all-combinations"><h2>Registre des combinaisons <small id="count" aria-live="polite">165 combinaisons</small></h2>
+ <div class="search"><button id="filters" aria-expanded="false" aria-controls="choices">Filtrer</button><input id="query" type="search" placeholder="Rechercher…" aria-label="Rechercher une combinaison ou une molécule"></div>
+ <div id="choices" hidden><label>Statut<select id="status"><option value="">Tous les statuts</option><option value="hypothese_in_silico">Hypothèses ouvertes</option><option value="suspendue">Suspendues</option></select></label><label>Taille<select id="size"><option value="">Paires et triples</option><option value="2">Paires</option><option value="3">Triples</option></select></label></div>
+ <div id="rows" role="group" aria-label="Combinaisons disponibles">Chargement du registre…</div>
 </section>
-<p class="lead">Laboratoire moléculaire interactif et première recherche <em>in silico</em> indépendante : les structures PubChem de dix médicaments ont été analysées avec RDKit, puis toutes les associations de deux ou trois agents ont été générées et triées selon des mécanismes distincts et des alertes connues. Aucun résultat des études animales combinatoires de R01 n'entre dans le calcul du classement R02.</p>
-<div class="hnotice"><strong>Ce que l'application n'a pas fait :</strong> elle n'a ni traité d'animal, ni cultivé de cellules, ni modélisé une interaction médicamenteuse, ni prédit une synergie, ni démontré de guérison. L'indice d'exploration est une règle de classement explicitement choisie pour préparer des expériences biologiques, sans calibration sur une efficacité observée.</div>
-<div class="stats">
+<section class="frame preview" id="conformeres"><h2>Aperçu moléculaire <span class="ident" id="preview-id"></span></h2>
+ <div class="viewport"><canvas id="model" tabindex="0" aria-label="Conformère manipulable au clavier et à la souris"></canvas><div id="flat" hidden></div>
+ <div class="toolbox"><button id="spin" title="Rotation automatique" aria-label="Rotation automatique" aria-pressed="true">⟳</button><button id="reset" title="Vue initiale" aria-label="Vue initiale">⌖</button><button id="full" title="Agrandir la vue" aria-label="Agrandir la vue">⛶</button></div>
+ </div>
+ <div class="preview-foot"><label for="compound">Molécule</label><select id="compound"></select><span id="dimension"></span></div>
+</section>
+<section class="frame card" id="fiche"><h2>Fiche moléculaire <span class="ident" id="card-name"></span></h2><div class="card-body"><div id="structure"></div><dl id="identity"></dl></div></section>
+<section class="frame leads"><h2>Pistes issues du calcul</h2><div id="leads"></div></section>
+<div class="lower"><section class="frame interaction"><h2>Interaction moléculaire <span class="ident">· illustration</span></h2><div class="binding"><img src="./assets/screen/binding-illustration.webp" alt="Illustration de principe d’une molécule dans une poche protéique"><p>Aucune interaction ligand–cible calculée dans R02.</p></div></section>
+<section class="frame detail"><h2>Détails scientifiques <span class="ident" id="detail-id"></span></h2><dl id="details"></dl></section></div>
+</div>
+<div class="records">
+<details id="bibliotheque"><summary>Bibliothèque des dix molécules et descripteurs RDKit</summary><div id="library"></div></details>
+<details id="methode"><summary>Méthode de calcul, sensibilité et limites</summary><article><p class="lead">Laboratoire moléculaire interactif et première recherche <em>in silico</em> indépendante : les structures PubChem de dix médicaments ont été analysées avec RDKit, puis toutes les associations de deux ou trois agents ont été générées et triées selon des mécanismes distincts et des alertes connues. Aucun résultat des études animales combinatoires de R01 n'entre dans le calcul du classement R02.</p><div class="hnotice"><strong>Ce que l'application n'a pas fait :</strong> elle n'a ni traité d'animal, ni cultivé de cellules, ni modélisé une interaction médicamenteuse, ni prédit une synergie, ni démontré de guérison. L'indice d'exploration est une règle de classement explicitement choisie pour préparer des expériences biologiques, sans calibration sur une efficacité observée.</div><div class="stats">
 <div class="stat"><label>Molécules de départ</label><strong id="n-molecules">10</strong><small>Structures vérifiées dans PubChem</small></div>
 <div class="stat"><label>Associations générées</label><strong id="n-total">165</strong><small>45 binaires · 120 ternaires</small></div>
 <div class="stat"><label>Hypothèses ouvertes</label><strong id="n-active">44</strong><small>Après critères de tri conservateur</small></div>
 <div class="stat"><label>Écartées ou conditionnelles</label><strong id="n-suspended">121</strong><small>Motifs consultables ci-dessous</small></div>
-</div>
-<section data-prmr-tab="montre">
+</div><section data-prmr-tab="montre">
 <h2>Deux pistes issues du calcul</h2>
 <p>Les dix molécules et les 165 associations restent consultables. Ces deux pistes servent à poser des hypothèses falsifiables dans un futur modèle cellulaire rénal, pas à sélectionner un traitement.</p>
 <div class="twocol">
@@ -134,29 +60,7 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 </div>
 </div>
 <div class="info" style="margin-top:15px"><strong>Test de sensibilité interne :</strong> 2 000 perturbations déterministes des coefficients de recherche (±20 % sur les composantes exploratoires). Parmi dix triples représentatifs, R02-A arrive première dans 58,05 % des perturbations et R02-B dans 41,95 %. Les pourcentages représentent la stabilité du <em>classement choisi</em>, pas une probabilité d'efficacité ou de guérison. De faibles modifications des hypothèses peuvent inverser ces deux pistes.</div>
-</section>
-<section class="prmr-handoff" aria-label="Anatomie comparée"><div><strong>L'anatomie comparée du chien et du chat vit à l'étape 02.</strong><p>Le poste 3D — espèces, organes issus de scanners, profils modifiables — s'ouvre en entier plutôt que répété en réduction sur chaque page.</p></div><a class="prmr-handoff-link" href="./species-r04.html">Ouvrir l'anatomie comparée</a></section>
-<section id="all-combinations" data-prmr-tab="donnees">
-<h2>165 combinaisons : registre filtrable</h2>
-<p>Les associations sont classées par indice de priorisation purement méthodologique. Les configurations « suspendues » ne doivent pas être interprétées comme des prescriptions ; certaines contiennent des contre-indications ou nécessitent un contexte clinique qui n'est pas défini.</p>
-<div class="controls">
-<button class="rbutton active" data-status="all" aria-pressed="true">Toutes</button>
-<button class="rbutton" data-status="hypothese_in_silico" aria-pressed="false">Hypothèses ouvertes</button>
-<button class="rbutton" data-status="suspendue" aria-pressed="false">Suspendues</button>
-<select class="rfield" id="filter-size" aria-label="Taille de combinaison"><option value="all">2 et 3 molécules</option><option value="2">Paires uniquement</option><option value="3">Triples uniquement</option></select>
-<input class="rfield" id="filter-text" type="search" aria-label="Rechercher une molécule" placeholder="Rechercher une molécule…">
-<button class="rbutton" id="export-json">Exporter les résultats JSON</button>
-</div>
-<p id="registry-label" class="small" aria-live="polite">Chargement des calculs…</p>
-<div id="results"><table><thead><tr><th>Combinaison</th><th>Axes distincts</th><th>Indice d'exploration</th><th>Statut / motif</th></tr></thead><tbody id="results-body"><tr><td colspan="4">Chargement des données source…</td></tr></tbody></table></div>
-<div id="pager"><button id="more" type="button">Afficher davantage</button><span class="small" id="shown"></span></div>
-</section>
-<section data-prmr-tab="donnees">
-<h2>Molécules de départ et calculs RDKit</h2>
-<p>Les valeurs sont des descripteurs physicochimiques calculés, pas des valeurs de bioactivité ni des doses. Chaque fiche renvoie à son identité moléculaire PubChem.</p>
-<div id="molecule-list" aria-live="polite"></div>
-</section>
-<section data-prmr-tab="methode">
+</section><section data-prmr-tab="methode">
 <h2>Procédure computationnelle</h2>
 <div class="steps">
 <div class="step"><div class="index">ÉTAPE 01</div><h3>Structures</h3><p>Sélection de dix molécules déjà existantes ; collecte des SMILES et identifiants PubChem.</p></div>
@@ -168,23 +72,21 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <p class="small">Indice = somme des poids d'axes distincts + 0,2 × (1 − Tanimoto moyen) − somme des pénalités d'incertitude − 0,4 par troisième agent. Les axes et pénalités ont été définis pour trier les expériences à examiner : ils n'ont pas été ajustés à des mesures biologiques. La diversité structurale ne démontre aucune synergie. Les produits de la première étape chimique sont vérifiables par RDKit ; les risques d'interaction entre médicaments ne sont pas calculés.</p>
 <p class="small">Un groupe « hypothèse ouverte » peut rester dangereux ou inadapté : ce filtre n'est pas une analyse exhaustive des interactions, de la toxicité ADMET, de l'effet des métabolites ni des contre-indications individuelles.</p>
 </details>
-</section>
-<section data-prmr-tab="methode">
+</section><section data-prmr-tab="methode">
 <h2>Prochaine validation préclinique requise</h2>
 <div class="info">
 <p>Une preuve expérimentale originale n'existera qu'après des mesures indépendantes. Le premier palier pertinent est <strong>un système cellulaire rénal validé</strong>, avec comparaison témoin, agents seuls, associations, plusieurs niveaux d'exposition et lectures de viabilité, inflammation, matrice extracellulaire et intégrité cellulaire. Les tests de synergie exigent ensuite un modèle d'interaction défini (par exemple Bliss ou Loewe), avec leurs hypothèses et incertitudes.</p>
 <p>La transition vers une étude animale suppose un modèle correspondant à la maladie visée, un protocole préenregistré, un calcul d'effectif, des critères d'arrêt, des autorisations éthiques et le respect des 3R. Aucun animal n'a été utilisé pour ce criblage.</p>
 </div>
-</section>
-<section data-prmr-tab="methode">
+</section><section data-prmr-tab="methode">
 <div class="education">
 <h2>Comprendre les résultats très simplement</h2>
 <p>Nous avons pris dix médicaments qui existent déjà. L'ordinateur a examiné leur forme chimique et a imaginé toutes les façons de les regrouper par deux ou par trois.</p>
 <p>Il a trouvé 165 groupes possibles. Nous en avons mis 121 de côté parce qu'ils étaient répétitifs, peu justifiés ou nécessitaient des précautions importantes. Il reste 44 idées à examiner.</p>
 <p><strong>Ce qui a été découvert :</strong> des combinaisons intéressantes à tester. <strong>Ce qui n'a pas été découvert :</strong> nous ne savons pas encore si elles soignent un rein malade, si elles sont sûres ensemble ou si elles guérissent quoi que ce soit. Pour le savoir, il faut de véritables expériences biologiques.</p>
 </div>
-</section>
-<section data-prmr-tab="sources">
+</section></article></details>
+<details id="sources"><summary>Sources et traçabilité</summary><article><section data-prmr-tab="sources">
 <h2>Sources, transparence et traçabilité</h2>
 <p class="muted">Les sources chimiques proviennent des pages individuelles PubChem liées aux dix fiches. Les indications générales et les risques sont contextualisés par KDIGO 2024, DailyMed et CKD-FIX. Les publications concernant des combinaisons thérapeutiques n'ont pas été utilisées comme données d'entraînement ou de résultat de R02.</p>
 <ul>
@@ -196,57 +98,7 @@ details{padding:var(--prmr-space-4) 0;border:0;border-bottom:1px solid var(--prm
 <li><a href="./research-data/prmr-r02-screen.json" target="_blank" rel="noopener noreferrer">Données computationnelles complètes, 165 associations (JSON)</a></li>
 <li><a href="https://github.com/Aqmar3070/prmr-virtual-lab/blob/main/docs/PRMR_R02_RESEARCH_LOG.md" target="_blank" rel="noopener noreferrer">Journal scientifique, limites et reproduction des calculs</a></li>
 </ul>
-</section>
-</main>
-<footer>PRMR-R02 · Criblage computationnel original · Données publiques et calculs RDKit · Aucune efficacité thérapeutique, synergie, guérison ni sécurité démontrée · Ne constitue pas un conseil médical.</footer>
+</section><p><a href="./species-r04.html">Anatomie comparée</a> · <a href="./risk-r03.html">Modélisation des risques</a> · <a href="./index.html?view=molecules">Atelier moléculaire</a></p></article></details>
+<a class="export" href="./research-data/prmr-r02-screen.json" download="PRMR-R02-165-combinaisons.json">Exporter le registre JSON</a>
 </div>
-<script type="module">
-const el=id=>document.getElementById(id);
-let data=null, filtered=[], visible=25, state={status:"all",size:"all",query:""};
-const fmt=n=>Number(n).toLocaleString("fr-FR",{maximumFractionDigits:3,minimumFractionDigits:3});
-const node=(tag,text,cls)=>{let x=document.createElement(tag);x.textContent=text;if(cls)x.className=cls;return x};
-function draw(){
- if(!data)return;
- filtered=data.combinations.filter(c=>(state.status==="all"||c.status===state.status)&&(state.size==="all"||String(c.n_agents)===state.size)&&(!state.query||c.agents.join(" ").toLowerCase().includes(state.query)));
- filtered.sort((a,b)=>(a.status==="hypothese_in_silico"?-1:1)-(b.status==="hypothese_in_silico"?-1:1)||b.priority_index-a.priority_index);
- el("registry-label").textContent=filtered.length+" associations correspondant aux critères";
- let tbody=el("results-body");tbody.replaceChildren();
- for(let c of filtered.slice(0,visible)){
-  let tr=document.createElement("tr"), name=node("td",c.agents.join(" + ")), axes=node("td",c.axes.join(" · ")),
-      score=node("td",fmt(c.priority_index)), status=node("td",c.status==="hypothese_in_silico"?"Hypothèse à valider":"Suspendue : "+c.reasons.join(", "),c.status==="hypothese_in_silico"?"good":"bad");
-  tr.append(name,axes,score,status);tbody.append(tr);
- }
- el("more").disabled=visible>=filtered.length;
- el("shown").textContent=Math.min(visible,filtered.length)+" sur "+filtered.length+" lignes visibles";
-}
-document.querySelectorAll("[data-status]").forEach(b=>b.addEventListener("click",()=>{
- state.status=b.dataset.status;visible=25;document.querySelectorAll("[data-status]").forEach(x=>{x.classList.toggle("active",x===b);x.setAttribute("aria-pressed",String(x===b))});draw();
-}));
-el("filter-size").addEventListener("change",e=>{state.size=e.target.value;visible=25;draw()});
-el("filter-text").addEventListener("input",e=>{state.query=e.target.value.toLowerCase().trim();visible=25;draw()});
-el("more").addEventListener("click",()=>{visible+=25;draw()});
-el("export-json").addEventListener("click",()=>{
- if(!data)return;
- const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
- const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="PRMR-R02-165-combinaisons.json";document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-});
-async function start(){
- try {
-  let r=await fetch("./research-data/prmr-r02-screen.json",{cache:"no-store"});if(!r.ok)throw new Error("Impossible de lire les données ("+r.status+")");
-  data=await r.json();
-  if(data.counts.total!==165||data.combinations.length!==165||data.counts.remaining_hypotheses!==44)throw new Error("Nombre de résultats incompatible avec le registre vérifié");
-  el("n-molecules").textContent=data.counts.molecules;el("n-total").textContent=data.counts.total;
-  el("n-active").textContent=data.counts.remaining_hypotheses;el("n-suspended").textContent=data.counts.conditional_or_excluded;
-  for(let d of data.molecules){
-   let card=node("article","", "molcard");
-   let head=node("h3",d.name),txt=node("p",d.axis+" · "+d.formula),p=node("p","Masse : "+d.mass_g_mol+" g/mol · cLogP : "+d.clogp+" · TPSA : "+d.tpsa_A2+" Å²");
-   let warning=node("p",d.alert), foot=node("div","","foot"),a=node("a","PubChem CID "+d.cid);
-   a.href=d.pubchem_url;a.target="_blank";a.rel="noopener noreferrer";foot.append(a);card.append(head,txt,p,warning,foot);el("molecule-list").append(card);
-  }
-  draw();
- }catch(e){el("registry-label").textContent="Données indisponibles : "+e.message;el("results-body").replaceChildren(node("tr","Référentiel non chargé, aucun score ne doit être inventé."));el("more").disabled=true}
-}
-start();
-</script>
-</body>
-</html>
+</main></div></body></html>
