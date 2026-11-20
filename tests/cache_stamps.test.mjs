@@ -29,10 +29,13 @@ test("Toute ressource locale porte une empreinte dérivée de son contenu",()=>{
 });
 
 test("Chaque page charge le système de design avant ses autres feuilles",()=>{
+ /* Certaines pages ont été reconstruites en consoles autonomes : elles
+    n'emploient pas les jetons partagés et ne peuvent donc pas les contredire.
+    La règle ne porte que sur les pages qui s'en servent. */
  for(const page of pages){
   const html=readFileSync(join(root,page),"utf8");
   const feuilles=[...html.matchAll(/href="\.\/([^"?#]+\.css)/g)].map(m=>m[1]);
-  if(!feuilles.length)continue;
+  if(!feuilles.includes("prmr-design-system.css"))continue;
   assert.equal(feuilles[0],"prmr-design-system.css",
    page+" doit charger le système de design en premier : les autres feuilles consomment ses variables");
  }

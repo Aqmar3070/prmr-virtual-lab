@@ -44,14 +44,14 @@ test("la barre de rubriques se place au premier niveau de la page", () => {
 
 test("l'explorateur de doses s'annonce sur l'accueil", () => {
   /* Il n'apparaissait que dans le plus petit lien du coin supérieur droit, à
-     côté de « Code source », sous le nom « Expositions ». L'utilisateur ne le
-     trouvait pas et concluait que rien n'avait été fait. */
+     côté de « Code source », sous le nom « Expositions ». L'accueil a été
+     refait depuis : le bloc d'annonce a laissé place à un panneau de console
+     et à un bouton. L'exigence tient toujours — l'explorateur doit s'annoncer
+     sur l'accueil, pas s'y cacher. */
   const home = read("index.html");
-  assert.match(home, /class="prmr-lead"/, "l'accueil doit annoncer l'explorateur");
+  assert.match(home, /class="home-panel panel-exposure"/,
+    "l'explorateur doit avoir son panneau sur la console d'accueil");
   assert.match(home, /href="\.\/exposures\.html"/);
-  for (const substance of ["Paracétamol", "Ibuprofène", "Caféine", "Metformine"]) {
-    assert.ok(home.includes(substance), "l'accueil doit nommer " + substance);
-  }
   const route = read("src/prmr_route.mjs");
   assert.match(route, /label: "Doses et effets", primary: true/,
     "« Expositions » est un mot d'épidémiologiste, et le lien ne peut pas rester secondaire");

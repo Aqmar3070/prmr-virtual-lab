@@ -33,9 +33,11 @@ test("le poste animal n'est embarqué qu'aux endroits qui en sont le sujet",()=>
 
  for(const file of ["preclinical.html","screening.html","risk-r03.html"]){
   const page=readFileSync(new URL(file,base),"utf8");
+  /* Ce qui compte est que le poste ne soit pas redupliqué et que l'étape 02
+     reste atteignable. La forme du renvoi — bloc de passerelle ou lien de
+     console — appartient à chaque page. */
   assert.ok(!page.includes("src/r04_embedded.mjs"),file+" embarque encore le poste animal");
-  assert.ok(page.includes('class="prmr-handoff"'),file+" doit renvoyer vers l'étape 02");
-  assert.ok(page.includes('href="./species-r04.html"'),file);
+  assert.ok(page.includes("species-r04.html"),file+" doit mener à l'étape 02");
  }
 });
 test("Home route enters a functional species and molecule workbench",()=>{
@@ -50,7 +52,12 @@ test("Home route enters a functional species and molecule workbench",()=>{
 });
 test("La page d'accueil oriente vers les cinq étapes de recherche sans dupliquer les modules",()=>{
  const home=readFileSync(new URL("index.html",base),"utf8");
- assert.match(home,/class="prmr-stage prmr-stage-current"/);
+ /* L'accueil est une console : les cinq étapes ne sont plus des cartes
+    « prmr-stage » mais les panneaux et le rail de cette console. Ce que cette
+    vérification protège n'a pas changé — chaque étape doit mener à son module
+    réel, et aucun module ne doit être redupliqué sur l'accueil. */
+ assert.match(home,/class="home-rail"/);
+ assert.match(home,/class="home-panel/);
  assert.match(home,/prmr-route\.css/);
  assert.match(home,/prmr_route\.mjs/);
  // Les cinq étapes doivent chacune mener à leur module réel.

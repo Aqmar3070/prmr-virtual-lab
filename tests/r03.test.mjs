@@ -64,5 +64,7 @@ test("Main interface and scientific cautions are accessible",()=>{
  assert.match(html,/probabilité de toxicité/);
  assert.match(html,/risque.*bénéfice/i);
  const main=readFileSync(new URL("../index.html",import.meta.url),"utf8");
- assert.match(main,/href="\.\/risk-r03\.html"/);
+ /* L'accueil a été refait : le lien porte désormais des paramètres et une
+    ancre. Ce qui compte est qu'il mène à ce module, pas sa forme exacte. */
+ assert.match(main,/href="\.\/risk-r03\.html[^"]*"/);
 });
