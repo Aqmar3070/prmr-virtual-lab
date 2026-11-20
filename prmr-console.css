@@ -385,58 +385,6 @@ button.workflow,
   padding-bottom: var(--prmr-space-4);
 }
 
-/* --------------------------------------------------------------------------
-   L'accueil tient en un écran
-   --------------------------------------------------------------------------
-   La console d'accueil a un rapport de forme fixe et prend toute la largeur :
-   sur 1440 px elle fait 810 px de haut, et le bandeau plus la rubrique repliée
-   la poussaient hors de l'écran. On la borne désormais par la hauteur
-   disponible — la largeur suit le rapport de forme — de sorte que la page
-   s'arrête au premier écran quelle que soit la fenêtre.
-   -------------------------------------------------------------------------- */
-
-:root {
-  /* Hauteur occupée par ce qui n'est pas la console : bandeau de navigation,
-     fil d'Ariane, rubrique repliée. Valeur de repli ; src/r23_home_fit.mjs la
-     mesure et la corrige, pour qu'un bandeau ajouté plus tard ne la démente
-     pas en silence. */
-  --prmr-home-chrome: 341px;
-  --prmr-home-ratio: 1.777;
-}
-
-#view-overview .prmr-home {
-  width: min(100%, calc((100svh - var(--prmr-home-chrome)) * var(--prmr-home-ratio)));
-  margin-inline: auto;
-}
-
-/* La rubrique repliée se fait discrète : une ligne, pas un bloc. */
-#view-overview .prmr-fold {
-  margin-top: var(--prmr-space-2);
-}
-
-#view-overview .prmr-fold > summary {
-  padding: var(--prmr-space-2) 0;
-}
-
-/* Sous 900 px de large la console repasse en mise en page empilée (règle de
-   prmr-home.css) : la borne en hauteur n'a plus de sens et gênerait. */
-@media (max-width: 900px) {
-  #view-overview .prmr-home { width: 100%; }
-}
-
-/* Le bandeau de navigation est injecté au-dessus du corps de page, qui impose
-   min-height:100vh : la page mesurait toujours au moins un écran plus la
-   hauteur du bandeau. src/r23_home_fit.mjs publie cette hauteur ; la règle la
-   déduit. Repli à 0 sans JavaScript : la page défile un peu, rien ne casse. */
-.shell {
-  min-height: calc(100svh - var(--prmr-bar, 0px));
-}
-
-.shell > .sidebar {
-  min-height: calc(100svh - var(--prmr-bar, 0px));
-  height: calc(100svh - var(--prmr-bar, 0px));
-}
-
 /* Sur écran étroit, la rangée d'outils de l'atlas gardait ses éléments côte à
    côte : la grille d'espèces y était écrasée à 134 px sur une page de 374, et
    chaque vignette tombait à 64 px — illisible, et le libellé tronqué. Elle

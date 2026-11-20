@@ -13,14 +13,13 @@
 <script type="module" src="src/lab.mjs"></script>
 <link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
+<link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
 <link rel="stylesheet" href="./prmr-home.css?v=29dcdaebc6">
 <script type="module" src="./src/home-anatomy.mjs?v=40ce7fb45d"></script>
 <link rel="stylesheet" href="./molecular-viewer.css?v=820853787f">
 <script type="module" src="./src/molecular-viewer.mjs?v=1acb0f74ec"></script>
 <link rel="stylesheet" href="./renal-display.css?v=ca27c1cb43">
 <link rel="stylesheet" href="./home-finish.css?v=efae5e15ee">
-<link rel="stylesheet" href="./prmr-console.css?v=7daefe8f94">
-<script type="module" src="./src/r23_home_fit.mjs?v=ec2fe5a2f8"></script>
 </head>
 <body>
 <div class="shell">
@@ -79,20 +78,20 @@
    <a class="home-panel panel-exposure" href="./exposures.html"><span class="home-caption"><svg class="home-icon" viewBox="0 0 24 25" aria-hidden="true" focusable="false"><use href="#home-icon-exposure"></use></svg><b>Explorer une exposition</b></span></a>
   </nav>
  </section>
- <!-- L'accueil doit tenir en un écran. Ces deux blocs le prolongeaient :
-      ils passent dans une rubrique repliée, fermée par défaut. Rien n'est
-      supprimé — le rappel du stade du programme reste consultable, et sa
-      forme courte figure en permanence dans le bandeau du haut. -->
- <details class="prmr-fold">
-  <summary>État du programme et crédits</summary>
-  <div class="prmr-fold-body">
- <div class="home-tools"><a href="./assets/human3d/ATTRIBUTION.md">Crédits du modèle 3D</a></div>
-   <section aria-label="État du programme">
-   <div class="prmr-current-phase"><strong>Position actuelle</strong><span>Phase 5 · Évaluation scientifique humaine</span></div>
-   <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
-  </div>
- </details>
+ <div class="home-tools"><a href="#home-workshops">Ateliers de ce poste</a><a href="./assets/human3d/ATTRIBUTION.md">Crédits du modèle 3D</a></div>
+ <section aria-label="État du programme">
+ <div class="prmr-current-phase"><strong>Position actuelle</strong><span>Phase 5 · Évaluation scientifique humaine</span></div>
+ <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
  </section>
+ <div class="prmr-secondary" id="home-workshops"><h2>Ateliers de ce poste</h2><p>Les outils moléculaires et le simulateur restent à portée, sans encombrer le parcours. Les visualisations animales se consultent à l'étape 02.</p></div>
+ <div class="workflow-grid">
+  <button class="workflow" data-jump="molecules"><span class="workflow-index">01 / STRUCTURE</span><strong>Atelier moléculaire</strong><p>Entrée SMILES, représentation 2D, descripteurs RDKit et exploration de structures virtuelles.</p><span class="workflow-arrow">Ouvrir l'atelier →</span></button>
+  <button class="workflow" data-jump="combinations"><span class="workflow-index">02 / COMPARAISON</span><strong>Comparer deux structures</strong><p>Similarité d'empreintes, propriétés et scénarios pharmacocinétiques indépendants.</p><span class="workflow-arrow">Comparer →</span></button>
+  <button class="workflow" data-jump="pkpd"><span class="workflow-index">03 / MODÉLISATION</span><strong>Simulateur PK/PD</strong><p>Concentrations dans le temps, sensibilité paramétrique et export de calculs traçables.</p><span class="workflow-arrow">Simuler →</span></button>
+  <button class="workflow" data-jump="data"><span class="workflow-index">04 / DONNÉES</span><strong>Explorer PubChem</strong><p>Retrouver une structure référencée et ses propriétés depuis une API scientifique publique.</p><span class="workflow-arrow">Rechercher →</span></button>
+ </div>
+ <nav class="home-extra" aria-label="Autres ateliers"><a href="?view=library">Bibliothèque de structures</a><a href="?view=systems">Atlas physiologique</a><a href="?view=cloud">Espace privé</a><a href="?view=quality">Traçabilité scientifique</a></nav>
+ <div class="overview-kpis"><div class="kpi"><span>OUTIL CHIMIQUE</span><strong id="kpi-rdkit">Initialisation</strong><small>RDKit WebAssembly</small></div><div class="kpi"><span>MODÈLE NUMÉRIQUE</span><strong>PK/PD 1C</strong><small>Hypothèses explicites</small></div><div class="kpi"><span>STRUCTURES EN SESSION</span><strong id="kpi-library">0</strong><small>Bibliothèque temporaire</small></div><div class="kpi"><span>DOMAINES BIOLOGIQUES</span><strong>12</strong><small>Atlas de recherche, non simulé</small></div></div>
 </section>
 
 <section class="view" id="view-molecules" hidden>
@@ -185,9 +184,6 @@
  <div class="pagehead"><span class="overline">SCIENTIFIC INTEGRITY / MODULE 07</span><h1>Validation & traçabilité</h1><p>Le laboratoire sépare explicitement méthodes, données, hypothèses et capacités absentes.</p></div>
  <div class="two-col"><div class="panel"><h2>Ce qui est effectivement calculé</h2><div class="engine-line"><span>Validation SMILES et descripteurs</span><b>RDKit.js si chargé</b></div><div class="engine-line"><span>Empreintes Morgan & Tanimoto</span><b>RDKit.js si chargé</b></div><div class="engine-line"><span>Profils PK à un compartiment</span><b>Modèle analytique</b></div><div class="engine-line"><span>Propriétés PubChem</span><b>Si requête réussie</b></div><div class="engine-line"><span>Références de cibles ChEMBL</span><b>Si requête réussie</b></div></div>
  <div class="panel"><h2>Ce qui n'est pas prédictible actuellement</h2><div class="engine-line"><span>Activité biologique de nouvelles molécules</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Synergie et interactions complexes</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Toxicité, ADMET validé</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Synthétisabilité confirmée</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Régénération d'organes / efficacité clinique</span><b class="muted">Non disponible</b></div></div></div>
- <!-- Indicateurs de session. Ils fermaient l'accueil, qui devait tenir en un
-     écran : ils rejoignent la rubrique qui porte déjà l'état des moteurs. -->
- <div class="overview-kpis"><div class="kpi"><span>OUTIL CHIMIQUE</span><strong id="kpi-rdkit">Initialisation</strong><small>RDKit WebAssembly</small></div><div class="kpi"><span>MODÈLE NUMÉRIQUE</span><strong>PK/PD 1C</strong><small>Hypothèses explicites</small></div><div class="kpi"><span>STRUCTURES EN SESSION</span><strong id="kpi-library">0</strong><small>Bibliothèque temporaire</small></div><div class="kpi"><span>DOMAINES BIOLOGIQUES</span><strong>12</strong><small>Atlas de recherche, non simulé</small></div></div>
  <div class="two-col"><div class="panel"><div class="panel-header"><div><span class="overline">ARCHITECTURE</span><h2>État des moteurs</h2></div></div><div class="engine-line"><span>RDKit.js</span><b id="engine-rdkit">Chargement…</b></div><div class="engine-line"><span>PK/PD 1 compartiment</span><b class="ok">Disponible</b></div><div class="engine-line"><span>PubChem & ChEMBL</span><b>Requêtes à la demande</b></div><div class="engine-line"><span>PK-Sim / MoBi</span><b class="muted">Non connectés</b></div><div class="engine-line"><span>Modèles rénaux mécanistiques</span><b class="muted">Non connectés</b></div></div>
  <div class="panel"><div class="panel-header"><div><span class="overline">CADRE SCIENTIFIQUE</span><h2>Provenance des résultats</h2></div></div><div class="provenance"><i class="source-dot ext"></i><div><strong>Mesures / références externes</strong><small>Uniquement si une réponse PubChem ou ChEMBL a effectivement été obtenue</small></div></div><div class="provenance"><i class="source-dot calc"></i><div><strong>Calculs reproductibles</strong><small>Descripteurs moléculaires et solutions du modèle analytique</small></div></div><div class="provenance"><i class="source-dot hypo"></i><div><strong>Hypothèses exploratoires</strong><small>Paramètres PK/PD, variantes virtuelles, absence de données biologiques</small></div></div></div></div>
  <div class="panel spacer-panel"><h2>Protocole d'assurance qualité</h2><p>Les tests numériques du moteur PK/PD sont présents dans le dépôt et configurés pour GitHub Actions. Le statut du dernier cycle CI doit être vérifié dans GitHub : leur présence ne signifie pas automatiquement qu'ils sont passés.</p><p>Des validations supplémentaires sont nécessaires : benchmarks de RDKit, comparaison à références expérimentales, contrôle de versions et qualification des sources.</p><div class="actionrow"><a class="btn secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Aqmar3070/prmr-virtual-lab/actions">Consulter les tests GitHub</a><a class="btn secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Aqmar3070/prmr-virtual-lab">Code et historique</a></div></div>
