@@ -3,6 +3,7 @@ import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie,equivalencesAlcool} from "./exposure-risk.mjs";
 import {analyserAgents,teneurLibelle} from "./exposure-agents.mjs";
+import {BOISSONS} from "./exposure-boissons.mjs";
 import {chargerNotices,fichesNotices} from "./exposure-notices.mjs";
 let notices=null,noticesDemandees=false;
 const $=id=>document.getElementById(id);
@@ -30,6 +31,7 @@ const anchors={"male": {"foot_l": [370.2, 945.2], "calf_l": [366.0, 820.6], "hea
 const entry=(id,qty)=>{const s=products?.get?.(id);const q=qty??(s?quantiteDefaut(s):1);return {id,qty:q,after:q,start:0,reduce:DUREE_DEFAUT,end:DUREE_DEFAUT};};
 const rows=[];
 let registre=[];
+published.push(...BOISSONS);
 const products=new Map(published.map(s=>[s.id,s]));
 const lookup=id=>products.get(id);
 let sex="male",family=0,selected,editing=null,ajoutAuto=false,precedent=null,compare=true,timer,request=0;
@@ -323,13 +325,13 @@ $("xp-editor").onsubmit=e=>{
  e.preventDefault();
  if(calculer())closeEditor();
 };
-$("xp-substance").onchange=()=>{for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;
- // Produit dont la composition est connue : teneurs préremplies, modifiables.
- const c=lookup($("xp-substance").value)?.compo;if(c)for(const k of ["abv","caf","sug","label"])if(c[k]!=null)$("xp-"+k).value=c[k];
- unit();changerSubstance();};
+$("xp-substance").onchange=()=>{$("xp-bed").checked=$("xp-long").checked=false;unit();changerSubstance();};
 // Nouvelle substance : quantité de départ de cette unité, puis calcul immédiat.
 function changerSubstance(){
  const s=lookup($("xp-substance").value);if(!s)return;
+ // Produit dont la composition est connue : teneurs préremplies, modifiables.
+ for(const k of ["abv","caf","sug","label"])$("xp-"+k).value=s.compo?.[k]??"";
+ unit();
  if(ajoutAuto||editing===null){const q=quantiteDefaut(s);if(Number($("xp-after").value)===Number($("xp-dose").value))$("xp-after").value=q;$("xp-dose").value=q;precedent={dose:q,end:Number($("xp-end").value)};}
  calculer();
 }

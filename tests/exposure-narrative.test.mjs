@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {lireRecit} from "../src/exposure-narrative.mjs";
+import {BOISSONS} from "../src/exposure-boissons.mjs";
 const catalogue=new Map([["cafeine",{id:"cafeine",name:"Caféine",unit:"mg"}]]);
 test("Récit de bière avec quantité, composition et durée",()=>{
  const [p]=lireRecit("Je bois deux canettes de 33 cl de bière à 5 % chaque soir depuis deux semaines.",catalogue);
@@ -40,7 +41,7 @@ test("Red Bull : canettes et composition du fabricant",()=>{
 
 test("Substance sans quantité ni durée : valeurs de départ signalées",()=>{
  const [b]=lireRecit("Je bois de la bière",catalogue);
- assert.equal(b.row.qty,100);assert.equal(b.row.end,30);assert.equal(b.row.start,0);assert.equal(b.row.after,100);
+ assert.equal(b.row.qty,500);assert.equal(b.row.end,30);assert.equal(b.row.start,0);assert.equal(b.row.after,500);
  assert.ok(b.notes.some(n=>n.startsWith("Quantité non précisée")));assert.ok(b.notes.some(n=>n.startsWith("Durée non précisée")));
  const [c]=lireRecit("caféine",catalogue);assert.equal(c.row.qty,1000);assert.equal(c.row.end,30);
 });
@@ -62,4 +63,15 @@ test("Dosage cité sans unité : la spécialité dosée est retenue",()=>{
  const [p]=lireRecit("ciprofloxacine 750",produits);
  assert.equal(p.produit.id,"cis2");assert.equal(p.row.qty,1);
  assert.equal(lireRecit("ciprofloxacine",produits)[0].produit.id,"sa1");
+});
+
+test("Bibliothèque de boissons : marque reconnue, composition appliquée",()=>{
+ const produits=new Map(BOISSONS.map(b=>[b.id,b]));
+ const [f]=lireRecit("Je bois une Flag de 65 cl par jour",produits);
+ assert.equal(f.produit.id,"biere-flag");assert.equal(f.row.qty,650);assert.equal(f.row.abv,5.2);
+ const [c]=lireRecit("Je bois 2 canettes de Codys par jour",produits);
+ assert.equal(c.row.qty,500);assert.equal(c.row.caf,30);
+ const [t]=lireRecit("Tuborg",produits);
+ assert.equal(t.row.abv,null);assert.equal(t.row.qty,500);
+ for(const b of BOISSONS)assert.match(b.compo.url,/^https:\/\//);
 });
