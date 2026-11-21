@@ -30,6 +30,12 @@ export const SOURCES_AGENTS={
  carotene:{source:"Priyadarshani · Clin Nutr ESPEN 2018, revue sur l’hypercaroténémie",url:doi("10.1016/j.clnesp.2017.12.002")},
  janes:{source:"Janes et coll. · Eur J Pediatr 2005, insuffisance hépatique après huile de girofle",url:doi("10.1007/s00431-005-1692-1")},
  girofle:{source:"Vicidomini et coll. · Molecules 2021, revue sur le girofle",url:doi("10.3390/molecules26071880")},
+ alqareer:{source:"Alqareer et coll. · J Dent 2006, essai randomisé gel de girofle vs benzocaïne (73 adultes)",url:doi("10.1016/j.jdent.2006.01.009")},
+ mohan:{source:"Mohan et coll. · BMC Complement Altern Med 2019, étude pilote (13 volontaires)",url:doi("10.1186/s12906-019-2507-7")},
+ ulanowska:{source:"Ulanowska et Olas · Int J Mol Sci 2021, revue sur l’eugénol",url:doi("10.3390/ijms22073671")},
+ tavvabi:{source:"Tavvabi-Kashani et coll. · Toxicon 2024, pharmacologie et toxicité de l’eugénol",url:doi("10.1016/j.toxicon.2024.107607")},
+ zari:{source:"Zari et coll. · Molecules 2021, propriétés anticancéreuses de l’eugénol",url:doi("10.3390/molecules26237407")},
+ charansol:{source:"Charansol et coll. · Contact Dermatitis 2024, allergie de contact à l’eugénol",url:doi("10.1111/cod.14515")},
  redbull:{source:"Red Bull · composition officielle (80 mg de caféine et 27 g de sucres par 250 mL)",url:"https://www.redbull.com/ca-fr/energydrink/red-bull-energy-drink-composition"},
  gualberto:{source:"Gualberto et coll. · Nutr Rev 2024, 17 essais randomisés",url:doi("10.1093/nutrit/nuad112")}
 };
@@ -159,7 +165,7 @@ export function analyserCafeine(series,profil,registre){
 
 // ---------- Sucres ----------
 export function analyserSucres(series,profil){
- const st=stats(series.sucres);if(!st)return null;
+ const st=stats(series.sucres);if(!st||st.moyenne<1)return null; // moins d’un gramme : sans intérêt à afficher
  const g=st.moyenne,res=[];
  const cuillere=50/12; // OMS : 50 g ≈ 12 cuillères à café rases
  const eq=["≈ "+ar(g/cuillere)+" cuillères à café rases de sucre (OMS : 50 g ≈ 12 cuillères)",
@@ -270,16 +276,43 @@ const ALIMENTS=[
     constat:"Une consommation élevée de caroténoïdes pendant plusieurs mois colore la peau en jaune-orangé, surtout paumes et plantes des pieds. C’est bénin et réversible, mais peut être confondu avec une jaunisse. Diabète et hypothyroïdie y prédisposent.",pourquoi:"Les caroténoïdes non transformés se stockent dans la couche grasse de la peau.",...SOURCES_AGENTS.carotene},
    {id:"carotte_complements",titre:"Poumon · bêta-carotène en compléments chez le fumeur",zones:["lung_l","lung_r"],signe:0,niveau:"non_chiffre",rr:null,statut:"association_observee",domaine:"etudie",
     constat:"Ne concerne pas la carotte alimentaire : 20 mg/j de bêta-carotène en compléments pendant 5 à 8 ans ont augmenté le cancer du poumon de 18 % (3 à 36 %) et la mortalité de 8 % chez des fumeurs. Aucun décès n’est documenté pour la carotte consommée comme aliment.",pourquoi:"À forte dose isolée, chez un poumon exposé au tabac, le bêta-carotène peut devenir pro-oxydant.",...SOURCES_AGENTS.atbc}]},
- {id:"girofle",titre:"Clou de girofle",re:/\bgirofle\b/,unite:"g",
-  eq:g=>["≈ "+ar(g/0.1,0)+" clous (poids indicatif : 0,1 g le clou ; à vérifier en pesant)","≈ "+ar(g/2)+" cuillères à café de poudre (poids indicatif : 2 g)"],
-  resultats:(g,j)=>[
-   {id:"girofle_benefice",titre:"Bouche et infections · effets antiseptiques",zones:["teeth"],signe:1,niveau:"favorable",rr:null,statut:"non_documente",domaine:"etudie",
-    constat:"Le girofle et son principal composant, l’eugénol, ont des effets antibactériens, antiviraux, anti-inflammatoires et antithrombotiques décrits au laboratoire ; il est utilisé de longue date contre les douleurs dentaires.",pourquoi:"L’eugénol bloque localement la transmission de la douleur et la croissance des bactéries.",...SOURCES_AGENTS.girofle},
-   {id:"girofle_foie",titre:"Foie · toxicité de l’eugénol (huile essentielle)",zones:["liver"],signe:-1,niveau:"modere",rr:null,statut:"toxique_etabli",domaine:"etudie",
-    constat:"10 mL d’huile de girofle avalés ont provoqué une insuffisance hépatique fulminante chez un enfant de 15 mois, traitée par N-acétylcystéine. Les quantités culinaires de clous sont bien plus faibles ; le risque concerne surtout l’huile essentielle et les usages répétés à forte dose.",
-    pourquoi:"L’eugénol est transformé par le foie en un dérivé réactif qui, comme celui du paracétamol, épuise le glutathion des cellules du foie : d’où l’efficacité du même antidote.",...SOURCES_AGENTS.janes},
-   {id:"girofle_sang",titre:"Sang · effet anticoagulant",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
-    constat:"Effet antithrombotique décrit : prudence en cas de traitement anticoagulant ou avant une chirurgie.",pourquoi:"Analyse : l’eugénol freine l’agrégation des plaquettes ; il peut s’ajouter à l’effet d’un anticoagulant ou d’un AINS.",...SOURCES_AGENTS.girofle}]},
+ {id:"girofle",titre:"Clou de girofle (eugénol)",re:/\bgirofle\b/,unite:"g",
+  eq:(g,ctx)=>["Dose repère d’eugénol jugée sûre : 2,5 mg/kg/j, soit "+ar(2.5*(ctx.poids||70),0)+" mg/j pour "+ar(ctx.poids||70,0)+" kg",
+   ctx.huile?"Forme saisie : huile essentielle, la plus concentrée en eugénol":"Forme saisie : clou ou poudre (teneur en eugénol variable, non convertie)",
+   "≈ "+ar(g/0.1,0)+" clous si 0,1 g le clou (poids indicatif, à vérifier en pesant)"],
+  resultats:(g,j,ctx)=>{const huile=ctx.huile,kg=ctx.poids||70,antidiab=ctx.metformine,ains=ctx.ains;return [
+   {id:"girofle_anesthesie",titre:"Bouche · anesthésie locale (douleur dentaire)",zones:["teeth","tongue"],signe:1,niveau:"favorable",rr:null,statut:"association_observee",domaine:"etudie",
+    constat:"Essai randomisé chez 73 adultes : un gel de girofle posé sur la gencive diminue la douleur d’une piqûre autant que la benzocaïne à 20 %, nettement mieux qu’un placebo.",pourquoi:"L’eugénol bloque les canaux qui transmettent le signal douloureux dans les nerfs de la muqueuse.",...SOURCES_AGENTS.alqareer},
+   {id:"girofle_glycemie",titre:"Pancréas et sang · baisse de la glycémie",zones:["pancreas"],signe:1,niveau:"favorable",rr:null,statut:"association_observee",domaine:j>=12?"etudie":"extrapole",
+    constat:"Extrait de girofle riche en polyphénols, 250 mg/j pendant 30 jours : glycémie 2 h après le repas − 13 à − 17 mg/dL dès le 12e jour ; glycémie à jeun − 13 mg/dL chez les prédiabétiques. Preuve faible : 13 personnes, sans groupe témoin, étude financée par un industriel.",
+    pourquoi:"L’extrait freine les enzymes qui découpent les sucres dans l’intestin (alpha-amylase, alpha-glucosidase), aide les muscles à capter le glucose et réduit la production de glucose par le foie.",...SOURCES_AGENTS.mohan},
+   {id:"girofle_microbes",titre:"Infections · antibactérien, antifongique, antiviral",zones:["teeth","stomach"],signe:1,niveau:"favorable",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"Activités démontrées au laboratoire sur de nombreux microbes ; non prouvées comme traitement d’une infection chez l’humain.",pourquoi:"L’eugénol, phénol, perce la membrane des bactéries et des champignons.",...SOURCES_AGENTS.ulanowska},
+   {id:"girofle_inflammation",titre:"Tissus · anti-inflammatoire, antioxydant, antispasmodique",zones:["stomach","small_intestine"],signe:1,niveau:"favorable",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"Effets anti-inflammatoires, antioxydants, analgésiques et antispasmodiques décrits ; l’eugénol est classé « généralement reconnu comme sûr » (GRAS) comme arôme alimentaire.",pourquoi:"Il freine la production de prostaglandines et le stress oxydatif des cellules.",...SOURCES_AGENTS.tavvabi},
+   {id:"girofle_cancer",titre:"Cellules cancéreuses · effet en laboratoire uniquement",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"Sur des cellules cancéreuses en culture : mort cellulaire, arrêt de la division, moins de migration. Aucune preuve chez l’humain : ce n’est pas un traitement du cancer.",pourquoi:"Effet obtenu à des concentrations que l’alimentation n’atteint pas.",...SOURCES_AGENTS.zari},
+   {id:"girofle_foie",titre:"Foie · hépatite toxique, insuffisance hépatique",zones:["liver"],signe:-1,niveau:huile?"eleve":"faible",rr:null,statut:"toxique_etabli",domaine:"etudie",
+    constat:"10 mL d’huile de girofle avalés par un enfant de 15 mois : insuffisance hépatique fulminante (enzymes du foie > 13 000 U/L à 24 h), guérie sous N-acétylcystéine. "+(huile?"Forme saisie : huile essentielle — risque direct.":"Forme saisie : clou ou poudre — exposition bien plus faible qu’avec l’huile, mais le foie reste l’organe cible si la dose devient forte."),
+    pourquoi:"Le foie transforme l’eugénol en un dérivé réactif (quinone méthide) qui épuise le glutathion des cellules du foie, comme le paracétamol : d’où l’efficacité du même antidote.",...SOURCES_AGENTS.janes},
+   {id:"girofle_reins",titre:"Reins · atteinte au cours de l’intoxication",zones:["kidney_l","kidney_r"],signe:-1,niveau:huile?"modere":"non_chiffre",rr:null,statut:"toxique_etabli",domaine:"etudie",
+    constat:"Dans le même cas, l’urée (11,8 mmol/L) et la créatinine (134 µmol/L) étaient élevées : les reins sont touchés en même temps que le foie.",pourquoi:"Les dérivés de l’eugénol sont éliminés par les reins, qui subissent le même stress oxydatif.",...SOURCES_AGENTS.janes},
+   {id:"girofle_dose",titre:"Corps entier · dose d’eugénol au-delà de laquelle il devient toxique",zones:huile?["liver"]:[],signe:huile?-1:0,niveau:huile?"modere":"non_chiffre",rr:null,statut:"toxique_etabli",domaine:"etudie",
+    constat:"Dose jugée sûre : 2,5 mg d’eugénol par kg et par jour, soit "+ar(2.5*kg,0)+" mg/j pour "+ar(kg,0)+" kg. Au-delà, l’eugénol devient toxique. "+(huile?"L’huile essentielle étant presque entièrement constituée d’eugénol, quelques gouttes répétées peuvent dépasser ce repère.":"Pour le clou, la teneur en eugénol n’est pas convertie faute de valeur sourcée ; un usage culinaire reste en pratique très en dessous."),
+    pourquoi:"Comme beaucoup de phénols, l’eugénol est protecteur à faible dose et toxique à forte dose.",...SOURCES_AGENTS.ulanowska},
+   {id:"girofle_saignement",titre:"Sang · risque de saignement (effet anticoagulant)",zones:ains?["stomach"]:[],signe:ains?-1:0,niveau:ains?"modere":"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+    constat:"Effet antithrombotique décrit (moins d’agrégation des plaquettes)."+(ains?" Associé ici à un anti-inflammatoire : les deux effets anticoagulants s’additionnent, l’estomac est le premier exposé.":" À surveiller avec un anticoagulant, l’aspirine, un anti-inflammatoire, ou avant une chirurgie ou une extraction dentaire."),
+    pourquoi:"Analyse d’interaction : deux freins à la coagulation s’additionnent.",...SOURCES_AGENTS.girofle},
+   {id:"girofle_hypoglycemie",titre:"Sang · risque d’hypoglycémie avec un antidiabétique",zones:antidiab?["pancreas","brain"]:[],signe:antidiab?-1:0,niveau:antidiab?"faible":"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+    constat:(antidiab?"Metformine présente dans le scénario : la baisse de glycémie du girofle s’ajoute à celle du médicament. ":"")+"Avec un antidiabétique (metformine, sulfamide, insuline), surveiller la glycémie si l’extrait de girofle est pris régulièrement.",
+    pourquoi:"Analyse d’interaction : deux effets hypoglycémiants s’additionnent ; le cerveau est le premier à souffrir d’un manque de sucre.",...SOURCES_AGENTS.mohan},
+   {id:"girofle_muqueuse",titre:"Bouche · irritation, brûlure de la muqueuse",zones:huile?["tongue","teeth"]:[],signe:huile?-1:0,niveau:huile?"faible":"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+    constat:"L’huile pure posée directement et de façon répétée sur la gencive peut l’irriter, voire la brûler ; l’essai d’anesthésie utilisait un gel, pas l’huile pure.",pourquoi:"L’eugénol concentré est un phénol caustique pour les muqueuses.",...SOURCES_AGENTS.ulanowska},
+   {id:"girofle_allergie",titre:"Peau · allergie de contact",zones:["skin"],signe:-1,niveau:"non_chiffre",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"L’eugénol est un allergène de contact connu (parfums, cosmétiques, cire) : eczéma chez les personnes sensibilisées.",pourquoi:"Il se lie aux protéines de la peau et déclenche une réaction immunitaire retardée.",...SOURCES_AGENTS.charansol},
+   {id:"girofle_non_verifie",titre:"Enfant intoxiqué · autres signes rapportés, non vérifiés",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"Convulsions, acidose du sang et troubles de la coagulation sont rapportés dans d’autres cas d’intoxication de l’enfant par l’huile de girofle ; ces rapports n’ont pas encore été vérifiés dans le registre.",pourquoi:"Affiché pour ne rien omettre, sans le compter comme établi.",...SOURCES_AGENTS.janes}
+  ];}},
  {id:"energisante",titre:"Boisson énergisante",re:/\b(energisante|red ?bull|energy)\b/,unite:"mL",
   eq:ml=>["≈ "+ar(ml/250)+" canettes de 250 mL","≈ "+ar(ml/250*80,0)+" mg de caféine si la teneur est celle de Red Bull (80 mg par canette)","≈ "+ar(ml/250*27,0)+" g de sucres si la teneur est celle de Red Bull (27 g par canette)"],
   resultats:(ml,j)=>[
@@ -288,13 +321,16 @@ const ALIMENTS=[
     pourquoi:"Caféine, sucre et parfois guarana ou ginseng s’additionnent pour stimuler le cœur et resserrer les vaisseaux. Les fiches Caféine et Sucres détaillent la dose cumulée.",...SOURCES_AGENTS.gualberto}]}
 ];
 function nomProduit(p){return fold(p?.name||"");}
-export function analyserAliments(rows,lookup,duree){
+export function analyserAliments(rows,lookup,duree,profil={},series={}){
  const fiches=[];
+ const present=k=>(series[k]||[]).some(v=>v>0);
  for(const a of ALIMENTS){
   const serie=[];
   for(let t=0;t<=duree;t++){let q=0;for(const r of rows){const p=lookup(r.id);if(p&&a.re.test(nomProduit(p))&&!/\bblanc\b/.test(nomProduit(p)))q+=doseAt(r,t);}serie.push(q);}
   const st=stats(serie);if(!st)continue;
-  fiches.push(fiche(a.id,a.titre,a.unite+"/j",st,a.eq(st.moyenne),a.resultats(st.moyenne,st.nbJours)));
+  const huile=rows.some(r=>doseAt(r,0)>=0&&a.re.test(nomProduit(lookup(r.id)))&&/\b(huile|essentielle)\b/.test(nomProduit(lookup(r.id))));
+  const ctx={poids:profil.poids,huile,metformine:present("metformine"),ains:present("ibuprofene")};
+  fiches.push(fiche(a.id,a.titre,a.unite+"/j",st,a.eq(st.moyenne,ctx),a.resultats(st.moyenne,st.nbJours,ctx)));
  }
  return fiches;
 }
@@ -320,6 +356,6 @@ export function analyserCombinaisons(series,registre){
 export function analyserAgents(rows,lookup,profil,duree,registre){
  const series=seriesJournalieres(rows,lookup,duree,profil.age);
  const reg=Object.fromEntries((registre||[]).map(s=>[s.id,s]));
- const fiches=[analyserCafeine(series,profil,reg),analyserSucres(series,profil),analyserParacetamol(series,profil,reg),analyserIbuprofene(series,profil,reg),analyserMetformine(series,profil,reg),...analyserAliments(rows,lookup,duree),analyserCombinaisons(series,reg)].filter(Boolean);
+ const fiches=[analyserCafeine(series,profil,reg),analyserSucres(series,profil),analyserParacetamol(series,profil,reg),analyserIbuprofene(series,profil,reg),analyserMetformine(series,profil,reg),...analyserAliments(rows,lookup,duree,profil,series),analyserCombinaisons(series,reg)].filter(Boolean);
  return {fiches,teneurInconnue:[...series.teneurInconnue]};
 }

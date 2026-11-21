@@ -113,3 +113,17 @@ test('Aliments et plantes : effets favorables et défavorables',()=>{
  assert.equal(fs.find(f=>f.id==='cafeine').moyenne,160);
  assert.equal(fiche([ligne('al31010',50,5)],5).find(f=>f.id==='cacao'),undefined); // chocolat blanc : pas de flavanols
 });
+
+test('Girofle : tableau complet, forme huile et interactions',()=>{
+ produits.set('huile',{id:'huile',name:'Huile essentielle de clou de girofle',unit:'g'});
+ const fs=fiche([ligne('huile',1,5),ligne('metformine',1000,5),ligne('ibuprofene',400,5)],5);
+ const g=fs.find(f=>f.id==='girofle');
+ assert.ok(g.resultats.length>=13);
+ assert.equal(g.resultats.filter(r=>r.signe===1).length,4);
+ assert.equal(resultat(fs,'girofle','girofle_foie').niveau,'eleve');
+ assert.equal(resultat(fs,'girofle','girofle_hypoglycemie').signe,-1);
+ assert.equal(resultat(fs,'girofle','girofle_saignement').signe,-1);
+ const clou=fiche([ligne('al11052',2,5)],5);
+ assert.equal(resultat(clou,'girofle','girofle_foie').niveau,'faible');
+ for(const r of g.resultats)assert.ok(r.url?.startsWith('https://'),r.id);
+});
