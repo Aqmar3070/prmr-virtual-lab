@@ -131,12 +131,11 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 <div class="xp-actions"><button id="xa-read">Analyser le texte</button><button id="xa-mic">Dicter</button><button id="xa-speak">Écouter</button></div>
 <p id="xa-answer" role="status"></p><div id="xa-proposals"></div></section>
 <section class="xp-card" id="xp-dossier"><h2>Dossier de recherche</h2>
-<label>Document à examiner <input type="file" id="xa-file" accept=".pdf,image/jpeg,image/png,image/webp"></label>
-<p>Le service d’extraction reçoit le texte et le fichier sélectionnés. Utilisez des documents dépersonnalisés.</p>
-<label><input type="checkbox" id="xa-consent"> Autoriser cet envoi à Supabase et OpenAI</label>
-<button id="xa-extract">Extraire les données par IA</button>
+<label>Document à examiner <input type="file" id="xa-file" accept=".pdf,.txt,image/jpeg,image/png,image/webp"></label>
+<p>Le fichier est lu dans ce navigateur. Le texte reconnu alimente la recherche et reste modifiable. Sur une image, seuls les mots lisibles sont extraits.</p>
+<button id="xa-extract">Relire le fichier</button>
 <details><summary>Projet privé</summary><button id="xa-projects-load">Charger mes projets</button>
-<label>Projet <select id="xa-projects"></select></label><button id="xa-save">Enregistrer le scénario</button></details>
+<label>Projet <select id="xa-projects"></select></label><button id="xa-save">Enregistrer le scénario</button><button id="xa-history">Consulter les résultats enregistrés</button><div id="xa-history-list"></div></details>
 <p role="status" id="xa-file-status"></p></section></div>
  <figure class="xp-body"><div class="xa-toolbar"><label>Centrer la vue <select id="xa-focus"><option>Corps entier</option></select></label><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button></div>
  <div class="xa-presets" aria-label="Vues rapprochées"><button data-structure="eye_l">Œil</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
@@ -151,7 +150,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <section class="xp-card xp-right"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
  <div class="xp-data-head">Repères documentés</div><div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
  <h3>Apports du jour</h3><div id="xp-day-table"></div><details><summary>Probabilité individuelle</summary><p>Aucun modèle de risque individuel validé pour ces prises et cet horizon dans le registre actuel. Les résultats disponibles décrivent les populations étudiées.</p></details></section>
- <section class="xp-card xp-chart"><h2>Évolution dans le temps</h2><label>Exposition tracée <select id="xp-chart-item"></select></label><p id="xp-chart-title"></p><svg id="xp-plot" viewBox="0 0 410 196" role="img" aria-label="Courbe du scénario sélectionné"></svg>
+ <section class="xp-card xp-chart"><h2>Évolution dans le temps</h2><label>Exposition tracée <select id="xp-chart-item"></select></label><label>Mesure <select id="xp-measure"><option value="prise">Quantité de produit</option><option value="ethanolMl">Alcool pur (mL)</option><option value="caffeineMg">Caféine (mg)</option><option value="sugarG">Sucres (g)</option><option value="ethanolG">Alcool pur (g)</option></select></label><label><input type="checkbox" id="xp-cumul"> Cumul depuis J0</label><label>Scénario comparé <select id="xp-alternative"><option value="maintien">Quantité initiale maintenue</option><option value="moitie">Moitié de chaque quantité saisie</option></select></label><p id="xp-chart-title"></p><svg id="xp-plot" viewBox="0 0 410 196" role="img" aria-label="Courbe du scénario sélectionné"></svg>
  <div id="xp-legend">━ Prise maintenue <span>━ Prise paramétrée</span></div><div id="xp-totals"></div></section>
  <section class="xp-card xp-time"><h2>Chronologie des prises</h2><button id="xp-play" aria-label="Lire la chronologie">▶</button><input id="xp-day" type="range" min="0" max="28" value="0" aria-label="Jour du scénario"><output id="xp-time-label">J0</output><label>Durée <input id="xp-duration" type="number" min="1" max="365" value="28"> j</label><button id="xp-compare" aria-pressed="true">Comparer les scénarios</button></section>
 </div>
@@ -209,7 +208,7 @@ register.addEventListener("toggle",mount);mount();
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<script type="module" src="./src/exposure-console.mjs?v=d70e8cf613"></script>
+<script type="module" src="./src/exposure-console.mjs?v=fb36cd2796"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=a1836510ec"></script>
 </body>
 </html>
