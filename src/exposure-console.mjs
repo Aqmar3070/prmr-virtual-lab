@@ -1,4 +1,4 @@
-import {themeProduit,connaissances} from "./exposure-narrative.mjs";
+import {themeProduit,connaissances,quantiteDefaut,DUREE_DEFAUT} from "./exposure-narrative.mjs";
 import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie,equivalencesAlcool} from "./exposure-risk.mjs";
@@ -26,12 +26,13 @@ const published=[
 ];
 const names={colon:"Côlon",esophagus:"Œsophage",liver:"Foie",small_intestine:"Intestin",calf_l:"Mollet gauche",foot_l:"Pied gauche",heart:"Système cardiovasculaire",brain:"Sommeil",kidney_l:"Reins"};
 const anchors={"male": {"foot_l": [370.2, 945.2], "calf_l": [366.0, 820.6], "heart": [322.3, 241.4], "liver": [304.6, 309.1], "small_intestine": [315.9, 400.8]}, "female": {"foot_l": [391.6, 942.4], "calf_l": [384.3, 805.6], "heart": [323.1, 254.9], "liver": [303.8, 306.8], "small_intestine": [313.5, 381.1]}};
-const entry=(id,qty=1)=>({id,qty,after:qty/2,start:0,reduce:14,end:28});
+// Valeurs de départ : 1 000 mg, 100 g ou 100 mL par jour, du jour 0 au jour 30, sans réduction.
+const entry=(id,qty)=>{const s=products?.get?.(id);const q=qty??(s?quantiteDefaut(s):1);return {id,qty:q,after:q,start:0,reduce:DUREE_DEFAUT,end:DUREE_DEFAUT};};
 const rows=[];
 let registre=[];
 const products=new Map(published.map(s=>[s.id,s]));
 const lookup=id=>products.get(id);
-let sex="male",family=0,selected,editing=null,compare=true,timer,request=0;
+let sex="male",family=0,selected,editing=null,ajoutAuto=false,precedent=null,compare=true,timer,request=0;
 const day=()=>Number($("xp-day").value),duration=()=>Number($("xp-day").max);
 const fmt=x=>Number(x.toFixed(2)).toLocaleString("fr-FR");
 Object.assign(anchors.male,{brain:[310,56],kidney_l:[308,342]});
@@ -235,7 +236,7 @@ function categories(){
   const traces=["M7 18a5 5 0 0 1-1-8l5-5a5 5 0 1 1 7 7l-5 5a5 5 0 0 1-6 1z M8 8l7 7","M4 8l6-4 7 4v8l-7 4-6-4z M17 8l5-3 M17 16l5 3 M7 9v6","M3 19C2 7 11 4 21 3c0 11-6 17-15 15 M4 21L16 9","M3 11h18a9 9 0 0 1-18 0z M7 20h10 M8 8c-3-3 2-3 0-6 M14 8c-3-3 2-3 0-6","M6 6h12l-2 15H8z M6 10h11 M12 10l3-8h4"];
   icone.append(svg("path",{d:traces[i]}));const cadre=node("b","");cadre.append(icone);b.append(cadre,node("span",f));b.setAttribute("aria-pressed",String(i===family));b.onclick=()=>{family=i;categories();openEditor(null)};host.append(b)});
 }
-function closeEditor(){$("xp-editor").hidden=true;editing=null;$("xp-error").textContent="";}
+function closeEditor(){$("xp-editor").hidden=true;editing=null;ajoutAuto=false;precedent=null;$("xp-error").textContent="";}
 function unit(){
  const s=lookup($("xp-substance").value);
  if(!s){$("xp-unit").textContent="";$("xp-item-source").textContent="";return;}
@@ -259,36 +260,71 @@ function search(prefer){
 function openEditor(i){
  editing=i;const row=i===null?null:rows[i];if(row)family=lookup(row.id).family;
  categories();$("xp-search").value="";request++;search(row?.id);
- const val=row||entry($("xp-substance").value,0);
- if(!row){val.reduce=Math.floor(duration()/2);val.end=duration();}
+ const val=row||entry($("xp-substance").value);
  for(const k of ["abv","caf","sug","label"])$("xp-"+k).value=row?.[k]??"";
  $("xp-bed").checked=!!row?.bed;$("xp-long").checked=!!row?.long;
  $("xp-substance").value=val.id;unit();
- for(const k of ["start","reduce","after","end"])$("xp-"+k).value=(!row&&k==="after")?"":val[k];
+ for(const k of ["start","reduce","after","end"])$("xp-"+k).value=val[k];
  $("xp-dose").value=val.qty||"";$("xp-error").textContent="";$("xp-editor").hidden=false;$("xp-substance").focus();
+ precedent={dose:val.qty,end:val.end};
+
 }
-$("xp-editor").onsubmit=e=>{
- e.preventDefault();
+// Lecture du formulaire : renvoie la prise ou un message d'erreur.
+function lireFormulaire(){
  const value=id=>Number($("xp-"+id).value);
  const row={id:$("xp-substance").value,qty:value("dose"),after:value("after"),start:value("start"),reduce:value("reduce"),end:value("end")};
- if(!lookup(row.id)){$("xp-error").textContent="Choisir une référence.";return;}
+ if(!lookup(row.id))return "Choisir une référence.";
+ if(!(row.qty>0))return "Indiquer une quantité journalière.";
  if(lookup(row.id).unit==="mL"){
   for(const k of ["abv","caf","sug"])row[k]=$("xp-"+k).value===""?null:Number($("xp-"+k).value);
   row.label=$("xp-label").value.trim();
-  if([row.abv,row.caf,row.sug].some(v=>v!=null)&&!row.label){$("xp-error").textContent="Préciser le produit ou la source de la teneur.";return;}
+  if([row.abv,row.caf,row.sug].some(v=>v!=null)&&!row.label)return "Préciser le produit ou la source de la teneur.";
  }
  row.bed=!$("xp-bed-field").hidden&&$("xp-bed").checked;row.long=!$("xp-long-field").hidden&&$("xp-long").checked;
- if(row.start>row.reduce||row.reduce>row.end||row.end<=row.start||row.after>row.qty){$("xp-error").textContent="La réduction doit se situer entre le début et l’arrêt. La quantité réduite doit être inférieure ou égale à la quantité initiale.";return;}
- if(editing===null)rows.push(row);else rows[editing]=row;
- closeEditor();renderList();render();
+ if(row.start>row.reduce||row.reduce>row.end||row.end<=row.start||row.after>row.qty)return "La réduction doit se situer entre le début et l’arrêt. La quantité réduite doit être inférieure ou égale à la quantité initiale.";
+ return row;
+}
+// Calcul immédiat : la prise en cours d'édition est appliquée dès qu'elle est valide.
+function calculer(){
+ const row=lireFormulaire();
+ if(typeof row==="string"){$("xp-error").textContent=row;return false;}
+ $("xp-error").textContent="";
+ if(editing===null){rows.push(row);editing=rows.length-1;ajoutAuto=true;}else rows[editing]=row;
+ // L'horizon du graphique couvre toujours la prise la plus longue.
+ const fin=Math.min(730,Math.max(...rows.map(r=>r.end)));if(fin>duration())$("xp-duration").value=$("xp-day").max=String(fin);
+ renderList();render();return true;
+}
+// Sans réduction choisie, la quantité après réduction et le jour de réduction suivent la dose et l'arrêt.
+function suivre(){
+ if(precedent){
+  if(Number($("xp-after").value)===precedent.dose)$("xp-after").value=$("xp-dose").value;
+  if(Number($("xp-reduce").value)===precedent.end)$("xp-reduce").value=$("xp-end").value;
+ }
+ precedent={dose:Number($("xp-dose").value),end:Number($("xp-end").value)};
+ calculer();
+}
+for(const k of ["dose","start","reduce","after","end","abv","caf","sug","label"])$("xp-"+k).addEventListener("input",suivre);
+$("xp-bed").addEventListener("change",calculer);$("xp-long").addEventListener("change",calculer);
+$("xp-editor").onsubmit=e=>{
+ e.preventDefault();
+ if(calculer())closeEditor();
 };
 $("xp-substance").onchange=()=>{for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;
  // Produit dont la composition est connue : teneurs préremplies, modifiables.
  const c=lookup($("xp-substance").value)?.compo;if(c)for(const k of ["abv","caf","sug","label"])if(c[k]!=null)$("xp-"+k).value=c[k];
- unit();};
+ unit();changerSubstance();};
+// Nouvelle substance : quantité de départ de cette unité, puis calcul immédiat.
+function changerSubstance(){
+ const s=lookup($("xp-substance").value);if(!s)return;
+ if(ajoutAuto||editing===null){const q=quantiteDefaut(s);if(Number($("xp-after").value)===Number($("xp-dose").value))$("xp-after").value=q;$("xp-dose").value=q;precedent={dose:q,end:Number($("xp-end").value)};}
+ calculer();
+}
 $("xp-alternative").onchange=$("xp-chart-item").onchange=$("xp-measure").onchange=$("xp-cumul").onchange=render;
-$("xp-search").oninput=()=>{request++;search();for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;};
-$("xp-add").onclick=()=>openEditor(null);$("xp-cancel").onclick=closeEditor;
+let attente;
+$("xp-search").oninput=()=>{request++;search();for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;clearTimeout(attente);attente=setTimeout(changerSubstance,300);};
+$("xp-add").onclick=()=>openEditor(null);
+// Annuler retire la prise ajoutée automatiquement pendant cette édition.
+$("xp-cancel").onclick=()=>{if(ajoutAuto&&editing!==null){rows.splice(editing,1);renderList();render();}closeEditor();};
 $("xp-day").oninput=render;$("xp-duration").onchange=()=>{const el=$("xp-duration");if(!el.value||!el.checkValidity()){el.value=duration();return;}$("xp-day").max=el.value;render();};
 $("xp-play").onclick=()=>{if(timer){stop();return;}if(day()===duration())setDay(0);$("xp-play").textContent="Ⅱ";$("xp-play").ariaLabel="Suspendre la chronologie";timer=setInterval(()=>{setDay(day()+1);if(day()>=duration())stop();},400);};
 $("xp-compare").onclick=()=>{compare=!compare;$("xp-compare").setAttribute("aria-pressed",String(compare));render();};

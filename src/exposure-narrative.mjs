@@ -1,5 +1,45 @@
 // Lecture locale des apports explicitement décrits. Les durées sont des jours entiers.
 import {fold} from "./exposure-evidence.mjs";
+import {teneurLibelle} from "./exposure-agents.mjs";
+
+// Valeurs de départ appliquées à toute substance, modifiables ensuite :
+// 1 000 mg, 100 g ou 100 mL par jour ; spécialité : nombre d'unités le plus proche de 1 000 mg ; 30 jours.
+export const DUREE_DEFAUT=30;
+export function quantiteDefaut(produit){
+ if(produit.unit==="mg")return 1000;
+ if(produit.unit==="g"||produit.unit==="mL")return 100;
+ const t=teneurLibelle(produit);
+ return t?Math.max(1,Math.round(1000/t)):1;
+}
+const VIDES=new Set("avec avant apres pendant depuis durant chaque comprime comprimes gelule gelules sachet sachets jours semaine semaines matin soir prends prend mange bois boire consomme pour dans sans tous toutes jour mois annee annees fois".split(" "));
+// Index des marques : premier mot du nom des spécialités (BDPM) et nom des substances.
+const indexMarques=new WeakMap();
+function marques(produits){
+ if(indexMarques.has(produits))return indexMarques.get(produits);
+ const idx=new Map();
+ for(const p of produits.values()){
+  if(!/^(cis|sa|al)/.test(p.id))continue;
+  const mot=fold(p.name).match(/^[a-z][a-z-]{3,}/)?.[0];
+  if(!mot||VIDES.has(mot))continue;
+  if(!idx.has(mot))idx.set(mot,[]);idx.get(mot).push(p);
+ }
+ indexMarques.set(produits,idx);return idx;
+}
+export function trouverMarque(ligne,produits){
+ const idx=marques(produits);
+ for(const mot of ligne.match(/[a-z][a-z-]{3,}/g)||[]){
+  const liste=idx.get(mot);if(!liste)continue;
+  const dosages=[...ligne.matchAll(/(\d+(?:[.,]\d+)?)\s*(mg|g|ml|%)/g)].map(m=>m[1].replace(",",".")+" "+m[2]);
+  const score=p=>{const n=fold(p.name).replace(/,(?=\d)/g,".");let v=0;
+   for(const d of dosages)if(n.includes(d))v+=10;
+   for(const w of ligne.match(/[a-z]{3,}/g)||[])if(w!==mot&&!VIDES.has(w)&&new RegExp("\\b"+w+"\\b").test(n))v+=5;
+   if(/comprime|gelule|sachet|solution buvable|sirop/.test(n))v+=2;
+   if(p.id.startsWith("sa"))v+=1;if(p.id.startsWith("al"))v+=3;
+   return v-n.length/1000;};
+  return [...liste].sort((a,b)=>score(b)-score(a))[0];
+ }
+ return null;
+}
 
 const mots={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,neuf:9,dix:10,quatorze:14,quinze:15,trente:30,cinquante:50,cent:100};
 const boissons=[
@@ -42,7 +82,7 @@ export function lireRecit(texte,produits){
   if(!nom){
    const terme=brut.replace(/^(je (?:consomme|prends|mange|bois)\s+(?:du |de la |des |de l )?)/,"").split(/[,;:]|\s+\d/)[0].trim();
    if(terme.length<2)continue;
-   produit=[...produits.values()].find(p=>fold(p.name)===terme);nom=produit?.name;
+   produit=[...produits.values()].find(p=>fold(p.name)===terme)||trouverMarque(brut,produits);nom=produit?.name;
   }
   if(!produit||!nom)continue;
   const notes=[];
@@ -65,15 +105,22 @@ export function lireRecit(texte,produits){
    const nombre=ligne.match(/\b(\d+)\s+(?:canettes?|bouteilles?|verres?|bieres?|comprimes?)\s+(?:de|a)\s+\d/);
    if(nombre&&quantite!=null)quantite*=Number(nombre[1]);
   }
+  const unites=ligne.match(/\b(\d+(?:[.,]\d+)?)\s*(?:comprimes?|gelules?|sachets?|capsules?|doses?|unites?|cuilleres?)\b/);
+  if(quantite==null&&!ambigu&&unites&&produit.unit!=="mg"&&produit.unit!=="g"&&produit.unit!=="mL")quantite=Number(unites[1].replace(",","."));
+  if(quantite==null&&!ambigu&&unites&&produit.unit==="mg"){const t=teneurLibelle(produit)||Number(ligne.match(/(\d+(?:[.,]\d+)?)\s*mg\b/)?.[1]?.replace(",","."));if(t)quantite=t*Number(unites[1].replace(",","."));}
+  const concentration=/\d\s*(?:mg|g)\s*\/\s*\d/.test(ligne);
+  let parDefaut=false;
+  if(quantite==null&&!ambigu&&!concentration&&!/\b\d+\s*(?:canettes?|cannettes?)\b/.test(ligne)&&(mesures.length===0||!["mg","g","mL"].includes(produit.unit))){quantite=quantiteDefaut(produit);parDefaut=true;}
   const duree=ligne.match(/(?:pendant|depuis|durant|sur)\s+(\d+)\s*(jours?|semaines?|mois|ans?|annees?)\b/);
-  const jours=duree?Number(duree[1])*({s:7,m:30,a:365}[duree[2][0]]||1):1;
+  const jours=duree?Number(duree[1])*({s:7,m:30,a:365}[duree[2][0]]||1):(ambigu?1:DUREE_DEFAUT);
   const explicite=/par jour|chaque jour|tous les jours|quotidien|chaque soir|tous les soirs|\/j\b/.test(ligne);
   // Durée donnée sans fréquence : hypothèse d’une prise quotidienne, affichée et modifiable.
-  const quotidien=explicite||Boolean(duree&&!ambigu);
+  const quotidien=explicite||!ambigu;
   if(duree&&!explicite&&!ambigu&&jours>1)notes.push("Fréquence non précisée : prise quotidienne supposée. Corrigez-la si besoin.");
   if(ambigu||mesures.length>1)notes.push("Plusieurs interprétations possibles. Vérifiez les quantités et le calendrier.");
   if(!quantite)notes.push("Quantité à préciser avec son unité.");
-  if(!duree&&!ambigu)notes.push("Le calcul porte sur une journée déclarée.");
+  if(parDefaut)notes.push("Quantité non précisée : valeur de départ de "+quantite+" "+produit.unit+" par jour, modifiable.");
+  if(!duree&&!ambigu)notes.push("Durée non précisée : "+DUREE_DEFAUT+" jours par défaut, modifiable.");
   if(jours>730)notes.push("Horizon supérieur aux 730 jours du graphique.");
   const degre=ligne.match(/(\d+(?:[.,]\d+)?)\s*(?:%|°|degres?\b)/);
   const abv=alcoolPur?100:boisson&&degre?Number(degre[1].replace(",",".")):null;
