@@ -31,7 +31,7 @@ const assert=require("node:assert/strict");
   assert.equal(await page.inputValue("#xp-dose"),"80");
   for(const [id,valeur] of [["start","0"],["reduce","7"],["after","40"],["end","14"]])await page.fill("#xp-"+id,valeur);
   await page.locator("#xp-editor button").filter({hasText:"Enregistrer"}).click();
-  assert.match(await page.textContent("#xp-totals"),/80/);
+  assert.match(await page.textContent("#xp-totals"),/840/);
   await page.fill("#xa-note","");await page.click("#xa-mic");
   await page.evaluate(()=>{window.microEssai.phrase("Je bois de la bière");window.premierMicro=window.microEssai;window.microEssai.onend();});
   await page.waitForFunction(()=>window.microEssai!==window.premierMicro);
