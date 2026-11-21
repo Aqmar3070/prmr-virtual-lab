@@ -56,3 +56,9 @@ créer un projet au nom d'un autre. Il ne touche à aucune base distante.
 `src/cloud.mjs` ne contient qu'une clé *publishable*, publique par conception.
 Une clé `service_role` contourne toutes les règles ci-dessus : elle ne doit
 jamais figurer dans ce dépôt, ni dans aucun fichier servi au navigateur.
+
+## Extraction de prises depuis un PDF, une image ou un texte
+
+La fonction `exposure-intake` vérifie la session de l’utilisateur et transmet au service d’extraction le document ou le texte explicitement autorisé dans le dossier. La limite par fichier est de 4 Mo. La réponse propose des champs à vérifier. Les fichiers et le texte brut ne sont pas enregistrés dans les tables du laboratoire. Les paramètres confirmés et les résultats sont enregistrés sur demande dans la table existante `simulation_runs`, sous les règles du projet privé.
+
+Déployer la fonction dans le projet Supabase de PRMR avec `supabase functions deploy exposure-intake`. Configurer `OPENAI_API_KEY` dans les secrets de ce projet. La variable facultative `EXPOSURE_AI_MODEL` sélectionne un modèle compatible avec la lecture d’images, de PDF et les sorties structurées de l’API Responses. Le domaine autorisé dans la fonction correspond au site GitHub Pages du laboratoire. Utiliser un exemple dépersonnalisé pour vérifier le service après déploiement.

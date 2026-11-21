@@ -1,3 +1,4 @@
+import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 const $=id=>document.getElementById(id);
 const node=(tag,text)=>Object.assign(document.createElement(tag),{textContent:text});
@@ -17,7 +18,7 @@ const published=[
  {id:"cafe",name:"Café filtre",family:3,unit:"tasse"},
  {id:"chocolat",name:"Chocolat noir",family:3,unit:"portion"}
 ];
-const names={liver:"Foie",small_intestine:"Intestin",calf_l:"Mollet gauche",foot_l:"Pied gauche",heart:"Système cardiovasculaire",brain:"Sommeil",kidney_l:"Reins"};
+const names={colon:"Côlon",esophagus:"Œsophage",liver:"Foie",small_intestine:"Intestin",calf_l:"Mollet gauche",foot_l:"Pied gauche",heart:"Système cardiovasculaire",brain:"Sommeil",kidney_l:"Reins"};
 const anchors={"male": {"foot_l": [370.2, 945.2], "calf_l": [366.0, 820.6], "heart": [322.3, 241.4], "liver": [304.6, 309.1], "small_intestine": [315.9, 400.8]}, "female": {"foot_l": [391.6, 942.4], "calf_l": [384.3, 805.6], "heart": [323.1, 254.9], "liver": [303.8, 306.8], "small_intestine": [313.5, 381.1]}};
 const entry=(id,qty=1)=>({id,qty,after:qty/2,start:0,reduce:14,end:28});
 const rows=[];
@@ -54,6 +55,10 @@ function render(){
  document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
  const display={ethanolMl:"Alcool pur (mL)",ethanolG:"Alcool pur (g)",sugarG:"Sucres (g)",caffeineMg:"Caféine (mg)"};
  $("xp-totals").textContent=[...result.available].map(key=>display[key]+" : "+fmt(result.totals[key])).join(" · ");
+ const tableau=$("xp-day-table");tableau.replaceChildren();
+ for(const cle of Object.keys(display)){
+  const ligne=node("div","");ligne.className="xp-metric";ligne.append(node("span",display[cle]),node("b",result.available.has(cle)?fmt(result.totals[cle]):"Non renseigné"));tableau.append(ligne);
+ }
  const weight=$("xp-weight");
  if(result.available.has("caffeineMg")&&weight.value&&weight.checkValidity())$("xp-totals").append(node("small"," · "+fmt(result.totals.caffeineMg/Number(weight.value))+" mg de caféine/kg"));
  if(result.available.size)$("xp-totals").append(node("small"," · apports quantifiables à J"+t+" ; teneurs manquantes exclues."));
@@ -65,9 +70,10 @@ function render(){
  $("xp-body-image").setAttribute("href","./assets/exposure/"+sex+".webp");
  const marks=$("xp-marks"),cards=$("xp-signals"),why=$("xp-reason");marks.replaceChildren();cards.replaceChildren();why.replaceChildren();
  for(const signal of all){
-  const [cx,cy]=anchors[sex][signal.zone],left=["liver","small_intestine"].includes(signal.zone),ex=left?65:535;
+  const position=anchors[sex][signal.zone];
+  const [cx,cy]=position||[0,0],left=["liver","small_intestine"].includes(signal.zone),ex=left?65:535;
   const adverse=signal.sign<0,shade=adverse?"bad":"good";
-  const group=svg("g",{});group.append(svg("ellipse",{cx,cy,rx:signal.zone==="small_intestine"?55:32,ry:signal.zone==="calf_l"?48:31,fill:"url(#xp-"+shade+")"}),svg("path",{class:"xp-leader",d:"M"+cx+" "+cy+" L"+(left?ex+78:ex-78)+" "+(cy-25)+" H"+ex}),svg("text",{x:ex,y:cy-30,"text-anchor":left?"start":"end"},names[signal.zone]));marks.append(group);
+  const group=svg("g",{});group.append(svg("ellipse",{cx,cy,rx:signal.zone==="small_intestine"?55:32,ry:signal.zone==="calf_l"?48:31,fill:"url(#xp-"+shade+")"}),svg("path",{class:"xp-leader",d:"M"+cx+" "+cy+" L"+(left?ex+78:ex-78)+" "+(cy-25)+" H"+ex}),svg("text",{x:ex,y:cy-30,"text-anchor":left?"start":"end"},names[signal.zone]));if(position)marks.append(group);
   const b=node("button","");b.type="button";b.setAttribute("aria-pressed",String(signal===active));b.append(node("b",names[signal.zone]),Object.assign(node("span",adverse?"− Défavorable":"+ Favorable"),{className:adverse?"minus":"plus"}));
   const select=()=>{selected=signal.zone;render();document.dispatchEvent(new CustomEvent("xp-focus",{detail:signal.zone}))};b.onclick=select;group.onclick=select;cards.append(b);
  }
@@ -95,7 +101,9 @@ function renderList(){
 }
 function categories(){
  const host=$("xp-categories");host.replaceChildren();
- families.forEach((f,i)=>{const b=node("button","");b.append(node("b",["▱","⬡","♧","♨","♜"][i]),node("span",f));b.setAttribute("aria-pressed",String(i===family));b.onclick=()=>{family=i;categories();openEditor(null)};host.append(b)});
+ families.forEach((f,i)=>{const b=node("button","");const icone=svg("svg",{viewBox:"0 0 24 24","aria-hidden":"true"});
+  const traces=["M7 18a5 5 0 0 1-1-8l5-5a5 5 0 1 1 7 7l-5 5a5 5 0 0 1-6 1z M8 8l7 7","M4 8l6-4 7 4v8l-7 4-6-4z M17 8l5-3 M17 16l5 3 M7 9v6","M3 19C2 7 11 4 21 3c0 11-6 17-15 15 M4 21L16 9","M3 11h18a9 9 0 0 1-18 0z M7 20h10 M8 8c-3-3 2-3 0-6 M14 8c-3-3 2-3 0-6","M6 6h12l-2 15H8z M6 10h11 M12 10l3-8h4"];
+  icone.append(svg("path",{d:traces[i]}));const cadre=node("b","");cadre.append(icone);b.append(cadre,node("span",f));b.setAttribute("aria-pressed",String(i===family));b.onclick=()=>{family=i;categories();openEditor(null)};host.append(b)});
 }
 function closeEditor(){$("xp-editor").hidden=true;editing=null;$("xp-error").textContent="";}
 function unit(){
@@ -202,4 +210,20 @@ $("xp-custom").onclick=()=>{
  const id="perso:"+family+":"+name,unit=["unité déclarée","mg","g","g","mL"][family];index({id,name,family,unit,source:"Référence personnelle · composition à vérifier"});search(id);$("xp-substance").onchange();
 };
 document.addEventListener("xp-atlas-ready",render);
-loadReferences();
+loadReferences().then(()=>initialiserAssistant({
+ produits:products,
+ proposer(produit,prise){
+  family=produit.family;openEditor(null);search(produit.id);
+  for(const [champ,cle] of [["dose","quantite"],["start","debut"],["reduce","reduction"],["after","apres"],["end","arret"]]){
+   $("xp-"+champ).value=prise[cle]??"";
+  }
+  $("xp-editor").scrollIntoView({block:"nearest"});
+ },
+ bilan(){return [$("xp-totals").textContent,...evaluateDay(rows,day(),Number($("xp-age").value),lookup).signals.map(s=>s.reason)].filter(Boolean).join(" ");},
+ scenario(){
+  const resultat=evaluateDay(rows,day(),Number($("xp-age").value),lookup);
+  return {parametres:{jour:day(),duree:duration(),sexe:sex,age:$("xp-age").value,poids:$("xp-weight").value,taille:$("xp-height").value,
+   prises:rows.map(r=>({...r,nom:lookup(r.id).name,unite:lookup(r.id).unit}))},
+   resultats:{apports:Object.fromEntries([...resultat.available].map(k=>[k,resultat.totals[k]])),reperes:resultat.signals}};
+ }
+}));

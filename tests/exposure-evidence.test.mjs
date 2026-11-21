@@ -22,3 +22,13 @@ test('Association rénale uniquement durant le chevauchement oral',()=>{
  assert.equal(evaluateDay(entries,1,40,lookup).signals.length,0);
  assert.equal(evaluateDay(entries,2,40,lookup).signals[0].zone,'kidney_l');
 });
+
+test("Repères colorectal et œsophagien limités à l’alcool habituel déclaré",()=>{
+ const prise={...rows[0],abv:5,long:true};
+ for(const zone of ["colon","esophagus"]){
+  assert.ok(evaluateDay([prise],0,45,product).signals.some(s=>s.zone===zone));
+  for(const modification of [{long:false},{abv:0}]){
+   assert.ok(!evaluateDay([{...prise,...modification}],0,45,product).signals.some(s=>s.zone===zone));
+  }
+ }
+});
