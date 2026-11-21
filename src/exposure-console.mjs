@@ -2,7 +2,7 @@ import {themeProduit,connaissances,quantiteDefaut,DUREE_DEFAUT} from "./exposure
 import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie,equivalencesAlcool} from "./exposure-risk.mjs";
-import {analyserAgents} from "./exposure-agents.mjs";
+import {analyserAgents,teneurLibelle} from "./exposure-agents.mjs";
 import {chargerNotices,fichesNotices} from "./exposure-notices.mjs";
 let notices=null,noticesDemandees=false;
 const $=id=>document.getElementById(id);
@@ -219,7 +219,7 @@ function renderList(){
  const list=$("xp-list");list.replaceChildren();
  for(const [i,row] of rows.entries()){
   const s=lookup(row.id),box=node("div","");box.className="xp-row";
-  const label=node("div",s.name);label.append(node("small",row.qty+" "+s.unit+"/j · J"+row.start+" à J"+row.end));
+  const label=node("div",s.name);label.append(node("small",quantiteTexte(s,row.qty)+" · J"+row.start+" à J"+row.end));
   if(row.label||row.caf!=null||row.abv!=null||row.sug!=null)label.append(node("small",[row.label,row.abv!=null?fmt(row.abv)+" % vol.":"",row.caf!=null?fmt(row.caf)+" mg caféine/100 mL":"",row.sug!=null?fmt(row.sug)+" g sucres/100 mL":""].filter(Boolean).join(" · ")));
   const edit=node("button","✎"),del=node("button","×");edit.ariaLabel="Modifier "+s.name;del.ariaLabel="Retirer "+s.name;
   edit.onclick=()=>openEditor(i);del.onclick=()=>{rows.splice(i,1);closeEditor();renderList();render();};box.append(label,edit,del);list.append(box);
@@ -240,22 +240,36 @@ function closeEditor(){$("xp-editor").hidden=true;editing=null;ajoutAuto=false;p
 function unit(){
  const s=lookup($("xp-substance").value);
  if(!s){$("xp-unit").textContent="";$("xp-item-source").textContent="";return;}
- $("xp-unit").textContent="("+s.unit+"/j)";
+ const t=uniteMg(s);
+ $("xp-unit").textContent=s.id.startsWith("cis")?"("+forme(s)+"/j"+(t?" · 1 = "+fmt(t)+" mg · "+fmt(Number($("xp-dose").value||0)*t)+" mg/j":"")+")":"("+s.unit+"/j)";
  $("xp-item-source").textContent=[s.source,...(s.active||[]).map(id=>lookup("sa"+id)?.name)].filter(Boolean).join(" · ");
  $("xp-composition").hidden=s.unit!=="mL";$("xp-bed-field").hidden=!(s.unit==="mL"||s.id==="cafeine"||fold(s.name)==="cafeine");$("xp-long-field").hidden=!(s.unit==="mL"||s.nutrients?.[1]>0);
 }
+// Recherche par mots : chaque mot saisi doit figurer dans le nom, la substance active ou le code.
+// « ciprofloxacine 750 » trouve « CIPROFLOXACINE ARROW 750 mg ». Les noms qui commencent par la saisie passent en tête.
+const LIMITE=400;
 function search(prefer){
- const term=fold($("xp-search").value.trim()),matches=[];
+ const saisie=fold($("xp-search").value.trim()),mots=saisie.split(/\s+/).filter(Boolean),matches=[];
  for(const s of products.values()){
   if(s.family!==family)continue;
-  if(!term||s.search.includes(term))matches.push(s);
+  if(mots.every(m=>s.search.includes(m)))matches.push(s);
  }
- const options=matches.slice(0,90);
+ const rang=s=>{const n=fold(s.name);return (n.startsWith(saisie)?0:mots[0]&&n.startsWith(mots[0])?1:2);};
+ matches.sort((a,b)=>rang(a)-rang(b)||a.name.localeCompare(b.name,"fr"));
+ const options=matches.slice(0,LIMITE);
  if(prefer&&lookup(prefer)&&!options.some(s=>s.id===prefer))options.unshift(lookup(prefer));
- $("xp-substance").replaceChildren(...options.map(s=>new Option(s.name,s.id)));
+ $("xp-substance").replaceChildren(...options.map(s=>new Option(libelle(s),s.id)));
  if(prefer)$("xp-substance").value=prefer;
- $("xp-search-status").textContent=matches.length+" références"+(matches.length>90?" · 90 affichées, préciser le nom":"");
+ $("xp-search-status").textContent=matches.length.toLocaleString("fr-FR")+" références"+(matches.length>LIMITE?" · "+LIMITE+" affichées : ajoutez un mot (marque, dosage, laboratoire) pour préciser":"");
  unit();
+}
+// Libellé d'une spécialité avec sa teneur quand le nom l'indique.
+function libelle(s){const t=uniteMg(s);return t?s.name+" · "+fmt(t)+" mg par unité":s.name;}
+function uniteMg(s){return s?.id?.startsWith("cis")?teneurLibelle(s):null;}
+function forme(s){const n=fold(s.name);return /gelule/.test(n)?"gélule(s)":/comprime/.test(n)?"comprimé(s)":/sachet/.test(n)?"sachet(s)":/capsule/.test(n)?"capsule(s)":/suppositoire/.test(n)?"suppositoire(s)":"unité(s)";}
+function quantiteTexte(s,qty){
+ if(!s.id.startsWith("cis"))return qty+" "+s.unit+"/j";
+ const t=uniteMg(s);return qty+" "+forme(s)+"/j"+(t?" · "+fmt(qty*t)+" mg/j":"");
 }
 function openEditor(i){
  editing=i;const row=i===null?null:rows[i];if(row)family=lookup(row.id).family;
@@ -301,7 +315,7 @@ function suivre(){
   if(Number($("xp-reduce").value)===precedent.end)$("xp-reduce").value=$("xp-end").value;
  }
  precedent={dose:Number($("xp-dose").value),end:Number($("xp-end").value)};
- calculer();
+ unit();calculer();
 }
 for(const k of ["dose","start","reduce","after","end","abv","caf","sug","label"])$("xp-"+k).addEventListener("input",suivre);
 $("xp-bed").addEventListener("change",calculer);$("xp-long").addEventListener("change",calculer);

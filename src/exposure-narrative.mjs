@@ -32,6 +32,7 @@ export function trouverMarque(ligne,produits){
   const dosages=[...ligne.matchAll(/(\d+(?:[.,]\d+)?)\s*(mg|g|ml|%)/g)].map(m=>m[1].replace(",",".")+" "+m[2]);
   const score=p=>{const n=fold(p.name).replace(/,(?=\d)/g,".");let v=0;
    for(const d of dosages)if(n.includes(d))v+=10;
+   for(const [,nb] of ligne.matchAll(/(?<![\d.,])(\d+(?:[.,]\d+)?)(?![\d.,]|\s*(?:mg|g|ml|%|jours?|semaines?|mois|ans?|comprimes?|gelules?))/g))if(n.includes(nb.replace(",",".")+" mg"))v+=8;
    for(const w of ligne.match(/[a-z]{3,}/g)||[])if(w!==mot&&!VIDES.has(w)&&new RegExp("\\b"+w+"\\b").test(n))v+=5;
    if(/comprime|gelule|sachet|solution buvable|sirop/.test(n))v+=2;
    if(p.id.startsWith("sa"))v+=1;if(p.id.startsWith("al"))v+=3;
@@ -82,7 +83,10 @@ export function lireRecit(texte,produits){
   if(!nom){
    const terme=brut.replace(/^(je (?:consomme|prends|mange|bois)\s+(?:du |de la |des |de l )?)/,"").split(/[,;:]|\s+\d/)[0].trim();
    if(terme.length<2)continue;
-   produit=[...produits.values()].find(p=>fold(p.name)===terme)||trouverMarque(brut,produits);nom=produit?.name;
+   const exact=[...produits.values()].find(p=>fold(p.name)===terme),marque=trouverMarque(brut,produits);
+   // Un dosage cité (« ciprofloxacine 750 ») désigne la spécialité plutôt que la substance seule.
+   const dosee=marque?.id?.startsWith("cis")&&(brut.match(/\d+(?:[.,]\d+)?/g)||[]).some(nb=>fold(marque.name).replace(/,(?=\d)/g,".").includes(nb.replace(",",".")+" mg"));
+   produit=dosee?marque:exact||marque;nom=produit?.name;
   }
   if(!produit||!nom)continue;
   const notes=[];

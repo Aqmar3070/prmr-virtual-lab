@@ -54,3 +54,12 @@ test("Noms de marque : spécialité reconnue, dosage et nombre de comprimés",()
  const [d]=lireRecit("Dafalgan",produits);
  assert.equal(d.produit.id,"cis3");assert.equal(d.row.qty,2);assert.equal(d.row.end,30);
 });
+test("Dosage cité sans unité : la spécialité dosée est retenue",()=>{
+ const produits=new Map([
+  ["sa1",{id:"sa1",name:"CIPROFLOXACINE",unit:"mg"}],
+  ["cis1",{id:"cis1",name:"CIPROFLOXACINE ARROW 500 mg, comprimé pelliculé",unit:"unité déclarée",active:[1]}],
+  ["cis2",{id:"cis2",name:"CIPROFLOXACINE ARROW 750 mg, comprimé pelliculé",unit:"unité déclarée",active:[1]}]]);
+ const [p]=lireRecit("ciprofloxacine 750",produits);
+ assert.equal(p.produit.id,"cis2");assert.equal(p.row.qty,1);
+ assert.equal(lireRecit("ciprofloxacine",produits)[0].produit.id,"sa1");
+});
