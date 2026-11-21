@@ -33,3 +33,7 @@ test("Alcool pur en grammes, durée en jours ou en années",()=>{
  const [deux]=lireRecit("Alcool 20 g par jour pendant 2 ans",catalogue);
  assert.equal(deux.row.end,730);
 });
+test("Red Bull : canettes et composition du fabricant",()=>{
+ const [p]=lireRecit("Je bois 2 canettes de Red Bull par jour pendant 30 jours",catalogue);
+ assert.equal(p.row.qty,500);assert.equal(p.row.caf,32);assert.equal(p.row.sug,11);assert.equal(p.row.end,30);
+});

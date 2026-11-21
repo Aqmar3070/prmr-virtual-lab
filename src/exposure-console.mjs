@@ -19,7 +19,8 @@ const published=[
  {id:"cafeine",name:"Caféine",family:1,unit:"mg"},
  {id:"the",name:"Thé noir",family:2,unit:"tasse"},
  {id:"cafe",name:"Café filtre",family:3,unit:"tasse"},
- {id:"chocolat",name:"Chocolat noir",family:3,unit:"portion"}
+ {id:"chocolat",name:"Chocolat noir",family:3,unit:"portion"},
+ {id:"redbull",name:"Red Bull, boisson énergisante",family:4,unit:"mL",compo:{caf:32,sug:11,label:"Red Bull · composition officielle (80 mg de caféine, 27 g de sucres par 250 mL)"}}
 ];
 const names={colon:"Côlon",esophagus:"Œsophage",liver:"Foie",small_intestine:"Intestin",calf_l:"Mollet gauche",foot_l:"Pied gauche",heart:"Système cardiovasculaire",brain:"Sommeil",kidney_l:"Reins"};
 const anchors={"male": {"foot_l": [370.2, 945.2], "calf_l": [366.0, 820.6], "heart": [322.3, 241.4], "liver": [304.6, 309.1], "small_intestine": [315.9, 400.8]}, "female": {"foot_l": [391.6, 942.4], "calf_l": [384.3, 805.6], "heart": [323.1, 254.9], "liver": [303.8, 306.8], "small_intestine": [313.5, 381.1]}};
@@ -106,13 +107,13 @@ function accordeon(fiches,teneurInconnue){
   boite.append(tete);
   for(const r of [...f.resultats].sort((x,y)=>rang[x.niveau]-rang[y.niveau]||(y.rr??0)-(x.rr??0))){
    const d=node("details","");d.className="xr-item";d.dataset.niveau=r.niveau;
-   const chiffre=r.rr!=null?"× "+arrondi(r.rr,2):libNiveau[r.niveau];
+   const chiffre=r.badge??(r.rr!=null?"× "+arrondi(r.rr,2):libNiveau[r.niveau]);
    const resume=node("summary","");resume.append(node("span",r.titre),node("b",chiffre));d.append(resume);
    d.append(node("p",r.constat));
    if(r.rr!=null)d.append(node("p","Chiffre : × "+arrondi(r.rr,2)+(r.bas!=null?" (IC 95 % "+arrondi(r.bas,2)+" à "+arrondi(r.haut,2)+")":" (intervalle non publié)")+", soit "+(r.rr>=1?"+":"")+arrondi((r.rr-1)*100,0)+" % par rapport à une personne non exposée."));
    d.append(node("p","Pourquoi : "+r.pourquoi));
    const etiq=node("p","");etiq.className="xr-etiq";
-   etiq.textContent=({association_observee:"Association observée",reglementaire:"Seuil officiel",toxique_etabli:"Toxicité établie",non_documente:"Décrit, non chiffré"})[r.statut]+" · "+(r.domaine==="extrapole"&&r.statut!=="reglementaire"?"extrapolé (durée)":"calculé");d.append(etiq);
+   etiq.textContent=({association_observee:"Association observée",reglementaire:"Seuil officiel",toxique_etabli:"Toxicité établie",non_documente:"Décrit, non chiffré",pharmacovigilance:"Notice officielle · pharmacovigilance",analyse:"Analyse pharmacologique"})[r.statut]+" · "+(r.domaine==="extrapole"&&r.statut!=="reglementaire"?"extrapolé (durée)":"calculé");d.append(etiq);
    if(r.url){const lien=node("a",r.source);lien.href=r.url;lien.target="_blank";lien.rel="noopener";d.append(lien);}
    if(r.source2){const l2=node("a",r.source2.source);l2.href=r.source2.url;l2.target="_blank";l2.rel="noopener";d.append(node("br",""),l2);}
    d.ontoggle=()=>{if(d.open&&r.zones.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:r.zones[0]}));};
@@ -277,7 +278,10 @@ $("xp-editor").onsubmit=e=>{
  if(editing===null)rows.push(row);else rows[editing]=row;
  closeEditor();renderList();render();
 };
-$("xp-substance").onchange=()=>{for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;unit();};
+$("xp-substance").onchange=()=>{for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;
+ // Produit dont la composition est connue : teneurs préremplies, modifiables.
+ const c=lookup($("xp-substance").value)?.compo;if(c)for(const k of ["abv","caf","sug","label"])if(c[k]!=null)$("xp-"+k).value=c[k];
+ unit();};
 $("xp-alternative").onchange=$("xp-chart-item").onchange=$("xp-measure").onchange=$("xp-cumul").onchange=render;
 $("xp-search").oninput=()=>{request++;search();for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;};
 $("xp-add").onclick=()=>openEditor(null);$("xp-cancel").onclick=closeEditor;

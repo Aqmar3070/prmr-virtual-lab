@@ -80,3 +80,36 @@ test('Combinaisons le même jour : alcool + paracétamol, alcool + metformine',(
  const decales=fiche([ligne('biere',500,5,{abv:5,label:'étiquette'}),{...ligne('paracetamol',3000,10),start:6}],12);
  assert.equal(decales.find(f=>f.id==='combinaisons'),undefined);
 });
+
+test('Notices : effets indésirables dès la dose normale, avec leur fréquence',()=>{
+ const fs=fiche([ligne('paracetamol',2000,5)],5);
+ const p=fs.find(f=>f.id==='paracetamol');
+ const rein=p.resultats.find(r=>r.id==='paracetamol_notice_rein_toxicite');
+ assert.ok(rein&&rein.zones.includes('kidney_l'));
+ assert.equal(p.resultats.find(r=>r.id==='paracetamol_notice_foie_hepatite').badge,'< 1/10 000');
+ assert.equal(p.resultats.find(r=>r.id==='paracetamol_benefice').signe,1);
+ assert.equal(p.resultats.find(r=>r.id==='paracetamol_rein_surdosage'),undefined);
+ const sur=fiche([ligne('paracetamol',8000,1)],1);
+ assert.equal(resultat(sur,'paracetamol','paracetamol_rein_surdosage').badge,'2–10/100');
+ const ibu=fiche([ligne('ibuprofene',600,3)],3);
+ assert.equal(resultat(ibu,'ibuprofene','ibuprofene_notice_digestif').badge,'1–10/100');
+ assert.equal(resultat(ibu,'ibuprofene','ibuprofene_notice_foie').zones[0],'liver');
+ const metf=fiche([ligne('metformine',1000,30)],30);
+ assert.equal(resultat(metf,'metformine','metformine_notice_digestif').niveau,'modere');
+ for(const f of [...fs,...ibu,...metf])for(const r of f.resultats)assert.ok(r.url?.startsWith('https://'),r.id);
+});
+
+test('Aliments et plantes : effets favorables et défavorables',()=>{
+ produits.set('al31074',{id:'al31074',name:'Chocolat noir 70 % de cacao environ, de dégustation, tablette',unit:'g'});
+ produits.set('al31010',{id:'al31010',name:'Chocolat blanc, tablette',unit:'g'});
+ produits.set('al11052',{id:'al11052',name:'Clou de girofle',unit:'g'});
+ produits.set('al20009',{id:'al20009',name:'Carotte, crue',unit:'g'});
+ produits.set('redbull',{id:'redbull',name:'Red Bull, boisson énergisante',unit:'mL'});
+ const fs=fiche([ligne('al31074',20,30),ligne('al11052',2,30),ligne('al20009',600,90),ligne('redbull',500,10,{caf:32,sug:11,label:'Red Bull'})],90);
+ assert.equal(resultat(fs,'cacao','cacao_tension').signe,1);
+ assert.equal(resultat(fs,'girofle','girofle_foie').zones[0],'liver');
+ assert.equal(resultat(fs,'carotte','carotte_peau').signe,-1);
+ assert.equal(resultat(fs,'energisante','energisante_tension').signe,-1);
+ assert.equal(fs.find(f=>f.id==='cafeine').moyenne,160);
+ assert.equal(fiche([ligne('al31010',50,5)],5).find(f=>f.id==='cacao'),undefined); // chocolat blanc : pas de flavanols
+});
