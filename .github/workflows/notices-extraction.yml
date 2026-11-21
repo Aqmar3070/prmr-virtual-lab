@@ -14,13 +14,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Lire les notices
         run: |
-          mkdir -p research-data/notices-echantillons
           LIMITE=$(cat research-data/notices-lot.txt 2>/dev/null || echo 0)
-          python3 scripts/extraire_notices.py --limite "$LIMITE" --budget-minutes 320 --echantillons research-data/notices-echantillons
+          python3 scripts/extraire_notices.py --limite "$LIMITE" --budget-minutes 320
       - name: Enregistrer le résultat sur la branche
         run: |
           git config user.name "prmr-extraction"
           git config user.email "actions@users.noreply.github.com"
-          git add research-data/notices-bdpm.json.gz research-data/notices-echantillons
+          git add research-data/notices-bdpm.json.gz
           git commit -m "Notices BDPM : extraction de la rubrique 4.8" || exit 0
           git push

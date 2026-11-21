@@ -40,9 +40,23 @@ def frequence_de(texte):
     return None, texte
 
 
+PUCES = "·•-–*▪◦ "
+
+
 def est_classe(texte):
-    t = plier(texte)
-    return bool(re.match(r"^(affections?|troubles?|infections?|tumeurs?|lesions?|investigations?|caracteristiques|grossesse|actes medicaux|problemes)\b", t)) and len(t) < 140
+    t = plier(texte).lstrip(PUCES).rstrip(" :")
+    return bool(re.match(r"^(affections?|troubles?|infections?|tumeurs?|lesions?|investigations?|caracteristiques|grossesse|actes medicaux|problemes|anomalies)\b", t)) and len(t) < 140
+
+
+def segments_frequence(texte):
+    """« Fréquent : a, b. Rare : c » → [(frequent, "a, b."), (rare, "c")]."""
+    motif = r"(tr[eè]s fr[eé]quents?|peu fr[eé]quents?|fr[eé]quents?|tr[eè]s rares?|rares?|fr[eé]quence (?:ind[eé]termin[eé]e|inconnue))\s*(?:\([^)]*\))?\s*:"
+    morceaux = list(re.finditer(motif, texte, flags=re.I))
+    out = []
+    for i, m in enumerate(morceaux):
+        fin = morceaux[i + 1].start() if i + 1 < len(morceaux) else len(texte)
+        out.append((frequence_de(m.group(1))[0], texte[m.end():fin]))
+    return out
 
 
 class Lecteur(HTMLParser):
@@ -117,16 +131,19 @@ def analyser(section_html):
 
     for nature, contenu in lecteur.blocs:
         if nature == "texte":
-            if est_classe(contenu) and not frequence_de(contenu)[0]:
-                classe = contenu.rstrip(" :")
-                continue
-            freq, reste = frequence_de(contenu)
-            if freq and classe and reste:
-                ajouter(classe, freq, reste)
-            elif ":" in contenu and est_classe(contenu.split(":", 1)[0]):
-                cls, reste = contenu.split(":", 1)
-                freq, reste2 = frequence_de(reste.strip())
-                ajouter(cls.strip(), freq, reste2 if freq else reste)
+            propre = contenu.lstrip(PUCES)
+            tete = propre.split(":", 1)[0]
+            if est_classe(tete) and not frequence_de(tete)[0]:
+                classe = tete.strip()
+                propre = propre.split(":", 1)[1] if ":" in propre else ""
+                if not propre.strip():
+                    continue
+            segs = segments_frequence(propre)
+            if segs and classe:
+                for f, r in segs:
+                    ajouter(classe, f, r)
+            elif classe and contenu.lstrip()[:1] in "·•-–*▪◦" and len(propre) < 300 and not plier(propre).startswith(("declaration", "chez l")):
+                ajouter(classe, None, propre)
         else:  # tableau
             lignes = [[re.sub(r"[ \t]+", " ", c).strip() for c in l] for l in contenu]
             if not lignes:
@@ -154,8 +171,13 @@ def analyser(section_html):
                             f, r = frequence_de(morceau.strip())
                             if r.strip():
                                 ajouter(classe, f, r)
-                    elif len(cellules) == 2 and frequence_de(cellules[0])[0] and classe:
-                        ajouter(classe, frequence_de(cellules[0])[0], cellules[1])
+                    elif len(cellules) >= 2 and frequence_de(cellules[0])[0] and classe:
+                        ajouter(classe, frequence_de(cellules[0])[0], " ; ".join(cellules[1:]))
+                    elif len(cellules) == 1 and est_classe(cellules[0]):
+                        classe = cellules[0]
+                    elif cellules and classe:
+                        for f, r in segments_frequence(" ".join(cellules)):
+                            ajouter(classe, f, r)
     # Dédoublonnage
     vus, uniques = set(), []
     for e in effets:
@@ -165,7 +187,7 @@ def analyser(section_html):
     return uniques
 
 
-def texte_brut(section_html, limite=6000):
+def texte_brut(section_html, limite=15000):
     t = re.sub(r"<[^>]+>", " ", section_html)
     return re.sub(r"\s+", " ", html.unescape(t)).strip()[:limite]
 
@@ -184,9 +206,8 @@ def representants():
             continue
         orale = "orale" in plier(source.split(" · ")[0])
         rang = (0 if orale else 1, len(e[1]))
-        if cle not in groupes or rang < groupes[cle][0]:
-            groupes[cle] = (rang, e[0][3:], e[1])
-    return {cle: (cis, nom) for cle, (_, cis, nom) in groupes.items()}
+        groupes.setdefault(cle, []).append((rang, e[0][3:], e[1]))
+    return {cle: [(cis, nom) for _, cis, nom in sorted(v)[:6]] for cle, v in groupes.items()}
 
 
 def main():
@@ -211,13 +232,20 @@ def main():
         if time.time() - t0 > a.budget_minutes * 60:
             print("Budget de temps atteint, reprise au prochain passage.", flush=True)
             break
-        cis, nom = reps[cle]
-        try:
-            req = urllib.request.Request(URL.format(cis), headers={"User-Agent": "PRMR-Virtual-Lab/1.0 (recherche biomedicale)"})
-            page = urllib.request.urlopen(req, timeout=40).read().decode("utf-8", "replace")
-        except Exception as err:  # reprise possible au passage suivant
-            print("échec", cis, err, flush=True); time.sleep(3); continue
-        sec = section_48(page)
+        sec, page, cis, nom, echec = None, "", None, None, False
+        # Une spécialité à autorisation européenne n'a pas son RCP sur la BDPM : on essaie les suivantes.
+        for cis, nom in reps[cle]:
+            try:
+                req = urllib.request.Request(URL.format(cis), headers={"User-Agent": "PRMR-Virtual-Lab/1.0 (recherche biomedicale)"})
+                page = urllib.request.urlopen(req, timeout=40).read().decode("utf-8", "replace")
+            except Exception as err:
+                print("échec", cis, err, flush=True); time.sleep(3); echec = True; break
+            sec = section_48(page)
+            if sec:
+                break
+            time.sleep(a.pause)
+        if echec:
+            continue
         enreg = {"cis": cis, "nom": nom, "url": URL.format(cis), "lu": time.strftime("%Y-%m-%d")}
         if sec:
             enreg["effets"] = analyser(sec)
