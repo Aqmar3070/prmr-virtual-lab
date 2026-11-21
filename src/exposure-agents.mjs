@@ -14,8 +14,65 @@ export const SOURCES_AGENTS={
  imamura:{source:"Imamura et coll. · BMJ 2015, boissons sucrées et diabète, 17 cohortes",url:doi("10.1136/bmj.h3576")},
  ciqual:{source:"Anses · Ciqual 2025",url:"https://doi.org/10.57745/RDMHWY"},
  cnt:{source:"CNT Collaboration · Lancet 2013, 754 essais randomisés d’AINS",url:doi("10.1016/S0140-6736(13)60900-9")},
- aroda:{source:"Aroda et coll. · J Clin Endocrinol Metab 2016, DPP/DPPOS (12 ans)",url:doi("10.1210/jc.2015-3754")}
+ aroda:{source:"Aroda et coll. · J Clin Endocrinol Metab 2016, DPP/DPPOS (12 ans)",url:doi("10.1210/jc.2015-3754")},
+ rcpParaFarmalider:{source:"ANSM · RCP Paracetamol Farmalider 500 mg, rubrique 4.8",url:"https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0329067.htm"},
+ rcpParaDoliprane:{source:"ANSM · RCP Doliprane 500 mg, rubrique 4.8",url:"https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0405754.htm"},
+ rcpParaDafalgan:{source:"ANSM · RCP Dafalgan 1000 mg, rubrique 4.8",url:"https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0403352.htm"},
+ stollings:{source:"Stollings et coll. · J Crit Care 2016, insuffisance rénale après surdosage",url:doi("10.1016/j.jcrc.2016.06.004")},
+ rcpIbuSet:{source:"BDPM · Ibuprofène SET 400 mg, rubrique 4.8",url:"https://base-donnees-publique.medicaments.gouv.fr/medicament/65358002/extrait"},
+ rcpIbu405821:{source:"ANSM · RCP ibuprofène, rubrique 4.8",url:"https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0405821.htm"},
+ rcpIbuViatris:{source:"BDPM · Ibuprofène Viatris Santé 400 mg, rubrique 4.8",url:"https://base-donnees-publique.medicaments.gouv.fr/medicament/63136711/extrait"},
+ rcpIbuTeva:{source:"BDPM · Ibuprofène Teva 400 mg, rubrique 4.8",url:"https://m.base-donnees-publique.medicaments.gouv.fr/rcp-69847599-3"},
+ rcpMetf:{source:"ANSM · RCP metformine, rubriques 4.4 et 4.8",url:"https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0432834.htm"},
+ rcpMetfAcidose:{source:"ANSM · RCP metformine, rubrique 4.8",url:"https://agence-prd.ansm.sante.fr/php/ecodex/rcp/R0277578.htm"},
+ ried:{source:"Ried et coll. · Cochrane 2017, 35 essais cacao et pression artérielle",url:doi("10.1002/14651858.CD008893.pub3")},
+ atbc:{source:"ATBC Study Group · N Engl J Med 1994, 29 133 fumeurs",url:doi("10.1056/NEJM199404143301501")},
+ carotene:{source:"Priyadarshani · Clin Nutr ESPEN 2018, revue sur l’hypercaroténémie",url:doi("10.1016/j.clnesp.2017.12.002")},
+ janes:{source:"Janes et coll. · Eur J Pediatr 2005, insuffisance hépatique après huile de girofle",url:doi("10.1007/s00431-005-1692-1")},
+ girofle:{source:"Vicidomini et coll. · Molecules 2021, revue sur le girofle",url:doi("10.3390/molecules26071880")},
+ redbull:{source:"Red Bull · composition officielle (80 mg de caféine et 27 g de sucres par 250 mL)",url:"https://www.redbull.com/ca-fr/energydrink/red-bull-energy-drink-composition"},
+ gualberto:{source:"Gualberto et coll. · Nutr Rev 2024, 17 essais randomisés",url:doi("10.1093/nutrit/nuad112")}
 };
+// Classes de fréquence des notices (rubrique 4.8) : la probabilité réelle observée en pharmacovigilance.
+export const FREQUENCES={
+ tres_frequent:{badge:"> 1/10",texte:"très fréquent : plus d’une personne sur 10",niveau:"modere"},
+ frequent:{badge:"1–10/100",texte:"fréquent : 1 à 10 personnes sur 100",niveau:"faible"},
+ peu_frequent:{badge:"1–10/1000",texte:"peu fréquent : 1 à 10 personnes sur 1 000",niveau:"faible"},
+ rare:{badge:"1–10/10 000",texte:"rare : 1 à 10 personnes sur 10 000",niveau:"non_chiffre"},
+ tres_rare:{badge:"< 1/10 000",texte:"très rare : moins d’une personne sur 10 000",niveau:"non_chiffre"},
+ indeterminee:{badge:"rapporté",texte:"fréquence indéterminée : cas rapportés, fréquence non calculable",niveau:"non_chiffre"}
+};
+const NOTICES={
+ paracetamol:[
+  ["foie_transaminases","Foie · hausse des enzymes hépatiques","rare",["liver"],"rcpParaFarmalider","Élévation des transaminases, signe que des cellules du foie souffrent."],
+  ["foie_hepatite","Foie · hépatite avec jaunisse","tres_rare",["liver"],"rcpParaFarmalider","Atteinte toxique du foie (ictère) possible même aux doses usuelles, plus probable en cas de jeûne, d’alcool ou de petit poids."],
+  ["rein_toxicite","Reins · toxicité rénale","indeterminee",["kidney_l","kidney_r"],"rcpParaFarmalider","La notice range la toxicité rénale parmi les effets indésirables les plus signalés du paracétamol."],
+  ["sang","Sang · baisse des plaquettes et des globules blancs","tres_rare",["spleen"],"rcpParaDafalgan","Thrombopénie, leucopénie, neutropénie : saignements faciles, infections."],
+  ["allergie","Allergie · hypersensibilité","rare",["skin"],"rcpParaDoliprane","Réactions d’hypersensibilité ; choc anaphylactique et œdème de Quincke de fréquence indéterminée."],
+  ["glycemie","Métabolisme · hypoglycémie","indeterminee",["pancreas"],"rcpParaFarmalider","Citée parmi les effets les plus signalés."]
+ ],
+ ibuprofene:[
+  ["digestif","Estomac et intestin · brûlures, douleurs, petites pertes de sang","frequent",["stomach","small_intestine"],"rcpIbu405821","Dès les doses usuelles ; les petites pertes de sang peuvent conduire à une anémie."],
+  ["ulcere","Estomac · ulcère avec saignement ou perforation","peu_frequent",["stomach"],"rcpIbuSet","Complication grave, parfois mortelle, plus fréquente chez la personne âgée."],
+  ["rein_fonctionnel","Reins · baisse de la filtration (insuffisance rénale fonctionnelle)","indeterminee",["kidney_l","kidney_r"],"rcpIbuViatris","Effet dose-dépendant, généralement réversible à l’arrêt ; risque accru en cas de déshydratation et chez la personne âgée."],
+  ["rein_lesion","Reins · lésions du tissu rénal (nécrose papillaire)","rare",["kidney_l","kidney_r"],"rcpIbuSet","L’usage au long cours peut conduire à une nécrose papillaire rénale."],
+  ["foie","Foie · atteinte hépatique, hépatite","tres_rare",["liver"],"rcpIbu405821","Surtout lors d’un traitement de longue durée."],
+  ["pancreas","Pancréas · pancréatite","tres_rare",["pancreas"],"rcpIbuSet","Inflammation aiguë du pancréas."],
+  ["peau","Peau · réactions bulleuses graves (Stevens-Johnson, Lyell)","tres_rare",["skin"],"rcpIbu405821","Urgence : arrêt immédiat au premier signe cutané."],
+  ["coeur","Cœur et artères · infarctus, AVC","indeterminee",["heart","coronary_arteries"],"rcpIbuTeva","Risque légèrement accru, surtout à 2 400 mg/j."]
+ ],
+ metformine:[
+  ["digestif","Intestin · nausées, diarrhée, douleurs, perte d’appétit","tres_frequent",["stomach","small_intestine"],"rcpMetf","Surtout au début du traitement ; régressent le plus souvent spontanément."],
+  ["gout","Bouche · perturbation du goût","frequent",["tongue"],"rcpMetf","Goût métallique."],
+  ["b12","Nerfs et sang · baisse de la vitamine B12","indeterminee",["spinal_cord"],"rcpMetf","Le risque augmente avec la dose et la durée ; anémie et neuropathie possibles."],
+  ["acidose","Métabolisme · acidose lactique","tres_rare",["liver","kidney_l","kidney_r"],"rcpMetfAcidose","Complication grave, mortelle sans traitement précoce ; surtout si les reins éliminent mal."]
+ ]
+};
+function effetsNotice(mol){
+ return (NOTICES[mol]||[]).map(([id,titre,freq,zones,src,detail])=>{const f=FREQUENCES[freq];
+  return {id:mol+"_notice_"+id,titre,zones,signe:-1,niveau:f.niveau,badge:f.badge,rr:null,statut:"pharmacovigilance",domaine:"etudie",
+   constat:"Probabilité à dose normale ("+f.texte+"). "+detail,pourquoi:"Effet indésirable observé en pratique réelle et recensé dans la notice officielle.",...SOURCES_AGENTS[src]};});
+}
 
 // ---------- Doses journalières par substance ----------
 const MOLECULES={paracetamol:/\bparacetamol\b/,ibuprofene:/\bibuprofene\b/,metformine:/\bmetformine\b/};
@@ -140,6 +197,14 @@ export function analyserParacetamol(series,profil,registre){
   "Une petite partie du paracétamol est transformée par le foie en un composé toxique (NAPQI), normalement neutralisé par le glutathion ; au-delà des seuils, ou quand le glutathion manque (jeûne, alcool), il détruit les cellules du foie.")});
  if(reg?.chronic_warning&&st.nbJours>1)res.push({id:"paracetamol_duree",titre:"Foie · usage prolongé",zones:mg>=3000?["liver"]:[],signe:mg>=3000?-1:0,niveau:mg>=3000?"faible":"non_chiffre",rr:null,statut:reg.chronic_warning.status,domaine:"etudie",
   constat:st.nbJours+" jours de prise. "+reg.chronic_warning.detail,pourquoi:"Les réserves de glutathion du foie s’épuisent quand les prises se répètent.",source:reg.chronic_warning.source,url:reg.chronic_warning.url});
+ if(mg<=3000)res.push({id:"paracetamol_benefice",titre:"Douleur et fièvre · effet recherché",zones:["brain"],signe:1,niveau:"favorable",rr:null,statut:"reglementaire",domaine:"etudie",
+  constat:"Jusqu’à 3 g par jour chez l’adulte de plus de 50 kg, dose usuelle de la notice : soulagement de la douleur et de la fièvre.",pourquoi:"Le paracétamol agit dans le cerveau sur les centres de la douleur et de la température.",source:reg?.thresholds?.[0]?.source,url:reg?.thresholds?.[0]?.url});
+ res.push({id:"paracetamol_trajet",titre:"Trajet dans le corps · organes exposés",zones:["liver","kidney_l","kidney_r"],signe:0,niveau:"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+  constat:"Absorbé par l’intestin, transformé surtout par le foie, puis éliminé par les reins sous forme de dérivés. Le foie et les reins sont donc les deux organes en première ligne ; le rein forme aussi, sur place, une petite part du dérivé toxique.",
+  pourquoi:"Analyse pharmacologique du trajet (pharmacocinétique) : elle explique pourquoi la notice cite le foie et les reins, sans ajouter de chiffre.",source:"Analyse PRMR · à partir des rubriques 4.8 et 4.9 des RCP cités",url:SOURCES_AGENTS.rcpParaFarmalider.url});
+ if(mg>6000)res.push({id:"paracetamol_rein_surdosage",titre:"Reins · insuffisance rénale aiguë après surdosage",zones:["kidney_l","kidney_r"],signe:-1,niveau:"modere",badge:"2–10/100",rr:null,statut:"association_observee",domaine:"etudie",
+  constat:"Au-delà de la dose toxique, une insuffisance rénale aiguë survient chez 2 à 10 personnes sur 100 ; la créatinine monte 2 à 5 jours après, avec un pic vers le 7e jour.",pourquoi:"Le dérivé toxique attaque aussi les tubules du rein, parfois même quand le foie est peu touché.",...SOURCES_AGENTS.stollings});
+ res.push(...effetsNotice("paracetamol"));
  return fiche("paracetamol","Paracétamol","mg/j",st,eq,res);
 }
 export function analyserIbuprofene(series,profil,registre){
@@ -158,6 +223,12 @@ export function analyserIbuprofene(series,profil,registre){
  }
  if(reg?.chronic_warning&&st.nbJours>reg.chronic_warning.after_days)res.push({id:"ibu_duree",titre:"Durée sans avis médical",zones:["stomach"],signe:-1,niveau:"faible",rr:null,statut:reg.chronic_warning.status,domaine:"etudie",
   constat:st.nbJours+" jours de prise. "+reg.chronic_warning.detail,pourquoi:"Les risques digestifs et rénaux s’accumulent avec la durée.",source:reg.chronic_warning.source,url:reg.chronic_warning.url});
+ if(mg<=1200)res.push({id:"ibu_benefice",titre:"Douleur, fièvre, inflammation · effet recherché",zones:[],signe:1,niveau:"favorable",rr:null,statut:"reglementaire",domaine:"etudie",
+  constat:"Jusqu’à 1 200 mg par jour en automédication : effet antalgique, antipyrétique et anti-inflammatoire.",pourquoi:"Le blocage des prostaglandines calme l’inflammation ; c’est le même mécanisme qui expose l’estomac, les reins et le cœur.",source:reg?.thresholds?.[0]?.source,url:reg?.thresholds?.[0]?.url});
+ res.push({id:"ibu_trajet",titre:"Trajet dans le corps · organes exposés",zones:["stomach","kidney_l","kidney_r","heart"],signe:0,niveau:"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+  constat:"Absorbé par l’estomac et l’intestin, transformé par le foie, éliminé par les reins. Il agit partout où il y a des prostaglandines : estomac (protection de la muqueuse), reins (débit sanguin), artères et cœur (équilibre de la coagulation et de la tension).",
+  pourquoi:"Analyse pharmacologique : un effet indésirable n’est pas réservé au surdosage ; il découle du mode d’action, dès la dose prescrite.",source:"Analyse PRMR · à partir des rubriques 4.4 et 4.8 des RCP cités",url:SOURCES_AGENTS.rcpIbuViatris.url});
+ res.push(...effetsNotice("ibuprofene"));
  return fiche("ibuprofene","Ibuprofène","mg/j",st,eq,res);
 }
 export function analyserMetformine(series,profil,registre){
@@ -171,7 +242,61 @@ export function analyserMetformine(series,profil,registre){
  res.push({id:"metf_b12",titre:"Nerfs et sang · carence en vitamine B12",zones:["spinal_cord","cranial_nerves"],signe:-1,rr:or,bas:1.06**ans,haut:1.20**ans,niveau:niveauRR(or),statut:"association_observee",domaine:st.nbJours<=13*365?"etudie":"extrapole",
   constat:"Calcul : × 1,13 par année d’utilisation, appliqué à "+ar(ans,2)+" an(s). Dans l’essai, la carence était associée à l’anémie et, avec un taux bas de B12, à davantage de neuropathies.",
   pourquoi:"La metformine gêne l’absorption de la vitamine B12 dans l’intestin grêle ; à long terme, les nerfs et la fabrication des globules rouges en souffrent.",...SOURCES_AGENTS.aroda});
+ res.push({id:"metf_trajet",titre:"Trajet dans le corps · organes exposés",zones:["small_intestine","kidney_l","kidney_r"],signe:0,niveau:"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+  constat:"Absorbée par l’intestin, non transformée par le foie, éliminée telle quelle par les reins. Tout ce qui ralentit les reins (déshydratation, diarrhée, fièvre, insuffisance rénale) la fait s’accumuler.",
+  pourquoi:"Analyse pharmacologique : c’est la raison pour laquelle la dose maximale dépend du DFG et que la notice demande d’arrêter temporairement en cas de déshydratation.",source:"Analyse PRMR · à partir des rubriques 4.2, 4.4 et 4.8 des RCP cités",url:SOURCES_AGENTS.rcpMetf.url});
+ res.push(...effetsNotice("metformine"));
  return fiche("metformine","Metformine","mg/j",st,eq,res);
+}
+
+// ---------- Aliments, plantes et boissons énergisantes ----------
+const ALIMENTS=[
+ {id:"cacao",titre:"Chocolat noir et cacao",re:/\b(chocolat noir|cacao)\b/,unite:"g",
+  eq:g=>["≈ "+ar(g/100*100,0)+" % d’une tablette de 100 g","≈ "+ar(g/10)+" carrés (poids indicatif : 10 g le carré)"],
+  resultats:(g,j)=>[
+   {id:"cacao_tension",titre:"Artères · baisse de la pression artérielle",zones:["aorta","heart"],signe:1,niveau:"favorable",rr:null,statut:"association_observee",domaine:j>=14?"etudie":"extrapole",
+    constat:"Dans 35 essais de 2 à 18 semaines (1,4 à 105 g de produits cacaotés par jour), les produits riches en flavanols abaissent la systolique de 1,76 mm Hg en moyenne, et d’environ 4 mm Hg chez les personnes hypertendues.",
+    pourquoi:"Les flavanols du cacao augmentent la production de monoxyde d’azote par la paroi des artères, qui se dilatent. Le chocolat au lait et le chocolat blanc en contiennent peu ou pas.",...SOURCES_AGENTS.ried},
+   {id:"cacao_digestif",titre:"Estomac · troubles digestifs, nausées",zones:["stomach"],signe:-1,niveau:"faible",badge:"1/100",rr:null,statut:"association_observee",domaine:"etudie",
+    constat:"Dans ces essais : 1 % des participants sous cacao contre 0,4 % sous témoin.",pourquoi:"Le cacao contient de la théobromine et un peu de caféine, qui stimulent l’estomac.",...SOURCES_AGENTS.ried},
+   {id:"cacao_sucre",titre:"Sucres et calories du chocolat",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+    constat:"Le bénéfice vasculaire ne compense pas le sucre et les graisses : voir la fiche « Sucres », calculée automatiquement à partir de la teneur Ciqual du produit.",pourquoi:"Un chocolat noir à 70 % contient environ 18 g de sucres pour 100 g (Ciqual), un chocolat au lait environ 56 g.",...SOURCES_AGENTS.ciqual}]},
+ {id:"carotte",titre:"Carotte",re:/\bcarottes?\b/,unite:"g",
+  eq:g=>["≈ "+ar(g/100)+" carottes (poids indicatif : 100 g la carotte moyenne)","≈ "+ar(g/1000,2)+" kg de carottes par jour"],
+  resultats:(g,j)=>[
+   {id:"carotte_vitamine",titre:"Yeux, peau, immunité · provitamine A",zones:["eye_l","eye_r","skin"],signe:1,niveau:"favorable",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"La carotte apporte des caroténoïdes, précurseurs de la vitamine A, et des molécules protectrices.",pourquoi:"Le corps transforme le bêta-carotène en vitamine A selon ses besoins : c’est ce réglage qui rend la carotte sûre, contrairement à la vitamine A en comprimés.",...SOURCES_AGENTS.carotene},
+   {id:"carotte_peau",titre:"Peau · coloration orangée (caroténodermie)",zones:g>=500?["skin"]:[],signe:g>=500?-1:0,niveau:"non_chiffre",rr:null,statut:"non_documente",domaine:j>=60?"etudie":"extrapole",
+    constat:"Une consommation élevée de caroténoïdes pendant plusieurs mois colore la peau en jaune-orangé, surtout paumes et plantes des pieds. C’est bénin et réversible, mais peut être confondu avec une jaunisse. Diabète et hypothyroïdie y prédisposent.",pourquoi:"Les caroténoïdes non transformés se stockent dans la couche grasse de la peau.",...SOURCES_AGENTS.carotene},
+   {id:"carotte_complements",titre:"Poumon · bêta-carotène en compléments chez le fumeur",zones:["lung_l","lung_r"],signe:0,niveau:"non_chiffre",rr:null,statut:"association_observee",domaine:"etudie",
+    constat:"Ne concerne pas la carotte alimentaire : 20 mg/j de bêta-carotène en compléments pendant 5 à 8 ans ont augmenté le cancer du poumon de 18 % (3 à 36 %) et la mortalité de 8 % chez des fumeurs. Aucun décès n’est documenté pour la carotte consommée comme aliment.",pourquoi:"À forte dose isolée, chez un poumon exposé au tabac, le bêta-carotène peut devenir pro-oxydant.",...SOURCES_AGENTS.atbc}]},
+ {id:"girofle",titre:"Clou de girofle",re:/\bgirofle\b/,unite:"g",
+  eq:g=>["≈ "+ar(g/0.1,0)+" clous (poids indicatif : 0,1 g le clou ; à vérifier en pesant)","≈ "+ar(g/2)+" cuillères à café de poudre (poids indicatif : 2 g)"],
+  resultats:(g,j)=>[
+   {id:"girofle_benefice",titre:"Bouche et infections · effets antiseptiques",zones:["teeth"],signe:1,niveau:"favorable",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"Le girofle et son principal composant, l’eugénol, ont des effets antibactériens, antiviraux, anti-inflammatoires et antithrombotiques décrits au laboratoire ; il est utilisé de longue date contre les douleurs dentaires.",pourquoi:"L’eugénol bloque localement la transmission de la douleur et la croissance des bactéries.",...SOURCES_AGENTS.girofle},
+   {id:"girofle_foie",titre:"Foie · toxicité de l’eugénol (huile essentielle)",zones:["liver"],signe:-1,niveau:"modere",rr:null,statut:"toxique_etabli",domaine:"etudie",
+    constat:"10 mL d’huile de girofle avalés ont provoqué une insuffisance hépatique fulminante chez un enfant de 15 mois, traitée par N-acétylcystéine. Les quantités culinaires de clous sont bien plus faibles ; le risque concerne surtout l’huile essentielle et les usages répétés à forte dose.",
+    pourquoi:"L’eugénol est transformé par le foie en un dérivé réactif qui, comme celui du paracétamol, épuise le glutathion des cellules du foie : d’où l’efficacité du même antidote.",...SOURCES_AGENTS.janes},
+   {id:"girofle_sang",titre:"Sang · effet anticoagulant",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
+    constat:"Effet antithrombotique décrit : prudence en cas de traitement anticoagulant ou avant une chirurgie.",pourquoi:"Analyse : l’eugénol freine l’agrégation des plaquettes ; il peut s’ajouter à l’effet d’un anticoagulant ou d’un AINS.",...SOURCES_AGENTS.girofle}]},
+ {id:"energisante",titre:"Boisson énergisante",re:/\b(energisante|red ?bull|energy)\b/,unite:"mL",
+  eq:ml=>["≈ "+ar(ml/250)+" canettes de 250 mL","≈ "+ar(ml/250*80,0)+" mg de caféine si la teneur est celle de Red Bull (80 mg par canette)","≈ "+ar(ml/250*27,0)+" g de sucres si la teneur est celle de Red Bull (27 g par canette)"],
+  resultats:(ml,j)=>[
+   {id:"energisante_tension",titre:"Cœur et artères · hausse aiguë de la tension",zones:["heart","aorta"],signe:-1,niveau:"faible",rr:null,statut:"association_observee",domaine:"etudie",
+    constat:"Après une prise : systolique + 4,7 mm Hg (3,0 à 6,5) vers 60–80 minutes, diastolique + 4,5 mm Hg vers 2 heures, débit cardiaque augmenté (17 essais chez des adultes en bonne santé).",
+    pourquoi:"Caféine, sucre et parfois guarana ou ginseng s’additionnent pour stimuler le cœur et resserrer les vaisseaux. Les fiches Caféine et Sucres détaillent la dose cumulée.",...SOURCES_AGENTS.gualberto}]}
+];
+function nomProduit(p){return fold(p?.name||"");}
+export function analyserAliments(rows,lookup,duree){
+ const fiches=[];
+ for(const a of ALIMENTS){
+  const serie=[];
+  for(let t=0;t<=duree;t++){let q=0;for(const r of rows){const p=lookup(r.id);if(p&&a.re.test(nomProduit(p))&&!/\bblanc\b/.test(nomProduit(p)))q+=doseAt(r,t);}serie.push(q);}
+  const st=stats(serie);if(!st)continue;
+  fiches.push(fiche(a.id,a.titre,a.unite+"/j",st,a.eq(st.moyenne),a.resultats(st.moyenne,st.nbJours)));
+ }
+ return fiches;
 }
 
 // ---------- Combinaisons ----------
@@ -195,6 +320,6 @@ export function analyserCombinaisons(series,registre){
 export function analyserAgents(rows,lookup,profil,duree,registre){
  const series=seriesJournalieres(rows,lookup,duree,profil.age);
  const reg=Object.fromEntries((registre||[]).map(s=>[s.id,s]));
- const fiches=[analyserCafeine(series,profil,reg),analyserSucres(series,profil),analyserParacetamol(series,profil,reg),analyserIbuprofene(series,profil,reg),analyserMetformine(series,profil,reg),analyserCombinaisons(series,reg)].filter(Boolean);
+ const fiches=[analyserCafeine(series,profil,reg),analyserSucres(series,profil),analyserParacetamol(series,profil,reg),analyserIbuprofene(series,profil,reg),analyserMetformine(series,profil,reg),...analyserAliments(rows,lookup,duree),analyserCombinaisons(series,reg)].filter(Boolean);
  return {fiches,teneurInconnue:[...series.teneurInconnue]};
 }

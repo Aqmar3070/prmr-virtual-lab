@@ -4,8 +4,10 @@ import {fold} from "./exposure-evidence.mjs";
 const mots={un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,neuf:9,dix:10,quatorze:14,quinze:15,trente:30,cinquante:50,cent:100};
 const boissons=[
  ["bière",/\bbieres?\b/],["vin",/\bvins?\b/],["alcool",/\balcool\b/],
- ["boisson énergisante",/\bboissons? energisantes?\b/]
+ ["boisson énergisante",/\bboissons? energisantes?\b/],["Red Bull",/\bred ?bulls?\b/]
 ];
+// Compositions publiées par le fabricant, appliquées quand le récit ne donne pas de teneur.
+const COMPOSITIONS={"Red Bull":{caf:32,sug:11,label:"Red Bull · composition officielle"}};
 export const connaissances={
  alcool:[
   ["Cerveau · pendant la consommation","L’éthanol agit sur le système nerveux et peut altérer le jugement et la coordination. La quantité de boisson seule ne détermine pas l’alcoolémie.","OMS","https://www.who.int/news-room/fact-sheets/detail/alcohol"],
@@ -78,7 +80,11 @@ export function lireRecit(texte,produits){
   if(alcoolPur)notes.push("Quantité lue comme alcool pur, en grammes.");
   if(themeProduit(nom)==="alcool"&&abv===null)notes.push("Le degré d’alcool de l’étiquette permet de calculer l’alcool pur.");
   const valide=quantite>0&&jours>=1&&jours<=730&&(quotidien||jours===1)&&(abv===null||abv<=100);
-  resultats.push({produit,theme:themeProduit(nom),notes,row:valide?{id:produit.id,qty:quantite,after:quantite,start:0,reduce:jours,end:jours,abv,label:alcoolPur?"Alcool pur déclaré (g)":abv!==null?"Degré déclaré":"",bed:/pres du coucher|avant de dormir/.test(ligne),long:false}:null});
+  const compo=COMPOSITIONS[nom];
+  const nombreCanettes=compo&&!quantite?ligne.match(/\b(\d+)\s*(?:canettes?|cannettes?)\b/):null;
+  if(nombreCanettes){quantite=Number(nombreCanettes[1])*250;notes.push("Canette standard de 250 mL.");}
+  const ok=quantite>0&&jours>=1&&jours<=730&&(quotidien||jours===1)&&(abv===null||abv<=100);
+  resultats.push({produit,theme:themeProduit(nom),notes,row:(valide||ok)?{id:produit.id,qty:quantite,after:quantite,start:0,reduce:jours,end:jours,abv,...(compo?{caf:compo.caf,sug:compo.sug}:{}),label:compo?compo.label:alcoolPur?"Alcool pur déclaré (g)":abv!==null?"Degré déclaré":"",bed:/pres du coucher|avant de dormir/.test(ligne),long:false}:null});
  }
  return resultats;
 }
