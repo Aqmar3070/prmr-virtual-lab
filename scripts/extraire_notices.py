@@ -88,11 +88,15 @@ class Lecteur(HTMLParser):
 
 
 def section_48(page):
-    debut = re.search(r"4\.8\.?\s*(?:<[^>]+>\s*)*Effets ind", page)
-    if not debut:
-        return None
-    fin = re.search(r"4\.9\.?\s*(?:<[^>]+>\s*)*Surdosage|>\s*4\.9\b", page[debut.end():])
-    return page[debut.start(): debut.end() + (fin.start() if fin else 60000)]
+    """Corps de la rubrique 4.8 : le menu latéral contient aussi « 4.8 », on garde le passage le plus long."""
+    meilleure = None
+    for debut in re.finditer(r"4\.8\.?\s*(?:<[^>]+>\s*)*Effets ind", page):
+        suite = page[debut.end():]
+        fin = re.search(r"4\.9\.?\s*(?:<[^>]+>\s*)*Surdosage", suite)
+        morceau = page[debut.start(): debut.end() + (fin.start() if fin else min(len(suite), 80000))]
+        if meilleure is None or len(morceau) > len(meilleure):
+            meilleure = morceau
+    return meilleure if meilleure and len(re.sub(r"<[^>]+>", "", meilleure)) > 200 else None
 
 
 def effets_de_texte(texte):
@@ -220,10 +224,10 @@ def main():
             enreg["texte"] = texte_brut(sec)
         else:
             enreg["effets"], enreg["texte"] = [], ""
-            enreg["remarque"] = "Rubrique 4.8 introuvable dans la notice"
+            enreg["remarque"] = ("Autorisation européenne : le RCP est publié par l'EMA" if "ema.europa.eu" in page else "Rubrique 4.8 introuvable dans la notice")
         donnees["notices"][cle] = enreg
         if a.echantillons and lus < 25:
-            open(f"{a.echantillons}/{cis}.html", "w", encoding="utf-8").write(sec or page[:20000])
+            open(f"{a.echantillons}/{cis}.html", "w", encoding="utf-8").write(page)
         lus += 1
         if lus % 100 == 0:
             json.dump(donnees, gzip.open(SORTIE, "wt", encoding="utf-8"), ensure_ascii=False)
