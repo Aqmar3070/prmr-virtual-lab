@@ -44,12 +44,21 @@ function resize(){
  if(renderer)renderer.setSize(w,h,false);else{canvas.width=w;canvas.height=h;}
  draw();
 }
+// Teinte selon le niveau de risque calculé ; l'organe prend le niveau le plus sévère qui le touche.
+const teintes={eleve:0xff3b2f,modere:0xff8a2a,faible:0xffc94a,non_chiffre:0xb7a98a,favorable:0x32e5ae};
+const gravite={eleve:0,modere:1,faible:2,non_chiffre:3,favorable:4};
+function signalPour(nom){
+ const touches=signals.filter(s=>s.zones?s.zones.includes(nom):s.zone===nom||(s.zone==="kidney_l"&&nom==="kidney_r"));
+ return touches.sort((x,y)=>(gravite[x.niveau]??1)-(gravite[y.niveau]??1))[0];
+}
 function paint(){
  const isolated=$("xa-isolate").checked&&current;
  for(const it of items){
-  const [color,opacity]=it.mesh.name.startsWith("lung_")?[0xe3918f,.83]:styles[it.layer];const signal=signals.find(s=>s.zone===it.mesh.name||(s.zone==="kidney_l"&&it.mesh.name==="kidney_r"));
+  const [color,opacity]=it.mesh.name.startsWith("lung_")?[0xe3918f,.83]:styles[it.layer];const signal=signalPour(it.mesh.name);
   it.active=!!signal;it.mesh.visible=isolated?it===current:layers.has(it.layer);
-  const m=it.mesh.material;m.color.set(signal?(signal.sign>0?0x32e5ae:0xff9c37):color);m.opacity=(signal || it===current) ? .94 : opacity;m.emissive.copy(m.color);m.emissiveIntensity=signal ? .45 : .09;
+  const m=it.mesh.material;m.color.set(signal?(teintes[signal.niveau]??(signal.sign>0?0x32e5ae:0xff9c37)):color);m.opacity=(signal || it===current) ? .94 : opacity;m.emissive.copy(m.color);m.emissiveIntensity=signal ? .45 : .09;
+  // Un organe touché reste visible à travers la peau, les muscles et le squelette.
+  m.depthTest=!signal;it.mesh.renderOrder=signal?10:0;
  }draw();
 }
 function frame(target){
