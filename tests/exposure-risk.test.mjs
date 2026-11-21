@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {analyserAlcool,alcoolemie,autresMaladies,categorieBagnardi,facteurWidmark,interpoler,reperesAtlas} from '../src/exposure-risk.mjs';
+import {analyserAlcool,alcoolemie,autresMaladies,categorieBagnardi,equivalencesAlcool,facteurWidmark,interpoler,reperesAtlas} from '../src/exposure-risk.mjs';
 
 const boisson=id=>({id,unit:'mL'});
 // 50 g d’alcool pur par jour = 63,4 mL d’éthanol, soit ≈ 158,4 mL à 40 % vol.
@@ -93,4 +93,12 @@ test('Maladies hors cancer : os, articulations, cœur, reins, infections',()=>{
  assert.equal(f('polyarthrite').rr,0.88);
  assert.equal(f('polyarthrite').niveau,'favorable');
  assert.equal(f('hypertension').niveau,'non_chiffre'); // femmes 1–2 verres : IC inclut 1
+});
+
+test('Trois équivalents concrets pour une masse d’alcool pur',()=>{
+ const [vin,biere,whisky]=equivalencesAlcool(50);
+ assert.ok(Math.abs(vin.parUnite-120*0.12*0.789)<1e-12);
+ assert.ok(Math.abs(vin.nombre*vin.parUnite-50)<1e-9);
+ assert.ok(Math.abs(biere.nombre-50/(330*0.05*0.789))<1e-12);
+ assert.ok(Math.abs(whisky.nombre-50/(40*0.4*0.789))<1e-12);
 });

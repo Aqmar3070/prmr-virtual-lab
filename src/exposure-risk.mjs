@@ -208,6 +208,15 @@ export function autresMaladies({g,verres,femme}){
   :{signe:0,rr:null,constat:"Moins de 24 g/j : pas de point publié ; le risque augmente de façon continue avec la dose.",pourquoi:"Relation dose-effet monotone."});
  return out;
 }
+// Trois équivalents concrets pour une masse d'alcool pur : volume × degré × 0,789 g/mL.
+export const BOISSONS_REPERE=[
+ {nom:"verres de vin",detail:"12 cl à 12 % vol.",ml:120,abv:12},
+ {nom:"bouteilles de bière",detail:"33 cl à 5 % vol.",ml:330,abv:5},
+ {nom:"doses de whisky ou de gin",detail:"4 cl à 40 % vol.",ml:40,abv:40}
+];
+export function equivalencesAlcool(g){
+ return BOISSONS_REPERE.map(b=>{const parUnite=b.ml*b.abv/100*DENSITE_ETHANOL;return {...b,parUnite,nombre:g/parUnite};});
+}
 export function libelleCategorie(c){return {legere:"légère (≤ 12,5 g/j)",moderee:"modérée (12,5 à 50 g/j)",forte:"forte (> 50 g/j)"}[c]||"—";}
 export function arrondi(x,d=1){return Number(x.toFixed(d)).toLocaleString("fr-FR");}
 
