@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {analyserAlcool,alcoolemie,categorieBagnardi,facteurWidmark,reperesAtlas} from '../src/exposure-risk.mjs';
+import {analyserAlcool,alcoolemie,autresMaladies,categorieBagnardi,facteurWidmark,interpoler,reperesAtlas} from '../src/exposure-risk.mjs';
 
 const boisson=id=>({id,unit:'mL'});
 // 50 g d’alcool pur par jour = 63,4 mL d’éthanol, soit ≈ 158,4 mL à 40 % vol.
@@ -65,4 +65,30 @@ test('Repères pour la carte : zones multiples, niveau et sens',()=>{
  const rein=reperes.find(r=>r.title.startsWith('Cancer du rein'));
  assert.equal(rein.sign,1);
  assert.equal(rein.niveau,'favorable');
+});
+
+test('Interpolation log-linéaire entre points publiés',()=>{
+ const pts=[[24,1.12,1.02,1.23],[60,1.33,1.06,1.67]];
+ assert.deepEqual(interpoler(pts,24),{rr:1.12,bas:1.02,haut:1.23,exact:true});
+ const m=interpoler(pts,42);assert.ok(m.rr>1.12&&m.rr<1.33&&!m.exact);
+ assert.equal(interpoler(pts,10),null);
+});
+
+test('Maladies hors cancer : os, articulations, cœur, reins, infections',()=>{
+ const homme50=autresMaladies({g:50,verres:50/12,femme:false}),r=id=>homme50.find(x=>x.id===id);
+ assert.deepEqual([r('hypertension').rr,r('hypertension').bas],[1.51,1.30]); // 3 à 4 verres, homme
+ assert.equal(r('avc_isch').rr,1.14); // 50 g = 4,2 verres : plus de 4 verres
+ assert.ok(Math.abs(r('fractures').rr-1.06**(50/14))<1e-12);
+ assert.equal(r('goutte').rr,1.69);
+ assert.equal(r('polyarthrite').rr,null); // 50 g/j hors des points publiés
+ assert.equal(r('pancreatite').niveau,'non_chiffre');
+ assert.equal(r('irc').signe,1);
+ assert.equal(r('tuberculose').rr,1.35);
+ for(const x of homme50){assert.ok(x.url.startsWith('https://doi.org/'),x.id);assert.ok(x.pourquoi&&x.constat,x.id);}
+ const femme12=autresMaladies({g:12,verres:1,femme:true}),f=id=>femme12.find(x=>x.id===id);
+ assert.equal(f('diabete').rr,0.82);
+ assert.equal(f('pancreatite').rr,0.76);
+ assert.equal(f('polyarthrite').rr,0.88);
+ assert.equal(f('polyarthrite').niveau,'favorable');
+ assert.equal(f('hypertension').niveau,'non_chiffre'); // femmes 1–2 verres : IC inclut 1
 });

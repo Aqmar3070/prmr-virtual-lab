@@ -13,8 +13,29 @@ export const SOURCES={
  topiwala:{source:"Topiwala et coll. · BMJ 2017, cohorte Whitehall II, IRM après 30 ans de suivi",url:"https://doi.org/10.1136/bmj.j2353"},
  roerecke17:{source:"Roerecke et coll. · Lancet Public Health 2017, 36 essais (≥ 7 jours)",url:"https://doi.org/10.1016/S2468-2667(17)30003-8"},
  searle:{source:"Searle · Med Sci Law 2015, modèle de Widmark et facteurs de Forrest",url:"https://doi.org/10.1177/0025802414524385"},
- route:{source:"Service-public.fr · Alcool au volant (seuil 0,5 g/L)",url:"https://www.service-public.gouv.fr/particuliers/vosdroits/F2881"}
+ route:{source:"Service-public.fr · Alcool au volant (seuil 0,5 g/L)",url:"https://www.service-public.gouv.fr/particuliers/vosdroits/F2881"},
+ roerecke18:{source:"Roerecke et coll. · J Am Heart Assoc 2018, hypertension par sexe, 361 254 participants",url:"https://doi.org/10.1161/JAHA.117.008202"},
+ larsson:{source:"Larsson et coll. · BMC Med 2016, 27 études prospectives, AVC par type",url:"https://doi.org/10.1186/s12916-016-0721-4"},
+ roerecke12:{source:"Roerecke et Rehm · Addiction 2012, cardiopathie ischémique",url:"https://doi.org/10.1111/j.1360-0443.2012.03780.x"},
+ knott:{source:"Knott et coll. · Diabetes Care 2015, 1,9 million de participants",url:"https://doi.org/10.2337/dc15-0710"},
+ samok15:{source:"Samokhvalov et coll. · EBioMedicine 2015, pancréatites",url:"https://doi.org/10.1016/j.ebiom.2015.11.023"},
+ ke:{source:"Ke et coll. · Adv Nutr 2023, 44 articles, 6 millions de participants",url:"https://doi.org/10.1016/j.advnut.2023.03.008"},
+ ma:{source:"Ma et coll. · Front Nutr 2025, hyperuricémie et goutte",url:"https://doi.org/10.3389/fnut.2025.1588980"},
+ jin:{source:"Jin et coll. · Ann Rheum Dis 2014, polyarthrite rhumatoïde",url:"https://doi.org/10.1136/annrheumdis-2013-203323"},
+ xu:{source:"Xu et coll. · Eur J Epidemiol 2017, démence",url:"https://doi.org/10.1007/s10654-017-0225-3"},
+ irc:{source:"Méta-analyse de 25 cohortes · Eur J Clin Nutr 2021, maladie rénale chronique",url:"https://doi.org/10.1038/s41430-021-00873-x"},
+ imtiaz:{source:"Imtiaz et coll. · Eur Respir J 2017, tuberculose",url:"https://doi.org/10.1183/13993003.00216-2017"},
+ samok10:{source:"Samokhvalov et coll. · Epidemiol Infect 2010, pneumonie",url:"https://doi.org/10.1017/S0950268810000774"}
 };
+// Interpolation log-linéaire entre points publiés (g/j → RR) ; null hors de la plage publiée.
+export function interpoler(points,g){
+ if(g<points[0][0]||g>points[points.length-1][0])return null;
+ for(let i=1;i<points.length;i++){
+  const [g0,...v0]=points[i-1],[g1,...v1]=points[i];
+  if(g<=g1){const f=(g-g0)/(g1-g0);const [rr,bas,haut]=v0.map((x,k)=>Math.exp(Math.log(x)+f*(Math.log(v1[k])-Math.log(x))));return {rr,bas,haut,exact:f===0||f===1};}
+ }
+ return null;
+}
 
 // Catégories de Bagnardi 2015 : légère ≤ 12,5 g/j, modérée ≤ 50 g/j, forte > 50 g/j.
 export function categorieBagnardi(g){return g<=0?null:g<=12.5?"legere":g<=50?"moderee":"forte";}
@@ -127,10 +148,7 @@ export function analyserAlcool(rows,lookup,profil,duree){
   constat:unitesSemaine<7?"Moins de 7 unités par semaine : aucun effet protecteur de la consommation légère, et pas de chiffre de risque publié.":"Niveau (≈ "+arrondi(unitesSemaine)+" unités/semaine) entre les classes chiffrées ; l’étude décrit un effet dépendant de la dose sans chiffre pour cette classe.",
   pourquoi:"Effet dose-dépendant sur la structure cérébrale observé sur 30 ans.",...SOURCES.topiwala});
 
- // Pression artérielle (Roerecke 2017) : seul résultat issu d'essais courts (≥ 7 jours).
- if(verres>2)ajouter({id:"tension",titre:"Pression artérielle",zones:["aorta","heart"],signe:-1,rr:null,niveau:verres>=6?"modere":"faible",statut:"association_observee",domaine:"etudie",
-  constat:verres>=6?"Au-delà de 6 verres par jour, réduire d’environ moitié abaisse la systolique de 5,5 mm Hg (IC 95 % 4,3 à 6,7) et la diastolique de 4,0 mm Hg.":"Au-delà de 2 verres par jour, réduire la consommation abaisse la pression artérielle ; en dessous, pas d’effet significatif.",
-  pourquoi:"Effet mesuré dans des essais d’au moins 7 jours : la pression répond en quelques jours, c’est l’effet le plus rapide de cette liste.",...SOURCES.roerecke17});
+for(const r of autresMaladies({g:moyenne,verres,femme}))ajouter(r);
 
  // Alcoolémie (effet aigu sur le cerveau), jour le plus chargé.
  const max=Math.max(...jours),bac=alcoolemie(max,profil);
@@ -139,6 +157,56 @@ export function analyserAlcool(rows,lookup,profil,duree){
   pourquoi:"Calcul de Widmark : quantité ÷ (facteur de diffusion × poids). Borne haute : toute la quantité bue d’un coup. L’alcool ralentit le cerveau : vigilance, réflexes et jugement baissent avant même 0,5 g/L.",...SOURCES.searle,source2:SOURCES.route});
 
  return {moyenne,total,nbJours,categorie:cat,verres,unitesSemaine,jours,domaine,resultats};
+}
+// Autres maladies (hors cancers) : chaque fonction lit le chiffre publié pour la dose et le sexe.
+// `rr` est null quand la publication décrit le sens de l'effet sans chiffre pour ce niveau.
+export function autresMaladies({g,verres,femme}){
+ const out=[];
+ const r=(id,titre,zones,src,o)=>out.push({id,titre,zones,...SOURCES[src],statut:o.rr!=null||o.sansChiffre?"association_observee":"non_documente",niveau:o.niveau??(o.signe>0?"favorable":o.rr==null?"non_chiffre":niveau(o.rr)),...o});
+ // Pression artérielle : verres de 12 g, résultats par sexe.
+ const ht=femme?(verres>2?B(1.42,1.22,1.66):verres>=1?B(0.94,0.88,1.01):null):(verres>=5?B(1.74,1.35,2.24):verres>=3?B(1.51,1.30,1.76):verres>=1?B(1.19,1.07,1.31):null);
+ const essais=verres>2?(verres>=6?" Dans les essais d’au moins 7 jours, réduire de moitié au-delà de 6 verres abaisse la systolique de 5,5 mm Hg.":" Dans les essais d’au moins 7 jours, réduire la consommation au-delà de 2 verres abaisse la pression ; l’effet apparaît en quelques jours."):"";
+ r("hypertension","Hypertension artérielle",["aorta","heart"],"roerecke18",ht&&!(femme&&verres<=2)?{signe:-1,...ht,constat:(femme?"Femmes":"Hommes")+", "+(femme?"plus de 2":verres>=5?"5 verres ou plus":verres>=3?"3 à 4":"1 à 2")+" verres par jour comparés aux abstinents."+essais,pourquoi:"L’alcool active le système nerveux sympathique et le système rénine-angiotensine ; la tension monte, puis use les artères, le cœur et les reins.",...(verres>2?{domaine:"etudie"}:{})}
+  :{signe:verres>=1?0:0,rr:femme&&verres>=1?0.94:null,bas:femme&&verres>=1?0.88:undefined,haut:femme&&verres>=1?1.01:undefined,niveau:"non_chiffre",constat:femme&&verres>=1?"Femmes, 1 à 2 verres par jour : pas de hausse significative (l’intervalle inclut 1).":"Moins d’un verre par jour : pas de catégorie chiffrée.",pourquoi:"Chez les hommes, toute consommation est associée à une hausse ; chez les femmes, au-delà de 2 verres.",sansChiffre:true});
+ // AVC (verres de 12 g).
+ const isch=verres<1?B(0.90,0.85,0.95):verres<=2?B(0.92,0.87,0.97):verres<=4?B(1.08,1.01,1.15):B(1.14,1.02,1.28);
+ r("avc_isch","AVC ischémique (artère bouchée)",["arteries_head","brain"],"larsson",{signe:isch.rr<1?1:-1,...isch,constat:(verres<1?"Moins d’un verre":verres<=2?"1 à 2 verres":verres<=4?"Plus de 2 à 4 verres":"Plus de 4 verres")+" par jour comparés aux non-buveurs.",pourquoi:"À faible dose, l’alcool fluidifie un peu le sang et augmente le « bon » cholestérol ; à forte dose, tension et troubles du rythme prennent le dessus."});
+ if(verres>4){r("avc_hemo","Hémorragie cérébrale",["arteries_head","brain"],"larsson",{signe:-1,...B(1.67,1.25,2.23),constat:"Plus de 4 verres par jour : hémorragie intracérébrale × 1,67 ; hémorragie méningée × 1,82 (1,18–2,82).",pourquoi:"Hypertension et fragilisation des petits vaisseaux du cerveau ; la coagulation est aussi perturbée."});}
+ else r("avc_hemo","Hémorragie cérébrale",[],"larsson",{signe:0,rr:null,constat:verres>2?"Au-delà de 2 verres : hausse non significative.":"Pas d’association à faible ou moyenne dose.",pourquoi:"Le risque hémorragique apparaît surtout aux fortes doses."});
+ // Cardiopathie ischémique : protection non garantie, pas de chiffre retenu.
+ r("coeur_isch","Infarctus et angine de poitrine",verres>=1?["coronary_arteries","heart"]:[],"roerecke12",{signe:0,rr:null,constat:"Une association protectrice existe dans les moyennes, mais les auteurs concluent qu’elle ne peut être supposée pour aucun buveur, même à faible dose : intervalles larges, forte hétérogénéité.",pourquoi:"L’effet sur le cholestérol HDL est contrebalancé par la tension, le poids et le rythme cardiaque."});
+ // Diabète de type 2 (Knott 2015).
+ const db=g>63?{signe:-1,rr:null,niveau:"non_chiffre",constat:"Au-delà de 63 g/j, le risque augmente (chiffre non donné dans le résumé)."}
+  :femme?(g>=10&&g<=14?{signe:1,rr:0.82,niveau:"favorable",sansChiffre:true,constat:"Femmes, 10 à 14 g/j : risque réduit d’environ 18 % (sommet de la courbe publiée ; IC non donné dans le résumé)."}:{signe:1,rr:null,niveau:"favorable",constat:"Femmes, moins de 63 g/j : risque plus bas, maximal entre 10 et 14 g/j."})
+  :{signe:0,rr:null,niveau:"non_chiffre",constat:"Hommes : la baisse de risque n’est pas retrouvée dans les données stratifiées."};
+ r("diabete","Diabète de type 2",db.signe?["pancreas"]:[],"knott",{...db,pourquoi:"À faible dose, la sensibilité à l’insuline s’améliore ; à forte dose, le pancréas et le foie souffrent. Les auteurs signalent que la baisse est absente quand on compare à de vrais abstinents de toujours."});
+ // Pancréatites (Samokhvalov 2015).
+ const pa=g>=100?{signe:-1,...B(6.29,3.04,13.02),constat:"Pancréatite chronique à 100 g/j : × 6,29 ; le risque monte sans seuil avec la dose."}
+  :g>=40?{signe:-1,rr:null,niveau:"non_chiffre",constat:"Au-delà de 40 g/j, chaque dose supplémentaire augmente le risque de pancréatite aiguë et chronique (chiffre publié à 100 g/j)."}
+  :femme?{signe:1,...B(0.76,0.60,0.97),constat:"Femmes, moins de 40 g/j : pancréatite aiguë moins fréquente."}
+  :{signe:0,...B(1.1,0.69,1.74),niveau:"non_chiffre",constat:"Hommes, moins de 40 g/j : pas d’association significative pour la pancréatite aiguë."};
+ r("pancreatite","Pancréatite",pa.signe?["pancreas"]:[],"samok15",{...pa,pourquoi:"L’alcool rend le suc pancréatique plus épais et active trop tôt les enzymes, qui attaquent le pancréas lui-même."});
+ // Os : fractures (Ke 2023), 1,06 par 14 g/j.
+ const pas=g/14;
+ r("fractures","Fractures (toutes)",["femur_l","femur_r","spine_lumbar","wrist_l","wrist_r"],"ke",{signe:-1,rr:1.06**pas,bas:1.02**pas,haut:1.10**pas,constat:"Calcul : × 1,06 par tranche de 14 g/j, appliqué à "+arrondi(g)+" g/j."+(g<=22?" Pour la hanche et les fractures ostéoporotiques, la courbe est en J : entre 0 et 22 g/j, risque plus bas.":" Au-delà de 22 g/j, la protection de la hanche disparaît."),pourquoi:"L’alcool freine les cellules qui fabriquent l’os, perturbe la vitamine D et le calcium, et augmente les chutes."});
+ // Articulations : goutte et hyperuricémie (Ma 2025), polyarthrite (Jin 2014).
+ r("goutte","Goutte et acide urique",["foot_l","foot_r","ankle_l","ankle_r"],"ma",{signe:-1,...B(1.69,1.47,1.94),constat:"Buveurs comparés aux non-buveurs ; le risque augmente avec la fréquence. Les hommes sont plus touchés.",pourquoi:"L’alcool augmente la production d’acide urique et freine son élimination par le rein ; les cristaux se déposent dans les articulations, surtout le gros orteil."});
+ const ra=interpoler([[3,0.93,0.88,0.98],[9,0.86,0.76,0.97],[12,0.88,0.78,0.99],[15,0.91,0.81,1.03],[30,1.28,0.94,1.73]],g);
+ r("polyarthrite","Polyarthrite rhumatoïde",ra?["knee_l","knee_r","wrist_l","wrist_r","hand_l","hand_r"]:[],"jin",ra?{signe:ra.rr<1?1:-1,rr:ra.rr,bas:ra.bas,haut:ra.haut,niveau:ra.rr<1?"favorable":ra.haut>=1&&ra.bas<=1?"non_chiffre":niveau(ra.rr),constat:(ra.exact?"Point publié":"Interpolation entre les points publiés (3, 9, 12, 15 et 30 g/j)")+" pour "+arrondi(g)+" g/j."+(ra.bas<1&&ra.haut>1?" L’intervalle inclut 1 : effet incertain.":""),pourquoi:"À faible dose, l’alcool atténue certaines réponses immunitaires inflammatoires ; l’effet disparaît puis s’inverse vers 30 g/j."}
+  :{signe:0,rr:null,constat:g<3?"Moins de 3 g/j : hors des points publiés.":"Au-delà de 30 g/j : hors des points publiés ; à 30 g/j l’effet protecteur a déjà disparu.",pourquoi:"Courbe en U publiée entre 3 et 30 g/j."});
+ // Démence (Xu 2017) : valeurs approchées données par les auteurs, sans intervalle.
+ r("demence","Démence",g>12.5&&g<38?[]:["brain"],"xu",{pourquoi:"Les vaisseaux du cerveau profitent peut-être des faibles doses ; les fortes doses abîment directement les neurones (voir aussi l’hippocampe).",...(g<=12.5?{signe:1,rr:null,niveau:"favorable",constat:"Jusqu’à 12,5 g/j : risque plus bas, au plus bas (environ − 10 %) vers 6 g/j selon les auteurs."}
+  :g>=38?{signe:-1,rr:null,niveau:"faible",constat:"À partir de 38 g/j : risque augmenté d’environ 10 % selon les auteurs (valeur approchée, sans intervalle)."}
+  :{signe:0,rr:null,constat:"Entre 12,5 et 38 g/j : ni baisse ni hausse établie."})});
+ // Reins : maladie rénale chronique (2021), RR sans IC dans le résumé.
+ const irc=femme?null:g<12?0.92:g<=24?0.83:0.76,ircTous=g<12?0.90:g<=24?0.86:0.85;
+ r("irc","Maladie rénale chronique",["kidney_l","kidney_r"],"irc",{signe:1,rr:null,niveau:"favorable",constat:"Risque plus bas chez les buveurs : × "+arrondi(ircTous,2)+" (tous) "+(irc?"et × "+arrondi(irc,2)+" chez les hommes ":"")+"pour cette catégorie (léger < 12, modéré 12–24, fort > 24 g/j). Intervalles non donnés dans le résumé.",pourquoi:"Résultat d’études d’observation : les anciens buveurs malades classés « non-buveurs » peuvent créer cette apparence. Il ne tient pas compte de la tension artérielle, qui, elle, abîme les reins quand l’alcool la fait monter."});
+ // Infections : tuberculose et pneumonie.
+ r("tuberculose","Tuberculose",["lung_l","lung_r"],"imtiaz",{signe:-1,...B(1.35,1.09,1.68),constat:"Consommation d’alcool comparée à l’abstinence ; × 3,33 en cas de problèmes liés à l’alcool. Effet de seuil avec la dose.",pourquoi:"L’alcool affaiblit les macrophages et les lymphocytes qui contiennent le bacille."});
+ const pn=interpoler([[24,1.12,1.02,1.23],[60,1.33,1.06,1.67],[120,1.76,1.13,2.77]],Math.min(g,120));
+ r("pneumonie","Pneumonie",pn?["lung_l","lung_r"]:[],"samok10",pn?{signe:-1,rr:pn.rr,bas:pn.bas,haut:pn.haut,constat:(pn.exact?"Point publié":"Interpolation entre les points publiés (24, 60, 120 g/j)")+(g>120?" ; dose au-delà de 120 g/j, valeur à 120 g/j affichée.":"."),pourquoi:"L’alcool diminue la toux, le nettoyage des bronches et les défenses ; il facilite aussi les fausses routes."}
+  :{signe:0,rr:null,constat:"Moins de 24 g/j : pas de point publié ; le risque augmente de façon continue avec la dose.",pourquoi:"Relation dose-effet monotone."});
+ return out;
 }
 export function libelleCategorie(c){return {legere:"légère (≤ 12,5 g/j)",moderee:"modérée (12,5 à 50 g/j)",forte:"forte (> 50 g/j)"}[c]||"—";}
 export function arrondi(x,d=1){return Number(x.toFixed(d)).toLocaleString("fr-FR");}
