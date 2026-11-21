@@ -48,3 +48,4 @@ main{padding:12px;max-width:1720px;margin:auto}.xp-board{display:grid;grid-templ
 .xr-equiv{margin:0 8px 6px 30px;padding:0;font-size:11.5px;color:#d8f2f7}.xr-equiv li{margin:1px 0}
 .xp-right .xr-acc details{margin:0;padding:0;border-top:1px solid #1f4d5d}
 .xp-right .xr-acc{max-height:min(62vh,620px);overflow-y:auto;padding-right:3px;scrollbar-width:thin}
+.xr-acc details>p{white-space:pre-line}
