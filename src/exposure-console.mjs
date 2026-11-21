@@ -6,6 +6,8 @@ import {analyserAgents,teneurLibelle} from "./exposure-agents.mjs";
 import {BOISSONS} from "./exposure-boissons.mjs";
 import {chargerNotices,fichesNotices} from "./exposure-notices.mjs";
 let notices=null,noticesDemandees=false;
+import {chargerMonographies,fichesMonographies} from "./exposure-monographies.mjs";
+let monographies=null,monographiesDemandees=false;
 const $=id=>document.getElementById(id);
 const node=(tag,text)=>Object.assign(document.createElement(tag),{textContent:text});
 const svg=(tag,attributes,text)=>{
@@ -159,7 +161,8 @@ function render(){
  const agents=analyserAgents(rows,lookup,profil(),duration(),registre);
  // Notices officielles : chargées seulement quand une spécialité ou une molécule est dans le scénario.
  if(!noticesDemandees&&rows.some(r=>/^(cis|sa)/.test(r.id)||["paracetamol","ibuprofene","metformine"].includes(r.id))){noticesDemandees=true;chargerNotices().then(d=>{notices=d;render();}).catch(()=>{});}
- const fiches=[ficheAlcool(analyse),...agents.fiches,...fichesNotices(rows,lookup,products,notices,duration())].filter(Boolean);
+ if(!monographiesDemandees&&rows.some(r=>lookup(r.id)?.family===2||r.id.startsWith("ema:"))){monographiesDemandees=true;chargerMonographies().then(d=>{monographies=d;ajouterPlantes(d);render();}).catch(()=>{});}
+ const fiches=[ficheAlcool(analyse),...agents.fiches,...fichesNotices(rows,lookup,products,notices,duration()),...fichesMonographies(rows,lookup,monographies,duration())].filter(Boolean);
  // Les fiches de recherche remplacent les repères génériques (NCI, EFSA sommeil reste affiché).
  const all=fiches.length?[...fiches.flatMap(f=>reperesAtlas(f)),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
  for(const s of all)s.cle??=s.recherche?s.title:s.zone;
@@ -354,6 +357,11 @@ function index(s){
  s.search=fold([s.name,s.id,s.source,ingredients].join(" "));products.set(s.id,s);
 }
 for(const s of published)index(s);
+// Plantes des monographies européennes ajoutées aux substances naturelles (100 g par jour par défaut).
+function ajouterPlantes(d){
+ (d?.plantes||[]).forEach((pl,i)=>{if(!pl.latin&&!pl.commun)return;const id="ema:"+i;if(products.has(id))return;
+  const s={id,name:[pl.commun,pl.latin].filter(Boolean).join(" · "),family:2,unit:"g",source:"EMA · monographie de plante"};products.set(id,s);index(s);});
+}
 async function loadReferences(){
  try{
   const res=await fetch("./research-data/exposure-catalog.json.gz");if(!res.ok)throw Error();
@@ -362,6 +370,7 @@ async function loadReferences(){
   const refs=data.map(([id,name,family,unit,source,extra,ibuMg])=>({id,name,family,unit,source,active:id.startsWith("cis")?extra:undefined,nutrients:id.startsWith("al")?extra:undefined,ibuMg}));
   for(const s of refs)products.set(s.id,s);
   for(const s of refs)index(s);
+  chargerMonographies().then(d=>{monographies=d;monographiesDemandees=true;ajouterPlantes(d);if(!$("xp-editor").hidden&&family===2)search($("xp-substance").value);}).catch(()=>{});
   $("xp-catalog-status").textContent=products.size.toLocaleString("fr-FR")+" références locales · BDPM (France), Ciqual 2025 (Anses) et types de produits.";
   if(!$("xp-editor").hidden)search($("xp-substance").value);
  }catch{$("xp-catalog-status").textContent="Catalogue étendu indisponible. Recherche en ligne et saisie personnelle accessibles.";}
