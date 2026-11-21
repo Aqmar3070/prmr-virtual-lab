@@ -3,9 +3,10 @@ import {fold} from "./exposure-evidence.mjs";
 import {teneurLibelle} from "./exposure-agents.mjs";
 
 // Valeurs de départ appliquées à toute substance, modifiables ensuite :
-// 1 000 mg, 100 g ou 100 mL par jour ; spécialité : nombre d'unités le plus proche de 1 000 mg ; 30 jours.
+// 1 000 mg ou 100 g par jour, 500 mL pour les boissons ; spécialité : nombre d'unités le plus proche de 1 000 mg ; 30 jours.
 export const DUREE_DEFAUT=30;
 export function quantiteDefaut(produit){
+ if(produit.family===4)return 500; // boissons : 500 mL (ou 500 g pour les boissons Ciqual)
  if(produit.unit==="mg")return 1000;
  if(produit.unit==="g"||produit.unit==="mL")return 100;
  const t=teneurLibelle(produit);
@@ -18,7 +19,7 @@ function marques(produits){
  if(indexMarques.has(produits))return indexMarques.get(produits);
  const idx=new Map();
  for(const p of produits.values()){
-  if(!/^(cis|sa|al)/.test(p.id))continue;
+  if(!/^(cis|sa|al)/.test(p.id)&&!p.compo)continue;
   const mot=fold(p.name).match(/^[a-z][a-z-]{3,}/)?.[0];
   if(!mot||VIDES.has(mot))continue;
   if(!idx.has(mot))idx.set(mot,[]);idx.get(mot).push(p);
@@ -80,6 +81,10 @@ export function lireRecit(texte,produits){
   let nom=boisson?.[0]||direct[0];
   let produit=produits.get(direct[0]);
   if(boisson){nom=boisson[0];produit={id:"recit:"+nom,name:nom,unit:"mL",family:4,source:"Récit · composition déclarée"};}
+  // Marque de boisson de la bibliothèque (Flag, Castel, Cody's…) : composition connue.
+  const cle=t=>t.replace(/['’]/g,"");
+  const marqueBoisson=[...produits.values()].find(p=>p.compo&&(ligne.match(/[a-z][a-z']{3,}/g)||[]).some(w=>cle(fold(p.name).split(/[^a-z'’]+/)[0])===cle(w)));
+  if(marqueBoisson){produit=marqueBoisson;nom=marqueBoisson.name;}
   if(!nom){
    const terme=brut.replace(/^(je (?:consomme|prends|mange|bois)\s+(?:du |de la |des |de l )?)/,"").split(/[,;:]|\s+\d/)[0].trim();
    if(terme.length<2)continue;
@@ -127,11 +132,11 @@ export function lireRecit(texte,produits){
   if(!duree&&!ambigu)notes.push("Durée non précisée : "+DUREE_DEFAUT+" jours par défaut, modifiable.");
   if(jours>730)notes.push("Horizon supérieur aux 730 jours du graphique.");
   const degre=ligne.match(/(\d+(?:[.,]\d+)?)\s*(?:%|°|degres?\b)/);
-  const abv=alcoolPur?100:boisson&&degre?Number(degre[1].replace(",",".")):null;
+  const abv=alcoolPur?100:degre&&(boisson||produit.unit==="mL")?Number(degre[1].replace(",",".")):produit.compo?.abv??null;
   if(alcoolPur)notes.push("Quantité lue comme alcool pur, en grammes.");
   if(themeProduit(nom)==="alcool"&&abv===null)notes.push("Le degré d’alcool de l’étiquette permet de calculer l’alcool pur.");
   const valide=quantite>0&&jours>=1&&jours<=730&&(quotidien||jours===1)&&(abv===null||abv<=100);
-  const compo=COMPOSITIONS[nom];
+  const compo=COMPOSITIONS[nom]||produit.compo;
   const nombreCanettes=compo&&!quantite?ligne.match(/\b(\d+)\s*(?:canettes?|cannettes?)\b/):null;
   if(nombreCanettes){quantite=Number(nombreCanettes[1])*250;notes.push("Canette standard de 250 mL.");}
   const ok=quantite>0&&jours>=1&&jours<=730&&(quotidien||jours===1)&&(abv===null||abv<=100);
