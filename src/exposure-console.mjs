@@ -3,6 +3,8 @@ import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie,equivalencesAlcool} from "./exposure-risk.mjs";
 import {analyserAgents} from "./exposure-agents.mjs";
+import {chargerNotices,fichesNotices} from "./exposure-notices.mjs";
+let notices=null,noticesDemandees=false;
 const $=id=>document.getElementById(id);
 const node=(tag,text)=>Object.assign(document.createElement(tag),{textContent:text});
 const svg=(tag,attributes,text)=>{
@@ -152,7 +154,9 @@ function render(){
  const t=day(),result=evaluateDay(rows,t,Number($("xp-age").value),lookup);
  const analyse=analyserAlcool(rows,lookup,profil(),duration());
  const agents=analyserAgents(rows,lookup,profil(),duration(),registre);
- const fiches=[ficheAlcool(analyse),...agents.fiches].filter(Boolean);
+ // Notices officielles : chargées seulement quand une spécialité ou une molécule est dans le scénario.
+ if(!noticesDemandees&&rows.some(r=>/^(cis|sa)/.test(r.id)||["paracetamol","ibuprofene","metformine"].includes(r.id))){noticesDemandees=true;chargerNotices().then(d=>{notices=d;render();}).catch(()=>{});}
+ const fiches=[ficheAlcool(analyse),...agents.fiches,...fichesNotices(rows,lookup,products,notices,duration())].filter(Boolean);
  // Les fiches de recherche remplacent les repères génériques (NCI, EFSA sommeil reste affiché).
  const all=fiches.length?[...fiches.flatMap(f=>reperesAtlas(f)),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
  for(const s of all)s.cle??=s.recherche?s.title:s.zone;
