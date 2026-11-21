@@ -46,7 +46,9 @@ export function initialiserAssistant({produits,proposer,bilan,scenario}){
   if(texte.includes("?")){reponse.textContent=bilan()||"Aucune prise enregistrée pour ce jour. Décrivez la substance et sa quantité.";return;}
   const prises=texte.split(/[;\n]+/).map(ligne=>{
    const dose=ligne.match(/(\d+(?:[.,]\d+)?)\s*(mg|mL|g)\b/i);
-   return {nom:(dose?ligne.slice(0,dose.index):ligne).replace(/[, :]+$/,"").trim(),quantite:dose?Number(dose[1].replace(",",".")):null,unite:dose?.[2]};
+   const concentration=dose&&/^\s*\/\s*(?:100\s*)?(?:ml|g)\b/i.test(ligne.slice(dose.index+dose[0].length));
+   const jour=mot=>{const m=fold(ligne).match(new RegExp(mot+"\\s*(?:a|au|:)?\\s*j\\s*(\\d+)"));return m?Number(m[1]):null;};
+   return {debut:jour("debut"),reduction:jour("reduction"),arret:jour("arret"),nom:(dose?ligne.slice(0,dose.index):ligne).replace(/[, :]+$/,"").trim(),quantite:dose&&!concentration?Number(dose[1].replace(",",".")):null,unite:dose?.[2]};
   });
   afficher(prises);reponse.textContent="Choisissez la référence, vérifiez la quantité et les jours, puis enregistrez.";
  }
@@ -72,7 +74,7 @@ export function initialiserAssistant({produits,proposer,bilan,scenario}){
   if(!fichier&&!note.value.trim())throw Error("Sélectionnez un fichier ou saisissez du texte.");
   if(fichier&&fichier.size>4*1024*1024)throw Error("Taille maximale du document : 4 Mo.");
   const api=await session();
-  const {data,error}=await api.functions.invoke("exposure-intake",{body:{texte:note.value.slice(0,8000),document:fichier?await lireFichier(fichier):null}});
+  const {data,error}=await api.functions.invoke("exposure-intake",{body:{texte:note.value.slice(0,8000),reperes:bilan().slice(0,8000),document:fichier?await lireFichier(fichier):null}});
   if(error)throw Error("Extraction IA indisponible. Vérifiez la connexion et le déploiement du service.");
   reponse.textContent=data.observations.join(" ")||"Aucune observation explicite extraite.";
   afficher(data.prises);statut.textContent="Extraction terminée. Vérifiez chaque proposition avec le document original.";

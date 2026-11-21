@@ -7,7 +7,9 @@ const assert=require("node:assert/strict");
   const erreurs=[];page.on("pageerror",e=>erreurs.push(e.message));
   await page.goto("http://127.0.0.1:4173/exposures.html");
   await page.locator(".xa-ready").waitFor({timeout:90000});
+  await page.click(".xp-profile-card summary");
   await page.click('[data-sex="female"]');
+  await page.click(".xp-profile-card summary");
   await page.waitForFunction(()=>document.querySelector(".xa-ready")&&document.querySelector('#xa-focus option[value="uterus"]'));
   await page.screenshot({path:"/tmp/atlas-femme.png"});
   for(const structure of ["lung_l","lung_r","eye_l","foot_l","toes_l"]){

@@ -17,3 +17,9 @@ main{padding:12px;max-width:1720px;margin:auto}.xp-board{display:grid;grid-templ
 .xp-board #xp-categories b svg{width:24px;height:24px;margin:auto;stroke:currentColor;fill:none;stroke-width:1.5}
 @media(min-width:901px){.xp-board{grid-template-columns:minmax(230px,.91fr) minmax(320px,1.5fr) minmax(230px,.92fr);grid-template-rows:auto auto 1fr;align-items:start}.xp-left{grid-column:1;grid-row:1/4}.xp-body{grid-column:2;grid-row:1}.xp-right{grid-column:3;grid-row:1}.xp-chart,.xp-time{grid-column:2/4}.xp-chart{grid-row:2}.xp-time{grid-row:3}.xp-chart #xp-plot{max-height:170px}}
 @media(max-width:900px){.xp-chart{grid-column:1/-1}.xp-board{align-items:start}}
+.xp-profile-card summary{font-weight:650;cursor:pointer;color:#d6f8fa}
+.xp-profile-card details[open] .xp-profile{margin-top:12px}
+.xp-metric{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #23404e;font-size:13px}
+.xp-metric b{color:#9fdce2;font-weight:500}.xp-data-head{margin:.6rem 0;color:#b6e7f0;font-weight:600}
+.xp-card,.xp-body{border-top:2px solid #56d0de;background-color:#041722}
+.xa-controls label{white-space:nowrap}.xa-controls input[type=checkbox],#xp-dossier input[type=checkbox]{width:auto;min-width:0}

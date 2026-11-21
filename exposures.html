@@ -91,7 +91,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=7120b804ac">
+<link rel="stylesheet" href="./exposure-console.css?v=ee5aefa323">
 </head>
 <body>
 <header class="xp-head"><a href="./index.html"><strong>PRMR</strong> VIRTUAL LAB</a><h1>Explorateur d’exposition</h1><a href="#registre">Repères publiés</a></header>
@@ -100,12 +100,12 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 <button data-structure="">Corps entier</button><button data-structure="lung_l">Poumon gauche</button><button data-structure="lung_r">Poumon droit</button><button data-structure="heart">Cœur</button><button data-structure="brain">Cerveau</button><button data-structure="kidney_l">Rein gauche</button><a href="#xp-dossier">Dossier</a></nav>
 <div class="xp-board" id="exposure-console">
  <div class="xp-left">
- <section class="xp-card"><h2>Profil du sujet <small>(simulation)</small></h2>
+ <section class="xp-card xp-profile-card"><details><summary>Profil du sujet</summary>
  <div class="xp-profile"><span>Genre</span><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div>
  <label for="xp-age">Âge</label><div><input id="xp-age" type="number" min="18" max="110" value="45"> ans</div>
  <label for="xp-height">Taille</label><div><input id="xp-height" type="number" min="100" max="240" value="175"> cm</div>
- <label for="xp-weight">Poids</label><div><input id="xp-weight" type="number" min="30" max="300" step=".1" value="72"> kg</div></div><small>Profil adulte descriptif. Aucune correction de dose individuelle.</small></section>
- <section class="xp-card"><h2>Catalogue des expositions</h2><p id="xp-catalog-status" role="status">Chargement du catalogue…</p><small>Sources des références et teneurs moyennes par 100 g · <a href="https://base-donnees-publique.medicaments.gouv.fr/">BDPM</a> · <a href="https://doi.org/10.57745/RDMHWY">Ciqual 2025, Anses</a></small>
+ <label for="xp-weight">Poids</label><div><input id="xp-weight" type="number" min="30" max="300" step=".1" value="72"> kg</div></div><small>Profil adulte descriptif. Aucune correction de dose individuelle.</small></details></section>
+ <section class="xp-card"><h2>Scénario d’exposition</h2><p id="xp-catalog-status" role="status">Chargement du catalogue…</p><small>Sources des références et teneurs moyennes par 100 g · <a href="https://base-donnees-publique.medicaments.gouv.fr/">BDPM</a> · <a href="https://doi.org/10.57745/RDMHWY">Ciqual 2025, Anses</a></small>
  <div id="xp-categories" aria-label="Familles de prises"></div>
  <h3>Liste des prises</h3><div id="xp-list"></div><button id="xp-add" type="button">＋ Ajouter une prise</button>
  <form id="xp-editor" hidden><label>Rechercher dans la catégorie<input id="xp-search" type="search" autocomplete="off" placeholder="Nom, spécialité, ingrédient ou code"></label>
@@ -149,8 +149,8 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <div class="xa-controls"><small id="xa-message" role="status">Chargement de l’atlas 3D…</small><div id="xa-layers"></div><label><input type="checkbox" id="xa-isolate"> Isoler la structure sélectionnée</label></div>
  <figcaption><a href="./assets/human3d/ATTRIBUTION.md">Atlas PRMR · crédits anatomiques</a></figcaption></figure>
  <section class="xp-card xp-right"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
- <div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
- <details><summary>Probabilité individuelle</summary><p>Aucun modèle de risque individuel validé pour ces prises et cet horizon dans le registre actuel. Les résultats disponibles décrivent les populations étudiées.</p></details></section>
+ <div class="xp-data-head">Repères documentés</div><div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
+ <h3>Apports du jour</h3><div id="xp-day-table"></div><details><summary>Probabilité individuelle</summary><p>Aucun modèle de risque individuel validé pour ces prises et cet horizon dans le registre actuel. Les résultats disponibles décrivent les populations étudiées.</p></details></section>
  <section class="xp-card xp-chart"><h2>Évolution dans le temps</h2><label>Exposition tracée <select id="xp-chart-item"></select></label><p id="xp-chart-title"></p><svg id="xp-plot" viewBox="0 0 410 196" role="img" aria-label="Courbe du scénario sélectionné"></svg>
  <div id="xp-legend">━ Prise maintenue <span>━ Prise paramétrée</span></div><div id="xp-totals"></div></section>
  <section class="xp-card xp-time"><h2>Chronologie des prises</h2><button id="xp-play" aria-label="Lire la chronologie">▶</button><input id="xp-day" type="range" min="0" max="28" value="0" aria-label="Jour du scénario"><output id="xp-time-label">J0</output><label>Durée <input id="xp-duration" type="number" min="1" max="365" value="28"> j</label><button id="xp-compare" aria-pressed="true">Comparer les scénarios</button></section>
@@ -209,7 +209,7 @@ register.addEventListener("toggle",mount);mount();
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<script type="module" src="./src/exposure-console.mjs?v=c1229b338e"></script>
+<script type="module" src="./src/exposure-console.mjs?v=d70e8cf613"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=a1836510ec"></script>
 </body>
 </html>

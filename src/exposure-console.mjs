@@ -55,6 +55,10 @@ function render(){
  document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
  const display={ethanolMl:"Alcool pur (mL)",ethanolG:"Alcool pur (g)",sugarG:"Sucres (g)",caffeineMg:"Caféine (mg)"};
  $("xp-totals").textContent=[...result.available].map(key=>display[key]+" : "+fmt(result.totals[key])).join(" · ");
+ const tableau=$("xp-day-table");tableau.replaceChildren();
+ for(const cle of Object.keys(display)){
+  const ligne=node("div","");ligne.className="xp-metric";ligne.append(node("span",display[cle]),node("b",result.available.has(cle)?fmt(result.totals[cle]):"Non renseigné"));tableau.append(ligne);
+ }
  const weight=$("xp-weight");
  if(result.available.has("caffeineMg")&&weight.value&&weight.checkValidity())$("xp-totals").append(node("small"," · "+fmt(result.totals.caffeineMg/Number(weight.value))+" mg de caféine/kg"));
  if(result.available.size)$("xp-totals").append(node("small"," · apports quantifiables à J"+t+" ; teneurs manquantes exclues."));
