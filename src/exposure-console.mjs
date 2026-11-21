@@ -2,6 +2,7 @@ import {themeProduit,connaissances} from "./exposure-narrative.mjs";
 import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie,equivalencesAlcool} from "./exposure-risk.mjs";
+import {analyserAgents} from "./exposure-agents.mjs";
 const $=id=>document.getElementById(id);
 const node=(tag,text)=>Object.assign(document.createElement(tag),{textContent:text});
 const svg=(tag,attributes,text)=>{
@@ -81,6 +82,12 @@ function renderChart(active){
 function profil(){return {sexe:sex,age:Number($("xp-age").value),poids:Number($("xp-weight").value),taille:Number($("xp-height").value)};}
 const couleurs={eleve:"#ff5a48",modere:"#ff9a3c",faible:"#ffd166",favorable:"#3fe6b0",non_chiffre:"#a9b8c2"};
 const nature={association_observee:"Association observée",reglementaire:"Calcul + seuil officiel",non_documente:"Décrit, non chiffré"};
+function ficheAlcool(a){
+ if(!a)return null;
+ return {id:"alcool",titre:"Alcool",unite:"g/j",moyenne:a.moyenne,nbJours:a.nbJours,total:a.total,resultats:a.resultats,
+  entete:[a.nbJours+" jour"+(a.nbJours>1?"s":"")+" de consommation · "+arrondi(a.total,0)+" g au total · catégorie "+libelleCategorie(a.categorie)+".",a.domaine==="extrapole"?"Durée inférieure à un an : les effets à long terme sont extrapolés (consommation supposée durable).":"Durée d’au moins un an : dans le domaine des études de consommation habituelle."],
+  equivalences:equivalencesAlcool(a.moyenne).map(e=>"≈ "+arrondi(e.nombre)+" "+e.nom+" ("+e.detail+", soit "+arrondi(e.parUnite)+" g chacun)")};
+}
 function equivalences(g){
  const ul=document.createElement("ul");ul.className="xr-equiv";
  for(const e of equivalencesAlcool(g))ul.append(node("li","≈ "+arrondi(e.nombre)+" "+e.nom+" ("+e.detail+", soit "+arrondi(e.parUnite)+" g chacun)"));
@@ -88,33 +95,36 @@ function equivalences(g){
 }
 const libNiveau={eleve:"Élevé",modere:"Modéré",faible:"Faible",favorable:"Favorable",non_chiffre:"Décrit"};
 // Liste latérale en accordéon : une ligne fine par effet, du plus grave (rouge) au moins grave (blanc).
-function accordeon(a){
+function accordeon(fiches,teneurInconnue){
  const boite=document.createElement("div");boite.className="xr-acc";
- const tete=node("details","");tete.className="xr-resume";tete.open=true;
- tete.append(node("summary","Exposition calculée · "+arrondi(a.moyenne)+" g d’alcool pur par jour"));
- tete.append(node("p",a.nbJours+" jour"+(a.nbJours>1?"s":"")+" de consommation · "+arrondi(a.total,0)+" g au total · catégorie "+libelleCategorie(a.categorie)+"."),node("p","Ces "+arrondi(a.moyenne)+" g par jour correspondent à :"),equivalences(a.moyenne));
- tete.append(node("p",a.domaine==="extrapole"?"Durée inférieure à un an : les effets à long terme sont extrapolés (consommation supposée durable).":"Durée d’au moins un an : dans le domaine des études de consommation habituelle."));
- boite.append(tete);
  const rang={eleve:0,modere:1,faible:2,non_chiffre:3,favorable:4};
- for(const r of [...a.resultats].sort((x,y)=>rang[x.niveau]-rang[y.niveau]||(y.rr??0)-(x.rr??0))){
-  const d=node("details","");d.className="xr-item";d.dataset.niveau=r.niveau;
-  const chiffre=r.rr!=null?"× "+arrondi(r.rr,2):libNiveau[r.niveau];
-  const resume=node("summary","");resume.append(node("span",r.titre),node("b",chiffre));d.append(resume);
-  d.append(node("p",r.constat));
-  if(r.rr!=null)d.append(node("p","Chiffre : × "+arrondi(r.rr,2)+(r.bas!=null?" (IC 95 % "+arrondi(r.bas,2)+" à "+arrondi(r.haut,2)+")":" (intervalle non publié)")+", soit "+(r.rr>=1?"+":"")+arrondi((r.rr-1)*100,0)+" % de risque par rapport à un non-buveur."));
-  d.append(node("p","Pourquoi : "+r.pourquoi));
-  const etiq=node("p","");etiq.className="xr-etiq";
-  etiq.textContent=({association_observee:"Association observée",reglementaire:"Calcul + seuil officiel",non_documente:"Décrit, non chiffré"})[r.statut]+" · "+(r.domaine==="extrapole"&&r.statut!=="reglementaire"?"extrapolé (durée)":"calculé");d.append(etiq);
-  const lien=node("a",r.source);lien.href=r.url;lien.target="_blank";lien.rel="noopener";d.append(lien);
-  if(r.source2){const l2=node("a",r.source2.source);l2.href=r.source2.url;l2.target="_blank";l2.rel="noopener";d.append(node("br",""),l2);}
-  d.ontoggle=()=>{if(d.open&&r.zones.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:r.zones[0]}));};
-  boite.append(d);
+ for(const f of fiches){
+  const tete=node("details","");tete.className="xr-resume";tete.open=fiches.length<3;
+  const entete=node("summary","");entete.append(node("span",f.titre+(f.unite?" · "+arrondi(f.moyenne)+" "+f.unite.replace("/j"," par jour"):"")));tete.append(entete);
+  for(const l of f.entete||(f.nbJours?[f.nbJours+" jour"+(f.nbJours>1?"s":"")+" de prise · dose la plus forte : "+arrondi(f.max??f.moyenne)+" "+f.unite.replace("/j","")+"."]:[]))tete.append(node("p",l));
+  if(f.equivalences?.length){tete.append(node("p","Ce que cela représente :"));const ul=document.createElement("ul");ul.className="xr-equiv";for(const e of f.equivalences)ul.append(node("li",e));tete.append(ul);}
+  boite.append(tete);
+  for(const r of [...f.resultats].sort((x,y)=>rang[x.niveau]-rang[y.niveau]||(y.rr??0)-(x.rr??0))){
+   const d=node("details","");d.className="xr-item";d.dataset.niveau=r.niveau;
+   const chiffre=r.rr!=null?"× "+arrondi(r.rr,2):libNiveau[r.niveau];
+   const resume=node("summary","");resume.append(node("span",r.titre),node("b",chiffre));d.append(resume);
+   d.append(node("p",r.constat));
+   if(r.rr!=null)d.append(node("p","Chiffre : × "+arrondi(r.rr,2)+(r.bas!=null?" (IC 95 % "+arrondi(r.bas,2)+" à "+arrondi(r.haut,2)+")":" (intervalle non publié)")+", soit "+(r.rr>=1?"+":"")+arrondi((r.rr-1)*100,0)+" % par rapport à une personne non exposée."));
+   d.append(node("p","Pourquoi : "+r.pourquoi));
+   const etiq=node("p","");etiq.className="xr-etiq";
+   etiq.textContent=({association_observee:"Association observée",reglementaire:"Seuil officiel",toxique_etabli:"Toxicité établie",non_documente:"Décrit, non chiffré"})[r.statut]+" · "+(r.domaine==="extrapole"&&r.statut!=="reglementaire"?"extrapolé (durée)":"calculé");d.append(etiq);
+   if(r.url){const lien=node("a",r.source);lien.href=r.url;lien.target="_blank";lien.rel="noopener";d.append(lien);}
+   if(r.source2){const l2=node("a",r.source2.source);l2.href=r.source2.url;l2.target="_blank";l2.rel="noopener";d.append(node("br",""),l2);}
+   d.ontoggle=()=>{if(d.open&&r.zones.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:r.zones[0]}));};
+   boite.append(d);
+  }
  }
+ if(teneurInconnue?.length)boite.append(Object.assign(node("p","Teneur inconnue pour : "+teneurInconnue.join(", ")+". Ajoutez la substance active en mg (famille Molécules) pour la calculer."),{className:"xr-etiq"}));
  return boite;
 }
-function renderRecherche(a){
- const zone=$("xp-research");zone.hidden=!a;if(!a)return;
- const lignes=[...a.resultats].sort((x,y)=>(y.rr??0)-(x.rr??0));
+function renderRecherche(fiches,a){
+ const zone=$("xp-research");zone.hidden=!fiches.length;if(!fiches.length)return;
+ const lignes=fiches.flatMap(f=>f.resultats.map(r=>({...r,titre:(fiches.length>1?f.titre+" · ":"")+r.titre}))).sort((x,y)=>(y.rr??0)-(x.rr??0));
  // Forêt des risques relatifs, échelle logarithmique.
  const f=$("xr-forest"),chiffres=lignes.filter(r=>r.rr!=null&&r.bas!=null);f.replaceChildren();
  const h=26+chiffres.length*22,lo=Math.log(0.5),hi=Math.log(Math.max(4,...chiffres.map(r=>r.haut))*1.1);
@@ -124,7 +134,7 @@ function renderRecherche(a){
  chiffres.forEach((r,i)=>{const y=18+i*22,c=couleurs[r.niveau];
   f.append(svg("text",{x:208,y:y+4,"text-anchor":"end"},r.titre.length>34?r.titre.slice(0,33)+"…":r.titre),svg("path",{d:"M"+X(r.bas)+" "+y+"H"+X(r.haut),stroke:c,"stroke-width":2}),svg("rect",{x:X(r.rr)-4,y:y-4,width:8,height:8,fill:c}),svg("text",{x:Math.min(552,X(r.haut)+5),y:y+4,fill:c},arrondi(r.rr,2)));});
  // Alcoolémie maximale par jour (Widmark), bande d'incertitude et seuil de 0,5 g/L.
- const b=$("xr-bac");b.replaceChildren();
+ const b=$("xr-bac");b.replaceChildren();b.closest("figure").hidden=!a;if(!a)return;
  const valeurs=a.jours.map(g=>alcoolemie(g,profil()));
  const n=a.jours.length-1||1,top=Math.max(0.6,...valeurs.map(v=>v?v.haut:0))*1.08;
  const bx=t=>44+460*t/n,by=v=>182-v/top*165;
@@ -140,10 +150,12 @@ function renderRecherche(a){
 function render(){
  const t=day(),result=evaluateDay(rows,t,Number($("xp-age").value),lookup);
  const analyse=analyserAlcool(rows,lookup,profil(),duration());
- // Le moteur de recherche remplace les repères alcool génériques du NCI par des chiffres calculés.
- const all=analyse?[...reperesAtlas(analyse),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
+ const agents=analyserAgents(rows,lookup,profil(),duration(),registre);
+ const fiches=[ficheAlcool(analyse),...agents.fiches].filter(Boolean);
+ // Les fiches de recherche remplacent les repères génériques (NCI, EFSA sommeil reste affiché).
+ const all=fiches.length?[...fiches.flatMap(f=>reperesAtlas(f)),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
  for(const s of all)s.cle??=s.recherche?s.title:s.zone;
- renderRecherche(analyse);
+ renderRecherche(fiches,analyse);
  document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
  const display={ethanolMl:"Alcool pur (mL)",ethanolG:"Alcool pur (g)",sugarG:"Sucres (g)",caffeineMg:"Caféine (mg)"};
  $("xp-totals").textContent=[...result.available].map(key=>display[key]+" : "+fmt(result.totals[key])).join(" · ");
@@ -162,7 +174,7 @@ function render(){
  $("xp-day-tag").value=$("xp-time-label").value="J"+t;
  $("xp-body-image").setAttribute("href","./assets/exposure/"+sex+".webp");
  const marks=$("xp-marks"),cards=$("xp-signals"),why=$("xp-reason");marks.replaceChildren();cards.replaceChildren();why.replaceChildren();
- if(analyse)cards.append(accordeon(analyse));
+ if(fiches.length)cards.append(accordeon(fiches,agents.teneurInconnue));
  for(const signal of autres){
   const position=anchors[sex][signal.zone];
   const [cx,cy]=position||[0,0],left=["liver","small_intestine"].includes(signal.zone),ex=left?65:535;
@@ -174,8 +186,8 @@ function render(){
  if(active){
   why.append(node("h4",(active.sign<0?"Pourquoi ce signal est défavorable":"Pourquoi ce signal est favorable")+" · "+(active.recherche?active.title:names[active.zone])),node("p",active.reason));
   if(active.url){const source=node("a",active.source);source.href=active.url;why.append(source)}else why.append(node("small",active.source));
- }else if(!analyse)cards.append(node("p",rows.length?"Aucun repère défavorable ou favorable établi par les règles disponibles pour ces paramètres.":"Ajouter une prise pour consulter les repères documentés."));
-  if(active||analyse)why.append(node("small","Carte : couleur selon le risque relatif calculé pour la dose saisie, mesuré dans des populations. Ce n’est pas un diagnostic. Une zone vide peut manquer de données."));
+ }else if(!fiches.length)cards.append(node("p",rows.length?"Aucun repère défavorable ou favorable établi par les règles disponibles pour ces paramètres.":"Ajouter une prise pour consulter les repères documentés."));
+  if(active||fiches.length)why.append(node("small","Carte : couleur selon le risque relatif calculé pour la dose saisie, mesuré dans des populations. Ce n’est pas un diagnostic. Une zone vide peut manquer de données."));
  const themes=new Set(rows.filter(r=>doseAt(r,t)>0).map(r=>r.abv===0?null:themeProduit(lookup(r.id)?.name||"")).filter(Boolean));
  for(const theme of themes)if(!(analyse&&theme==="alcool"))for(const [titre,detail,source,url] of connaissances[theme]){
   const boite=node("details",""),lien=node("a",source);lien.href=url;
@@ -186,7 +198,8 @@ function render(){
   const p=lookup(r.id);cles.add(fold(p.name));cles.add(p.id);
   for(const id of p.active||[])cles.add(fold(lookup("sa"+id)?.name||""));
  }
- for(const fiche of registre.filter(f=>cles.has(f.id))){
+ const couvertes=new Set(fiches.map(f=>f.id));
+ for(const fiche of registre.filter(f=>cles.has(f.id)&&!couvertes.has(f.id))){
   const bloc=node("details","");bloc.append(node("summary","Fiche de recherche · "+fiche.label),node("p",fiche.horizon_note||""));
   for(const repere of [...fiche.thresholds,...(fiche.renal_note?[fiche.renal_note]:[])]){
    const titre=node("strong",repere.title),lien=node("a",repere.source);lien.href=repere.url;
