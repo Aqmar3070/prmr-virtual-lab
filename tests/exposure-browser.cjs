@@ -4,6 +4,14 @@ const assert=require("node:assert/strict");
  const browser=await chromium.launch({args:["--enable-unsafe-swiftshader"]});
  try{
   const page=await browser.newPage({viewport:{width:1672,height:941}});
+  // Le double de micro reproduit la fin automatique d’une session après une pause.
+  await page.addInitScript(()=>{
+   window.SpeechRecognition=class{
+    start(){window.microEssai=this;}
+    stop(){this.onend();}
+    phrase(texte){this.onresult({results:[[{transcript:texte}]]});}
+   };
+  });
   const erreurs=[];page.on("pageerror",e=>erreurs.push(e.message));
   await page.goto("http://127.0.0.1:4173/exposures.html");
   await page.locator(".xa-ready").waitFor({timeout:90000});
@@ -24,6 +32,21 @@ const assert=require("node:assert/strict");
   for(const [id,valeur] of [["start","0"],["reduce","7"],["after","40"],["end","14"]])await page.fill("#xp-"+id,valeur);
   await page.locator("#xp-editor button").filter({hasText:"Enregistrer"}).click();
   assert.match(await page.textContent("#xp-totals"),/80/);
+  await page.fill("#xa-note","");await page.click("#xa-mic");
+  await page.evaluate(()=>{window.microEssai.phrase("Je bois de la bière");window.premierMicro=window.microEssai;window.microEssai.onend();});
+  await page.waitForFunction(()=>window.microEssai!==window.premierMicro);
+  await page.evaluate(()=>window.microEssai.phrase("33 cl à 5 % chaque soir pendant deux semaines"));
+  assert.match(await page.inputValue("#xa-note"),/bière.*deux semaines/);
+  await page.click("#xa-mic");
+  assert.match(await page.textContent("#xp-chart-title"),/231/);
+  assert.match(await page.textContent("#xa-proposals"),/cirrhose/);
+  const doc=await browser.newPage({viewport:{width:1050,height:160}});
+  await doc.setContent('<body style="background:white;color:black;font:32px Arial">Je bois 33 cl de bière à 5 % chaque jour pendant 7 jours.</body>');
+  for(const [nom,mimeType,buffer] of [["fiche.pdf","application/pdf",await doc.pdf()],["fiche.png","image/png",await doc.screenshot()]]){
+   await page.locator("#xa-file").setInputFiles({name:nom,mimeType,buffer});
+   await page.waitForFunction(f=>document.getElementById("xa-file-status").textContent.includes("Texte extrait de "+f),nom,{timeout:120000});
+   assert.match(await page.textContent("#xp-chart-title"),/115,5/);
+  }
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:"/tmp/atlas-mobile.png",fullPage:true});
   assert.deepEqual(erreurs,[]);
  }finally{await browser.close();}

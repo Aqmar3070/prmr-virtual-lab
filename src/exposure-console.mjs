@@ -1,3 +1,4 @@
+import {themeProduit,connaissances} from "./exposure-narrative.mjs";
 import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 const $=id=>document.getElementById(id);
@@ -22,6 +23,7 @@ const names={colon:"Côlon",esophagus:"Œsophage",liver:"Foie",small_intestine:"
 const anchors={"male": {"foot_l": [370.2, 945.2], "calf_l": [366.0, 820.6], "heart": [322.3, 241.4], "liver": [304.6, 309.1], "small_intestine": [315.9, 400.8]}, "female": {"foot_l": [391.6, 942.4], "calf_l": [384.3, 805.6], "heart": [323.1, 254.9], "liver": [303.8, 306.8], "small_intestine": [313.5, 381.1]}};
 const entry=(id,qty=1)=>({id,qty,after:qty/2,start:0,reduce:14,end:28});
 const rows=[];
+let registre=[];
 const products=new Map(published.map(s=>[s.id,s]));
 const lookup=id=>products.get(id);
 let sex="male",family=0,selected,editing=null,compare=true,timer,request=0;
@@ -35,20 +37,45 @@ function renderChart(active){
  const plot=$("xp-plot");plot.replaceChildren();
  const days=duration(),current=day(),id=$("xp-chart-item").value,product=lookup(id);
  const items=rows.filter(r=>r.id===id);
- const at=(t,reduced)=>items.reduce((sum,r)=>sum+doseAt(r,t,reduced),0);
- $("xp-chart-title").textContent=product?product.name+" · quantité saisie ("+product.unit+"/j)":"Ajouter une prise pour tracer son exposition.";
- const top=Math.max(1,...Array.from({length:days+1},(_,t)=>Math.max(at(t,true),compare?at(t,false):0)));
+ const mesure=$("xp-measure").value,cumul=$("xp-cumul").checked;
+ const libelles={ethanolMl:"Alcool pur (mL)",caffeineMg:"Caféine (mg)",sugarG:"Sucres (g)",ethanolG:"Alcool pur (g)"};
+ function serie(reduite){
+  let somme=0,incomplet=false;
+  const moitie=!reduite&&$("xp-alternative").value==="moitie";
+  const scenario=reduite?rows:rows.map(r=>moitie?{...r,qty:r.qty/2,after:r.after/2}:{...r,after:r.qty});
+  return Array.from({length:days+1},(_,t)=>{
+   let valeur;
+   if(mesure==="prise")valeur=items.reduce((s,r)=>s+doseAt(r,t,reduite||moitie)*(moitie ? 0.5 : 1),0);
+   else{
+    const valeurs=evaluateDay(scenario,t,Number($("xp-age").value),lookup);
+    valeur=valeurs.available.has(mesure)?valeurs.totals[mesure]:scenario.some(r=>doseAt(r,t)>0)?null:0;
+   }
+   if(valeur===null)incomplet=true;else somme+=valeur;
+   return cumul?(incomplet?null:somme):valeur;
+  });
+ }
+ const parametree=serie(true),maintenue=serie(false),at=(t,reduite)=>(reduite?parametree:maintenue)[t];
+ const titre=mesure==="prise"?(product?product.name+" ("+product.unit+")":"Quantité de produit"):libelles[mesure]+" · toutes les prises quantifiables";
+ $("xp-chart-title").textContent=titre+" · "+(cumul?"cumul depuis J0":"par jour")+" · J"+current+" : "+(at(current,true)==null?"donnée manquante":fmt(at(current,true)));
+ $("xp-legend").hidden=!rows.length;
+ $("xp-alternative").disabled=!compare;
+ if(!rows.length||!parametree.some(v=>v!=null&&v>0)&&parametree.includes(null)){
+  $("xp-chart-title").textContent=rows.length?titre+" · teneur manquante pour tracer cet apport.":"Ajoutez une prise ou décrivez-la dans l’assistant pour obtenir la courbe.";
+  return;
+ }
+ if(compare&&at(current,false)!=null&&at(current,true)!=null)$("xp-chart-title").textContent+=" · scénario comparé : "+fmt(at(current,false));
+ const top=Math.max(1,...parametree,...(compare?maintenue:[]));
  const x=t=>38+360*t/days,y=v=>163-v/top*130;
  for(let i=0;i<=4;i++){
   const v=top*i/4,dt=Math.round(days*i/4);
   plot.append(svg("path",{d:"M38 "+y(v)+"H398",stroke:"#25465b"}),svg("text",{x:33,y:y(v)+3,"text-anchor":"end",fill:"#b4d4df","font-size":10},Number(v.toFixed(2)).toLocaleString("fr-FR")),svg("text",{x:x(dt),y:181,fill:"#bad9e4","font-size":11,"text-anchor":"middle"},"J"+dt));
  }
  for(const reduced of (compare?[false,true]:[true])){
-  let path="";for(let t=0;t<=days;t++){if(t>0)path+=" H"+x(t);path+=(t?" L":"M")+x(t)+" "+y(at(t,reduced));}
+  let path="",precedent=null;for(let t=0;t<=days;t++){const valeur=at(t,reduced);if(valeur!=null){if(precedent!=null)path+=" H"+x(t);path+=(precedent==null?" M":" L")+x(t)+" "+y(valeur);}precedent=valeur;}
   plot.append(svg("path",{d:path,fill:"none",stroke:reduced?"#45e1e5":"#ffab55","stroke-width":reduced?2.3:4}));
  }
- plot.append(svg("path",{d:"M"+x(current)+" 16V163",stroke:"#68c7d7","stroke-dasharray":"3 4"}),svg("circle",{cx:x(current),cy:y(at(current,true)),r:4,fill:"#9dffff"}));
- $("xp-legend").firstChild.textContent=compare?"━ Prise maintenue ":"";
+ plot.append(svg("path",{d:"M"+x(current)+" 16V163",stroke:"#68c7d7","stroke-dasharray":"3 4"}),svg("circle",{cx:x(current),cy:y(at(current,true)),r:at(current,true)==null?0:4,fill:"#9dffff"}));
+ $("xp-legend").firstChild.textContent=compare?($("xp-alternative").value==="moitie"?"━ Quantités divisées par deux ":"━ Prise maintenue "):"";
 }
 function render(){
  const t=day(),result=evaluateDay(rows,t,Number($("xp-age").value),lookup),all=result.signals;
@@ -82,6 +109,24 @@ function render(){
   if(active.url){const source=node("a",active.source);source.href=active.url;why.append(source)}else why.append(node("small",active.source));
  }else cards.append(node("p",rows.length?"Aucun repère défavorable ou favorable établi par les règles disponibles pour ces paramètres.":"Ajouter une prise pour consulter les repères documentés."));
  why.append(node("small","Carte : risque documenté à l’échelle d’une population. Aucune estimation de lésion, de guérison ou de probabilité personnelle. Une zone vide peut manquer de données."));
+ const themes=new Set(rows.filter(r=>doseAt(r,t)>0).map(r=>r.abv===0?null:themeProduit(lookup(r.id)?.name||"")).filter(Boolean));
+ for(const theme of themes)for(const [titre,detail,source,url] of connaissances[theme]){
+  const boite=node("details",""),lien=node("a",source);lien.href=url;
+  boite.append(node("summary",titre),node("p",detail),lien);cards.append(boite);
+ }
+ const cles=new Set();
+ for(const r of rows.filter(r=>doseAt(r,t)>0)){
+  const p=lookup(r.id);cles.add(fold(p.name));cles.add(p.id);
+  for(const id of p.active||[])cles.add(fold(lookup("sa"+id)?.name||""));
+ }
+ for(const fiche of registre.filter(f=>cles.has(f.id))){
+  const bloc=node("details","");bloc.append(node("summary","Fiche de recherche · "+fiche.label),node("p",fiche.horizon_note||""));
+  for(const repere of [...fiche.thresholds,...(fiche.renal_note?[fiche.renal_note]:[])]){
+   const titre=node("strong",repere.title),lien=node("a",repere.source);lien.href=repere.url;
+   bloc.append(titre,node("p",repere.detail),lien);
+  }
+  cards.append(bloc);
+ }
  renderChart(active);
 }
 function renderList(){
@@ -153,7 +198,7 @@ $("xp-editor").onsubmit=e=>{
  closeEditor();renderList();render();
 };
 $("xp-substance").onchange=()=>{for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;unit();};
-$("xp-chart-item").onchange=render;
+$("xp-alternative").onchange=$("xp-chart-item").onchange=$("xp-measure").onchange=$("xp-cumul").onchange=render;
 $("xp-search").oninput=()=>{request++;search();for(const k of ["abv","caf","sug","label"])$("xp-"+k).value="";$("xp-bed").checked=$("xp-long").checked=false;};
 $("xp-add").onclick=()=>openEditor(null);$("xp-cancel").onclick=closeEditor;
 $("xp-day").oninput=render;$("xp-duration").onchange=()=>{const el=$("xp-duration");if(!el.value||!el.checkValidity()){el.value=duration();return;}$("xp-day").max=el.value;render();};
@@ -210,20 +255,49 @@ $("xp-custom").onclick=()=>{
  const id="perso:"+family+":"+name,unit=["unité déclarée","mg","g","g","mL"][family];index({id,name,family,unit,source:"Référence personnelle · composition à vérifier"});search(id);$("xp-substance").onchange();
 };
 document.addEventListener("xp-atlas-ready",render);
+fetch("./research-data/r13_exposures.json").then(r=>r.json()).then(d=>{registre=d.substances;render();}).catch(()=>{});
 loadReferences().then(()=>initialiserAssistant({
  produits:products,
- proposer(produit,prise){
-  family=produit.family;openEditor(null);search(produit.id);
-  for(const [champ,cle] of [["dose","quantite"],["start","debut"],["reduce","reduction"],["after","apres"],["end","arret"]]){
-   $("xp-"+champ).value=prise[cle]??"";
+ appliquer(prises){
+  // Une relecture remplace les prises du récit, tout en conservant les saisies manuelles.
+  for(let i=rows.length-1;i>=0;i--)if(rows[i].origine==="recit")rows.splice(i,1);
+  for(const {produit,row} of prises){if(!lookup(produit.id))index(produit);rows.push({...row,origine:"recit"});}
+  if(prises.length){
+   const fin=Math.max(...prises.map(p=>p.row.end));$("xp-duration").value=$("xp-day").max=String(Math.max(fin,...rows.map(r=>Math.min(365,r.end))));
+   $("xp-day").value=String(fin-1);
+   $("xp-measure").value=prises.some(p=>p.row.abv!=null)?"ethanolMl":prises.some(p=>p.produit.id==="cafeine")?"caffeineMg":"prise";
+   $("xp-cumul").checked=fin>1;
   }
+  renderList();render();
+ },
+ restaurer(parametres){
+  if(!parametres||!Array.isArray(parametres.prises))throw Error("Scénario illisible.");
+  const nouvelles=[];
+  for(const r of parametres.prises){
+   if(!r.id||!Number.isFinite(r.qty)||!Number.isFinite(r.after)||![r.start,r.reduce,r.end].every(Number.isInteger)||r.start<0||r.reduce<r.start||r.end<r.reduce||r.end<=r.start||r.end>366||r.qty<=0||r.after<0||r.after>r.qty)throw Error("Les dates ou quantités enregistrées sont incomplètes.");
+   if(!lookup(r.id)){
+    if(!r.nom||!r.unite)throw Error("La référence manque dans le scénario sauvegardé.");
+    index({id:r.id,name:r.nom,unit:r.unite,family:r.famille??(r.unite==="mL"?4:3),source:"Référence du scénario enregistré"});
+   }
+   nouvelles.push({...r,origine:"projet"});
+  }
+  stop();closeEditor();rows.splice(0,rows.length,...nouvelles);
+  const horizon=Math.max(1,Math.min(365,Number(parametres.duree)||28));$("xp-duration").value=$("xp-day").max=horizon;
+  for(const [champ,cle] of [["age","age"],["weight","poids"],["height","taille"]])if(parametres[cle]!=null)$("xp-"+champ).value=parametres[cle];
+  sex=parametres.sexe==="female"?"female":"male";for(const b of $("sex-choice").querySelectorAll("button"))b.setAttribute("aria-pressed",String(b.dataset.sex===sex));
+  renderList();setDay(Math.min(horizon,Math.max(0,Number(parametres.jour)||0)));
+ },
+ proposer(produit,prise){
+  if(!lookup(produit.id))index(produit);
+  const i=prise?rows.findIndex(r=>r.origine==="recit"&&r.id===produit.id&&r.qty===prise.qty):-1;
+  family=produit.family;openEditor(i<0?null:i);search(produit.id);
   $("xp-editor").scrollIntoView({block:"nearest"});
  },
  bilan(){return [$("xp-totals").textContent,...evaluateDay(rows,day(),Number($("xp-age").value),lookup).signals.map(s=>s.reason)].filter(Boolean).join(" ");},
  scenario(){
   const resultat=evaluateDay(rows,day(),Number($("xp-age").value),lookup);
   return {parametres:{jour:day(),duree:duration(),sexe:sex,age:$("xp-age").value,poids:$("xp-weight").value,taille:$("xp-height").value,
-   prises:rows.map(r=>({...r,nom:lookup(r.id).name,unite:lookup(r.id).unit}))},
+   prises:rows.map(r=>({...r,nom:lookup(r.id).name,unite:lookup(r.id).unit,famille:lookup(r.id).family}))},
    resultats:{apports:Object.fromEntries([...resultat.available].map(k=>[k,resultat.totals[k]])),reperes:resultat.signals}};
  }
 }));
