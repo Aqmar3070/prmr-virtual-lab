@@ -91,7 +91,7 @@ function renderRecherche(a){
  for(const r of lignes){
   const tr=document.createElement("tr");tr.dataset.niveau=r.niveau;tr.style.color=couleurs[r.niveau];
   const effet=node("td",r.constat);effet.append(node("small","Pourquoi : "+r.pourquoi));
-  const chiffre=node("td",r.rr!=null?"× "+arrondi(r.rr,2)+" ("+arrondi(r.bas,2)+"–"+arrondi(r.haut,2)+")":"—");
+  const chiffre=node("td",r.rr!=null?"× "+arrondi(r.rr,2)+(r.bas!=null?" ("+arrondi(r.bas,2)+"–"+arrondi(r.haut,2)+")":" (sans intervalle publié)"):"—");
   if(r.rr!=null)chiffre.append(node("small",r.rr>=1?"+"+arrondi((r.rr-1)*100,0)+" % de risque":arrondi((r.rr-1)*100,0)+" % de risque"));
   const nat=node("td","");nat.append(Object.assign(node("span",nature[r.statut]),{className:"xr-etiq"}));
   if(r.domaine==="extrapole"&&r.statut!=="reglementaire")nat.append(Object.assign(node("span","Extrapolé (durée)"),{className:"xr-etiq xr-extra"}));
@@ -106,7 +106,7 @@ function renderRecherche(a){
   corps.append(tr);
  }
  // Forêt des risques relatifs, échelle logarithmique.
- const f=$("xr-forest"),chiffres=lignes.filter(r=>r.rr!=null);f.replaceChildren();
+ const f=$("xr-forest"),chiffres=lignes.filter(r=>r.rr!=null&&r.bas!=null);f.replaceChildren();
  const h=26+chiffres.length*22,lo=Math.log(0.5),hi=Math.log(Math.max(4,...chiffres.map(r=>r.haut))*1.1);
  f.setAttribute("viewBox","0 0 560 "+h);
  const X=v=>215+330*(Math.log(v)-lo)/(hi-lo);

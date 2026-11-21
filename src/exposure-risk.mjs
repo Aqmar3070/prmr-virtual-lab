@@ -216,6 +216,6 @@ export function reperesAtlas(analyse){
  if(!analyse)return [];
  const rang={eleve:0,modere:1,faible:2,non_chiffre:3,favorable:4};
  return analyse.resultats.filter(r=>r.zones.length&&r.signe!==0).sort((x,y)=>rang[x.niveau]-rang[y.niveau]||(y.rr??0)-(x.rr??0)).map(r=>({zone:r.zones[0],zones:r.zones,sign:r.signe,niveau:r.niveau,title:r.titre,
-  reason:r.constat+(r.rr!=null?" Risque relatif "+arrondi(r.rr,2)+" (IC 95 % "+arrondi(r.bas,2)+"–"+arrondi(r.haut,2)+").":"")+" "+r.pourquoi+(r.domaine==="extrapole"?" Extrapolation : les études portent sur une consommation habituelle suivie des années ; ce chiffre vaut si la consommation devient durable.":""),
+  reason:r.constat+(r.rr!=null?" Risque relatif "+arrondi(r.rr,2)+(r.bas!=null?" (IC 95 % "+arrondi(r.bas,2)+"–"+arrondi(r.haut,2)+")":" (intervalle non publié)")+".":"")+" "+r.pourquoi+(r.domaine==="extrapole"?" Extrapolation : les études portent sur une consommation habituelle suivie des années ; ce chiffre vaut si la consommation devient durable.":""),
   source:r.source,url:r.url,recherche:true}));
 }

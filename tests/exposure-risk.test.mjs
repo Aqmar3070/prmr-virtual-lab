@@ -87,6 +87,8 @@ test('Maladies hors cancer : os, articulations, cœur, reins, infections',()=>{
  for(const x of homme50){assert.ok(x.url.startsWith('https://doi.org/'),x.id);assert.ok(x.pourquoi&&x.constat,x.id);}
  const femme12=autresMaladies({g:12,verres:1,femme:true}),f=id=>femme12.find(x=>x.id===id);
  assert.equal(f('diabete').rr,0.82);
+ // Un chiffre sans intervalle publié ne doit pas casser les repères de la carte.
+ assert.match(reperesAtlas({resultats:femme12.map(x=>({...x,domaine:'etudie'}))}).find(x=>x.title==='Diabète de type 2').reason,/intervalle non publié/);
  assert.equal(f('pancreatite').rr,0.76);
  assert.equal(f('polyarthrite').rr,0.88);
  assert.equal(f('polyarthrite').niveau,'favorable');
