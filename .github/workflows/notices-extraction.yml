@@ -1,0 +1,26 @@
+name: Extraction des notices BDPM (rubrique 4.8)
+on:
+  push:
+    branches: ['notices-extraction']
+    paths: ['scripts/extraire_notices.py', '.github/workflows/notices-extraction.yml', 'research-data/notices-lot.txt']
+permissions:
+  contents: write
+concurrency: notices-extraction
+jobs:
+  extraire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lire les notices
+        run: |
+          mkdir -p research-data/notices-echantillons
+          LIMITE=$(cat research-data/notices-lot.txt 2>/dev/null || echo 0)
+          python3 scripts/extraire_notices.py --limite "$LIMITE" --budget-minutes 320 --echantillons research-data/notices-echantillons
+      - name: Enregistrer le résultat sur la branche
+        run: |
+          git config user.name "prmr-extraction"
+          git config user.email "actions@users.noreply.github.com"
+          git add research-data/notices-bdpm.json.gz research-data/notices-echantillons
+          git commit -m "Notices BDPM : extraction de la rubrique 4.8" || exit 0
+          git push
