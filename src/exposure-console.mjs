@@ -1,6 +1,7 @@
 import {themeProduit,connaissances} from "./exposure-narrative.mjs";
 import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
+import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie} from "./exposure-risk.mjs";
 const $=id=>document.getElementById(id);
 const node=(tag,text)=>Object.assign(document.createElement(tag),{textContent:text});
 const svg=(tag,attributes,text)=>{
@@ -77,8 +78,62 @@ function renderChart(active){
  plot.append(svg("path",{d:"M"+x(current)+" 16V163",stroke:"#68c7d7","stroke-dasharray":"3 4"}),svg("circle",{cx:x(current),cy:y(at(current,true)),r:at(current,true)==null?0:4,fill:"#9dffff"}));
  $("xp-legend").firstChild.textContent=compare?($("xp-alternative").value==="moitie"?"━ Quantités divisées par deux ":"━ Prise maintenue "):"";
 }
+function profil(){return {sexe:sex,age:Number($("xp-age").value),poids:Number($("xp-weight").value),taille:Number($("xp-height").value)};}
+const couleurs={eleve:"#ff5a48",modere:"#ff9a3c",faible:"#ffd166",favorable:"#3fe6b0",non_chiffre:"#a9b8c2"};
+const nature={association_observee:"Association observée",reglementaire:"Calcul + seuil officiel",non_documente:"Décrit, non chiffré"};
+function renderRecherche(a){
+ const zone=$("xp-research");zone.hidden=!a;if(!a)return;
+ $("xr-resume").textContent="Alcool pur : "+arrondi(a.moyenne)+" g par jour de consommation (≈ "+arrondi(a.verres)+" verres standard de 12 g), "+a.nbJours+" jour"+(a.nbJours>1?"s":"")+" de consommation, "+arrondi(a.total,0)+" g au total. Catégorie "+libelleCategorie(a.categorie)+". "+(a.domaine==="extrapole"?"Durée inférieure à un an : les risques à long terme sont extrapolés (consommation supposée durable).":"Durée d’au moins un an : dans le domaine des études de consommation habituelle.");
+ // Tableau : tous les résultats, du plus fort au plus faible.
+ const rang={eleve:0,modere:1,faible:2,favorable:3,non_chiffre:4};
+ const lignes=[...a.resultats].sort((x,y)=>rang[x.niveau]-rang[y.niveau]||(y.rr??0)-(x.rr??0));
+ const corps=$("xr-table").tBodies[0];corps.replaceChildren();
+ for(const r of lignes){
+  const tr=document.createElement("tr");tr.dataset.niveau=r.niveau;tr.style.color=couleurs[r.niveau];
+  const effet=node("td",r.constat);effet.append(node("small","Pourquoi : "+r.pourquoi));
+  const chiffre=node("td",r.rr!=null?"× "+arrondi(r.rr,2)+" ("+arrondi(r.bas,2)+"–"+arrondi(r.haut,2)+")":"—");
+  if(r.rr!=null)chiffre.append(node("small",r.rr>=1?"+"+arrondi((r.rr-1)*100,0)+" % de risque":arrondi((r.rr-1)*100,0)+" % de risque"));
+  const nat=node("td","");nat.append(Object.assign(node("span",nature[r.statut]),{className:"xr-etiq"}));
+  if(r.domaine==="extrapole"&&r.statut!=="reglementaire")nat.append(Object.assign(node("span","Extrapolé (durée)"),{className:"xr-etiq xr-extra"}));
+  else nat.append(Object.assign(node("span","Calculé"),{className:"xr-etiq"}));
+  const src=node("td","");const lien=node("a",r.source);lien.href=r.url;lien.target="_blank";lien.rel="noopener";src.append(lien);
+  if(r.source2){const l2=node("a"," · "+r.source2.source);l2.href=r.source2.url;l2.target="_blank";l2.rel="noopener";src.append(l2);}
+  const titre=node("td",r.titre);
+  const niv=node("td",{eleve:"Élevé",modere:"Modéré",faible:"Faible",favorable:"Favorable",non_chiffre:"Non chiffré"}[r.niveau]);
+  for(const td of [effet,chiffre,nat,src,niv])td.style.color="#d9f3f8";
+  tr.append(titre,effet,niv,chiffre,nat,src);
+  if(r.zones.length)tr.onclick=()=>{selected=r.titre;render();document.dispatchEvent(new CustomEvent("xp-focus",{detail:r.zones[0]}));};
+  corps.append(tr);
+ }
+ // Forêt des risques relatifs, échelle logarithmique.
+ const f=$("xr-forest"),chiffres=lignes.filter(r=>r.rr!=null);f.replaceChildren();
+ const h=26+chiffres.length*22,lo=Math.log(0.5),hi=Math.log(Math.max(4,...chiffres.map(r=>r.haut))*1.1);
+ f.setAttribute("viewBox","0 0 560 "+h);
+ const X=v=>215+330*(Math.log(v)-lo)/(hi-lo);
+ for(const v of [0.5,1,2,5,10,20,50].filter(v=>Math.log(v)<=hi)){f.append(svg("path",{d:"M"+X(v)+" 6V"+(h-16),stroke:v===1?"#9fe9f1":"#23485a","stroke-dasharray":v===1?"":"2 3"}),svg("text",{x:X(v),y:h-3,"text-anchor":"middle"},String(v).replace(".",",")));}
+ chiffres.forEach((r,i)=>{const y=18+i*22,c=couleurs[r.niveau];
+  f.append(svg("text",{x:208,y:y+4,"text-anchor":"end"},r.titre.length>34?r.titre.slice(0,33)+"…":r.titre),svg("path",{d:"M"+X(r.bas)+" "+y+"H"+X(r.haut),stroke:c,"stroke-width":2}),svg("rect",{x:X(r.rr)-4,y:y-4,width:8,height:8,fill:c}),svg("text",{x:Math.min(552,X(r.haut)+5),y:y+4,fill:c},arrondi(r.rr,2)));});
+ // Alcoolémie maximale par jour (Widmark), bande d'incertitude et seuil de 0,5 g/L.
+ const b=$("xr-bac");b.replaceChildren();
+ const valeurs=a.jours.map(g=>alcoolemie(g,profil()));
+ const n=a.jours.length-1||1,top=Math.max(0.6,...valeurs.map(v=>v?v.haut:0))*1.08;
+ const bx=t=>44+460*t/n,by=v=>182-v/top*165;
+ for(let i=0;i<=4;i++){const v=top*i/4;b.append(svg("path",{d:"M44 "+by(v)+"H504",stroke:"#1e4152"}),svg("text",{x:39,y:by(v)+4,"text-anchor":"end"},arrondi(v,2)));}
+ for(let i=0;i<=4;i++){const t=Math.round(n*i/4);b.append(svg("text",{x:bx(t),y:200,"text-anchor":"middle"},"J"+t));}
+ let bande="",haut="",bas="",ligne="";
+ valeurs.forEach((v,t)=>{const p=v||{pic:0,bas:0,haut:0};haut+=(t?" L":"M")+bx(t)+" "+by(p.haut);bas=" L"+bx(t)+" "+by(p.bas)+bas;ligne+=(t?" L":"M")+bx(t)+" "+by(p.pic);});
+ bande=haut+bas+" Z";
+ b.append(svg("path",{d:bande,fill:"#ff9a3c33",stroke:"none"}),svg("path",{d:ligne,fill:"none",stroke:"#ff9a3c","stroke-width":2}),
+  svg("path",{d:"M44 "+by(0.5)+"H504",stroke:"#ff5a48","stroke-dasharray":"5 4"}),svg("text",{x:500,y:by(0.5)-4,"text-anchor":"end",fill:"#ff8b7d"},"0,5 g/L · seuil légal de conduite"),
+  svg("path",{d:"M"+bx(day())+" 14V182",stroke:"#68c7d7","stroke-dasharray":"3 4"}));
+}
 function render(){
- const t=day(),result=evaluateDay(rows,t,Number($("xp-age").value),lookup),all=result.signals;
+ const t=day(),result=evaluateDay(rows,t,Number($("xp-age").value),lookup);
+ const analyse=analyserAlcool(rows,lookup,profil(),duration());
+ // Le moteur de recherche remplace les repères alcool génériques du NCI par des chiffres calculés.
+ const all=analyse?[...reperesAtlas(analyse),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
+ for(const s of all)s.cle??=s.recherche?s.title:s.zone;
+ renderRecherche(analyse);
  document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
  const display={ethanolMl:"Alcool pur (mL)",ethanolG:"Alcool pur (g)",sugarG:"Sucres (g)",caffeineMg:"Caféine (mg)"};
  $("xp-totals").textContent=[...result.available].map(key=>display[key]+" : "+fmt(result.totals[key])).join(" · ");
@@ -92,23 +147,23 @@ function render(){
  const traced=lookup($("xp-chart-item").value);
  if(traced){let sum=0;for(const r of rows.filter(r=>r.id===traced.id))for(let d=r.start;d<=Math.min(t,r.end-1);d++)sum+=doseAt(r,d);
  $("xp-totals").append(node("p","Quantité cumulée de "+traced.name+" de J0 à J"+t+" inclus : "+fmt(sum)+" "+traced.unit+"."));}
- const active=all.find(s=>s.zone===selected)||all[0];selected=active?.zone;
+ const active=all.find(s=>s.cle===selected)||all[0];selected=active?.cle;
  $("xp-day-tag").value=$("xp-time-label").value="J"+t;
  $("xp-body-image").setAttribute("href","./assets/exposure/"+sex+".webp");
  const marks=$("xp-marks"),cards=$("xp-signals"),why=$("xp-reason");marks.replaceChildren();cards.replaceChildren();why.replaceChildren();
  for(const signal of all){
-  const position=anchors[sex][signal.zone];
+  const position=signal.recherche?null:anchors[sex][signal.zone];
   const [cx,cy]=position||[0,0],left=["liver","small_intestine"].includes(signal.zone),ex=left?65:535;
   const adverse=signal.sign<0,shade=adverse?"bad":"good";
   const group=svg("g",{});group.append(svg("ellipse",{cx,cy,rx:signal.zone==="small_intestine"?55:32,ry:signal.zone==="calf_l"?48:31,fill:"url(#xp-"+shade+")"}),svg("path",{class:"xp-leader",d:"M"+cx+" "+cy+" L"+(left?ex+78:ex-78)+" "+(cy-25)+" H"+ex}),svg("text",{x:ex,y:cy-30,"text-anchor":left?"start":"end"},names[signal.zone]));if(position)marks.append(group);
-  const b=node("button","");b.type="button";b.setAttribute("aria-pressed",String(signal===active));b.append(node("b",names[signal.zone]),Object.assign(node("span",adverse?"− Défavorable":"+ Favorable"),{className:adverse?"minus":"plus"}));
-  const select=()=>{selected=signal.zone;render();document.dispatchEvent(new CustomEvent("xp-focus",{detail:signal.zone}))};b.onclick=select;group.onclick=select;cards.append(b);
+  const b=node("button","");b.type="button";b.setAttribute("aria-pressed",String(signal===active));b.append(node("b",signal.recherche?signal.title:names[signal.zone]),Object.assign(node("span",adverse?"− Défavorable":"+ Favorable"),{className:adverse?"minus":"plus"}));
+  const select=()=>{selected=signal.cle;render();document.dispatchEvent(new CustomEvent("xp-focus",{detail:signal.zone}))};b.onclick=select;group.onclick=select;cards.append(b);
  }
  if(active){
-  why.append(node("h4",(active.sign<0?"Pourquoi ce signal est défavorable":"Pourquoi ce signal est favorable")+" · "+names[active.zone]),node("p",active.reason));
+  why.append(node("h4",(active.sign<0?"Pourquoi ce signal est défavorable":"Pourquoi ce signal est favorable")+" · "+(active.recherche?active.title:names[active.zone])),node("p",active.reason));
   if(active.url){const source=node("a",active.source);source.href=active.url;why.append(source)}else why.append(node("small",active.source));
  }else cards.append(node("p",rows.length?"Aucun repère défavorable ou favorable établi par les règles disponibles pour ces paramètres.":"Ajouter une prise pour consulter les repères documentés."));
- why.append(node("small","Carte : risque documenté à l’échelle d’une population. Aucune estimation de lésion, de guérison ou de probabilité personnelle. Une zone vide peut manquer de données."));
+ why.append(node("small","Carte : couleur selon le risque relatif calculé pour la dose saisie, mesuré dans des populations. Ce n’est pas un diagnostic. Une zone vide peut manquer de données."));
  const themes=new Set(rows.filter(r=>doseAt(r,t)>0).map(r=>r.abv===0?null:themeProduit(lookup(r.id)?.name||"")).filter(Boolean));
  for(const theme of themes)for(const [titre,detail,source,url] of connaissances[theme]){
   const boite=node("details",""),lien=node("a",source);lien.href=url;
@@ -263,7 +318,7 @@ loadReferences().then(()=>initialiserAssistant({
   for(let i=rows.length-1;i>=0;i--)if(rows[i].origine==="recit")rows.splice(i,1);
   for(const {produit,row} of prises){if(!lookup(produit.id))index(produit);rows.push({...row,origine:"recit"});}
   if(prises.length){
-   const fin=Math.max(...prises.map(p=>p.row.end));$("xp-duration").value=$("xp-day").max=String(Math.max(fin,...rows.map(r=>Math.min(365,r.end))));
+   const fin=Math.max(...prises.map(p=>p.row.end));$("xp-duration").value=$("xp-day").max=String(Math.max(fin,...rows.map(r=>Math.min(730,r.end))));
    $("xp-day").value=String(fin-1);
    $("xp-measure").value=prises.some(p=>p.row.abv!=null)?"ethanolMl":prises.some(p=>p.produit.id==="cafeine")?"caffeineMg":"prise";
    $("xp-cumul").checked=fin>1;
@@ -274,7 +329,7 @@ loadReferences().then(()=>initialiserAssistant({
   if(!parametres||!Array.isArray(parametres.prises))throw Error("Scénario illisible.");
   const nouvelles=[];
   for(const r of parametres.prises){
-   if(!r.id||!Number.isFinite(r.qty)||!Number.isFinite(r.after)||![r.start,r.reduce,r.end].every(Number.isInteger)||r.start<0||r.reduce<r.start||r.end<r.reduce||r.end<=r.start||r.end>366||r.qty<=0||r.after<0||r.after>r.qty)throw Error("Les dates ou quantités enregistrées sont incomplètes.");
+   if(!r.id||!Number.isFinite(r.qty)||!Number.isFinite(r.after)||![r.start,r.reduce,r.end].every(Number.isInteger)||r.start<0||r.reduce<r.start||r.end<r.reduce||r.end<=r.start||r.end>731||r.qty<=0||r.after<0||r.after>r.qty)throw Error("Les dates ou quantités enregistrées sont incomplètes.");
    if(!lookup(r.id)){
     if(!r.nom||!r.unite)throw Error("La référence manque dans le scénario sauvegardé.");
     index({id:r.id,name:r.nom,unit:r.unite,family:r.famille??(r.unite==="mL"?4:3),source:"Référence du scénario enregistré"});
@@ -282,7 +337,7 @@ loadReferences().then(()=>initialiserAssistant({
    nouvelles.push({...r,origine:"projet"});
   }
   stop();closeEditor();rows.splice(0,rows.length,...nouvelles);
-  const horizon=Math.max(1,Math.min(365,Number(parametres.duree)||28));$("xp-duration").value=$("xp-day").max=horizon;
+  const horizon=Math.max(1,Math.min(730,Number(parametres.duree)||28));$("xp-duration").value=$("xp-day").max=horizon;
   for(const [champ,cle] of [["age","age"],["weight","poids"],["height","taille"]])if(parametres[cle]!=null)$("xp-"+champ).value=parametres[cle];
   sex=parametres.sexe==="female"?"female":"male";for(const b of $("sex-choice").querySelectorAll("button"))b.setAttribute("aria-pressed",String(b.dataset.sex===sex));
   renderList();setDay(Math.min(horizon,Math.max(0,Number(parametres.jour)||0)));
