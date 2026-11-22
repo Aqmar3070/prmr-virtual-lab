@@ -1,6 +1,7 @@
 // Assistant de saisie. Une proposition passe par le formulaire et ses contrôles d’unités.
 import {lireRecit,connaissances} from "./exposure-narrative.mjs";
 import {lireDocument} from "./exposure-document.mjs";
+import {lireProfil,lireSymptomes} from "./exposure-symptomes.mjs";
 
 const $=id=>document.getElementById(id);
 const serveur="https://bwhlsackoaxwwrgxympl.supabase.co";
@@ -15,11 +16,17 @@ async function session(){
  if(error||!data.user)throw Error("Connectez-vous à votre espace de recherche PRMR, puis revenez ici.");
  return client;
 }
-export function initialiserAssistant({produits,proposer,appliquer,restaurer,bilan,scenario}){
+export function initialiserAssistant({produits,proposer,appliquer,restaurer,bilan,scenario,definirProfil=()=>{},definirSymptomes=()=>{}}){
  const reponse=$("xa-answer"),propositions=$("xa-proposals"),note=$("xa-note");
  function analyser(){
   const prises=lireRecit(note.value,produits);
   propositions.replaceChildren();
+  // Profil et symptômes décrits dans le récit : appliqués avant le calcul.
+  const profilLu=lireProfil(note.value),symptomes=lireSymptomes(note.value);
+  if(Object.keys(profilLu).length)definirProfil(profilLu);
+  definirSymptomes(symptomes);
+  const lus=[profilLu.sexe?(profilLu.sexe==="male"?"homme":"femme"):"",profilLu.age?profilLu.age+" ans":"",profilLu.poids?profilLu.poids+" kg":"",profilLu.taille?profilLu.taille+" cm":""].filter(Boolean);
+  if(lus.length||symptomes.length){const info=document.createElement("p");info.textContent=[lus.length?"Profil lu : "+lus.join(", ")+".":"",symptomes.length?"Symptômes lus : "+symptomes.map(s=>s.nom).join(", ")+" — rapprochés des effets documentés dans « Analyse par zone ».":""].filter(Boolean).join(" ");propositions.append(info);}
   if(!prises.length){
    reponse.textContent=(note.value.trim()?"Aucune prise identifiable dans ce passage. ":"")+(bilan()||"Exemple : je bois 33 cl de bière à 5 % chaque jour pendant deux semaines.");
    return;

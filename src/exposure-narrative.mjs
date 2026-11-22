@@ -1,12 +1,13 @@
 // Lecture locale des apports explicitement décrits. Les durées sont des jours entiers.
 import {fold} from "./exposure-evidence.mjs";
 import {teneurLibelle} from "./exposure-agents.mjs";
+import {dureeGlobale} from "./exposure-symptomes.mjs";
 
 // Valeurs de départ appliquées à toute substance, modifiables ensuite :
 // 1 000 mg ou 100 g par jour, 500 mL pour les boissons ; spécialité : nombre d'unités le plus proche de 1 000 mg ; 30 jours.
 export const DUREE_DEFAUT=30;
 export function quantiteDefaut(produit){
- if(produit.family===4)return 500; // boissons : 500 mL (ou 500 g pour les boissons Ciqual)
+ if(produit.family===4&&(produit.unit==="mL"||produit.unit==="g"))return 500; // boissons : 500 mL (ou 500 g pour les boissons Ciqual)
  if(produit.unit==="mg")return 1000;
  if(produit.unit==="g"||produit.unit==="mL")return 100;
  const t=teneurLibelle(produit);
@@ -70,13 +71,13 @@ export function lireRecit(texte,produits){
  const continu=texte.replace(/(\d)[ \t]*\r?\n[ \t]*(?=(?:jours?|semaines?|cl|ml|mg|g|%|degrés?)\b)/giu,"$1 ")
   .replace(/\r?\n(?=\s*(?:pendant|depuis|durant|chaque|par jour|tous les)\b)/giu," ")
   .replace(/\b(pendant|depuis|durant)\s*\n\s*/giu,"$1 ");
- const passages=continu.split(/(?:[;\n]+|(?<=[.!?])\s+|\s+et\s+(?=je\b|j[’']|(?:du |de la |un |une )?(?:caféine|bière|vin|ibuprofène|paracétamol|metformine)\b))/iu);
+ const passages=continu.split(/(?:[;\n]+|(?<=[.!?])\s+|\s+et\s+(?=je\b|j[’']|(?:du |de la |un |une )?(?:caféine|café|thé|bière|vin|ibuprofène|paracétamol|metformine)(?!\p{L})))/iu);
  for(const passage of passages){
   const brut=fold(passage).replace(/[’']/g," ").trim();
   if(!brut)continue;
   const ligne=brut.replace(/\b(trente[- ]trois|vingt[- ]cinq)\b/g,m=>m.startsWith("trente")?"33":"25").replace(/\b(un|une|deux|trois|quatre|cinq|six|sept|huit|neuf|dix|quatorze|quinze|trente|cinquante|cent)\b/g,m=>String(mots[m]));
   const boisson=boissons.find(([,mot])=>mot.test(ligne));
-  const direct=["cafeine","ibuprofene","paracetamol","metformine"].filter(k=>new RegExp("\\b"+k+"\\b").test(ligne));
+  const direct=["cafeine","ibuprofene","paracetamol","metformine","cafe","the"].filter(k=>new RegExp("\\b"+k+"\\b"+(k==="cafe"?"(?!ine)":"")).test(ligne)&&produits.has(k));
   const mesures=[...ligne.matchAll(/(\d+(?:[.,]\d+)?)\s*(millilitres?|centilitres?|litres?|milligrammes?|grammes?|ml|cl|l|mg|g)\b/g)].filter(m=>!/^\s*\//.test(ligne.slice(m.index+m[0].length)));
   let nom=boisson?.[0]||direct[0];
   let produit=produits.get(direct[0]);
@@ -141,6 +142,12 @@ export function lireRecit(texte,produits){
   if(nombreCanettes){quantite=Number(nombreCanettes[1])*250;notes.push("Canette standard de 250 mL.");}
   const ok=quantite>0&&jours>=1&&jours<=730&&(quotidien||jours===1)&&(abv===null||abv<=100);
   resultats.push({produit,theme:themeProduit(nom),notes,row:(valide||ok)?{id:produit.id,qty:quantite,after:quantite,start:0,reduce:jours,end:jours,abv,...(compo?{caf:compo.caf,sug:compo.sug}:{}),label:compo?compo.label:alcoolPur?"Alcool pur déclaré (g)":abv!==null?"Degré déclaré":"",bed:/pres du coucher|avant de dormir/.test(ligne),long:false}:null});
+ }
+ // Durée annoncée à part (« ça fait 4 semaines ») : appliquée aux prises sans durée.
+ const globale=dureeGlobale(continu);
+ if(globale)for(const r of resultats)if(r.row&&r.notes.some(n=>n.startsWith("Durée non précisée"))){
+  r.row.end=Math.min(730,globale);if(r.row.reduce>r.row.end||r.row.reduce===30)r.row.reduce=r.row.end;
+  r.notes=r.notes.map(n=>n.startsWith("Durée non précisée")?"Durée lue dans le récit : "+r.row.end+" jours.":n);
  }
  return resultats;
 }

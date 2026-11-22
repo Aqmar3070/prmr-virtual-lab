@@ -4,6 +4,8 @@ import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie,equivalencesAlcool} from "./exposure-risk.mjs";
 import {analyserAgents,teneurLibelle} from "./exposure-agents.mjs";
 import {BOISSONS} from "./exposure-boissons.mjs";
+import {ficheSymptomes} from "./exposure-symptomes.mjs";
+let symptomes=[];
 import {chargerNotices,fichesNotices} from "./exposure-notices.mjs";
 let notices=null,noticesDemandees=false;
 import {chargerMonographies,fichesMonographies,nomFrancais} from "./exposure-monographies.mjs";
@@ -163,6 +165,8 @@ function render(){
  if(!noticesDemandees&&rows.some(r=>/^(cis|sa)/.test(r.id)||["paracetamol","ibuprofene","metformine"].includes(r.id))){noticesDemandees=true;chargerNotices().then(d=>{notices=d;render();}).catch(()=>{});}
  if(!monographiesDemandees&&rows.some(r=>lookup(r.id)?.family===2||r.id.startsWith("ema:"))){monographiesDemandees=true;chargerMonographies().then(d=>{monographies=d;ajouterPlantes(d);render();}).catch(()=>{});}
  const fiches=[ficheAlcool(analyse),...agents.fiches,...fichesNotices(rows,lookup,products,notices,duration()),...fichesMonographies(rows,lookup,monographies,duration())].filter(Boolean);
+ // Symptômes décrits dans le récit : rapprochés des effets enregistrés, affichés en tête.
+ const parSymptome=ficheSymptomes(symptomes,fiches);if(parSymptome)fiches.unshift(parSymptome);
  // Les fiches de recherche remplacent les repères génériques (NCI, EFSA sommeil reste affiché).
  const all=fiches.length?[...fiches.flatMap(f=>reperesAtlas(f)),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
  for(const s of all)s.cle??=s.recherche?s.title:s.zone;
@@ -407,6 +411,12 @@ document.addEventListener("xp-atlas-ready",render);
 fetch("./research-data/r13_exposures.json").then(r=>r.json()).then(d=>{registre=d.substances;render();}).catch(()=>{});
 loadReferences().then(()=>initialiserAssistant({
  produits:products,
+ definirProfil(p){
+  if(p.sexe){sex=p.sexe;for(const b of $("sex-choice").querySelectorAll("button"))b.setAttribute("aria-pressed",String(b.dataset.sex===sex));}
+  if(p.age)$("xp-age").value=p.age;if(p.poids)$("xp-weight").value=p.poids;if(p.taille)$("xp-height").value=p.taille;
+  render();
+ },
+ definirSymptomes(liste){symptomes=liste;render();},
  appliquer(prises){
   // Une relecture remplace les prises du récit, tout en conservant les saisies manuelles.
   for(let i=rows.length-1;i>=0;i--)if(rows[i].origine==="recit")rows.splice(i,1);
