@@ -32,3 +32,9 @@ export const NATURELLES = [
   { id: "nat-papayer", name: "Papayer (feuilles, extrait)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
   { id: "nat-artemisia-annua", name: "Artemisia annua (feuilles en tisane)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
 ];
+NATURELLES.push(
+  { id: "nat-noni", name: "Noni (jus, Morinda citrifolia)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
+  { id: "nat-neem", name: "Neem (feuilles, Azadirachta indica)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
+  { id: "nat-kola-amer", name: "Kola amer (Garcinia kola)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
+  { id: "nat-citronnelle", name: "Citronnelle (Cymbopogon citratus)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
+);

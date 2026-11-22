@@ -37,6 +37,8 @@ export function plantePour(produit,donnees){
  if(!produit||!donnees?.plantes)return null;
  if(produit.id?.startsWith("ema:"))return donnees.plantes[Number(produit.id.slice(4))]||null;
  const nom=fold(produit.name||"");
+ // Le kola amer (Garcinia kola) n'est pas la noix de kola (Cola) de la monographie européenne.
+ if(/garcinia|kola amer|bitter kola/.test(nom))return null;
  const genres=new Set();
  for(const mot of nom.split(/[^a-z]+/)){if(NOMS_FR[mot])genres.add(NOMS_FR[mot]);}
  const candidats=[];
