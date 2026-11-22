@@ -6,7 +6,7 @@ import {analyserAgents,teneurLibelle} from "./exposure-agents.mjs";
 import {BOISSONS} from "./exposure-boissons.mjs";
 import {chargerNotices,fichesNotices} from "./exposure-notices.mjs";
 let notices=null,noticesDemandees=false;
-import {chargerMonographies,fichesMonographies} from "./exposure-monographies.mjs";
+import {chargerMonographies,fichesMonographies,nomFrancais} from "./exposure-monographies.mjs";
 let monographies=null,monographiesDemandees=false;
 const $=id=>document.getElementById(id);
 const node=(tag,text)=>Object.assign(document.createElement(tag),{textContent:text});
@@ -360,7 +360,7 @@ for(const s of published)index(s);
 // Plantes des monographies européennes ajoutées aux substances naturelles (100 g par jour par défaut).
 function ajouterPlantes(d){
  (d?.plantes||[]).forEach((pl,i)=>{if(!pl.latin&&!pl.commun)return;const id="ema:"+i;if(products.has(id))return;
-  const s={id,name:[pl.commun,pl.latin].filter(Boolean).join(" · "),family:2,unit:"g",source:"EMA · monographie de plante"};products.set(id,s);index(s);});
+  const s={id,name:[nomFrancais(pl),pl.commun,pl.latin].filter(Boolean).join(" · "),family:2,unit:"g",source:"EMA · monographie de plante"};products.set(id,s);index(s);});
 }
 async function loadReferences(){
  try{
