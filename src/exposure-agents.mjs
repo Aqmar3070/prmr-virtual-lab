@@ -48,6 +48,11 @@ export const SOURCES_AGENTS={
  patelNeem:{source:"Patel et coll. · Cutis 2024, huile de neem et cas de dépigmentation cutanée",url:doi("10.12788/cutis.0928")},
  ilechie:{source:"Ilechie et coll. · Acta Ophthalmol 2020, essai randomisé croisé sur le kola amer (46 adultes)",url:doi("10.1111/aos.14440")},
  maybodi:{source:"Maybodi et coll. · BMC Complement Med Ther 2025, essai randomisé sur l’inhalation de citronnelle (38 patients)",url:doi("10.1186/s12906-025-04834-w")},
+ mahmoud:{source:"Mahmoud et coll. · J Antimicrob Chemother 1994, chloroquine prise avec karkadé, tamarin ou citron",url:doi("10.1093/jac/33.5.1005")},
+ sinniah:{source:"Sinniah et coll. · J Pathol 1989, huile de neem (margousier) et syndrome de type Reye",url:doi("10.1002/path.1711590313")},
+ arslanNigelle:{source:"Arslan et coll. · J Integr Med 2013, insuffisance rénale aiguë associée à la nigelle (cas)",url:doi("10.3736/jintegrmed2013010")},
+ muellerNoni:{source:"Mueller et coll. · Am J Kidney Dis 2000, jus de noni et hyperkaliémie (cas)",url:doi("10.1016/s0272-6386(00)70342-8")},
+ gomezMoringa:{source:"Gómez-Martínez et coll. · Nutrients 2022, essai randomisé moringa et prédiabète (65 personnes)",url:doi("10.3390/nu14010057")},
  girofle:{source:"Vicidomini et coll. · Molecules 2021, revue sur le girofle",url:doi("10.3390/molecules26071880")},
  alqareer:{source:"Alqareer et coll. · J Dent 2006, essai randomisé gel de girofle vs benzocaïne (73 adultes)",url:doi("10.1016/j.jdent.2006.01.009")},
  mohan:{source:"Mohan et coll. · BMC Complement Altern Med 2019, étude pilote (13 volontaires)",url:doi("10.1186/s12906-019-2507-7")},
@@ -305,13 +310,16 @@ const ALIMENTS=[
     constat:"Ne concerne pas la carotte alimentaire : 20 mg/j de bêta-carotène en compléments pendant 5 à 8 ans ont augmenté le cancer du poumon de 18 % (3 à 36 %) et la mortalité de 8 % chez des fumeurs. Aucun décès n’est documenté pour la carotte consommée comme aliment.",pourquoi:"À forte dose isolée, chez un poumon exposé au tabac, le bêta-carotène peut devenir pro-oxydant.",...SOURCES_AGENTS.atbc}]},
  {id:"bissap",titre:"Bissap · hibiscus (Hibiscus sabdariffa)",re:/\b(bissap|hibiscus|karkade|oseille de guinee)\b/,unite:"g",
   eq:g=>["≈ "+ar(g/2,0)+" sachets de 2 g de fleurs séchées (poids indicatif)","Boisson du commerce ou maison : la teneur en fleurs et en sucre varie, voir la fiche « Sucres » pour un jus Ciqual"],
-  resultats:(g,j)=>[
+  resultats:(g,j,ctx)=>[
    {id:"bissap_tension",titre:"Artères · baisse de la pression artérielle",zones:["aorta","heart"],signe:1,niveau:"favorable",rr:null,statut:"association_observee",domaine:"etudie",
     constat:"Cinq essais randomisés, 390 participants : la prise d’hibiscus abaisse la systolique de 7,6 mm Hg (5,5 à 9,7) et la diastolique de 3,5 mm Hg (1,9 à 5,2) par rapport au témoin. La baisse est plus forte quand la tension de départ est élevée.",
     pourquoi:"Les anthocyanes et acides organiques des calices détendent la paroi des artères et ont un léger effet diurétique.",...SOURCES_AGENTS.serban},
    {id:"bissap_hypotension",titre:"Tension trop basse avec un antihypertenseur",zones:["brain","heart"],signe:0,niveau:"non_chiffre",rr:null,statut:"analyse",domaine:"etudie",
     constat:"Avec un traitement contre l’hypertension, la baisse due à l’hibiscus s’ajoute à celle du médicament : vertiges au lever possibles. Mesurer la tension si le bissap est bu tous les jours en grande quantité.",
     pourquoi:"Analyse d’interaction : deux effets hypotenseurs s’additionnent.",...SOURCES_AGENTS.serban},
+   {id:"bissap_chloroquine",titre:"Interaction · chloroquine beaucoup moins absorbée",zones:["stomach","liver"],signe:-1,niveau:ctx?.chloroquine?"eleve":"modere",rr:null,statut:"association_observee",domaine:"etudie",
+    constat:"Volontaires sains, à jeun : 600 mg de chloroquine pris avec du karkadé (bissap) au lieu d’eau → exposition du sang divisée par 3,5 (aire sous la courbe 7,52 → 2,16 mg·h/L) et pic divisé par 3,7 (553 → 148). Une perte d’efficacité contre le paludisme est attendue."+(ctx?.chloroquine?" Chloroquine présente dans votre scénario.":""),
+    pourquoi:"Les acides et polyphénols de la boisson réduisent l’absorption intestinale du médicament ; ne pas prendre un antipaludique avec du bissap.",...SOURCES_AGENTS.mahmoud},
    {id:"bissap_dose",titre:"Dose saisie et doses étudiées",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"non_documente",domaine:"extrapole",
     constat:ar(g,0)+" g de fleurs par jour. La méta-analyse ne fixe pas de dose maximale sûre : au-delà des préparations des essais, aucun chiffre publié ne permet de calculer un risque.",
     pourquoi:"Une quantité très supérieure aux usages en infusion ne peut pas être extrapolée sans données.",...SOURCES_AGENTS.serban}]},
@@ -327,6 +335,9 @@ const ALIMENTS=[
    {id:"nigelle_tolerance",titre:"Tolérance · effets indésirables passagers",zones:["stomach"],signe:-1,niveau:"faible",rr:1.01,bas:0.59,haut:1.73,statut:"association_observee",domaine:"etudie",
     constat:"Dans 5 essais, effets indésirables passagers, sans soin nécessaire, pas plus fréquents qu’avec le témoin (rapport 1,01 ; 0,59 à 1,73).",
     pourquoi:"Aux doses des essais, la graine est bien tolérée ; les troubles digestifs sont les plus souvent rapportés.",...SOURCES_AGENTS.heNigelle},
+   {id:"nigelle_rein",titre:"Reins · insuffisance rénale aiguë (cas rapporté)",zones:["kidney_l","kidney_r"],signe:-1,niveau:"faible",badge:"rare",rr:null,statut:"pharmacovigilance",domaine:"etudie",
+    constat:"Cas publié d’insuffisance rénale aiguë associée à la prise de nigelle chez un patient diabétique. Cas isolé : fréquence inconnue, mais prudence en cas de maladie rénale ou de diabète.",
+    pourquoi:"Mécanisme non établi par le rapport de cas.",...SOURCES_AGENTS.arslanNigelle},
    {id:"nigelle_dose",titre:"Dose saisie et doses étudiées",zones:[],signe:0,niveau:g>10?"modere":"non_chiffre",rr:null,statut:"non_documente",domaine:"extrapole",
     constat:ar(g,0)+" g par jour. Les essais portent sur des préparations de quelques grammes par jour au plus ; au-delà, la tolérance n’est pas documentée.",
     pourquoi:"Une quantité très supérieure aux essais sort du domaine étudié.",...SOURCES_AGENTS.heNigelle}]},
@@ -345,11 +356,14 @@ const ALIMENTS=[
    {id:"spiruline_dose",titre:"Dose saisie et doses étudiées",zones:[],signe:0,niveau:g>19?"modere":"non_chiffre",badge:g>19?"× "+ar(g/19,0):undefined,rr:null,statut:"non_documente",domaine:"extrapole",
     constat:ar(g,0)+" g par jour"+(g>19?", au-delà de la plus forte dose étudiée (19 g/j) : aucun effet n’est chiffré à cette dose.":", dans la plage étudiée (1 à 19 g/j)."),pourquoi:"Les essais couvrent 1 à 19 g par jour.",...SOURCES_AGENTS.huangSpiruline}]},
  {id:"moringa",titre:"Moringa (Moringa oleifera)",re:/\bmoringa\b/,unite:"g",
-  eq:g=>["≈ "+ar(g/2,0)+" cuillères à café de poudre de feuilles (poids indicatif : 2 g)"],
-  resultats:(g,j)=>[
+  eq:g=>["≈ "+ar(g/2,0)+" cuillères à café de poudre de feuilles (poids indicatif : 2 g)","Essai clinique : 2,4 g par jour (6 gélules)"],
+  resultats:(g,j,ctx)=>[
    {id:"moringa_preuves",titre:"Effets attendus · peu de preuves chez l’humain",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"non_documente",domaine:"etudie",
     constat:"163 composés identifiés (flavonoïdes, glucosinolates, phénols) avec des activités antioxydantes, anti-inflammatoires et antitumorales décrites, mais presque uniquement en laboratoire. Les essais cliniques sont trop rares pour chiffrer un bénéfice.",
     pourquoi:"Un effet en laboratoire ne prouve pas un effet à la dose mangée.",...SOURCES_AGENTS.liuMoringa},
+   {id:"moringa_glycemie",titre:"Pancréas · glycémie en cas de prédiabète",zones:["pancreas"],signe:1,niveau:"favorable",rr:null,statut:"association_observee",domaine:j>=60?"etudie":"extrapole",
+    constat:"Essai randomisé en double aveugle, 65 personnes prédiabétiques : 2,4 g par jour de poudre de feuilles pendant 12 semaines font baisser la glycémie à jeun et l’hémoglobine glyquée, qui montent sous placebo. Aucun changement des marqueurs du foie et des reins à cette dose."+(ctx.antidiabetique?" Antidiabétique présent : l’effet peut s’ajouter, surveiller la glycémie.":"")+(g>2.4?" Dose saisie ("+ar(g,0)+" g) supérieure à celle de l’essai.":""),
+    pourquoi:"Polyphénols des feuilles ; effet sur l’absorption et l’utilisation du glucose.",...SOURCES_AGENTS.gomezMoringa},
    {id:"moringa_toxicite",titre:"Cellules · toxicité à forte dose",zones:g>=50?["liver"]:[],signe:-1,niveau:g>=50?"modere":"faible",rr:null,statut:"toxique_etabli",domaine:"extrapole",
     constat:"La revue signale une toxicité à certaines doses et un effet génotoxique (atteinte de l’ADN) en cas d’usage excessif, établis surtout chez l’animal. Dose saisie : "+ar(g,0)+" g par jour.",
     pourquoi:"Seuil humain non établi : la dose sûre au long cours n’est pas connue.",...SOURCES_AGENTS.liuMoringa}]},
@@ -391,12 +405,20 @@ const ALIMENTS=[
    {id:"artemisia_paludisme",titre:"Paludisme · efficacité NON démontrée (essai retiré)",zones:["liver","spleen"],signe:-1,niveau:"eleve",rr:null,statut:"association_observee",domaine:"etudie",
     constat:"Le grand essai (957 patients, RD Congo) qui annonçait une tisane d’Artemisia supérieure au traitement de référence a été RETIRÉ par la revue : ses résultats ne peuvent pas être utilisés. Traiter un paludisme par tisane seule expose à un échec du traitement et à un paludisme grave.",
     pourquoi:"La teneur en artémisinine d’une tisane est faible et variable ; le traitement du paludisme repose sur les combinaisons à base d’artémisinine prescrites.",...SOURCES_AGENTS.munyangi}]},
+ {id:"tamarin",titre:"Tamarin (Tamarindus indica, jus ou pulpe)",re:/\b(tamarin|tamarind|tamarindus|aradaib)\b/,unite:"g",
+  eq:g=>["≈ "+ar(g/20,0)+" cuillères à soupe de pulpe (poids indicatif : 20 g)"],
+  resultats:(g,j,ctx)=>[
+   {id:"tamarin_chloroquine",titre:"Interaction · chloroquine beaucoup moins absorbée",zones:["stomach","liver"],signe:-1,niveau:ctx.chloroquine?"eleve":"modere",rr:null,statut:"association_observee",domaine:"etudie",
+    constat:"Volontaires sains : 600 mg de chloroquine pris avec une boisson de tamarin → exposition du sang divisée par 2,9 (7,52 → 2,60 mg·h/L) et pic divisé par 3 (553 → 184). Perte d’efficacité attendue contre le paludisme."+(ctx.chloroquine?" Chloroquine présente dans votre scénario.":""),
+    pourquoi:"Les acides de la pulpe réduisent l’absorption du médicament.",...SOURCES_AGENTS.mahmoud},
+   {id:"tamarin_sucres",titre:"Sucres · voir la fiche Sucres",zones:[],signe:0,niveau:"non_chiffre",rr:null,statut:"non_documente",domaine:"etudie",
+    constat:"La pulpe de tamarin est très riche en sucres ; une boisson du commerce y ajoute souvent du sucre. La quantité de sucres se lit dans la fiche « Sucres » quand le produit vient de la table Ciqual.",pourquoi:"Teneur variable selon la préparation.",...SOURCES_AGENTS.mahmoud}]},
  {id:"noni",titre:"Noni (Morinda citrifolia, jus)",re:/\b(noni|morinda)\b/,unite:"g",
   eq:g=>["≈ "+ar(g/30,0)+" verres doseurs de 30 mL de jus (poids indicatif)"],
   resultats:(g,j)=>[
    {id:"noni_potassium",titre:"Reins et cœur · potassium élevé",zones:["kidney_l","kidney_r","heart"],signe:-1,niveau:"modere",rr:null,statut:"association_observee",domaine:"etudie",
-    constat:"Le jus de noni est riche en potassium : il doit être surveillé chez les personnes atteintes d’une maladie des reins, du foie ou du cœur. En insuffisance rénale, un excès de potassium peut troubler le rythme cardiaque.",
-    pourquoi:"Des reins affaiblis éliminent mal le potassium, qui s’accumule dans le sang.",...SOURCES_AGENTS.brownNoni},
+    constat:"Le jus de noni contient 56,3 mmol de potassium par litre, autant que le jus d’orange ou de tomate. Cas publié : homme en insuffisance rénale chronique, hyperkaliémie malgré un régime pauvre en potassium, due au noni qu’il prenait en automédication. À surveiller en cas de maladie des reins, du foie ou du cœur : un excès de potassium peut troubler le rythme cardiaque.",
+    pourquoi:"Des reins affaiblis éliminent mal le potassium, qui s’accumule dans le sang.",...SOURCES_AGENTS.muellerNoni,source2:SOURCES_AGENTS.brownNoni},
    {id:"noni_foie",titre:"Foie · cas d’atteinte hépatique rapportés",zones:["liver"],signe:-1,niveau:"faible",badge:"rare",rr:null,statut:"pharmacovigilance",domaine:"etudie",
     constat:"Des cas d’hépatotoxicité ont été rapportés, souvent avec d’autres facteurs en cause. L’Autorité européenne de sécurité des aliments n’a pas établi de lien avec le jus, mais une vigilance reste conseillée. Le jus est autorisé comme nouvel aliment en Europe depuis 2003.",
     pourquoi:"Mécanisme non établi ; les anthraquinones de la plante sont évoquées.",...SOURCES_AGENTS.potteratNoni},
@@ -411,6 +433,9 @@ const ALIMENTS=[
    {id:"neem_peau",titre:"Peau · dépigmentation après application répétée d’huile",zones:["skin"],signe:-1,niveau:"faible",badge:"rare",rr:null,statut:"pharmacovigilance",domaine:"etudie",
     constat:"Cas publié : homme de 77 ans, plaques décolorées sur le dos et les hanches après 6 mois d’application d’huile de neem contre des douleurs articulaires.",
     pourquoi:"Réaction cutanée locale au contact prolongé de l’huile.",...SOURCES_AGENTS.patelNeem},
+   {id:"neem_reye",titre:"Foie et cerveau · intoxication grave de l’enfant par l’huile",zones:["liver","brain"],signe:-1,niveau:"eleve",badge:"rare",rr:null,statut:"toxique_etabli",domaine:"etudie",
+    constat:"L’huile de neem (huile de margousier) avalée a causé chez des enfants, en Malaisie et en Inde, un syndrome de type Reye : atteinte du foie (stéatose microvésiculaire) puis du cerveau (encéphalopathie), parfois mortelle. Le mécanisme a été reproduit chez l’animal : lésions des mitochondries du foie en 30 à 60 minutes.",
+    pourquoi:"Les acides gras à longue chaîne de l’huile bloquent le fonctionnement des mitochondries du foie.",...SOURCES_AGENTS.sinniah},
    {id:"neem_bu",titre:"Prise par la bouche · sécurité non établie",zones:[],signe:0,niveau:g>=10?"modere":"non_chiffre",rr:null,statut:"non_documente",domaine:"extrapole",
     constat:ar(g,0)+" g par jour. Aucune dose orale sûre n’est établie par les sources consultées ; l’huile de neem ne doit pas être avalée, en particulier par les enfants.",pourquoi:"Absence d’essai de sécurité orale chez l’humain.",...SOURCES_AGENTS.wylieNeem}]},
  {id:"kola_amer",titre:"Kola amer (Garcinia kola)",re:/\b(kola amer|bitter kola|garcinia kola|petit kola)\b/,unite:"g",
@@ -482,7 +507,8 @@ export function analyserAliments(rows,lookup,duree,profil={},series={}){
   for(let t=0;t<=duree;t++){let q=0;for(const r of rows){const p=lookup(r.id);if(p&&a.re.test(nomProduit(p))&&!/\bblanc\b/.test(nomProduit(p)))q+=doseAt(r,t);}serie.push(q);}
   const st=stats(serie);if(!st)continue;
   const huile=rows.some(r=>doseAt(r,0)>=0&&a.re.test(nomProduit(lookup(r.id)))&&/\b(huile|essentielle)\b/.test(nomProduit(lookup(r.id))));
-  const ctx={poids:profil.poids,huile,metformine:present("metformine"),ains:present("ibuprofene")};
+  const noms=rows.map(r=>nomProduit(lookup(r.id))).join(" | ");
+  const ctx={poids:profil.poids,huile,metformine:present("metformine"),ains:present("ibuprofene"),chloroquine:/chloroquine|nivaquine/.test(noms),antidiabetique:present("metformine")||/glibenclamide|gliclazide|glimepiride|insuline|sitagliptine|vildagliptine/.test(noms),reins:profil.dfg>0&&profil.dfg<60};
   fiches.push(fiche(a.id,a.titre,a.unite+"/j",st,a.eq(st.moyenne,ctx),a.resultats(st.moyenne,st.nbJours,ctx)));
  }
  return fiches;
