@@ -36,6 +36,17 @@
 .mx-legende{border-left:3px solid var(--mx-c);padding-left:8px;margin:6px 0}
 .mx-legende b{color:var(--mx-c)}
 #mx-titre-stade{display:block;font-size:14px;color:#71e1f2;margin-top:4px}
+[data-appui=obtenue]{--mx-c:#7cf7ff}[data-appui=fort]{--mx-c:#3fe6b0}[data-appui=moyen]{--mx-c:#5fc8ff}[data-appui=faible]{--mx-c:#c4b5fd}
+.mx-piste{border:1px solid #1f4d5d;border-left:3px solid var(--mx-c);border-radius:4px;background:#06202d99;margin:4px 0}
+.mx-piste summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:8px;padding:6px 8px;font-size:12.5px;color:#e2f6fa;font-weight:600}
+.mx-piste summary::-webkit-details-marker{display:none}
+.mx-piste summary span small{display:block;color:var(--mx-c);font-size:11px;font-weight:500;margin-top:2px}
+.mx-piste summary b{color:var(--mx-c);font-size:11px;white-space:nowrap}
+.mx-piste>:not(summary){margin:0 8px 6px 14px;font-size:11.5px;line-height:1.5;color:#bcdbe3}
+.mx-piste p b,.mx-composants b{color:#dff6fa;font-weight:600}
+.mx-composants{padding-left:16px}.mx-composants small{color:#8fb4bf}
+.mx-piste a{color:#94e2eb;font-size:11.5px}
+.mx-legende[data-appui] b{color:var(--mx-c)}
 #mx-substances{max-height:min(70vh,720px);overflow-y:auto;padding-right:3px;scrollbar-width:thin}
 .mx-vide{font-style:italic}
 </style>
@@ -61,12 +72,12 @@
   <div id="xa-stage"></div>
   <div class="xa-controls"><small id="xa-message" role="status">Chargement de l’atlas 3D…</small><div id="xa-layers"></div><label><input type="checkbox" id="xa-isolate"> Isoler la structure sélectionnée</label></div>
   <figcaption>Organes touchés colorés selon le stade · <a href="./assets/human3d/ATTRIBUTION.md">Atlas PRMR · crédits anatomiques</a></figcaption></figure>
- <section class="xp-card xp-right"><h2>Substances efficaces <output id="mx-titre-stade"></output></h2>
+ <section class="xp-card xp-right"><h2>Guérison et substances efficaces <output id="mx-titre-stade"></output></h2>
   <div id="mx-substances" aria-live="polite"></div></section>
 </div>
 </main>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
-<script type="module" src="./src/maladies-console.mjs?v=d28dbc7407"></script>
+<script type="module" src="./src/maladies-console.mjs?v=f22ec20e59"></script>
 </body>
 </html>

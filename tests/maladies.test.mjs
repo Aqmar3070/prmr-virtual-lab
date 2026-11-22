@@ -65,3 +65,16 @@ test('Lot 2 : maladies complexes, recherche et stades',()=>{
  assert.ok(ids(pk,'installe').includes('mucuna')&&!ids(pk,'installe').includes('lixisenatide'));
  for(const m of registre.maladies)for(const s of m.substances)assert.ok(s.resume,m.id+' '+s.id+' sans résumé');
 });
+
+test('Pistes de guérison : guérisons obtenues puis hypothèses sourcées',()=>{
+ assert.ok(registre.regle_appui?.avertissement);
+ for(const m of registre.maladies)for(const g of m.guerison||[]){
+  assert.ok(['obtenue','hypothese'].includes(g.type),g.id);
+  if(g.type==='hypothese'){assert.ok(['fort','moyen','faible'].includes(g.appui),g.id);assert.ok(g.raisonnement&&g.a_tester&&g.risques,g.id);}
+  else assert.ok(g.resultat,g.id);
+  assert.ok(registre.sources[g.source]?.url.startsWith('https://'),g.id);
+  if(g.source2)assert.ok(registre.sources[g.source2]?.url.startsWith('https://'),g.id+' source2');
+  for(const c of g.composants)if(c.ref)assert.ok(m.substances.some(s=>s.id===c.ref),g.id+' → '+c.ref);
+ }
+ assert.ok(registre.maladies.find(m=>m.id==='drepanocytose').guerison.some(g=>g.type==='obtenue'));
+});

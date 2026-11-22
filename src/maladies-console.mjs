@@ -37,6 +37,31 @@ function rendreMaladie(){
 
 function ligne(parent,titre,texte){if(!texte)return;const p=el("p","");p.append(el("b","",titre+" : "),texte);parent.append(p);}
 
+const APPUI={obtenue:{rang:0,libelle:"Guérison ou rémission obtenue"},fort:{rang:1,libelle:"Hypothèse · appui fort"},moyen:{rang:2,libelle:"Hypothèse · appui moyen"},faible:{rang:3,libelle:"Hypothèse · appui faible"}};
+// Pistes de guérison : d'abord ce qui a déjà guéri, puis les combinaisons à tester.
+function rendreGuerison(zone){
+ const pistes=[...(maladie.guerison||[])].sort((a,b)=>APPUI[a.type==="obtenue"?"obtenue":a.appui].rang-APPUI[b.type==="obtenue"?"obtenue":b.appui].rang);
+ const bloc=el("section","mx-guerison");bloc.append(el("h3","mx-niveau","Pistes de guérison"));
+ if(!pistes.length){bloc.append(el("p","mx-etiq","Pistes de guérison en cours de recherche pour cette maladie."));zone.append(bloc);return;}
+ for(const g of pistes){
+  const cle=g.type==="obtenue"?"obtenue":g.appui;
+  const d=el("details","mx-piste");d.dataset.appui=cle;
+  const res=el("summary","");const nom=el("span","",g.titre);nom.append(el("small","",g.objectif));res.append(nom,el("b","",APPUI[cle].libelle));d.append(res);
+  if(g.resultat)ligne(d,"Résultat obtenu",g.resultat);
+  const ul=el("ul","mx-composants");
+  for(const c of g.composants||[]){const li=el("li","");li.append(el("b","",c.nom),c.role?" — "+c.role:"");if(c.ref){const s=maladie.substances.find(x=>x.id===c.ref);if(s?.resume)li.append(el("small",""," ("+s.resume+")"));}ul.append(li);}
+  d.append(el("p","",g.type==="obtenue"?"Composants :":"Combinaison proposée :"),ul);
+  ligne(d,"Raisonnement",g.raisonnement);
+  ligne(d,"Comment la tester",g.a_tester);
+  ligne(d,"Risques",g.risques);
+  d.append(el("p","mx-etiq",g.type==="obtenue"?"Résultat publié chez l’humain · repris de la source":"Hypothèse PRMR construite à partir des études citées · à vérifier par un essai"));
+  for(const k of [g.source,g.source2]){const a=k&&lien(k,registre);if(a){d.append(a);d.append(el("br",""));}}
+  bloc.append(d);
+ }
+ bloc.append(el("p","mx-etiq",registre.regle_appui?.avertissement||""));
+ zone.append(bloc);
+}
+
 function rendreSubstances(){
  const zone=$("mx-substances");zone.replaceChildren();
  const liste=substancesPour(maladie,stade);
@@ -44,7 +69,8 @@ function rendreSubstances(){
  $("mx-titre-stade").textContent=st?st.nom:"Tous les stades";
  const compte=el("div","mx-compte");
  for(const [cle,f] of Object.entries(FORCES)){const n=liste.filter(s=>s.force===cle).length;const c=el("span","mx-pastille",f.libelle+" · "+n);c.dataset.force=cle;compte.append(c);}
- zone.append(compte);
+ rendreGuerison(zone);
+ zone.append(el("h3","mx-niveau","Substances qui améliorent la maladie"),compte);
  let groupeCourant="";
  for(const [cle,f] of Object.entries(FORCES)){
   const groupe=liste.filter(s=>s.force===cle);if(!groupe.length)continue;
@@ -88,6 +114,7 @@ async function demarrer(){
  try{registre=await (await fetch("./research-data/maladies.json")).json();}
  catch{$("mx-liste").textContent="Registre indisponible.";return;}
  const regle=$("mx-regle");
+ for(const [cle,f] of Object.entries(APPUI)){const p=el("p","mx-legende");p.dataset.appui=cle;p.append(el("b","",f.libelle+" — "),registre.regle_appui?.[cle]||"");regle.append(p);}
  for(const [cle,f] of Object.entries(FORCES)){const p=el("p","mx-legende");p.dataset.force=cle;p.append(el("b","",f.libelle+" — "),registre.regle_force[cle]);regle.append(p);}
  $("mx-recherche").oninput=rendreListe;
  $("mx-stade").onchange=()=>{stade=$("mx-stade").value;choisir(maladie.id);};
