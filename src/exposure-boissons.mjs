@@ -38,3 +38,4 @@ NATURELLES.push(
   { id: "nat-kola-amer", name: "Kola amer (Garcinia kola)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
   { id: "nat-citronnelle", name: "Citronnelle (Cymbopogon citratus)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
 );
+NATURELLES.push({ id: "nat-tamarin", name: "Tamarin (pulpe ou jus, Tamarindus indica)", family: 2, unit: "g", source: "Fiche sourcée PRMR" });
