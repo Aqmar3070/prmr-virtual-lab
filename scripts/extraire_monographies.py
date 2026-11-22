@@ -63,7 +63,7 @@ def tableau_plantes():
     return None, []
 
 
-SECTIONS = [("posologie", r"4\.2\.?\s+Posology"), ("contre_indications", r"4\.3\.?\s+Contraindications"),
+SECTIONS = [("indications", r"4\.1\.?\s+Therapeutic indications"), ("posologie", r"4\.2\.?\s+Posology"), ("contre_indications", r"4\.3\.?\s+Contraindications"),
             ("mises_en_garde", r"4\.4\.?\s+Special warnings"), ("interactions", r"4\.5\.?\s+Interactions"),
             ("grossesse", r"4\.6\.?\s+Fertility|4\.6\.?\s+Pregnancy"), ("conduite", r"4\.7\.?\s+Effects on ability"),
             ("effets_indesirables", r"4\.8\.?\s+Undesirable effects"), ("surdosage", r"4\.9\.?\s+Overdose"),
