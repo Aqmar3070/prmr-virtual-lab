@@ -1,0 +1,23 @@
+name: Monographies de plantes (EMA)
+on:
+  push:
+    branches: ['plantes-extraction']
+    paths: ['scripts/extraire_monographies.py', '.github/workflows/monographies-ema.yml']
+permissions:
+  contents: write
+concurrency: plantes-extraction
+jobs:
+  extraire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y poppler-utils >/dev/null && pip install openpyxl >/dev/null
+      - run: python3 scripts/extraire_monographies.py
+      - name: Enregistrer le résultat sur la branche
+        run: |
+          git config user.name "prmr-extraction"
+          git config user.email "actions@users.noreply.github.com"
+          git add research-data/monographies-ema.json.gz
+          git commit -m "Monographies EMA : extraction" || exit 0
+          git push
