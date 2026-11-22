@@ -54,6 +54,7 @@ export function plantePour(produit,donnees){
 }
 
 const RUBRIQUES=[
+ ["indications","Usages reconnus (indications officielles)",1],
  ["posologie","Doses étudiées et durée d’usage",0],
  ["contre_indications","Contre-indications",-1],
  ["mises_en_garde","Mises en garde",-1],
@@ -87,10 +88,10 @@ export function fichesMonographies(rows,lookup,donnees,duree){
   const resultats=RUBRIQUES.filter(([k])=>pl[k]).map(([k,titre,signe])=>{
    const vide=/^(none|not applicable|none reported|none known)\b/i.test(pl[k].trim());
    const freq=fold(pl[k]).match(/frequence : (tres frequent|frequent|peu frequent|tres rare|rare|inconnue)/)?.[1];
-   return {id:"ema_"+k,titre,zones:signe<0&&!vide?zones(pl[k]):[],signe:vide?0:signe,
-    niveau:k!=="effets_indesirables"||vide?"non_chiffre":/^(tres frequent|frequent)$/.test(freq||"")?"modere":"faible",
+   return {id:"ema_"+k,titre,zones:!vide&&signe!==0?zones(pl[k]):[],signe:vide?0:signe,
+    niveau:k==="indications"?"favorable":k!=="effets_indesirables"||vide?"non_chiffre":/^(tres frequent|frequent)$/.test(freq||"")?"modere":"faible",
     badge:k==="effets_indesirables"&&!vide?(freq?freq.replace("tres","très").replace("frequent","fréquent"):"fréquence inconnue"):vide?"aucun":"texte officiel",rr:null,statut:k==="effets_indesirables"?"pharmacovigilance":"reglementaire",domaine:"etudie",
-    constat:pl[k],pourquoi:"Texte officiel de la monographie européenne (en anglais), rubrique "+({posologie:"4.2",contre_indications:"4.3",mises_en_garde:"4.4",interactions:"4.5",grossesse:"4.6",effets_indesirables:"4.8",surdosage:"4.9"}[k])+".",
+    constat:pl[k],pourquoi:"Texte officiel de la monographie européenne (en anglais), rubrique "+({indications:"4.1",posologie:"4.2",contre_indications:"4.3",mises_en_garde:"4.4",interactions:"4.5",grossesse:"4.6",effets_indesirables:"4.8",surdosage:"4.9"}[k])+".",
     source:"EMA · monographie de l’Union européenne · "+(pl.latin||pl.commun),url:pl.monographie||pl.page};
   });
   if(!resultats.length)continue;
