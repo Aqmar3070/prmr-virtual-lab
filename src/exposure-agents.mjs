@@ -35,6 +35,8 @@ export const SOURCES_AGENTS={
  huangSpiruline:{source:"Huang et coll. · Diabetes Metab Syndr Obes 2018, méta-analyse de 12 essais sur la spiruline (1 à 19 g/j)",url:doi("10.2147/DMSO.S185672")},
  shiriSpiruline:{source:"Shiri et coll. · Complement Ther Med 2025, méta-analyse de 35 essais sur la spiruline",url:doi("10.1016/j.ctim.2025.103242")},
  liuMoringa:{source:"Liu et coll. · J Pharm Pharmacol 2022, revue systématique sur Moringa oleifera",url:doi("10.1093/jpp/rgab131")},
+ ichdAntalgique:{source:"Classification internationale des céphalées (ICHD-3) · 8.2.3.1 céphalée par abus de paracétamol",url:"https://ichd-3.org/8-headache-attributed-to-a-substance-or-its-withdrawal/8-2-medication-overuse-headache-moh/8-2-3-simple-analgesic-overuse-headache/8-2-3-1-paracetamol-acetaminophen-overuse-headache"},
+ ichdCafeine:{source:"Classification internationale des céphalées (ICHD-3) · 8.3.1 céphalée de sevrage en caféine",url:"https://ichd-3.org/8-headache-attributed-to-a-substance-or-its-withdrawal/8-3-headache-attributed-to-substance-withdrawal/8-3-1-caffeine-withdrawal-headache"},
  girofle:{source:"Vicidomini et coll. · Molecules 2021, revue sur le girofle",url:doi("10.3390/molecules26071880")},
  alqareer:{source:"Alqareer et coll. · J Dent 2006, essai randomisé gel de girofle vs benzocaïne (73 adultes)",url:doi("10.1016/j.jdent.2006.01.009")},
  mohan:{source:"Mohan et coll. · BMC Complement Altern Med 2019, étude pilote (13 volontaires)",url:doi("10.1186/s12906-019-2507-7")},
@@ -166,6 +168,10 @@ export function analyserCafeine(series,profil,registre){
   if(femme)res.push({id:"cafe_fracture",titre:"Os (café, femmes)",zones:["femur_l","femur_r"],signe:-1,niveau:"non_chiffre",rr:null,statut:"non_documente",...SOURCES_AGENTS.poole,
    constat:"Association entre café et fracture chez la femme, pas chez l’homme (chiffre non donné dans le résumé).",pourquoi:"La caféine augmente un peu la perte urinaire de calcium."});
  }
+ const dependance=mg>200&&st.nbJours>14;
+ res.push({id:"cafeine_sevrage",titre:"Tête · mal de tête en cas d’arrêt brutal (sevrage)",zones:dependance?["brain"]:[],signe:dependance?-1:0,niveau:dependance?"faible":"non_chiffre",rr:null,statut:"reglementaire",domaine:"etudie",
+  constat:"Critère international : après plus de 2 semaines à plus de 200 mg de caféine par jour, un arrêt ou un retard de prise peut déclencher un mal de tête dans les 24 heures, qui disparaît en 7 jours sans caféine. Scénario : "+ar(mg,0)+" mg par jour sur "+st.nbJours+" jours"+(dependance?" : conditions réunies.":" : conditions non réunies."),
+  pourquoi:"Le cerveau s’adapte à la caféine qui bloque l’adénosine ; à l’arrêt, l’adénosine agit de nouveau en excès.",...SOURCES_AGENTS.ichdCafeine});
  return fiche("cafeine","Caféine","mg/j",st,eq,res,{tasses:nbTasses});
 }
 
@@ -217,6 +223,10 @@ export function analyserParacetamol(series,profil,registre){
  if(mg>6000)res.push({id:"paracetamol_rein_surdosage",titre:"Reins · insuffisance rénale aiguë après surdosage",zones:["kidney_l","kidney_r"],signe:-1,niveau:"modere",badge:"2–10/100",rr:null,statut:"association_observee",domaine:"etudie",
   constat:"Au-delà de la dose toxique, une insuffisance rénale aiguë survient chez 2 à 10 personnes sur 100 ; la créatinine monte 2 à 5 jours après, avec un pic vers le 7e jour.",pourquoi:"Le dérivé toxique attaque aussi les tubules du rein, parfois même quand le foie est peu touché.",...SOURCES_AGENTS.stollings});
  res.push(...effetsNotice("paracetamol"));
+ const joursMois=Math.min(30,st.nbJours),abus=st.nbJours>90&&joursMois>=15;
+ res.push({id:"paracetamol_cephalee",titre:"Tête · maux de tête entretenus par l’abus d’antalgiques",zones:abus?["brain"]:[],signe:abus?-1:0,niveau:abus?"modere":"non_chiffre",rr:null,statut:"reglementaire",domaine:"etudie",
+  constat:"Critère international : chez une personne déjà sujette aux maux de tête, prendre du paracétamol 15 jours ou plus par mois pendant plus de 3 mois peut entretenir des maux de tête 15 jours ou plus par mois ; ils disparaissent le plus souvent à l’arrêt de l’excès. Scénario : "+st.nbJours+" jours de prise"+(abus?" : critère de durée atteint.":st.nbJours>=15?" : moins de 3 mois, critère de durée pas encore atteint.":"."),
+  pourquoi:"La prise répétée d’antalgiques abaisse le seuil de la douleur dans le cerveau : le médicament pris contre la céphalée finit par l’entretenir.",...SOURCES_AGENTS.ichdAntalgique});
  return fiche("paracetamol","Paracétamol","mg/j",st,eq,res);
 }
 export function analyserIbuprofene(series,profil,registre){
