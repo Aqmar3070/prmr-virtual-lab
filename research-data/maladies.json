@@ -1,261 +1,1153 @@
 {
  "version": "2026-11-22",
  "regle_force": {
-  "forte": "Essai randomisé d'au moins 1 000 participants, ou méta-analyse d'essais randomisés, montrant un effet significatif sur un critère clinique (insuffisance rénale terminale, décès, complications, apparition de la maladie).",
-  "moyenne": "Essai randomisé de moins de 1 000 participants, ou méta-analyse d'essais randomisés, montrant un effet significatif sur un critère clinique ou un marqueur biologique (HbA1c, glycémie, créatinine, protéinurie, DFG).",
-  "faible": "Preuves de qualité basse ou incertaine selon les auteurs, résultats contradictoires entre méta-analyses, effet non significatif, ou petit essai sans groupe témoin.",
-  "a_eviter": "Atteinte ou aggravation documentée pour cette maladie (toxicité établie ou cas publiés)."
+  "forte": "Essai clinique d'au moins 1 000 participants, ou méta-analyse d'essais, montrant un bénéfice sur la maladie elle-même (moins de dialyse ou d'insuffisance terminale, moins de décès, moins de complications, maladie évitée ou retardée).",
+  "moyenne": "Essai clinique de moins de 1 000 participants, ou méta-analyse, montrant un bénéfice mesuré : DFG préservé ou amélioré, créatinine stabilisée, protéinurie réduite.",
+  "faible": "Bénéfice rapporté chez l'humain, mais preuves de qualité basse selon les auteurs, essais hétérogènes, ou simple association observée.",
+  "preclinique": "Bénéfice observé chez l'animal ou sur cellules : piste prometteuse, à confirmer chez l'humain.",
+  "theorique": "Piste théorique : cible ou mécanisme proposé, simulation informatique ; hypothèse à tester, pas une preuve."
  },
  "sources": {
-  "kdigo": {"source": "KDIGO 2024 · recommandation pour l'évaluation et la prise en charge de la maladie rénale chronique, Kidney Int 2024", "url": "https://doi.org/10.1016/j.kint.2023.10.018"},
-  "insel": {"source": "Insel et coll. · Diabetes Care 2015, stades du diabète de type 1 (JDRF, Endocrine Society, ADA)", "url": "https://doi.org/10.2337/dc15-1419"},
-  "dapaCkd": {"source": "Heerspink et coll. · N Engl J Med 2020, DAPA-CKD (4 304 patients)", "url": "https://doi.org/10.1056/NEJMoa2024816"},
-  "empaKidney": {"source": "EMPA-KIDNEY Collaborative Group · N Engl J Med 2023 (6 609 patients)", "url": "https://doi.org/10.1056/NEJMoa2204233"},
-  "fidelio": {"source": "Bakris et coll. · N Engl J Med 2020, FIDELIO-DKD (5 734 patients)", "url": "https://doi.org/10.1056/NEJMoa2025845"},
-  "flow": {"source": "Perkovic et coll. · N Engl J Med 2024, FLOW (3 533 patients)", "url": "https://doi.org/10.1056/NEJMoa2403347"},
-  "renaal": {"source": "Brenner et coll. · N Engl J Med 2001, RENAAL (1 513 patients)", "url": "https://doi.org/10.1056/NEJMoa011161"},
-  "cetoChen": {"source": "Chen et coll. · J Nephrol 2024, méta-analyse de 16 essais (1 344 patients) sur les cétoanalogues", "url": "https://doi.org/10.1007/s40620-024-02065-9"},
-  "cetoLi": {"source": "Li et coll. · Nutrients 2019, méta-analyse sur les cétoanalogues (951 patients)", "url": "https://doi.org/10.3390/nu11050957"},
-  "manihotTan": {"source": "Tan et coll. · Front Pharmacol 2023, méta-analyse de 32 essais (2 881 patients) sur Abelmoschus manihot", "url": "https://doi.org/10.3389/fphar.2023.1288159"},
-  "manihotWei": {"source": "Wei et coll. · Heliyon 2023, composés actifs et mécanismes d'Abelmoschus manihot", "url": "https://doi.org/10.1016/j.heliyon.2023.e22017"},
-  "cordyceps": {"source": "Zhang et coll. · Cochrane 2014, Cordyceps sinensis et maladie rénale chronique (22 études, 1 746 participants)", "url": "https://doi.org/10.1002/14651858.CD008353.pub2"},
-  "curcumineFutuhi": {"source": "Futuhi et coll. · J Complement Integr Med 2022, méta-analyse de 9 essais sur la curcumine dans la maladie rénale chronique", "url": "https://doi.org/10.1515/jcim-2022-0082"},
-  "curcumineEmami": {"source": "Emami et coll. · Avicenna J Phytomed 2022, méta-analyse de 10 essais (523 patients)", "url": "https://doi.org/10.22038/AJP.2022.20049"},
-  "nortier": {"source": "Nortier et coll. · N Engl J Med 2000, aristoloche, néphropathie et cancer des voies urinaires", "url": "https://doi.org/10.1056/NEJM200006083422301"},
-  "muellerNoni": {"source": "Mueller et coll. · Am J Kidney Dis 2000, jus de noni et hyperkaliémie (cas)", "url": "https://doi.org/10.1016/s0272-6386(00)70342-8"},
-  "ukpds34": {"source": "UKPDS Group · Lancet 1998, UKPDS 34 (metformine, 753 patients, 10,7 ans)", "url": "https://pubmed.ncbi.nlm.nih.gov/9742977/"},
-  "dpp": {"source": "Knowler et coll. · N Engl J Med 2002, Diabetes Prevention Program (3 234 personnes)", "url": "https://doi.org/10.1056/NEJMoa012512"},
-  "empaReg": {"source": "Zinman et coll. · N Engl J Med 2015, EMPA-REG OUTCOME (7 020 patients)", "url": "https://doi.org/10.1056/NEJMoa1504720"},
-  "berberineGuo": {"source": "Guo et coll. · Oxid Med Cell Longev 2021, méta-analyse de 46 essais sur la berbérine", "url": "https://doi.org/10.1155/2021/2074610"},
-  "berberineShadin": {"source": "Shadin et coll. · PLoS One 2026, méta-analyse probiotiques, symbiotiques et berbérine", "url": "https://doi.org/10.1371/journal.pone.0348907"},
-  "cannelleAllen": {"source": "Allen et coll. · Ann Fam Med 2013, méta-analyse de 10 essais (543 patients) sur la cannelle", "url": "https://doi.org/10.1370/afm.1517"},
-  "suksomboon": {"source": "Suksomboon et coll. · J Ethnopharmacol 2011, méta-analyse de 9 essais contre placebo sur des plantes", "url": "https://doi.org/10.1016/j.jep.2011.07.059"},
-  "fenugrecShabil": {"source": "Shabil et coll. · Medicina 2023, méta-analyse de 14 essais (894 participants) sur le fenugrec", "url": "https://doi.org/10.3390/medicina59020248"},
-  "margose": {"source": "Ooi et coll. · Cochrane 2010, Momordica charantia et diabète de type 2 (3 essais, 350 participants)", "url": "https://doi.org/10.1002/14651858.CD007845.pub2"},
-  "epicesGarza": {"source": "Garza et coll. · Nutrients 2024, méta-analyse de 45 études sur les épices et la glycémie", "url": "https://doi.org/10.3390/nu16060756"},
-  "gomezMoringa": {"source": "Gómez-Martínez et coll. · Nutrients 2022, essai randomisé moringa et prédiabète (65 personnes)", "url": "https://doi.org/10.3390/nu14010057"},
-  "dcct": {"source": "DCCT Research Group · N Engl J Med 1993 (1 441 patients, 6,5 ans)", "url": "https://doi.org/10.1056/NEJM199309303291401"},
-  "teplizumab": {"source": "Herold et coll. · N Engl J Med 2019, téplizumab chez des apparentés à haut risque (76 participants)", "url": "https://doi.org/10.1056/NEJMoa1902226"},
-  "verapamil": {"source": "Forlenza et coll. · JAMA 2023, CLVer (88 enfants et adolescents)", "url": "https://doi.org/10.1001/jama.2023.2064"}
+  "kdigo": {
+   "source": "KDIGO 2024 · recommandation pour l'évaluation et la prise en charge de la maladie rénale chronique, Kidney Int 2024",
+   "url": "https://doi.org/10.1016/j.kint.2023.10.018"
+  },
+  "insel": {
+   "source": "Insel et coll. · Diabetes Care 2015, stades du diabète de type 1 (JDRF, Endocrine Society, ADA)",
+   "url": "https://doi.org/10.2337/dc15-1419"
+  },
+  "dapaCkd": {
+   "source": "Heerspink et coll. · N Engl J Med 2020, DAPA-CKD (4 304 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2024816"
+  },
+  "empaKidney": {
+   "source": "EMPA-KIDNEY Collaborative Group · N Engl J Med 2023 (6 609 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2204233"
+  },
+  "fidelio": {
+   "source": "Bakris et coll. · N Engl J Med 2020, FIDELIO-DKD (5 734 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2025845"
+  },
+  "flow": {
+   "source": "Perkovic et coll. · N Engl J Med 2024, FLOW (3 533 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2403347"
+  },
+  "renaal": {
+   "source": "Brenner et coll. · N Engl J Med 2001, RENAAL (1 513 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa011161"
+  },
+  "cetoChen": {
+   "source": "Chen et coll. · J Nephrol 2024, méta-analyse de 16 essais (1 344 patients) sur les cétoanalogues",
+   "url": "https://doi.org/10.1007/s40620-024-02065-9"
+  },
+  "cetoLi": {
+   "source": "Li et coll. · Nutrients 2019, méta-analyse sur les cétoanalogues (951 patients)",
+   "url": "https://doi.org/10.3390/nu11050957"
+  },
+  "manihotTan": {
+   "source": "Tan et coll. · Front Pharmacol 2023, méta-analyse de 32 essais (2 881 patients) sur Abelmoschus manihot",
+   "url": "https://doi.org/10.3389/fphar.2023.1288159"
+  },
+  "manihotWei": {
+   "source": "Wei et coll. · Heliyon 2023, composés actifs et mécanismes d'Abelmoschus manihot",
+   "url": "https://doi.org/10.1016/j.heliyon.2023.e22017"
+  },
+  "cordyceps": {
+   "source": "Zhang et coll. · Cochrane 2014, Cordyceps sinensis et maladie rénale chronique (22 études, 1 746 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD008353.pub2"
+  },
+  "ukpds34": {
+   "source": "UKPDS Group · Lancet 1998, UKPDS 34 (metformine, 753 patients, 10,7 ans)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/9742977/"
+  },
+  "dpp": {
+   "source": "Knowler et coll. · N Engl J Med 2002, Diabetes Prevention Program (3 234 personnes)",
+   "url": "https://doi.org/10.1056/NEJMoa012512"
+  },
+  "empaReg": {
+   "source": "Zinman et coll. · N Engl J Med 2015, EMPA-REG OUTCOME (7 020 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1504720"
+  },
+  "berberineGuo": {
+   "source": "Guo et coll. · Oxid Med Cell Longev 2021, méta-analyse de 46 essais sur la berbérine",
+   "url": "https://doi.org/10.1155/2021/2074610"
+  },
+  "berberineShadin": {
+   "source": "Shadin et coll. · PLoS One 2026, méta-analyse probiotiques, symbiotiques et berbérine",
+   "url": "https://doi.org/10.1371/journal.pone.0348907"
+  },
+  "cannelleAllen": {
+   "source": "Allen et coll. · Ann Fam Med 2013, méta-analyse de 10 essais (543 patients) sur la cannelle",
+   "url": "https://doi.org/10.1370/afm.1517"
+  },
+  "suksomboon": {
+   "source": "Suksomboon et coll. · J Ethnopharmacol 2011, méta-analyse de 9 essais contre placebo sur des plantes",
+   "url": "https://doi.org/10.1016/j.jep.2011.07.059"
+  },
+  "fenugrecShabil": {
+   "source": "Shabil et coll. · Medicina 2023, méta-analyse de 14 essais (894 participants) sur le fenugrec",
+   "url": "https://doi.org/10.3390/medicina59020248"
+  },
+  "margose": {
+   "source": "Ooi et coll. · Cochrane 2010, Momordica charantia et diabète de type 2 (3 essais, 350 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD007845.pub2"
+  },
+  "epicesGarza": {
+   "source": "Garza et coll. · Nutrients 2024, méta-analyse de 45 études sur les épices et la glycémie",
+   "url": "https://doi.org/10.3390/nu16060756"
+  },
+  "gomezMoringa": {
+   "source": "Gómez-Martínez et coll. · Nutrients 2022, essai randomisé moringa et prédiabète (65 personnes)",
+   "url": "https://doi.org/10.3390/nu14010057"
+  },
+  "dcct": {
+   "source": "DCCT Research Group · N Engl J Med 1993 (1 441 patients, 6,5 ans)",
+   "url": "https://doi.org/10.1056/NEJM199309303291401"
+  },
+  "teplizumab": {
+   "source": "Herold et coll. · N Engl J Med 2019, téplizumab chez des apparentés à haut risque (76 participants)",
+   "url": "https://doi.org/10.1056/NEJMoa1902226"
+  },
+  "verapamil": {
+   "source": "Forlenza et coll. · JAMA 2023, CLVer (88 enfants et adolescents)",
+   "url": "https://doi.org/10.1001/jama.2023.2064"
+  },
+  "bicarbonate": {
+   "source": "de Brito-Ashurst et coll. · J Am Soc Nephrol 2009, essai randomisé bicarbonate de sodium (134 patients)",
+   "url": "https://doi.org/10.1681/ASN.2008111205"
+  },
+  "pentoxifylline": {
+   "source": "Navarro-González et coll. · J Am Soc Nephrol 2015, essai PREDIAN (169 patients)",
+   "url": "https://doi.org/10.1681/ASN.2014010012"
+  },
+  "bardoxBeam": {
+   "source": "Pergola et coll. · N Engl J Med 2011, essai BEAM (227 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1105351"
+  },
+  "bardoxBeacon": {
+   "source": "de Zeeuw et coll. · N Engl J Med 2013, essai BEACON (2 185 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1306033"
+  },
+  "tolvaptan": {
+   "source": "Torres et coll. · N Engl J Med 2012, TEMPO 3:4 (1 445 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1205511"
+  },
+  "nigelleAlam": {
+   "source": "Alam et coll. · Saudi J Kidney Dis Transpl 2020, huile de nigelle + cétoanalogues (136 patients)",
+   "url": "https://doi.org/10.4103/1319-2442.279943"
+  },
+  "teoRevue": {
+   "source": "Teo et coll. · Cureus 2022, revue de 33 essais de médecines traditionnelles dans la maladie rénale chronique",
+   "url": "https://doi.org/10.7759/cureus.32874"
+  },
+  "gorayaStade4": {
+   "source": "Goraya et coll. · Clin J Am Soc Nephrol 2013, fruits et légumes ou bicarbonate au stade 4 (71 patients)",
+   "url": "https://doi.org/10.2215/CJN.02430312"
+  },
+  "gorayaStade2": {
+   "source": "Goraya et coll. · Kidney Int 2012, fruits et légumes ou bicarbonate aux stades 1 et 2",
+   "url": "https://doi.org/10.1038/ki.2011.313"
+  },
+  "astragaleZhang": {
+   "source": "Zhang et coll. · J Ethnopharmacol 2019, méta-analyse de 66 essais (4 785 patients) sur l'astragale",
+   "url": "https://doi.org/10.1016/j.jep.2019.111921"
+  },
+  "astragaleLin": {
+   "source": "Lin et coll. · Ren Fail 2024, méta-analyse de 32 essais (2 462 patients), astragale + IEC ou sartan",
+   "url": "https://doi.org/10.1080/0886022X.2024.2359033"
+  },
+  "astragaleAnimal": {
+   "source": "Liu et coll. · Phytomedicine 2024, méta-analyse de 40 études animales (1 543 animaux) sur l'astragale",
+   "url": "https://doi.org/10.1016/j.phymed.2024.155646"
+  },
+  "coq10": {
+   "source": "Bakhshayeshkaram et coll. · Curr Pharm Des 2018, méta-analyse de 7 essais sur la coenzyme Q10",
+   "url": "https://doi.org/10.2174/1381612824666181112112857"
+  },
+  "omega3": {
+   "source": "Ong et coll. · BMJ 2023, 19 cohortes (25 570 personnes) sur les oméga-3",
+   "url": "https://doi.org/10.1136/bmj-2022-072909"
+  },
+  "kinkelibaCisplatine": {
+   "source": "Kpemissi et coll. · Biomed Pharmacother 2019, kinkéliba et reins (cellules, rats, simulation)",
+   "url": "https://doi.org/10.1016/j.biopha.2019.108961"
+  },
+  "kinkelibaHek": {
+   "source": "Kpemissi et coll. · Heliyon 2019, kinkéliba, antioxydant et protection des cellules rénales",
+   "url": "https://doi.org/10.1016/j.heliyon.2019.e01365"
+  },
+  "moringaHuile": {
+   "source": "Edeogu et coll. · J Am Coll Nutr 2020, huile de graines de moringa et reins (rats)",
+   "url": "https://doi.org/10.1080/07315724.2019.1649218"
+  },
+  "moringaFeuilles": {
+   "source": "Akinrinde et coll. · Afr Health Sci 2020, extrait de feuilles de moringa et reins (rats)",
+   "url": "https://doi.org/10.4314/ahs.v20i3.44"
+  },
+  "nrf2Gsk3": {
+   "source": "Zhang et coll. · Redox Biol 2025, régulation de Nrf2 indépendante de Keap1, nouvelle cible rénale",
+   "url": "https://doi.org/10.1016/j.redox.2025.103593"
+  }
  },
  "maladies": [
   {
    "id": "mrc",
    "nom": "Maladie rénale chronique",
-   "synonymes": ["insuffisance rénale chronique", "insuffisance rénale", "IRC", "MRC", "néphropathie", "reins"],
-   "incurable": true,
-   "zones": ["kidney_l", "kidney_r"],
-   "description": "Baisse durable de la filtration des reins ou atteinte rénale présente depuis plus de 3 mois. Les stades se lisent sur le débit de filtration glomérulaire (DFG, en mL/min/1,73 m²).",
+   "synonymes": [
+    "insuffisance rénale chronique",
+    "insuffisance rénale",
+    "IRC",
+    "MRC",
+    "néphropathie",
+    "reins"
+   ],
+   "zones": [
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "Baisse durable de la filtration des reins. Les stades se lisent sur le débit de filtration glomérulaire (DFG, en mL/min/1,73 m²). Sont recensées ici les substances, naturelles ou synthétiques, qui ont préservé ou amélioré la fonction des reins.",
    "source": "kdigo",
    "stades": [
-    {"id": "G1", "nom": "Stade G1 · DFG ≥ 90 avec atteinte rénale", "dfg": [90, 200], "niveau": "faible"},
-    {"id": "G2", "nom": "Stade G2 · DFG 60 à 89", "dfg": [60, 89], "niveau": "faible"},
-    {"id": "G3a", "nom": "Stade G3a · DFG 45 à 59", "dfg": [45, 59], "niveau": "modere"},
-    {"id": "G3b", "nom": "Stade G3b · DFG 30 à 44", "dfg": [30, 44], "niveau": "modere"},
-    {"id": "G4", "nom": "Stade G4 · DFG 15 à 29", "dfg": [15, 29], "niveau": "eleve"},
-    {"id": "G5", "nom": "Stade G5 · DFG < 15", "dfg": [0, 14], "niveau": "eleve"}
+    {
+     "id": "G1",
+     "nom": "Stade G1 · DFG ≥ 90 avec atteinte rénale",
+     "dfg": [
+      90,
+      200
+     ],
+     "niveau": "faible"
+    },
+    {
+     "id": "G2",
+     "nom": "Stade G2 · DFG 60 à 89",
+     "dfg": [
+      60,
+      89
+     ],
+     "niveau": "faible"
+    },
+    {
+     "id": "G3a",
+     "nom": "Stade G3a · DFG 45 à 59",
+     "dfg": [
+      45,
+      59
+     ],
+     "niveau": "modere"
+    },
+    {
+     "id": "G3b",
+     "nom": "Stade G3b · DFG 30 à 44",
+     "dfg": [
+      30,
+      44
+     ],
+     "niveau": "modere"
+    },
+    {
+     "id": "G4",
+     "nom": "Stade G4 · DFG 15 à 29",
+     "dfg": [
+      15,
+      29
+     ],
+     "niveau": "eleve"
+    },
+    {
+     "id": "G5",
+     "nom": "Stade G5 · DFG < 15",
+     "dfg": [
+      0,
+      14
+     ],
+     "niveau": "eleve"
+    }
    ],
    "substances": [
-    {"id": "dapagliflozine", "nom": "Dapagliflozine", "type": "medicament", "force": "forte", "dfg": [25, 75],
-     "dose": "10 mg une fois par jour", "duree": "2,4 ans (médiane)",
-     "population": "4 304 patients, DFG 25 à 75, albuminurie 200 à 5 000 mg/g, avec ou sans diabète de type 2",
-     "effet": "Déclin du DFG d'au moins 50 %, insuffisance rénale terminale ou décès rénal ou cardiovasculaire : 9,2 % contre 14,5 % sous placebo (HR 0,61 ; IC 95 % 0,51 à 0,72). Décès toutes causes : HR 0,69 (0,53 à 0,88). Il suffit de traiter 19 patients pour éviter un événement. Effet identique avec ou sans diabète.",
-     "rr": 0.61, "bas": 0.51, "haut": 0.72,
-     "mecanisme": "Bloque le cotransporteur SGLT2 du tubule proximal du rein : moins de sucre et de sel réabsorbés, baisse de la pression dans les glomérules.",
-     "zones": ["kidney_l", "kidney_r"], "source": "dapaCkd"},
-    {"id": "empagliflozine_rein", "nom": "Empagliflozine", "type": "medicament", "force": "forte", "dfg": [20, 89],
-     "dose": "10 mg une fois par jour", "duree": "2 ans (médiane)",
-     "population": "6 609 patients, DFG 20 à 44, ou DFG 45 à 89 avec albuminurie ≥ 200 mg/g, avec ou sans diabète",
-     "effet": "Progression de la maladie rénale ou décès cardiovasculaire : 13,1 % contre 16,9 % (HR 0,72 ; IC 95 % 0,64 à 0,82). Résultat constant selon le DFG et la présence d'un diabète. Hospitalisations toutes causes : HR 0,86 (0,78 à 0,95).",
-     "rr": 0.72, "bas": 0.64, "haut": 0.82,
-     "mecanisme": "Même classe que la dapagliflozine : inhibition du SGLT2 dans le tubule proximal.",
-     "zones": ["kidney_l", "kidney_r"], "source": "empaKidney"},
-    {"id": "finerenone", "nom": "Finérénone", "type": "medicament", "force": "forte", "dfg": [25, 74],
-     "dose": "Dose de l'essai non indiquée dans le résumé consulté ; ajoutée à un bloqueur du système rénine-angiotensine à dose maximale tolérée", "duree": "2,6 ans (médiane)",
-     "population": "5 734 patients avec diabète de type 2, DFG 25 à 74 selon l'albuminurie",
-     "effet": "Insuffisance rénale, baisse du DFG d'au moins 40 % ou décès rénal : 17,8 % contre 21,1 % (HR 0,82 ; IC 95 % 0,73 à 0,93). Événements cardiovasculaires : HR 0,86 (0,75 à 0,99). Arrêts pour potassium élevé : 2,3 % contre 0,9 %.",
-     "rr": 0.82, "bas": 0.73, "haut": 0.93,
-     "mecanisme": "Antagoniste non stéroïdien du récepteur des minéralocorticoïdes : freine l'inflammation et la fibrose du rein.",
-     "condition": "Diabète de type 2 associé", "zones": ["kidney_l", "kidney_r"], "source": "fidelio"},
-    {"id": "semaglutide_rein", "nom": "Sémaglutide", "type": "medicament", "force": "forte", "dfg": [25, 75],
-     "dose": "1,0 mg en injection sous-cutanée une fois par semaine", "duree": "3,4 ans (médiane)",
-     "population": "3 533 patients avec diabète de type 2, DFG 25 à 75 et albuminurie",
-     "effet": "Événements rénaux majeurs (insuffisance rénale, baisse du DFG d'au moins 50 %, décès rénal ou cardiovasculaire) : − 24 % (HR 0,76 ; IC 95 % 0,66 à 0,88). Pente annuelle du DFG moins rapide de 1,16 mL/min. Décès toutes causes : HR 0,80 (0,67 à 0,95).",
-     "rr": 0.76, "bas": 0.66, "haut": 0.88,
-     "mecanisme": "Agoniste du récepteur du GLP-1 : baisse de la glycémie, du poids et de la pression artérielle, effet anti-inflammatoire sur le rein.",
-     "condition": "Diabète de type 2 associé", "zones": ["kidney_l", "kidney_r", "pancreas"], "source": "flow"},
-    {"id": "losartan", "nom": "Losartan", "type": "medicament", "force": "forte", "dfg": null,
-     "dose": "50 à 100 mg une fois par jour, en plus du traitement antihypertenseur habituel", "duree": "3,4 ans (moyenne)",
-     "population": "1 513 patients avec diabète de type 2 et néphropathie (plage de DFG non indiquée dans le résumé consulté)",
-     "effet": "Doublement de la créatinine, insuffisance rénale terminale ou décès : − 16 %. Insuffisance rénale terminale : − 28 %. Protéinurie : − 35 %. Pas d'effet sur la mortalité.",
-     "mecanisme": "Bloque le récepteur de l'angiotensine II : baisse de la pression dans les glomérules et de la fuite de protéines, au-delà de la baisse de tension.",
-     "condition": "Diabète de type 2 associé", "zones": ["kidney_l", "kidney_r"], "source": "renaal"},
-    {"id": "cetoanalogues", "nom": "Cétoanalogues + régime pauvre en protéines", "type": "regime", "force": "moyenne", "dfg": [0, 59],
-     "dose": "Supplément de cétoanalogues d'acides aminés associé à un régime pauvre ou très pauvre en protéines (doses variables selon les essais)", "duree": "13 mois (médiane)",
+    {
+     "id": "bicarbonate",
+     "nom": "Bicarbonate de sodium (oral)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "puissance": 87,
+     "dfg": [
+      15,
+      30
+     ],
+     "resume": "87 % de passages en insuffisance terminale en moins",
+     "dose": "Supplément oral de bicarbonate de sodium (dose ajustée au bicarbonate sanguin)",
+     "duree": "2 ans",
+     "population": "134 patients, clairance de la créatinine 15 à 30 mL/min, bicarbonate sanguin bas (16 à 20 mmol/L)",
+     "effet": "La fonction rénale baisse 3 fois moins vite : − 1,88 mL/min par an contre − 5,93 sans bicarbonate. Insuffisance rénale terminale chez 6,5 % contre 33 % (risque relatif 0,13 ; IC 95 % 0,04 à 0,40). Déclin rapide chez 9 % contre 45 %. L'état nutritionnel s'améliore.",
+     "mecanisme": "Corrige l'acidité du sang (acidose métabolique), qui accélère les lésions des reins.",
+     "source": "bicarbonate",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "dapagliflozine",
+     "nom": "Dapagliflozine",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 39,
+     "dfg": [
+      25,
+      75
+     ],
+     "resume": "39 % de pertes graves de fonction rénale en moins",
+     "dose": "10 mg une fois par jour",
+     "duree": "2,4 ans (médiane)",
+     "population": "4 304 patients, DFG 25 à 75, avec ou sans diabète",
+     "effet": "Réduit de 39 % le risque de perte grave de fonction rénale, de dialyse ou de décès rénal ou cardiovasculaire (HR 0,61 ; IC 95 % 0,51 à 0,72) ; de 44 % pour les seuls événements rénaux (HR 0,56). Décès toutes causes − 31 %. Traiter 19 patients évite un événement. Même bénéfice avec ou sans diabète.",
+     "mecanisme": "Bloque le cotransporteur SGLT2 du tubule proximal : baisse de la pression dans les glomérules, qui sont ainsi ménagés.",
+     "rr": 0.61,
+     "bas": 0.51,
+     "haut": 0.72,
+     "source": "dapaCkd",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "empagliflozine_rein",
+     "nom": "Empagliflozine",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 28,
+     "dfg": [
+      20,
+      89
+     ],
+     "resume": "28 % de progressions en moins",
+     "dose": "10 mg une fois par jour",
+     "duree": "2 ans (médiane)",
+     "population": "6 609 patients, DFG 20 à 89, avec ou sans diabète",
+     "effet": "Réduit de 28 % la progression de la maladie rénale ou le décès cardiovasculaire (HR 0,72 ; IC 95 % 0,64 à 0,82), quel que soit le DFG de départ. Hospitalisations − 14 %.",
+     "mecanisme": "Même classe que la dapagliflozine (inhibiteur du SGLT2).",
+     "rr": 0.72,
+     "bas": 0.64,
+     "haut": 0.82,
+     "source": "empaKidney",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "losartan",
+     "nom": "Losartan",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 28,
+     "dfg": null,
+     "resume": "28 % d'insuffisances terminales en moins",
+     "dose": "50 à 100 mg une fois par jour",
+     "duree": "3,4 ans (moyenne)",
+     "population": "1 513 patients avec diabète de type 2 et atteinte rénale (plage de DFG non indiquée dans le résumé consulté)",
+     "effet": "Insuffisance rénale terminale − 28 %, doublement de la créatinine − 25 %, critère combiné − 16 %. Protéinurie − 35 %. Bénéfice supérieur à ce qu'explique la baisse de tension.",
+     "mecanisme": "Bloque le récepteur de l'angiotensine II : moins de pression et de fuite de protéines dans les glomérules.",
+     "condition": "Diabète de type 2 associé",
+     "source": "renaal",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "semaglutide_rein",
+     "nom": "Sémaglutide",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 24,
+     "dfg": [
+      25,
+      75
+     ],
+     "resume": "24 % d'événements rénaux majeurs en moins",
+     "dose": "1,0 mg en injection sous-cutanée par semaine",
+     "duree": "3,4 ans (médiane)",
+     "population": "3 533 patients avec diabète de type 2, DFG 25 à 75",
+     "effet": "Réduit de 24 % les événements rénaux majeurs (HR 0,76 ; IC 95 % 0,66 à 0,88). Le DFG baisse moins vite de 1,16 mL/min par an. Décès toutes causes − 20 %.",
+     "mecanisme": "Agoniste du GLP-1 : baisse de la glycémie, du poids et de la tension, effet anti-inflammatoire sur le rein.",
+     "rr": 0.76,
+     "bas": 0.66,
+     "haut": 0.88,
+     "condition": "Diabète de type 2 associé",
+     "zones": [
+      "kidney_l",
+      "kidney_r",
+      "pancreas"
+     ],
+     "source": "flow"
+    },
+    {
+     "id": "finerenone",
+     "nom": "Finérénone",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 18,
+     "dfg": [
+      25,
+      74
+     ],
+     "resume": "18 % de progressions en moins",
+     "dose": "Ajoutée à un bloqueur du système rénine-angiotensine à dose maximale tolérée (dose non indiquée dans le résumé consulté)",
+     "duree": "2,6 ans (médiane)",
+     "population": "5 734 patients avec diabète de type 2, DFG 25 à 74",
+     "effet": "Réduit de 18 % l'insuffisance rénale, la baisse du DFG d'au moins 40 % ou le décès rénal (HR 0,82 ; IC 95 % 0,73 à 0,93). Événements cardiovasculaires − 14 %. Surveiller le potassium.",
+     "mecanisme": "Bloque le récepteur des minéralocorticoïdes : moins d'inflammation et de fibrose du rein.",
+     "rr": 0.82,
+     "bas": 0.73,
+     "haut": 0.93,
+     "condition": "Diabète de type 2 associé",
+     "source": "fidelio",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "tolvaptan",
+     "nom": "Tolvaptan",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 60,
+     "dfg": [
+      60,
+      200
+     ],
+     "resume": "Aggravations de la fonction rénale : 2 au lieu de 5 pour 100 patients-années",
+     "dose": "Dose la plus élevée tolérée parmi trois schémas, deux prises par jour",
+     "duree": "3 ans",
+     "population": "1 445 patients de 18 à 50 ans avec polykystose rénale autosomique dominante, clairance ≥ 60 mL/min",
+     "effet": "Les reins grossissent deux fois moins vite (+ 2,8 % par an contre + 5,5 %). Aggravations de la fonction rénale : 2 contre 5 pour 100 patients-années ; douleurs rénales moins fréquentes ; déclin de la fonction rénale ralenti. Plus d'arrêts pour soif, urines abondantes et atteinte du foie (23 % contre 14 %).",
+     "mecanisme": "Bloque le récepteur V2 de la vasopressine, qui fait grossir les kystes.",
+     "condition": "Polykystose rénale",
+     "source": "tolvaptan",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "bardoxolone",
+     "nom": "Bardoxolone méthyl",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 10.5,
+     "dfg": [
+      20,
+      45
+     ],
+     "resume": "DFG + 10,5 mL/min à 1 an",
+     "dose": "25, 75 ou 150 mg une fois par jour",
+     "duree": "52 semaines",
+     "population": "227 patients avec diabète de type 2, DFG 20 à 45",
+     "effet": "Le DFG remonte : + 8,2 à + 11,4 mL/min à 24 semaines selon la dose, encore + 5,8 à + 10,5 mL/min à 52 semaines. C'est la plus forte hausse du DFG de ce registre.",
+     "mecanisme": "Active Nrf2, le régulateur principal des défenses antioxydantes des cellules.",
+     "condition": "Diabète de type 2 associé",
+     "source": "bardoxBeam",
+     "source2": "bardoxBeacon",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "prudence": "Dans l'essai suivant (BEACON, 2 185 patients au stade 4), pas moins d'insuffisances terminales et plus d'hospitalisations pour insuffisance cardiaque (HR 1,83) : essai arrêté. Le bénéfice sur le DFG ne s'est pas traduit par une protection démontrée."
+    },
+    {
+     "id": "pentoxifylline",
+     "nom": "Pentoxifylline",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 4.3,
+     "dfg": [
+      15,
+      59
+     ],
+     "resume": "4,3 mL/min de DFG préservés en 2 ans",
+     "dose": "1 200 mg par jour, en plus d'un IEC ou d'un sartan",
+     "duree": "2 ans",
+     "population": "169 patients avec diabète de type 2, stades 3 et 4",
+     "effet": "Le DFG baisse de 2,1 mL/min contre 6,5 dans le groupe témoin : 4,3 mL/min préservés (IC 95 % 3,1 à 5,5). Déclin rapide chez 33 % contre 68 %. Albuminurie − 14,9 % au lieu de + 5,7 %.",
+     "mecanisme": "Anti-inflammatoire : baisse du TNF-α urinaire ; hausse de la protéine Klotho, protectrice du rein.",
+     "condition": "Diabète de type 2 associé",
+     "source": "pentoxifylline",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "cetoanalogues",
+     "nom": "Cétoanalogues + régime pauvre en protéines",
+     "type": "regime",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 3,
+     "dfg": [
+      0,
+      59
+     ],
+     "resume": "DFG mieux préservé, dialyse retardée",
+     "dose": "Cétoanalogues d'acides aminés avec régime pauvre ou très pauvre en protéines",
+     "duree": "13 mois (médiane)",
      "population": "16 essais, 1 344 patients aux stades 3 à 5",
-     "effet": "Comparé au régime pauvre en protéines seul : DFG plus élevé, urée et phosphore plus bas, calcium plus haut ; risque d'insuffisance rénale terminale légèrement plus bas chez les non-diabétiques. Pas de différence sur la mortalité ni sur l'état nutritionnel. Une autre méta-analyse trouve un ralentissement surtout quand le DFG est > 18.",
-     "mecanisme": "Les cétoanalogues apportent les acides aminés essentiels sans leur azote : moins d'urée à éliminer pour les reins.",
-     "zones": ["kidney_l", "kidney_r"], "source": "cetoChen", "source2": "cetoLi"},
-    {"id": "abelmoschus_manihot", "nom": "Abelmoschus manihot (huangkui) + IEC ou sartan", "type": "naturel", "force": "moyenne", "dfg": null,
-     "partie": "Plante à fleurs ; principes actifs : sept flavonoïdes (hibifoline, hyperoside, isoquercétine, rutine, quercétine, myricétine, quercétine-3-O-robinobioside). Ne pas confondre avec le gombo (Abelmoschus esculentus).",
-     "dose": "Gélules d'A. manihot ajoutées à un IEC ou un sartan (dose variable selon les essais)", "duree": "Variable",
-     "population": "32 essais, 2 881 patients avec maladie rénale du diabète",
-     "effet": "Par rapport à l'IEC ou au sartan seul : protéinurie de 24 h − 442 mg, albuminurie − 30,5 µg/min, créatinine − 6,8 µmol/L. Pas plus d'effets indésirables (OR 1,06). Hétérogénéité importante : à interpréter avec prudence selon les auteurs.",
-     "mecanisme": "Les flavonoïdes réduisent la fibrose du rein, l'inflammation et la mort des podocytes (cellules filtrantes du glomérule). Inscrite à la Pharmacopée chinoise 2020 pour la maladie rénale chronique.",
-     "zones": ["kidney_l", "kidney_r"], "source": "manihotTan", "source2": "manihotWei"},
-    {"id": "cordyceps", "nom": "Cordyceps sinensis (champignon)", "type": "naturel", "force": "faible", "dfg": null,
-     "partie": "Préparations du champignon (Dong Chong Xia Cao), en complément du traitement conventionnel",
-     "dose": "Préparations variables selon les essais", "duree": "Variable",
-     "population": "22 études, 1 746 participants non dialysés",
-     "effet": "Créatinine − 60,8 µmol/L (14 études), clairance de la créatinine + 9,2 mL/min (6 études), protéinurie − 0,15 g/24 h (4 études). Risque de biais élevé ou incertain dans toutes les études : qualité des preuves faible selon Cochrane.",
+     "effet": "Par rapport au régime seul : DFG plus élevé, urée et phosphore plus bas, calcium plus haut ; insuffisance terminale un peu moins fréquente chez les non-diabétiques ; état nutritionnel conservé. Ralentissement surtout quand le DFG est > 18.",
+     "mecanisme": "Apporte les acides aminés essentiels sans leur azote : moins d'urée à éliminer par les reins.",
+     "source": "cetoChen",
+     "source2": "cetoLi",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "nigelle_rein",
+     "nom": "Huile de nigelle (cumin noir)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 2.5,
+     "dfg": [
+      15,
+      59
+     ],
+     "partie": "Huile des graines de Nigella sativa, 2,5 mL par jour",
+     "resume": "DFG amélioré, créatinine et protéinurie en baisse",
+     "dose": "2,5 mL d'huile par jour, en plus de cétoanalogues (600 mg trois fois par jour)",
+     "duree": "12 semaines",
+     "population": "136 patients aux stades 3 et 4, essai randomisé ouvert",
+     "effet": "Baisse plus marquée de l'urée, de la créatinine et des protéines urinaires de 24 h, hausse du volume urinaire et du DFG par rapport aux cétoanalogues seuls. Une revue de 33 essais relève une amélioration du DFG de 86,8 % avec l'huile de nigelle. Nausées chez 7 %.",
+     "mecanisme": "Thymoquinone de la graine : antioxydant et anti-inflammatoire (mécanisme non mesuré dans l'essai).",
+     "fiche": "nigelle",
+     "source": "nigelleAlam",
+     "source2": "teoRevue",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "fruits_legumes",
+     "nom": "Fruits et légumes (régime alcalinisant)",
+     "type": "regime",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 2,
+     "partie": "Fruits et légumes en quantité calculée pour réduire de moitié l'acidité de l'alimentation",
+     "resume": "Protège les reins autant que le bicarbonate",
+     "dose": "Quantité calculée pour diviser par deux la charge acide de l'alimentation",
+     "duree": "1 an (stade 4)",
+     "population": "71 patients au stade 4 (essai randomisé) ; patients aux stades 1 et 2 (étude de 30 jours), néphropathie hypertensive sous IEC",
+     "effet": "Au stade 4 : DFG identique à celui obtenu avec le bicarbonate, acidose corrigée, marqueurs de lésion rénale en baisse, sans hausse du potassium. Au stade 2 : albumine urinaire et marqueurs de lésion en baisse, autant qu'avec le bicarbonate.",
+     "mecanisme": "Les fruits et légumes produisent des bases qui neutralisent l'acidité de l'alimentation.",
+     "source": "gorayaStade4",
+     "source2": "gorayaStade2",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "stades": [
+      "G2",
+      "G4"
+     ]
+    },
+    {
+     "id": "cordyceps",
+     "nom": "Cordyceps sinensis (champignon)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "puissance": 60.8,
+     "dfg": null,
+     "partie": "Préparations du champignon (Dong Chong Xia Cao), en complément du traitement",
+     "resume": "Créatinine − 60,8 µmol/L",
+     "dose": "Préparations variables selon les essais",
+     "duree": "Variable",
+     "population": "22 études, 1 746 patients non dialysés",
+     "effet": "Créatinine − 60,8 µmol/L, clairance de la créatinine + 9,2 mL/min, protéinurie − 0,15 g/24 h, hausse de l'hémoglobine et de l'albumine. Preuves de qualité basse selon Cochrane.",
      "mecanisme": "Non établi par la revue.",
-     "zones": ["kidney_l", "kidney_r"], "source": "cordyceps"},
-    {"id": "curcumine_rein", "nom": "Curcumine (curcuma)", "type": "naturel", "force": "faible", "dfg": null,
-     "partie": "Curcumine, pigment du rhizome du curcuma, en complément",
-     "dose": "Variable selon les essais", "duree": "Variable",
-     "population": "9 essais (Futuhi) ; 10 essais, 523 patients dont hémodialysés (Emami)",
-     "effet": "Cholestérol total − 13,8 mg/dL et TNF-α en baisse dans une méta-analyse ; aucun effet sur IL-6, TNF-α ni CRP dans l'autre. Aucun critère rénal (DFG, créatinine) n'est amélioré dans ces analyses.",
-     "mecanisme": "Effet anti-inflammatoire supposé, non confirmé dans la maladie rénale.",
-     "fiche": "curcuma", "zones": [], "source": "curcumineFutuhi", "source2": "curcumineEmami"},
-    {"id": "aristoloche", "nom": "Aristoloche (acide aristolochique)", "type": "naturel", "force": "a_eviter", "dfg": null,
-     "partie": "Aristolochia fangchi, substituée par erreur à Stephania tetrandra dans des pilules amaigrissantes",
-     "dose": "Risque de cancer plus élevé au-delà de 200 g cumulés", "duree": "Exposition 1990 à 1992",
-     "population": "39 patients en insuffisance rénale terminale après « néphropathie aux herbes chinoises »",
-     "effet": "Fibrose rénale progressive jusqu'à l'insuffisance terminale ; carcinome des voies urinaires chez 46 % des patients opérés (IC 95 % 29 à 62 %). Adduits de l'ADN liés à l'acide aristolochique dans tous les tissus analysés.",
-     "mecanisme": "L'acide aristolochique se fixe à l'ADN des cellules du rein et des voies urinaires : toxique et cancérogène.",
-     "zones": ["kidney_l", "kidney_r", "bladder"], "source": "nortier"},
-    {"id": "noni_rein", "nom": "Jus de noni (Morinda citrifolia)", "type": "naturel", "force": "a_eviter", "dfg": [0, 59],
-     "partie": "Jus du fruit, 56,3 mmol de potassium par litre",
-     "dose": "Automédication (quantité non chiffrée dans le cas)", "duree": "Non précisée",
-     "population": "Cas publié : homme en insuffisance rénale chronique",
-     "effet": "Hyperkaliémie malgré un régime pauvre en potassium, attribuée au jus de noni. Un excès de potassium peut troubler le rythme cardiaque.",
-     "mecanisme": "Des reins affaiblis éliminent mal le potassium, qui s'accumule dans le sang.",
-     "fiche": "noni", "zones": ["kidney_l", "kidney_r", "heart"], "source": "muellerNoni"}
+     "source": "cordyceps",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "astragale",
+     "nom": "Astragale (Astragalus membranaceus, Huang Qi)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "puissance": 14.8,
+     "dfg": null,
+     "partie": "Racine, en injection ou en préparation orale, ajoutée au traitement",
+     "resume": "Créatinine − 14,8 µmol/L, protéinurie en baisse",
+     "dose": "Variable selon les essais",
+     "duree": "Court terme",
+     "population": "66 essais, 4 785 patients avec maladie rénale du diabète ; 32 essais, 2 462 patients au stade III avec IEC ou sartan",
+     "effet": "Créatinine − 14,8 µmol/L (32 essais), albuminurie et protéinurie en baisse, y compris avec la forme orale. Associée à un IEC ou un sartan, meilleure réponse et baisse de la protéinurie, de la créatinine et de l'HbA1c. Effets indésirables comparables. Qualité des essais basse selon les auteurs.",
+     "mecanisme": "Voir l'étude animale ci-dessous : moins d'inflammation, de stress oxydant et de fibrose.",
+     "condition": "Maladie rénale du diabète",
+     "source": "astragaleZhang",
+     "source2": "astragaleLin",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "abelmoschus_manihot",
+     "nom": "Abelmoschus manihot (huangkui) + IEC ou sartan",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "puissance": 6.8,
+     "dfg": null,
+     "partie": "Plante à fleurs ; principes actifs : sept flavonoïdes (hibifoline, hyperoside, isoquercétine, rutine, quercétine, myricétine, quercétine-3-O-robinobioside). Distinct du gombo (A. esculentus).",
+     "resume": "Protéinurie − 442 mg/24 h",
+     "dose": "Gélules d'A. manihot ajoutées à un IEC ou un sartan",
+     "duree": "Variable",
+     "population": "32 essais, 2 881 patients avec maladie rénale du diabète",
+     "effet": "Par rapport à l'IEC ou au sartan seul : protéinurie − 442 mg/24 h, albuminurie − 30,5 µg/min, créatinine − 6,8 µmol/L, sans plus d'effets indésirables. Hétérogénéité importante selon les auteurs.",
+     "mecanisme": "Les flavonoïdes réduisent la fibrose, l'inflammation et la mort des podocytes. Inscrite à la Pharmacopée chinoise 2020.",
+     "condition": "Maladie rénale du diabète",
+     "source": "manihotTan",
+     "source2": "manihotWei",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "coq10",
+     "nom": "Coenzyme Q10",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "puissance": 1.65,
+     "dfg": null,
+     "partie": "Coenzyme Q10 (ubiquinone) en complément",
+     "resume": "Créatinine en baisse",
+     "dose": "Variable selon les essais",
+     "duree": "Variable",
+     "population": "7 essais randomisés",
+     "effet": "Créatinine en baisse (différence standardisée − 1,65), cholestérol total et LDL en baisse, moins de stress oxydant. Hétérogénéité très forte entre essais.",
+     "mecanisme": "Améliore le fonctionnement des mitochondries et réduit le stress oxydant.",
+     "source": "coq10",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "omega3",
+     "nom": "Oméga-3 d'origine marine",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 4,
+     "puissance": 13,
+     "dfg": [
+      60,
+      200
+     ],
+     "partie": "EPA, DPA et DHA des produits de la mer (pas l'oméga-3 végétal ALA)",
+     "resume": "13 % de maladies rénales en moins (association)",
+     "dose": "Taux sanguins élevés (cinquième le plus haut)",
+     "duree": "11,3 ans de suivi (médiane)",
+     "population": "19 cohortes, 25 570 personnes sans maladie rénale au départ",
+     "effet": "Les personnes aux taux d'oméga-3 marins les plus élevés développent 13 % moins souvent une maladie rénale chronique (RR 0,87 ; IC 95 % 0,80 à 0,96). Aucun lien pour l'oméga-3 végétal. Association observée : ne prouve pas l'effet.",
+     "mecanisme": "Non établi par l'étude.",
+     "source": "omega3",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "astragale_animal",
+     "nom": "Astragale (racine) chez l'animal",
+     "type": "naturel",
+     "force": "preclinique",
+     "critere": 3,
+     "puissance": 19.1,
+     "dfg": null,
+     "partie": "Racine d'Astragalus membranaceus",
+     "resume": "Créatinine − 19,1 µmol/L chez l'animal",
+     "dose": "Variable selon les études",
+     "duree": "Variable",
+     "population": "40 études, 1 543 animaux diabétiques",
+     "effet": "Créatinine − 19,1 µmol/L, urée − 6,7 mmol/L, albuminurie et lésions des reins en baisse ; marqueurs de fibrose (TGF-β1, CTGF, collagène IV) en baisse et BMP-7 protecteur en hausse.",
+     "mecanisme": "Plusieurs voies : antioxydante, anti-inflammatoire, antifibrosante.",
+     "source": "astragaleAnimal",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "kinkeliba_rein",
+     "nom": "Kinkéliba (Combretum micranthum)",
+     "type": "naturel",
+     "force": "preclinique",
+     "critere": 3,
+     "puissance": 10,
+     "dfg": null,
+     "partie": "Feuilles, extrait hydroalcoolique",
+     "resume": "Fonction rénale normalisée chez le rat",
+     "dose": "200 et 400 mg/kg par jour chez le rat pendant 10 jours",
+     "duree": "10 jours",
+     "population": "Rats exposés au cisplatine ; cellules rénales humaines HEK-293",
+     "effet": "Chez le rat, l'extrait normalise les marqueurs de fonction rénale abîmés par le cisplatine, réduit le stress oxydant et les lésions. Sur cellules rénales humaines, il protège contre le cisplatine et contre l'excès de glucose (viabilité + 10 à 23 %).",
+     "mecanisme": "Antioxydant et anti-inflammatoire (frein à NF-κB et à l'époxyde hydrolase soluble).",
+     "fiche": "kinkeliba",
+     "source": "kinkelibaCisplatine",
+     "source2": "kinkelibaHek",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "moringa_rein",
+     "nom": "Moringa (Moringa oleifera)",
+     "type": "naturel",
+     "force": "preclinique",
+     "critere": 3,
+     "puissance": 5,
+     "dfg": null,
+     "partie": "Huile des graines (5 mL/kg) ; extrait méthanolique des feuilles (200 et 400 mg/kg)",
+     "resume": "Créatinine et urée en baisse chez le rat",
+     "dose": "Huile : 5 mL/kg pendant 16 jours ; feuilles : 200 et 400 mg/kg",
+     "duree": "16 jours (huile)",
+     "population": "Rats exposés à la gentamicine (huile) ou à une ischémie rénale (feuilles)",
+     "effet": "L'huile des graines baisse nettement la créatinine et l'urée et répare les lésions causées par la gentamicine. L'extrait de feuilles baisse l'urée et la créatinine après ischémie et améliore l'aspect des tissus.",
+     "mecanisme": "Moins de stress oxydant, d'inflammation (NF-κB, TNF-α) et de mort cellulaire (caspase-3).",
+     "fiche": "moringa",
+     "source": "moringaHuile",
+     "source2": "moringaFeuilles",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "kinkeliba_simulation",
+     "nom": "Isovitexine et acide gallique (composés du kinkéliba)",
+     "type": "naturel",
+     "force": "theorique",
+     "critere": 5,
+     "puissance": 22.5,
+     "dfg": null,
+     "partie": "Composés des feuilles de kinkéliba",
+     "resume": "Liaison forte à NF-κB en simulation",
+     "dose": "Sans objet (simulation)",
+     "duree": "Sans objet",
+     "population": "Simulation informatique (amarrage moléculaire) de 30 composés",
+     "effet": "L'isovitexine et l'acide gallique ont le meilleur score de liaison à NF-κB (− 22,5 et − 21,2 kcal/mol) ; la cianidanol et l'épicatéchine à l'époxyde hydrolase soluble. Piste pour isoler les molécules actives.",
+     "mecanisme": "Freiner NF-κB, interrupteur de l'inflammation rénale.",
+     "fiche": "kinkeliba",
+     "source": "kinkelibaCisplatine",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "nrf2_gsk3",
+     "nom": "Modulation de Nrf2 par GSK3β (cible à explorer)",
+     "type": "medicament",
+     "force": "theorique",
+     "critere": 5,
+     "puissance": 1,
+     "dfg": null,
+     "resume": "Nouvelle cible proposée",
+     "dose": "Sans objet",
+     "duree": "Sans objet",
+     "population": "Revue des mécanismes",
+     "effet": "Activer Nrf2 en bloquant Keap1 (bardoxolone) a causé des effets indésirables. Agir plutôt par GSK3β réglerait Nrf2 seulement dans les tissus abîmés : piste proposée pour de futures molécules protectrices des reins.",
+     "mecanisme": "Nrf2 commande les défenses antioxydantes, anti-inflammatoires et antifibrosantes du rein.",
+     "source": "nrf2Gsk3",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    }
    ]
   },
   {
    "id": "dt2",
    "nom": "Diabète de type 2",
-   "synonymes": ["diabète", "diabète type 2", "DT2", "prédiabète", "glycémie", "sucre"],
-   "incurable": true,
-   "zones": ["pancreas"],
+   "synonymes": [
+    "diabète",
+    "diabète type 2",
+    "DT2",
+    "prédiabète",
+    "glycémie",
+    "sucre"
+   ],
+   "zones": [
+    "pancreas"
+   ],
    "description": "Excès chronique de sucre dans le sang par résistance à l'insuline et production insuffisante d'insuline. Le prédiabète (glycémie élevée sans diabète) le précède souvent.",
    "source": "dpp",
    "stades": [
-    {"id": "prediabete", "nom": "Prédiabète · glycémie élevée sans diabète", "niveau": "faible"},
-    {"id": "diabete", "nom": "Diabète de type 2 installé", "niveau": "modere"},
-    {"id": "diabete_rein", "nom": "Diabète de type 2 avec atteinte des reins", "niveau": "eleve", "zones": ["pancreas", "kidney_l", "kidney_r"]}
+    {
+     "id": "prediabete",
+     "nom": "Prédiabète · glycémie élevée sans diabète",
+     "niveau": "faible"
+    },
+    {
+     "id": "diabete",
+     "nom": "Diabète de type 2 installé",
+     "niveau": "modere"
+    },
+    {
+     "id": "diabete_rein",
+     "nom": "Diabète de type 2 avec atteinte des reins",
+     "niveau": "eleve",
+     "zones": [
+      "pancreas",
+      "kidney_l",
+      "kidney_r"
+     ]
+    }
    ],
    "substances": [
-    {"id": "mode_de_vie", "nom": "Mode de vie : perte de poids et activité physique", "type": "regime", "force": "forte", "stades": ["prediabete"],
-     "dose": "Objectif : au moins 7 % de poids perdu et au moins 150 minutes d'activité physique par semaine", "duree": "2,8 ans (moyenne)",
+    {
+     "id": "mode_de_vie",
+     "nom": "Mode de vie : perte de poids et activité physique",
+     "type": "regime",
+     "force": "forte",
+     "stades": [
+      "prediabete"
+     ],
+     "dose": "Objectif : au moins 7 % de poids perdu et au moins 150 minutes d'activité physique par semaine",
+     "duree": "2,8 ans (moyenne)",
      "population": "3 234 personnes non diabétiques à glycémie élevée",
      "effet": "Apparition du diabète − 58 % (IC 95 % 48 à 66 %) : 4,8 cas pour 100 personnes-années contre 11,0 sous placebo. Plus efficace que la metformine. 6,9 personnes à suivre pour éviter un diabète en 3 ans.",
      "mecanisme": "La perte de graisse et l'exercice améliorent la sensibilité des muscles et du foie à l'insuline.",
-     "zones": ["pancreas"], "source": "dpp"},
-    {"id": "metformine_prevention", "nom": "Metformine (prévention)", "type": "medicament", "force": "forte", "stades": ["prediabete"],
-     "dose": "850 mg deux fois par jour", "duree": "2,8 ans (moyenne)",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "dpp"
+    },
+    {
+     "id": "metformine_prevention",
+     "nom": "Metformine (prévention)",
+     "type": "medicament",
+     "force": "forte",
+     "stades": [
+      "prediabete"
+     ],
+     "dose": "850 mg deux fois par jour",
+     "duree": "2,8 ans (moyenne)",
      "population": "3 234 personnes non diabétiques à glycémie élevée",
      "effet": "Apparition du diabète − 31 % (IC 95 % 17 à 43 %) : 7,8 cas pour 100 personnes-années contre 11,0. 13,9 personnes à traiter pour éviter un diabète en 3 ans.",
      "mecanisme": "Réduit la production de glucose par le foie.",
-     "fiche": "metformine", "zones": ["pancreas", "liver"], "source": "dpp"},
-    {"id": "metformine_ukpds", "nom": "Metformine", "type": "medicament", "force": "forte", "stades": ["diabete"],
-     "dose": "Dose non indiquée dans le résumé consulté ; contrôle intensif visant une glycémie à jeun < 6 mmol/L", "duree": "10,7 ans (médiane)",
+     "fiche": "metformine",
+     "zones": [
+      "pancreas",
+      "liver"
+     ],
+     "source": "dpp"
+    },
+    {
+     "id": "metformine_ukpds",
+     "nom": "Metformine",
+     "type": "medicament",
+     "force": "forte",
+     "stades": [
+      "diabete"
+     ],
+     "dose": "Dose non indiquée dans le résumé consulté ; contrôle intensif visant une glycémie à jeun < 6 mmol/L",
+     "duree": "10,7 ans (médiane)",
      "population": "753 patients en surpoids, diabète récemment découvert",
      "effet": "Par rapport au régime seul : complications liées au diabète − 32 % (IC 95 % 13 à 47 %), décès liés au diabète − 42 % (9 à 63 %), décès toutes causes − 36 % (9 à 55 %). HbA1c médiane 7,4 % contre 8,0 %. Ajout précoce à un sulfamide : risque de décès lié au diabète accru dans l'essai complémentaire.",
      "mecanisme": "Réduit la production de glucose par le foie et améliore la sensibilité à l'insuline.",
-     "fiche": "metformine", "zones": ["pancreas", "liver"], "source": "ukpds34"},
-    {"id": "empagliflozine_dt2", "nom": "Empagliflozine", "type": "medicament", "force": "forte", "stades": ["diabete", "diabete_rein"],
-     "dose": "10 ou 25 mg une fois par jour, en plus du traitement habituel", "duree": "3,1 ans (médiane)",
+     "fiche": "metformine",
+     "zones": [
+      "pancreas",
+      "liver"
+     ],
+     "source": "ukpds34"
+    },
+    {
+     "id": "empagliflozine_dt2",
+     "nom": "Empagliflozine",
+     "type": "medicament",
+     "force": "forte",
+     "stades": [
+      "diabete",
+      "diabete_rein"
+     ],
+     "dose": "10 ou 25 mg une fois par jour, en plus du traitement habituel",
+     "duree": "3,1 ans (médiane)",
      "population": "7 020 patients à haut risque cardiovasculaire",
      "effet": "Décès cardiovasculaire, infarctus ou AVC : HR 0,86 (IC 95 % 0,74 à 0,99). Décès cardiovasculaire − 38 %, hospitalisation pour insuffisance cardiaque − 35 %, décès toutes causes − 32 %. Plus d'infections génitales.",
-     "rr": 0.86, "bas": 0.74, "haut": 0.99,
+     "rr": 0.86,
+     "bas": 0.74,
+     "haut": 0.99,
      "mecanisme": "Le rein élimine davantage de sucre dans les urines (inhibition du SGLT2).",
-     "zones": ["pancreas", "heart", "kidney_l", "kidney_r"], "source": "empaReg"},
-    {"id": "semaglutide_dt2", "nom": "Sémaglutide", "type": "medicament", "force": "forte", "stades": ["diabete_rein"],
-     "dose": "1,0 mg en injection sous-cutanée une fois par semaine", "duree": "3,4 ans (médiane)",
+     "zones": [
+      "pancreas",
+      "heart",
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "empaReg"
+    },
+    {
+     "id": "semaglutide_dt2",
+     "nom": "Sémaglutide",
+     "type": "medicament",
+     "force": "forte",
+     "stades": [
+      "diabete_rein"
+     ],
+     "dose": "1,0 mg en injection sous-cutanée une fois par semaine",
+     "duree": "3,4 ans (médiane)",
      "population": "3 533 patients avec diabète de type 2 et maladie rénale chronique",
      "effet": "Événements rénaux majeurs − 24 % (HR 0,76 ; 0,66 à 0,88), décès cardiovasculaire HR 0,71 (0,56 à 0,89), décès toutes causes HR 0,80 (0,67 à 0,95).",
-     "rr": 0.76, "bas": 0.66, "haut": 0.88,
+     "rr": 0.76,
+     "bas": 0.66,
+     "haut": 0.88,
      "mecanisme": "Agoniste du récepteur du GLP-1 : sécrétion d'insuline selon la glycémie, baisse de l'appétit et du poids.",
-     "zones": ["pancreas", "kidney_l", "kidney_r"], "source": "flow"},
-    {"id": "berberine", "nom": "Berbérine", "type": "naturel", "force": "moyenne", "stades": ["diabete"],
+     "zones": [
+      "pancreas",
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "flow"
+    },
+    {
+     "id": "berberine",
+     "nom": "Berbérine",
+     "type": "naturel",
+     "force": "moyenne",
+     "stades": [
+      "diabete"
+     ],
      "partie": "Principal composé actif du rhizome de Coptis (Rhizoma Coptidis)",
-     "dose": "Variable selon les essais, seule ou avec le traitement habituel", "duree": "Variable",
+     "dose": "Variable selon les essais, seule ou avec le traitement habituel",
+     "duree": "Variable",
      "population": "46 essais randomisés (Guo) ; plus de 30 essais, plus de 2 000 participants (Shadin)",
      "effet": "HbA1c − 0,73 point, glycémie à jeun − 0,86 mmol/L, glycémie 2 h après le repas − 1,26 mmol/L, résistance à l'insuline (HOMA-IR) − 0,71 (Guo, 2021). Une méta-analyse de 2026 trouve un effet plus modeste (HbA1c − 0,19 point avec probiotiques et symbiotiques) : complément, pas traitement principal.",
      "mecanisme": "Baisse de la résistance à l'insuline mesurée (HOMA-IR) ; en simulation informatique, liaison à l'alpha-glucosidase intestinale plus faible que celle de l'acarbose.",
-     "zones": ["pancreas", "liver"], "source": "berberineGuo", "source2": "berberineShadin"},
-    {"id": "nigelle_dt2", "nom": "Nigelle (cumin noir)", "type": "naturel", "force": "moyenne", "stades": ["diabete"],
+     "zones": [
+      "pancreas",
+      "liver"
+     ],
+     "source": "berberineGuo",
+     "source2": "berberineShadin"
+    },
+    {
+     "id": "nigelle_dt2",
+     "nom": "Nigelle (cumin noir)",
+     "type": "naturel",
+     "force": "moyenne",
+     "stades": [
+      "diabete"
+     ],
      "partie": "Graines (Nigella sativa)",
-     "dose": "Variable selon les essais", "duree": "Variable",
+     "dose": "Variable selon les essais",
+     "duree": "Variable",
      "population": "45 études d'intervention sur 12 épices chez des diabétiques de type 2",
      "effet": "Baisse de la glycémie à jeun la plus importante parmi les épices étudiées, devant la cannelle et le gingembre (baisses de 17 à 27 mg/dL pour ces trois épices). Avec le gingembre, seule épice à améliorer aussi l'HbA1c.",
      "mecanisme": "Non précisé par la méta-analyse.",
-     "fiche": "nigelle", "zones": ["pancreas"], "source": "epicesGarza"},
-    {"id": "fenugrec", "nom": "Fenugrec (Trigonella foenum-graecum)", "type": "naturel", "force": "moyenne", "stades": ["diabete"],
+     "fiche": "nigelle",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "epicesGarza"
+    },
+    {
+     "id": "fenugrec",
+     "nom": "Fenugrec (Trigonella foenum-graecum)",
+     "type": "naturel",
+     "force": "moyenne",
+     "stades": [
+      "diabete"
+     ],
      "partie": "Graines",
-     "dose": "Variable selon les essais", "duree": "Au moins 8 semaines (Suksomboon)",
+     "dose": "Variable selon les essais",
+     "duree": "Au moins 8 semaines (Suksomboon)",
      "population": "14 essais, 894 participants (Shabil) ; essais contre placebo (Suksomboon)",
      "effet": "HbA1c − 0,88 point (IC 95 % − 1,49 à − 0,27) ; pas d'effet significatif sur la glycémie à jeun ni après le repas. Une méta-analyse plus ancienne trouve HbA1c − 1,13 point. Qualité et hétérogénéité des essais préoccupantes selon les auteurs.",
      "mecanisme": "Non précisé dans les sources consultées.",
-     "zones": ["pancreas"], "source": "fenugrecShabil", "source2": "suksomboon"},
-    {"id": "moringa_dt2", "nom": "Moringa (Moringa oleifera)", "type": "naturel", "force": "moyenne", "stades": ["prediabete"],
+     "zones": [
+      "pancreas"
+     ],
+     "source": "fenugrecShabil",
+     "source2": "suksomboon"
+    },
+    {
+     "id": "moringa_dt2",
+     "nom": "Moringa (Moringa oleifera)",
+     "type": "naturel",
+     "force": "moyenne",
+     "stades": [
+      "prediabete"
+     ],
      "partie": "Poudre de feuilles",
-     "dose": "2,4 g par jour (6 gélules)", "duree": "12 semaines",
+     "dose": "2,4 g par jour (6 gélules)",
+     "duree": "12 semaines",
      "population": "Essai randomisé en double aveugle, 65 personnes prédiabétiques",
      "effet": "Baisse de la glycémie à jeun et de l'HbA1c, qui montent sous placebo. Marqueurs du foie et des reins inchangés.",
      "mecanisme": "Polyphénols des feuilles ; effet sur l'absorption et l'utilisation du glucose.",
-     "fiche": "moringa", "zones": ["pancreas"], "source": "gomezMoringa"},
-    {"id": "cannelle", "nom": "Cannelle", "type": "naturel", "force": "faible", "stades": ["diabete"],
+     "fiche": "moringa",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "gomezMoringa"
+    },
+    {
+     "id": "cannelle",
+     "nom": "Cannelle",
+     "type": "naturel",
+     "force": "faible",
+     "stades": [
+      "diabete"
+     ],
      "partie": "Écorce en poudre ou extrait (Cinnamomum cassia dans plusieurs essais)",
-     "dose": "120 mg à 6 g par jour", "duree": "4 à 18 semaines",
+     "dose": "120 mg à 6 g par jour",
+     "duree": "4 à 18 semaines",
      "population": "10 essais, 543 patients",
      "effet": "Glycémie à jeun − 24,6 mg/dL, cholestérol, LDL et triglycérides en baisse, mais HbA1c inchangée (− 0,16 point, non significatif) et hétérogénéité très forte. Une autre méta-analyse contre placebo ne trouve pas d'effet de C. cassia sur l'HbA1c.",
      "mecanisme": "Non établi ; dose et durée efficaces inconnues selon les auteurs.",
-     "zones": ["pancreas"], "source": "cannelleAllen", "source2": "suksomboon"},
-    {"id": "margose", "nom": "Margose (Momordica charantia)", "type": "naturel", "force": "faible", "stades": ["diabete"],
+     "zones": [
+      "pancreas"
+     ],
+     "source": "cannelleAllen",
+     "source2": "suksomboon"
+    },
+    {
+     "id": "margose",
+     "nom": "Margose (Momordica charantia)",
+     "type": "naturel",
+     "force": "faible",
+     "stades": [
+      "diabete"
+     ],
      "partie": "Préparations de différentes parties de la plante, dont les feuilles",
-     "dose": "Aucune préparation identique testée deux fois", "duree": "Jusqu'à 3 mois",
+     "dose": "Aucune préparation identique testée deux fois",
+     "duree": "Jusqu'à 3 mois",
      "population": "3 essais, 350 participants, risque de biais élevé",
      "effet": "Pas de différence significative avec le placebo sur la glycémie dans deux essais ; préparation de feuilles comparable au glibenclamide dans le troisième. Preuves insuffisantes pour la recommander.",
      "mecanisme": "Non établi chez l'humain.",
-     "zones": ["pancreas"], "source": "margose"}
+     "zones": [
+      "pancreas"
+     ],
+     "source": "margose"
+    }
    ]
   },
   {
    "id": "dt1",
    "nom": "Diabète de type 1",
-   "synonymes": ["diabète type 1", "DT1", "diabète insulinodépendant", "diabète juvénile"],
-   "incurable": true,
-   "zones": ["pancreas"],
+   "synonymes": [
+    "diabète type 1",
+    "DT1",
+    "diabète insulinodépendant",
+    "diabète juvénile"
+   ],
+   "zones": [
+    "pancreas"
+   ],
    "description": "Maladie auto-immune qui détruit les cellules bêta du pancréas productrices d'insuline. Stade 1 : au moins deux auto-anticorps, glycémie normale ; stade 2 : auto-anticorps et glycémie perturbée ; stade 3 : diabète avec symptômes.",
    "source": "insel",
    "stades": [
-    {"id": "stade1_2", "nom": "Stades 1 et 2 · auto-anticorps, avant les symptômes", "niveau": "faible"},
-    {"id": "recent", "nom": "Stade 3 · diagnostic récent", "niveau": "modere"},
-    {"id": "installe", "nom": "Stade 3 · diabète installé", "niveau": "modere"}
+    {
+     "id": "stade1_2",
+     "nom": "Stades 1 et 2 · auto-anticorps, avant les symptômes",
+     "niveau": "faible"
+    },
+    {
+     "id": "recent",
+     "nom": "Stade 3 · diagnostic récent",
+     "niveau": "modere"
+    },
+    {
+     "id": "installe",
+     "nom": "Stade 3 · diabète installé",
+     "niveau": "modere"
+    }
    ],
    "substances": [
-    {"id": "insuline_intensive", "nom": "Insuline en traitement intensif", "type": "medicament", "force": "forte", "stades": ["recent", "installe"],
-     "dose": "Pompe à insuline ou au moins 3 injections par jour, guidées par des glycémies fréquentes", "duree": "6,5 ans (moyenne)",
+    {
+     "id": "insuline_intensive",
+     "nom": "Insuline en traitement intensif",
+     "type": "medicament",
+     "force": "forte",
+     "stades": [
+      "recent",
+      "installe"
+     ],
+     "dose": "Pompe à insuline ou au moins 3 injections par jour, guidées par des glycémies fréquentes",
+     "duree": "6,5 ans (moyenne)",
      "population": "1 441 patients",
      "effet": "Par rapport à 1 ou 2 injections par jour : apparition d'une rétinopathie − 76 % (IC 95 % 62 à 85 %), microalbuminurie − 39 % (21 à 52 %), albuminurie − 54 % (19 à 74 %), neuropathie − 60 % (38 à 74 %). Hypoglycémies sévères multipliées par 2 à 3.",
      "mecanisme": "Remplace l'insuline que le pancréas ne produit plus ; une glycémie proche de la normale protège les petits vaisseaux des yeux, des reins et des nerfs.",
-     "zones": ["pancreas", "eye_l", "eye_r", "kidney_l", "kidney_r"], "source": "dcct"},
-    {"id": "teplizumab", "nom": "Téplizumab", "type": "medicament", "force": "moyenne", "stades": ["stade1_2"],
-     "dose": "Une cure unique de 14 jours (perfusion)", "duree": "Suivi par épreuve d'hyperglycémie provoquée tous les 6 mois",
+     "zones": [
+      "pancreas",
+      "eye_l",
+      "eye_r",
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "dcct"
+    },
+    {
+     "id": "teplizumab",
+     "nom": "Téplizumab",
+     "type": "medicament",
+     "force": "moyenne",
+     "stades": [
+      "stade1_2"
+     ],
+     "dose": "Une cure unique de 14 jours (perfusion)",
+     "duree": "Suivi par épreuve d'hyperglycémie provoquée tous les 6 mois",
      "population": "76 apparentés de patients, à haut risque, sans diabète",
      "effet": "Diagnostic retardé : délai médian 48,4 mois contre 24,4 sous placebo ; diabète chez 43 % contre 72 % (HR 0,41 ; IC 95 % 0,22 à 0,78). Effets attendus : éruption cutanée, baisse passagère des lymphocytes.",
-     "rr": 0.41, "bas": 0.22, "haut": 0.78,
+     "rr": 0.41,
+     "bas": 0.22,
+     "haut": 0.78,
      "mecanisme": "Anticorps anti-CD3 : modifie les lymphocytes T qui attaquent les cellules bêta.",
-     "zones": ["pancreas"], "source": "teplizumab"},
-    {"id": "verapamil", "nom": "Vérapamil", "type": "medicament", "force": "moyenne", "stades": ["recent"],
-     "dose": "Une prise orale par jour (dose adaptée au poids, non indiquée dans le résumé consulté)", "duree": "52 semaines",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "teplizumab"
+    },
+    {
+     "id": "verapamil",
+     "nom": "Vérapamil",
+     "type": "medicament",
+     "force": "moyenne",
+     "stades": [
+      "recent"
+     ],
+     "dose": "Une prise orale par jour (dose adaptée au poids, non indiquée dans le résumé consulté)",
+     "duree": "52 semaines",
      "population": "88 enfants et adolescents de 7 à 17 ans, diagnostic depuis environ 24 jours",
      "effet": "Peptide C (production d'insuline résiduelle) 30 % plus élevé à 52 semaines (différence 0,14 pmol/mL ; 0,01 à 0,27). Peptide C de pointe ≥ 0,2 pmol/mL chez 95 % contre 71 %. HbA1c 6,6 % contre 6,9 % (différence non significative).",
      "mecanisme": "Bloqueur des canaux calciques : réduit une protéine (TXNIP) qui fait mourir les cellules bêta.",
-     "zones": ["pancreas"], "source": "verapamil"}
+     "zones": [
+      "pancreas"
+     ],
+     "source": "verapamil"
+    }
    ],
    "lacune": "Aucune substance naturelle avec un essai randomisé démontrant un effet sur le diabète de type 1 n'a été retrouvée dans les sources consultées à ce jour."
   }
