@@ -51,3 +51,17 @@ test('Deux onglets dans le bandeau, sans barre « Atlas anatomique »',()=>{
   assert.ok(!html.includes('xp-atlas-nav'),page);
  }
 });
+
+test('Lot 2 : maladies complexes, recherche et stades',()=>{
+ for(const [mot,id] of [['drépanocytose','drepanocytose'],['tension','hta'],['alzheimer','alzheimer'],['parkinson','parkinson'],['insuffisance cardiaque','insuffisance_cardiaque'],['hépatite B','hepatite_b'],['VIH','vih']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ const hta=registre.maladies.find(m=>m.id==='hta');
+ assert.ok(ids(hta,'hta').includes('bissap')&&ids(hta,'hta').includes('ail'));
+ assert.ok(!ids(hta,'elevee').includes('antihypertenseurs'));
+ assert.deepEqual(zonesPour(hta,'elevee').zones,['heart','aorta']);
+ const drepano=registre.maladies.find(m=>m.id==='drepanocytose');
+ assert.equal(substancesPour(drepano,'enfant')[0].id,'hydroxyuree');
+ const pk=registre.maladies.find(m=>m.id==='parkinson');
+ assert.ok(ids(pk,'installe').includes('mucuna')&&!ids(pk,'installe').includes('lixisenatide'));
+ for(const m of registre.maladies)for(const s of m.substances)assert.ok(s.resume,m.id+' '+s.id+' sans résumé');
+});

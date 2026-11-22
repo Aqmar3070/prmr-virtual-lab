@@ -88,10 +88,6 @@
    "source": "Shabil et coll. · Medicina 2023, méta-analyse de 14 essais (894 participants) sur le fenugrec",
    "url": "https://doi.org/10.3390/medicina59020248"
   },
-  "margose": {
-   "source": "Ooi et coll. · Cochrane 2010, Momordica charantia et diabète de type 2 (3 essais, 350 participants)",
-   "url": "https://doi.org/10.1002/14651858.CD007845.pub2"
-  },
   "epicesGarza": {
    "source": "Garza et coll. · Nutrients 2024, méta-analyse de 45 études sur les épices et la glycémie",
    "url": "https://doi.org/10.3390/nu16060756"
@@ -187,6 +183,154 @@
   "nrf2Gsk3": {
    "source": "Zhang et coll. · Redox Biol 2025, régulation de Nrf2 indépendante de Keap1, nouvelle cible rénale",
    "url": "https://doi.org/10.1016/j.redox.2025.103593"
+  },
+  "huCochrane": {
+   "source": "Rankine-Mullings et coll. · Cochrane 2022, hydroxyurée et drépanocytose (9 essais, 1 104 patients)",
+   "url": "https://doi.org/10.1002/14651858.CD002202.pub3"
+  },
+  "reach": {
+   "source": "Tshilolo et coll. · N Engl J Med 2019, REACH : hydroxyurée chez 635 enfants en Afrique subsaharienne",
+   "url": "https://doi.org/10.1056/NEJMoa1813598"
+  },
+  "glutamine": {
+   "source": "Niihara et coll. · N Engl J Med 2018, L-glutamine (230 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1715971"
+  },
+  "crizanlizumab": {
+   "source": "Ataga et coll. · N Engl J Med 2017, SUSTAIN : crizanlizumab (198 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1611770"
+  },
+  "niprisan": {
+   "source": "Wambebe et coll. · Phytomedicine 2001, essai croisé du Niprisan (82 patients)",
+   "url": "https://doi.org/10.1078/0944-7113-00040"
+  },
+  "phytoCochrane": {
+   "source": "Oniyangi et Cohall · Cochrane 2020, phytomédicaments et drépanocytose (3 essais, 212 patients)",
+   "url": "https://doi.org/10.1002/14651858.CD004448.pub7"
+  },
+  "omega3Drepano": {
+   "source": "Daak et coll. · Am J Clin Nutr 2013, oméga-3 chez 140 patients au Soudan",
+   "url": "https://doi.org/10.3945/ajcn.112.036319"
+  },
+  "omega3NfkB": {
+   "source": "Daak et coll. · Blood Cells Mol Dis 2015, oméga-3, NF-κB et adhésion des cellules sanguines",
+   "url": "https://doi.org/10.1016/j.bcmd.2015.03.014"
+  },
+  "ssass": {
+   "source": "Neal et coll. · N Engl J Med 2021, SSaSS : sel de substitution (20 995 personnes)",
+   "url": "https://doi.org/10.1056/NEJMoa2105675"
+  },
+  "ettehad": {
+   "source": "Ettehad et coll. · Lancet 2016, méta-analyse de 123 essais (613 815 participants)",
+   "url": "https://doi.org/10.1016/S0140-6736(15)01225-8"
+  },
+  "dash": {
+   "source": "Appel et coll. · N Engl J Med 1997, essai DASH (459 adultes)",
+   "url": "https://doi.org/10.1056/NEJM199704173361601"
+  },
+  "ailRied2016": {
+   "source": "Ried · J Nutr 2016, méta-analyse de 20 essais sur l'ail (970 participants)",
+   "url": "https://doi.org/10.3945/jn.114.202192"
+  },
+  "ailRied2020": {
+   "source": "Ried et coll. · Exp Ther Med 2020, méta-analyse de 12 essais chez des hypertendus (553 participants)",
+   "url": "https://doi.org/10.3892/etm.2019.8374"
+  },
+  "serban": {
+   "source": "Serban et coll. · J Hypertens 2015, méta-analyse de 5 essais randomisés sur l'hibiscus (390 participants)",
+   "url": "https://doi.org/10.1097/HJH.0000000000000585"
+  },
+  "riedCacao": {
+   "source": "Ried et coll. · Cochrane 2017, 35 essais cacao et pression artérielle",
+   "url": "https://doi.org/10.1002/14651858.CD008893.pub3"
+  },
+  "lecanemab": {
+   "source": "van Dyck et coll. · N Engl J Med 2023, Clarity AD : lécanémab (1 795 participants)",
+   "url": "https://doi.org/10.1056/NEJMoa2212948"
+  },
+  "donanemab": {
+   "source": "Sims et coll. · JAMA 2023, TRAILBLAZER-ALZ 2 : donanémab (1 736 participants)",
+   "url": "https://doi.org/10.1001/jama.2023.13239"
+  },
+  "donepezil": {
+   "source": "Birks et Harvey · Cochrane 2018, donépézil (30 études, 8 257 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD001190.pub3"
+  },
+  "ginkgo": {
+   "source": "Riepe et coll. · World J Biol Psychiatry 2025, méta-analyse de 4 essais (782 patients) sur l'extrait de ginkgo EGb 761",
+   "url": "https://doi.org/10.1080/15622975.2024.2446830"
+  },
+  "mucunaAfrique": {
+   "source": "Cilia et coll. · J Parkinsons Dis 2026, Mucuna pruriens en Afrique subsaharienne, essai de 12 mois (32 patients)",
+   "url": "https://doi.org/10.1177/1877718X251383721"
+  },
+  "mucunaCilia2017": {
+   "source": "Cilia et coll. · Neurology 2017, essai croisé en double aveugle du Mucuna (18 patients)",
+   "url": "https://doi.org/10.1212/WNL.0000000000004175"
+  },
+  "mucunaKatz": {
+   "source": "Katzenschlager et coll. · J Neurol Neurosurg Psychiatry 2004, Mucuna en double aveugle (8 patients)",
+   "url": "https://doi.org/10.1136/jnnp.2003.028761"
+  },
+  "lixisenatide": {
+   "source": "Meissner et coll. · N Engl J Med 2024, LIXIPARK : lixisénatide (156 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2312323"
+  },
+  "sparx": {
+   "source": "Schenkman et coll. · JAMA Neurol 2018, SPARX : tapis roulant intensif (128 patients)",
+   "url": "https://doi.org/10.1001/jamaneurol.2017.3517"
+  },
+  "dapaHf": {
+   "source": "McMurray et coll. · N Engl J Med 2019, DAPA-HF (4 744 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1911303"
+  },
+  "paradigm": {
+   "source": "McMurray et coll. · N Engl J Med 2014, PARADIGM-HF : sacubitril/valsartan (8 442 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1409077"
+  },
+  "rales": {
+   "source": "Pitt et coll. · N Engl J Med 1999, RALES : spironolactone (1 663 patients)",
+   "url": "https://doi.org/10.1056/NEJM199909023411001"
+  },
+  "qsymbio": {
+   "source": "Mortensen et coll. · JACC Heart Fail 2014, Q-SYMBIO : coenzyme Q10 (420 patients)",
+   "url": "https://doi.org/10.1016/j.jchf.2014.06.008"
+  },
+  "lamivudine": {
+   "source": "Liaw et coll. · N Engl J Med 2004, lamivudine et cirrhose (651 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa033364"
+  },
+  "tenofovir": {
+   "source": "Marcellin et coll. · Lancet 2013, ténofovir sur 5 ans (641 patients)",
+   "url": "https://doi.org/10.1016/S0140-6736(12)61425-1"
+  },
+  "phyllanthus": {
+   "source": "Xia et coll. · Cochrane 2011, Phyllanthus et hépatite B chronique (16 essais, 1 326 patients)",
+   "url": "https://doi.org/10.1002/14651858.CD008960.pub2"
+  },
+  "phyllanthus2": {
+   "source": "Xia et coll. · Cochrane 2013, Phyllanthus contre antiviraux (5 essais, 290 patients)",
+   "url": "https://doi.org/10.1002/14651858.CD009004.pub2"
+  },
+  "start": {
+   "source": "INSIGHT START Study Group · N Engl J Med 2015, START (4 685 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1506816"
+  },
+  "hptn052": {
+   "source": "Cohen et coll. · N Engl J Med 2011, HPTN 052 (1 763 couples)",
+   "url": "https://doi.org/10.1056/NEJMoa1105243"
+  },
+  "fawzi": {
+   "source": "Fawzi et coll. · N Engl J Med 2004, multivitamines et VIH en Tanzanie (1 078 femmes)",
+   "url": "https://doi.org/10.1056/NEJMoa040541"
+  },
+  "iprex": {
+   "source": "Grant et coll. · N Engl J Med 2010, iPrEx : prophylaxie préexposition (2 499 personnes)",
+   "url": "https://doi.org/10.1056/NEJMoa1011205"
+  },
+  "bourquiKinkeliba": {
+   "source": "Bourqui et coll. · J Hum Hypertens 2021, essai randomisé kinkéliba ou bissap vs captopril (219 patients, Sénégal)",
+   "url": "https://doi.org/10.1038/s41371-020-00415-1"
   }
  },
  "maladies": [
@@ -842,7 +986,8 @@
      "zones": [
       "pancreas"
      ],
-     "source": "dpp"
+     "source": "dpp",
+     "resume": "Diabète évité : − 58 %"
     },
     {
      "id": "metformine_prevention",
@@ -862,7 +1007,8 @@
       "pancreas",
       "liver"
      ],
-     "source": "dpp"
+     "source": "dpp",
+     "resume": "Diabète évité : − 31 %"
     },
     {
      "id": "metformine_ukpds",
@@ -882,7 +1028,8 @@
       "pancreas",
       "liver"
      ],
-     "source": "ukpds34"
+     "source": "ukpds34",
+     "resume": "Complications − 32 %, décès − 36 %"
     },
     {
      "id": "empagliflozine_dt2",
@@ -907,7 +1054,8 @@
       "kidney_l",
       "kidney_r"
      ],
-     "source": "empaReg"
+     "source": "empaReg",
+     "resume": "Décès toutes causes − 32 %"
     },
     {
      "id": "semaglutide_dt2",
@@ -930,7 +1078,8 @@
       "kidney_l",
       "kidney_r"
      ],
-     "source": "flow"
+     "source": "flow",
+     "resume": "Événements rénaux majeurs − 24 %"
     },
     {
      "id": "berberine",
@@ -951,7 +1100,8 @@
       "liver"
      ],
      "source": "berberineGuo",
-     "source2": "berberineShadin"
+     "source2": "berberineShadin",
+     "resume": "HbA1c − 0,73 point"
     },
     {
      "id": "nigelle_dt2",
@@ -971,7 +1121,8 @@
      "zones": [
       "pancreas"
      ],
-     "source": "epicesGarza"
+     "source": "epicesGarza",
+     "resume": "Plus forte baisse de la glycémie parmi les épices"
     },
     {
      "id": "fenugrec",
@@ -991,7 +1142,8 @@
       "pancreas"
      ],
      "source": "fenugrecShabil",
-     "source2": "suksomboon"
+     "source2": "suksomboon",
+     "resume": "HbA1c − 0,88 point"
     },
     {
      "id": "moringa_dt2",
@@ -1011,7 +1163,8 @@
      "zones": [
       "pancreas"
      ],
-     "source": "gomezMoringa"
+     "source": "gomezMoringa",
+     "resume": "Glycémie et HbA1c en baisse (prédiabète)"
     },
     {
      "id": "cannelle",
@@ -1031,26 +1184,8 @@
       "pancreas"
      ],
      "source": "cannelleAllen",
-     "source2": "suksomboon"
-    },
-    {
-     "id": "margose",
-     "nom": "Margose (Momordica charantia)",
-     "type": "naturel",
-     "force": "faible",
-     "stades": [
-      "diabete"
-     ],
-     "partie": "Préparations de différentes parties de la plante, dont les feuilles",
-     "dose": "Aucune préparation identique testée deux fois",
-     "duree": "Jusqu'à 3 mois",
-     "population": "3 essais, 350 participants, risque de biais élevé",
-     "effet": "Pas de différence significative avec le placebo sur la glycémie dans deux essais ; préparation de feuilles comparable au glibenclamide dans le troisième. Preuves insuffisantes pour la recommander.",
-     "mecanisme": "Non établi chez l'humain.",
-     "zones": [
-      "pancreas"
-     ],
-     "source": "margose"
+     "source2": "suksomboon",
+     "resume": "Glycémie à jeun − 24,6 mg/dL, HbA1c inchangée"
     }
    ]
   },
@@ -1107,7 +1242,8 @@
       "kidney_l",
       "kidney_r"
      ],
-     "source": "dcct"
+     "source": "dcct",
+     "resume": "Rétinopathie − 76 %, neuropathie − 60 %"
     },
     {
      "id": "teplizumab",
@@ -1128,7 +1264,8 @@
      "zones": [
       "pancreas"
      ],
-     "source": "teplizumab"
+     "source": "teplizumab",
+     "resume": "Diagnostic retardé de 2 ans"
     },
     {
      "id": "verapamil",
@@ -1146,10 +1283,922 @@
      "zones": [
       "pancreas"
      ],
-     "source": "verapamil"
+     "source": "verapamil",
+     "resume": "Production d'insuline préservée (+ 30 %)"
     }
    ],
    "lacune": "Aucune substance naturelle avec un essai randomisé démontrant un effet sur le diabète de type 1 n'a été retrouvée dans les sources consultées à ce jour."
+  },
+  {
+   "id": "drepanocytose",
+   "nom": "Drépanocytose",
+   "synonymes": [
+    "anémie falciforme",
+    "drépanocytaire",
+    "SS",
+    "hémoglobine S",
+    "sickle"
+   ],
+   "zones": [
+    "spleen",
+    "femur_l",
+    "femur_r"
+   ],
+   "description": "Maladie héréditaire de l'hémoglobine : les globules rouges se déforment en faucille, bouchent les petits vaisseaux (crises douloureuses) et se détruisent (anémie). Très fréquente en Afrique subsaharienne.",
+   "source": "huCochrane",
+   "stades": [
+    {
+     "id": "enfant",
+     "nom": "Enfant",
+     "niveau": "modere"
+    },
+    {
+     "id": "adulte",
+     "nom": "Adulte",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "hydroxyuree",
+     "nom": "Hydroxyurée (hydroxycarbamide)",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 70,
+     "stades": [
+      "enfant",
+      "adulte"
+     ],
+     "resume": "Chez l'enfant africain : décès − 70 %, crises − 55 % (avant/après traitement)",
+     "dose": "15 à 20 mg/kg par jour pendant 6 mois, puis augmentation progressive (REACH)",
+     "duree": "3 ans (REACH) ; 6 à 30 mois (Cochrane)",
+     "population": "635 enfants de 1 à 10 ans dans 4 pays d'Afrique subsaharienne ; 9 essais, 1 104 patients (Cochrane)",
+     "effet": "Chez les enfants africains, par rapport à l'année précédant le traitement : crises vaso-occlusives − 55 % (taux 0,45), infections − 38 %, paludisme − 51 %, transfusions − 67 %, décès − 70 % (taux 0,30 ; IC 95 % 0,10 à 0,88). Hémoglobine et hémoglobine fœtale en hausse. Cochrane : améliore probablement la douleur et les épisodes menaçant la vie, moins de syndromes thoraciques aigus et de transfusions.",
+     "mecanisme": "Fait remonter l'hémoglobine fœtale, qui empêche les globules rouges de se déformer.",
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ],
+     "source": "reach",
+     "source2": "huCochrane"
+    },
+    {
+     "id": "crizanlizumab",
+     "nom": "Crizanlizumab",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 45,
+     "stades": [
+      "enfant",
+      "adulte"
+     ],
+     "resume": "Crises douloureuses − 45 %",
+     "dose": "5 mg/kg en perfusion, 14 fois sur 52 semaines",
+     "duree": "52 semaines",
+     "population": "198 patients, avec ou sans hydroxyurée",
+     "effet": "Crises par an : 1,63 contre 2,98 sous placebo (− 45 %) ; crises simples − 63 %. Première crise retardée (4,1 mois contre 1,4).",
+     "mecanisme": "Anticorps contre la P-sélectine, molécule qui fait adhérer les cellules sanguines à la paroi des vaisseaux.",
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ],
+     "source": "crizanlizumab"
+    },
+    {
+     "id": "omega3_drepano",
+     "nom": "Oméga-3 (DHA et EPA)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 40,
+     "stades": [
+      "enfant",
+      "adulte"
+     ],
+     "partie": "Gélules d'huile riche en DHA (277,8 mg) et EPA (39 mg)",
+     "resume": "Crises vaso-occlusives : 0 au lieu de 1 par an",
+     "dose": "1 à 4 gélules par jour selon l'âge (1 de 2 à 4 ans, 2 de 5 à 10 ans, 3 de 11 à 16 ans, 4 dès 17 ans)",
+     "duree": "1 an",
+     "population": "140 patients homozygotes SS au Soudan, essai en double aveugle",
+     "effet": "Crises vaso-occlusives médianes : 0 contre 1 par an. Anémie sévère 3,2 % contre 16,4 %, transfusions 4,5 % contre 16,4 %, absences scolaires divisées par 2,5. Peu coûteux. À confirmer dans un grand essai multicentrique.",
+     "mecanisme": "Moins d'inflammation (gène NF-κB) et d'adhésion des globules blancs aux vaisseaux.",
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ],
+     "source": "omega3Drepano",
+     "source2": "omega3NfkB"
+    },
+    {
+     "id": "glutamine",
+     "nom": "L-glutamine (qualité pharmaceutique)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 25,
+     "stades": [
+      "enfant",
+      "adulte"
+     ],
+     "partie": "Acide aminé, poudre orale",
+     "resume": "Une crise douloureuse de moins par an",
+     "dose": "0,3 g/kg deux fois par jour",
+     "duree": "48 semaines",
+     "population": "230 patients de 5 à 58 ans, dont deux tiers sous hydroxyurée",
+     "effet": "Crises douloureuses médianes : 3 contre 4 ; hospitalisations : 2 contre 3. Nausées et douleurs plus fréquentes.",
+     "mecanisme": "Réduit le stress oxydant des globules rouges (hausse du NADH).",
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ],
+     "source": "glutamine"
+    },
+    {
+     "id": "niprisan",
+     "nom": "Niprisan (Nicosan), phytomédicament nigérian",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 2,
+     "puissance": 30,
+     "stades": [
+      "enfant",
+      "adulte"
+     ],
+     "partie": "Préparation à base de plantes (composition détaillée non indiquée dans les résumés consultés)",
+     "resume": "Moins de crises douloureuses sévères",
+     "dose": "Dose de l'essai non indiquée dans le résumé consulté",
+     "duree": "12 mois (essai croisé)",
+     "population": "82 patients, essai croisé en double aveugle contre placebo",
+     "effet": "Réduit nettement la fréquence des crises avec douleurs sévères ; foie et reins normaux. Cochrane : efficace sur 6 mois mais preuves de faible qualité ; Ciklavit (pois d'Angole, Cajanus cajan) : bénéfice possible, non conclu.",
+     "mecanisme": "Non établi dans les sources consultées.",
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ],
+     "source": "niprisan",
+     "source2": "phytoCochrane"
+    }
+   ]
+  },
+  {
+   "id": "hta",
+   "nom": "Hypertension artérielle",
+   "synonymes": [
+    "hypertension",
+    "HTA",
+    "tension",
+    "tension artérielle",
+    "pression artérielle"
+   ],
+   "zones": [
+    "heart",
+    "aorta",
+    "brain",
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "Pression artérielle durablement élevée (140/90 mm Hg ou plus) : elle abîme le cœur, le cerveau (AVC) et les reins.",
+   "source": "ettehad",
+   "stades": [
+    {
+     "id": "elevee",
+     "nom": "Tension élevée sans hypertension installée",
+     "niveau": "faible",
+     "zones": [
+      "heart",
+      "aorta"
+     ]
+    },
+    {
+     "id": "hta",
+     "nom": "Hypertension installée",
+     "niveau": "modere"
+    },
+    {
+     "id": "hta_risque",
+     "nom": "Hypertension avec antécédent d'AVC ou âge ≥ 60 ans",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "antihypertenseurs",
+     "nom": "Médicaments antihypertenseurs (toutes classes)",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 27,
+     "stades": [
+      "hta",
+      "hta_risque"
+     ],
+     "resume": "Chaque baisse de 10 mm Hg : AVC − 27 %, décès − 13 %",
+     "dose": "Selon la classe (IEC, sartans, inhibiteurs calciques, diurétiques, bêtabloquants)",
+     "duree": "Essais d'au moins 1 000 patients-années par groupe",
+     "population": "123 essais, 613 815 participants",
+     "effet": "Pour chaque 10 mm Hg de systolique en moins : événements cardiovasculaires − 20 %, AVC − 27 %, insuffisance cardiaque − 28 %, maladie coronaire − 17 %, décès toutes causes − 13 %. Pas d'effet net sur l'insuffisance rénale.",
+     "mecanisme": "La baisse de pression protège les vaisseaux du cerveau, du cœur et des reins.",
+     "zones": [
+      "brain",
+      "heart",
+      "aorta"
+     ],
+     "source": "ettehad"
+    },
+    {
+     "id": "sel_substitution",
+     "nom": "Sel de substitution (75 % sodium, 25 % potassium)",
+     "type": "regime",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 14,
+     "stades": [
+      "hta_risque"
+     ],
+     "partie": "Sel de cuisine où un quart du chlorure de sodium est remplacé par du chlorure de potassium",
+     "resume": "AVC − 14 %, décès − 12 %",
+     "dose": "Remplace le sel habituel à la maison",
+     "duree": "4,7 ans (moyenne)",
+     "population": "20 995 personnes de 600 villages, antécédent d'AVC ou ≥ 60 ans avec hypertension",
+     "effet": "AVC − 14 % (taux 0,86 ; IC 95 % 0,77 à 0,96), événements cardiovasculaires − 13 %, décès − 12 %. Pas plus d'hyperkaliémie grave. Prudence en cas de maladie rénale (potassium).",
+     "mecanisme": "Moins de sodium et plus de potassium : la pression artérielle baisse.",
+     "zones": [
+      "brain",
+      "heart"
+     ],
+     "source": "ssass"
+    },
+    {
+     "id": "dash",
+     "nom": "Régime DASH (fruits, légumes, laitages maigres)",
+     "type": "regime",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 11.4,
+     "stades": [
+      "elevee",
+      "hta"
+     ],
+     "resume": "Systolique − 11,4 mm Hg chez l'hypertendu",
+     "dose": "Alimentation riche en fruits, légumes et laitages maigres, pauvre en graisses saturées, sel constant",
+     "duree": "8 semaines",
+     "population": "459 adultes, dont 133 hypertendus",
+     "effet": "Chez les hypertendus : systolique − 11,4 et diastolique − 5,5 mm Hg par rapport au régime témoin. Sans hypertension : − 3,5 / − 2,1. Fruits et légumes seuls : − 2,8 mm Hg.",
+     "mecanisme": "Alimentation riche en fruits, légumes et laitages maigres ; mécanisme non détaillé par l'essai.",
+     "zones": [
+      "heart",
+      "aorta"
+     ],
+     "source": "dash"
+    },
+    {
+     "id": "ail",
+     "nom": "Ail (Allium sativum)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 8.7,
+     "stades": [
+      "hta"
+     ],
+     "partie": "Bulbe, en supplément (dont l'extrait d'ail vieilli Kyolic)",
+     "resume": "Systolique − 8,7 mm Hg chez l'hypertendu",
+     "dose": "Suppléments d'ail (doses variables selon les essais)",
+     "duree": "Variable",
+     "population": "20 essais, 970 participants ; 12 essais chez 553 hypertendus",
+     "effet": "Chez les hypertendus : systolique − 8,7 et diastolique − 6,1 mm Hg, comparable aux antihypertenseurs de première ligne. L'extrait vieilli réduit aussi la rigidité des artères. Bien toléré.",
+     "mecanisme": "Non précisé dans les résumés consultés.",
+     "zones": [
+      "heart",
+      "aorta"
+     ],
+     "source": "ailRied2016",
+     "source2": "ailRied2020"
+    },
+    {
+     "id": "bissap",
+     "nom": "Bissap (hibiscus, Hibiscus sabdariffa)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 7.6,
+     "stades": [
+      "elevee",
+      "hta"
+     ],
+     "partie": "Calices séchés, en infusion (10 g par jour dans l'essai sénégalais) ou comprimés",
+     "resume": "Systolique − 7,6 mm Hg ; aussi efficace que le captopril",
+     "dose": "10 g de calices par jour en infusion, ou 2 × 375 mg en comprimés",
+     "duree": "6 mois (essai sénégalais)",
+     "population": "5 essais, 390 participants ; 219 hypertendus au Sénégal",
+     "effet": "Systolique − 7,6 mm Hg (5,5 à 9,7), diastolique − 3,5. Au Sénégal, sur 6 mois, baisse d'environ 20 mm Hg comme le captopril ; objectif < 140/90 atteint par 49 % contre 40 % sous captopril.",
+     "mecanisme": "Anthocyanes et acides organiques des calices : détente des artères, léger effet diurétique.",
+     "fiche": "bissap",
+     "zones": [
+      "heart",
+      "aorta"
+     ],
+     "source": "serban",
+     "source2": "bourquiKinkeliba"
+    },
+    {
+     "id": "kinkeliba_hta",
+     "nom": "Kinkéliba (Combretum micranthum)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 7,
+     "stades": [
+      "hta"
+     ],
+     "partie": "Feuilles, en infusion (10 g par jour) ou comprimés (2 × 200 mg)",
+     "resume": "Aussi efficace que le captopril sur 6 mois",
+     "dose": "10 g de feuilles par jour en infusion, ou 2 × 200 mg en comprimés",
+     "duree": "6 mois",
+     "population": "219 hypertendus non compliqués au Sénégal",
+     "effet": "Baisse de la systolique d'environ 20 mm Hg comme le captopril ; objectif < 140/90 atteint par 51 % contre 40 % sous captopril.",
+     "mecanisme": "Détente des vaisseaux et élimination de l'eau (usage diurétique traditionnel).",
+     "fiche": "kinkeliba",
+     "zones": [
+      "heart",
+      "aorta"
+     ],
+     "source": "bourquiKinkeliba"
+    },
+    {
+     "id": "cacao",
+     "nom": "Cacao riche en flavanols",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 2,
+     "puissance": 4,
+     "stades": [
+      "hta"
+     ],
+     "partie": "Flavanols du cacao (chocolat noir, poudre) ; peu ou pas dans le chocolat au lait ou blanc",
+     "resume": "Systolique − 4 mm Hg chez l'hypertendu",
+     "dose": "1,4 à 105 g de produits cacaotés par jour",
+     "duree": "2 à 18 semaines",
+     "population": "35 essais",
+     "effet": "Systolique − 1,76 mm Hg en moyenne, environ − 4 mm Hg chez les hypertendus. Effet modeste.",
+     "mecanisme": "Les flavanols augmentent le monoxyde d'azote de la paroi des artères, qui se dilatent.",
+     "fiche": "cacao",
+     "zones": [
+      "aorta"
+     ],
+     "source": "riedCacao"
+    }
+   ]
+  },
+  {
+   "id": "alzheimer",
+   "nom": "Maladie d'Alzheimer",
+   "synonymes": [
+    "alzheimer",
+    "démence",
+    "mémoire",
+    "trouble cognitif"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Maladie neurodégénérative : dépôts de protéines amyloïde et tau dans le cerveau, perte progressive de la mémoire et de l'autonomie.",
+   "source": "donepezil",
+   "stades": [
+    {
+     "id": "precoce",
+     "nom": "Stade précoce (trouble cognitif léger, démence légère)",
+     "niveau": "faible"
+    },
+    {
+     "id": "modere",
+     "nom": "Démence modérée à sévère",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "donanemab",
+     "nom": "Donanémab",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 35,
+     "stades": [
+      "precoce"
+     ],
+     "resume": "Déclin ralenti (CDR-SB − 0,7 point à 76 semaines)",
+     "dose": "Perfusion toutes les 4 semaines pendant 72 semaines (arrêt quand les plaques sont éliminées)",
+     "duree": "76 semaines",
+     "population": "1 736 personnes au stade précoce, avec amyloïde et tau",
+     "effet": "Déclin clinique ralenti : score iADRS − 6,0 contre − 9,3 sous placebo ; CDR-SB 1,20 contre 1,88 (tau faible ou moyenne). 23 critères sur 24 significatifs.",
+     "mecanisme": "Anticorps qui élimine les plaques amyloïdes du cerveau.",
+     "prudence": "Œdème ou saignement cérébral à l'imagerie chez 24 % (52 symptomatiques) ; 3 décès liés au traitement.",
+     "zones": [
+      "brain"
+     ],
+     "source": "donanemab"
+    },
+    {
+     "id": "lecanemab",
+     "nom": "Lécanémab",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 27,
+     "stades": [
+      "precoce"
+     ],
+     "resume": "Déclin ralenti (CDR-SB − 0,45 point à 18 mois)",
+     "dose": "10 mg/kg en perfusion toutes les 2 semaines",
+     "duree": "18 mois",
+     "population": "1 795 personnes au stade précoce avec amyloïde prouvée",
+     "effet": "Score CDR-SB : + 1,21 contre + 1,66 sous placebo (différence − 0,45 ; IC 95 % − 0,67 à − 0,23). Mémoire et autonomie mieux conservées. Moins d'amyloïde cérébrale.",
+     "mecanisme": "Anticorps contre les protofibrilles d'amyloïde.",
+     "prudence": "Réactions à la perfusion 26,4 % ; œdème cérébral à l'imagerie 12,6 %.",
+     "zones": [
+      "brain"
+     ],
+     "source": "lecanemab"
+    },
+    {
+     "id": "donepezil",
+     "nom": "Donépézil",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 2,
+     "puissance": 2.7,
+     "stades": [
+      "precoce",
+      "modere"
+     ],
+     "resume": "Mémoire améliorée (ADAS-Cog − 2,7 points)",
+     "dose": "10 mg par jour (5 mg aussi étudié)",
+     "duree": "24 à 26 semaines",
+     "population": "30 études, 8 257 participants, stades léger à sévère",
+     "effet": "Fonctions cognitives meilleures (ADAS-Cog − 2,67 ; MMSE + 1,05), autonomie meilleure, impression globale améliorée plus souvent (OR 1,92). Pas d'effet sur le comportement ni la qualité de vie.",
+     "mecanisme": "Bloque l'enzyme qui détruit l'acétylcholine, messager de la mémoire.",
+     "prudence": "Plus d'effets indésirables (72 % contre 65 %) et d'arrêts.",
+     "zones": [
+      "brain"
+     ],
+     "source": "donepezil"
+    },
+    {
+     "id": "ginkgo",
+     "nom": "Ginkgo biloba (extrait EGb 761)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 1,
+     "stades": [
+      "precoce"
+     ],
+     "partie": "Extrait standardisé des feuilles de ginkgo",
+     "resume": "Mémoire, autonomie et qualité de vie améliorées",
+     "dose": "240 mg par jour",
+     "duree": "Variable selon les essais",
+     "population": "4 essais, 782 patients à démence légère",
+     "effet": "Meilleurs résultats que le placebo pour la cognition, l'évaluation globale, les activités quotidiennes et la qualité de vie ; effets indésirables comparables au placebo.",
+     "mecanisme": "Non précisé par la méta-analyse.",
+     "zones": [
+      "brain"
+     ],
+     "source": "ginkgo"
+    }
+   ]
+  },
+  {
+   "id": "parkinson",
+   "nom": "Maladie de Parkinson",
+   "synonymes": [
+    "parkinson",
+    "tremblements",
+    "dopamine"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Maladie neurodégénérative : perte des neurones à dopamine, d'où tremblements, raideur et lenteur des mouvements.",
+   "source": "lixisenatide",
+   "stades": [
+    {
+     "id": "debut",
+     "nom": "Début (diagnostic récent)",
+     "niveau": "faible"
+    },
+    {
+     "id": "installe",
+     "nom": "Maladie installée ou avancée",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "mucuna",
+     "nom": "Mucuna pruriens (pois mascate)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 10,
+     "stades": [
+      "debut",
+      "installe"
+     ],
+     "partie": "Poudre de graines torréfiées, sans transformation, riche en lévodopa naturelle",
+     "resume": "Aussi efficace que la lévodopa du commerce",
+     "dose": "Dose ajustée au poids et au stade (12,5 à 17,5 mg/kg en prise unique dans l'essai de 2017 ; 15 à 30 g en 2004)",
+     "duree": "12 mois (Afrique) ; prise unique (essais croisés)",
+     "population": "32 patients non traités en Afrique subsaharienne ; 18 et 8 patients en essais croisés en double aveugle",
+     "effet": "En Afrique sur 12 mois : qualité de vie, symptômes moteurs et non moteurs améliorés comme avec la lévodopa + inhibiteur de décarboxylase. À forte dose : meilleure réponse motrice et plus longue période « on », moins de dyskinésies. 30 g agissent plus vite (35 contre 69 min).",
+     "mecanisme": "Les graines contiennent beaucoup de lévodopa, transformée en dopamine dans le cerveau.",
+     "prudence": "Effets indésirables plus fréquents en Afrique (56 % contre 37,5 %, non significatif), surtout légers.",
+     "zones": [
+      "brain"
+     ],
+     "source": "mucunaAfrique",
+     "source2": "mucunaCilia2017"
+    },
+    {
+     "id": "lixisenatide",
+     "nom": "Lixisénatide",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 3.1,
+     "stades": [
+      "debut"
+     ],
+     "resume": "Handicap moteur stabilisé sur 12 mois",
+     "dose": "Injection sous-cutanée quotidienne",
+     "duree": "12 mois",
+     "population": "156 patients diagnostiqués depuis moins de 3 ans",
+     "effet": "Score moteur stable (− 0,04) contre + 3,04 points d'aggravation sous placebo (différence 3,08 ; IC 95 % 0,86 à 5,30).",
+     "mecanisme": "Agoniste du GLP-1 : effet neuroprotecteur observé chez la souris.",
+     "prudence": "Nausées 46 %, vomissements 13 %.",
+     "zones": [
+      "brain"
+     ],
+     "source": "lixisenatide"
+    },
+    {
+     "id": "exercice_intense",
+     "nom": "Exercice intense sur tapis roulant",
+     "type": "regime",
+     "force": "faible",
+     "critere": 2,
+     "puissance": 2.9,
+     "stades": [
+      "debut"
+     ],
+     "resume": "Symptômes moteurs stables sur 6 mois",
+     "dose": "4 jours par semaine à 80–85 % de la fréquence cardiaque maximale",
+     "duree": "6 mois",
+     "population": "128 patients récemment diagnostiqués, sans traitement",
+     "effet": "Score moteur + 0,3 contre + 3,2 sans exercice ; l'exercice modéré n'atteint pas ce seuil. Essai de phase 2 : à confirmer.",
+     "mecanisme": "Non établi par l'essai.",
+     "zones": [
+      "brain"
+     ],
+     "source": "sparx"
+    }
+   ],
+   "lacune": "La lévodopa du commerce reste la référence des symptômes ; la source qui la classe n'a pas encore été intégrée au registre."
+  },
+  {
+   "id": "insuffisance_cardiaque",
+   "nom": "Insuffisance cardiaque",
+   "synonymes": [
+    "insuffisance cardiaque",
+    "cœur",
+    "coeur",
+    "IC"
+   ],
+   "zones": [
+    "heart"
+   ],
+   "description": "Le cœur ne pompe plus assez de sang : essoufflement, œdèmes, hospitalisations répétées.",
+   "source": "paradigm",
+   "stades": [
+    {
+     "id": "fer",
+     "nom": "Fraction d'éjection réduite (≤ 40 %)",
+     "niveau": "eleve"
+    },
+    {
+     "id": "autre",
+     "nom": "Autre forme ou non précisée",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "spironolactone",
+     "nom": "Spironolactone",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 30,
+     "stades": [
+      "fer"
+     ],
+     "resume": "Décès − 30 %",
+     "dose": "25 mg par jour",
+     "duree": "24 mois (moyenne)",
+     "population": "1 663 patients, insuffisance sévère, fraction d'éjection ≤ 35 %",
+     "effet": "Décès 35 % contre 46 % (risque relatif 0,70 ; IC 95 % 0,60 à 0,82) ; hospitalisations − 35 % ; symptômes améliorés.",
+     "mecanisme": "Bloque l'aldostérone.",
+     "prudence": "Gynécomastie ou douleurs des seins chez 10 % des hommes.",
+     "zones": [
+      "heart"
+     ],
+     "source": "rales"
+    },
+    {
+     "id": "dapagliflozine_ic",
+     "nom": "Dapagliflozine",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 26,
+     "stades": [
+      "fer"
+     ],
+     "resume": "Aggravation ou décès cardiovasculaire − 26 %",
+     "dose": "10 mg une fois par jour",
+     "duree": "18,2 mois (médiane)",
+     "population": "4 744 patients, avec ou sans diabète",
+     "effet": "Aggravation de l'insuffisance ou décès cardiovasculaire − 26 % (HR 0,74 ; IC 95 % 0,65 à 0,85) ; décès toutes causes − 17 %.",
+     "mecanisme": "Inhibiteur du SGLT2.",
+     "zones": [
+      "heart"
+     ],
+     "source": "dapaHf"
+    },
+    {
+     "id": "sacubitril",
+     "nom": "Sacubitril/valsartan",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 20,
+     "stades": [
+      "fer"
+     ],
+     "resume": "Décès ou hospitalisation − 20 % par rapport à l'énalapril",
+     "dose": "200 mg deux fois par jour",
+     "duree": "27 mois (médiane)",
+     "population": "8 442 patients",
+     "effet": "Décès cardiovasculaire ou hospitalisation − 20 % (HR 0,80) ; décès toutes causes − 16 % ; symptômes moindres, par rapport à l'énalapril (déjà efficace).",
+     "mecanisme": "Bloque la néprilysine et le récepteur de l'angiotensine.",
+     "prudence": "Plus d'hypotension et d'angio-œdèmes non graves.",
+     "zones": [
+      "heart"
+     ],
+     "source": "paradigm"
+    },
+    {
+     "id": "coq10_ic",
+     "nom": "Coenzyme Q10",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 1,
+     "puissance": 50,
+     "stades": [
+      "fer",
+      "autre"
+     ],
+     "partie": "Coenzyme Q10 (ubiquinone)",
+     "resume": "Événements cardiovasculaires majeurs divisés par 2",
+     "dose": "100 mg trois fois par jour, en plus du traitement",
+     "duree": "2 ans",
+     "population": "420 patients, insuffisance modérée à sévère",
+     "effet": "Événements cardiovasculaires majeurs 15 % contre 26 % (HR 0,50 ; IC 95 % 0,32 à 0,80) ; décès cardiovasculaires 9 % contre 16 %, décès toutes causes 10 % contre 18 %. Pas d'effet à 16 semaines.",
+     "mecanisme": "Cofacteur de la production d'énergie du muscle cardiaque et antioxydant.",
+     "zones": [
+      "heart"
+     ],
+     "source": "qsymbio"
+    }
+   ]
+  },
+  {
+   "id": "hepatite_b",
+   "nom": "Hépatite B chronique",
+   "synonymes": [
+    "hépatite B",
+    "hepatite",
+    "VHB",
+    "foie",
+    "cirrhose"
+   ],
+   "zones": [
+    "liver"
+   ],
+   "description": "Infection durable du foie par le virus de l'hépatite B : elle peut évoluer vers la cirrhose et le cancer du foie.",
+   "source": "lamivudine",
+   "stades": [
+    {
+     "id": "chronique",
+     "nom": "Hépatite chronique",
+     "niveau": "modere"
+    },
+    {
+     "id": "cirrhose",
+     "nom": "Fibrose avancée ou cirrhose",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "tenofovir",
+     "nom": "Ténofovir disoproxil",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "puissance": 74,
+     "stades": [
+      "chronique",
+      "cirrhose"
+     ],
+     "resume": "Cirrhose disparue chez 74 % des patients cirrhotiques",
+     "dose": "Traitement continu (dose non indiquée dans le résumé consulté)",
+     "duree": "5 ans",
+     "population": "641 patients, 348 avec biopsie au départ et à 5 ans",
+     "effet": "Inflammation améliorée chez 87 %, fibrose en recul chez 51 %. Sur 96 patients cirrhotiques, 74 % n'avaient plus de cirrhose à 5 ans. Pas de résistance.",
+     "mecanisme": "Bloque la multiplication du virus ; le foie cicatrise.",
+     "zones": [
+      "liver"
+     ],
+     "source": "tenofovir"
+    },
+    {
+     "id": "lamivudine",
+     "nom": "Lamivudine",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "puissance": 55,
+     "stades": [
+      "cirrhose"
+     ],
+     "resume": "Aggravations du foie − 55 %, cancers du foie − 51 %",
+     "dose": "100 mg par jour",
+     "duree": "32 mois (médiane)",
+     "population": "651 patients avec fibrose avancée ou cirrhose",
+     "effet": "Progression de la maladie 7,8 % contre 17,7 % (HR 0,45) ; cancer du foie 3,9 % contre 7,4 % (HR 0,49).",
+     "mecanisme": "Bloque la multiplication du virus.",
+     "prudence": "Résistance du virus chez 49 % ; les traitements plus récents (ténofovir, entécavir) y exposent moins.",
+     "zones": [
+      "liver"
+     ],
+     "source": "lamivudine"
+    },
+    {
+     "id": "phyllanthus",
+     "nom": "Phyllanthus (plante, en association)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "puissance": 30,
+     "stades": [
+      "chronique"
+     ],
+     "partie": "Préparations de Phyllanthus (espèce rarement précisée)",
+     "resume": "Avec un antiviral : ADN viral et antigène HBe en baisse",
+     "dose": "Variable selon les essais",
+     "duree": "3 à 12 mois",
+     "population": "16 essais, 1 326 patients",
+     "effet": "Ajouté à un antiviral : ADN viral (RR 0,69), antigène HBe (RR 0,70) et séroconversion meilleurs qu'avec l'antiviral seul. Seul contre placebo : pas de bénéfice convaincant. Hétérogénéité importante.",
+     "mecanisme": "Non établi.",
+     "zones": [
+      "liver"
+     ],
+     "source": "phyllanthus",
+     "source2": "phyllanthus2"
+    }
+   ]
+  },
+  {
+   "id": "vih",
+   "nom": "Infection par le VIH",
+   "synonymes": [
+    "VIH",
+    "sida",
+    "HIV"
+   ],
+   "zones": [
+    "spleen"
+   ],
+   "description": "Le virus détruit progressivement les défenses immunitaires (lymphocytes CD4).",
+   "source": "start",
+   "stades": [
+    {
+     "id": "prevention",
+     "nom": "Prévention (personne exposée)",
+     "niveau": "faible"
+    },
+    {
+     "id": "infection",
+     "nom": "Infection",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "arv_precoces",
+     "nom": "Antirétroviraux dès le diagnostic",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 57,
+     "stades": [
+      "infection"
+     ],
+     "resume": "Événements graves ou décès − 57 %",
+     "dose": "Trithérapie antirétrovirale",
+     "duree": "3 ans (moyenne)",
+     "population": "4 685 adultes avec CD4 > 500",
+     "effet": "Événements graves liés ou non au sida, ou décès : 1,8 % contre 4,1 % (HR 0,43 ; IC 95 % 0,30 à 0,62).",
+     "mecanisme": "Bloque la multiplication du virus.",
+     "zones": [
+      "spleen"
+     ],
+     "source": "start"
+    },
+    {
+     "id": "arv_transmission",
+     "nom": "Antirétroviraux du partenaire infecté",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 96,
+     "stades": [
+      "prevention",
+      "infection"
+     ],
+     "resume": "Transmissions au partenaire − 96 %",
+     "dose": "Trithérapie dès que possible",
+     "duree": "Suivi médian non indiqué dans le résumé",
+     "population": "1 763 couples dont un seul partenaire infecté",
+     "effet": "Une seule transmission liée sur 28 dans le groupe traité tôt (HR 0,04 ; IC 95 % 0,01 à 0,27) ; événements cliniques − 41 %.",
+     "mecanisme": "Un virus indétectable ne se transmet presque plus.",
+     "zones": [
+      "spleen"
+     ],
+     "source": "hptn052"
+    },
+    {
+     "id": "prep",
+     "nom": "Prophylaxie préexposition (emtricitabine + ténofovir)",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 44,
+     "stades": [
+      "prevention"
+     ],
+     "resume": "Nouvelles infections − 44 %",
+     "dose": "Un comprimé par jour",
+     "duree": "1,2 an (médiane)",
+     "population": "2 499 personnes non infectées",
+     "effet": "Infections − 44 % (IC 95 % 15 à 63) ; protection forte quand le médicament est réellement pris.",
+     "mecanisme": "Empêche le virus de s'installer.",
+     "zones": [
+      "spleen"
+     ],
+     "source": "iprex"
+    },
+    {
+     "id": "multivitamines",
+     "nom": "Multivitamines B, C et E",
+     "type": "naturel",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 29,
+     "stades": [
+      "infection"
+     ],
+     "partie": "Vitamines B, C et E en supplément quotidien (sans vitamine A)",
+     "resume": "Progression ou décès − 29 %",
+     "dose": "Supplément quotidien",
+     "duree": "71 mois (médiane)",
+     "population": "1 078 femmes enceintes infectées en Tanzanie",
+     "effet": "Passage au stade 4 ou décès : 24,7 % contre 31,1 % (risque relatif 0,71) ; CD4 plus élevés, charge virale plus basse. Ajouter la vitamine A réduit le bénéfice.",
+     "mecanisme": "Corrige les carences qui accélèrent l'affaiblissement immunitaire.",
+     "zones": [
+      "spleen"
+     ],
+     "source": "fawzi"
+    }
+   ]
   }
  ]
 }
