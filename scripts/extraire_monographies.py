@@ -105,8 +105,10 @@ def main():
         if url_page:
             page = lire(url_page)
             pdfs = [h for h, t in liens(page) if h.lower().endswith(".pdf") and re.search(r"monograph", h + t, re.I)
-                    and not re.search(r"draft|assessment|list-references|overview|comments|translation", h + t, re.I)]
+                    and not re.search(r"draft|assessment|list-references|overview|comments|translation|call|periodic-review|public-statement", h + t, re.I)]
             pdfs = [h for h in pdfs if "_en.pdf" in h] or pdfs
+            # La monographie finale de l'Union européenne passe avant toute autre pièce.
+            pdfs.sort(key=lambda h: (0 if "final-european-union-herbal-monograph" in h else 1 if "european-union-herbal-monograph" in h else 2, -len(re.findall(r"revision-(\d+)", h))))
             if pdfs:
                 data = lire(pdfs[0], binaire=True)
                 if data:
