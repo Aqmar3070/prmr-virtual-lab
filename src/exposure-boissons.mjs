@@ -25,3 +25,10 @@ export const BOISSONS = ([
   { id: "cafe-nescafe", name: "Nescafé soluble préparé (2 g pour 170 mL)", family: 4, unit: "mL",
     compo: { abv: null, caf: 41, sug: 0, label: "Nescafé · 50 à 90 mg de caféine par 2 g (Nestlé) · calcul sur 70 mg par tasse de 170 mL, soit 41 mg/100 mL · sans sucre ajouté", url: "https://www.nescafe.com/faq" } },
 ]).map(b => ({ ...b, source: b.compo.label }));
+
+// Substances naturelles locales absentes des tables officielles (100 g par jour par défaut, modifiable).
+export const NATURELLES = [
+  { id: "nat-kinkeliba", name: "Kinkéliba (feuilles, Combretum micranthum)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
+  { id: "nat-papayer", name: "Papayer (feuilles, extrait)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
+  { id: "nat-artemisia-annua", name: "Artemisia annua (feuilles en tisane)", family: 2, unit: "g", source: "Fiche sourcée PRMR" },
+];

@@ -3,7 +3,7 @@ import {initialiserAssistant} from "./exposure-assistant.mjs";
 import {doseAt,evaluateDay,fold} from "./exposure-evidence.mjs";
 import {analyserAlcool,reperesAtlas,alcoolemie,arrondi,libelleCategorie,equivalencesAlcool} from "./exposure-risk.mjs";
 import {analyserAgents,teneurLibelle} from "./exposure-agents.mjs";
-import {BOISSONS} from "./exposure-boissons.mjs";
+import {BOISSONS,NATURELLES} from "./exposure-boissons.mjs";
 import {ficheSymptomes} from "./exposure-symptomes.mjs";
 let symptomes=[];
 import {chargerNotices,fichesNotices} from "./exposure-notices.mjs";
@@ -35,7 +35,7 @@ const anchors={"male": {"foot_l": [370.2, 945.2], "calf_l": [366.0, 820.6], "hea
 const entry=(id,qty)=>{const s=products?.get?.(id);const q=qty??(s?quantiteDefaut(s):1);return {id,qty:q,after:q,start:0,reduce:DUREE_DEFAUT,end:DUREE_DEFAUT};};
 const rows=[];
 let registre=[];
-published.push(...BOISSONS);
+published.push(...BOISSONS,...NATURELLES);
 const products=new Map(published.map(s=>[s.id,s]));
 const lookup=id=>products.get(id);
 let sex="male",family=0,selected,editing=null,ajoutAuto=false,precedent=null,compare=true,timer,request=0;
