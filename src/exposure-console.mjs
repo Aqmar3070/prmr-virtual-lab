@@ -255,25 +255,27 @@ function unit(){
  $("xp-composition").hidden=s.unit!=="mL";$("xp-bed-field").hidden=!(s.unit==="mL"||s.id==="cafeine"||fold(s.name)==="cafeine");$("xp-long-field").hidden=!(s.unit==="mL"||s.nutrients?.[1]>0);
 }
 // Recherche par mots : chaque mot saisi doit figurer dans le nom, la substance active ou le code.
+// Dès qu'un mot est tapé, la recherche couvre toutes les catégories ; la catégorie choisie passe en tête.
 // « ciprofloxacine 750 » trouve « CIPROFLOXACINE ARROW 750 mg ». Les noms qui commencent par la saisie passent en tête.
 const LIMITE=400;
 function search(prefer){
  const saisie=fold($("xp-search").value.trim()),mots=saisie.split(/\s+/).filter(Boolean),matches=[];
  for(const s of products.values()){
-  if(s.family!==family)continue;
+  if(!mots.length&&s.family!==family)continue;
   if(mots.every(m=>s.search.includes(m)))matches.push(s);
  }
- const rang=s=>{const n=fold(s.name);return (n.startsWith(saisie)?0:mots[0]&&n.startsWith(mots[0])?1:2);};
+ const rang=s=>{const n=fold(s.name);return (n.startsWith(saisie)?0:mots[0]&&n.startsWith(mots[0])?1:2)*10+(s.family===family?0:1);};
  matches.sort((a,b)=>rang(a)-rang(b)||a.name.localeCompare(b.name,"fr"));
  const options=matches.slice(0,LIMITE);
  if(prefer&&lookup(prefer)&&!options.some(s=>s.id===prefer))options.unshift(lookup(prefer));
  $("xp-substance").replaceChildren(...options.map(s=>new Option(libelle(s),s.id)));
  if(prefer)$("xp-substance").value=prefer;
- $("xp-search-status").textContent=matches.length.toLocaleString("fr-FR")+" références"+(matches.length>LIMITE?" · "+LIMITE+" affichées : ajoutez un mot (marque, dosage, laboratoire) pour préciser":"");
+ const ici=matches.filter(s=>s.family===family).length,ailleurs=matches.length-ici;
+ $("xp-search-status").textContent=(mots.length?ici.toLocaleString("fr-FR")+" dans « "+families[family]+" »"+(ailleurs?" · "+ailleurs.toLocaleString("fr-FR")+" dans les autres catégories":""):matches.length.toLocaleString("fr-FR")+" références")+(matches.length>LIMITE?" · "+LIMITE+" affichées : ajoutez un mot (marque, dosage, laboratoire) pour préciser":"");
  unit();
 }
 // Libellé d'une spécialité avec sa teneur quand le nom l'indique.
-function libelle(s){const t=uniteMg(s);return t?s.name+" · "+fmt(t)+" mg par unité":s.name;}
+function libelle(s){const t=uniteMg(s);return (s.family!==family?"["+families[s.family]+"] ":"")+(t?s.name+" · "+fmt(t)+" mg par unité":s.name);}
 function uniteMg(s){return s?.id?.startsWith("cis")?teneurLibelle(s):null;}
 function forme(s){const n=fold(s.name);return /gelule/.test(n)?"gélule(s)":/comprime/.test(n)?"comprimé(s)":/sachet/.test(n)?"sachet(s)":/capsule/.test(n)?"capsule(s)":/suppositoire/.test(n)?"suppositoire(s)":"unité(s)";}
 function quantiteTexte(s,qty){
@@ -374,7 +376,7 @@ async function loadReferences(){
   const refs=data.map(([id,name,family,unit,source,extra,ibuMg])=>({id,name,family,unit,source,active:id.startsWith("cis")?extra:undefined,nutrients:id.startsWith("al")?extra:undefined,ibuMg}));
   for(const s of refs)products.set(s.id,s);
   for(const s of refs)index(s);
-  chargerMonographies().then(d=>{monographies=d;monographiesDemandees=true;ajouterPlantes(d);if(!$("xp-editor").hidden&&family===2)search($("xp-substance").value);}).catch(()=>{});
+  chargerMonographies().then(d=>{monographies=d;monographiesDemandees=true;ajouterPlantes(d);if(!$("xp-editor").hidden)search($("xp-substance").value);}).catch(()=>{});
   $("xp-catalog-status").textContent=products.size.toLocaleString("fr-FR")+" références locales · BDPM (France), Ciqual 2025 (Anses) et types de produits.";
   if(!$("xp-editor").hidden)search($("xp-substance").value);
  }catch{$("xp-catalog-status").textContent="Catalogue étendu indisponible. Recherche en ligne et saisie personnelle accessibles.";}
