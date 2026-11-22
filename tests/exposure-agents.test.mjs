@@ -127,3 +127,32 @@ test('Girofle : tableau complet, forme huile et interactions',()=>{
  assert.equal(resultat(clou,'girofle','girofle_foie').niveau,'faible');
  for(const r of g.resultats)assert.ok(r.url?.startsWith('https://'),r.id);
 });
+
+test('Révision : papayer, chia, kinkéliba, kola amer, citronnelle',()=>{
+ produits.set('feuilles',{id:'feuilles',name:'Feuilles de papayer',unit:'g'});
+ produits.set('chiag',{id:'chiag',name:'Graines de chia',unit:'g'});
+ produits.set('kink',{id:'kink',name:'Kinkéliba en infusion',unit:'g'});
+ produits.set('kola',{id:'kola',name:'Kola amer',unit:'g'});
+ produits.set('citro',{id:'citro',name:'Citronnelle en infusion',unit:'g'});
+ produits.set('cipro',{id:'cipro',name:'CIPROFLOXACINE 500 mg, comprimé',unit:'mg'});
+ produits.set('capto',{id:'capto',name:'CAPTOPRIL 50 mg, comprimé',unit:'mg'});
+ const seuls=fiche(['feuilles','chiag','kink','kola','citro'].map(id=>ligne(id,10,30)),30,{...profil,sexe:'female'});
+ assert.equal(resultat(seuls,'papaye','papaye_chimio').signe,1);
+ assert.equal(resultat(seuls,'papaye','papaye_securite').domaine,'extrapole');
+ assert.ok(resultat(seuls,'papaye','papaye_grossesse').zones.includes('uterus'));
+ assert.equal(resultat(seuls,'papaye','papaye_interactions').signe,0);
+ assert.equal(resultat(seuls,'chia','chia_tension').signe,1);
+ assert.equal(resultat(seuls,'chia','chia_allergie').signe,-1);
+ assert.equal(resultat(seuls,'kinkeliba','kinkeliba_tension').signe,1);
+ assert.equal(resultat(seuls,'kinkeliba','kinkeliba_hypotension').signe,0);
+ assert.equal(resultat(seuls,'kola_amer','kola_arthrose').signe,1);
+ assert.equal(resultat(seuls,'kola_amer','kola_ciprofloxacine').signe,0);
+ assert.equal(resultat(seuls,'citronnelle','citronnelle_tolerance').domaine,'extrapole');
+ const avec=fiche([ligne('feuilles',10,5),ligne('kink',10,5),ligne('kola',10,5),ligne('cipro',500,5),ligne('capto',50,5),ligne('metformine',1000,5)],5);
+ assert.equal(resultat(avec,'papaye','papaye_interactions').signe,-1);
+ assert.equal(resultat(avec,'papaye','papaye_securite').domaine,'etudie');
+ assert.equal(resultat(avec,'papaye','papaye_grossesse').zones.length,0);
+ assert.equal(resultat(avec,'kinkeliba','kinkeliba_hypotension').signe,-1);
+ assert.equal(resultat(avec,'kola_amer','kola_ciprofloxacine').niveau,'modere');
+ for(const f of [...seuls,...avec])for(const r of f.resultats)assert.ok(r.url?.startsWith('https://'),r.id);
+});
