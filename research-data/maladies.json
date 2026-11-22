@@ -331,6 +331,62 @@
   "bourquiKinkeliba": {
    "source": "Bourqui et coll. · J Hum Hypertens 2021, essai randomisé kinkéliba ou bissap vs captopril (219 patients, Sénégal)",
    "url": "https://doi.org/10.1038/s41371-020-00415-1"
+  },
+  "exacel": {
+   "source": "Frangoul et coll. · N Engl J Med 2024, exa-cel (édition CRISPR, 44 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2309676"
+  },
+  "greffeDrepano": {
+   "source": "Gluckman et coll. · Blood 2017, 1 000 greffes de moelle de frère ou sœur HLA-identique",
+   "url": "https://doi.org/10.1182/blood-2016-10-745711"
+  },
+  "londres": {
+   "source": "Gupta et coll. · Nature 2019, rémission du VIH après greffe CCR5Δ32 (« patient de Londres »)",
+   "url": "https://doi.org/10.1038/s41586-019-1027-4"
+  },
+  "bepirovirsen": {
+   "source": "Yuen et coll. · N Engl J Med 2022, B-Clear : bépirovirsen (457 participants)",
+   "url": "https://doi.org/10.1056/NEJMoa2210027"
+  },
+  "revueVhb": {
+   "source": "Tang et coll. · JAMA 2018, revue sur l'hépatite B chronique",
+   "url": "https://doi.org/10.1001/jama.2018.3795"
+  },
+  "zimislecel": {
+   "source": "Reichman et coll. · N Engl J Med 2025, îlots dérivés de cellules souches (zimislecel, 14 participants)",
+   "url": "https://doi.org/10.1056/NEJMoa2506549"
+  },
+  "direct": {
+   "source": "Lean et coll. · Lancet 2018, DiRECT : rémission du diabète par perte de poids (306 personnes)",
+   "url": "https://doi.org/10.1016/S0140-6736(17)33102-1"
+  },
+  "confidence": {
+   "source": "Agarwal et coll. · N Engl J Med 2025, CONFIDENCE : finérénone + empagliflozine",
+   "url": "https://doi.org/10.1056/NEJMoa2410659"
+  },
+  "greffeRein": {
+   "source": "Wolfe et coll. · N Engl J Med 1999, dialyse contre greffe rénale (228 552 patients)",
+   "url": "https://doi.org/10.1056/NEJM199912023412303"
+  },
+  "msc": {
+   "source": "Makhlough et coll. · Cytotherapy 2018, cellules stromales mésenchymateuses dans la maladie rénale (7 patients)",
+   "url": "https://doi.org/10.1016/j.jcyt.2018.02.368"
+  },
+  "bemdaneprocel": {
+   "source": "Tabar et coll. · Nature 2025, neurones dopaminergiques dérivés de cellules souches (12 patients)",
+   "url": "https://doi.org/10.1038/s41586-025-08845-y"
+  },
+  "finger": {
+   "source": "Ngandu et coll. · Lancet 2015, FINGER : intervention multidomaine (1 260 personnes)",
+   "url": "https://doi.org/10.1016/S0140-6736(15)60461-5"
+  },
+  "stronghf": {
+   "source": "Mebazaa et coll. · Lancet 2022, STRONG-HF (1 078 patients)",
+   "url": "https://doi.org/10.1016/S0140-6736(22)02076-1"
+  },
+  "dashSodium": {
+   "source": "Sacks et coll. · N Engl J Med 2001, DASH-Sodium (412 participants)",
+   "url": "https://doi.org/10.1056/NEJM200101043440101"
   }
  },
  "maladies": [
@@ -929,6 +985,103 @@
       "kidney_r"
      ]
     }
+   ],
+   "guerison": [
+    {
+     "id": "greffe_rein",
+     "type": "obtenue",
+     "titre": "Greffe de rein",
+     "objectif": "Restaurer une fonction rénale complète",
+     "resultat": "Seule restauration complète de la fonction rénale aujourd'hui. Chez 228 552 patients dialysés, la mortalité à long terme des greffés est de 48 à 82 % plus basse que celle des patients restés en attente (3,8 décès pour 100 patients-années contre 6,3).",
+     "composants": [
+      {
+       "nom": "Rein de donneur",
+       "role": "remplace l'organe détruit"
+      },
+      {
+       "nom": "Immunosuppresseurs",
+       "role": "empêchent le rejet"
+      }
+     ],
+     "risques": "Rejet, infections ; risque plus élevé les 2 premières semaines, puis nettement plus bas à 18 mois.",
+     "source": "greffeRein"
+    },
+    {
+     "id": "h_mrc_blocage",
+     "type": "hypothese",
+     "appui": "fort",
+     "titre": "Blocage complet de la progression : SGLT2 + finérénone + GLP-1 + bloqueur de l'angiotensine + correction de l'acidose",
+     "objectif": "Arrêter durablement la perte du DFG au stade atteint",
+     "composants": [
+      {
+       "nom": "Dapagliflozine ou empagliflozine",
+       "role": "baisse la pression dans les glomérules",
+       "ref": "dapagliflozine"
+      },
+      {
+       "nom": "Finérénone",
+       "role": "freine inflammation et fibrose",
+       "ref": "finerenone"
+      },
+      {
+       "nom": "Sémaglutide",
+       "role": "métabolisme, poids, inflammation",
+       "ref": "semaglutide_rein"
+      },
+      {
+       "nom": "Losartan ou autre bloqueur de l'angiotensine",
+       "role": "moins de fuite de protéines",
+       "ref": "losartan"
+      },
+      {
+       "nom": "Bicarbonate de sodium ou fruits et légumes",
+       "role": "corrige l'acidité qui use les reins",
+       "ref": "bicarbonate"
+      }
+     ],
+     "raisonnement": "Chaque composant agit sur une voie distincte de la destruction du rein (pression, aldostérone, métabolisme, angiotensine, acidité) et chacun a réduit la progression dans un essai. L'addition est démontrée pour deux d'entre eux : finérénone + empagliflozine réduisent l'albuminurie de 29 à 32 % de plus que chacun seul. Si les effets s'additionnent sur toutes les voies, la pente du DFG pourrait approcher celle du vieillissement normal.",
+     "a_tester": "Essai randomisé : association complète d'emblée contre traitement standard ; critère = pente du DFG sur 3 ans, « guérison fonctionnelle » = pente nulle ou positive.",
+     "risques": "Potassium élevé (finérénone, sel potassique), tension basse ; surveillance du potassium et de la créatinine.",
+     "source": "confidence",
+     "source2": "bicarbonate"
+    },
+    {
+     "id": "h_mrc_regeneration",
+     "type": "hypothese",
+     "appui": "faible",
+     "titre": "Régénération : blocage complet + cellules mésenchymateuses + plantes antifibrosantes",
+     "objectif": "Faire remonter le DFG en réparant le tissu rénal",
+     "composants": [
+      {
+       "nom": "Blocage complet de la progression (hypothèse ci-dessus)",
+       "role": "supprime les causes de destruction"
+      },
+      {
+       "nom": "Cellules stromales mésenchymateuses de moelle osseuse",
+       "role": "réparation (bien tolérées chez 7 patients, effet non démontré)"
+      },
+      {
+       "nom": "Racine d'astragale",
+       "role": "antifibrosante chez l'animal",
+       "ref": "astragale_animal"
+      },
+      {
+       "nom": "Feuilles de kinkéliba",
+       "role": "protègent les cellules rénales chez le rat",
+       "ref": "kinkeliba_rein"
+      },
+      {
+       "nom": "Modulation sélective de Nrf2",
+       "role": "défenses antioxydantes des tissus abîmés",
+       "ref": "nrf2_gsk3"
+      }
+     ],
+     "raisonnement": "Le blocage seul stabilise mais ne répare pas. Les cellules mésenchymateuses ont été bien tolérées 18 mois sans effet net sur le DFG, peut-être parce que les causes de destruction persistaient. Les associer au blocage complet et à des antifibrosants végétaux réunirait réparation et arrêt des agressions.",
+     "a_tester": "D'abord chez l'animal, puis essai de phase 2 : blocage complet avec ou sans cellules mésenchymateuses ; critère = variation du DFG à 12 mois.",
+     "risques": "Inconnus pour l'association ; extraits de plantes à standardiser.",
+     "source": "msc",
+     "source2": "astragaleAnimal"
+    }
    ]
   },
   {
@@ -1187,6 +1340,73 @@
      "source2": "suksomboon",
      "resume": "Glycémie à jeun − 24,6 mg/dL, HbA1c inchangée"
     }
+   ],
+   "guerison": [
+    {
+     "id": "direct",
+     "type": "obtenue",
+     "titre": "Rémission par perte de poids intensive (programme DiRECT)",
+     "objectif": "HbA1c < 6,5 % sans aucun antidiabétique",
+     "resultat": "46 % de rémission à 12 mois contre 4 % ; 86 % chez ceux qui ont perdu au moins 15 kg, 57 % entre 10 et 15 kg, 34 % entre 5 et 10 kg.",
+     "composants": [
+      {
+       "nom": "Arrêt des antidiabétiques et antihypertenseurs",
+       "role": "au début du programme"
+      },
+      {
+       "nom": "Repas de substitution de 825 à 853 kcal/j pendant 3 à 5 mois",
+       "role": "perte de poids rapide"
+      },
+      {
+       "nom": "Réintroduction progressive des aliments (2 à 8 semaines)",
+       "role": "transition"
+      },
+      {
+       "nom": "Accompagnement au long cours",
+       "role": "maintien du poids"
+      }
+     ],
+     "risques": "À faire sous suivi médical (arrêt des médicaments, régime très bas en calories).",
+     "source": "direct"
+    },
+    {
+     "id": "h_dt2_remission",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Rémission renforcée : DiRECT + plantes hypoglycémiantes + activité physique",
+     "objectif": "Augmenter la part de rémissions durables",
+     "composants": [
+      {
+       "nom": "Programme DiRECT",
+       "role": "cœur de la rémission"
+      },
+      {
+       "nom": "Graines de fenugrec",
+       "role": "HbA1c − 0,88 point",
+       "ref": "fenugrec"
+      },
+      {
+       "nom": "Berbérine (rhizome de Coptis)",
+       "role": "sensibilité à l'insuline",
+       "ref": "berberine"
+      },
+      {
+       "nom": "Graines de nigelle",
+       "role": "glycémie à jeun",
+       "ref": "nigelle_dt2"
+      },
+      {
+       "nom": "Activité physique (programme DPP)",
+       "role": "maintien du poids",
+       "ref": "mode_de_vie"
+      }
+     ],
+     "raisonnement": "La rémission dépend surtout de la perte de poids (86 % au-delà de 15 kg). Les moments fragiles sont la réintroduction des aliments et le maintien : des plantes qui baissent la glycémie et l'activité physique pourraient aider ceux qui perdent moins de 10 kg à franchir le seuil de rémission.",
+     "a_tester": "Essai randomisé : DiRECT + plantes contre DiRECT seul ; critère = rémission à 24 mois.",
+     "risques": "Hypoglycémies si un antidiabétique est repris ; qualité des extraits.",
+     "source": "direct",
+     "source2": "fenugrecShabil"
+    }
    ]
   },
   {
@@ -1287,7 +1507,52 @@
      "resume": "Production d'insuline préservée (+ 30 %)"
     }
    ],
-   "lacune": "Aucune substance naturelle avec un essai randomisé démontrant un effet sur le diabète de type 1 n'a été retrouvée dans les sources consultées à ce jour."
+   "lacune": "Aucune substance naturelle avec un essai randomisé démontrant un effet sur le diabète de type 1 n'a été retrouvée dans les sources consultées à ce jour.",
+   "guerison": [
+    {
+     "id": "zimislecel",
+     "type": "obtenue",
+     "titre": "Îlots fabriqués à partir de cellules souches (zimislecel)",
+     "objectif": "Plus besoin d'injections d'insuline",
+     "resultat": "10 participants sur 12 (83 %) sans insuline à 1 an ; tous avec une HbA1c < 7 % et sans hypoglycémie sévère. Le peptide C, nul au départ, est réapparu chez tous.",
+     "composants": [
+      {
+       "nom": "Îlots dérivés de cellules souches",
+       "role": "remplacent les cellules bêta détruites"
+      },
+      {
+       "nom": "Immunosuppression sans corticoïdes",
+       "role": "empêche le rejet"
+      }
+     ],
+     "risques": "Neutropénie ; 2 décès (méningite à cryptocoque, aggravation d'une démence préexistante). Petite étude, suivi court.",
+     "source": "zimislecel"
+    },
+    {
+     "id": "h_dt1_prevention",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Empêcher la maladie d'apparaître : téplizumab puis vérapamil aux stades 1-2",
+     "objectif": "Éviter le stade 3 chez les porteurs d'auto-anticorps",
+     "composants": [
+      {
+       "nom": "Téplizumab",
+       "role": "freine l'attaque immunitaire (retard de 2 ans)",
+       "ref": "teplizumab"
+      },
+      {
+       "nom": "Vérapamil",
+       "role": "protège les cellules bêta restantes",
+       "ref": "verapamil"
+      }
+     ],
+     "raisonnement": "Le téplizumab freine l'attaque mais ne protège pas les cellules bêta fragilisées ; le vérapamil protège ces cellules sans toucher l'auto-immunité. Ensemble, ils agiraient sur les deux moitiés du problème.",
+     "a_tester": "Essai randomisé chez des apparentés porteurs d'auto-anticorps : association contre téplizumab seul ; critère = diabète déclaré à 4 ans.",
+     "risques": "Éruptions, baisse passagère des lymphocytes ; tension artérielle (vérapamil).",
+     "source": "teplizumab",
+     "source2": "verapamil"
+    }
+   ]
   },
   {
    "id": "drepanocytose",
@@ -1444,6 +1709,75 @@
      ],
      "source": "niprisan",
      "source2": "phytoCochrane"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "greffe_drepano",
+     "type": "obtenue",
+     "titre": "Greffe de moelle d'un frère ou d'une sœur HLA-identique",
+     "objectif": "Guérison : la moelle greffée produit des globules rouges normaux",
+     "resultat": "Seul traitement guérisseur établi. Sur 1 000 greffes (âge médian 9 ans), survie sans événement à 5 ans 91,4 %, survie globale 92,9 %. Meilleurs résultats chez les plus jeunes et depuis 2006.",
+     "composants": [
+      {
+       "nom": "Moelle d'un donneur HLA-identique",
+       "role": "remplace la moelle malade"
+      },
+      {
+       "nom": "Conditionnement",
+       "role": "prépare la moelle du receveur"
+      }
+     ],
+     "risques": "7 % de décès, surtout par infection ; 23 échecs de greffe ; nécessite un donneur compatible.",
+     "source": "greffeDrepano"
+    },
+    {
+     "id": "exacel",
+     "type": "obtenue",
+     "titre": "Thérapie génique exa-cel",
+     "objectif": "Plus aucune crise vaso-occlusive",
+     "resultat": "29 patients sur 30 (97 %) sans crise pendant au moins 12 mois ; 100 % sans hospitalisation pour crise ; aucun cancer.",
+     "composants": [
+      {
+       "nom": "Cellules souches du patient modifiées",
+       "role": "réactivent l'hémoglobine fœtale"
+      },
+      {
+       "nom": "Busulfan",
+       "role": "prépare la moelle avant réinjection"
+      }
+     ],
+     "risques": "Ceux du busulfan et de l'autogreffe ; suivi médian 19 mois.",
+     "source": "exacel"
+    },
+    {
+     "id": "h_drepano_controle",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Contrôle quasi complet sans greffe : hydroxyurée + oméga-3 + L-glutamine",
+     "objectif": "Supprimer les crises là où greffe et thérapie génique ne sont pas accessibles",
+     "composants": [
+      {
+       "nom": "Hydroxyurée",
+       "role": "hémoglobine fœtale (même cible que l'exa-cel, par voie orale)",
+       "ref": "hydroxyuree"
+      },
+      {
+       "nom": "Oméga-3 (DHA, EPA)",
+       "role": "moins d'adhésion et d'inflammation",
+       "ref": "omega3_drepano"
+      },
+      {
+       "nom": "L-glutamine",
+       "role": "moins de stress oxydant des globules rouges",
+       "ref": "glutamine"
+      }
+     ],
+     "raisonnement": "L'exa-cel montre que relever l'hémoglobine fœtale supprime presque toutes les crises. L'hydroxyurée vise la même cible, à faible coût ; les oméga-3 et la glutamine agissent sur deux autres maillons (adhésion aux vaisseaux, oxydation). Deux tiers des patients de l'essai glutamine prenaient déjà l'hydroxyurée.",
+     "a_tester": "Essai randomisé en Afrique : triple association contre hydroxyurée seule ; critère = enfants sans crise sur 12 mois.",
+     "risques": "Surveillance de la numération (hydroxyurée) ; nausées (glutamine).",
+     "source": "reach",
+     "source2": "omega3Drepano"
     }
    ]
   },
@@ -1655,6 +1989,42 @@
      ],
      "source": "riedCacao"
     }
+   ],
+   "guerison": [
+    {
+     "id": "h_hta_normalisation",
+     "type": "hypothese",
+     "appui": "fort",
+     "titre": "Tension normalisée sans médicament : DASH pauvre en sel + sel potassique + ail + bissap ou kinkéliba",
+     "objectif": "Revenir durablement sous 140/90 sans médicament",
+     "composants": [
+      {
+       "nom": "Régime DASH pauvre en sel",
+       "role": "− 11,5 mm Hg chez l'hypertendu (addition démontrée)",
+       "ref": "dash"
+      },
+      {
+       "nom": "Sel de substitution potassique",
+       "role": "moins de sodium, plus de potassium",
+       "ref": "sel_substitution"
+      },
+      {
+       "nom": "Ail (bulbe, extrait vieilli)",
+       "role": "− 8,7 mm Hg",
+       "ref": "ail"
+      },
+      {
+       "nom": "Calices de bissap ou feuilles de kinkéliba en infusion",
+       "role": "efficacité comparable au captopril",
+       "ref": "bissap"
+      }
+     ],
+     "raisonnement": "DASH + peu de sel a déjà montré un effet additif (− 11,5 mm Hg chez l'hypertendu, plus que chacun seul). L'ail et le bissap ou le kinkéliba agissent par d'autres voies (détente des artères, effet diurétique). Si une partie de leurs effets s'ajoute, la baisse totale pourrait dépasser celle d'un médicament et ramener une hypertension modérée à la normale.",
+     "a_tester": "Essai randomisé en Afrique de l'Ouest chez des hypertendus de grade 1 : association complète contre conseils habituels ; critère = tension < 140/90 sans médicament à 6 mois.",
+     "risques": "Ne jamais arrêter un traitement sans avis médical ; potassium en cas de maladie rénale.",
+     "source": "dashSodium",
+     "source2": "serban"
+    }
    ]
   },
   {
@@ -1773,6 +2143,40 @@
      ],
      "source": "ginkgo"
     }
+   ],
+   "guerison": [
+    {
+     "id": "h_alz_multicible",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Arrêter le déclin au stade précoce : anti-amyloïde + programme multidomaine + contrôle vasculaire",
+     "objectif": "Stopper la progression de la perte de mémoire",
+     "composants": [
+      {
+       "nom": "Donanémab ou lécanémab",
+       "role": "élimine les plaques amyloïdes",
+       "ref": "donanemab"
+      },
+      {
+       "nom": "Programme FINGER (alimentation, exercice, entraînement cognitif, suivi vasculaire)",
+       "role": "maintient la cognition chez les personnes à risque"
+      },
+      {
+       "nom": "Contrôle de la tension",
+       "role": "protège les vaisseaux du cerveau"
+      },
+      {
+       "nom": "Extrait de feuilles de ginkgo EGb 761",
+       "role": "cognition et autonomie au stade léger",
+       "ref": "ginkgo"
+      }
+     ],
+     "raisonnement": "Les anticorps anti-amyloïdes ralentissent le déclin sans l'arrêter : d'autres mécanismes (vaisseaux, réserve cognitive) continuent d'agir. FINGER montre qu'agir sur ces facteurs maintient la cognition. Réunir les deux viserait l'arrêt du déclin.",
+     "a_tester": "Essai randomisé : anti-amyloïde + FINGER contre anti-amyloïde seul ; critère = absence de déclin du CDR-SB à 18 mois.",
+     "risques": "Œdèmes et saignements cérébraux des anti-amyloïdes ; surveillance par IRM.",
+     "source": "finger",
+     "source2": "donanemab"
+    }
    ]
   },
   {
@@ -1870,7 +2274,61 @@
      "source": "sparx"
     }
    ],
-   "lacune": "La lévodopa du commerce reste la référence des symptômes ; la source qui la classe n'a pas encore été intégrée au registre."
+   "lacune": "La lévodopa du commerce reste la référence des symptômes ; la source qui la classe n'a pas encore été intégrée au registre.",
+   "guerison": [
+    {
+     "id": "bemdaneprocel",
+     "type": "obtenue",
+     "titre": "Remplacement des neurones à dopamine par greffe (bemdaneprocel)",
+     "objectif": "Restaurer les neurones perdus",
+     "resultat": "Greffons vivants à 18 mois (imagerie) ; score moteur sans médicament amélioré de 23 points en moyenne à forte dose ; aucun effet indésirable lié aux cellules. Phase 1, 12 patients : restauration partielle, pas encore guérison.",
+     "composants": [
+      {
+       "nom": "Progéniteurs de neurones dopaminergiques",
+       "role": "greffés dans le putamen"
+      },
+      {
+       "nom": "Immunosuppression d'un an",
+       "role": "survie du greffon"
+      }
+     ],
+     "risques": "Chirurgie cérébrale ; immunosuppression.",
+     "source": "bemdaneprocel"
+    },
+    {
+     "id": "h_pk_restauration",
+     "type": "hypothese",
+     "appui": "faible",
+     "titre": "Restaurer et protéger : greffe de neurones + lixisénatide + exercice intense, Mucuna en relais",
+     "objectif": "Remplacer les neurones perdus et protéger ceux qui restent",
+     "composants": [
+      {
+       "nom": "Greffe de neurones dopaminergiques",
+       "role": "remplace les neurones perdus"
+      },
+      {
+       "nom": "Lixisénatide",
+       "role": "stabilise le handicap moteur",
+       "ref": "lixisenatide"
+      },
+      {
+       "nom": "Exercice intense",
+       "role": "stabilise les symptômes",
+       "ref": "exercice_intense"
+      },
+      {
+       "nom": "Poudre de graines torréfiées de Mucuna pruriens",
+       "role": "lévodopa naturelle en attendant la prise du greffon",
+       "ref": "mucuna"
+      }
+     ],
+     "raisonnement": "La greffe remplace les neurones, mais la maladie peut atteindre les nouveaux. Le lixisénatide et l'exercice ralentissent la progression : les associer protégerait le greffon et les neurones restants.",
+     "a_tester": "Après confirmation de la greffe : greffe + lixisénatide contre greffe seule ; critère = score moteur et imagerie à 3 ans.",
+     "risques": "Chirurgie et immunosuppression ; nausées (lixisénatide).",
+     "source": "bemdaneprocel",
+     "source2": "lixisenatide"
+    }
+   ]
   },
   {
    "id": "insuffisance_cardiaque",
@@ -1987,6 +2445,46 @@
      ],
      "source": "qsymbio"
     }
+   ],
+   "guerison": [
+    {
+     "id": "h_ic_recuperation",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Récupération du cœur : quatre traitements à pleine dose en 2 semaines + coenzyme Q10",
+     "objectif": "Faire remonter la fraction d'éjection et sortir de l'insuffisance cardiaque",
+     "composants": [
+      {
+       "nom": "Sacubitril/valsartan",
+       "role": "remodelage du cœur",
+       "ref": "sacubitril"
+      },
+      {
+       "nom": "Dapagliflozine",
+       "role": "moins d'aggravations",
+       "ref": "dapagliflozine_ic"
+      },
+      {
+       "nom": "Spironolactone",
+       "role": "décès − 30 %",
+       "ref": "spironolactone"
+      },
+      {
+       "nom": "Bêtabloquant titré vite",
+       "role": "repos du cœur"
+      },
+      {
+       "nom": "Coenzyme Q10",
+       "role": "énergie du muscle cardiaque",
+       "ref": "coq10_ic"
+      }
+     ],
+     "raisonnement": "Monter vite à pleine dose (STRONG-HF) réduit décès et réhospitalisations (risque relatif 0,66). La coenzyme Q10 agit sur une autre voie, l'énergie des cellules du cœur, et a divisé par deux les événements graves. L'association viserait une récupération de la fonction du cœur, pas seulement moins d'événements.",
+     "a_tester": "Essai randomisé : stratégie STRONG-HF + coenzyme Q10 contre STRONG-HF seule ; critère = fraction d'éjection redevenue > 50 % à 12 mois.",
+     "risques": "Tension basse, potassium, fonction rénale ; titration sous surveillance rapprochée.",
+     "source": "stronghf",
+     "source2": "qsymbio"
+    }
    ]
   },
   {
@@ -2083,6 +2581,55 @@
      ],
      "source": "phyllanthus",
      "source2": "phyllanthus2"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "bepirovirsen",
+     "type": "obtenue",
+     "titre": "Guérison fonctionnelle par bépirovirsen",
+     "objectif": "Antigène HBs et ADN viral indétectables, durablement après l'arrêt",
+     "resultat": "Après 24 semaines à 300 mg par semaine, 9 à 10 % des participants gardaient un antigène HBs et un ADN viral indétectables 24 semaines après l'arrêt. Avec les traitements actuels, cette guérison reste rare (1 à 12 % avec les analogues, 3 à 7 % avec l'interféron pégylé).",
+     "composants": [
+      {
+       "nom": "Bépirovirsen (oligonucléotide antisens)",
+       "role": "éteint les ARN du virus"
+      },
+      {
+       "nom": "Analogue nucléos(t)idique pour une partie des participants",
+       "role": "bloque la multiplication"
+      }
+     ],
+     "risques": "Réactions au point d'injection, fièvre, hausse passagère des enzymes du foie.",
+     "source": "bepirovirsen",
+     "source2": "revueVhb"
+    },
+    {
+     "id": "h_vhb_triple",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Guérison fonctionnelle renforcée : ténofovir + bépirovirsen + interféron pégylé",
+     "objectif": "Augmenter nettement la part de guérisons fonctionnelles",
+     "composants": [
+      {
+       "nom": "Ténofovir",
+       "role": "supprime la multiplication, fait reculer la cirrhose",
+       "ref": "tenofovir"
+      },
+      {
+       "nom": "Bépirovirsen",
+       "role": "supprime les protéines virales qui épuisent l'immunité"
+      },
+      {
+       "nom": "Interféron pégylé",
+       "role": "relance la réponse immunitaire"
+      }
+     ],
+     "raisonnement": "Le virus persiste parce que ses protéines épuisent les défenses. Le ténofovir bloque la multiplication, le bépirovirsen éteint la production de protéines, l'interféron relance l'immunité : trois verrous attaqués en même temps.",
+     "a_tester": "Essai randomisé : triple association contre ténofovir + bépirovirsen ; critère = antigène HBs indétectable 24 semaines après l'arrêt.",
+     "risques": "Mauvaise tolérance de l'interféron (moelle osseuse, humeur).",
+     "source": "bepirovirsen",
+     "source2": "revueVhb"
     }
    ]
   },
@@ -2200,5 +2747,12 @@
     }
    ]
   }
- ]
+ ],
+ "regle_appui": {
+  "obtenue": "Guérison ou rémission déjà obtenue chez l'humain dans une étude publiée : la maladie a disparu ou ne s'exprime plus, sans traitement d'entretien de la maladie elle-même.",
+  "fort": "Hypothèse PRMR dont le cœur a déjà produit une rémission ou un effet additif démontré chez l'humain, et dont chaque composant a un bénéfice clinique démontré.",
+  "moyen": "Hypothèse PRMR dont chaque composant a un bénéfice clinique démontré séparément, avec des mécanismes complémentaires ; la combinaison elle-même n'a pas été évaluée.",
+  "faible": "Hypothèse PRMR dont au moins un composant ne repose que sur des données précliniques, de sécurité, ou une petite étude sans groupe témoin.",
+  "avertissement": "Aucune probabilité chiffrée de guérison n'est affichée : aucune donnée publiée ne permet de la calculer pour ces combinaisons. Le niveau d'appui résume la solidité des preuves de chaque composant ; il se lit comme une priorité de recherche, pas comme une promesse pour une personne."
+ }
 }
