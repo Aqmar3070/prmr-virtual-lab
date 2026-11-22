@@ -1,10 +1,12 @@
 // Registre des maladies : pour une maladie et un stade, les substances étudiées,
 // classées par force de preuve. Règle : rien n'est classé sans essai cité.
+// Trois niveaux d'essais chez l'humain, puis les pistes à confirmer.
 export const FORCES={
- forte:{rang:0,libelle:"Preuve forte",couleur:"#3fe6b0"},
- moyenne:{rang:1,libelle:"Preuve moyenne",couleur:"#5fc8ff"},
- faible:{rang:2,libelle:"Preuve faible",couleur:"#c4b5fd"},
- a_eviter:{rang:3,libelle:"À éviter",couleur:"#ff4d3d"}
+ forte:{rang:0,libelle:"Efficacité forte",groupe:"Essais cliniques chez l'humain",couleur:"#3fe6b0"},
+ moyenne:{rang:1,libelle:"Efficacité moyenne",groupe:"Essais cliniques chez l'humain",couleur:"#5fc8ff"},
+ faible:{rang:2,libelle:"Efficacité faible ou incertaine",groupe:"Essais cliniques chez l'humain",couleur:"#c4b5fd"},
+ preclinique:{rang:3,libelle:"Préclinique",groupe:"Études chez l'animal ou sur cellules",couleur:"#ffc94a"},
+ theorique:{rang:4,libelle:"Piste théorique",groupe:"Hypothèses à tester",couleur:"#a9bcc6"}
 };
 export const TYPES={medicament:"Médicament",naturel:"Substance naturelle",regime:"Régime ou mode de vie"};
 
@@ -29,7 +31,9 @@ export function substancesPour(maladie,stadeId){
  const stade=maladie.stades?.find(s=>s.id===stadeId)||null;
  return maladie.substances
   .filter(s=>concerne(s,stade))
-  .sort((a,b)=>FORCES[a.force].rang-FORCES[b.force].rang||(a.rr??1)-(b.rr??1)||a.nom.localeCompare(b.nom,"fr"));
+  // Du plus puissant au moins puissant : niveau de preuve, puis nature du bénéfice
+  // (maladie évitée, DFG, marqueurs), puis taille de l'effet mesuré.
+  .sort((a,b)=>FORCES[a.force].rang-FORCES[b.force].rang||(a.critere??9)-(b.critere??9)||(b.puissance??0)-(a.puissance??0)||(a.rr??1)-(b.rr??1)||a.nom.localeCompare(b.nom,"fr"));
 }
 
 export function zonesPour(maladie,stadeId){

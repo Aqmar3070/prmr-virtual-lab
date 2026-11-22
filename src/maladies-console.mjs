@@ -19,7 +19,7 @@ function rendreListe(){
  const trouvees=chercherMaladies(registre,$("mx-recherche").value);
  for(const m of trouvees){
   const b=el("button","mx-maladie");b.type="button";b.setAttribute("aria-pressed",String(m===maladie));
-  b.append(el("span","",m.nom),el("small","",m.substances.length+" substances"+(m.incurable?" · incurable à ce jour":"")));
+  b.append(el("span","",m.nom),el("small","",m.substances.length+" substances étudiées"));
   b.onclick=()=>choisir(m.id);liste.append(b);
  }
  if(!trouvees.length)liste.append(el("p","mx-vide","Aucune maladie de ce nom dans le registre pour l’instant."));
@@ -45,22 +45,27 @@ function rendreSubstances(){
  const compte=el("div","mx-compte");
  for(const [cle,f] of Object.entries(FORCES)){const n=liste.filter(s=>s.force===cle).length;const c=el("span","mx-pastille",f.libelle+" · "+n);c.dataset.force=cle;compte.append(c);}
  zone.append(compte);
+ let groupeCourant="";
  for(const [cle,f] of Object.entries(FORCES)){
   const groupe=liste.filter(s=>s.force===cle);if(!groupe.length)continue;
-  const bloc=el("section","mx-groupe");bloc.dataset.force=cle;bloc.append(el("h3","",f.libelle));
+  if(f.groupe!==groupeCourant){groupeCourant=f.groupe;zone.append(el("h3","mx-niveau",f.groupe));}
+  const bloc=el("section","mx-groupe");bloc.dataset.force=cle;bloc.append(el("h4","",f.libelle));
   for(const s of groupe){
    const d=el("details","mx-substance");d.dataset.force=cle;
-   const resume=el("summary","");resume.append(el("span","",s.nom),el("b","",TYPES[s.type]||s.type));d.append(resume);
+   const resume=el("summary","");const nom=el("span","",s.nom);
+   if(s.resume)nom.append(el("small","",s.resume));
+   resume.append(nom,el("b","",TYPES[s.type]||s.type));d.append(resume);
    ligne(d,"Partie ou composé qui agit",s.partie);
    ligne(d,"Dose étudiée",s.dose);
    ligne(d,"Durée",s.duree);
    ligne(d,"Population",s.population);
-   ligne(d,"Réserve",s.condition&&("étudié seulement en cas de "+s.condition.toLowerCase()));
    ligne(d,"Résultat",s.effet);
    ligne(d,"Mécanisme",s.mecanisme);
+   ligne(d,"Réserve",s.condition&&("étudié en cas de "+s.condition.charAt(0).toLowerCase()+s.condition.slice(1)));
+   ligne(d,"Prudence",s.prudence);
    const plage=plageEtudiee(s);if(plage)d.append(el("p","mx-etiq",plage));
-   if(s.fiche)d.append(el("p","mx-etiq","Fiche détaillée (effets favorables et défavorables, interactions) dans l’explorateur d’exposition : « "+s.fiche+" »."));
-   d.append(el("p","mx-etiq",s.force==="a_eviter"?"Toxicité ou cas publiés":"Essai publié · résultat repris de la source"));
+   if(s.fiche)d.append(el("p","mx-etiq","Fiche détaillée dans l’explorateur d’exposition : « "+s.fiche+" »."));
+   d.append(el("p","mx-etiq",{forte:"Essai clinique",moyenne:"Essai clinique",faible:"Essais cliniques de qualité limitée",preclinique:"Étude animale ou cellulaire : à confirmer chez l’humain",theorique:"Hypothèse : à vérifier par l’expérience"}[cle]+" · résultat repris de la source"));
    for(const k of [s.source,s.source2]){const a=k&&lien(k,registre);if(a){d.append(a);d.append(el("br",""));}}
    d.ontoggle=()=>{if(d.open&&s.zones?.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:s.zones[0]}));};
    bloc.append(d);

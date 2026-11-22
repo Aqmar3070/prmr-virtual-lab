@@ -20,7 +20,12 @@ const assert=require("node:assert/strict");
   await page.click(".xp-profile-card summary");
   await page.waitForFunction(()=>document.querySelector(".xa-ready")&&document.querySelector('#xa-focus option[value="uterus"]'));
   await page.screenshot({path:"/tmp/atlas-femme.png"});
-  for(const structure of ["lung_l","lung_r","eye_l","foot_l","toes_l"]){
+  // La barre « Atlas anatomique » a été retirée : les poumons se choisissent dans la liste.
+  for(const structure of ["lung_l","lung_r"]){
+   await page.selectOption("#xa-focus",structure);
+   assert.equal(await page.inputValue("#xa-focus"),structure);
+  }
+  for(const structure of ["eye_l","foot_l","toes_l"]){
    await page.click('[data-structure="'+structure+'"]');
    assert.equal(await page.inputValue("#xa-focus"),structure);
   }

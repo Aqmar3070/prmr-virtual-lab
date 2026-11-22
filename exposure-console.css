@@ -49,3 +49,7 @@ main{padding:12px;max-width:1720px;margin:auto}.xp-board{display:grid;grid-templ
 .xp-right .xr-acc details{margin:0;padding:0;border-top:1px solid #1f4d5d}
 .xp-right .xr-acc{max-height:min(62vh,620px);overflow-y:auto;padding-right:3px;scrollbar-width:thin}
 .xr-acc details>p{white-space:pre-line}
+
+/* Deux espaces de travail en onglets dans le bandeau : exposition et maladies. */
+.xp-tabs{display:flex;gap:6px}.xp-tabs a{padding:8px 16px;border:1px solid #2f7f91;border-radius:6px;background:#06202d;color:#bfeef6!important;font-size:15px;font-weight:600;white-space:nowrap}.xp-tabs a[aria-current=page]{background:#0f4c5d;border-color:#47e3ef;color:#fff!important;box-shadow:0 0 10px #2fd6e655}.xp-head .xp-tabs a:first-child,.xp-head .xp-tabs a:last-child{margin-left:0;font-size:15px}
+@media(max-width:570px){.xp-tabs{width:100%;order:3}.xp-tabs a{flex:1;text-align:center;padding:7px 6px;font-size:13px}}

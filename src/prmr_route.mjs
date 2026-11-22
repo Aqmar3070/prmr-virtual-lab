@@ -51,7 +51,6 @@ const PHASES = [
 
 const ASIDE = [
   { href: "./exposures.html", label: "Doses et effets", primary: true },
-  { href: "./maladies.html", label: "Maladies et substances" },
   { href: "./index.html?view=cloud", label: "Espace privé" },
   {
     href: "https://github.com/Aqmar3070/prmr-virtual-lab",

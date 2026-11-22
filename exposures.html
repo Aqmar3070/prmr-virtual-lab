@@ -91,13 +91,11 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=45826aa087">
+<link rel="stylesheet" href="./exposure-console.css?v=e886e0300b">
 </head>
 <body>
-<header class="xp-head"><a href="./index.html"><strong>PRMR</strong> VIRTUAL LAB</a><h1>Explorateur d’exposition</h1><a href="#registre">Repères publiés</a></header>
+<header class="xp-head"><a href="./index.html"><strong>PRMR</strong> VIRTUAL LAB</a><nav class="xp-tabs" aria-label="Espaces de travail"><a href="./exposures.html" aria-current="page">Explorateur d’exposition</a><a href="./maladies.html">Maladies</a></nav><a href="#registre">Repères publiés</a></header>
 <main>
-<nav class="xp-atlas-nav" aria-label="Régions de l’atlas"><strong>Atlas anatomique</strong>
-<button data-structure="">Corps entier</button><button data-structure="lung_l">Poumon gauche</button><button data-structure="lung_r">Poumon droit</button><button data-structure="heart">Cœur</button><button data-structure="brain">Cerveau</button><button data-structure="kidney_l">Rein gauche</button><a href="#xp-dossier">Dossier</a></nav>
 <div class="xp-board" id="exposure-console">
  <div class="xp-left">
  <section class="xp-card xp-profile-card"><details><summary>Profil du sujet</summary>
@@ -212,7 +210,7 @@ window.addEventListener("hashchange",openRegister);openRegister();
 let mounted=false;function mount(){if(register.open&&!mounted){mounted=true;mountExposureExplorer("r13-explorer");}}
 register.addEventListener("toggle",mount);mount();
 </script>
-<script type="module" src="./src/prmr_route.mjs?v=ff021ae9a8"></script>
+<script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/exposure-console.mjs?v=b7046ec6bd"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
