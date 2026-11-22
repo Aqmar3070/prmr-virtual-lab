@@ -9,7 +9,7 @@ import gzip, json, re, sys
 
 ENTREE = sys.argv[1] if len(sys.argv) > 1 else "research-data/monographies-ema.json.gz"
 SORTIE = sys.argv[2] if len(sys.argv) > 2 else "research-data/monographies-ema.json.gz"
-SECTIONS = ["posologie", "contre_indications", "mises_en_garde", "interactions", "grossesse", "conduite", "effets_indesirables", "surdosage"]
+SECTIONS = ["indications", "posologie", "contre_indications", "mises_en_garde", "interactions", "grossesse", "conduite", "effets_indesirables", "surdosage"]
 
 DEBUTS = [r"^and method of administration", r"^with other medicinal products and other forms of interaction", r"^and precautions for use",
           r"^lactation", r"^and use machines", r"^Pregnancy and lactation"]
@@ -17,6 +17,8 @@ BRUIT = [r"Well-established use", r"Traditional use", r"European Union herbal mo
          r"EMA/HMPC/\S+", r"Page \d+/\d+", r"5\.\s*Pharmacological properties.*$", r"© European Medicines Agency.*$"]
 
 TRADUCTIONS = [
+ ("Traditional herbal medicinal product used", "Médicament traditionnel à base de plantes utilisé"),
+ ("The product is a traditional herbal medicinal product for use in the specified indication exclusively based upon long-standing use", "Usage traditionnel : indication fondée uniquement sur un usage ancien, sans preuve clinique"),
  ("None known.", "Aucune connue."), ("None reported.", "Aucune rapportée."), ("None known", "Aucune connue"),
  ("Not applicable.", "Sans objet."), ("Hypersensitivity to the active substance.", "Hypersensibilité à la substance active."),
  ("Hypersensitivity to the active substance", "Hypersensibilité à la substance active"),
