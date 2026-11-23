@@ -896,6 +896,54 @@
   "deutetra": {
    "source": "Frank et coll. · deutétrabénazine au long cours dans la chorée de Huntington, CNS Drugs 2022",
    "url": "https://doi.org/10.1007/s40263-022-00956-8"
+  },
+  "betical": {
+   "source": "Locatelli et coll. · thérapie génique bêti-cel dans la bêta-thalassémie, N Engl J Med 2022",
+   "url": "https://doi.org/10.1056/NEJMoa2113206"
+  },
+  "hopeb": {
+   "source": "Pipe et coll. · HOPE-B, thérapie génique de l'hémophilie B, N Engl J Med 2023",
+   "url": "https://doi.org/10.1056/NEJMoa2211644"
+  },
+  "eti": {
+   "source": "Middleton et coll. · élexacaftor-tézacaftor-ivacaftor dans la mucoviscidose, N Engl J Med 2019",
+   "url": "https://doi.org/10.1056/NEJMoa1908639"
+  },
+  "fordmd": {
+   "source": "Guglieri et coll. · FOR-DMD, schémas de corticoïdes dans la myopathie de Duchenne, JAMA 2022",
+   "url": "https://doi.org/10.1001/jama.2022.4315"
+  },
+  "spirit": {
+   "source": "Giudice et coll. · SPIRIT 1 et 2, relugolix combiné dans l'endométriose, Lancet 2022",
+   "url": "https://doi.org/10.1016/S0140-6736(22)00622-5"
+  },
+  "legro": {
+   "source": "Legro et coll. · létrozole contre clomifène, infertilité du SOPK, N Engl J Med 2014",
+   "url": "https://doi.org/10.1056/NEJMoa1313517"
+  },
+  "arch": {
+   "source": "Saag et coll. · ARCH, romosozumab contre alendronate, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1708322"
+  },
+  "reid_zol": {
+   "source": "Reid et coll. · zolédronate dans l'ostéopénie après 65 ans, N Engl J Med 2018",
+   "url": "https://doi.org/10.1056/NEJMoa1808082"
+  },
+  "light": {
+   "source": "Gazzard et coll. · LiGHT, laser sélectif contre collyres dans le glaucome, Lancet 2019",
+   "url": "https://doi.org/10.1016/S0140-6736(18)32213-X"
+  },
+  "areds": {
+   "source": "AREDS · vitamines C et E, bêtacarotène et zinc dans la DMLA, Arch Ophthalmol 2001",
+   "url": "https://doi.org/10.1001/archopht.119.10.1417"
+  },
+  "practecal": {
+   "source": "Nyang'wa et coll. · TB-PRACTECAL, traitement oral de 24 semaines de la tuberculose résistante, N Engl J Med 2022",
+   "url": "https://doi.org/10.1056/NEJMoa2117166"
+  },
+  "messier": {
+   "source": "Messier et coll. · régime et exercice dans l'arthrose du genou, JAMA 2013",
+   "url": "https://doi.org/10.1001/jama.2013.277669"
   }
  },
  "maladies": [
@@ -7529,6 +7577,573 @@
       "lung_l",
       "lung_r",
       "heart"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "thalassemie",
+   "nom": "Bêta-thalassémie",
+   "synonymes": [
+    "thalassémie",
+    "anémie génétique",
+    "transfusions"
+   ],
+   "zones": [
+    "spleen",
+    "liver"
+   ],
+   "description": "Maladie génétique de l'hémoglobine : anémie sévère obligeant à des transfusions toute la vie.",
+   "source": "betical",
+   "stades": [
+    {
+     "id": "dependante",
+     "nom": "Dépendante des transfusions",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "beticel",
+     "nom": "Thérapie génique bêti-cel",
+     "type": "geste",
+     "force": "cas",
+     "dose": "Une seule perfusion des cellules souches du patient corrigées, après chimiothérapie (busulfan)",
+     "population": "23 patients (sans groupe témoin), dont des enfants",
+     "effet": "Plus besoin de transfusions chez 20 sur 22 (91 %), hémoglobine moyenne 11,7 g/dL ; suivi médian 29,5 mois.",
+     "resume": "Plus de transfusions : 91 %",
+     "source": "betical",
+     "stades": [
+      "dependante"
+     ],
+     "mecanisme": "Ajoute un gène de bêta-globine fonctionnel dans les cellules souches du sang.",
+     "prudence": "La chimiothérapie préparatoire est lourde (infertilité, infections). Coût très élevé.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "liver"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "thal_genique",
+     "type": "obtenue",
+     "titre": "Thérapie génique : vie sans transfusions",
+     "objectif": "Indépendance transfusionnelle durable",
+     "resultat": "91 % des patients évaluables sans transfusion, hémoglobine moyenne 11,7 g/dL.",
+     "composants": [
+      {
+       "nom": "Bêti-cel",
+       "role": "corriger le gène",
+       "ref": "beticel"
+      }
+     ],
+     "source": "betical"
+    }
+   ]
+  },
+  {
+   "id": "hemophilie",
+   "nom": "Hémophilie",
+   "synonymes": [
+    "hémophilie",
+    "saignements",
+    "facteur IX",
+    "facteur VIII"
+   ],
+   "zones": [
+    "knee_l",
+    "knee_r"
+   ],
+   "description": "Maladie génétique de la coagulation : saignements dans les articulations et les muscles.",
+   "source": "hopeb",
+   "stades": [
+    {
+     "id": "b_severe",
+     "nom": "Hémophilie B sévère ou modérément sévère",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "etranacogene",
+     "nom": "Thérapie génique étranacogène dézaparvovec",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Une seule perfusion (2 × 10¹³ copies/kg)",
+     "population": "54 hommes, comparés à leur propre période de traitement préventif",
+     "effet": "Saignements par an de 4,19 à 1,51 ; facteur IX remonté d'environ 36 points de pourcentage ; besoins en facteur IX effondrés.",
+     "resume": "Saignements − 64 % après une seule perfusion",
+     "source": "hopeb",
+     "stades": [
+      "b_severe"
+     ],
+     "mecanisme": "Un virus inoffensif apporte au foie le gène du facteur IX.",
+     "prudence": "Moins efficace si anticorps anti-AAV5 élevés ; recul limité.",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "mucoviscidose",
+   "nom": "Mucoviscidose",
+   "synonymes": [
+    "mucoviscidose",
+    "fibrose kystique",
+    "poumon"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r",
+    "pancreas"
+   ],
+   "description": "Maladie génétique : mucus épais qui bouche les bronches et le pancréas.",
+   "source": "eti",
+   "stades": [
+    {
+     "id": "f508del",
+     "nom": "Au moins une mutation F508del",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "eti",
+     "nom": "Élexacaftor-tézacaftor-ivacaftor",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Comprimés matin et soir (schéma de l'essai)",
+     "population": "403 patients de 12 ans et plus, contre placebo",
+     "effet": "Capacité respiratoire + 14,3 points ; poussées − 63 % ; chlorure de la sueur − 41,8 mmol/L.",
+     "resume": "Souffle + 14 points, poussées − 63 %",
+     "source": "eti",
+     "stades": [
+      "f508del"
+     ],
+     "duree": "24 semaines",
+     "mecanisme": "Répare la protéine CFTR défectueuse.",
+     "prudence": "Surveiller le foie ; nombreuses interactions.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "pancreas"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "duchenne",
+   "nom": "Myopathie de Duchenne",
+   "synonymes": [
+    "Duchenne",
+    "myopathie",
+    "dystrophie musculaire"
+   ],
+   "zones": [
+    "femur_l",
+    "femur_r"
+   ],
+   "description": "Maladie génétique du garçon : les muscles se dégradent progressivement.",
+   "source": "fordmd",
+   "stades": [
+    {
+     "id": "jeune",
+     "nom": "Garçon de 4 à 7 ans",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "corticoide_quotidien",
+     "nom": "Corticoïde tous les jours (prednisone ou deflazacort)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Prednisone 0,75 mg/kg/j ou deflazacort 0,90 mg/kg/j, tous les jours",
+     "population": "196 garçons, contre prednisone un jour sur deux (10 jours sur 10 jours)",
+     "effet": "Meilleure fonction sur 3 ans (vitesse pour se relever du sol) qu'avec le schéma intermittent.",
+     "resume": "Meilleure force sur 3 ans",
+     "source": "fordmd",
+     "stades": [
+      "jeune"
+     ],
+     "mecanisme": "Freine l'inflammation qui accélère la destruction musculaire.",
+     "prudence": "Troubles du comportement (34 à 38 %), prise de poids, os fragiles.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "endometriose",
+   "nom": "Endométriose",
+   "sexe": "female",
+   "synonymes": [
+    "endométriose",
+    "règles douloureuses",
+    "douleurs pelviennes"
+   ],
+   "zones": [
+    "uterus",
+    "ovary_l",
+    "ovary_r"
+   ],
+   "description": "Tissu semblable à la muqueuse de l'utérus qui pousse en dehors : douleurs intenses, infertilité.",
+   "source": "spirit",
+   "stades": [
+    {
+     "id": "douloureuse",
+     "nom": "Douleurs modérées à sévères",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "relugolix_endo",
+     "nom": "Relugolix + œstradiol + noréthindrone",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Un comprimé combiné par jour",
+     "population": "1 261 femmes (2 essais), contre placebo",
+     "effet": "Règles beaucoup moins douloureuses chez 75 % contre 27 à 30 % ; douleurs pelviennes hors règles améliorées chez 58 % contre 40 %.",
+     "resume": "Douleurs des règles soulagées : 75 % contre 30 %",
+     "source": "spirit",
+     "stades": [
+      "douloureuse"
+     ],
+     "duree": "24 semaines",
+     "mecanisme": "Bloque les hormones qui stimulent les ovaires ; l'hormonothérapie ajoutée protège les os.",
+     "prudence": "Bouffées de chaleur ; contraception non hormonale nécessaire.",
+     "critere": 1,
+     "zones": [
+      "uterus",
+      "ovary_l",
+      "ovary_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "sopk",
+   "nom": "Syndrome des ovaires polykystiques et infertilité",
+   "sexe": "female",
+   "synonymes": [
+    "SOPK",
+    "ovaires polykystiques",
+    "infertilité",
+    "ovulation"
+   ],
+   "zones": [
+    "ovary_l",
+    "ovary_r"
+   ],
+   "description": "Trouble hormonal fréquent : cycles irréguliers, absence d'ovulation, infertilité.",
+   "source": "legro",
+   "stades": [
+    {
+     "id": "infertilite",
+     "nom": "Désir de grossesse",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "letrozole",
+     "nom": "Létrozole",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Jusqu'à 5 cycles de traitement (dose selon l'essai)",
+     "population": "750 femmes, contre clomifène",
+     "effet": "Naissances vivantes 27,5 % contre 19,1 % (RR 1,44 ; IC 95 % 1,10 à 1,87) ; ovulation 61,7 % contre 48,3 % des cycles.",
+     "resume": "Naissances + 44 % par rapport au clomifène",
+     "source": "legro",
+     "stades": [
+      "infertilite"
+     ],
+     "mecanisme": "Baisse brièvement les œstrogènes pour déclencher l'ovulation.",
+     "prudence": "Fatigue, vertiges ; suivi gynécologique.",
+     "critere": 1,
+     "zones": [
+      "ovary_l",
+      "ovary_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "arthrose",
+   "nom": "Arthrose du genou",
+   "synonymes": [
+    "arthrose",
+    "genou",
+    "articulations",
+    "usure"
+   ],
+   "zones": [
+    "knee_l",
+    "knee_r"
+   ],
+   "description": "Usure du cartilage avec douleurs et raideur.",
+   "source": "messier",
+   "stades": [
+    {
+     "id": "surpoids",
+     "nom": "Avec surpoids",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "regime_exercice_arthrose",
+     "nom": "Perte de poids + exercice",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Régime hypocalorique + exercice encadré (marche, renforcement)",
+     "population": "454 adultes en surpoids, contre exercice seul ou régime seul",
+     "effet": "Perte de 10,6 kg ; douleur 3,6 contre 4,7 et meilleure fonction ; moins d'inflammation (IL-6).",
+     "resume": "Douleur et fonction améliorées",
+     "source": "messier",
+     "stades": [
+      "surpoids"
+     ],
+     "duree": "18 mois",
+     "mecanisme": "Moins de charge sur le genou et moins d'inflammation.",
+     "prudence": "Encadrement nécessaire pour l'exercice.",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "osteoporose",
+   "nom": "Ostéoporose",
+   "synonymes": [
+    "ostéoporose",
+    "fractures",
+    "os fragiles",
+    "ostéopénie"
+   ],
+   "zones": [
+    "hip_l",
+    "hip_r",
+    "pelvis"
+   ],
+   "description": "Os fragiles qui se cassent facilement (poignet, vertèbres, hanche).",
+   "source": "arch",
+   "stades": [
+    {
+     "id": "osteopenie",
+     "nom": "Ostéopénie après 65 ans",
+     "niveau": "modere"
+    },
+    {
+     "id": "osteoporose",
+     "nom": "Ostéoporose avec fracture",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "romosozumab",
+     "nom": "Romosozumab puis alendronate",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "210 mg en injection chaque mois pendant 12 mois, puis alendronate",
+     "population": "4 093 femmes après la ménopause, contre alendronate seul",
+     "effet": "Nouvelles fractures vertébrales − 48 % (6,2 % contre 11,9 %) ; hanche − 38 %.",
+     "resume": "Fractures vertébrales − 48 %",
+     "source": "arch",
+     "stades": [
+      "osteoporose"
+     ],
+     "mecanisme": "Stimule la fabrication d'os.",
+     "prudence": "Plus d'événements cardiovasculaires graves la 1re année (2,5 % contre 1,9 %).",
+     "critere": 1,
+     "zones": [
+      "hip_l",
+      "hip_r",
+      "pelvis"
+     ]
+    },
+    {
+     "id": "zoledronate",
+     "nom": "Zolédronate",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "5 mg en perfusion tous les 18 mois (4 perfusions), avec vitamine D",
+     "population": "2 000 femmes de 65 ans et plus, contre placebo",
+     "effet": "Fractures de fragilité − 37 % (HR 0,63) ; 15 femmes à traiter pour éviter une fracture.",
+     "resume": "Fractures − 37 %",
+     "source": "reid_zol",
+     "stades": [
+      "osteopenie"
+     ],
+     "duree": "6 ans",
+     "mecanisme": "Freine la destruction de l'os.",
+     "prudence": "Fièvre et douleurs après la 1re perfusion.",
+     "critere": 1,
+     "zones": [
+      "hip_l",
+      "hip_r",
+      "pelvis"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "glaucome",
+   "nom": "Glaucome",
+   "synonymes": [
+    "glaucome",
+    "tension de l'œil",
+    "vue"
+   ],
+   "zones": [
+    "eye_l",
+    "eye_r"
+   ],
+   "description": "La pression dans l'œil abîme le nerf optique : perte progressive de la vue.",
+   "source": "light",
+   "stades": [
+    {
+     "id": "angle_ouvert",
+     "nom": "À angle ouvert, non traité",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "laser_slt",
+     "nom": "Laser sélectif (trabéculoplastie) en premier",
+     "type": "geste",
+     "force": "moyenne",
+     "dose": "Une séance de laser au cabinet",
+     "population": "718 patients, contre collyres",
+     "effet": "À 3 ans, 74,2 % sans aucun collyre ; pression dans la cible plus souvent ; aucune chirurgie contre 11.",
+     "resume": "3 patients sur 4 sans collyre à 3 ans",
+     "source": "light",
+     "stades": [
+      "angle_ouvert"
+     ],
+     "mecanisme": "Améliore l'évacuation du liquide de l'œil.",
+     "prudence": "Effet qui peut s'épuiser ; contrôle régulier.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "dmla",
+   "nom": "Dégénérescence maculaire liée à l'âge (DMLA)",
+   "synonymes": [
+    "DMLA",
+    "macula",
+    "vue",
+    "vieillissement"
+   ],
+   "zones": [
+    "eye_l",
+    "eye_r"
+   ],
+   "description": "Usure de la zone centrale de la rétine : perte de la vision centrale.",
+   "source": "areds",
+   "stades": [
+    {
+     "id": "intermediaire",
+     "nom": "Intermédiaire, à risque",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "areds",
+     "nom": "Vitamines C et E, bêtacarotène, zinc et cuivre (formule AREDS)",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Vitamine C 500 mg, vitamine E 400 UI, bêtacarotène 15 mg, zinc 80 mg, cuivre 2 mg par jour",
+     "population": "3 640 personnes de 55 à 80 ans, contre placebo, suivi 6,3 ans",
+     "effet": "Passage à la forme avancée − 28 % (OR 0,72) ; − 34 % chez les plus à risque ; perte de vision modérée − 27 %.",
+     "resume": "Forme avancée − 28 %",
+     "source": "areds",
+     "stades": [
+      "intermediaire"
+     ],
+     "mecanisme": "Antioxydants et zinc protègent la rétine.",
+     "prudence": "Bêtacarotène déconseillé aux fumeurs et anciens fumeurs (plus de cancers du poumon dans AREDS2).",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "tuberculose_mr",
+   "nom": "Tuberculose résistante",
+   "synonymes": [
+    "tuberculose",
+    "multirésistante",
+    "TB-MR",
+    "poumon"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r"
+   ],
+   "description": "Tuberculose qui ne répond plus à la rifampicine ; traitement long et toxique autrefois.",
+   "source": "practecal",
+   "stades": [
+    {
+     "id": "resistante",
+     "nom": "Résistante à la rifampicine",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "bpalm",
+     "nom": "Bédaquiline + prétomanide + linézolide + moxifloxacine (BPaLM)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Par la bouche pendant 24 semaines",
+     "population": "301 patients, contre traitement standard de 9 à 20 mois",
+     "effet": "Échec, décès ou abandon 11 % contre 48 % ; effets graves 19 % contre 59 %.",
+     "resume": "Échec 11 % contre 48 %, traitement de 6 mois",
+     "source": "practecal",
+     "stades": [
+      "resistante"
+     ],
+     "mecanisme": "Combinaison d'antibiotiques actifs sur les bacilles résistants.",
+     "prudence": "Surveillance du sang et des nerfs (linézolide), du cœur (bédaquiline).",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
      ]
     }
    ],
