@@ -182,3 +182,14 @@ main{padding:8px 10px}
 .xp-right{max-height:calc(56vh + 90px)}
 .mx-cle{font-size:10px!important}
 .xg svg#xr-forest,.xg svg#xr-balance{max-height:none}
+.mx-profil{margin:6px 0;border:1px solid #1a4352;border-radius:4px;padding:2px 8px;background:#05192566}
+.mx-profil summary{cursor:pointer;font-size:12.5px;color:#9fe9f1;padding:4px 0}
+.mx-profil .mx-ligne{display:grid;grid-template-columns:1fr 92px auto;gap:6px;align-items:center;margin:4px 0;font-size:11.5px;color:#bcdbe3}
+.mx-profil .mx-ligne select{grid-column:2/4}
+.mx-profil input,.mx-profil select{width:100%;background:#031722;color:#e2f6fa;border:1px solid #1f5566;border-radius:3px;padding:2px 4px;font:inherit}
+.mx-profil small{color:#7fa9b5;font-size:10px}
+.mx-statut{margin:4px 0}
+.mx-statut>summary{cursor:pointer;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 0;color:#9fe9f1}
+.mx-statut[data-statut=hors]>summary,.mx-statut[data-statut=non_precise]>summary{color:#7fa9b5}
+.mx-avis{font-size:11px;font-weight:600}
+.mx-avis[data-statut=etudie]{color:#3fe6b0}.mx-avis[data-statut=a_preciser]{color:#ffc94a}.mx-avis[data-statut=hors]{color:#ff9f7a}.mx-avis[data-statut=non_precise]{color:#a9bcc6}

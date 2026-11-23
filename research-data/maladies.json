@@ -1266,7 +1266,22 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         15,
+         30
+        ],
+        "bicarbonate": [
+         16,
+         20
+        ],
+        "note": "clairance de la créatinine"
+       }
+      ]
+     }
     },
     {
      "id": "dapagliflozine",
@@ -1292,7 +1307,21 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         25,
+         75
+        ],
+        "rac": [
+         200,
+         5000
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "empagliflozine_rein",
@@ -1318,7 +1347,27 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         20,
+         44
+        ]
+       },
+       {
+        "dfg": [
+         45,
+         89
+        ],
+        "rac": [
+         200,
+         null
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "losartan",
@@ -1339,7 +1388,12 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     }
     },
     {
      "id": "semaglutide_rein",
@@ -1367,7 +1421,34 @@
       "kidney_r",
       "pancreas"
      ],
-     "source": "flow"
+     "source": "flow",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         50,
+         75
+        ],
+        "rac": [
+         301,
+         4999
+        ]
+       },
+       {
+        "dfg": [
+         25,
+         49
+        ],
+        "rac": [
+         101,
+         4999
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "finerenone",
@@ -1394,7 +1475,35 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "rac": [
+         30,
+         299
+        ],
+        "dfg": [
+         25,
+         59
+        ],
+        "note": "avec rétinopathie diabétique"
+       },
+       {
+        "rac": [
+         300,
+         5000
+        ],
+        "dfg": [
+         25,
+         74
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "tolvaptan",
@@ -1418,7 +1527,21 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "causes": [
+       "polykystose"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         60,
+         null
+        ],
+        "note": "clairance de la créatinine, 18 à 50 ans"
+       }
+      ]
+     }
     },
     {
      "id": "bardoxolone",
@@ -1444,7 +1567,20 @@
       "kidney_l",
       "kidney_r"
      ],
-     "prudence": "Dans l'essai suivant (BEACON, 2 185 patients au stade 4), pas moins d'insuffisances terminales et plus d'hospitalisations pour insuffisance cardiaque (HR 1,83) : essai arrêté. Le bénéfice sur le DFG ne s'est pas traduit par une protection démontrée."
+     "prudence": "Dans l'essai suivant (BEACON, 2 185 patients au stade 4), pas moins d'insuffisances terminales et plus d'hospitalisations pour insuffisance cardiaque (HR 1,83) : essai arrêté. Le bénéfice sur le DFG ne s'est pas traduit par une protection démontrée.",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         20,
+         45
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "pentoxifylline",
@@ -1468,7 +1604,20 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         15,
+         59
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "cetoanalogues",
@@ -1492,7 +1641,17 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         null,
+         59
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "nigelle_rein",
@@ -1518,7 +1677,17 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         15,
+         59
+        ]
+       }
+      ]
+     }
     },
     {
      "id": "fruits_legumes",
@@ -1543,7 +1712,24 @@
      "stades": [
       "G2",
       "G4"
-     ]
+     ],
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         15,
+         29
+        ]
+       },
+       {
+        "dfg": [
+         60,
+         200
+        ],
+        "note": "stades 1 et 2"
+       }
+      ]
+     }
     },
     {
      "id": "cordyceps",
@@ -1587,7 +1773,12 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     }
     },
     {
      "id": "abelmoschus_manihot",
@@ -1610,7 +1801,12 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     }
     },
     {
      "id": "coq10",
@@ -1655,7 +1851,18 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         60,
+         null
+        ],
+        "note": "prévention, sans maladie rénale au départ"
+       }
+      ]
+     }
     },
     {
      "id": "astragale_animal",
@@ -1784,7 +1991,17 @@
       "kidney_r"
      ],
      "source": "vital_pari",
-     "resume": "Albuminurie − 20 % (2 µg/j)"
+     "resume": "Albuminurie − 20 % (2 µg/j)",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "note": "avec albuminurie, sous IEC ou sartan"
+       }
+      ]
+     }
     },
     {
      "id": "resveratrol_rein",
@@ -1804,7 +2021,17 @@
       "kidney_r"
      ],
      "source": "sattarinezhad",
-     "resume": "Albuminurie − 46 mg/g en 3 mois"
+     "resume": "Albuminurie − 46 mg/g en 3 mois",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "note": "avec albuminurie, sous losartan"
+       }
+      ]
+     }
     },
     {
      "id": "curcuma_rein",
@@ -1824,7 +2051,17 @@
       "kidney_r"
      ],
      "source": "khajehdehi",
-     "resume": "Protéinurie en baisse en 2 mois"
+     "resume": "Protéinurie en baisse en 2 mois",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "note": "protéinurie franche"
+       }
+      ]
+     }
     },
     {
      "id": "vegetal_rein_cas",
@@ -1847,7 +2084,21 @@
      ],
      "source": "campbell_ckd",
      "resume": "DFG 45 → 74 en 4,5 mois (1 cas)",
-     "source2": "raja_jus"
+     "source2": "raja_jus",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         45,
+         59
+        ],
+        "note": "un seul cas"
+       }
+      ]
+     }
     }
    ],
    "guerison": [
@@ -1946,7 +2197,37 @@
      "source": "msc",
      "source2": "astragaleAnimal"
     }
-   ]
+   ],
+   "profil_patient": {
+    "causes": [
+     {
+      "id": "diabete",
+      "nom": "diabète"
+     },
+     {
+      "id": "hypertension",
+      "nom": "hypertension"
+     },
+     {
+      "id": "polykystose",
+      "nom": "polykystose"
+     },
+     {
+      "id": "glomerulonephrite",
+      "nom": "glomérulonéphrite (IgA…)"
+     },
+     {
+      "id": "autre",
+      "nom": "autre ou inconnue"
+     }
+    ],
+    "champs": [
+     "dfg",
+     "rac",
+     "bicarbonate"
+    ],
+    "avertissement": "Compare la situation saisie aux patients réellement inclus dans chaque étude. Ce n’est ni un diagnostic ni une prescription : toute décision revient au néphrologue."
+   }
   },
   {
    "id": "dt2",

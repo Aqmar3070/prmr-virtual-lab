@@ -221,3 +221,25 @@ test('Maladies peu fournies : deuxième traitement ajouté',()=>{
  const p=registre.maladies.find(m=>m.id==='cancer_pancreas');
  assert.ok(ids(p,'opere').includes('folfirinox')&&!ids(p,'avance').includes('folfirinox'));
 });
+
+test('Profil du patient (rein) : comparaison aux populations étudiées',async()=>{
+ const {evaluerProfil,profilActif,decrireProfil}=await import('../src/maladies.mjs');
+ const mrc=registre.maladies.find(m=>m.id==='mrc');const causes=mrc.profil_patient.causes;
+ const S=id=>mrc.substances.find(s=>s.id===id);
+ // Diabète, DFG 35, albuminurie 500 mg/g : DAPA-CKD, FIDELIO, FLOW, EMPA-KIDNEY couvrent ce profil.
+ const p={cause:'diabete',dfg:35,rac:500,bicarbonate:null};
+ for(const id of ['dapagliflozine','empagliflozine_rein','finerenone','semaglutide_rein'])assert.equal(evaluerProfil(S(id),p,causes).statut,'etudie',id);
+ // DFG 18 : hors de toutes ces plages (essais à partir de 20 ou 25).
+ const bas={...p,dfg:18};
+ for(const id of ['dapagliflozine','empagliflozine_rein','finerenone'])assert.equal(evaluerProfil(S(id),bas,causes).statut,'hors',id);
+ assert.match(evaluerProfil(S('dapagliflozine'),bas,causes).raisons[0],/DFG 18 hors/);
+ // Polykystose : la finérénone (diabète) est hors profil, le tolvaptan dépend du DFG.
+ assert.equal(evaluerProfil(S('finerenone'),{cause:'polykystose',dfg:70,rac:null},causes).statut,'hors');
+ assert.equal(evaluerProfil(S('tolvaptan'),{cause:'polykystose',dfg:70},causes).statut,'etudie');
+ // Mesure manquante : à préciser, jamais « étudié » par défaut.
+ assert.equal(evaluerProfil(S('dapagliflozine'),{cause:'diabete',dfg:40,rac:null},causes).statut,'a_preciser');
+ assert.equal(evaluerProfil(S('bicarbonate'),{dfg:20,bicarbonate:18},causes).statut,'etudie');
+ assert.equal(evaluerProfil(S('cordyceps'),p,causes).statut,'non_precise');
+ assert.ok(!profilActif({cause:'',dfg:null}));
+ assert.match(decrireProfil(S('empagliflozine_rein').profil,causes),/DFG 20 à 44/);
+});

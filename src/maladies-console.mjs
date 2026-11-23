@@ -1,7 +1,7 @@
 // Vue « Maladies » de l'explorateur : maladie et stade à gauche, corps au centre,
 // pistes de guérison et substances à droite (deux onglets), graphiques en bas.
 // Les lignes sont courtes ; le détail s'ouvre au clic.
-import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,plageEtudiee,rapportPublie} from "./maladies.mjs";
+import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,plageEtudiee,rapportPublie,CHAMPS_PROFIL,evaluerProfil,decrireProfil,profilActif} from "./maladies.mjs";
 
 const $=id=>document.getElementById(id);
 const el=(tag,cls,texte)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(texte!==undefined)n.textContent=texte;return n;};
@@ -9,6 +9,7 @@ const svg=(tag,attributs,texte)=>{const n=document.createElementNS("http://www.w
 const lien=(src,reg)=>{const s=reg.sources[src];if(!s)return null;const a=el("a","",s.source);a.href=s.url;a.target="_blank";a.rel="noopener";return a;};
 const params=new URLSearchParams(location.search);
 let registre=null,maladie=null,stade=params.get("stade")||"",onglet="guerison";
+const patient={cause:"",dfg:null,rac:null,bicarbonate:null};
 const sexe=()=>document.querySelector("#sex-choice [aria-pressed=true]")?.dataset.sex||"male";
 const active=()=>document.body.dataset.vue==="maladies";
 
@@ -48,6 +49,24 @@ function rendreMaladie(){
  choix.value=stade;
 }
 
+// Profil du patient (maladies qui le proposent) : cause, mesures biologiques.
+function rendreProfil(){
+ const zone=$("mx-profil"),pp=maladie.profil_patient;
+ zone.hidden=!pp;if(!pp)return;
+ const champs=$("mx-profil-champs");champs.replaceChildren();
+ const lc=el("label","mx-ligne","Cause ");const sel=document.createElement("select");sel.append(new Option("Non précisée",""));
+ for(const c of pp.causes)sel.append(new Option(c.nom,c.id));sel.value=patient.cause;
+ sel.onchange=()=>{patient.cause=sel.value;rendreDroite();};lc.append(sel);champs.append(lc);
+ for(const k of pp.champs){
+  const f=CHAMPS_PROFIL[k];const l=el("label","mx-ligne",f.libelle+" ");const i=document.createElement("input");
+  i.type="number";i.min="0";i.step="any";i.placeholder=f.unite;i.value=patient[k]??"";i.dataset.champ=k;
+  i.oninput=()=>{patient[k]=i.value===""?null:Number(i.value);rendreDroite();};
+  l.append(i,el("small","",f.unite));champs.append(l);
+ }
+ $("mx-profil-avert").textContent=pp.avertissement||"";
+ if(profilActif(patient))zone.open=true;
+}
+
 function ligne(parent,titre,texte){if(!texte)return;const p=el("p","");p.append(el("b","",titre+" : "),texte);parent.append(p);}
 function sources(d,cles){for(const k of cles){const a=k&&lien(k,registre);if(a){d.append(a);d.append(el("br",""));}}}
 
@@ -74,7 +93,19 @@ function rendreGuerison(zone){
  const note=el("details","mx-note");note.append(el("summary","","Pourquoi aucun pourcentage de guérison"),el("p","mx-etiq",registre.regle_appui?.avertissement||""));zone.append(note);
 }
 
+const STATUTS={etudie:"Étudiées chez des patients comparables",a_preciser:"À préciser : une mesure manque",hors:"Hors du profil étudié",non_precise:"Profil des patients non précisé dans la source"};
 function rendreSubstancesListe(zone,liste){
+ const pp=maladie.profil_patient;
+ if(!pp||!profilActif(patient)){rendreGroupe(zone,liste);return;}
+ const avis=new Map(liste.map(s=>[s,evaluerProfil(s,patient,pp.causes)]));
+ for(const [cle,titre] of Object.entries(STATUTS)){
+  const groupe=liste.filter(s=>avis.get(s).statut===cle);if(!groupe.length)continue;
+  const bloc=el("details","mx-statut");bloc.dataset.statut=cle;bloc.open=cle==="etudie"||cle==="a_preciser";
+  bloc.append(el("summary","",titre+" · "+groupe.length));
+  rendreGroupe(bloc,groupe,avis);zone.append(bloc);
+ }
+}
+function rendreGroupe(zone,liste,avis){
  const compte=el("div","mx-compte");
  for(const [cle,f] of Object.entries(FORCES)){const n=liste.filter(s=>s.force===cle).length;if(!n)continue;const c=el("span","mx-pastille",COURT[cle]+" "+n);c.title=f.libelle;c.dataset.force=cle;compte.append(c);}
  zone.append(compte);
@@ -85,12 +116,14 @@ function rendreSubstancesListe(zone,liste){
   for(const s of groupe){
    const d=el("details","mx-ligne-d mx-substance");d.dataset.force=cle;
    const resume=el("summary","");resume.append(el("span","",s.nom),el("b","",COURT[cle]));d.append(resume);
+   const a=avis?.get(s);if(a){const p=el("p","mx-avis",a.raisons.join(" · "));p.dataset.statut=a.statut;d.append(p);}
    if(s.resume)d.append(el("p","mx-resume",s.resume));
    ligne(d,"Type",TYPES[s.type]||s.type);
    ligne(d,"Partie ou composé qui agit",s.partie);
    ligne(d,"Dose étudiée",s.dose);
    ligne(d,"Durée",s.duree);
    ligne(d,"Population",s.population);
+   ligne(d,"Patients inclus",decrireProfil(s.profil,maladie.profil_patient?.causes));
    ligne(d,"Résultat",s.effet);
    ligne(d,"Mécanisme",s.mecanisme);
    ligne(d,"Réserve",s.condition&&("étudié en cas de "+s.condition.charAt(0).toLowerCase()+s.condition.slice(1)));
@@ -108,7 +141,8 @@ function rendreSubstancesListe(zone,liste){
 
 function rendreDroite(){
  const zone=$("mx-substances");zone.replaceChildren();
- const liste=substancesPour(maladie,stade);
+ // Profil saisi : on compare à toutes les études, le stade ne filtre plus.
+ const liste=substancesPour(maladie,maladie.profil_patient&&profilActif(patient)?"":stade);
  const st=maladie.stades?.find(x=>x.id===stade);
  $("mx-titre-stade").textContent=st?st.nom:"";
  $("mx-n-guerison").textContent=(maladie.guerison||[]).length;
@@ -167,7 +201,7 @@ function choisir(id){
  if(active()){const url=new URL(location.href);url.searchParams.set("maladie",maladie.id);if(stade)url.searchParams.set("stade",stade);else url.searchParams.delete("stade");history.replaceState(null,"",url);}
  // Maladie propre à un sexe (sein, prostate, utérus) : le corps affiché suit.
  if(active()&&maladie.sexe&&maladie.sexe!==sexe())document.querySelector('#sex-choice [data-sex="'+maladie.sexe+'"]')?.click();
- rendreListe();rendreMaladie();rendreDroite();envoyerAtlas();
+ rendreListe();rendreMaladie();rendreProfil();rendreDroite();envoyerAtlas();
  // Nouvelle maladie : on revient au corps entier pour voir tous les organes touchés.
  if(avant&&avant!==maladie&&active())document.dispatchEvent(new CustomEvent("xp-focus",{detail:""}));
 }

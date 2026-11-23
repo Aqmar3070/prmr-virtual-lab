@@ -91,7 +91,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=9375ad7ff2">
+<link rel="stylesheet" href="./exposure-console.css?v=39fc6abf9e">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
@@ -105,6 +105,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
   <p class="mx-cle">Meilleure piste : <i data-appui="obtenue"></i>guérison <i data-appui="fort"></i>fort <i data-appui="moyen"></i>moyen <i data-appui="faible"></i>faible <i></i>à l’étude</p></section>
  <section class="xp-card mx-card" data-vue="maladies"><div id="mx-fiche"></div>
   <label class="mx-ligne">Stade <select id="mx-stade"></select></label>
+  <details id="mx-profil" class="mx-profil" hidden><summary>Profil du patient</summary><div id="mx-profil-champs"></div><p id="mx-profil-avert" class="mx-etiq"></p></details>
   <details class="mx-lire"><summary>Lire les couleurs</summary><div id="mx-regle"></div><p>Classement : niveau de preuve, puis nature du bénéfice, puis taille de l’effet. Toute décision de traitement revient au médecin.</p></details></section>
  <section class="xp-card xp-profile-card" data-vue="substances"><details><summary>Profil du sujet</summary>
  <div class="xp-profile"><label for="xp-age">Âge</label><div><input id="xp-age" type="number" min="18" max="110" value="45"> ans</div>
@@ -229,7 +230,7 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=1f59803a02"></script>
 <script type="module" src="./src/exposure-console.mjs?v=68f57f8615"></script>
-<script type="module" src="./src/maladies-console.mjs?v=95e4ee35f2"></script>
+<script type="module" src="./src/maladies-console.mjs?v=23d24837e3"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
 </body>
 </html>
