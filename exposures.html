@@ -91,21 +91,28 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=e886e0300b">
+<link rel="stylesheet" href="./exposure-console.css?v=3bda5d1bbf">
 </head>
 <body>
-<header class="xp-head"><a href="./index.html"><strong>PRMR</strong> VIRTUAL LAB</a><nav class="xp-tabs" aria-label="Espaces de travail"><a href="./exposures.html" aria-current="page">Explorateur d’exposition</a><a href="./maladies.html">Maladies</a></nav><a href="#registre">Repères publiés</a></header>
+<header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
+<nav class="xp-vues" aria-label="Vue de l’explorateur"><button type="button" data-choix-vue="substances" aria-pressed="true">Substances</button><button type="button" data-choix-vue="maladies" aria-pressed="false">Maladies</button></nav>
+<a id="xp-reperes" href="#registre">Repères publiés</a></header>
 <main>
 <div class="xp-board" id="exposure-console">
  <div class="xp-left">
- <section class="xp-card xp-profile-card"><details><summary>Profil du sujet</summary>
- <div class="xp-profile"><span>Genre</span><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div>
- <label for="xp-age">Âge</label><div><input id="xp-age" type="number" min="18" max="110" value="45"> ans</div>
+ <section class="xp-card mx-card" data-vue="maladies"><div class="mx-tete"><h2>Maladies</h2><input id="mx-recherche" type="search" autocomplete="off" placeholder="Rechercher" aria-label="Rechercher une maladie"></div>
+  <div id="mx-liste" aria-label="Maladies du registre"></div>
+  <p class="mx-cle">Meilleure piste : <i data-appui="obtenue"></i>guérison <i data-appui="fort"></i>fort <i data-appui="moyen"></i>moyen <i data-appui="faible"></i>faible <i></i>à l’étude</p></section>
+ <section class="xp-card mx-card" data-vue="maladies"><div id="mx-fiche"></div>
+  <label class="mx-ligne">Stade <select id="mx-stade"></select></label>
+  <details class="mx-lire"><summary>Lire les couleurs</summary><div id="mx-regle"></div><p>Classement : niveau de preuve, puis nature du bénéfice, puis taille de l’effet. Toute décision de traitement revient au médecin.</p></details></section>
+ <section class="xp-card xp-profile-card" data-vue="substances"><details><summary>Profil du sujet</summary>
+ <div class="xp-profile"><label for="xp-age">Âge</label><div><input id="xp-age" type="number" min="18" max="110" value="45"> ans</div>
  <label for="xp-height">Taille</label><div><input id="xp-height" type="number" min="100" max="240" value="175"> cm</div>
  <label for="xp-weight">Poids</label><div><input id="xp-weight" type="number" min="30" max="300" step=".1" value="72"> kg</div></div><small>Profil adulte descriptif. Aucune correction de dose individuelle.</small></details></section>
- <section class="xp-card"><h2>Scénario d’exposition</h2><p id="xp-catalog-status" role="status">Chargement du catalogue…</p><small>Sources des références et teneurs moyennes par 100 g · <a href="https://base-donnees-publique.medicaments.gouv.fr/">BDPM</a> · <a href="https://doi.org/10.57745/RDMHWY">Ciqual 2025, Anses</a></small>
+ <section class="xp-card" data-vue="substances"><h2>Expositions</h2>
  <div id="xp-categories" aria-label="Familles de prises"></div>
- <h3>Liste des prises</h3><div id="xp-list"></div><button id="xp-add" type="button">＋ Ajouter une prise</button>
+ <div id="xp-list"></div><button id="xp-add" type="button">＋ Ajouter une prise</button>
  <form id="xp-editor" hidden><label>Rechercher dans la catégorie<input id="xp-search" type="search" autocomplete="off" placeholder="Nom, spécialité, ingrédient ou code"></label>
  <div class="xp-actions"><button id="xp-online" type="button">Recherche étendue</button> <button id="xp-custom" type="button">Saisir une référence personnelle</button></div>
  <small id="xp-search-status" role="status"></small>
@@ -123,40 +130,48 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <label>Jour de réduction<input id="xp-reduce" type="number" min="0" max="730" required></label>
  <label>Quantité après réduction<input id="xp-after" type="number" min="0" step="any" required></label>
  <label>Jour d’arrêt<input id="xp-end" type="number" min="1" max="731" required></label>
- <p id="xp-error" role="alert"></p><button>Enregistrer</button> <button type="button" id="xp-cancel">Annuler</button></form></section>
-<section class="xp-card xp-assistant"><h2>Assistant de recherche</h2>
-<label for="xa-note">Question ou prise à examiner</label><textarea id="xa-note" rows="3" placeholder="Ex. : caféine, 80 mg par jour"></textarea>
+ <p id="xp-error" role="alert"></p><button>Enregistrer</button> <button type="button" id="xp-cancel">Annuler</button></form>
+ <small class="xp-catalogue"><span id="xp-catalog-status" role="status">Chargement du catalogue…</span> · <a href="https://base-donnees-publique.medicaments.gouv.fr/">BDPM</a> · <a href="https://doi.org/10.57745/RDMHWY">Ciqual 2025</a></small></section>
+<section class="xp-card xp-assistant" data-vue="substances"><h2>Assistant de recherche</h2>
+<label for="xa-note">Question ou prise à examiner</label><textarea id="xa-note" rows="2" placeholder="Ex. : caféine, 80 mg par jour"></textarea>
 <div class="xp-actions"><button id="xa-read">Analyser le texte</button><button id="xa-mic">Dicter</button><button id="xa-speak">Écouter</button></div>
 <p id="xa-answer" role="status"></p><div id="xa-proposals"></div></section>
-<section class="xp-card" id="xp-dossier"><h2>Dossier de recherche</h2>
+<section class="xp-card" id="xp-dossier" data-vue="substances"><h2>Dossier de recherche</h2>
 <label>Document à examiner <input type="file" id="xa-file" accept=".pdf,.txt,image/jpeg,image/png,image/webp"></label>
 <p>Le fichier est lu dans ce navigateur. Le texte reconnu alimente la recherche et reste modifiable. Sur une image, seuls les mots lisibles sont extraits.</p>
 <button id="xa-extract">Relire le fichier</button>
 <details><summary>Projet privé</summary><button id="xa-projects-load">Charger mes projets</button>
 <label>Projet <select id="xa-projects"></select></label><button id="xa-save">Enregistrer le scénario</button><button id="xa-history">Consulter les résultats enregistrés</button><div id="xa-history-list"></div></details>
 <p role="status" id="xa-file-status"></p></section></div>
- <figure class="xp-body"><div class="xa-toolbar"><label>Centrer la vue <select id="xa-focus"><option>Corps entier</option></select></label><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button></div>
- <div class="xa-presets" aria-label="Vues rapprochées"><button data-structure="eye_l">Œil</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
+ <figure class="xp-body"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button>
+ <span class="xa-presets" aria-label="Vues rapprochées"><button data-structure="eye_l">Œil</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></span></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
  <defs><radialGradient id="xp-base"><stop stop-color="#4bf6ff" stop-opacity=".7"/><stop offset="1" stop-color="#00bfff" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-bad"><stop stop-color="#fff0aa"/><stop offset=".35" stop-color="#ffa123" stop-opacity=".94"/><stop offset="1" stop-color="#ff4523" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-high"><stop stop-color="#fff5c0"/><stop offset=".32" stop-color="#ff4c39"/><stop offset="1" stop-color="#f1243f" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-good"><stop stop-color="#aaffdb"/><stop offset=".35" stop-color="#10e6a6"/><stop offset="1" stop-color="#04b093" stop-opacity="0"/></radialGradient></defs>
  <ellipse cx="310" cy="962" rx="271" ry="43" fill="url(#xp-base)"/><g fill="none" stroke="#42cee8"><ellipse cx="310" cy="962" rx="235" ry="33"/><ellipse cx="310" cy="963" rx="190" ry="23" stroke-width="3"/><ellipse cx="310" cy="964" rx="267" ry="40" opacity=".4"/></g>
  <image id="xp-body-image" href="assets/exposure/male.webp" width="620" height="980"/><g id="xp-marks"></g></svg>
- <div class="xa-controls"><small id="xa-message" role="status">Chargement de l’atlas 3D…</small><div id="xa-layers"></div><label><input type="checkbox" id="xa-isolate"> Isoler la structure sélectionnée</label></div>
+ <div class="xa-controls"><small id="xa-message" role="status">Chargement de l’atlas 3D…</small><div id="xa-layers"></div><label><input type="checkbox" id="xa-isolate"> Isoler la sélection</label></div>
  <figcaption><a href="./assets/human3d/ATTRIBUTION.md">Atlas PRMR · crédits anatomiques</a></figcaption></figure>
- <section class="xp-card xp-right"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
- <div class="xp-data-head">Repères documentés</div><div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
- <h3>Apports du jour</h3><div id="xp-day-table"></div><details><summary>Comment lire les probabilités</summary><p>Les chiffres sont des risques relatifs publiés, recalculés pour la dose saisie : « risque × 2,2 » signifie que, dans les populations étudiées, la maladie survient 2,2 fois plus souvent qu’en l’absence d’alcool. La fourchette (IC 95 %) donne l’incertitude. Ce n’est pas un diagnostic : l’âge, la génétique, le tabac et le poids modifient le risque réel.</p></details></section>
- <section class="xp-card xp-chart"><h2>Évolution dans le temps</h2><label>Exposition tracée <select id="xp-chart-item"></select></label><label>Mesure <select id="xp-measure"><option value="prise">Quantité de produit</option><option value="ethanolMl">Alcool pur (mL)</option><option value="caffeineMg">Caféine (mg)</option><option value="sugarG">Sucres (g)</option><option value="ethanolG">Alcool pur (g)</option></select></label><label><input type="checkbox" id="xp-cumul"> Cumul depuis J0</label><label>Scénario comparé <select id="xp-alternative"><option value="maintien">Quantité initiale maintenue</option><option value="moitie">Moitié de chaque quantité saisie</option></select></label><p id="xp-chart-title"></p><svg id="xp-plot" viewBox="0 0 410 196" role="img" aria-label="Courbe du scénario sélectionné"></svg>
- <div id="xp-legend">━ Prise maintenue <span>━ Prise paramétrée</span></div><div id="xp-totals"></div></section>
- <section class="xp-card xp-time"><h2>Chronologie des prises</h2><button id="xp-play" aria-label="Lire la chronologie">▶</button><input id="xp-day" type="range" min="0" max="30" value="0" aria-label="Jour du scénario"><output id="xp-time-label">J0</output><label>Durée <input id="xp-duration" type="number" min="1" max="730" value="30"> j</label><button id="xp-compare" aria-pressed="true">Comparer les scénarios</button></section>
- <section class="xp-card xp-research" id="xp-research" hidden><h2>Courbes de recherche <small>· détail de chaque effet dans la liste « Analyse par zone »</small></h2>
- <div class="xr-legende"><span class="xr-n-eleve">Élevé · risque × 3 ou plus</span><span class="xr-n-modere">Modéré · × 1,5 à 3</span><span class="xr-n-faible">Faible · moins de × 1,5</span><span class="xr-n-non_chiffre">Décrit, sans chiffre publié</span><span class="xr-n-favorable">Association favorable</span></div>
- <div class="xr-graphes">
-  <figure><figcaption>Risque relatif par effet (échelle logarithmique, barre = IC 95 %)</figcaption><svg id="xr-forest" role="img" aria-label="Risques relatifs par effet"></svg></figure>
-  <figure><figcaption>Alcoolémie maximale théorique, jour par jour (g/L)</figcaption><svg id="xr-bac" viewBox="0 0 520 210" role="img" aria-label="Alcoolémie par jour"></svg></figure>
- </div></section>
+ <section class="xp-card xp-right" data-vue="substances"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
+ <div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
+ <details class="xp-apports"><summary>Apports du jour</summary><div id="xp-day-table"></div></details><details><summary>Comment lire les probabilités</summary><p>Les chiffres sont des risques relatifs publiés, recalculés pour la dose saisie : « risque × 2,2 » signifie que, dans les populations étudiées, la maladie survient 2,2 fois plus souvent qu’en l’absence d’alcool. La fourchette (IC 95 %) donne l’incertitude. Ce n’est pas un diagnostic : l’âge, la génétique, le tabac et le poids modifient le risque réel.</p></details></section>
+ <section class="xp-card xp-right mx-droite" data-vue="maladies"><div class="mx-onglets" role="tablist"><button type="button" data-onglet="guerison" aria-pressed="true">Guérison <b id="mx-n-guerison"></b></button><button type="button" data-onglet="substances" aria-pressed="false">Substances <b id="mx-n-substances"></b></button><output id="mx-titre-stade"></output></div>
+  <div id="mx-substances" aria-live="polite"></div></section>
+ <section class="xp-card xp-graphes" data-vue="substances">
+  <figure class="xg"><figcaption>Évolution dans le temps</figcaption>
+   <div class="xg-reglages"><select id="xp-chart-item" aria-label="Exposition tracée"></select><select id="xp-measure" aria-label="Mesure"><option value="prise">Quantité de produit</option><option value="ethanolMl">Alcool pur (mL)</option><option value="caffeineMg">Caféine (mg)</option><option value="sugarG">Sucres (g)</option><option value="ethanolG">Alcool pur (g)</option></select><select id="xp-alternative" aria-label="Scénario comparé"><option value="maintien">Comparer : quantité maintenue</option><option value="moitie">Comparer : moitié des quantités</option></select><label><input type="checkbox" id="xp-cumul"> Cumul</label></div>
+   <p id="xp-chart-title"></p><svg id="xp-plot" viewBox="0 0 410 196" role="img" aria-label="Courbe du scénario sélectionné"></svg>
+   <div id="xp-legend">━ Prise maintenue <span>━ Prise paramétrée</span></div><div id="xp-totals"></div></figure>
+  <figure class="xg"><figcaption>Risque relatif par effet <small>IC 95 %, échelle log</small></figcaption><svg id="xr-forest" role="img" aria-label="Risques relatifs par effet"></svg><p class="xg-vide" id="xr-forest-vide">Ajoutez une prise : les risques relatifs publiés s’affichent ici.</p></figure>
+  <figure class="xg"><figcaption>Balance des effets publiés <small>favorables / défavorables</small></figcaption><svg id="xr-balance" role="img" aria-label="Balance des effets favorables et défavorables"></svg><p class="xg-vide" id="xr-balance-vide">Ajoutez une prise : la balance des effets publiés s’affiche ici.</p></figure>
+  <figure class="xg" id="xr-bac-fig" hidden><figcaption>Alcoolémie maximale théorique <small>g/L, jour par jour</small></figcaption><svg id="xr-bac" viewBox="0 0 520 210" role="img" aria-label="Alcoolémie par jour"></svg></figure>
+  <div class="xr-legende" id="xp-research"><span class="xr-n-eleve">Élevé ×3+</span><span class="xr-n-modere">Modéré ×1,5–3</span><span class="xr-n-faible">Faible</span><span class="xr-n-non_chiffre">Non chiffré</span><span class="xr-n-favorable">Favorable</span></div></section>
+ <section class="xp-card xp-graphes mx-graphes" data-vue="maladies">
+  <figure class="xg"><figcaption>Niveau de preuve <small>nombre de substances</small></figcaption><svg id="mx-g-preuve" role="img" aria-label="Substances par niveau de preuve"></svg></figure>
+  <figure class="xg"><figcaption>Effet mesuré dans les essais <small>HR ou RR, IC 95 %</small></figcaption><svg id="mx-g-effet" role="img" aria-label="Rapports de risque publiés"></svg><p class="xg-vide" id="mx-g-effet-vide"></p></figure>
+  <figure class="xg"><figcaption>Balance bénéfice / précautions</figcaption><svg id="mx-g-balance" role="img" aria-label="Niveau de preuve du bénéfice et précautions écrites"></svg></figure></section>
+ <section class="xp-card xp-time" data-vue="substances"><button id="xp-play" aria-label="Lire la chronologie">▶</button><input id="xp-day" type="range" min="0" max="30" value="0" aria-label="Jour du scénario"><output id="xp-time-label">J0</output><label>Durée <input id="xp-duration" type="number" min="1" max="730" value="30"> j</label><button id="xp-compare" aria-pressed="true">Comparer</button></section>
 </div>
 <details class="xp-reference" id="registre"><summary>Consulter le registre scientifique et les sources</summary>
  <header class="r13-head">
@@ -212,7 +227,9 @@ register.addEventListener("toggle",mount);mount();
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<script type="module" src="./src/exposure-console.mjs?v=b7046ec6bd"></script>
+<script type="module" src="./src/explorateur-vues.mjs?v=1f59803a02"></script>
+<script type="module" src="./src/exposure-console.mjs?v=68f57f8615"></script>
+<script type="module" src="./src/maladies-console.mjs?v=44afbcaa9d"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
 </body>
 </html>

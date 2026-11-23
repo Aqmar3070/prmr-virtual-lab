@@ -44,12 +44,21 @@ test('Recherche par nom courant et stades du diabète',()=>{
  assert.ok(zonesPour(dt2,'diabete_rein').zones.includes('kidney_l'));
 });
 
-test('Deux onglets dans le bandeau, sans barre « Atlas anatomique »',()=>{
- for(const page of ['exposures.html','maladies.html']){
-  const html=readFileSync(new URL('../'+page,import.meta.url),'utf8');
-  assert.match(html,/class="xp-tabs"[^>]*><a href="\.\/exposures\.html"[^>]*>Explorateur d’exposition<\/a><a href="\.\/maladies\.html"[^>]*>Maladies<\/a>/);
-  assert.ok(!html.includes('xp-atlas-nav'),page);
- }
+test('Une seule page : vues Substances et Maladies dans le bandeau, ancienne adresse redirigée',()=>{
+ const html=readFileSync(new URL('../exposures.html',import.meta.url),'utf8');
+ assert.match(html,/class="xp-vues"[^>]*><button[^>]*data-choix-vue="substances"[^>]*>Substances<\/button><button[^>]*data-choix-vue="maladies"[^>]*>Maladies<\/button>/);
+ assert.ok(!html.includes('xp-atlas-nav'));
+ for(const id of ['mx-liste','mx-stade','mx-substances','mx-g-preuve','mx-g-effet','mx-g-balance','xr-forest','xr-balance'])assert.ok(html.includes('id="'+id+'"'),id);
+ const ancienne=readFileSync(new URL('../maladies.html',import.meta.url),'utf8');
+ assert.match(ancienne,/exposures\.html\?vue=maladies/);
+});
+
+test('Rapports de risque publiés lus dans le texte des essais',async()=>{
+ const {rapportPublie}=await import('../src/maladies.mjs');
+ assert.deepEqual(rapportPublie({effet:'Moins d’événements (HR 0,61 ; IC 95 % 0,51 à 0,72).'}),{rr:0.61,bas:0.51,haut:0.72});
+ assert.equal(rapportPublie({effet:'Amélioration du DFG de 5 mL/min.'}),null);
+ const mrc=registre.maladies.find(m=>m.id==='mrc');
+ assert.ok(mrc.substances.filter(s=>rapportPublie(s)).length>=5);
 });
 
 test('Lot 2 : maladies complexes, recherche et stades',()=>{

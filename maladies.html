@@ -3,81 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Maladies et substances étudiées — PRMR Virtual Lab</title>
-<meta name="description" content="Pour une maladie et un stade, les médicaments, plantes et régimes étudiés, classés selon la force des preuves publiées, avec dose, durée et source.">
-<link rel="stylesheet" href="./prmr-design-system.css?v=c83334b3ec">
-<link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
-<link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=e886e0300b">
-<style>
-/* Registre des maladies : reprend la console d'exposition (trois colonnes,
-   atlas 3D au centre) ; seules les couleurs de force de preuve s'ajoutent. */
-.mx-board{grid-template-rows:auto}
-#mx-recherche{width:100%}
-#mx-liste{display:flex;flex-direction:column;gap:5px;margin-top:9px}
-.mx-maladie{display:flex;flex-direction:column;align-items:flex-start;text-align:left;width:100%}
-.mx-maladie small{color:#8fc3d0;font-size:11px}
-#mx-fiche h3{margin-top:4px}
-#mx-stade{width:100%;margin-top:4px}
-.mx-source a,.mx-substance a{color:#94e2eb;font-size:11.5px}
-.mx-compte{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 10px}
-.mx-pastille{font-size:11px;padding:2px 7px;border-radius:10px;border:1px solid var(--mx-c);color:var(--mx-c)}
-[data-force=forte]{--mx-c:#3fe6b0}[data-force=moyenne]{--mx-c:#5fc8ff}[data-force=faible]{--mx-c:#c4b5fd}[data-force=preclinique]{--mx-c:#ffc94a}[data-force=theorique]{--mx-c:#a9bcc6}
-.mx-niveau{color:#e6fbff;border-top:1px solid #265767;padding-top:10px;font-size:15px}
-.mx-groupe h4{color:var(--mx-c);margin:8px 0 4px;font-size:13px}
-.mx-substance summary span small{display:block;color:var(--mx-c);font-size:11px;font-weight:500;margin-top:2px}
-.mx-substance{border:1px solid #1f4d5d;border-left:3px solid var(--mx-c);border-radius:4px;background:#05192566;margin:4px 0}
-.mx-substance summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:8px;padding:5px 8px;font-size:12.5px;color:#e2f6fa}
-.mx-substance summary::-webkit-details-marker{display:none}
-.mx-substance summary b{color:var(--mx-c);font-weight:600;font-size:11px;white-space:nowrap}
-.mx-substance>:not(summary){margin:0 8px 6px 14px;font-size:11.5px;line-height:1.5;color:#bcdbe3}
-.mx-substance p b{color:#dff6fa;font-weight:600}
-.mx-etiq{color:#8fb4bf!important;font-style:italic}
-.mx-legende{border-left:3px solid var(--mx-c);padding-left:8px;margin:6px 0}
-.mx-legende b{color:var(--mx-c)}
-#mx-titre-stade{display:block;font-size:14px;color:#71e1f2;margin-top:4px}
-[data-appui=obtenue]{--mx-c:#7cf7ff}[data-appui=fort]{--mx-c:#3fe6b0}[data-appui=moyen]{--mx-c:#5fc8ff}[data-appui=faible]{--mx-c:#c4b5fd}
-.mx-piste{border:1px solid #1f4d5d;border-left:3px solid var(--mx-c);border-radius:4px;background:#06202d99;margin:4px 0}
-.mx-piste summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:8px;padding:6px 8px;font-size:12.5px;color:#e2f6fa;font-weight:600}
-.mx-piste summary::-webkit-details-marker{display:none}
-.mx-piste summary span small{display:block;color:var(--mx-c);font-size:11px;font-weight:500;margin-top:2px}
-.mx-piste summary b{color:var(--mx-c);font-size:11px;white-space:nowrap}
-.mx-piste>:not(summary){margin:0 8px 6px 14px;font-size:11.5px;line-height:1.5;color:#bcdbe3}
-.mx-piste p b,.mx-composants b{color:#dff6fa;font-weight:600}
-.mx-composants{padding-left:16px}.mx-composants small{color:#8fb4bf}
-.mx-piste a{color:#94e2eb;font-size:11.5px}
-.mx-legende[data-appui] b{color:var(--mx-c)}
-#mx-substances{max-height:min(70vh,720px);overflow-y:auto;padding-right:3px;scrollbar-width:thin}
-.mx-vide{font-style:italic}
-</style>
+<title>Maladies — PRMR Virtual Lab</title>
+<meta http-equiv="refresh" content="0; url=./exposures.html?vue=maladies">
+<script>
+// Le registre des maladies est désormais une vue de l'explorateur.
+const p=new URLSearchParams(location.search);p.set("vue","maladies");location.replace("./exposures.html?"+p);
+</script>
 </head>
-<body>
-<header class="xp-head"><a href="./index.html"><strong>PRMR</strong> VIRTUAL LAB</a><nav class="xp-tabs" aria-label="Espaces de travail"><a href="./exposures.html">Explorateur d’exposition</a><a href="./maladies.html" aria-current="page">Maladies</a></nav></header>
-<main id="prmr-primary-content">
-<div class="xp-board mx-board">
- <div class="xp-left">
-  <section class="xp-card"><h2>Registre des maladies</h2>
-   <label for="mx-recherche">Rechercher une maladie</label>
-   <input id="mx-recherche" type="search" autocomplete="off" placeholder="Ex. : insuffisance rénale, diabète">
-   <div id="mx-liste" aria-label="Maladies du registre"></div>
-  </section>
-  <section class="xp-card"><div id="mx-fiche"></div>
-   <label for="mx-stade">Stade</label><select id="mx-stade"></select>
-   <div class="xp-profile"><span>Corps affiché</span><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div></div>
-  </section>
-  <section class="xp-card"><h2>Lire les couleurs</h2><div id="mx-regle"></div>
-   <p>Classement : niveau de preuve, puis nature du bénéfice (maladie évitée ou retardée, puis DFG, puis créatinine et protéinurie), puis taille de l’effet. Les études n’ayant pas toutes le même critère, le classement entre deux études reste approximatif. Toute décision de traitement revient au médecin.</p></section>
- </div>
- <figure class="xp-body"><div class="xa-toolbar"><label>Centrer la vue <select id="xa-focus"><option>Corps entier</option></select></label><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button></div>
-  <div id="xa-stage"></div>
-  <div class="xa-controls"><small id="xa-message" role="status">Chargement de l’atlas 3D…</small><div id="xa-layers"></div><label><input type="checkbox" id="xa-isolate"> Isoler la structure sélectionnée</label></div>
-  <figcaption>Organes touchés colorés selon le stade · <a href="./assets/human3d/ATTRIBUTION.md">Atlas PRMR · crédits anatomiques</a></figcaption></figure>
- <section class="xp-card xp-right"><h2>Guérison et substances efficaces <output id="mx-titre-stade"></output></h2>
-  <div id="mx-substances" aria-live="polite"></div></section>
-</div>
-</main>
-<script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
-<script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
-<script type="module" src="./src/maladies-console.mjs?v=f22ec20e59"></script>
-</body>
+<body><p><a href="./exposures.html?vue=maladies">Ouvrir le registre des maladies</a></p></body>
 </html>

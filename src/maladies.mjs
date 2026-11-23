@@ -46,3 +46,12 @@ export function plageEtudiee(s){
  if(Array.isArray(s.stades))return null;
  return "Plage de DFG non précisée dans la source : affiché pour tous les stades";
 }
+
+// Rapport de risque publié : champ rr, sinon « HR 0,61 ; IC 95 % 0,51 à 0,72 » écrit dans le résultat.
+const MOTIF=/\b(HR|RR|OR|risque relatif)\s*(?:de\s*)?(\d+(?:,\d+)?)\s*[;,(]\s*IC\s*95\s*%\s*:?\s*(\d+(?:,\d+)?)\s*(?:à|-|–)\s*(\d+(?:,\d+)?)/;
+const nombre=t=>Number(String(t).replace(",","."));
+export function rapportPublie(s){
+ if(s.rr!=null&&s.bas!=null&&s.haut!=null)return {rr:s.rr,bas:s.bas,haut:s.haut};
+ const m=MOTIF.exec((s.effet||"")+" "+(s.resume||""));
+ return m?{rr:nombre(m[2]),bas:nombre(m[3]),haut:nombre(m[4])}:null;
+}

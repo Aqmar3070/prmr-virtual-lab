@@ -19,6 +19,10 @@ const svg=(tag,attributes,text)=>{
  return el;
 };
 const families=["Médicaments","Molécules","Substances naturelles","Aliments","Boissons"];
+// Trois onglets à l'écran ; les cinq familles du catalogue restent internes.
+const GROUPES=[{nom:"Médicaments et molécules",court:"Médicaments",familles:[0,1]},{nom:"Plantes et substances naturelles",court:"Plantes",familles:[2]},{nom:"Aliments et boissons",court:"Aliments",familles:[3,4]}];
+const groupeDe=f=>GROUPES.findIndex(g=>g.familles.includes(f));
+const memeGroupe=(a,b)=>groupeDe(a)===groupeDe(b);
 const published=[
  {id:"ibuprofene",name:"Ibuprofène oral",family:0,unit:"mg"},
  {id:"paracetamol",name:"Paracétamol",family:0,unit:"mg"},
@@ -46,7 +50,7 @@ Object.assign(anchors.female,{brain:[310,57],kidney_l:[309,343]});
 function stop(){clearInterval(timer);timer=null;$("xp-play").textContent="▶";$("xp-play").ariaLabel="Lire la chronologie";}
 function setDay(t){$("xp-day").value=t;render();}
 function renderChart(active){
- const plot=$("xp-plot");plot.replaceChildren();
+ const plot=$("xp-plot");plot.replaceChildren();plot.style.display="none";document.querySelector(".xg-reglages").hidden=!rows.length;
  const days=duration(),current=day(),id=$("xp-chart-item").value,product=lookup(id);
  const items=rows.filter(r=>r.id===id);
  const mesure=$("xp-measure").value,cumul=$("xp-cumul").checked;
@@ -76,6 +80,7 @@ function renderChart(active){
   return;
  }
  if(compare&&at(current,false)!=null&&at(current,true)!=null)$("xp-chart-title").textContent+=" · scénario comparé : "+fmt(at(current,false));
+ plot.style.display="";
  const top=Math.max(1,...parametree,...(compare?maintenue:[]));
  const x=t=>38+360*t/days,y=v=>163-v/top*130;
  for(let i=0;i<=4;i++){
@@ -129,22 +134,28 @@ function accordeon(fiches,teneurInconnue){
    boite.append(d);
   }
  }
- if(teneurInconnue?.length)boite.append(Object.assign(node("p","Teneur inconnue pour : "+teneurInconnue.join(", ")+". Ajoutez la substance active en mg (famille Molécules) pour la calculer."),{className:"xr-etiq"}));
+ if(teneurInconnue?.length)boite.append(Object.assign(node("p","Teneur inconnue pour : "+teneurInconnue.join(", ")+". Ajoutez la substance active en mg (onglet Médicaments) pour la calculer."),{className:"xr-etiq"}));
  return boite;
 }
 function renderRecherche(fiches,a){
- const zone=$("xp-research");zone.hidden=!fiches.length;if(!fiches.length)return;
  const lignes=fiches.flatMap(f=>f.resultats.map(r=>({...r,titre:(fiches.length>1?f.titre+" · ":"")+r.titre}))).sort((x,y)=>(y.rr??0)-(x.rr??0));
  // Forêt des risques relatifs, échelle logarithmique.
- const f=$("xr-forest"),chiffres=lignes.filter(r=>r.rr!=null&&r.bas!=null);f.replaceChildren();
+ const tous=lignes.filter(r=>r.rr!=null&&r.bas!=null);
+ // Les 12 effets les plus marqués (au-dessus ou au-dessous de 1) ; la liste complète reste dans « Analyse par zone ».
+ const chiffres=[...tous].sort((x,y)=>Math.abs(Math.log(y.rr))-Math.abs(Math.log(x.rr))).slice(0,12).sort((x,y)=>y.rr-x.rr);
+ const f=$("xr-forest");f.replaceChildren();
+ $("xr-forest-vide").hidden=chiffres.length>0;f.style.display=chiffres.length?"":"none";
+ if(fiches.length&&!chiffres.length)$("xr-forest-vide").textContent="Aucun risque relatif chiffré pour ces prises : les effets sont décrits sans chiffre publié.";
  const h=26+chiffres.length*22,lo=Math.log(0.5),hi=Math.log(Math.max(4,...chiffres.map(r=>r.haut))*1.1);
- f.setAttribute("viewBox","0 0 560 "+h);
+ const plus=tous.length>chiffres.length?16:0;f.setAttribute("viewBox","0 0 560 "+(h+plus));
  const X=v=>215+330*(Math.log(v)-lo)/(hi-lo);
  for(const v of [0.5,1,2,5,10,20,50].filter(v=>Math.log(v)<=hi)){f.append(svg("path",{d:"M"+X(v)+" 6V"+(h-16),stroke:v===1?"#9fe9f1":"#23485a","stroke-dasharray":v===1?"":"2 3"}),svg("text",{x:X(v),y:h-3,"text-anchor":"middle"},String(v).replace(".",",")));}
  chiffres.forEach((r,i)=>{const y=18+i*22,c=couleurs[r.niveau];
   f.append(svg("text",{x:208,y:y+4,"text-anchor":"end"},r.titre.length>34?r.titre.slice(0,33)+"…":r.titre),svg("path",{d:"M"+X(r.bas)+" "+y+"H"+X(r.haut),stroke:c,"stroke-width":2}),svg("rect",{x:X(r.rr)-4,y:y-4,width:8,height:8,fill:c}),svg("text",{x:Math.min(552,X(r.haut)+5),y:y+4,fill:c},arrondi(r.rr,2)));});
+ if(tous.length>chiffres.length)f.append(svg("text",{x:6,y:h+plus-2,fill:"#7fa9b5"},"+ "+(tous.length-chiffres.length)+" autres effets dans l’analyse par zone"));
+ renderBalance(fiches);
  // Alcoolémie maximale par jour (Widmark), bande d'incertitude et seuil de 0,5 g/L.
- const b=$("xr-bac");b.replaceChildren();b.closest("figure").hidden=!a;if(!a)return;
+ const b=$("xr-bac");b.replaceChildren();$("xr-bac-fig").hidden=!a;if(!a)return;
  const valeurs=a.jours.map(g=>alcoolemie(g,profil()));
  const n=a.jours.length-1||1,top=Math.max(0.6,...valeurs.map(v=>v?v.haut:0))*1.08;
  const bx=t=>44+460*t/n,by=v=>182-v/top*165;
@@ -156,6 +167,24 @@ function renderRecherche(fiches,a){
  b.append(svg("path",{d:bande,fill:"#ff9a3c33",stroke:"none"}),svg("path",{d:ligne,fill:"none",stroke:"#ff9a3c","stroke-width":2}),
   svg("path",{d:"M44 "+by(0.5)+"H504",stroke:"#ff5a48","stroke-dasharray":"5 4"}),svg("text",{x:500,y:by(0.5)-4,"text-anchor":"end",fill:"#ff8b7d"},"0,5 g/L · seuil légal de conduite"),
   svg("path",{d:"M"+bx(day())+" 14V182",stroke:"#68c7d7","stroke-dasharray":"3 4"}));
+}
+// Balance des effets publiés : à gauche les effets défavorables (élevé, modéré,
+// faible) et décrits sans chiffre, à droite les effets favorables. Ce sont des
+// nombres d'effets cités par les sources, pas un score de risque.
+function renderBalance(fiches){
+ const g=$("xr-balance");g.replaceChildren();
+ const lignes=fiches.map(f=>{const n={};for(const r of f.resultats)n[r.niveau]=(n[r.niveau]||0)+1;return {titre:f.titre,n};});
+ $("xr-balance-vide").hidden=lignes.length>0;g.style.display=lignes.length?"":"none";if(!lignes.length)return;
+ const gauche=["eleve","modere","faible","non_chiffre"];
+ const max=Math.max(1,...lignes.map(l=>Math.max(gauche.reduce((s,k)=>s+(l.n[k]||0),0),l.n.favorable||0)));
+ const h=30+lignes.length*26,mid=330,w=150/max;g.setAttribute("viewBox","0 0 520 "+h);
+ g.append(svg("text",{x:mid-6,y:12,"text-anchor":"end",fill:"#ff9a3c"},"◀ défavorables"),svg("text",{x:mid+6,y:12,fill:"#3fe6b0"},"favorables ▶"),svg("path",{d:"M"+mid+" 18V"+(h-4),stroke:"#9fe9f1"}));
+ lignes.forEach((l,i)=>{const y=24+i*26;let x=mid;
+  g.append(svg("text",{x:6,y:y+13},l.titre.length>24?l.titre.slice(0,23)+"…":l.titre));
+  for(const k of gauche){const v=l.n[k]||0;if(!v)continue;x-=v*w;g.append(svg("rect",{x,y,width:v*w-1,height:16,fill:couleurs[k],rx:2}));}
+  const tot=gauche.reduce((s,k)=>s+(l.n[k]||0),0);if(tot)g.append(svg("text",{x:x-4,y:y+12,"text-anchor":"end",fill:"#ffc49a"},tot));
+  const fav=l.n.favorable||0;if(fav){g.append(svg("rect",{x:mid+1,y,width:fav*w,height:16,fill:couleurs.favorable,rx:2}),svg("text",{x:mid+fav*w+5,y:y+12,fill:"#8ff5d2"},fav));}
+ });
 }
 function render(){
  const t=day(),result=evaluateDay(rows,t,Number($("xp-age").value),lookup);
@@ -171,7 +200,7 @@ function render(){
  const all=fiches.length?[...fiches.flatMap(f=>reperesAtlas(f)),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
  for(const s of all)s.cle??=s.recherche?s.title:s.zone;
  renderRecherche(fiches,analyse);
- document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
+ if(document.body.dataset.vue!=="maladies")document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
  const display={ethanolMl:"Alcool pur (mL)",ethanolG:"Alcool pur (g)",sugarG:"Sucres (g)",caffeineMg:"Caféine (mg)"};
  $("xp-totals").textContent=[...result.available].map(key=>display[key]+" : "+fmt(result.totals[key])).join(" · ");
  const tableau=$("xp-day-table");tableau.replaceChildren();
@@ -240,10 +269,10 @@ function renderList(){
 
 }
 function categories(){
- const host=$("xp-categories");host.replaceChildren();
- families.forEach((f,i)=>{const b=node("button","");const icone=svg("svg",{viewBox:"0 0 24 24","aria-hidden":"true"});
-  const traces=["M7 18a5 5 0 0 1-1-8l5-5a5 5 0 1 1 7 7l-5 5a5 5 0 0 1-6 1z M8 8l7 7","M4 8l6-4 7 4v8l-7 4-6-4z M17 8l5-3 M17 16l5 3 M7 9v6","M3 19C2 7 11 4 21 3c0 11-6 17-15 15 M4 21L16 9","M3 11h18a9 9 0 0 1-18 0z M7 20h10 M8 8c-3-3 2-3 0-6 M14 8c-3-3 2-3 0-6","M6 6h12l-2 15H8z M6 10h11 M12 10l3-8h4"];
-  icone.append(svg("path",{d:traces[i]}));const cadre=node("b","");cadre.append(icone);b.append(cadre,node("span",f));b.setAttribute("aria-pressed",String(i===family));b.onclick=()=>{family=i;categories();openEditor(null)};host.append(b)});
+ const host=$("xp-categories");host.replaceChildren();host.setAttribute("role","tablist");
+ const traces=["M7 18a5 5 0 0 1-1-8l5-5a5 5 0 1 1 7 7l-5 5a5 5 0 0 1-6 1z M8 8l7 7","M3 19C2 7 11 4 21 3c0 11-6 17-15 15 M4 21L16 9","M3 11h18a9 9 0 0 1-18 0z M7 20h10 M8 8c-3-3 2-3 0-6 M14 8c-3-3 2-3 0-6"];
+ GROUPES.forEach((g,i)=>{const b=node("button","");b.type="button";b.title=g.nom;const icone=svg("svg",{viewBox:"0 0 24 24","aria-hidden":"true"});
+  icone.append(svg("path",{d:traces[i]}));b.append(icone,node("span",g.court));b.setAttribute("aria-pressed",String(i===groupeDe(family)));b.onclick=()=>{family=g.familles[0];categories();openEditor(null)};host.append(b)});
 }
 function closeEditor(){$("xp-editor").hidden=true;editing=null;ajoutAuto=false;precedent=null;$("xp-error").textContent="";}
 function unit(){
@@ -261,21 +290,21 @@ const LIMITE=400;
 function search(prefer){
  const saisie=fold($("xp-search").value.trim()),mots=saisie.split(/\s+/).filter(Boolean),matches=[];
  for(const s of products.values()){
-  if(!mots.length&&s.family!==family)continue;
+  if(!mots.length&&!memeGroupe(s.family,family))continue;
   if(mots.every(m=>s.search.includes(m)))matches.push(s);
  }
- const rang=s=>{const n=fold(s.name);return (n.startsWith(saisie)?0:mots[0]&&n.startsWith(mots[0])?1:2)*10+(s.family===family?0:1);};
+ const rang=s=>{const n=fold(s.name);return (n.startsWith(saisie)?0:mots[0]&&n.startsWith(mots[0])?1:2)*10+(memeGroupe(s.family,family)?0:1);};
  matches.sort((a,b)=>rang(a)-rang(b)||a.name.localeCompare(b.name,"fr"));
  const options=matches.slice(0,LIMITE);
  if(prefer&&lookup(prefer)&&!options.some(s=>s.id===prefer))options.unshift(lookup(prefer));
  $("xp-substance").replaceChildren(...options.map(s=>new Option(libelle(s),s.id)));
  if(prefer)$("xp-substance").value=prefer;
- const ici=matches.filter(s=>s.family===family).length,ailleurs=matches.length-ici;
- $("xp-search-status").textContent=(mots.length?ici.toLocaleString("fr-FR")+" dans « "+families[family]+" »"+(ailleurs?" · "+ailleurs.toLocaleString("fr-FR")+" dans les autres catégories":""):matches.length.toLocaleString("fr-FR")+" références")+(matches.length>LIMITE?" · "+LIMITE+" affichées : ajoutez un mot (marque, dosage, laboratoire) pour préciser":"");
+ const ici=matches.filter(s=>memeGroupe(s.family,family)).length,ailleurs=matches.length-ici;
+ $("xp-search-status").textContent=(mots.length?ici.toLocaleString("fr-FR")+" dans « "+GROUPES[groupeDe(family)].nom+" »"+(ailleurs?" · "+ailleurs.toLocaleString("fr-FR")+" dans les autres catégories":""):matches.length.toLocaleString("fr-FR")+" références")+(matches.length>LIMITE?" · "+LIMITE+" affichées : ajoutez un mot (marque, dosage, laboratoire) pour préciser":"");
  unit();
 }
 // Libellé d'une spécialité avec sa teneur quand le nom l'indique.
-function libelle(s){const t=uniteMg(s);return (s.family!==family?"["+families[s.family]+"] ":"")+(t?s.name+" · "+fmt(t)+" mg par unité":s.name);}
+function libelle(s){const t=uniteMg(s);return (!memeGroupe(s.family,family)?"["+families[s.family]+"] ":"")+(t?s.name+" · "+fmt(t)+" mg par unité":s.name);}
 function uniteMg(s){return s?.id?.startsWith("cis")?teneurLibelle(s):null;}
 function forme(s){const n=fold(s.name);return /gelule/.test(n)?"gélule(s)":/comprime/.test(n)?"comprimé(s)":/sachet/.test(n)?"sachet(s)":/capsule/.test(n)?"capsule(s)":/suppositoire/.test(n)?"suppositoire(s)":"unité(s)";}
 function quantiteTexte(s,qty){
@@ -355,7 +384,8 @@ $("xp-play").onclick=()=>{if(timer){stop();return;}if(day()===duration())setDay(
 $("xp-compare").onclick=()=>{compare=!compare;$("xp-compare").setAttribute("aria-pressed",String(compare));render();};
 for(const b of $("sex-choice").querySelectorAll("button"))b.onclick=()=>{sex=b.dataset.sex;for(const other of b.parentNode.children)other.setAttribute("aria-pressed",String(other===b));render();};
 $("xp-age").oninput=$("xp-weight").oninput=render;
-document.querySelector(".xp-head a:last-child").onclick=()=>{$("registre").open=true;};
+$("xp-reperes").onclick=()=>{$("registre").open=true;};
+document.addEventListener("xp-vue",e=>{if(e.detail==="substances")render();});
 const route=document.querySelector(".prmr-routebar");if(route)document.body.append(route);
 categories();renderList();render();
 function index(s){
