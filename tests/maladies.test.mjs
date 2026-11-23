@@ -168,3 +168,9 @@ test('Lot 8 : cancers du sang, ovaire, estomac, œsophage, tête et cou, lymphom
  assert.ok(l.guerison.some(g=>g.type==='obtenue'));
  assert.ok(ids(l,'lmc').includes('imatinib_lmc')&&!ids(l,'lap').includes('imatinib_lmc'));
 });
+
+test('Lot 9 : auto-immunes et côlon (colopathie comprise)',()=>{
+ for(const [mot,id] of [['lupus','lupus'],['polyarthrite','polyarthrite'],['Crohn','crohn'],['rectocolite','rch'],['sclérose en plaques','sep'],['psoriasis','psoriasis'],['vitiligo','vitiligo'],['colopathie','intestin_irritable'],['constipation','constipation'],['diverticule','diverticulite'],['gluten','coeliaque']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ assert.ok(registre.maladies.find(m=>m.id==='lupus').guerison.some(g=>g.type==='obtenue'));
+});

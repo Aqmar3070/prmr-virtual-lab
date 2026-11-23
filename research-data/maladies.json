@@ -788,6 +788,70 @@
   "zaidi": {
    "source": "Zaidi et coll. · myélome stabilisé 5 ans sous curcumine, cas rapporté, BMJ Case Rep 2017",
    "url": "https://doi.org/10.1136/bcr-2016-218148"
+  },
+  "tulip2": {
+   "source": "Morand et coll. · TULIP-2, anifrolumab dans le lupus actif, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1912196"
+  },
+  "mackensen": {
+   "source": "Mackensen et coll. · cellules CAR-T anti-CD19 dans le lupus résistant, 5 patients, Nat Med 2022",
+   "url": "https://doi.org/10.1038/s41591-022-02017-5"
+  },
+  "muller_cart": {
+   "source": "Müller et coll. · cellules CAR-T anti-CD19 dans 3 maladies auto-immunes, 15 patients, N Engl J Med 2024",
+   "url": "https://doi.org/10.1056/NEJMoa2308917"
+  },
+  "mist": {
+   "source": "Burt et coll. · MIST, autogreffe de cellules souches dans la sclérose en plaques, JAMA 2019",
+   "url": "https://doi.org/10.1001/jama.2018.18743"
+  },
+  "paramsothy": {
+   "source": "Paramsothy et coll. · transplantation de microbiote fécal dans la rectocolite, Lancet 2017",
+   "url": "https://doi.org/10.1016/S0140-6736(17)30182-4"
+  },
+  "lang_curc": {
+   "source": "Lang et coll. · curcumine + mésalazine dans la rectocolite, Clin Gastroenterol Hepatol 2015",
+   "url": "https://doi.org/10.1016/j.cgh.2015.02.019"
+  },
+  "truev": {
+   "source": "Rosmarin et coll. · TRuE-V, crème au ruxolitinib dans le vitiligo, N Engl J Med 2022",
+   "url": "https://doi.org/10.1056/NEJMoa2118828"
+  },
+  "halmos": {
+   "source": "Halmos et coll. · régime pauvre en FODMAP dans l'intestin irritable, Gastroenterology 2014",
+   "url": "https://doi.org/10.1053/j.gastro.2013.09.046"
+  },
+  "alammar": {
+   "source": "Alammar et coll. · huile essentielle de menthe poivrée et intestin irritable, méta-analyse, BMC Complement Altern Med 2019",
+   "url": "https://doi.org/10.1186/s12906-018-2409-0"
+  },
+  "camilleri_pru": {
+   "source": "Camilleri et coll. · prucalopride dans la constipation chronique sévère, N Engl J Med 2008",
+   "url": "https://doi.org/10.1056/NEJMoa0800670"
+  },
+  "chey_kiwi": {
+   "source": "Chey et coll. · kiwi, pruneaux ou psyllium dans la constipation chronique, Am J Gastroenterol 2021",
+   "url": "https://doi.org/10.14309/ajg.0000000000001149"
+  },
+  "dialon": {
+   "source": "Daniels et coll. · DIABOLO, diverticulite simple sans antibiotiques, Br J Surg 2017",
+   "url": "https://doi.org/10.1002/bjs.10309"
+  },
+  "proudman": {
+   "source": "Proudman et coll. · huile de poisson dans la polyarthrite récente, Ann Rheum Dis 2015",
+   "url": "https://doi.org/10.1136/annrheumdis-2013-204145"
+  },
+  "cded": {
+   "source": "Levine et coll. · régime d'exclusion de Crohn + nutrition entérale partielle, Gastroenterology 2019",
+   "url": "https://doi.org/10.1053/j.gastro.2019.04.021"
+  },
+  "poetyk": {
+   "source": "Armstrong et coll. · POETYK PSO-1, deucravacitinib dans le psoriasis, J Am Acad Dermatol 2023",
+   "url": "https://doi.org/10.1016/j.jaad.2022.07.002"
+  },
+  "rubio": {
+   "source": "Rubio-Tapia et coll. · cicatrisation de l'intestin sous régime sans gluten, Am J Gastroenterol 2010",
+   "url": "https://doi.org/10.1038/ajg.2010.10"
   }
  },
  "maladies": [
@@ -6347,6 +6411,617 @@
      "critere": 1,
      "zones": [
       "spleen"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "lupus",
+   "nom": "Lupus érythémateux systémique",
+   "synonymes": [
+    "lupus",
+    "LES",
+    "maladie auto-immune",
+    "auto-immune"
+   ],
+   "zones": [
+    "kidney_l",
+    "kidney_r",
+    "skin",
+    "heart"
+   ],
+   "description": "Maladie auto-immune où le corps fabrique des anticorps contre ses propres tissus : peau, articulations, reins, cœur, sang. Évolue par poussées.",
+   "source": "tulip2",
+   "stades": [
+    {
+     "id": "actif",
+     "nom": "Lupus actif",
+     "niveau": "modere"
+    },
+    {
+     "id": "refractaire",
+     "nom": "Résistant aux traitements",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "anifrolumab",
+     "nom": "Anifrolumab",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "300 mg en perfusion toutes les 4 semaines",
+     "population": "362 patients, contre placebo",
+     "effet": "Réponse BICLA à 52 semaines 47,8 % contre 31,5 % ; moins de cortisone nécessaire, peau améliorée.",
+     "resume": "Réponse 48 % contre 32 %",
+     "source": "tulip2",
+     "stades": [
+      "actif"
+     ],
+     "duree": "48 semaines",
+     "mecanisme": "Bloque le récepteur de l'interféron de type I, moteur du lupus.",
+     "prudence": "Zona (7,2 %), bronchites.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r",
+      "skin",
+      "heart"
+     ]
+    },
+    {
+     "id": "cart_lupus",
+     "nom": "Cellules CAR-T anti-CD19",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Une seule perfusion de lymphocytes du patient modifiés (1 × 10⁶ cellules/kg), après chimiothérapie préparatoire (fludarabine, cyclophosphamide)",
+     "population": "5 patients (2022), puis une série de 15 patients dont 8 atteints de lupus (2024)",
+     "effet": "Rémission chez 100 % des patients à 3 mois, sans aucun médicament, maintenue même après le retour des lymphocytes B ; tous les immunosuppresseurs arrêtés.",
+     "resume": "Rémission sans médicament chez tous",
+     "source": "mackensen",
+     "source2": "muller_cart",
+     "stades": [
+      "refractaire"
+     ],
+     "mecanisme": "Les lymphocytes T reprogrammés détruisent tous les lymphocytes B, qui fabriquent les auto-anticorps ; le système immunitaire repart « à zéro ».",
+     "prudence": "Syndrome de relargage de cytokines (surtout léger), infections ; traitement lourd, très coûteux, recul limité (médiane 15 mois).",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r",
+      "skin",
+      "heart"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "lupus_cart",
+     "type": "obtenue",
+     "titre": "Rémission sans traitement après cellules CAR-T",
+     "objectif": "Lupus éteint sans médicament",
+     "resultat": "Tous les patients lupiques des deux séries en rémission DORIS (5 en 2022, 8 dans la série de 2024), immunosuppresseurs arrêtés, recul jusqu'à 29 mois.",
+     "composants": [
+      {
+       "nom": "CAR-T anti-CD19",
+       "role": "remise à zéro des lymphocytes B",
+       "ref": "cart_lupus"
+      }
+     ],
+     "source": "muller_cart"
+    }
+   ]
+  },
+  {
+   "id": "polyarthrite",
+   "nom": "Polyarthrite rhumatoïde",
+   "synonymes": [
+    "polyarthrite",
+    "PR",
+    "rhumatisme",
+    "articulations",
+    "auto-immune"
+   ],
+   "zones": [
+    "femur_l",
+    "femur_r"
+   ],
+   "description": "Inflammation chronique des articulations qui les déforme et les détruit ; maladie auto-immune.",
+   "source": "proudman",
+   "stades": [
+    {
+     "id": "recente",
+     "nom": "Récente (moins d'un an)",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "huile_poisson_pr",
+     "nom": "Huile de poisson à forte dose (oméga-3)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "5,5 g d'oméga-3 (EPA + DHA) par jour, avec le traitement de fond (méthotrexate, sulfasalazine, hydroxychloroquine)",
+     "population": "Patients avec polyarthrite de moins de 12 mois, contre dose faible (0,4 g/j)",
+     "effet": "Échec de la trithérapie − 72 % (HR 0,28 ; IC 95 % 0,12 à 0,63) ; rémission environ 2 fois plus fréquente (HR 2,17).",
+     "resume": "Échec du traitement − 72 %",
+     "source": "proudman",
+     "stades": [
+      "recente"
+     ],
+     "mecanisme": "Les oméga-3 réduisent les médiateurs de l'inflammation.",
+     "prudence": "Troubles digestifs, saignements possibles avec les anticoagulants.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "crohn",
+   "nom": "Maladie de Crohn",
+   "synonymes": [
+    "Crohn",
+    "MICI",
+    "intestin",
+    "côlon",
+    "colite"
+   ],
+   "zones": [
+    "small_intestine",
+    "colon"
+   ],
+   "description": "Inflammation chronique pouvant toucher tout le tube digestif, par poussées : douleurs, diarrhée, amaigrissement.",
+   "source": "cded",
+   "stades": [
+    {
+     "id": "legere",
+     "nom": "Légère à modérée",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "cded_pen",
+     "nom": "Régime d'exclusion de Crohn + nutrition par formule",
+     "type": "regime",
+     "force": "faible",
+     "dose": "6 semaines : régime d'exclusion + 50 % des calories en boisson nutritive (Modulen), puis 6 semaines avec 25 %",
+     "population": "78 enfants, contre nutrition entérale exclusive",
+     "effet": "Rémission sans cortisone à 12 semaines 75,6 % contre 45,1 % ; mieux toléré (97,5 % contre 73,6 %).",
+     "resume": "Rémission à 12 semaines : 76 % contre 45 %",
+     "source": "cded",
+     "stades": [
+      "legere"
+     ],
+     "mecanisme": "Retire les aliments qui abîment la barrière intestinale ; modifie le microbiote.",
+     "prudence": "Étudié chez l'enfant ; suivi par une diététicienne nécessaire.",
+     "critere": 1,
+     "zones": [
+      "small_intestine",
+      "colon"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "rch",
+   "nom": "Rectocolite hémorragique",
+   "synonymes": [
+    "rectocolite",
+    "RCH",
+    "MICI",
+    "côlon",
+    "colite",
+    "colopathie"
+   ],
+   "zones": [
+    "colon"
+   ],
+   "description": "Inflammation chronique du rectum et du côlon, avec diarrhée sanglante, par poussées.",
+   "source": "lang_curc",
+   "stades": [
+    {
+     "id": "active",
+     "nom": "Poussée légère à modérée",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "curcumine_rch",
+     "nom": "Curcumine + mésalazine",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "3 g de curcumine par jour en gélules, en plus de la mésalazine",
+     "population": "50 patients ne répondant pas à la mésalazine seule, contre placebo",
+     "effet": "Rémission clinique à 4 semaines 53,8 % contre 0 % ; rémission à l'endoscopie 38 % contre 0 %.",
+     "resume": "Rémission en 1 mois : 54 % contre 0 %",
+     "source": "lang_curc",
+     "stades": [
+      "active"
+     ],
+     "duree": "1 mois",
+     "mecanisme": "Freine l'inflammation intestinale (NF-κB).",
+     "prudence": "Petit essai court ; effets indésirables rares.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    },
+    {
+     "id": "tmf_rch",
+     "nom": "Transplantation de microbiote fécal (plusieurs donneurs)",
+     "type": "geste",
+     "force": "faible",
+     "dose": "Une coloscopie puis lavements 5 jours par semaine pendant 8 semaines",
+     "population": "85 patients, contre placebo",
+     "effet": "Rémission sans cortisone avec cicatrisation 27 % contre 8 % (RR 3,6 ; IC 95 % 1,1 à 11,9).",
+     "resume": "Rémission 27 % contre 8 %",
+     "source": "paramsothy",
+     "stades": [
+      "active"
+     ],
+     "mecanisme": "Remplace un microbiote intestinal appauvri ; la diversité bactérienne augmente et persiste.",
+     "prudence": "Donneurs dépistés en milieu hospitalier uniquement ; jamais en automédication (risque d'infection).",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "sep",
+   "nom": "Sclérose en plaques",
+   "synonymes": [
+    "SEP",
+    "sclérose en plaques",
+    "myéline",
+    "auto-immune"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Le système immunitaire détruit la gaine des nerfs du cerveau et de la moelle : poussées, puis handicap progressif.",
+   "source": "mist",
+   "stades": [
+    {
+     "id": "poussees",
+     "nom": "Forme à poussées, actives malgré le traitement",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "autogreffe_sep",
+     "nom": "Autogreffe de cellules souches (non myéloablative)",
+     "type": "geste",
+     "force": "faible",
+     "dose": "Prélèvement des cellules souches du patient, chimiothérapie, puis réinjection (une fois)",
+     "population": "110 patients, contre traitement de fond",
+     "effet": "Aggravation chez 3 patients contre 34 (HR 0,07 ; IC 95 % 0,02 à 0,24) ; handicap amélioré la première année (EDSS 3,38 → 2,36).",
+     "resume": "Aggravation − 93 %",
+     "source": "mist",
+     "stades": [
+      "poussees"
+     ],
+     "mecanisme": "Remise à zéro du système immunitaire.",
+     "prudence": "Procédure lourde en centre spécialisé ; essai préliminaire non masqué.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "psoriasis",
+   "nom": "Psoriasis",
+   "synonymes": [
+    "psoriasis",
+    "peau",
+    "plaques",
+    "auto-immune"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Plaques rouges et squameuses de la peau, maladie inflammatoire chronique.",
+   "source": "poetyk",
+   "stades": [
+    {
+     "id": "modere",
+     "nom": "Modéré à sévère",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "deucravacitinib",
+     "nom": "Deucravacitinib",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "6 mg une fois par jour par la bouche",
+     "population": "666 patients, contre placebo et aprémilast",
+     "effet": "Plaques réduites d'au moins 75 % à 16 semaines : 58,4 % contre 12,7 % (placebo) et 35,1 % (aprémilast) ; maintenu à 52 semaines.",
+     "resume": "Peau nettoyée à 75 % : 58 % contre 13 %",
+     "source": "poetyk",
+     "stades": [
+      "modere"
+     ],
+     "mecanisme": "Bloque l'enzyme TYK2, relais de l'inflammation.",
+     "prudence": "Effets comparables au placebo dans l'essai.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "vitiligo",
+   "nom": "Vitiligo",
+   "synonymes": [
+    "vitiligo",
+    "taches blanches",
+    "peau",
+    "dépigmentation"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Disparition des cellules pigmentaires de la peau, d'origine auto-immune.",
+   "source": "truev",
+   "stades": [
+    {
+     "id": "limite",
+     "nom": "Étendue ≤ 10 % du corps",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "ruxolitinib_creme",
+     "nom": "Crème au ruxolitinib 1,5 %",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Application 2 fois par jour sur toutes les taches",
+     "population": "674 patients de 12 ans et plus, contre crème neutre",
+     "effet": "Visage repigmenté à 75 % ou plus à 24 semaines : 29,8 à 30,9 % contre 7,4 à 11,4 %.",
+     "resume": "Repigmentation 30 % contre 7 à 11 %",
+     "source": "truev",
+     "stades": [
+      "limite"
+     ],
+     "duree": "24 à 52 semaines",
+     "mecanisme": "Bloque les enzymes JAK qui guident l'attaque immunitaire des cellules pigmentaires.",
+     "prudence": "Acné et démangeaisons au point d'application.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "intestin_irritable",
+   "nom": "Syndrome de l'intestin irritable (colopathie fonctionnelle)",
+   "synonymes": [
+    "colopathie",
+    "colon irritable",
+    "côlon irritable",
+    "intestin irritable",
+    "SII",
+    "ballonnements",
+    "côlon"
+   ],
+   "zones": [
+    "colon"
+   ],
+   "description": "Douleurs du ventre, ballonnements, diarrhée ou constipation, sans lésion visible ; très fréquent.",
+   "source": "halmos",
+   "stades": [
+    {
+     "id": "symptomatique",
+     "nom": "Symptômes réguliers",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "menthe_poivree",
+     "nom": "Huile essentielle de menthe poivrée (gélules)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Gélules d'huile de menthe poivrée (doses selon les essais)",
+     "population": "12 essais, 835 patients (méta-analyse)",
+     "effet": "Amélioration globale RR 2,39 (IC 95 % 1,93 à 2,97) ; douleurs RR 1,78 ; 3 patients à traiter pour en soulager 1.",
+     "resume": "Amélioration globale × 2,4",
+     "source": "alammar",
+     "mecanisme": "Relâche les muscles de l'intestin (canaux calciques).",
+     "prudence": "Brûlures d'estomac possibles ; prendre des gélules gastro-résistantes.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    },
+    {
+     "id": "fodmap",
+     "nom": "Régime pauvre en FODMAP",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Moins de 0,5 g de FODMAP par repas (sucres fermentescibles : certains fruits, légumineuses, blé, lactose…)",
+     "population": "30 patients, essai croisé contre alimentation habituelle",
+     "effet": "Score de symptômes 22,8 contre 44,9 mm ; ballonnements, douleurs et gaz réduits.",
+     "resume": "Symptômes divisés par 2",
+     "source": "halmos",
+     "duree": "21 jours",
+     "mecanisme": "Moins de sucres qui fermentent dans le côlon, donc moins de gaz et d'eau.",
+     "prudence": "Régime restrictif : à réintroduire progressivement avec une diététicienne.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "constipation",
+   "nom": "Constipation chronique",
+   "synonymes": [
+    "constipation",
+    "transit",
+    "côlon",
+    "colopathie"
+   ],
+   "zones": [
+    "colon"
+   ],
+   "description": "Selles rares ou difficiles depuis des mois.",
+   "source": "camilleri_pru",
+   "stades": [
+    {
+     "id": "chronique",
+     "nom": "Chronique",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "prucalopride",
+     "nom": "Prucalopride",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "2 mg une fois par jour",
+     "population": "620 patients, contre placebo",
+     "effet": "Au moins 3 selles complètes spontanées par semaine : 30,9 % contre 12,0 %.",
+     "resume": "Transit normalisé : 31 % contre 12 %",
+     "source": "camilleri_pru",
+     "duree": "12 semaines",
+     "mecanisme": "Stimule les récepteurs de la sérotonine qui font avancer le contenu du côlon.",
+     "prudence": "Maux de tête, douleurs abdominales.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    },
+    {
+     "id": "kiwi",
+     "nom": "Kiwi vert, pruneaux ou psyllium",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "2 kiwis verts par jour, ou 100 g de pruneaux par jour, ou 12 g de psyllium par jour",
+     "population": "79 patients, comparaison entre les 3",
+     "effet": "Plus de selles complètes avec les 3 ; selles améliorées et moins d'efforts ; le kiwi a réduit les ballonnements et a été le mieux toléré.",
+     "resume": "Transit amélioré, kiwi le mieux toléré",
+     "source": "chey_kiwi",
+     "duree": "4 semaines",
+     "mecanisme": "Fibres et eau ; enzyme du kiwi (actinidine).",
+     "prudence": "Pas de groupe placebo. Boire suffisamment avec le psyllium.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "diverticulite",
+   "nom": "Diverticulose et diverticulite",
+   "synonymes": [
+    "diverticule",
+    "diverticulite",
+    "côlon",
+    "colopathie"
+   ],
+   "zones": [
+    "colon"
+   ],
+   "description": "Petites poches dans la paroi du côlon qui peuvent s'infecter (diverticulite).",
+   "source": "dialon",
+   "stades": [
+    {
+     "id": "simple",
+     "nom": "Diverticulite simple (sans complication)",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "sans_antibiotique",
+     "nom": "Surveillance sans antibiotique",
+     "type": "geste",
+     "force": "moyenne",
+     "dose": "Surveillance, sans antibiotique, pour une première diverticulite simple confirmée au scanner",
+     "population": "528 patients, contre antibiotiques",
+     "effet": "Guérison en 14 contre 12 jours (pas de différence significative) ; complications, rechutes et chirurgie comparables ; hospitalisation plus courte (2 contre 3 jours).",
+     "resume": "Aussi efficace, hospitalisation plus courte",
+     "source": "dialon",
+     "stades": [
+      "simple"
+     ],
+     "mecanisme": "La plupart des diverticulites simples guérissent seules.",
+     "prudence": "Seulement si le scanner confirme une forme simple ; antibiotiques si fièvre élevée, abcès ou terrain fragile.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "coeliaque",
+   "nom": "Maladie cœliaque (intolérance au gluten)",
+   "synonymes": [
+    "cœliaque",
+    "coeliaque",
+    "gluten",
+    "intestin"
+   ],
+   "zones": [
+    "small_intestine"
+   ],
+   "description": "Le gluten déclenche une réaction immunitaire qui abîme l'intestin grêle.",
+   "source": "rubio",
+   "stades": [
+    {
+     "id": "diagnostiquee",
+     "nom": "Diagnostiquée chez l'adulte",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "sans_gluten",
+     "nom": "Régime strict sans gluten",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Exclusion totale du blé, de l'orge et du seigle, à vie",
+     "population": "241 adultes suivis par biopsie (étude d'observation)",
+     "effet": "Intestin cicatrisé chez 34 % à 2 ans et 66 % à 5 ans ; amélioration clinique chez 82 % ; tendance à une mortalité plus basse quand l'intestin cicatrise.",
+     "resume": "Intestin cicatrisé à 5 ans : 66 %",
+     "source": "rubio",
+     "stades": [
+      "diagnostiquee"
+     ],
+     "mecanisme": "Supprime le déclencheur de la réaction immunitaire.",
+     "prudence": "Écarts de régime = lésions persistantes ; contrôle par biopsie conseillé chez l'adulte.",
+     "critere": 1,
+     "zones": [
+      "small_intestine"
      ]
     }
    ],
