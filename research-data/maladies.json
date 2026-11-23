@@ -1156,6 +1156,18 @@
   "crowe_div": {
    "source": "Crowe et coll. · alimentation végétarienne, fibres et diverticules (EPIC-Oxford), BMJ 2011",
    "url": "https://doi.org/10.1136/bmj.d4131"
+  },
+  "vamorolone": {
+   "source": "Clemens et coll. · vamorolone contre corticoïdes classiques dans la myopathie de Duchenne, Neurology 2026",
+   "url": "https://doi.org/10.1212/WNL.0000000000214756"
+  },
+  "obinutuzumab": {
+   "source": "Lin et coll. · obinutuzumab dans le syndrome néphrotique (HSF, lésions minimes) après rituximab, 11 cas, Am J Nephrol 2025",
+   "url": "https://doi.org/10.1159/000541972"
+  },
+  "legro2015": {
+   "source": "Legro et coll. · perte de poids avant conception dans le SOPK, essai randomisé, J Clin Endocrinol Metab 2015",
+   "url": "https://doi.org/10.1210/jc.2015-2778"
   }
  },
  "maladies": [
@@ -6369,6 +6381,27 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "obinutuzumab_hsf",
+     "nom": "Obinutuzumab (après échec du rituximab) — 11 cas",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Dose totale moyenne d'environ 2 g en perfusions",
+     "population": "11 adultes (HSF ou lésions minimes) en rechutes fréquentes malgré le rituximab",
+     "effet": "Sans rechute pendant 12 mois en médiane ; 6 sur 11 ont arrêté cortisone et immunosuppresseurs en 3 mois ; 2 rechutes, toutes deux chez des patients atteints d'HSF.",
+     "resume": "Rémission maintenue chez 9 sur 11",
+     "source": "obinutuzumab",
+     "stades": [
+      "proteinurie"
+     ],
+     "mecanisme": "Anticorps anti-CD20 plus puissant que le rituximab.",
+     "prudence": "Série rétrospective ; efficacité moins sûre dans l'HSF que dans les lésions minimes.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": []
@@ -8835,6 +8868,27 @@
       "femur_l",
       "femur_r"
      ]
+    },
+    {
+     "id": "vamorolone",
+     "nom": "Vamorolone (corticoïde dissocié)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "6 mg/kg/j par la bouche",
+     "population": "28 garçons de 4 à 7 ans, comparés aux groupes prednisone et deflazacort de l'essai FOR-DMD",
+     "effet": "Force (vitesse pour se relever) comparable aux corticoïdes classiques à 1 an, mais la croissance en taille est préservée.",
+     "resume": "Même efficacité, croissance préservée",
+     "source": "vamorolone",
+     "stades": [
+      "jeune"
+     ],
+     "mecanisme": "Corticoïde modifié qui garde l'effet anti-inflammatoire avec moins d'effets sur les os et la croissance.",
+     "prudence": "Prise de poids comme avec les autres corticoïdes ; comparaison entre deux essais différents.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
     }
    ],
    "guerison": []
@@ -8948,6 +9002,27 @@
      ],
      "mecanisme": "Baisse brièvement les œstrogènes pour déclencher l'ovulation.",
      "prudence": "Fatigue, vertiges ; suivi gynécologique.",
+     "critere": 1,
+     "zones": [
+      "ovary_l",
+      "ovary_r"
+     ]
+    },
+    {
+     "id": "perte_poids_sopk",
+     "nom": "Perte de poids avant de concevoir",
+     "type": "regime",
+     "force": "faible",
+     "dose": "16 semaines : restriction calorique avec repas de substitution, activité physique et médicament amaigrissant, objectif − 7 %",
+     "population": "149 femmes en surpoids, contre pilule contraceptive seule, puis stimulation par clomifène",
+     "effet": "Ovulation 60 à 67 % contre 46 % ; naissances 24 à 26 % contre 12 % (écart non significatif) ; pas d'aggravation métabolique.",
+     "resume": "Ovulation 60 à 67 % contre 46 %",
+     "source": "legro2015",
+     "stades": [
+      "infertilite"
+     ],
+     "mecanisme": "La perte de poids réduit l'excès d'insuline et d'hormones mâles qui bloque l'ovulation.",
+     "prudence": "Les médicaments amaigrissants de l'essai (sibutramine) ne sont plus autorisés ; la perte de poids par l'alimentation reste la base.",
      "critere": 1,
      "zones": [
       "ovary_l",
