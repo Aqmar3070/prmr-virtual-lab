@@ -181,7 +181,7 @@ test('Lot 10 : cerveau, foie, poumon, cœur',()=>{
 });
 
 test('Lot 11 : génétique, femme, vieillissement, infections',()=>{
- for(const [mot,id] of [['thalassémie','thalassemie'],['hémophilie','hemophilie'],['mucoviscidose','mucoviscidose'],['Duchenne','duchenne'],['endométriose','endometriose'],['infertilité','sopk'],['arthrose','arthrose'],['ostéoporose','osteoporose'],['glaucome','glaucome'],['DMLA','dmla'],['tuberculose','tuberculose_mr']])
+ for(const [mot,id] of [['thalassémie','thalassemie'],['hémophilie','hemophilie'],['mucoviscidose','mucoviscidose'],['Duchenne','duchenne'],['endométriose','endometriose'],['infertilité','sopk'],['coxarthrose','arthrose'],['ostéoporose','osteoporose'],['glaucome','glaucome'],['DMLA','dmla'],['tuberculose','tuberculose_mr']])
   assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
 });
 
@@ -197,4 +197,11 @@ test('Approfondissement 2 : prévention du cancer de l’estomac et lymphome MAL
  assert.ok(ids(e,'prevention').includes('vitamines_ail')&&!ids(e,'operable').includes('vitamines_ail'));
  const l=registre.maladies.find(x=>x.id==='lymphome');
  assert.ok(ids(l,'malt').includes('hp_malt_cas'));
+});
+
+test('Arthrose de toutes localisations et hernie discale',()=>{
+ const a=registre.maladies.find(x=>x.id==='arthrose');
+ assert.ok(ids(a,'hanche').includes('exercice_hanche')&&!ids(a,'mains').includes('exercice_hanche'));
+ assert.ok(ids(a,'mains').includes('prednisolone_mains'));
+ for(const mot of ['hernie discale','sciatique'])assert.ok(chercherMaladies(registre,mot).some(m=>m.id==='hernie_discale'),mot);
 });
