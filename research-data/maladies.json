@@ -852,6 +852,50 @@
   "rubio": {
    "source": "Rubio-Tapia et coll. · cicatrisation de l'intestin sous régime sans gluten, Am J Gastroenterol 2010",
    "url": "https://doi.org/10.1038/ajg.2010.10"
+  },
+  "tofersen": {
+   "source": "Miller et coll. · tofersen dans la SLA liée à SOD1, N Engl J Med 2022",
+   "url": "https://doi.org/10.1056/NEJMoa2204705"
+  },
+  "edaravone": {
+   "source": "Groupe d'étude de l'édaravone · essai contre placebo dans la SLA, Lancet Neurol 2017",
+   "url": "https://doi.org/10.1016/S1474-4422(17)30115-1"
+  },
+  "neal_keto": {
+   "source": "Neal et coll. · régime cétogène dans l'épilepsie résistante de l'enfant, Lancet Neurol 2008",
+   "url": "https://doi.org/10.1016/S1474-4422(08)70092-9"
+  },
+  "devinsky": {
+   "source": "Devinsky et coll. · cannabidiol dans le syndrome de Dravet, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1611618"
+  },
+  "sydney2": {
+   "source": "Ziegler et coll. · SYDNEY 2, acide alpha-lipoïque et neuropathie diabétique, Diabetes Care 2006",
+   "url": "https://doi.org/10.2337/dc06-1216"
+  },
+  "poise": {
+   "source": "Nevens et coll. · POISE, acide obéticholique dans la cholangite biliaire primitive, N Engl J Med 2016",
+   "url": "https://doi.org/10.1056/NEJMoa1509840"
+  },
+  "bulevirtide": {
+   "source": "Wedemeyer et coll. · bulévirtide dans l'hépatite D chronique, N Engl J Med 2023",
+   "url": "https://doi.org/10.1056/NEJMoa2213429"
+  },
+  "inpulsis": {
+   "source": "Richeldi et coll. · INPULSIS, nintédanib dans la fibrose pulmonaire idiopathique, N Engl J Med 2014",
+   "url": "https://doi.org/10.1056/NEJMoa1402584"
+  },
+  "stellar": {
+   "source": "Hoeper et coll. · STELLAR, sotatercept dans l'hypertension artérielle pulmonaire, N Engl J Med 2023",
+   "url": "https://doi.org/10.1056/NEJMoa2213558"
+  },
+  "ethos": {
+   "source": "Rabe et coll. · ETHOS, trithérapie inhalée dans la BPCO, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1916046"
+  },
+  "deutetra": {
+   "source": "Frank et coll. · deutétrabénazine au long cours dans la chorée de Huntington, CNS Drugs 2022",
+   "url": "https://doi.org/10.1007/s40263-022-00956-8"
   }
  },
  "maladies": [
@@ -7022,6 +7066,469 @@
      "critere": 1,
      "zones": [
       "small_intestine"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "sla",
+   "nom": "Sclérose latérale amyotrophique (SLA, maladie de Charcot)",
+   "synonymes": [
+    "SLA",
+    "Charcot",
+    "maladie de Charcot",
+    "neurones moteurs",
+    "ALS"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Les neurones qui commandent les muscles meurent : faiblesse puis paralysie progressive, atteinte de la respiration.",
+   "source": "edaravone",
+   "stades": [
+    {
+     "id": "debut",
+     "nom": "Début, fonction respiratoire conservée",
+     "niveau": "eleve"
+    },
+    {
+     "id": "sod1",
+     "nom": "Forme génétique SOD1",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "edaravone",
+     "nom": "Édaravone",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "60 mg en perfusion, 6 cycles de 4 semaines (schéma de l'essai)",
+     "population": "137 patients sélectionnés (Japon), contre placebo",
+     "effet": "Perte de score fonctionnel ALSFRS-R − 5,01 contre − 7,50 (écart 2,49 ; IC 95 % 0,99 à 3,98) sur 24 semaines.",
+     "resume": "Déclin fonctionnel ralenti d'un tiers",
+     "source": "edaravone",
+     "stades": [
+      "debut"
+     ],
+     "mecanisme": "Capte les radicaux libres qui abîment les neurones.",
+     "prudence": "Bénéfice limité à des patients très sélectionnés (maladie récente, respiration conservée).",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "tofersen",
+     "nom": "Tofersen",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "100 mg par ponction lombaire, 8 doses sur 24 semaines",
+     "population": "108 patients porteurs d'une mutation SOD1",
+     "effet": "Protéine SOD1 et marqueur de destruction des neurones en baisse ; pas de différence clinique à 28 semaines. À 52 semaines, déclin moindre chez ceux traités tôt (− 6,0 contre − 9,5).",
+     "resume": "Marqueurs de dégâts en baisse ; bénéfice clinique si traité tôt",
+     "source": "tofersen",
+     "stades": [
+      "sod1"
+     ],
+     "mecanisme": "Brin d'ARN qui empêche la fabrication de la protéine SOD1 toxique.",
+     "prudence": "Critère principal non atteint. Effets liés à la ponction lombaire ; effets neurologiques graves chez 7 %.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "epilepsie",
+   "nom": "Épilepsie résistante aux médicaments",
+   "synonymes": [
+    "épilepsie",
+    "crises",
+    "convulsions",
+    "Dravet"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Crises répétées malgré au moins deux médicaments antiépileptiques.",
+   "source": "neal_keto",
+   "stades": [
+    {
+     "id": "enfant",
+     "nom": "Enfant",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "cetogene_epi",
+     "nom": "Régime cétogène",
+     "type": "regime",
+     "force": "moyenne",
+     "dose": "Régime très riche en graisses et très pauvre en glucides, encadré par l'équipe médicale",
+     "population": "145 enfants de 2 à 16 ans, contre régime habituel",
+     "effet": "Crises à 62 % de leur niveau de départ contre 136,9 % ; crises réduites de plus de moitié chez 38 % contre 6 %, de plus de 90 % chez 7 %.",
+     "resume": "Crises réduites de moitié : 38 % contre 6 %",
+     "source": "neal_keto",
+     "stades": [
+      "enfant"
+     ],
+     "duree": "3 mois",
+     "mecanisme": "Le cerveau fonctionne avec des cétones au lieu du sucre, ce qui stabilise les neurones.",
+     "prudence": "Constipation, vomissements, fatigue ; suivi médical et diététique obligatoire.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "cannabidiol",
+     "nom": "Cannabidiol (CBD pharmaceutique)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "20 mg/kg/j par la bouche, en plus des antiépileptiques",
+     "population": "120 enfants et jeunes adultes atteints du syndrome de Dravet, contre placebo",
+     "effet": "Crises convulsives par mois de 12,4 à 5,9 contre 14,9 à 14,1 ; 5 % sans crise contre 0 %.",
+     "resume": "Crises divisées par 2",
+     "source": "devinsky",
+     "stades": [
+      "enfant"
+     ],
+     "duree": "14 semaines",
+     "mecanisme": "Agit sur plusieurs canaux et récepteurs qui calment l'excitabilité des neurones.",
+     "prudence": "Diarrhée, somnolence, atteinte du foie (surtout avec le valproate). Produit pharmaceutique, pas les huiles du commerce.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "huntington",
+   "nom": "Maladie de Huntington",
+   "synonymes": [
+    "Huntington",
+    "chorée",
+    "danse de Saint-Guy"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Maladie génétique du cerveau : mouvements involontaires (chorée), troubles de l'humeur et de la mémoire.",
+   "source": "deutetra",
+   "stades": [
+    {
+     "id": "installee",
+     "nom": "Avec chorée",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "deutetrabenazine",
+     "nom": "Deutétrabénazine",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Dose moyenne 37,6 mg/j après ajustement, 45,7 mg/j en fin d'étude",
+     "population": "119 patients, suivi jusqu'à 145 semaines (prolongement sans groupe témoin)",
+     "effet": "Réduction de la chorée maintenue dans le temps ; la chorée revient à l'arrêt. Ne freine pas l'évolution de la maladie (score moteur total en hausse).",
+     "resume": "Mouvements involontaires réduits durablement",
+     "source": "deutetra",
+     "stades": [
+      "installee"
+     ],
+     "mecanisme": "Diminue la dopamine libérée, responsable des mouvements involontaires.",
+     "prudence": "Somnolence, dépression (22 à 32 %), idées suicidaires (5 à 9 %) : surveillance de l'humeur obligatoire.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "neuropathie_diabetique",
+   "nom": "Neuropathie diabétique",
+   "synonymes": [
+    "neuropathie",
+    "pieds",
+    "brûlures",
+    "fourmillements",
+    "diabète"
+   ],
+   "zones": [
+    "femur_l",
+    "femur_r"
+   ],
+   "description": "Le diabète abîme les nerfs, surtout des pieds : brûlures, douleurs, fourmillements, perte de sensibilité.",
+   "source": "sydney2",
+   "stades": [
+    {
+     "id": "douloureuse",
+     "nom": "Avec symptômes",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "ala",
+     "nom": "Acide alpha-lipoïque",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "600 mg une fois par jour par la bouche (1 200 et 1 800 mg pas plus efficaces, moins bien tolérés)",
+     "population": "181 patients, contre placebo",
+     "effet": "Symptômes (douleurs, brûlures, fourmillements) − 51 % contre − 32 % ; réponse de 62 % à 600 mg contre 26 %.",
+     "resume": "Symptômes − 51 % contre − 32 %",
+     "source": "sydney2",
+     "stades": [
+      "douloureuse"
+     ],
+     "duree": "5 semaines",
+     "mecanisme": "Antioxydant qui améliore la circulation et le fonctionnement des nerfs.",
+     "prudence": "Nausées, vomissements, vertiges croissants avec la dose. Essai court.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "cbp",
+   "nom": "Cholangite biliaire primitive",
+   "synonymes": [
+    "cholangite biliaire",
+    "CBP",
+    "cirrhose biliaire",
+    "foie"
+   ],
+   "zones": [
+    "liver"
+   ],
+   "description": "Maladie auto-immune qui détruit les petits canaux biliaires du foie.",
+   "source": "poise",
+   "stades": [
+    {
+     "id": "residuelle",
+     "nom": "Réponse insuffisante à l'acide ursodésoxycholique",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "obeticholique",
+     "nom": "Acide obéticholique",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "5 à 10 mg par jour, en plus de l'acide ursodésoxycholique",
+     "population": "216 patients, contre placebo",
+     "effet": "Critère combiné (phosphatases alcalines, bilirubine) atteint chez 46 à 47 % contre 10 %.",
+     "resume": "Réponse biologique 47 % contre 10 %",
+     "source": "poise",
+     "stades": [
+      "residuelle"
+     ],
+     "duree": "12 mois",
+     "mecanisme": "Active le récepteur FXR qui régule les acides biliaires.",
+     "prudence": "Démangeaisons (56 à 68 %) ; pas d'effet démontré sur la fibrose à 12 mois.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "hepatite_d",
+   "nom": "Hépatite D (delta)",
+   "synonymes": [
+    "hépatite D",
+    "delta",
+    "foie"
+   ],
+   "zones": [
+    "liver"
+   ],
+   "description": "Virus qui n'infecte que les porteurs de l'hépatite B : forme d'hépatite la plus sévère, fréquente en Afrique.",
+   "source": "bulevirtide",
+   "stades": [
+    {
+     "id": "chronique",
+     "nom": "Chronique",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "bulevirtide",
+     "nom": "Bulévirtide",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "2 ou 10 mg par jour en injection sous la peau",
+     "population": "150 patients, contre absence de traitement",
+     "effet": "Réponse combinée à 48 semaines 45 à 48 % contre 2 % ; transaminases normalisées 51 à 56 % contre 12 %.",
+     "resume": "Réponse 45 à 48 % contre 2 %",
+     "source": "bulevirtide",
+     "stades": [
+      "chronique"
+     ],
+     "duree": "144 semaines prévues",
+     "mecanisme": "Bloque l'entrée du virus dans les cellules du foie.",
+     "prudence": "Maux de tête, démangeaisons, fatigue ; acides biliaires en hausse.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "fibrose_pulmonaire",
+   "nom": "Fibrose pulmonaire idiopathique",
+   "synonymes": [
+    "fibrose pulmonaire",
+    "FPI",
+    "poumon"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r"
+   ],
+   "description": "Les poumons se durcissent par cicatrisation progressive ; essoufflement croissant.",
+   "source": "inpulsis",
+   "stades": [
+    {
+     "id": "installee",
+     "nom": "Installée",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "nintedanib",
+     "nom": "Nintédanib",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "150 mg 2 fois par jour",
+     "population": "1 066 patients, contre placebo",
+     "effet": "Perte de capacité respiratoire par an − 114,7 contre − 239,9 mL (essai 1) et − 113,6 contre − 207,3 mL (essai 2).",
+     "resume": "Perte de souffle divisée par 2",
+     "source": "inpulsis",
+     "duree": "52 semaines",
+     "mecanisme": "Freine les cellules qui fabriquent la cicatrice.",
+     "prudence": "Diarrhée chez 6 patients sur 10.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "bpco",
+   "nom": "Bronchopneumopathie chronique obstructive (BPCO)",
+   "synonymes": [
+    "BPCO",
+    "bronchite chronique",
+    "emphysème",
+    "poumon"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r"
+   ],
+   "description": "Bronches et poumons abîmés durablement, surtout par le tabac ou la fumée de bois.",
+   "source": "ethos",
+   "stades": [
+    {
+     "id": "severe",
+     "nom": "Modérée à très sévère, avec poussées",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "triple_inhalee",
+     "nom": "Trithérapie inhalée (budésonide + glycopyrronium + formotérol)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Inhalation 2 fois par jour",
+     "population": "8 509 patients, contre bithérapies",
+     "effet": "Poussées modérées ou sévères − 24 % contre glycopyrronium-formotérol, − 13 % contre budésonide-formotérol.",
+     "resume": "Poussées − 24 %",
+     "source": "ethos",
+     "stades": [
+      "severe"
+     ],
+     "duree": "52 semaines",
+     "mecanisme": "Corticoïde + deux bronchodilatateurs.",
+     "prudence": "Pneumonies un peu plus fréquentes (3,5 à 4,5 % contre 2,3 %).",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "htap",
+   "nom": "Hypertension artérielle pulmonaire",
+   "synonymes": [
+    "HTAP",
+    "hypertension pulmonaire",
+    "poumon",
+    "cœur"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r",
+    "heart"
+   ],
+   "description": "La pression monte dans les artères des poumons et épuise le cœur droit.",
+   "source": "stellar",
+   "stades": [
+    {
+     "id": "classe2_3",
+     "nom": "Classe fonctionnelle II ou III",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "sotatercept",
+     "nom": "Sotatercept",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "0,3 puis 0,7 mg/kg en injection sous la peau toutes les 3 semaines, en plus du traitement de fond",
+     "population": "323 patients, contre placebo",
+     "effet": "Marche de 6 minutes + 40,8 m (IC 95 % 27,5 à 54,1) ; 8 critères secondaires améliorés.",
+     "resume": "Marche + 41 m en 24 semaines",
+     "source": "stellar",
+     "stades": [
+      "classe2_3"
+     ],
+     "mecanisme": "Rééquilibre les signaux de croissance des parois des artères.",
+     "prudence": "Saignements de nez, vertiges, hausse de l'hémoglobine, baisse des plaquettes.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "heart"
      ]
     }
    ],
