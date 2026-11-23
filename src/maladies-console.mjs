@@ -1,7 +1,7 @@
 // Vue « Maladies » de l'explorateur : maladie et stade à gauche, corps au centre,
 // pistes de guérison et substances à droite (deux onglets), graphiques en bas.
 // Les lignes sont courtes ; le détail s'ouvre au clic.
-import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,plageEtudiee,rapportPublie,CHAMPS_PROFIL,evaluerProfil,decrireProfil,profilActif} from "./maladies.mjs";
+import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,plageEtudiee,rapportPublie,CHAMPS_PROFIL,evaluerProfil,decrireProfil,profilActif,hypothesesPour,APPUI_HYPOTHESE} from "./maladies.mjs";
 
 const $=id=>document.getElementById(id);
 const el=(tag,cls,texte)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(texte!==undefined)n.textContent=texte;return n;};
@@ -139,6 +139,39 @@ function rendreGroupe(zone,liste,avis){
  if(maladie.lacune)zone.append(el("p","mx-etiq",maladie.lacune));
 }
 
+// Hypothèses : propositions non testées, toujours conditionnelles à la situation du malade.
+const STATUTS_H={etudie:"Correspond à la situation visée",a_preciser:"À préciser : la cause manque",hors:"Ne correspond pas à la situation visée",non_precise:"Situation non précisée"};
+function rendreHypotheses(zone,liste){
+ const av=el("p","mx-etiq mx-hyp-avert","Pistes qui n’ont pas encore été testées pour cette maladie chez l’humain. Chacune dit « pourrait éventuellement », jamais « guérit ». Elles servent à orienter la recherche et la discussion avec le médecin, pas à se soigner.");
+ zone.append(av);
+ if(!liste.length){zone.append(el("p","mx-etiq","Hypothèses en cours de construction pour cette maladie."));return;}
+ const pp=maladie.profil_patient,actif=pp&&profilActif(patient);
+ const avis=actif?new Map(liste.map(h=>[h,evaluerProfil(h,{cause:patient.cause},pp.causes)])):null;
+ const groupes=actif?Object.entries(STATUTS_H).map(([k,t])=>[k,t,liste.filter(h=>avis.get(h).statut===k)]):[["","",liste]];
+ for(const [cle,titre,groupe] of groupes){
+  if(!groupe.length)continue;
+  let cible=zone;
+  if(cle){cible=el("details","mx-statut");cible.dataset.statut=cle;cible.open=cle!=="hors";cible.append(el("summary","",titre+" · "+groupe.length));zone.append(cible);}
+  for(const h of groupe){
+   const d=el("details","mx-ligne-d mx-hypothese");d.dataset.appui=h.appui;
+   const s=el("summary","");s.append(el("span","",h.nom),el("b","","Hypothèse"));d.append(s);
+   const a=avis?.get(h);if(a){const p=el("p","mx-avis",a.statut==="etudie"?"La cause saisie correspond à la situation visée":a.raisons.join(" · "));p.dataset.statut=a.statut;d.append(p);}
+   d.append(el("p","mx-formulation",h.formulation));
+   ligne(d,"Type",TYPES[h.type]||h.type);
+   ligne(d,"Situation visée",h.situation);
+   ligne(d,"Ce qui est abîmé",h.lesion);
+   ligne(d,"Mécanisme",h.mecanisme);
+   ligne(d,"Sur quoi elle repose",h.base);
+   ligne(d,"Ce qu’il faut vérifier",h.a_verifier);
+   ligne(d,"Prudence",h.prudence);
+   d.append(el("p","mx-etiq","Hypothèse PRMR · appui : "+(APPUI_HYPOTHESE[h.appui]?.libelle||"non précisé")+" · pas une preuve d’efficacité ni de sécurité"));
+   sources(d,[h.source,h.source2]);
+   d.ontoggle=()=>{if(d.open&&h.zones?.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:h.zones[0]}));};
+   cible.append(d);
+  }
+ }
+}
+
 function rendreDroite(){
  const zone=$("mx-substances");zone.replaceChildren();
  // Profil saisi : on compare à toutes les études, le stade ne filtre plus.
@@ -147,8 +180,10 @@ function rendreDroite(){
  $("mx-titre-stade").textContent=st?st.nom:"";
  $("mx-n-guerison").textContent=(maladie.guerison||[]).length;
  $("mx-n-substances").textContent=liste.length;
+ const hyp=hypothesesPour(maladie,maladie.profil_patient&&profilActif(patient)?"":stade);
+ $("mx-n-hypotheses").textContent=hyp.length;
  for(const b of document.querySelectorAll("[data-onglet]"))b.setAttribute("aria-pressed",String(b.dataset.onglet===onglet));
- if(onglet==="guerison")rendreGuerison(zone);else rendreSubstancesListe(zone,liste);
+ if(onglet==="guerison")rendreGuerison(zone);else if(onglet==="hypotheses")rendreHypotheses(zone,hyp);else rendreSubstancesListe(zone,liste);
  rendreGraphes(liste);
 }
 
