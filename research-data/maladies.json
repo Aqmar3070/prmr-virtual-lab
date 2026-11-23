@@ -632,6 +632,38 @@
   "benzimidazoles": {
    "source": "Revue · benzimidazoles (mébendazole, albendazole, fenbendazole) comme anticancéreux, Immune Netw 2020",
    "url": "https://doi.org/10.4110/in.2020.20.e29"
+  },
+  "khajehdehi": {
+   "source": "Khajehdehi et coll. · curcuma dans la néphropathie diabétique, essai contre placebo, Scand J Urol Nephrol 2011",
+   "url": "https://doi.org/10.3109/00365599.2011.585622"
+  },
+  "sattarinezhad": {
+   "source": "Sattarinezhad et coll. · resvératrol et albuminurie diabétique, essai contre placebo, Diabetes Metab 2019",
+   "url": "https://doi.org/10.1016/j.diabet.2018.05.010"
+  },
+  "vital_pari": {
+   "source": "de Zeeuw et coll. · VITAL, paricalcitol et albuminurie du diabète de type 2, Lancet 2010",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61032-X"
+  },
+  "campbell_ckd": {
+   "source": "Campbell et Liebman · alimentation végétale complète, maladie rénale stade 3, cas rapporté, BMJ Case Rep 2019",
+   "url": "https://doi.org/10.1136/bcr-2019-232080"
+  },
+  "direct_lean": {
+   "source": "Lean et coll. · DiRECT, remplacement des repas et rémission du diabète de type 2, Lancet 2018",
+   "url": "https://doi.org/10.1016/S0140-6736(17)33102-1"
+  },
+  "furmli": {
+   "source": "Furmli et coll. · jeûne thérapeutique à la place de l'insuline, 3 cas, BMJ Case Rep 2018",
+   "url": "https://doi.org/10.1136/bcr-2017-221854"
+  },
+  "charantia_meta": {
+   "source": "Peter et coll. · margose (Momordica charantia) et glycémie, méta-analyse de 10 essais, J Ethnopharmacol 2019",
+   "url": "https://doi.org/10.1016/j.jep.2018.10.033"
+  },
+  "cipsc": {
+   "source": "Wang et coll. · îlots issus de cellules souches reprogrammées chimiquement, premier patient, Cell 2024",
+   "url": "https://doi.org/10.1016/j.cell.2024.09.004"
   }
  },
  "maladies": [
@@ -1229,6 +1261,88 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "paricalcitol",
+     "nom": "Paricalcitol (vitamine D active)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 3,
+     "condition": "Diabète de type 2 avec albuminurie, déjà traité par IEC ou sartan",
+     "dose": "2 µg par jour par la bouche (1 µg/j : effet non significatif)",
+     "duree": "24 semaines",
+     "population": "281 patients, contre placebo",
+     "effet": "Albuminurie − 20 % à 2 µg/j contre − 3 % sous placebo (écart − 18 % ; IC 95 % − 32 à 0) ; baisse soutenue de 18 à 28 %.",
+     "mecanisme": "Active le récepteur de la vitamine D et freine le système rénine-angiotensine dans le rein.",
+     "prudence": "Effet en limite de signification statistique. Surveiller le calcium sanguin.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "vital_pari",
+     "resume": "Albuminurie − 20 % (2 µg/j)"
+    },
+    {
+     "id": "resveratrol_rein",
+     "nom": "Resvératrol (peau de raisin)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "condition": "Diabète de type 2 avec albuminurie, sous losartan",
+     "dose": "500 mg par jour",
+     "duree": "90 jours",
+     "population": "60 patients, contre placebo, en double aveugle",
+     "effet": "Rapport albumine/créatinine urinaire − 46,4 mg/g contre + 29,9 mg/g sous placebo ; DFG et créatinine inchangés.",
+     "mecanisme": "Antioxydant : hausse des enzymes antioxydantes et du monoxyde d'azote.",
+     "prudence": "Essai court et petit ; aucun effet démontré sur le DFG. Interactions possibles avec les anticoagulants.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "sattarinezhad",
+     "resume": "Albuminurie − 46 mg/g en 3 mois"
+    },
+    {
+     "id": "curcuma_rein",
+     "nom": "Curcuma (rhizome)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "condition": "Néphropathie diabétique avec protéinurie franche",
+     "dose": "500 mg de curcuma (22,1 mg de curcumine) à chaque repas, 3 fois par jour",
+     "duree": "2 mois",
+     "population": "40 patients, contre placebo, en double aveugle",
+     "effet": "Protéinurie, TGF-β et IL-8 en baisse significative par rapport au départ ; aucun effet indésirable.",
+     "mecanisme": "Freine le TGF-β, moteur de la fibrose du rein.",
+     "prudence": "Comparaison surtout avant/après ; essai court. Interactions avec les anticoagulants.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "khajehdehi",
+     "resume": "Protéinurie en baisse en 2 mois"
+    },
+    {
+     "id": "vegetal_rein_cas",
+     "nom": "Alimentation végétale complète — cas rapporté",
+     "type": "regime",
+     "force": "cas",
+     "critere": 2,
+     "stades": [
+      "G3a"
+     ],
+     "dose": "Aliments végétaux entiers, à volonté, sans restriction de calories ni exercice imposé",
+     "duree": "4,5 mois",
+     "population": "1 homme de 69 ans, diabète, hypertension, stade 3 avec phosphore élevé",
+     "effet": "DFG de 45 à 74 mL/min ; microalbuminurie de 414,3 à 26,8 mg/g ; phosphore normalisé ; insuline diminuée de plus de moitié.",
+     "mecanisme": "Perte de poids, moins de phosphore absorbable et moins d'acidité alimentaire.",
+     "prudence": "La perte de poids fausse le DFG calculé à partir de la créatinine (les auteurs le signalent). Potassium à surveiller. Certains légumes très riches en oxalate (blette) ont provoqué une insuffisance rénale aiguë chez une autre personne.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "campbell_ckd",
+     "resume": "DFG 45 → 74 en 4,5 mois (1 cas)"
     }
    ],
    "guerison": [
@@ -1584,6 +1698,72 @@
      "source": "cannelleAllen",
      "source2": "suksomboon",
      "resume": "Glycémie à jeun − 24,6 mg/dL, HbA1c inchangée"
+    },
+    {
+     "id": "direct_regime",
+     "nom": "Remplacement des repas puis réintroduction (DiRECT)",
+     "type": "regime",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "diabete"
+     ],
+     "condition": "Diabète de moins de 6 ans, sans insuline, IMC 27 à 45",
+     "dose": "825 à 853 kcal par jour en préparations liquides pendant 3 à 5 mois, arrêt des antidiabétiques, puis réintroduction des aliments sur 2 à 8 semaines et suivi",
+     "duree": "12 mois",
+     "population": "306 patients, 49 cabinets de médecine générale",
+     "effet": "Rémission du diabète 46 % contre 4 % ; 86 % de rémission chez ceux qui ont perdu 15 kg ou plus, 57 % entre 10 et 15 kg.",
+     "mecanisme": "La rémission suit l'ampleur de la perte de poids ; mécanisme non détaillé dans l'essai.",
+     "prudence": "Sous suivi médical : arrêt encadré des médicaments. Rechute si le poids est repris.",
+     "zones": [
+      "pancreas",
+      "liver"
+     ],
+     "source": "direct_lean",
+     "resume": "Rémission 46 % contre 4 %"
+    },
+    {
+     "id": "margose",
+     "nom": "Margose (Momordica charantia, fruit)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "stades": [
+      "diabete"
+     ],
+     "dose": "Préparations variables selon les essais (extrait, poudre ou jus de fruit)",
+     "duree": "4 à 16 semaines",
+     "population": "10 essais, 1 045 patients (méta-analyse)",
+     "effet": "Glycémie à jeun − 0,72 mmol/L, après repas − 1,43 mmol/L, HbA1c − 0,26 % par rapport au placebo.",
+     "mecanisme": "Composés proches de l'insuline (polypeptide-p, charantine).",
+     "prudence": "Essais à risque de biais modéré à élevé selon les auteurs. Hypoglycémie possible avec les antidiabétiques ; déconseillée pendant la grossesse.",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "charantia_meta",
+     "resume": "HbA1c − 0,26 %"
+    },
+    {
+     "id": "jeune_dt2_cas",
+     "nom": "Jeûne thérapeutique encadré — 3 cas",
+     "type": "regime",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "diabete"
+     ],
+     "dose": "Jeûnes de 24 heures 3 fois par semaine ou 1 jour sur 2 (seul le dîner ces jours-là), repas pauvres en glucides les autres jours",
+     "duree": "7 à 11 mois",
+     "population": "3 hommes de 40 à 67 ans, diabète depuis 10 à 25 ans, au moins 70 unités d'insuline par jour",
+     "effet": "Insuline arrêtée chez les 3, en 5 à 18 jours ; 2 sur 3 sans aucun antidiabétique ; HbA1c de 11 à 7 %, 7,2 à 6 %, 6,8 à 6,2 % ; perte de poids de 10 à 18 %.",
+     "mecanisme": "Baisse de l'insuline et de la résistance à l'insuline, perte de graisse.",
+     "prudence": "Uniquement avec un médecin : l'insuline doit être réduite AVANT de jeûner, sinon hypoglycémie grave. Glycémie mesurée au moins 4 fois par jour pendant le sevrage.",
+     "zones": [
+      "pancreas",
+      "liver"
+     ],
+     "source": "furmli",
+     "resume": "Insuline arrêtée chez 3 sur 3 (série de cas)"
     }
    ],
    "guerison": [
@@ -1750,6 +1930,27 @@
      ],
      "source": "verapamil",
      "resume": "Production d'insuline préservée (+ 30 %)"
+    },
+    {
+     "id": "cipsc_ilots_cas",
+     "nom": "Îlots fabriqués à partir de ses propres cellules (reprogrammation chimique) — premier patient",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "installe"
+     ],
+     "dose": "Greffe unique d'îlots produits à partir des cellules de la patiente, sous la gaine du muscle grand droit de l'abdomen",
+     "duree": "Suivi 1 an",
+     "population": "1 patiente (premier résultat d'un essai de phase 1)",
+     "effet": "Plus besoin d'insuline à partir du 75e jour ; temps dans la cible glycémique de 43 % à plus de 98 % ; HbA1c autour de 5 % à 1 an.",
+     "mecanisme": "Remplace les cellules bêta détruites par des cellules issues du patient lui-même.",
+     "prudence": "Une seule patiente, résultat préliminaire d'un essai de phase 1. Durée et sécurité à long terme inconnues.",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "cipsc",
+     "resume": "Sans insuline à 1 an (1 patiente)"
     }
    ],
    "lacune": "Aucune substance naturelle avec un essai randomisé démontrant un effet sur le diabète de type 1 n'a été retrouvée dans les sources consultées à ce jour.",
