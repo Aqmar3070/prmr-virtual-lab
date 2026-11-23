@@ -128,3 +128,12 @@ test('Lot 5 : rein et diabète, petites études et cas rapportés',()=>{
  assert.equal(substancesPour(dt1,'installe').at(-1).force,'cas');
  assert.match(dt2.substances.find(s=>s.id==='jeune_dt2_cas').prudence,/insuline/);
 });
+
+test('Lot 6 : VIH, Alzheimer, tension, fibromes — guérisons rapportées et petites études',()=>{
+ const vih=registre.maladies.find(m=>m.id==='vih');
+ const g=vih.substances.find(s=>s.id==='greffe_ccr5_cas');
+ assert.equal(g.force,'cas');assert.ok(g.source&&g.source2);assert.match(g.prudence,/cancers du sang/);
+ const ad=registre.maladies.find(m=>m.id==='alzheimer');
+ assert.ok(ids(ad,'precoce').includes('mend_cas')&&!ids(ad,'modere').includes('mend_cas'));
+ for(const m of registre.maladies)for(const s of m.substances)assert.ok(Array.isArray(s.zones)&&s.zones.length,m.id+' '+s.id+' sans zone');
+});

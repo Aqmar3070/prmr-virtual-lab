@@ -664,6 +664,34 @@
   "cipsc": {
    "source": "Wang et coll. · îlots issus de cellules souches reprogrammées chimiquement, premier patient, Cell 2024",
    "url": "https://doi.org/10.1016/j.cell.2024.09.004"
+  },
+  "hutter": {
+   "source": "Hütter et coll. · contrôle du VIH après greffe de cellules souches CCR5Δ32/Δ32 (« patient de Berlin »), N Engl J Med 2009",
+   "url": "https://doi.org/10.1056/NEJMoa0802905"
+  },
+  "gupta_london": {
+   "source": "Gupta et coll. · rémission du VIH-1 après greffe CCR5Δ32/Δ32 (« patient de Londres »), Nature 2019",
+   "url": "https://doi.org/10.1038/s41586-019-1027-4"
+  },
+  "ornish_ad": {
+   "source": "Ornish et coll. · changements intensifs du mode de vie, troubles cognitifs légers ou démence débutante d'Alzheimer, essai randomisé, Alzheimers Res Ther 2024",
+   "url": "https://doi.org/10.1186/s13195-024-01482-z"
+  },
+  "bredesen": {
+   "source": "Bredesen · programme MEND, 10 premiers patients, Aging 2014",
+   "url": "https://doi.org/10.18632/aging.100690"
+  },
+  "kapil_nitrate": {
+   "source": "Kapil et coll. · nitrate alimentaire (jus de betterave) chez l'hypertendu, essai contre placebo, Hypertension 2015",
+   "url": "https://doi.org/10.1161/HYPERTENSIONAHA.114.04675"
+  },
+  "vitd_fibrome_meta": {
+   "source": "Alsharif et coll. · vitamine D et taille des fibromes, méta-analyse de 5 essais, Nutr Cancer 2024",
+   "url": "https://doi.org/10.1080/01635581.2023.2288716"
+  },
+  "vahdat": {
+   "source": "Vahdat et coll. · vitamine D et récidive des fibromes, essai pilote contre placebo, Complement Ther Clin Pract 2022",
+   "url": "https://doi.org/10.1016/j.ctcp.2022.101536"
   }
  },
  "maladies": [
@@ -2434,6 +2462,31 @@
       "aorta"
      ],
      "source": "riedCacao"
+    },
+    {
+     "id": "betterave_nitrate",
+     "nom": "Jus de betterave (nitrate alimentaire)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "hta"
+     ],
+     "dose": "250 mL par jour de jus de betterave",
+     "duree": "4 semaines",
+     "population": "68 hypertendus (traités ou non), contre jus sans nitrate, en double aveugle",
+     "effet": "Pression au cabinet − 7,7/2,4 mmHg ; sur 24 heures − 7,7/5,2 mmHg ; à domicile − 8,1/3,8 mmHg ; artères plus souples.",
+     "mecanisme": "Le nitrate est transformé en monoxyde d'azote, qui dilate les vaisseaux.",
+     "prudence": "Effet sur 4 semaines seulement. Les bains de bouche antiseptiques peuvent l'annuler. Urines rouges sans gravité ; prudence en cas de calculs d'oxalate.",
+     "source": "kapil_nitrate",
+     "resume": "Pression − 7,7 mmHg en 4 semaines",
+     "zones": [
+      "heart",
+      "aorta",
+      "brain",
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": [
@@ -2588,6 +2641,47 @@
       "brain"
      ],
      "source": "ginkgo"
+    },
+    {
+     "id": "ornish_alzheimer",
+     "nom": "Changements intensifs du mode de vie (programme Ornish)",
+     "type": "regime",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "dose": "Alimentation végétale complète, exercice, gestion du stress, soutien de groupe, suivis chaque semaine",
+     "duree": "20 semaines",
+     "population": "51 patients (troubles cognitifs légers ou démence débutante), contre liste d'attente",
+     "effet": "Amélioration de la cognition et de l'autonomie (CGIC p = 0,001 ; CDR-SB p = 0,032) quand le groupe témoin se dégradait ; rapport Aβ42/40 sanguin en hausse.",
+     "mecanisme": "Action combinée sur le métabolisme, l'inflammation et les vaisseaux ; mécanisme précis non établi.",
+     "prudence": "Petit essai, court, non masqué ; la prise en charge très intensive peut à elle seule expliquer une partie de l'effet.",
+     "source": "ornish_ad",
+     "resume": "Cognition améliorée en 20 semaines",
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "mend_cas",
+     "nom": "Programme personnalisé MEND (Bredesen) — 10 cas",
+     "type": "regime",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "dose": "Programme combiné et personnalisé : alimentation, jeûne nocturne, sommeil, exercice, compléments, correction des carences (détail dans l'article)",
+     "population": "10 premiers patients (Alzheimer, troubles légers, plaintes de mémoire)",
+     "effet": "9 sur 10 améliorés en 3 à 6 mois ; les 6 qui avaient dû arrêter ou peinaient au travail ont pu reprendre ou continuer ; amélioration maintenue jusqu'à 2 ans et demi. Échec chez le patient au stade très avancé.",
+     "mecanisme": "Hypothèse de l'auteur : le déclin précoce serait surtout d'origine métabolique.",
+     "prudence": "Série de cas sans groupe témoin, diagnostics mélangés (tous n'avaient pas une maladie d'Alzheimer confirmée), protocole différent pour chacun.",
+     "source": "bredesen",
+     "resume": "9 sur 10 améliorés (série de cas)",
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": [
@@ -3190,6 +3284,28 @@
       "spleen"
      ],
      "source": "fawzi"
+    },
+    {
+     "id": "greffe_ccr5_cas",
+     "nom": "Greffe de cellules souches d'un donneur CCR5Δ32/Δ32 — patients de Berlin et de Londres",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "infection"
+     ],
+     "condition": "Personnes vivant avec le VIH qui avaient besoin d'une greffe pour un cancer du sang (leucémie, lymphome)",
+     "dose": "Greffe de moelle (cellules souches) d'un donneur porteur de 2 copies de la mutation CCR5Δ32, qui prive le virus de sa porte d'entrée",
+     "population": "2 patients publiés (Berlin 2009, Londres 2019)",
+     "effet": "Berlin : aucun retour du virus 20 mois après la greffe et l'arrêt des antirétroviraux. Londres : antirétroviraux arrêtés 16 mois après la greffe, virus indétectable (moins d'une copie par mL) 18 mois plus tard, aucun virus réactivable.",
+     "mecanisme": "Les nouvelles cellules immunitaires n'ont plus le récepteur CCR5 que le VIH utilise pour entrer.",
+     "prudence": "Greffe lourde, à risque de décès, réservée aux cancers du sang qui l'exigent : ce n'est pas un traitement du VIH seul. Donneurs compatibles très rares.",
+     "source": "hutter",
+     "source2": "gupta_london",
+     "resume": "Guérison du VIH chez 2 patients greffés",
+     "zones": [
+      "spleen"
+     ]
     }
    ]
   },
@@ -4398,6 +4514,27 @@
      "source": "roshdy",
      "source2": "efsaThe",
      "resume": "Volume des fibromes − 32,6 %"
+    },
+    {
+     "id": "vitamine_d_fibromes",
+     "nom": "Vitamine D",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "symptomatique"
+     ],
+     "dose": "Doses variables selon les essais ; effet plus net au-delà de 8 semaines",
+     "population": "5 essais, 511 femmes (méta-analyse) ; essai pilote après ablation des fibromes",
+     "effet": "Taille des fibromes réduite par rapport au placebo (différence standardisée − 0,48 ; IC 95 % − 0,66 à − 0,31). Après ablation : récidives − 50 % (non significatif) et fibromes récidivants plus petits de 7,7 mm.",
+     "mecanisme": "La vitamine D freine la multiplication des cellules du fibrome et la fibrose (laboratoire).",
+     "prudence": "Essais petits ; doser la vitamine D avant et pendant, l'excès donne trop de calcium.",
+     "source": "vitd_fibrome_meta",
+     "source2": "vahdat",
+     "resume": "Fibromes plus petits",
+     "zones": [
+      "uterus"
+     ]
     }
    ],
    "guerison": [
