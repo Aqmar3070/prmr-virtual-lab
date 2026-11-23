@@ -103,18 +103,15 @@ export function evaluerProfil(s,patient,causes){
 }
 export const profilActif=patient=>Object.values(patient||{}).some(v=>v!==""&&v!=null&&!Number.isNaN(v));
 
-// Hypothèses : pistes non encore testées pour cette maladie, rattachées à une situation précise.
-export const APPUI_HYPOTHESE={
- humain_marqueurs:{rang:1,libelle:"Petite étude humaine sur des marqueurs, sans mesure de la maladie"},
- preclinique:{rang:2,libelle:"Études animales ou cellulaires"},
- autre_maladie:{rang:3,libelle:"Effet connu dans une autre maladie"},
- mecanisme:{rang:4,libelle:"Raisonnement sur le mécanisme seul"}
-};
-export function hypothesesPour(maladie,stadeId){
- const st=maladie?.stades?.find(s=>s.id===stadeId);
- return (maladie?.hypotheses||[]).filter(h=>{
+// Trois rubriques : Guéris (guérisons obtenues + cas), Testés (études), Pistes (jamais testé).
+export const pourGueris=(m,liste)=>({obtenues:(m?.guerison||[]).filter(g=>g.type==="obtenue"),cas:liste.filter(s=>s.force==="cas")});
+export const pourTestes=liste=>liste.filter(s=>s.force!=="cas"&&s.force!=="theorique");
+export function pourPistes(m,liste,stadeId){
+ const st=m?.stades?.find(s=>s.id===stadeId);
+ const pistes=(m?.pistes||[]).filter(h=>{
   if(!st?.dfg)return true;
   const crit=(h.profil?.criteres||[]).filter(c=>c.dfg);
   return !crit.length||crit.some(c=>(c.dfg[0]??0)<=st.dfg[1]&&(c.dfg[1]??1e9)>=st.dfg[0]);
- }).sort((a,b)=>(APPUI_HYPOTHESE[a.appui]?.rang??9)-(APPUI_HYPOTHESE[b.appui]?.rang??9));
+ });
+ return {pistes,combinaisons:(m?.guerison||[]).filter(g=>g.type!=="obtenue"),theoriques:liste.filter(s=>s.force==="theorique")};
 }

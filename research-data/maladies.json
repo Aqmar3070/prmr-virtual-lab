@@ -1192,6 +1192,22 @@
   "hu2022_berberine_dn": {
    "source": "Hu et al., Pharmacol Res 2022 — berbérine et néphropathie diabétique : méta-analyse de 25 études animales",
    "url": "https://doi.org/10.1016/j.phrs.2022.106481"
+  },
+  "brownjohn2024_mebendazole_pkd": {
+   "source": "Brownjohn et al., Front Pharmacol 2024 — le mébendazole, candidat repéré par calcul et confirmé contre les kystes de la polykystose (cellules humaines, animal)",
+   "url": "https://doi.org/10.3389/fphar.2024.1397864"
+  },
+  "larsen2015_mebendazole_hh": {
+   "source": "Larsen et al., Mol Cancer Ther 2015 — le mébendazole bloque la voie Hedgehog",
+   "url": "https://doi.org/10.1158/1535-7163.MCT-14-0755-T"
+  },
+  "kramann2015_gli1": {
+   "source": "Kramann et al., Cell Stem Cell 2015 — les cellules Gli1+ autour des vaisseaux sont une source majeure de fibrose (rein, cœur, foie, poumon)",
+   "url": "https://doi.org/10.1016/j.stem.2014.11.004"
+  },
+  "dogra2018_fenbendazole": {
+   "source": "Dogra et al., Sci Rep 2018 — le fenbendazole se fixe sur la tubuline des mammifères (déstabilisant modéré des microtubules)",
+   "url": "https://doi.org/10.1038/s41598-018-30158-6"
   }
  },
  "maladies": [
@@ -2123,6 +2139,152 @@
        }
       ]
      }
+    },
+    {
+     "id": "niclosamide_pkd",
+     "nom": "Niclosamide (antiparasitaire)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Dose animale, non transposable à l'humain",
+     "population": "Souris privées du gène Pkd1 (polykystose)",
+     "effet": "Chez des souris privées du gène Pkd1, le niclosamide et la benzbromarone (deux médicaments déjà autorisés pour d'autres usages, selon la source), ainsi que l'inhibiteur spécifique Ani9, ont largement réduit la croissance des kystes et la multiplication anormale des cellules.",
+     "resume": "Croissance des kystes freinée (souris)",
+     "source": "cabrita2020_tmem16a",
+     "mecanisme": "Bloque le canal chlorure TMEM16A, dont la quantité augmente quand le gène Pkd1 est perdu.",
+     "prudence": "Usage contre les kystes ni étudié ni autorisé chez l'humain. Ne rien entreprendre sans le néphrologue. Aucun essai chez l'humain dans cette indication n'est rapporté par la source. Il faudrait d'abord vérifier que, pris par la bouche, il atteint le rein en quantité suffisante, puis mesurer l'évolution du volume des reins et du DFG chez des patients.",
+     "profil": {
+      "causes": [
+       "polykystose"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "condition": "Polykystose",
+     "critere": 1
+    },
+    {
+     "id": "senolytiques_dkd",
+     "nom": "Dasatinib + quercétine (sénolytiques)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Dasatinib 100 mg + quercétine 1000 mg par jour",
+     "population": "9 patients atteints de maladie rénale diabétique, DFG moyen 27 (essai pilote ouvert, sans groupe témoin)",
+     "effet": "Essai pilote ouvert de phase 1, 9 patients : dasatinib 100 mg et quercétine 1000 mg par la bouche pendant 3 jours. Onze jours plus tard, moins de cellules sénescentes dans la graisse et la peau, et baisse de signaux inflammatoires dans le sang (IL-1α, IL-6, MMP-9 et MMP-12).",
+     "resume": "Moins de cellules sénescentes (9 patients, marqueurs seulement)",
+     "source": "hickson2019_senolytiques",
+     "mecanisme": "Élimine sélectivement les cellules sénescentes en désactivant temporairement les défenses qui les empêchent de mourir.",
+     "prudence": "Le dasatinib est un médicament anticancéreux ; à n'envisager que dans un essai clinique encadré. Le pilote n'avait pas de groupe témoin et n'a pas mesuré l'évolution du DFG ni de l'albuminurie comme résultat. Un essai comparatif mesurant la fonction rénale est nécessaire.",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "duree": "3 jours, contrôle 11 jours après",
+     "condition": "Diabète",
+     "critere": 1
+    },
+    {
+     "id": "artesunate_fibrose",
+     "nom": "Artésunate (antipaludéen)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "25 mg/kg chez la souris (non transposable)",
+     "population": "Souris diabétiques db/db ; rats à uretère ligaturé ; tissus de patients",
+     "effet": "Souris diabétiques db/db (25 mg/kg) et cellules exposées au glucose : moins de fibrose et d'inflammation, mitochondries restaurées. Rats à uretère ligaturé : moins de collagène et meilleure fonction rénale. Chez des patients atteints de maladie rénale diabétique, DUSP1 était plus bas quand la fibrose était plus forte et la fonction rénale moins bonne.",
+     "resume": "Fibrose rénale réduite (souris, rats)",
+     "source": "liu2025_artesunate_dkd",
+     "mecanisme": "Se fixe sur la protéine DUSP1 et la stabilise, ce qui freine la voie inflammatoire MAPK et protège les mitochondries. Chez le rat, augmente BMP-7 (protecteur) et diminue USAG-1.",
+     "prudence": "Autorisé contre le paludisme en cures courtes ; un usage prolongé pour le rein n'a pas été étudié. Aucun essai humain dans cette indication. La dose donnée aux souris ne se transpose pas directement à l'humain. Il faudrait mesurer chez des patients l'évolution du DFG et de marqueurs de fibrose.",
+     "profil": {
+      "causes": [
+       "diabete",
+       "autre"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source2": "cao2016_artesunate_uuo",
+     "critere": 1
+    },
+    {
+     "id": "berberine_dn",
+     "nom": "Berbérine",
+     "type": "naturel",
+     "force": "preclinique",
+     "dose": "Doses animales variables",
+     "population": "Animaux diabétiques (méta-analyse de 25 études)",
+     "effet": "Méta-analyse de 25 études chez l'animal : amélioration de l'urée, de la créatinine, de la protéinurie et du poids relatif du rein.",
+     "resume": "Créatinine et protéinurie améliorées (25 études animales)",
+     "source": "hu2022_berberine_dn",
+     "mecanisme": "Effets contre la fibrose, l'inflammation (IL-6, TNF-α) et le stress oxydatif ; baisse de la glycémie et des graisses du sang chez l'animal.",
+     "prudence": "Substance active qui baisse la glycémie chez l'animal : son addition aux traitements du diabète n'est pas évaluée ici. À discuter avec le médecin. Les auteurs demandent des études animales plus larges, plus longues et de meilleure qualité avant tout usage clinique ; aucun essai rénal chez l'humain dans la source.",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "condition": "Diabète",
+     "critere": 1
+    },
+    {
+     "id": "cetogene_bhb_pkd",
+     "nom": "Régime cétogène ou bêta-hydroxybutyrate",
+     "type": "regime",
+     "force": "preclinique",
+     "dose": "Non précisée dans la revue",
+     "population": "Modèles animaux de polykystose (revue)",
+     "effet": "Revue de 2024 : le bêta-hydroxybutyrate a donné des résultats prometteurs chez l'animal ; les données cliniques restent limitées. La restriction calorique paraît surtout utile en cas de surpoids.",
+     "resume": "Prometteur chez l'animal, données humaines limitées",
+     "source": "chebib2024_regime_pkd",
+     "mecanisme": "Reprogrammation du métabolisme des cellules et baisse du stress oxydatif (selon la revue).",
+     "prudence": "La revue ne recommande pas actuellement les suppléments de bêta-hydroxybutyrate. Tout régime restrictif doit être encadré par le médecin. Efficacité et sécurité à long terme non établies ; la revue demande des essais cliniques bien conçus.",
+     "profil": {
+      "causes": [
+       "polykystose"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "condition": "Polykystose",
+     "critere": 1
+    },
+    {
+     "id": "mebendazole_pkd",
+     "nom": "Mébendazole (Vermox)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales (non transposables)",
+     "population": "Cellules humaines de polykystose et modèle animal",
+     "effet": "Repéré par des outils de calcul parmi des médicaments existants, puis confirmé : effet anti-kystes puissant sur cellules humaines et chez l'animal.",
+     "resume": "Kystes freinés (cellules humaines, animal)",
+     "source": "brownjohn2024_mebendazole_pkd",
+     "mecanisme": "Empêche l'assemblage des microtubules et freine l'activité de protéines kinases.",
+     "prudence": "Aucun essai chez l'humain dans la polykystose. Antiparasitaire autorisé, mais son usage contre les kystes n'est ni étudié ni autorisé.",
+     "condition": "Polykystose",
+     "profil": {
+      "causes": [
+       "polykystose"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "critere": 1
     }
    ],
    "guerison": [
@@ -2252,123 +2414,59 @@
     ],
     "avertissement": "Compare la situation saisie aux patients réellement inclus dans chaque étude. Ce n’est ni un diagnostic ni une prescription : toute décision revient au néphrologue."
    },
-   "hypotheses": [
+   "pistes": [
     {
-     "id": "h_niclosamide_pkd",
-     "nom": "Niclosamide (antiparasitaire)",
+     "id": "p_mebendazole_fibrose",
+     "nom": "Mébendazole (Vermox) contre la fibrose rénale",
      "type": "medicament",
-     "appui": "preclinique",
-     "profil": {
-      "causes": [
-       "polykystose"
-      ]
-     },
-     "situation": "Polykystose rénale autosomique dominante dont les kystes continuent de grossir.",
-     "lesion": "Les cellules qui tapissent les kystes sécrètent du chlorure (canaux TMEM16A et CFTR) et se multiplient ; c'est ce qui fait grossir les kystes.",
-     "mecanisme": "Bloque le canal chlorure TMEM16A, dont la quantité augmente quand le gène Pkd1 est perdu.",
-     "base": "Chez des souris privées du gène Pkd1, le niclosamide et la benzbromarone (deux médicaments déjà autorisés pour d'autres usages, selon la source), ainsi que l'inhibiteur spécifique Ani9, ont largement réduit la croissance des kystes et la multiplication anormale des cellules.",
-     "formulation": "Chez une personne atteinte de polykystose dont les kystes grossissent, le niclosamide pourrait éventuellement freiner cette croissance, à condition que l'effet observé chez la souris se retrouve chez l'humain.",
-     "a_verifier": "Aucun essai chez l'humain dans cette indication n'est rapporté par la source. Il faudrait d'abord vérifier que, pris par la bouche, il atteint le rein en quantité suffisante, puis mesurer l'évolution du volume des reins et du DFG chez des patients.",
-     "prudence": "Usage contre les kystes ni étudié ni autorisé chez l'humain. Ne rien entreprendre sans le néphrologue.",
-     "zones": [
-      "kidney_l",
-      "kidney_r"
-     ],
-     "source": "cabrita2020_tmem16a"
-    },
-    {
-     "id": "h_senolytiques_dkd",
-     "nom": "Dasatinib + quercétine (sénolytiques)",
-     "type": "medicament",
-     "appui": "humain_marqueurs",
-     "profil": {
-      "causes": [
-       "diabete"
-      ]
-     },
-     "situation": "Maladie rénale du diabète à un stade avancé (les 9 patients du pilote avaient un DFG moyen d'environ 27).",
-     "lesion": "Accumulation de cellules sénescentes : des cellules vieillies qui ne se divisent plus et libèrent des signaux inflammatoires.",
-     "mecanisme": "Élimine sélectivement les cellules sénescentes en désactivant temporairement les défenses qui les empêchent de mourir.",
-     "base": "Essai pilote ouvert de phase 1, 9 patients : dasatinib 100 mg et quercétine 1000 mg par la bouche pendant 3 jours. Onze jours plus tard, moins de cellules sénescentes dans la graisse et la peau, et baisse de signaux inflammatoires dans le sang (IL-1α, IL-6, MMP-9 et MMP-12).",
-     "formulation": "Chez un malade dont la maladie rénale diabétique est avancée, ce traitement très court pourrait éventuellement réduire l'inflammation entretenue par les cellules sénescentes ; on ne sait pas s'il ralentit la perte de fonction rénale.",
-     "a_verifier": "Le pilote n'avait pas de groupe témoin et n'a pas mesuré l'évolution du DFG ni de l'albuminurie comme résultat. Un essai comparatif mesurant la fonction rénale est nécessaire.",
-     "prudence": "Le dasatinib est un médicament anticancéreux ; à n'envisager que dans un essai clinique encadré.",
-     "zones": [
-      "kidney_l",
-      "kidney_r"
-     ],
-     "source": "hickson2019_senolytiques"
-    },
-    {
-     "id": "h_artesunate_fibrose",
-     "nom": "Artésunate (antipaludéen)",
-     "type": "medicament",
-     "appui": "preclinique",
      "profil": {
       "causes": [
        "diabete",
+       "hypertension",
+       "glomerulonephrite",
        "autre"
       ]
      },
-     "situation": "Rein qui se cicatrise (fibrose des tubules et du tissu qui les entoure), en particulier en cas de diabète ; aussi étudié après une obstruction des voies urinaires.",
-     "lesion": "Fibrose tubulo-interstitielle ; mitochondries gonflées et abîmées dans les cellules des tubules.",
-     "mecanisme": "Se fixe sur la protéine DUSP1 et la stabilise, ce qui freine la voie inflammatoire MAPK et protège les mitochondries. Chez le rat, augmente BMP-7 (protecteur) et diminue USAG-1.",
-     "base": "Souris diabétiques db/db (25 mg/kg) et cellules exposées au glucose : moins de fibrose et d'inflammation, mitochondries restaurées. Rats à uretère ligaturé : moins de collagène et meilleure fonction rénale. Chez des patients atteints de maladie rénale diabétique, DUSP1 était plus bas quand la fibrose était plus forte et la fonction rénale moins bonne.",
-     "formulation": "Chez un malade dont le rein se cicatrise, surtout en cas de diabète, l'artésunate pourrait éventuellement freiner la progression de cette fibrose.",
-     "a_verifier": "Aucun essai humain dans cette indication. La dose donnée aux souris ne se transpose pas directement à l'humain. Il faudrait mesurer chez des patients l'évolution du DFG et de marqueurs de fibrose.",
-     "prudence": "Autorisé contre le paludisme en cures courtes ; un usage prolongé pour le rein n'a pas été étudié.",
+     "situation": "Rein qui se cicatrise (fibrose), quelle que soit la cause, à partir du moment où le DFG baisse.",
+     "lesion": "Les cicatrices du rein sont fabriquées par des myofibroblastes ; une grande partie vient de cellules situées autour des vaisseaux et marquées par Gli1, un relais de la voie Hedgehog.",
+     "fait_molecule": "Le mébendazole bloque la voie Hedgehog à des concentrations atteignables chez l'humain, en empêchant la formation du cil primaire (Larsen 2015).",
+     "fait_maladie": "Chez la souris, les cellules Gli1+ prolifèrent après une lésion du rein et produisent les myofibroblastes ; les supprimer réduit nettement la fibrose rénale (Kramann 2015).",
+     "lien": "Si le mébendazole freine la voie Hedgehog dans ces cellules du rein comme dans les cellules cancéreuses, il pourrait limiter la production de cicatrices.",
+     "formulation": "Chez un malade dont le rein se cicatrise progressivement, le mébendazole pourrait éventuellement freiner la formation de nouvelles cicatrices.",
+     "recherche": "Aucune étude trouvée sur PubMed associant mébendazole et fibrose rénale (recherche du 23/11/2026).",
+     "a_verifier": "D'abord un essai chez l'animal (modèle d'uretère ligaturé ou rein diabétique) mesurant la fibrose et les cellules Gli1+ ; vérifier que la quantité atteignant le rein suffit.",
+     "prudence": "Jamais testé pour le rein. Antiparasitaire autorisé en cures courtes ; un usage prolongé chez un insuffisant rénal n'est pas évalué.",
      "zones": [
       "kidney_l",
       "kidney_r"
      ],
-     "source": "liu2025_artesunate_dkd",
-     "source2": "cao2016_artesunate_uuo"
+     "source": "larsen2015_mebendazole_hh",
+     "source2": "kramann2015_gli1"
     },
     {
-     "id": "h_berberine_dn",
-     "nom": "Berbérine",
-     "type": "naturel",
-     "appui": "preclinique",
-     "profil": {
-      "causes": [
-       "diabete"
-      ]
-     },
-     "situation": "Maladie rénale du diabète avec fuite de protéines dans les urines.",
-     "lesion": "Inflammation, stress oxydatif et fibrose du rein diabétique.",
-     "mecanisme": "Effets contre la fibrose, l'inflammation (IL-6, TNF-α) et le stress oxydatif ; baisse de la glycémie et des graisses du sang chez l'animal.",
-     "base": "Méta-analyse de 25 études chez l'animal : amélioration de l'urée, de la créatinine, de la protéinurie et du poids relatif du rein.",
-     "formulation": "Chez une personne diabétique dont le rein laisse passer des protéines, la berbérine pourrait éventuellement contribuer à protéger le rein.",
-     "a_verifier": "Les auteurs demandent des études animales plus larges, plus longues et de meilleure qualité avant tout usage clinique ; aucun essai rénal chez l'humain dans la source.",
-     "prudence": "Substance active qui baisse la glycémie chez l'animal : son addition aux traitements du diabète n'est pas évaluée ici. À discuter avec le médecin.",
-     "zones": [
-      "kidney_l",
-      "kidney_r"
-     ],
-     "source": "hu2022_berberine_dn"
-    },
-    {
-     "id": "h_cetogene_pkd",
-     "nom": "Régime cétogène ou bêta-hydroxybutyrate",
-     "type": "regime",
-     "appui": "preclinique",
+     "id": "p_fenbendazole_pkd",
+     "nom": "Fenbendazole contre les kystes de la polykystose",
+     "type": "medicament",
      "profil": {
       "causes": [
        "polykystose"
       ]
      },
-     "situation": "Polykystose rénale, surtout en cas de surpoids.",
-     "lesion": "Kystes dont la croissance est liée à un métabolisme cellulaire déréglé et au stress oxydatif.",
-     "mecanisme": "Reprogrammation du métabolisme des cellules et baisse du stress oxydatif (selon la revue).",
-     "base": "Revue de 2024 : le bêta-hydroxybutyrate a donné des résultats prometteurs chez l'animal ; les données cliniques restent limitées. La restriction calorique paraît surtout utile en cas de surpoids.",
-     "formulation": "Chez une personne atteinte de polykystose, surtout en surpoids, une alimentation cétogène encadrée pourrait éventuellement ralentir la croissance des kystes.",
-     "a_verifier": "Efficacité et sécurité à long terme non établies ; la revue demande des essais cliniques bien conçus.",
-     "prudence": "La revue ne recommande pas actuellement les suppléments de bêta-hydroxybutyrate. Tout régime restrictif doit être encadré par le médecin.",
+     "situation": "Polykystose rénale dont les kystes grossissent.",
+     "lesion": "Croissance des kystes par multiplication des cellules qui les tapissent.",
+     "fait_molecule": "Le fenbendazole, de la même famille que le mébendazole (benzimidazoles), se fixe sur la tubuline des mammifères et déstabilise modérément les microtubules (Dogra 2018).",
+     "fait_maladie": "Le mébendazole freine les kystes sur cellules humaines et chez l'animal, probablement en empêchant l'assemblage des microtubules (Brownjohn 2024).",
+     "lien": "Puisque l'effet anti-kystes du mébendazole passe probablement par les microtubules, un autre benzimidazole agissant sur la tubuline pourrait avoir un effet comparable.",
+     "formulation": "Chez une personne atteinte de polykystose dont les kystes grossissent, le fenbendazole pourrait éventuellement freiner cette croissance, comme le mébendazole chez l'animal.",
+     "recherche": "Aucune étude trouvée sur PubMed associant fenbendazole et polykystose (recherche du 23/11/2026).",
+     "a_verifier": "Tester d'abord sur les mêmes cellules humaines de kystes que le mébendazole, en comparant les deux ; puis chez l'animal.",
+     "prudence": "Médicament vétérinaire, non autorisé chez l'humain. Son affinité pour la tubuline est décrite comme modérée : l'effet pourrait être plus faible que celui du mébendazole.",
      "zones": [
       "kidney_l",
       "kidney_r"
      ],
-     "source": "chebib2024_regime_pkd"
+     "source": "dogra2018_fenbendazole",
+     "source2": "brownjohn2024_mebendazole_pkd"
     }
    ]
   },
@@ -6633,6 +6731,25 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "mebendazole_pkd",
+     "nom": "Mébendazole (Vermox)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales (non transposables)",
+     "population": "Cellules humaines de polykystose et modèle animal",
+     "effet": "Repéré par des outils de calcul parmi des médicaments existants, puis confirmé : effet anti-kystes puissant sur cellules humaines et chez l'animal.",
+     "resume": "Kystes freinés (cellules humaines, animal)",
+     "source": "brownjohn2024_mebendazole_pkd",
+     "mecanisme": "Empêche l'assemblage des microtubules et freine l'activité de protéines kinases.",
+     "prudence": "Aucun essai chez l'humain dans la polykystose. Antiparasitaire autorisé, mais son usage contre les kystes n'est ni étudié ni autorisé.",
+     "condition": "Polykystose",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "critere": 1
     }
    ],
    "guerison": []

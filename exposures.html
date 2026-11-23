@@ -157,7 +157,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <section class="xp-card xp-right" data-vue="substances"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
  <div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
  <details class="xp-apports"><summary>Apports du jour</summary><div id="xp-day-table"></div></details><details><summary>Comment lire les probabilités</summary><p>Les chiffres sont des risques relatifs publiés, recalculés pour la dose saisie : « risque × 2,2 » signifie que, dans les populations étudiées, la maladie survient 2,2 fois plus souvent qu’en l’absence d’alcool. La fourchette (IC 95 %) donne l’incertitude. Ce n’est pas un diagnostic : l’âge, la génétique, le tabac et le poids modifient le risque réel.</p></details></section>
- <section class="xp-card xp-right mx-droite" data-vue="maladies"><div class="mx-onglets" role="tablist"><button type="button" data-onglet="guerison" aria-pressed="true">Guérison <b id="mx-n-guerison"></b></button><button type="button" data-onglet="substances" aria-pressed="false">Substances <b id="mx-n-substances"></b></button><button type="button" data-onglet="hypotheses" aria-pressed="false">Hypothèses <b id="mx-n-hypotheses"></b></button><output id="mx-titre-stade"></output></div>
+ <section class="xp-card xp-right mx-droite" data-vue="maladies"><div class="mx-onglets" role="tablist"><button type="button" data-onglet="guerison" aria-pressed="true">Guéris <b id="mx-n-guerison"></b></button><button type="button" data-onglet="substances" aria-pressed="false">Testés <b id="mx-n-substances"></b></button><button type="button" data-onglet="pistes" aria-pressed="false">Pistes <b id="mx-n-pistes"></b></button><output id="mx-titre-stade"></output></div>
   <div id="mx-substances" aria-live="polite"></div></section>
  <section class="xp-card xp-graphes" data-vue="substances">
   <figure class="xg"><figcaption>Évolution dans le temps</figcaption>
@@ -230,7 +230,7 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=1f59803a02"></script>
 <script type="module" src="./src/exposure-console.mjs?v=68f57f8615"></script>
-<script type="module" src="./src/maladies-console.mjs?v=40e08e3d4d"></script>
+<script type="module" src="./src/maladies-console.mjs?v=0c42a7b8fc"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
 </body>
 </html>
