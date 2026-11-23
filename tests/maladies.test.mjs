@@ -205,3 +205,12 @@ test('Arthrose de toutes localisations et hernie discale',()=>{
  assert.ok(ids(a,'mains').includes('prednisolone_mains'));
  for(const mot of ['hernie discale','sciatique'])assert.ok(chercherMaladies(registre,mot).some(m=>m.id==='hernie_discale'),mot);
 });
+
+test('Maladies principales : témoignages et petites études supplémentaires',()=>{
+ const c=registre.maladies.find(x=>x.id==='cirrhose');
+ assert.ok(ids(c,'compensee').includes('tenofovir_cirrhose'));
+ const g=registre.maladies.find(x=>x.id==='glioblastome');
+ assert.ok(ids(g,'nouveau').includes('ceto_gbm_cas'));
+ const mrc=registre.maladies.find(x=>x.id==='mrc');
+ assert.match(mrc.substances.find(s=>s.id==='vegetal_rein_cas').prudence,/jus/);
+});

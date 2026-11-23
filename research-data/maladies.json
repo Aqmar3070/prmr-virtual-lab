@@ -1052,6 +1052,34 @@
   "svege": {
    "source": "Svege et coll. · exercice et report de la prothèse de hanche, Ann Rheum Dis 2015",
    "url": "https://doi.org/10.1136/annrheumdis-2013-203628"
+  },
+  "unwin": {
+   "source": "Unwin et coll. · régime pauvre en glucides en médecine générale, 8 ans, 186 patients, BMJ Nutr Prev Health 2023",
+   "url": "https://doi.org/10.1136/bmjnph-2022-000544"
+  },
+  "padayatty": {
+   "source": "Padayatty et coll. · vitamine C intraveineuse, 3 cas de cancers avancés, CMAJ 2006",
+   "url": "https://doi.org/10.1503/cmaj.050346"
+  },
+  "zuccoli": {
+   "source": "Zuccoli et coll. · régime cétogène restreint et glioblastome, cas rapporté, Nutr Metab 2010",
+   "url": "https://doi.org/10.1186/1743-7075-7-33"
+  },
+  "mills_mel": {
+   "source": "Mills et coll. · mélatonine dans les tumeurs solides, méta-analyse, J Pineal Res 2005",
+   "url": "https://doi.org/10.1111/j.1600-079X.2005.00258.x"
+  },
+  "marcellin": {
+   "source": "Marcellin et coll. · régression de la cirrhose sous ténofovir, hépatite B, Lancet 2013",
+   "url": "https://doi.org/10.1016/S0140-6736(12)61425-1"
+  },
+  "nie_berb": {
+   "source": "Nie et coll. · berbérine dans la stéatose du foie, méta-analyse de 10 essais, J Transl Med 2024",
+   "url": "https://doi.org/10.1186/s12967-024-05011-2"
+  },
+  "raja_jus": {
+   "source": "Raja et coll. · insuffisance rénale aiguë après une cure de jus, cas rapporté, Cureus 2023",
+   "url": "https://doi.org/10.7759/cureus.51226"
   }
  },
  "maladies": [
@@ -1724,13 +1752,14 @@
      "population": "1 homme de 69 ans, diabète, hypertension, stade 3 avec phosphore élevé",
      "effet": "DFG de 45 à 74 mL/min ; microalbuminurie de 414,3 à 26,8 mg/g ; phosphore normalisé ; insuline diminuée de plus de moitié.",
      "mecanisme": "Perte de poids, moins de phosphore absorbable et moins d'acidité alimentaire.",
-     "prudence": "La perte de poids fausse le DFG calculé à partir de la créatinine (les auteurs le signalent). Potassium à surveiller. Certains légumes très riches en oxalate (blette) ont provoqué une insuffisance rénale aiguë chez une autre personne.",
+     "prudence": "La perte de poids fausse le DFG calculé à partir de la créatinine (les auteurs le signalent). Potassium à surveiller. Certains légumes très riches en oxalate (blette) ont provoqué une insuffisance rénale aiguë chez une autre personne. Une cure d'une semaine de jus de fruits et légumes a aussi provoqué une insuffisance rénale aiguë avec dialyse chez un patient diabétique.",
      "zones": [
       "kidney_l",
       "kidney_r"
      ],
      "source": "campbell_ckd",
-     "resume": "DFG 45 → 74 en 4,5 mois (1 cas)"
+     "resume": "DFG 45 → 74 en 4,5 mois (1 cas)",
+     "source2": "raja_jus"
     }
    ],
    "guerison": [
@@ -2152,6 +2181,26 @@
      ],
      "source": "furmli",
      "resume": "Insuline arrêtée chez 3 sur 3 (série de cas)"
+    },
+    {
+     "id": "lowcarb_unwin",
+     "nom": "Régime pauvre en glucides en médecine générale",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Conseils pour réduire les glucides (sucre, pain, riz, féculents) et perdre du poids, consultations individuelles et de groupe",
+     "population": "186 patients suivis en moyenne 33 mois (sans groupe témoin)",
+     "effet": "Rémission sans médicament chez 51 % ; 77 % quand le diabète avait moins d'1 an, 20 % au-delà de 15 ans ; 10 kg perdus en moyenne ; HbA1c de 63 à 46 mmol/mol ; tension − 12 mmHg.",
+     "resume": "Rémission 51 % (77 % si diabète récent)",
+     "source": "unwin",
+     "stades": [
+      "diabete"
+     ],
+     "mecanisme": "Moins de glucides = moins de sucre et d'insuline ; perte de graisse du foie.",
+     "prudence": "Réduire les médicaments hypoglycémiants avec le médecin dès le début, sinon risque d'hypoglycémie. Étude d'observation.",
+     "critere": 1,
+     "zones": [
+      "pancreas"
+     ]
     }
    ],
    "guerison": [
@@ -5099,6 +5148,23 @@
      ],
      "source": "silymarine",
      "resume": "Fibrose réduite : 22,4 % contre 6 %"
+    },
+    {
+     "id": "berberine_foie",
+     "nom": "Berbérine",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Doses variables selon les essais",
+     "population": "10 essais, 811 patients (méta-analyse)",
+     "effet": "Transaminases (ALT, AST, GGT), cholestérol, triglycérides et résistance à l'insuline en baisse.",
+     "resume": "Bilan du foie amélioré",
+     "source": "nie_berb",
+     "mecanisme": "Active l'AMPK, régulateur du métabolisme du sucre et des graisses.",
+     "prudence": "Troubles digestifs légers ; nombreuses interactions (enzymes du foie). Effet sur la fibrose non démontré.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
     }
    ],
    "guerison": [
@@ -5264,6 +5330,28 @@
      ],
      "source": "bassRifax",
      "resume": "Encéphalopathie − 58 %"
+    },
+    {
+     "id": "tenofovir_cirrhose",
+     "nom": "Ténofovir au long cours (hépatite B)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Ténofovir par la bouche pendant 5 ans",
+     "population": "348 patients avec biopsie avant et après",
+     "effet": "Fibrose en recul chez 51 % ; parmi 96 cirrhoses, 74 % ne sont plus au stade de cirrhose à 5 ans.",
+     "resume": "Cirrhose régressée chez 74 %",
+     "source": "marcellin",
+     "stades": [
+      "compensee"
+     ],
+     "condition": "Cirrhose due à l'hépatite B",
+     "mecanisme": "Bloquer le virus durablement laisse le foie se réparer.",
+     "prudence": "Surveiller les reins et les os.",
+     "critere": 1,
+     "zones": [
+      "liver",
+      "spleen"
+     ]
     }
    ],
    "guerison": [
@@ -5447,6 +5535,26 @@
      "source": "gallia",
      "source2": "patil",
      "resume": "25 % en vie à 4 ans (sans comparaison)"
+    },
+    {
+     "id": "ceto_gbm_cas",
+     "nom": "Jeûne puis régime cétogène restreint (600 kcal/j) + traitement standard — cas rapporté",
+     "type": "regime",
+     "force": "cas",
+     "dose": "Jeûne à l'eau, puis régime cétogène 4:1 apportant environ 600 kcal par jour, avec vitamines et minéraux, pendant la radiothérapie et le témozolomide",
+     "population": "1 femme de 65 ans",
+     "effet": "Plus aucune tumeur visible à l'IRM et au PET-scan après 2 mois ; récidive 10 semaines après l'arrêt du régime strict.",
+     "resume": "Tumeur invisible à 2 mois (1 cas)",
+     "source": "zuccoli",
+     "stades": [
+      "nouveau"
+     ],
+     "mecanisme": "Prive la tumeur du glucose dont elle dépend.",
+     "prudence": "20 % du poids perdu ; uniquement sous surveillance médicale et diététique.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": [
@@ -5787,6 +5895,40 @@
      "source": "ivermectine_revue",
      "source2": "dili_fbz",
      "resume": "Actif en laboratoire, non prouvé chez l'humain"
+    },
+    {
+     "id": "vitc_iv_cas",
+     "nom": "Vitamine C à forte dose par voie intraveineuse — 3 cas",
+     "type": "naturel",
+     "force": "cas",
+     "dose": "Perfusions de vitamine C à forte dose (dose de chaque cas dans l'article ; la voie orale n'atteint pas des taux comparables)",
+     "population": "3 patients : cancer du rein, de la vessie, lymphome, tous avancés, diagnostics vérifiés par l'Institut national du cancer américain",
+     "effet": "Survie inattendue et longue, selon la méthode « meilleurs cas » du NCI.",
+     "resume": "Survie inattendue chez 3 patients",
+     "source": "padayatty",
+     "mecanisme": "À très forte concentration, la vitamine C produit de l'eau oxygénée toxique pour certaines cellules cancéreuses (laboratoire).",
+     "prudence": "Uniquement par perfusion en milieu médical ; contre-indiquée en cas de déficit en G6PD (destruction des globules rouges) et d'insuffisance rénale (calculs d'oxalate).",
+     "critere": 1,
+     "zones": [
+      "adrenal_l"
+     ]
+    },
+    {
+     "id": "melatonine_cancer",
+     "nom": "Mélatonine",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Doses variables selon les essais, seule ou avec le traitement du cancer",
+     "population": "10 essais, 643 patients atteints de tumeurs solides (méta-analyse)",
+     "effet": "Décès à 1 an − 34 % (RR 0,66 ; IC 95 % 0,59 à 0,73), quel que soit le cancer ou la dose ; aucun effet grave.",
+     "resume": "Décès à 1 an − 34 %",
+     "source": "mills_mel",
+     "mecanisme": "Hormone du sommeil aux effets antioxydants et immunitaires.",
+     "prudence": "Tous les essais viennent du même réseau hospitalier et étaient non masqués : à confirmer de façon indépendante. Somnolence.",
+     "critere": 1,
+     "zones": [
+      "adrenal_l"
+     ]
     }
    ],
    "guerison": []
