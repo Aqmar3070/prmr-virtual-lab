@@ -118,3 +118,13 @@ test('Lot 4 : antiparasitaires et médicaments repositionnés dans les cancers, 
  // Fenbendazole : l'atteinte du foie publiée est toujours citée.
  for(const s of cas.filter(s=>s.id.startsWith('fenbendazole')))assert.match(s.prudence,/foie/);
 });
+
+test('Lot 5 : rein et diabète, petites études et cas rapportés',()=>{
+ const dt2=registre.maladies.find(m=>m.id==='dt2');
+ assert.ok(ids(dt2,'diabete').includes('direct_regime')&&ids(dt2,'diabete').includes('jeune_dt2_cas'));
+ assert.ok(!ids(dt2,'prediabete').includes('jeune_dt2_cas'));
+ assert.ok(ids(mrc,'G3a').includes('vegetal_rein_cas')&&!ids(mrc,'G5').includes('vegetal_rein_cas'));
+ const dt1=registre.maladies.find(m=>m.id==='dt1');
+ assert.equal(substancesPour(dt1,'installe').at(-1).force,'cas');
+ assert.match(dt2.substances.find(s=>s.id==='jeune_dt2_cas').prudence,/insuline/);
+});
