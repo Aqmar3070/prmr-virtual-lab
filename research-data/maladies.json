@@ -1124,6 +1124,14 @@
   "bonner": {
    "source": "Bonner et coll. · radiothérapie + cétuximab, cancers de la tête et du cou, N Engl J Med 2006",
    "url": "https://doi.org/10.1056/NEJMoa053422"
+  },
+  "hustle": {
+   "source": "Aygun et coll. · HUSTLE, hydroxyurée et hyperfiltration rénale de l'enfant drépanocytaire, Am J Hematol 2013",
+   "url": "https://doi.org/10.1002/ajh.23365"
+  },
+  "capsaicine": {
+   "source": "Simpson et coll. · patch de capsaïcine 8 % dans la neuropathie diabétique douloureuse, J Pain 2017",
+   "url": "https://doi.org/10.1016/j.jpain.2016.09.008"
   }
  },
  "maladies": [
@@ -6341,6 +6349,11 @@
    "source": "quinn_los",
    "stades": [
     {
+     "id": "hyperfiltration",
+     "nom": "Hyperfiltration de l'enfant",
+     "niveau": "faible"
+    },
+    {
      "id": "albuminurie",
      "nom": "Albuminurie",
      "niveau": "modere"
@@ -6360,6 +6373,27 @@
      "source2": "yee_los",
      "mecanisme": "Bloque l'angiotensine, trop élevée dans le rein drépanocytaire même sans hypertension.",
      "prudence": "Arrêté chez 3 patients (crampes, baisse du DFG, hausse de créatinine). Contre-indiqué pendant la grossesse.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "hydroxyuree_rein",
+     "nom": "Hydroxyurée à dose maximale tolérée",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "24,4 mg/kg/j en moyenne (15,3 à 30,6), par la bouche",
+     "population": "23 enfants de 2,5 à 14 ans (étude sans groupe témoin)",
+     "effet": "Hyperfiltration du rein corrigée en 3 ans : DFG de 167 à 145 mL/min, d'autant plus que l'hémoglobine fœtale montait ; microalbumine inchangée.",
+     "resume": "Hyperfiltration corrigée en 3 ans",
+     "source": "hustle",
+     "stades": [
+      "hyperfiltration"
+     ],
+     "mecanisme": "Augmente l'hémoglobine fœtale, les globules rouges se déforment moins et abîment moins le rein.",
+     "prudence": "Surveillance de la numération sanguine.",
      "critere": 1,
      "zones": [
       "kidney_l",
@@ -8107,6 +8141,28 @@
      "duree": "5 semaines",
      "mecanisme": "Antioxydant qui améliore la circulation et le fonctionnement des nerfs.",
      "prudence": "Nausées, vomissements, vertiges croissants avec la dose. Essai court.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
+    },
+    {
+     "id": "capsaicine_patch",
+     "nom": "Patch de capsaïcine 8 % (piment)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Une seule application de 30 minutes sur les zones douloureuses des pieds (en milieu médical)",
+     "population": "369 patients, contre patch placebo",
+     "effet": "Douleur − 27,4 % contre − 20,9 % ; soulagement obtenu en 19 jours contre 72 ; meilleur sommeil ; aucune perte de sensibilité.",
+     "resume": "Douleur − 27 %, effet en 3 semaines",
+     "source": "capsaicine",
+     "stades": [
+      "douloureuse"
+     ],
+     "duree": "12 semaines de suivi",
+     "mecanisme": "La capsaïcine du piment désensibilise les fibres nerveuses de la douleur.",
+     "prudence": "Brûlure et rougeur au point d'application ; posé par un soignant.",
      "critere": 1,
      "zones": [
       "femur_l",
