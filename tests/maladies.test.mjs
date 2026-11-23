@@ -98,3 +98,23 @@ test('Lot 3 : cancers, fibromes et maladies du foie, guérisons d’abord',()=>{
  for(const id of ['cancer_sein','cancer_col','fibromes'])assert.equal(registre.maladies.find(x=>x.id===id).sexe,'female');
  assert.equal(registre.maladies.find(x=>x.id==='cancer_prostate').sexe,'male');
 });
+
+test('Lot 4 : antiparasitaires et médicaments repositionnés dans les cancers, cas rapportés à part',()=>{
+ assert.equal(FORCES.cas.rang,FORCES.faible.rang+1);
+ assert.ok(FORCES.preclinique.rang>FORCES.cas.rang);
+ const colon=registre.maladies.find(m=>m.id==='cancer_colorectal');
+ assert.ok(ids(colon,'local').includes('levamisole_colon'));
+ assert.equal(colon.substances.find(s=>s.id==='levamisole_colon').force,'forte');
+ for(const [mot,id] of [['glioblastome','glioblastome'],['pancréas','cancer_pancreas'],['mélanome','melanome'],['poumon','cancer_poumon'],['vermifuge','cancers_rares']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ // Chaque cas rapporté dit pourquoi il ne prouve rien : précaution obligatoire.
+ const cas=registre.maladies.flatMap(m=>m.substances.filter(s=>s.force==='cas'));
+ assert.ok(cas.length>=8);
+ for(const s of cas)assert.ok(s.prudence&&s.prudence.length>40,s.id+' sans précaution');
+ // Un cas ne passe jamais devant un essai.
+ const prostate=registre.maladies.find(m=>m.id==='cancer_prostate');
+ const liste=substancesPour(prostate,'metastatique').map(s=>s.force);
+ assert.ok(liste.indexOf('cas')>liste.lastIndexOf('faible'));
+ // Fenbendazole : l'atteinte du foie publiée est toujours citée.
+ for(const s of cas.filter(s=>s.id.startsWith('fenbendazole')))assert.match(s.prudence,/foie/);
+});

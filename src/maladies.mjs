@@ -5,8 +5,9 @@ export const FORCES={
  forte:{rang:0,libelle:"Efficacité forte",groupe:"Essais cliniques chez l'humain",couleur:"#3fe6b0"},
  moyenne:{rang:1,libelle:"Efficacité moyenne",groupe:"Essais cliniques chez l'humain",couleur:"#5fc8ff"},
  faible:{rang:2,libelle:"Efficacité faible ou incertaine",groupe:"Essais cliniques chez l'humain",couleur:"#c4b5fd"},
- preclinique:{rang:3,libelle:"Préclinique",groupe:"Études chez l'animal ou sur cellules",couleur:"#ffc94a"},
- theorique:{rang:4,libelle:"Piste théorique",groupe:"Hypothèses à tester",couleur:"#a9bcc6"}
+ cas:{rang:3,libelle:"Cas rapportés et témoignages",groupe:"Observations individuelles, sans groupe de comparaison",couleur:"#ff9f7a"},
+ preclinique:{rang:4,libelle:"Préclinique",groupe:"Études chez l'animal ou sur cellules",couleur:"#ffc94a"},
+ theorique:{rang:5,libelle:"Piste théorique",groupe:"Hypothèses à tester",couleur:"#a9bcc6"}
 };
 export const TYPES={medicament:"Médicament",naturel:"Substance naturelle",regime:"Régime ou mode de vie"};
 

@@ -13,7 +13,7 @@ const sexe=()=>document.querySelector("#sex-choice [aria-pressed=true]")?.datase
 const active=()=>document.body.dataset.vue==="maladies";
 
 const APPUI={obtenue:{rang:0,libelle:"Guérison ou rémission obtenue",court:"Obtenue"},fort:{rang:1,libelle:"Hypothèse · appui fort",court:"Appui fort"},moyen:{rang:2,libelle:"Hypothèse · appui moyen",court:"Appui moyen"},faible:{rang:3,libelle:"Hypothèse · appui faible",court:"Appui faible"}};
-const COURT={forte:"Forte",moyenne:"Moyenne",faible:"Faible",preclinique:"Préclinique",theorique:"Théorique"};
+const COURT={forte:"Forte",moyenne:"Moyenne",faible:"Faible",cas:"Cas",preclinique:"Préclinique",theorique:"Théorique"};
 const cleAppui=g=>g.type==="obtenue"?"obtenue":g.appui;
 // Meilleure piste de guérison d'une maladie : donne la couleur du point dans la liste.
 const meilleure=m=>(m.guerison||[]).map(cleAppui).sort((a,b)=>APPUI[a].rang-APPUI[b].rang)[0]||"";
@@ -97,7 +97,7 @@ function rendreSubstancesListe(zone,liste){
    ligne(d,"Prudence",s.prudence);
    const plage=plageEtudiee(s);if(plage)d.append(el("p","mx-etiq",plage));
    if(s.fiche)d.append(el("p","mx-etiq","Fiche détaillée dans la vue Substances : « "+s.fiche+" »."));
-   d.append(el("p","mx-etiq",{forte:"Essai clinique",moyenne:"Essai clinique",faible:"Essais cliniques de qualité limitée",preclinique:"Étude animale ou cellulaire : à confirmer chez l’humain",theorique:"Hypothèse : à vérifier par l’expérience"}[cle]+" · résultat repris de la source"));
+   d.append(el("p","mx-etiq",{forte:"Essai clinique",moyenne:"Essai clinique",faible:"Essais cliniques de qualité limitée",cas:"Cas rapporté : sans groupe de comparaison, ne prouve pas l’effet",preclinique:"Étude animale ou cellulaire : à confirmer chez l’humain",theorique:"Hypothèse : à vérifier par l’expérience"}[cle]+" · résultat repris de la source"));
    sources(d,[s.source,s.source2]);
    d.ontoggle=()=>{if(d.open&&s.zones?.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:s.zones[0]}));};
    zone.append(d);
@@ -119,7 +119,7 @@ function rendreDroite(){
 }
 
 // ---- Graphiques : uniquement des valeurs publiées ou des comptes du registre ----
-const RANG_PREUVE={forte:5,moyenne:4,faible:3,preclinique:2,theorique:1};
+const RANG_PREUVE={forte:6,moyenne:5,faible:4,cas:3,preclinique:2,theorique:1};
 const COULEUR_TYPE={medicament:"#5fc8ff",naturel:"#3fe6b0",regime:"#ffc94a"};
 const coupe=(t,n)=>t.length>n?t.slice(0,n-1)+"…":t;
 
@@ -156,7 +156,7 @@ function rendreGraphes(liste){
  lignes.forEach((s,i)=>{const y=22+i*22,p=(s.prudence?1:0)+(s.condition?1:0),b=RANG_PREUVE[s.force];
   g3.append(svg("text",{x:6,y:y+11},coupe(s.nom,17)));
   if(p)g3.append(svg("rect",{x:mid-p*24,y,width:p*24-1,height:14,rx:2,fill:"#ff9a3c"}));
-  g3.append(svg("rect",{x:mid+1,y,width:b*22,height:14,rx:2,fill:FORCES[s.force].couleur}),svg("text",{x:mid+b*22+5,y:y+11,fill:FORCES[s.force].couleur},COURT[s.force]));
+  g3.append(svg("rect",{x:mid+1,y,width:b*19,height:14,rx:2,fill:FORCES[s.force].couleur}),svg("text",{x:mid+b*19+5,y:y+11,fill:FORCES[s.force].couleur},COURT[s.force]));
  });
  const t=svg("title",{},"Droite : niveau de preuve publié (forte à théorique). Gauche : nombre de précautions écrites dans la fiche (prudence, population étudiée restreinte). Ce n’est pas un score de risque.");g3.append(t);
 }
