@@ -708,6 +708,42 @@
   "ascher_sprint": {
    "source": "Ascher et coll. · marqueurs urinaires et récupération après atteinte rénale aiguë ambulatoire, SPRINT, Am J Kidney Dis 2025",
    "url": "https://doi.org/10.1053/j.ajkd.2025.02.607"
+  },
+  "reprise": {
+   "source": "Torres et coll. · REPRISE, tolvaptan dans la polykystose rénale avancée, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1710030"
+  },
+  "protect_iga": {
+   "source": "Rovin et coll. · PROTECT, sparsentan contre irbésartan dans la néphropathie à IgA, Lancet 2023",
+   "url": "https://doi.org/10.1016/S0140-6736(23)02302-4"
+  },
+  "nefigard": {
+   "source": "Lafayette et coll. · NefIgArd, budésonide à libération ciblée (Nefecon), Lancet 2023",
+   "url": "https://doi.org/10.1016/S0140-6736(23)01554-4"
+  },
+  "testing": {
+   "source": "Lv et coll. · TESTING, méthylprednisolone dans la néphropathie à IgA, JAMA 2022",
+   "url": "https://doi.org/10.1001/jama.2022.5368"
+  },
+  "duplex": {
+   "source": "Rheault et coll. · DUPLEX, sparsentan dans la hyalinose segmentaire et focale, N Engl J Med 2023",
+   "url": "https://doi.org/10.1056/NEJMoa2308550"
+  },
+  "blissln": {
+   "source": "Furie et coll. · BLISS-LN, bélimumab dans la néphrite lupique, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa2001180"
+  },
+  "aurora": {
+   "source": "Rovin et coll. · AURORA 1, voclosporine dans la néphrite lupique, Lancet 2021",
+   "url": "https://doi.org/10.1016/S0140-6736(21)00578-X"
+  },
+  "quinn_los": {
+   "source": "Quinn et coll. · losartan dans la néphropathie drépanocytaire, phase 2, Am J Hematol 2017",
+   "url": "https://doi.org/10.1002/ajh.24810"
+  },
+  "yee_los": {
+   "source": "Yee et coll. · losartan 1 an dans l'atteinte rénale drépanocytaire, Blood Cells Mol Dis 2018",
+   "url": "https://doi.org/10.1016/j.bcmd.2017.09.006"
   }
  },
  "maladies": [
@@ -5520,6 +5556,296 @@
      "stades": [
       "fonction_conservee",
       "fonction_basse"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "polykystose",
+   "nom": "Polykystose rénale (autosomique dominante)",
+   "synonymes": [
+    "polykystose",
+    "kystes du rein",
+    "PKD",
+    "ADPKD",
+    "rein"
+   ],
+   "zones": [
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "Maladie génétique : des kystes se forment et grossissent dans les deux reins, qui perdent peu à peu leur fonction, souvent vers l'insuffisance terminale à l'âge adulte.",
+   "source": "reprise",
+   "stades": [
+    {
+     "id": "debut",
+     "nom": "Fonction conservée",
+     "niveau": "modere"
+    },
+    {
+     "id": "avance",
+     "nom": "DFG 25 à 65",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "tolvaptan_pkd",
+     "nom": "Tolvaptan",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Dose maximale tolérée par la bouche, en deux prises par jour (réglée pendant une phase d'essai)",
+     "population": "1 370 patients, DFG 25 à 65, contre placebo",
+     "effet": "Perte de DFG sur 1 an − 2,34 contre − 3,61 mL/min/1,73 m² (écart 1,27 ; IC 95 % 0,86 à 1,68).",
+     "resume": "Perte de DFG ralentie d'environ un tiers",
+     "source": "reprise",
+     "stades": [
+      "avance"
+     ],
+     "duree": "12 mois",
+     "mecanisme": "Bloque la vasopressine, hormone qui fait grossir les kystes.",
+     "prudence": "Atteinte du foie (transaminases > 3 fois la normale chez 5,6 % contre 1,2 %), réversible à l'arrêt : prise de sang régulière. Urines très abondantes, soif.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "nephropathie_iga",
+   "nom": "Néphropathie à IgA (maladie de Berger)",
+   "synonymes": [
+    "IgA",
+    "Berger",
+    "glomérulonéphrite",
+    "protéinurie",
+    "rein"
+   ],
+   "zones": [
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "Des anticorps IgA anormaux se déposent dans les filtres du rein. Première glomérulonéphrite du monde ; près d'un malade sur trois évolue vers l'insuffisance rénale en 20 ans.",
+   "source": "testing",
+   "stades": [
+    {
+     "id": "proteinurie",
+     "nom": "Protéinurie ≥ 1 g/j malgré le traitement",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "methylpred_iga",
+     "nom": "Méthylprednisolone (cortisone)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Par la bouche, d'abord à pleine dose puis à dose réduite en cours d'essai, avec diminution progressive (doses exactes dans l'article)",
+     "population": "503 patients, protéinurie ≥ 1 g/j, contre placebo, suivi 4,2 ans",
+     "effet": "Perte de 40 % du DFG, insuffisance terminale ou décès rénal : 28,8 % contre 43,1 % (HR 0,53 ; IC 95 % 0,39 à 0,72) ; insuffisance rénale HR 0,59 (IC 95 % 0,40 à 0,87).",
+     "resume": "Aggravation rénale − 47 %",
+     "source": "testing",
+     "critere": 1,
+     "mecanisme": "Freine l'inflammation et la réaction immunitaire dans le rein.",
+     "prudence": "Effets graves 10,9 % contre 2,8 % (infections surtout) à pleine dose ; la dose réduite était mieux tolérée.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "nefecon",
+     "nom": "Budésonide à libération ciblée dans l'intestin (Nefecon)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "16 mg par jour par la bouche pendant 9 mois",
+     "population": "364 patients, DFG 35 à 90, contre placebo",
+     "effet": "Sur 2 ans, DFG moyen supérieur de 5,05 mL/min/1,73 m² (IC 95 % 3,24 à 7,38) : − 2,47 contre − 7,52.",
+     "resume": "DFG préservé de 5 mL/min sur 2 ans",
+     "source": "nefigard",
+     "duree": "9 mois + 15 mois de suivi",
+     "mecanisme": "Agit sur les plaques de Peyer de l'intestin, où sont fabriquées les IgA anormales.",
+     "prudence": "Œdèmes (17 %), hypertension (12 %), crampes, acné.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "sparsentan_iga",
+     "nom": "Sparsentan",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "400 mg une fois par jour par la bouche (contre irbésartan 300 mg)",
+     "population": "404 patients, comparaison au traitement de référence",
+     "effet": "Pente du DFG − 2,7 contre − 3,8 mL/min/an (écart 1,1 ; IC 95 % 0,1 à 2,1) ; protéinurie 40 % plus basse à 110 semaines.",
+     "resume": "Protéinurie − 40 % par rapport à l'irbésartan",
+     "source": "protect_iga",
+     "duree": "110 semaines",
+     "mecanisme": "Bloque à la fois l'angiotensine et l'endothéline.",
+     "prudence": "Surveillance du foie ; contre-indiqué pendant la grossesse.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "hsf",
+   "nom": "Hyalinose segmentaire et focale (HSF)",
+   "synonymes": [
+    "HSF",
+    "FSGS",
+    "syndrome néphrotique",
+    "rein"
+   ],
+   "zones": [
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "Cicatrices sur une partie des filtres du rein, avec fuite importante de protéines dans les urines ; évolue souvent vers l'insuffisance rénale.",
+   "source": "duplex",
+   "stades": [
+    {
+     "id": "proteinurie",
+     "nom": "Protéinurie importante",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "sparsentan_hsf",
+     "nom": "Sparsentan",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Par la bouche une fois par jour (contre irbésartan)",
+     "population": "371 patients de 8 à 75 ans",
+     "effet": "Rémission partielle de la protéinurie à 36 semaines 42,0 % contre 26,0 %, maintenue à 108 semaines. Pas de différence significative sur la pente du DFG.",
+     "resume": "Rémission de la protéinurie 42 % contre 26 %",
+     "source": "duplex",
+     "duree": "108 semaines",
+     "mecanisme": "Bloque à la fois l'angiotensine et l'endothéline.",
+     "prudence": "Bénéfice démontré sur la protéinurie, pas sur la fonction rénale à 2 ans. Contre-indiqué pendant la grossesse.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "rein_drepanocytaire",
+   "nom": "Atteinte du rein dans la drépanocytose",
+   "synonymes": [
+    "drépanocytose",
+    "néphropathie drépanocytaire",
+    "albuminurie",
+    "rein"
+   ],
+   "zones": [
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "La drépanocytose abîme les petits vaisseaux du rein : d'abord albumine dans les urines, puis perte de fonction chez certains adultes.",
+   "source": "quinn_los",
+   "stades": [
+    {
+     "id": "albuminurie",
+     "nom": "Albuminurie",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "losartan_drepano",
+     "nom": "Losartan",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Par la bouche une fois par jour, 6 mois",
+     "population": "32 enfants et adultes (phase 2, sans groupe témoin)",
+     "effet": "Albuminurie baissée d'au moins 25 % chez 83 % des macroalbuminuries et 58 % des microalbuminuries ; DFG stable. Une étude d'un an chez 8 patients confirme une baisse durable avec DFG stable.",
+     "resume": "Albuminurie en baisse chez 58 à 83 %",
+     "source": "quinn_los",
+     "source2": "yee_los",
+     "mecanisme": "Bloque l'angiotensine, trop élevée dans le rein drépanocytaire même sans hypertension.",
+     "prudence": "Arrêté chez 3 patients (crampes, baisse du DFG, hausse de créatinine). Contre-indiqué pendant la grossesse.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "nephrite_lupique",
+   "nom": "Atteinte du rein dans le lupus (néphrite lupique)",
+   "synonymes": [
+    "lupus",
+    "néphrite lupique",
+    "rein"
+   ],
+   "zones": [
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "Le lupus attaque les filtres du rein ; sans traitement efficace, il mène à l'insuffisance rénale.",
+   "source": "blissln",
+   "stades": [
+    {
+     "id": "active",
+     "nom": "Néphrite active",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "belimumab_ln",
+     "nom": "Bélimumab + traitement standard",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "10 mg/kg en perfusion (calendrier de l'essai), avec le traitement standard",
+     "population": "448 patients, contre placebo",
+     "effet": "Réponse rénale complète 30 % contre 20 % ; événement rénal ou décès − 49 % (HR 0,51 ; IC 95 % 0,34 à 0,77).",
+     "resume": "Événement rénal ou décès − 49 %",
+     "source": "blissln",
+     "duree": "104 semaines",
+     "mecanisme": "Prive les lymphocytes B (qui fabriquent les anticorps) de leur facteur de survie BAFF.",
+     "prudence": "Infections ; effets comparables au placebo dans l'essai.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "voclosporine_ln",
+     "nom": "Voclosporine + mycophénolate",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "23,7 mg 2 fois par jour, avec mycophénolate 1 g 2 fois par jour et cortisone à faible dose",
+     "population": "357 patients, contre placebo",
+     "effet": "Réponse rénale complète à 52 semaines 41 % contre 23 % (OR 2,65 ; IC 95 % 1,64 à 4,27).",
+     "resume": "Réponse complète 41 % contre 23 %",
+     "source": "aurora",
+     "duree": "52 semaines",
+     "mecanisme": "Bloque la calcineurine, freine les lymphocytes T et protège les cellules du filtre rénal.",
+     "prudence": "Surveiller la fonction rénale et la tension (classe des inhibiteurs de calcineurine).",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
      ]
     }
    ],
