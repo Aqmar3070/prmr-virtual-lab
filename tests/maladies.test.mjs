@@ -174,3 +174,8 @@ test('Lot 9 : auto-immunes et côlon (colopathie comprise)',()=>{
   assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
  assert.ok(registre.maladies.find(m=>m.id==='lupus').guerison.some(g=>g.type==='obtenue'));
 });
+
+test('Lot 10 : cerveau, foie, poumon, cœur',()=>{
+ for(const [mot,id] of [['Charcot','sla'],['épilepsie','epilepsie'],['Huntington','huntington'],['neuropathie','neuropathie_diabetique'],['cholangite biliaire','cbp'],['delta','hepatite_d'],['fibrose pulmonaire','fibrose_pulmonaire'],['BPCO','bpco'],['HTAP','htap']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+});
