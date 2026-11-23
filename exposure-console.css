@@ -193,3 +193,6 @@ main{padding:8px 10px}
 .mx-statut[data-statut=hors]>summary,.mx-statut[data-statut=non_precise]>summary{color:#7fa9b5}
 .mx-avis{font-size:11px;font-weight:600}
 .mx-avis[data-statut=etudie]{color:#3fe6b0}.mx-avis[data-statut=a_preciser]{color:#ffc94a}.mx-avis[data-statut=hors]{color:#ff9f7a}.mx-avis[data-statut=non_precise]{color:#a9bcc6}
+.mx-hypothese{--mx-c:#d7a6ff}
+.mx-formulation{font-style:italic;color:#e8d6ff;border-left:2px solid #d7a6ff;padding-left:8px;margin:6px 0}
+.mx-hyp-avert{border:1px dashed #6d5a8a;padding:6px 8px;border-radius:4px;margin-bottom:8px}

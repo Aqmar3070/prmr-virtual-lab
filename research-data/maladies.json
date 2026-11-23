@@ -1168,6 +1168,30 @@
   "legro2015": {
    "source": "Legro et coll. · perte de poids avant conception dans le SOPK, essai randomisé, J Clin Endocrinol Metab 2015",
    "url": "https://doi.org/10.1210/jc.2015-2778"
+  },
+  "cabrita2020_tmem16a": {
+   "source": "Cabrita et al., Nat Commun 2020 — la croissance des kystes de polykystose est empêchée par l'inhibition de TMEM16A (souris)",
+   "url": "https://doi.org/10.1038/s41467-020-18104-5"
+  },
+  "hickson2019_senolytiques": {
+   "source": "Hickson et al., EBioMedicine 2019 — dasatinib + quercétine chez 9 patients atteints de maladie rénale diabétique (pilote de phase 1)",
+   "url": "https://doi.org/10.1016/j.ebiom.2019.08.069"
+  },
+  "liu2025_artesunate_dkd": {
+   "source": "Liu et al., Phytother Res 2025 — l'artésunate atténue la fibrose rénale du diabète via DUSP1 (souris db/db, cellules, tissus humains)",
+   "url": "https://doi.org/10.1002/ptr.70091"
+  },
+  "cao2016_artesunate_uuo": {
+   "source": "Cao et al., Int Urol Nephrol 2016 — artésunate et fibrose rénale après obstruction de l'uretère (rats)",
+   "url": "https://doi.org/10.1007/s11255-016-1232-0"
+  },
+  "chebib2024_regime_pkd": {
+   "source": "Chebib et al., Clin J Am Soc Nephrol 2024 — régimes et polykystose : ce qui est connu et ce qui est sûr (revue)",
+   "url": "https://doi.org/10.2215/CJN.0000000000000326"
+  },
+  "hu2022_berberine_dn": {
+   "source": "Hu et al., Pharmacol Res 2022 — berbérine et néphropathie diabétique : méta-analyse de 25 études animales",
+   "url": "https://doi.org/10.1016/j.phrs.2022.106481"
   }
  },
  "maladies": [
@@ -2227,7 +2251,126 @@
      "bicarbonate"
     ],
     "avertissement": "Compare la situation saisie aux patients réellement inclus dans chaque étude. Ce n’est ni un diagnostic ni une prescription : toute décision revient au néphrologue."
-   }
+   },
+   "hypotheses": [
+    {
+     "id": "h_niclosamide_pkd",
+     "nom": "Niclosamide (antiparasitaire)",
+     "type": "medicament",
+     "appui": "preclinique",
+     "profil": {
+      "causes": [
+       "polykystose"
+      ]
+     },
+     "situation": "Polykystose rénale autosomique dominante dont les kystes continuent de grossir.",
+     "lesion": "Les cellules qui tapissent les kystes sécrètent du chlorure (canaux TMEM16A et CFTR) et se multiplient ; c'est ce qui fait grossir les kystes.",
+     "mecanisme": "Bloque le canal chlorure TMEM16A, dont la quantité augmente quand le gène Pkd1 est perdu.",
+     "base": "Chez des souris privées du gène Pkd1, le niclosamide et la benzbromarone (deux médicaments déjà autorisés pour d'autres usages, selon la source), ainsi que l'inhibiteur spécifique Ani9, ont largement réduit la croissance des kystes et la multiplication anormale des cellules.",
+     "formulation": "Chez une personne atteinte de polykystose dont les kystes grossissent, le niclosamide pourrait éventuellement freiner cette croissance, à condition que l'effet observé chez la souris se retrouve chez l'humain.",
+     "a_verifier": "Aucun essai chez l'humain dans cette indication n'est rapporté par la source. Il faudrait d'abord vérifier que, pris par la bouche, il atteint le rein en quantité suffisante, puis mesurer l'évolution du volume des reins et du DFG chez des patients.",
+     "prudence": "Usage contre les kystes ni étudié ni autorisé chez l'humain. Ne rien entreprendre sans le néphrologue.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "cabrita2020_tmem16a"
+    },
+    {
+     "id": "h_senolytiques_dkd",
+     "nom": "Dasatinib + quercétine (sénolytiques)",
+     "type": "medicament",
+     "appui": "humain_marqueurs",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "situation": "Maladie rénale du diabète à un stade avancé (les 9 patients du pilote avaient un DFG moyen d'environ 27).",
+     "lesion": "Accumulation de cellules sénescentes : des cellules vieillies qui ne se divisent plus et libèrent des signaux inflammatoires.",
+     "mecanisme": "Élimine sélectivement les cellules sénescentes en désactivant temporairement les défenses qui les empêchent de mourir.",
+     "base": "Essai pilote ouvert de phase 1, 9 patients : dasatinib 100 mg et quercétine 1000 mg par la bouche pendant 3 jours. Onze jours plus tard, moins de cellules sénescentes dans la graisse et la peau, et baisse de signaux inflammatoires dans le sang (IL-1α, IL-6, MMP-9 et MMP-12).",
+     "formulation": "Chez un malade dont la maladie rénale diabétique est avancée, ce traitement très court pourrait éventuellement réduire l'inflammation entretenue par les cellules sénescentes ; on ne sait pas s'il ralentit la perte de fonction rénale.",
+     "a_verifier": "Le pilote n'avait pas de groupe témoin et n'a pas mesuré l'évolution du DFG ni de l'albuminurie comme résultat. Un essai comparatif mesurant la fonction rénale est nécessaire.",
+     "prudence": "Le dasatinib est un médicament anticancéreux ; à n'envisager que dans un essai clinique encadré.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "hickson2019_senolytiques"
+    },
+    {
+     "id": "h_artesunate_fibrose",
+     "nom": "Artésunate (antipaludéen)",
+     "type": "medicament",
+     "appui": "preclinique",
+     "profil": {
+      "causes": [
+       "diabete",
+       "autre"
+      ]
+     },
+     "situation": "Rein qui se cicatrise (fibrose des tubules et du tissu qui les entoure), en particulier en cas de diabète ; aussi étudié après une obstruction des voies urinaires.",
+     "lesion": "Fibrose tubulo-interstitielle ; mitochondries gonflées et abîmées dans les cellules des tubules.",
+     "mecanisme": "Se fixe sur la protéine DUSP1 et la stabilise, ce qui freine la voie inflammatoire MAPK et protège les mitochondries. Chez le rat, augmente BMP-7 (protecteur) et diminue USAG-1.",
+     "base": "Souris diabétiques db/db (25 mg/kg) et cellules exposées au glucose : moins de fibrose et d'inflammation, mitochondries restaurées. Rats à uretère ligaturé : moins de collagène et meilleure fonction rénale. Chez des patients atteints de maladie rénale diabétique, DUSP1 était plus bas quand la fibrose était plus forte et la fonction rénale moins bonne.",
+     "formulation": "Chez un malade dont le rein se cicatrise, surtout en cas de diabète, l'artésunate pourrait éventuellement freiner la progression de cette fibrose.",
+     "a_verifier": "Aucun essai humain dans cette indication. La dose donnée aux souris ne se transpose pas directement à l'humain. Il faudrait mesurer chez des patients l'évolution du DFG et de marqueurs de fibrose.",
+     "prudence": "Autorisé contre le paludisme en cures courtes ; un usage prolongé pour le rein n'a pas été étudié.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "liu2025_artesunate_dkd",
+     "source2": "cao2016_artesunate_uuo"
+    },
+    {
+     "id": "h_berberine_dn",
+     "nom": "Berbérine",
+     "type": "naturel",
+     "appui": "preclinique",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "situation": "Maladie rénale du diabète avec fuite de protéines dans les urines.",
+     "lesion": "Inflammation, stress oxydatif et fibrose du rein diabétique.",
+     "mecanisme": "Effets contre la fibrose, l'inflammation (IL-6, TNF-α) et le stress oxydatif ; baisse de la glycémie et des graisses du sang chez l'animal.",
+     "base": "Méta-analyse de 25 études chez l'animal : amélioration de l'urée, de la créatinine, de la protéinurie et du poids relatif du rein.",
+     "formulation": "Chez une personne diabétique dont le rein laisse passer des protéines, la berbérine pourrait éventuellement contribuer à protéger le rein.",
+     "a_verifier": "Les auteurs demandent des études animales plus larges, plus longues et de meilleure qualité avant tout usage clinique ; aucun essai rénal chez l'humain dans la source.",
+     "prudence": "Substance active qui baisse la glycémie chez l'animal : son addition aux traitements du diabète n'est pas évaluée ici. À discuter avec le médecin.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "hu2022_berberine_dn"
+    },
+    {
+     "id": "h_cetogene_pkd",
+     "nom": "Régime cétogène ou bêta-hydroxybutyrate",
+     "type": "regime",
+     "appui": "preclinique",
+     "profil": {
+      "causes": [
+       "polykystose"
+      ]
+     },
+     "situation": "Polykystose rénale, surtout en cas de surpoids.",
+     "lesion": "Kystes dont la croissance est liée à un métabolisme cellulaire déréglé et au stress oxydatif.",
+     "mecanisme": "Reprogrammation du métabolisme des cellules et baisse du stress oxydatif (selon la revue).",
+     "base": "Revue de 2024 : le bêta-hydroxybutyrate a donné des résultats prometteurs chez l'animal ; les données cliniques restent limitées. La restriction calorique paraît surtout utile en cas de surpoids.",
+     "formulation": "Chez une personne atteinte de polykystose, surtout en surpoids, une alimentation cétogène encadrée pourrait éventuellement ralentir la croissance des kystes.",
+     "a_verifier": "Efficacité et sécurité à long terme non établies ; la revue demande des essais cliniques bien conçus.",
+     "prudence": "La revue ne recommande pas actuellement les suppléments de bêta-hydroxybutyrate. Tout régime restrictif doit être encadré par le médecin.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "chebib2024_regime_pkd"
+    }
+   ]
   },
   {
    "id": "dt2",
