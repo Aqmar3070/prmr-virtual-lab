@@ -1080,6 +1080,50 @@
   "raja_jus": {
    "source": "Raja et coll. · insuffisance rénale aiguë après une cure de jus, cas rapporté, Cureus 2023",
    "url": "https://doi.org/10.7759/cureus.51226"
+  },
+  "prodige24": {
+   "source": "Conroy et coll. · PRODIGE 24, FOLFIRINOX après chirurgie du pancréas, N Engl J Med 2018",
+   "url": "https://doi.org/10.1056/NEJMoa1809775"
+  },
+  "hipec": {
+   "source": "van Driel et coll. · chimiothérapie chauffante dans le ventre (HIPEC), cancer de l'ovaire, N Engl J Med 2018",
+   "url": "https://doi.org/10.1056/NEJMoa1708618"
+  },
+  "msstat": {
+   "source": "Chataway et coll. · MS-STAT, simvastatine à forte dose dans la SEP progressive, Lancet 2014",
+   "url": "https://doi.org/10.1016/S0140-6736(13)62242-4"
+  },
+  "oratorio": {
+   "source": "Montalban et coll. · ORATORIO, ocrélizumab dans la SEP progressive primaire, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1606468"
+  },
+  "bezurso": {
+   "source": "Corpechot et coll. · BEZURSO, bézafibrate dans la cholangite biliaire primitive, N Engl J Med 2018",
+   "url": "https://doi.org/10.1056/NEJMoa1714519"
+  },
+  "ascend": {
+   "source": "King et coll. · ASCEND, pirfénidone dans la fibrose pulmonaire, N Engl J Med 2014",
+   "url": "https://doi.org/10.1056/NEJMoa1402582"
+  },
+  "elkins": {
+   "source": "Elkins et coll. · sérum salé hypertonique inhalé dans la mucoviscidose, N Engl J Med 2006",
+   "url": "https://doi.org/10.1056/NEJMoa043900"
+  },
+  "haven1": {
+   "source": "Oldenburg et coll. · HAVEN 1, émicizumab dans l'hémophilie A avec inhibiteurs, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1703068"
+  },
+  "marina": {
+   "source": "Rosenfeld et coll. · MARINA, ranibizumab dans la DMLA humide, N Engl J Med 2006",
+   "url": "https://doi.org/10.1056/NEJMoa054481"
+  },
+  "checkmate577": {
+   "source": "Kelly et coll. · CheckMate 577, nivolumab après chirurgie de l'œsophage, N Engl J Med 2021",
+   "url": "https://doi.org/10.1056/NEJMoa2032125"
+  },
+  "bonner": {
+   "source": "Bonner et coll. · radiothérapie + cétuximab, cancers de la tête et du cou, N Engl J Med 2006",
+   "url": "https://doi.org/10.1056/NEJMoa053422"
   }
  },
  "maladies": [
@@ -5610,6 +5654,11 @@
       "pancreas",
       "liver"
      ]
+    },
+    {
+     "id": "opere",
+     "nom": "Opéré (tumeur retirée)",
+     "niveau": "eleve"
     }
    ],
    "substances": [
@@ -5632,6 +5681,26 @@
      ],
      "source": "troger",
      "resume": "Survie médiane 4,8 contre 2,7 mois"
+    },
+    {
+     "id": "folfirinox",
+     "nom": "FOLFIRINOX modifié après chirurgie",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Chimiothérapie combinée toutes les 2 semaines pendant 6 mois (schéma de l'essai)",
+     "population": "Patients opérés, contre gemcitabine",
+     "effet": "Survie médiane 54,4 contre 35,0 mois (HR 0,64 ; IC 95 % 0,48 à 0,86) ; en vie à 3 ans 63,4 % contre 48,6 %.",
+     "resume": "Survie médiane + 19 mois",
+     "source": "prodige24",
+     "stades": [
+      "opere"
+     ],
+     "mecanisme": "Quatre médicaments qui attaquent les cellules restantes après l'opération.",
+     "prudence": "Effets graves fréquents (75,9 % contre 52,9 %) : diarrhée, nerfs, globules blancs.",
+     "critere": 1,
+     "zones": [
+      "pancreas"
+     ]
     }
    ],
    "guerison": []
@@ -6651,6 +6720,27 @@
       "ovary_l",
       "ovary_r"
      ]
+    },
+    {
+     "id": "hipec_ovaire",
+     "nom": "Chirurgie + chimiothérapie chauffante dans le ventre (HIPEC)",
+     "type": "geste",
+     "force": "moyenne",
+     "dose": "Cisplatine chauffé, versé dans le ventre à la fin de la chirurgie de réduction tumorale",
+     "population": "245 femmes au stade III, contre chirurgie seule",
+     "effet": "Survie médiane 45,7 contre 33,9 mois (HR 0,67 ; IC 95 % 0,48 à 0,94) ; sans rechute 14,2 contre 10,7 mois.",
+     "resume": "Survie médiane + 12 mois",
+     "source": "hipec",
+     "stades": [
+      "avance"
+     ],
+     "mecanisme": "La chaleur renforce l'effet de la chimiothérapie au contact direct des tumeurs du péritoine.",
+     "prudence": "Effets graves comparables (25 à 27 %). Centres spécialisés.",
+     "critere": 1,
+     "zones": [
+      "ovary_l",
+      "ovary_r"
+     ]
     }
    ],
    "guerison": []
@@ -6811,6 +6901,26 @@
      "zones": [
       "esophagus"
      ]
+    },
+    {
+     "id": "nivolumab_oeso",
+     "nom": "Nivolumab après chirurgie",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Perfusion pendant 1 an après radiochimiothérapie et chirurgie (schéma de l'essai)",
+     "population": "794 patients, contre placebo",
+     "effet": "Sans récidive médiane 22,4 contre 11,0 mois (HR 0,69).",
+     "resume": "Sans récidive : 22 contre 11 mois",
+     "source": "checkmate577",
+     "stades": [
+      "operable"
+     ],
+     "mecanisme": "Immunothérapie anti-PD-1.",
+     "prudence": "Effets graves 13 % contre 6 %.",
+     "critere": 1,
+     "zones": [
+      "esophagus"
+     ]
     }
    ],
    "guerison": []
@@ -6838,6 +6948,11 @@
      "id": "avance",
      "nom": "Récidive ou métastases",
      "niveau": "eleve"
+    },
+    {
+     "id": "localement_avance",
+     "nom": "Localement avancé",
+     "niveau": "eleve"
     }
    ],
    "substances": [
@@ -6856,6 +6971,28 @@
      ],
      "mecanisme": "Lève le frein PD-1 des lymphocytes.",
      "prudence": "Réactions auto-immunes (thyroïde, poumon, intestin).",
+     "critere": 1,
+     "zones": [
+      "pharynx",
+      "larynx",
+      "tongue"
+     ]
+    },
+    {
+     "id": "cetuximab_rt",
+     "nom": "Radiothérapie + cétuximab",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Cétuximab chaque semaine pendant la radiothérapie à forte dose",
+     "population": "Patients avec cancer localement avancé, contre radiothérapie seule",
+     "effet": "Survie médiane 49,0 contre 29,3 mois (HR 0,74) ; contrôle local 24,4 contre 14,9 mois.",
+     "resume": "Survie médiane + 20 mois",
+     "source": "bonner",
+     "stades": [
+      "localement_avance"
+     ],
+     "mecanisme": "Anticorps contre le récepteur EGFR des cellules tumorales.",
+     "prudence": "Éruption d'acné, réactions à la perfusion.",
      "critere": 1,
      "zones": [
       "pharynx",
@@ -7299,6 +7436,11 @@
      "id": "poussees",
      "nom": "Forme à poussées, actives malgré le traitement",
      "niveau": "eleve"
+    },
+    {
+     "id": "progressive",
+     "nom": "Forme progressive",
+     "niveau": "eleve"
     }
    ],
    "substances": [
@@ -7317,6 +7459,46 @@
      ],
      "mecanisme": "Remise à zéro du système immunitaire.",
      "prudence": "Procédure lourde en centre spécialisé ; essai préliminaire non masqué.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "simvastatine_sep",
+     "nom": "Simvastatine à forte dose (médicament du cholestérol)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Forte dose quotidienne (schéma de l'essai), 2 ans",
+     "population": "140 patients en forme secondairement progressive, contre placebo",
+     "effet": "Fonte du cerveau ralentie de 43 % (0,288 % contre 0,584 % par an).",
+     "resume": "Atrophie du cerveau − 43 %",
+     "source": "msstat",
+     "stades": [
+      "progressive"
+     ],
+     "mecanisme": "Protège les vaisseaux et freine l'inflammation, indépendamment du cholestérol.",
+     "prudence": "Douleurs musculaires possibles ; résultat de phase 2 qui doit être confirmé par un grand essai.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "ocrelizumab_sep",
+     "nom": "Ocrélizumab",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Perfusion tous les 6 mois (schéma de l'essai)",
+     "population": "Patients en forme progressive primaire, contre placebo",
+     "effet": "Aggravation du handicap 32,9 % contre 39,3 % (HR 0,76 ; IC 95 % 0,59 à 0,98) ; lésions du cerveau − 3,4 % contre + 7,4 %.",
+     "resume": "Aggravation − 24 %",
+     "source": "oratorio",
+     "stades": [
+      "progressive"
+     ],
+     "mecanisme": "Élimine les lymphocytes B (CD20).",
+     "prudence": "Réactions à la perfusion, infections, herpès.",
      "critere": 1,
      "zones": [
       "brain"
@@ -7976,6 +8158,26 @@
      "zones": [
       "liver"
      ]
+    },
+    {
+     "id": "bezafibrate",
+     "nom": "Bézafibrate (médicament ancien du cholestérol) + acide ursodésoxycholique",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Par la bouche chaque jour (dose de l'essai), 2 ans",
+     "population": "Patients répondant mal à l'acide ursodésoxycholique, contre placebo",
+     "effet": "Réponse biologique complète 31 % contre 0 % ; phosphatases alcalines normalisées 67 % contre 2 % ; démangeaisons, fatigue et rigidité du foie améliorées.",
+     "resume": "Bilan normalisé : 67 % contre 2 %",
+     "source": "bezurso",
+     "stades": [
+      "residuelle"
+     ],
+     "mecanisme": "Active les récepteurs PPAR qui réduisent la toxicité de la bile.",
+     "prudence": "Douleurs musculaires (20 %) ; créatinine + 5 %.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
     }
    ],
    "guerison": []
@@ -8060,6 +8262,24 @@
      "duree": "52 semaines",
      "mecanisme": "Freine les cellules qui fabriquent la cicatrice.",
      "prudence": "Diarrhée chez 6 patients sur 10.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
+    },
+    {
+     "id": "pirfenidone",
+     "nom": "Pirfénidone",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Par la bouche 3 fois par jour (dose de l'essai)",
+     "population": "Patients atteints de fibrose pulmonaire idiopathique, contre placebo",
+     "effet": "Perte importante de souffle ou décès − 47,9 % ; moins de déclin à la marche ; mortalité réduite dans l'analyse groupée des 3 essais.",
+     "resume": "Aggravation − 48 %",
+     "source": "ascend",
+     "mecanisme": "Antifibrosant et anti-inflammatoire.",
+     "prudence": "Troubles digestifs, sensibilité au soleil (éruptions).",
      "critere": 1,
      "zones": [
       "lung_l",
@@ -8267,6 +8487,11 @@
      "id": "b_severe",
      "nom": "Hémophilie B sévère ou modérément sévère",
      "niveau": "eleve"
+    },
+    {
+     "id": "a_inhibiteurs",
+     "nom": "Hémophilie A avec inhibiteurs",
+     "niveau": "eleve"
     }
    ],
    "substances": [
@@ -8285,6 +8510,27 @@
      ],
      "mecanisme": "Un virus inoffensif apporte au foie le gène du facteur IX.",
      "prudence": "Moins efficace si anticorps anti-AAV5 élevés ; recul limité.",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r"
+     ]
+    },
+    {
+     "id": "emicizumab",
+     "nom": "Émicizumab",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Injection sous la peau chaque semaine (schéma de l'essai)",
+     "population": "109 hommes atteints d'hémophilie A avec inhibiteurs",
+     "effet": "Saignements par an 2,9 contre 23,3 sans prophylaxie (− 87 %) ; 63 % sans aucun saignement contre 6 %.",
+     "resume": "Saignements − 87 %",
+     "source": "haven1",
+     "stades": [
+      "a_inhibiteurs"
+     ],
+     "mecanisme": "Anticorps qui remplace le facteur VIII manquant en reliant les facteurs IX et X.",
+     "prudence": "Réactions au point d'injection ; caillots rares associés à un autre produit de secours.",
      "critere": 1,
      "zones": [
       "knee_l",
@@ -8333,6 +8579,25 @@
      "duree": "24 semaines",
      "mecanisme": "Répare la protéine CFTR défectueuse.",
      "prudence": "Surveiller le foie ; nombreuses interactions.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "pancreas"
+     ]
+    },
+    {
+     "id": "serum_hypertonique",
+     "nom": "Sérum salé hypertonique inhalé (après un bronchodilatateur)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Inhalation quotidienne précédée d'un bronchodilatateur (concentration et fréquence dans l'article)",
+     "population": "Patients atteints de mucoviscidose, contre sérum salé normal, 48 semaines",
+     "effet": "Poussées − 56 % ; 76 % sans poussée contre 62 % ; capacité respiratoire un peu meilleure.",
+     "resume": "Poussées − 56 %",
+     "source": "elkins",
+     "mecanisme": "Attire l'eau dans le mucus et le rend plus facile à expectorer.",
+     "prudence": "Toux, gêne de la gorge ; le bronchodilatateur avant est nécessaire.",
      "critere": 1,
      "zones": [
       "lung_l",
@@ -8859,6 +9124,11 @@
      "id": "intermediaire",
      "nom": "Intermédiaire, à risque",
      "niveau": "modere"
+    },
+    {
+     "id": "humide",
+     "nom": "Forme humide (néovasculaire)",
+     "niveau": "eleve"
     }
    ],
    "substances": [
@@ -8877,6 +9147,28 @@
      ],
      "mecanisme": "Antioxydants et zinc protègent la rétine.",
      "prudence": "Bêtacarotène déconseillé aux fumeurs et anciens fumeurs (plus de cancers du poumon dans AREDS2).",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    },
+    {
+     "id": "ranibizumab",
+     "nom": "Ranibizumab (injections dans l'œil)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "0,3 ou 0,5 mg par injection dans l'œil chaque mois",
+     "population": "716 patients, contre fausses injections",
+     "effet": "Vision conservée chez 94,5 % contre 62,2 % ; vision améliorée de 15 lettres ou plus chez 33,8 % contre 5 %.",
+     "resume": "Vision conservée : 95 % contre 62 %",
+     "source": "marina",
+     "stades": [
+      "humide"
+     ],
+     "duree": "2 ans",
+     "mecanisme": "Bloque le VEGF qui fait pousser des vaisseaux anormaux sous la rétine.",
+     "prudence": "Infection de l'œil (1 %), inflammation (1,3 %).",
      "critere": 1,
      "zones": [
       "eye_l",

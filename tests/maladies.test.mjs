@@ -214,3 +214,10 @@ test('Maladies principales : témoignages et petites études supplémentaires',(
  const mrc=registre.maladies.find(x=>x.id==='mrc');
  assert.match(mrc.substances.find(s=>s.id==='vegetal_rein_cas').prudence,/jus/);
 });
+
+test('Maladies peu fournies : deuxième traitement ajouté',()=>{
+ for(const id of ['cancer_pancreas','cancer_ovaire','sep','cbp','fibrose_pulmonaire','mucoviscidose','hemophilie','dmla','cancer_oesophage','cancer_orl'])
+  assert.ok(registre.maladies.find(m=>m.id===id).substances.length>=2,id);
+ const p=registre.maladies.find(m=>m.id==='cancer_pancreas');
+ assert.ok(ids(p,'opere').includes('folfirinox')&&!ids(p,'avance').includes('folfirinox'));
+});
