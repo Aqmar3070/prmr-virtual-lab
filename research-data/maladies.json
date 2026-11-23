@@ -744,6 +744,50 @@
   "yee_los": {
    "source": "Yee et coll. · losartan 1 an dans l'atteinte rénale drépanocytaire, Blood Cells Mol Dis 2018",
    "url": "https://doi.org/10.1016/j.bcmd.2017.09.006"
+  },
+  "lococo": {
+   "source": "Lo-Coco et coll. · acide rétinoïque + trioxyde d'arsenic dans la leucémie aiguë promyélocytaire, N Engl J Med 2013",
+   "url": "https://doi.org/10.1056/NEJMoa1300874"
+  },
+  "iris": {
+   "source": "Hochhaus et coll. · IRIS, imatinib dans la leucémie myéloïde chronique, 11 ans de suivi, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1609324"
+  },
+  "stim": {
+   "source": "Mahon et coll. · STIM, arrêt de l'imatinib après rémission moléculaire, Lancet Oncol 2010",
+   "url": "https://doi.org/10.1016/S1470-2045(10)70233-3"
+  },
+  "solo1": {
+   "source": "Moore et coll. · SOLO1, olaparib d'entretien dans le cancer de l'ovaire BRCA, N Engl J Med 2018",
+   "url": "https://doi.org/10.1056/NEJMoa1810858"
+  },
+  "choi_hp": {
+   "source": "Choi et coll. · traitement d'Helicobacter pylori et prévention d'un nouveau cancer de l'estomac, N Engl J Med 2018",
+   "url": "https://doi.org/10.1056/NEJMoa1708423"
+  },
+  "flot": {
+   "source": "Al-Batran et coll. · FLOT4, chimiothérapie avant et après chirurgie du cancer de l'estomac, Lancet 2019",
+   "url": "https://doi.org/10.1016/S0140-6736(18)32557-1"
+  },
+  "cross": {
+   "source": "van Hagen et coll. · CROSS, radiochimiothérapie avant chirurgie de l'œsophage, N Engl J Med 2012",
+   "url": "https://doi.org/10.1056/NEJMoa1112088"
+  },
+  "maia": {
+   "source": "Facon et coll. · MAIA, daratumumab + lénalidomide + dexaméthasone dans le myélome, N Engl J Med 2019",
+   "url": "https://doi.org/10.1056/NEJMoa1817249"
+  },
+  "polarix": {
+   "source": "Tilly et coll. · POLARIX, polatuzumab dans le lymphome B diffus à grandes cellules, N Engl J Med 2022",
+   "url": "https://doi.org/10.1056/NEJMoa2115304"
+  },
+  "keynote048": {
+   "source": "Burtness et coll. · KEYNOTE-048, pembrolizumab dans les cancers de la tête et du cou, Lancet 2019",
+   "url": "https://doi.org/10.1016/S0140-6736(19)32591-7"
+  },
+  "zaidi": {
+   "source": "Zaidi et coll. · myélome stabilisé 5 ans sous curcumine, cas rapporté, BMJ Case Rep 2017",
+   "url": "https://doi.org/10.1136/bcr-2016-218148"
   }
  },
  "maladies": [
@@ -5846,6 +5890,463 @@
      "zones": [
       "kidney_l",
       "kidney_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "myelome",
+   "nom": "Myélome multiple",
+   "synonymes": [
+    "myélome",
+    "Kahler",
+    "plasmocytes",
+    "cancer du sang",
+    "cancer"
+   ],
+   "zones": [
+    "femur_l",
+    "femur_r",
+    "spleen"
+   ],
+   "description": "Cancer des plasmocytes de la moelle osseuse : douleurs et fractures des os, anémie, atteinte des reins. Les rechutes sont la règle.",
+   "source": "maia",
+   "stades": [
+    {
+     "id": "nouveau",
+     "nom": "Nouvellement diagnostiqué",
+     "niveau": "eleve"
+    },
+    {
+     "id": "rechute",
+     "nom": "En rechute",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "dara_rd",
+     "nom": "Daratumumab + lénalidomide + dexaméthasone",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Jusqu'à progression (calendrier de l'essai)",
+     "population": "737 patients non éligibles à la greffe",
+     "effet": "Vivants sans progression à 30 mois 70,6 % contre 55,6 % (HR 0,56 ; IC 95 % 0,43 à 0,73) ; réponse complète 47,6 % contre 24,9 %.",
+     "resume": "Sans progression à 30 mois : 71 % contre 56 %",
+     "source": "maia",
+     "stades": [
+      "nouveau"
+     ],
+     "mecanisme": "Anticorps contre CD38, présent à la surface des cellules du myélome.",
+     "prudence": "Chute des globules blancs (50 % de grade 3-4), pneumonies (13,7 %).",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ]
+    },
+    {
+     "id": "curcumine_myelome_cas",
+     "nom": "Curcumine + pipérine — cas rapporté",
+     "type": "naturel",
+     "force": "cas",
+     "dose": "8 g de curcumine (associée à la pipérine du poivre) en une prise le soir, à jeun, tous les jours",
+     "population": "1 femme de 57 ans, myélome en 3e rechute, plus d'option de traitement",
+     "effet": "Paraprotéine de 24 à 13 g/L, numération sanguine normalisée, maladie stable 5 ans sans autre traitement contre le myélome. Prenait aussi de l'oxygène hyperbare une fois par semaine.",
+     "resume": "Stable 5 ans sous curcumine seule (1 cas)",
+     "source": "zaidi",
+     "stades": [
+      "rechute"
+     ],
+     "mecanisme": "Freine les voies STAT3 et NF-κB des cellules du myélome (laboratoire).",
+     "prudence": "Un seul cas ; l'essai de phase I/II cité par les auteurs n'avait montré aucune réponse objective. Forte dose : troubles digestifs, interactions avec les anticoagulants.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "leucemies",
+   "nom": "Leucémies",
+   "synonymes": [
+    "leucémie",
+    "LMC",
+    "leucémie myéloïde chronique",
+    "LAP",
+    "promyélocytaire",
+    "cancer du sang",
+    "cancer"
+   ],
+   "zones": [
+    "spleen",
+    "femur_l",
+    "femur_r"
+   ],
+   "description": "Cancers des cellules du sang fabriquées dans la moelle. Certaines formes, autrefois mortelles, se guérissent ou se contrôlent aujourd'hui durablement.",
+   "source": "lococo",
+   "stades": [
+    {
+     "id": "lap",
+     "nom": "Leucémie aiguë promyélocytaire",
+     "niveau": "eleve"
+    },
+    {
+     "id": "lmc",
+     "nom": "Leucémie myéloïde chronique",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "atra_arsenic",
+     "nom": "Acide rétinoïque (ATRA) + trioxyde d'arsenic, sans chimiothérapie",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "ATRA + trioxyde d'arsenic pour l'induction et la consolidation (schéma de l'essai)",
+     "population": "156 patients évaluables, risque faible à intermédiaire, contre ATRA + chimiothérapie",
+     "effet": "Rémission complète 100 % contre 95 % ; sans événement à 2 ans 97 % contre 86 % ; meilleure survie.",
+     "resume": "Rémission 100 %, sans rechute à 2 ans 97 %",
+     "source": "lococo",
+     "stades": [
+      "lap"
+     ],
+     "mecanisme": "Forcent les cellules leucémiques à mûrir et détruisent la protéine anormale PML-RARA.",
+     "prudence": "Plus de toxicité pour le foie qu'avec la chimiothérapie. Réservé à la forme promyélocytaire.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "femur_l",
+      "femur_r"
+     ]
+    },
+    {
+     "id": "imatinib_lmc",
+     "nom": "Imatinib",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Comprimé par jour au long cours (dose de l'essai)",
+     "population": "Essai randomisé de plus de 1 000 patients, suivi 10,9 ans",
+     "effet": "Survie à 10 ans 83,3 % ; réponse cytogénétique complète 82,8 %.",
+     "resume": "En vie à 10 ans : 83 %",
+     "source": "iris",
+     "stades": [
+      "lmc"
+     ],
+     "mecanisme": "Bloque la protéine BCR-ABL qui fait proliférer les cellules leucémiques.",
+     "prudence": "Œdèmes, crampes, troubles digestifs ; à prendre sans interruption sauf avis médical.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "femur_l",
+      "femur_r"
+     ]
+    },
+    {
+     "id": "arret_imatinib",
+     "nom": "Arrêt de l'imatinib après 2 ans de rémission moléculaire complète",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Arrêt complet du traitement, surveillance moléculaire rapprochée",
+     "population": "100 patients (étude sans groupe témoin)",
+     "effet": "À 12 mois, 41 % restent en rémission sans aucun traitement ; tous les patients en rechute ont répondu à la reprise de l'imatinib.",
+     "resume": "41 % sans rechute ni traitement à 1 an",
+     "source": "stim",
+     "stades": [
+      "lmc"
+     ],
+     "mecanisme": "Chez certains, les cellules leucémiques restantes ne repoussent plus : piste de guérison.",
+     "prudence": "Uniquement sous surveillance spécialisée (PCR mensuelle) ; 6 rechutes sur 10, presque toutes dans les 6 premiers mois.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "femur_l",
+      "femur_r"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "lap_guerison",
+     "type": "obtenue",
+     "titre": "Leucémie promyélocytaire : ATRA + arsenic sans chimiothérapie",
+     "objectif": "Rémission durable",
+     "resultat": "Rémission complète chez 100 % des patients évaluables, 97 % sans événement à 2 ans.",
+     "composants": [
+      {
+       "nom": "ATRA",
+       "role": "faire mûrir les cellules",
+       "ref": "atra_arsenic"
+      },
+      {
+       "nom": "Trioxyde d'arsenic",
+       "role": "détruire la protéine anormale"
+      }
+     ],
+     "source": "lococo"
+    }
+   ]
+  },
+  {
+   "id": "cancer_ovaire",
+   "nom": "Cancer de l'ovaire",
+   "sexe": "female",
+   "synonymes": [
+    "ovaire",
+    "cancer de l'ovaire",
+    "BRCA",
+    "cancer"
+   ],
+   "zones": [
+    "ovary_l",
+    "ovary_r"
+   ],
+   "description": "Souvent découvert à un stade avancé ; les rechutes après chimiothérapie sont fréquentes.",
+   "source": "solo1",
+   "stades": [
+    {
+     "id": "avance",
+     "nom": "Avancé, répondant à la chimiothérapie",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "olaparib_ovaire",
+     "nom": "Olaparib d'entretien",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "300 mg 2 fois par jour par la bouche",
+     "population": "391 femmes porteuses d'une mutation BRCA1/2, contre placebo",
+     "effet": "Sans progression à 3 ans 60 % contre 27 % (HR 0,30 ; IC 95 % 0,23 à 0,41).",
+     "resume": "Sans progression à 3 ans : 60 % contre 27 %",
+     "source": "solo1",
+     "stades": [
+      "avance"
+     ],
+     "mecanisme": "Bloque PARP, enzyme de réparation de l'ADN dont les cellules BRCA mutées dépendent.",
+     "prudence": "Anémie, nausées, fatigue. Réservé aux mutations BRCA.",
+     "critere": 1,
+     "zones": [
+      "ovary_l",
+      "ovary_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "cancer_estomac",
+   "nom": "Cancer de l'estomac",
+   "synonymes": [
+    "estomac",
+    "gastrique",
+    "Helicobacter",
+    "cancer"
+   ],
+   "zones": [
+    "stomach"
+   ],
+   "description": "Fréquent en Asie et en Afrique, favorisé par la bactérie Helicobacter pylori.",
+   "source": "flot",
+   "stades": [
+    {
+     "id": "precoce",
+     "nom": "Précoce, retiré par endoscopie",
+     "niveau": "modere"
+    },
+    {
+     "id": "operable",
+     "nom": "Localement avancé, opérable",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "eradication_hp",
+     "nom": "Traitement d'Helicobacter pylori (antibiotiques)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Traitement d'éradication par antibiotiques (schéma de l'essai)",
+     "population": "470 patients après ablation d'un cancer précoce, contre placebo",
+     "effet": "Nouveau cancer de l'estomac en 5,9 ans : 7,2 % contre 13,4 % (HR 0,50 ; IC 95 % 0,26 à 0,94) ; atrophie de l'estomac améliorée chez 48,4 % contre 15,0 %.",
+     "resume": "Nouveau cancer − 50 %",
+     "source": "choi_hp",
+     "stades": [
+      "precoce"
+     ],
+     "mecanisme": "Supprime la bactérie qui entretient l'inflammation de l'estomac.",
+     "prudence": "Effets légers fréquents (42 %) : troubles digestifs, goût métallique.",
+     "critere": 1,
+     "zones": [
+      "stomach"
+     ]
+    },
+    {
+     "id": "flot",
+     "nom": "Chimiothérapie FLOT avant et après chirurgie",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "4 cures avant et 4 cures après chirurgie, toutes les 2 semaines (docétaxel 50 mg/m², oxaliplatine 85 mg/m², fluorouracile, leucovorine)",
+     "population": "716 patients, contre ECF/ECX",
+     "effet": "Survie médiane 50 mois contre 35 (HR 0,77 ; IC 95 % 0,63 à 0,94).",
+     "resume": "Survie médiane 50 contre 35 mois",
+     "source": "flot",
+     "stades": [
+      "operable"
+     ],
+     "mecanisme": "Chimiothérapie combinée qui réduit la tumeur avant l'opération.",
+     "prudence": "Effets graves chez 27 % (comme le schéma ancien).",
+     "critere": 1,
+     "zones": [
+      "stomach"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "cancer_oesophage",
+   "nom": "Cancer de l'œsophage",
+   "synonymes": [
+    "œsophage",
+    "oesophage",
+    "cancer"
+   ],
+   "zones": [
+    "esophagus"
+   ],
+   "description": "Tumeur du tube qui relie la bouche à l'estomac ; le pronostic dépend du stade et de la possibilité d'opérer.",
+   "source": "cross",
+   "stades": [
+    {
+     "id": "operable",
+     "nom": "Opérable",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "cross_rct",
+     "nom": "Radiochimiothérapie avant chirurgie",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Carboplatine + paclitaxel 50 mg/m² chaque semaine pendant 5 semaines, avec radiothérapie 41,4 Gy en 23 séances",
+     "population": "366 patients, contre chirurgie seule",
+     "effet": "Survie médiane 49,4 mois contre 24,0 (HR 0,657 ; IC 95 % 0,495 à 0,871) ; 29 % sans aucune tumeur restante à l'opération.",
+     "resume": "Survie médiane doublée",
+     "source": "cross",
+     "stades": [
+      "operable"
+     ],
+     "mecanisme": "Réduit la tumeur avant l'opération ; ablation complète 92 % contre 69 %.",
+     "prudence": "Baisse des globules blancs, perte d'appétit, fatigue.",
+     "critere": 1,
+     "zones": [
+      "esophagus"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "cancer_orl",
+   "nom": "Cancers de la bouche et de la gorge (tête et cou)",
+   "synonymes": [
+    "bouche",
+    "gorge",
+    "larynx",
+    "ORL",
+    "tête et cou",
+    "cancer"
+   ],
+   "zones": [
+    "pharynx",
+    "larynx",
+    "tongue"
+   ],
+   "description": "Cancers des muqueuses de la bouche, de la gorge et du larynx, liés au tabac, à l'alcool ou au papillomavirus.",
+   "source": "keynote048",
+   "stades": [
+    {
+     "id": "avance",
+     "nom": "Récidive ou métastases",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "pembro_orl",
+     "nom": "Pembrolizumab seul ou avec chimiothérapie",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Perfusion toutes les 3 semaines (schéma de l'essai)",
+     "population": "882 patients",
+     "effet": "Avec chimiothérapie : survie médiane 13,0 contre 10,7 mois (HR 0,77 ; IC 95 % 0,63 à 0,93). Seul, si PD-L1 CPS ≥ 20 : 14,9 contre 10,7 mois (HR 0,61).",
+     "resume": "Survie médiane + 2 à 4 mois",
+     "source": "keynote048",
+     "stades": [
+      "avance"
+     ],
+     "mecanisme": "Lève le frein PD-1 des lymphocytes.",
+     "prudence": "Réactions auto-immunes (thyroïde, poumon, intestin).",
+     "critere": 1,
+     "zones": [
+      "pharynx",
+      "larynx",
+      "tongue"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "lymphome",
+   "nom": "Lymphomes",
+   "synonymes": [
+    "lymphome",
+    "ganglions",
+    "LBDGC",
+    "cancer du sang",
+    "cancer"
+   ],
+   "zones": [
+    "spleen"
+   ],
+   "description": "Cancers des lymphocytes, développés surtout dans les ganglions ; beaucoup se guérissent par chimiothérapie et immunothérapie.",
+   "source": "polarix",
+   "stades": [
+    {
+     "id": "non_traite",
+     "nom": "Lymphome B diffus, non traité",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "pola_rchp",
+     "nom": "Polatuzumab + R-CHP",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "6 cures de pola-R-CHP puis 2 cures de rituximab seul",
+     "population": "879 patients, contre R-CHOP",
+     "effet": "Sans progression à 2 ans 76,7 % contre 70,2 % (HR 0,73 ; IC 95 % 0,57 à 0,95) ; survie globale identique (88,7 % contre 88,6 %).",
+     "resume": "Sans progression à 2 ans : 77 % contre 70 %",
+     "source": "polarix",
+     "stades": [
+      "non_traite"
+     ],
+     "mecanisme": "Anticorps qui apporte un poison directement dans les cellules du lymphome.",
+     "prudence": "Profil de tolérance comparable au R-CHOP ; pas de gain de survie globale.",
+     "critere": 1,
+     "zones": [
+      "spleen"
      ]
     }
    ],
