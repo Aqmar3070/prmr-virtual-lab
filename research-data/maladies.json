@@ -387,6 +387,154 @@
   "dashSodium": {
    "source": "Sacks et coll. · N Engl J Med 2001, DASH-Sodium (412 participants)",
    "url": "https://doi.org/10.1056/NEJM200101043440101"
+  },
+  "ebctcgTrastu": {
+   "source": "EBCTCG · trastuzumab dans le cancer du sein précoce HER2+, Lancet Oncol 2021",
+   "url": "https://doi.org/10.1016/S1470-2045(21)00288-6"
+  },
+  "ebctcgTamox": {
+   "source": "EBCTCG · tamoxifène adjuvant, méta-analyse sur données individuelles, Lancet 2011",
+   "url": "https://doi.org/10.1016/S0140-6736(11)60993-8"
+  },
+  "keynote522": {
+   "source": "Schmid et coll. · KEYNOTE-522, survie globale, N Engl J Med 2024",
+   "url": "https://doi.org/10.1056/NEJMoa2409932"
+  },
+  "katherine": {
+   "source": "von Minckwitz et coll. · KATHERINE, trastuzumab emtansine, N Engl J Med 2019",
+   "url": "https://doi.org/10.1056/NEJMoa1814017"
+  },
+  "createx": {
+   "source": "Masuda et coll. · CREATE-X, capécitabine adjuvante, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1612645"
+  },
+  "monaleesa2": {
+   "source": "Hortobagyi et coll. · MONALEESA-2, survie globale, N Engl J Med 2022",
+   "url": "https://doi.org/10.1056/NEJMoa2114663"
+  },
+  "wins": {
+   "source": "Chlebowski et coll. · WINS, réduction des graisses alimentaires, J Natl Cancer Inst 2006",
+   "url": "https://doi.org/10.1093/jnci/djj494"
+  },
+  "protect": {
+   "source": "Hamdy et coll. · ProtecT, résultats à 15 ans, N Engl J Med 2023",
+   "url": "https://doi.org/10.1056/NEJMoa2214122"
+  },
+  "latitude": {
+   "source": "Fizazi et coll. · LATITUDE, abiratérone, N Engl J Med 2017",
+   "url": "https://doi.org/10.1056/NEJMoa1704174"
+  },
+  "peace1": {
+   "source": "Fizazi et coll. · PEACE-1, Lancet 2022",
+   "url": "https://doi.org/10.1016/S0140-6736(22)00367-1"
+  },
+  "stampede": {
+   "source": "Attard et coll. · STAMPEDE, abiratérone dans le cancer non métastatique à haut risque, Lancet 2022",
+   "url": "https://doi.org/10.1016/S0140-6736(21)02437-5"
+  },
+  "vision": {
+   "source": "Sartor et coll. · VISION, lutétium-177-PSMA-617, N Engl J Med 2021",
+   "url": "https://doi.org/10.1056/NEJMoa2107322"
+  },
+  "pcpt": {
+   "source": "Thompson et coll. · PCPT, finastéride, N Engl J Med 2003",
+   "url": "https://doi.org/10.1056/NEJMoa030660"
+  },
+  "mazzaferro": {
+   "source": "Mazzaferro et coll. · greffe de foie selon les critères de Milan, N Engl J Med 1996",
+   "url": "https://doi.org/10.1056/NEJM199603143341104"
+  },
+  "changHbv": {
+   "source": "Chang et coll. · vaccination contre l'hépatite B et cancer du foie de l'enfant à Taïwan, N Engl J Med 1997",
+   "url": "https://doi.org/10.1056/NEJM199706263362602"
+  },
+  "imbrave": {
+   "source": "Finn et coll. · IMbrave150, atézolizumab + bévacizumab, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1915745"
+  },
+  "kennedyCafe": {
+   "source": "Kennedy et coll. · café et cancer du foie, méta-analyse, BMJ Open 2017",
+   "url": "https://doi.org/10.1136/bmjopen-2016-013739"
+  },
+  "leiHpv": {
+   "source": "Lei et coll. · vaccination HPV et cancer invasif du col, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1917338"
+  },
+  "brisson": {
+   "source": "Brisson et coll. · vaccination HPV, dépistage et élimination du cancer du col, Lancet 2020",
+   "url": "https://doi.org/10.1016/S0140-6736(20)30068-4"
+  },
+  "keynote826": {
+   "source": "Colombo et coll. · KEYNOTE-826, pembrolizumab, N Engl J Med 2021",
+   "url": "https://doi.org/10.1056/NEJMoa2112435"
+  },
+  "challenge": {
+   "source": "Courneya et coll. · CHALLENGE, exercice après cancer du côlon, N Engl J Med 2025",
+   "url": "https://doi.org/10.1056/NEJMoa2502760"
+  },
+  "cercek": {
+   "source": "Cercek et coll. · dostarlimab dans le cancer du rectum dMMR, N Engl J Med 2022",
+   "url": "https://doi.org/10.1056/NEJMoa2201445"
+  },
+  "capp2": {
+   "source": "Burn et coll. · CAPP2, aspirine et syndrome de Lynch, Lancet 2020",
+   "url": "https://doi.org/10.1016/S0140-6736(20)30366-4"
+  },
+  "femme": {
+   "source": "Manyonda et coll. · FEMME, embolisation ou myomectomie, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1914735"
+  },
+  "liberty": {
+   "source": "Al-Hendy et coll. · LIBERTY 1 et 2, relugolix en association, N Engl J Med 2021",
+   "url": "https://doi.org/10.1056/NEJMoa2008283"
+  },
+  "roshdy": {
+   "source": "Roshdy et coll. · extrait de thé vert (EGCG) et fibromes, essai pilote, Int J Womens Health 2013",
+   "url": "https://doi.org/10.2147/IJWH.S41021"
+  },
+  "efsaThe": {
+   "source": "EFSA · avis sur la sécurité des catéchines du thé vert, EFSA Journal 2018",
+   "url": "https://doi.org/10.2903/j.efsa.2018.5239"
+  },
+  "vilarGomez": {
+   "source": "Vilar-Gomez et coll. · perte de poids et stéatohépatite, Gastroenterology 2015",
+   "url": "https://doi.org/10.1053/j.gastro.2015.04.005"
+  },
+  "lassailly": {
+   "source": "Lassailly et coll. · chirurgie bariatrique et stéatohépatite à 5 ans, Gastroenterology 2020",
+   "url": "https://doi.org/10.1053/j.gastro.2020.06.006"
+  },
+  "essence": {
+   "source": "Sanyal et coll. · ESSENCE, sémaglutide dans la MASH, N Engl J Med 2025",
+   "url": "https://doi.org/10.1056/NEJMoa2413258"
+  },
+  "maestro": {
+   "source": "Harrison et coll. · MAESTRO-NASH, résmétirom, N Engl J Med 2024",
+   "url": "https://doi.org/10.1056/NEJMoa2309000"
+  },
+  "pivens": {
+   "source": "Sanyal et coll. · PIVENS, pioglitazone ou vitamine E, N Engl J Med 2010",
+   "url": "https://doi.org/10.1056/NEJMoa0907929"
+  },
+  "silymarine": {
+   "source": "Wah Kheong et coll. · silymarine dans la NASH, Clin Gastroenterol Hepatol 2017",
+   "url": "https://doi.org/10.1016/j.cgh.2017.04.016"
+  },
+  "astral1": {
+   "source": "Feld et coll. · ASTRAL-1, sofosbuvir + velpatasvir, N Engl J Med 2015",
+   "url": "https://doi.org/10.1056/NEJMoa1512610"
+  },
+  "bassRifax": {
+   "source": "Bass et coll. · rifaximine et encéphalopathie hépatique, N Engl J Med 2010",
+   "url": "https://doi.org/10.1056/NEJMoa0907893"
+  },
+  "answer": {
+   "source": "Caraceni et coll. · ANSWER, albumine au long cours, Lancet 2018",
+   "url": "https://doi.org/10.1016/S0140-6736(18)30840-7"
+  },
+  "predesci": {
+   "source": "Villanueva et coll. · PREDESCI, bêtabloquants dans la cirrhose, Lancet 2019",
+   "url": "https://doi.org/10.1016/S0140-6736(18)31875-0"
   }
  },
  "maladies": [
@@ -2744,6 +2892,1407 @@
       "spleen"
      ],
      "source": "fawzi"
+    }
+   ]
+  },
+  {
+   "id": "cancer_sein",
+   "nom": "Cancer du sein",
+   "sexe": "female",
+   "synonymes": [
+    "sein",
+    "cancer sein",
+    "tumeur du sein",
+    "HER2",
+    "triple négatif",
+    "cancer"
+   ],
+   "zones": [
+    "breast_l",
+    "breast_r"
+   ],
+   "description": "Tumeur maligne de la glande mammaire. Les traitements dépendent du type : sensible aux hormones, HER2 positif ou triple négatif. Détecté tôt, il guérit dans la grande majorité des cas.",
+   "source": "ebctcgTamox",
+   "stades": [
+    {
+     "id": "precoce",
+     "nom": "Cancer précoce, opérable",
+     "niveau": "modere"
+    },
+    {
+     "id": "metastatique",
+     "nom": "Cancer métastatique",
+     "niveau": "eleve",
+     "zones": [
+      "breast_l",
+      "breast_r",
+      "liver",
+      "lung_l",
+      "lung_r"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "trastuzumab",
+     "nom": "Trastuzumab",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "condition": "Tumeur HER2 positive",
+     "dose": "Perfusion pendant 1 an, avec la chimiothérapie",
+     "population": "Méta-analyse de 7 essais, près de 14 000 femmes",
+     "effet": "Récidive − 34 % (RR 0,66 ; IC 95 % 0,62 à 0,71) et décès par cancer du sein − 33 % (RR 0,67 ; IC 95 % 0,61 à 0,73).",
+     "mecanisme": "Anticorps qui bloque le récepteur HER2 à la surface des cellules cancéreuses.",
+     "zones": [
+      "breast_l"
+     ],
+     "source": "ebctcgTrastu",
+     "resume": "Décès par cancer du sein − 33 %"
+    },
+    {
+     "id": "tamoxifene",
+     "nom": "Tamoxifène",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "condition": "Tumeur sensible aux hormones (récepteurs aux œstrogènes)",
+     "dose": "20 mg par jour pendant 5 ans",
+     "population": "Méta-analyse sur données individuelles des essais randomisés",
+     "effet": "Mortalité par cancer du sein réduite d'environ un tiers pendant les 15 premières années.",
+     "mecanisme": "Bloque l'action des œstrogènes sur les cellules tumorales.",
+     "prudence": "Surveillance gynécologique et du risque de caillots.",
+     "zones": [
+      "breast_l"
+     ],
+     "source": "ebctcgTamox",
+     "resume": "Mortalité − environ un tiers sur 15 ans"
+    },
+    {
+     "id": "tdm1",
+     "nom": "Trastuzumab emtansine (T-DM1)",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "condition": "HER2 positif avec maladie résiduelle après traitement avant chirurgie",
+     "dose": "3,6 mg/kg toutes les 3 semaines, 14 cures",
+     "population": "1 486 femmes",
+     "effet": "Survie sans maladie invasive à 3 ans 88,3 % contre 77,0 % (HR 0,50 ; IC 95 % 0,39 à 0,64).",
+     "mecanisme": "Anticorps anti-HER2 couplé à un agent anticancéreux libéré dans la cellule tumorale.",
+     "zones": [
+      "breast_l"
+     ],
+     "source": "katherine",
+     "resume": "Sans récidive à 3 ans : 88 % contre 77 %"
+    },
+    {
+     "id": "pembrolizumab_sein",
+     "nom": "Pembrolizumab avant et après chirurgie",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "condition": "Cancer triple négatif",
+     "dose": "200 mg toutes les 3 semaines avec la chimiothérapie avant chirurgie, puis seul après",
+     "population": "1 174 patientes",
+     "effet": "Survie à 5 ans 86,6 % contre 81,7 %.",
+     "mecanisme": "Lève le frein PD-1 et permet aux lymphocytes de détruire la tumeur.",
+     "zones": [
+      "breast_l"
+     ],
+     "source": "keynote522",
+     "resume": "Survie à 5 ans : 86,6 % contre 81,7 %"
+    },
+    {
+     "id": "capecitabine_sein",
+     "nom": "Capécitabine après chirurgie",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "condition": "HER2 négatif avec maladie résiduelle après chimiothérapie",
+     "dose": "6 à 8 cures après la chirurgie",
+     "population": "910 patientes",
+     "effet": "Survie sans maladie à 5 ans 74,1 % contre 67,6 % (HR 0,70 ; IC 95 % 0,53 à 0,92) ; 69,8 % contre 56,1 % dans les cancers triple négatifs.",
+     "mecanisme": "Chimiothérapie orale transformée en 5-fluorouracile dans la tumeur.",
+     "zones": [
+      "breast_l"
+     ],
+     "source": "createx",
+     "resume": "Sans récidive à 5 ans : 74 % contre 68 %"
+    },
+    {
+     "id": "ribociclib",
+     "nom": "Ribociclib + létrozole",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "condition": "Tumeur sensible aux hormones, HER2 négative, après la ménopause",
+     "dose": "Ribociclib 600 mg/j 3 semaines sur 4 + létrozole 2,5 mg/j",
+     "population": "668 patientes",
+     "effet": "Survie médiane 63,9 mois contre 51,4 (HR 0,76 ; IC 95 % 0,63 à 0,93).",
+     "mecanisme": "Bloque les enzymes CDK4/6 qui font se diviser les cellules tumorales.",
+     "zones": [
+      "breast_l",
+      "liver"
+     ],
+     "source": "monaleesa2",
+     "resume": "Survie médiane + 12,5 mois"
+    },
+    {
+     "id": "regime_pauvre_graisses",
+     "nom": "Alimentation pauvre en graisses",
+     "type": "regime",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "precoce"
+     ],
+     "dose": "Réduction des graisses alimentaires (environ 33 g par jour contre 51 g), avec une diététicienne",
+     "duree": "5 ans (médiane)",
+     "population": "2 437 femmes après cancer du sein précoce",
+     "effet": "Récidive − 24 % (HR 0,76 ; IC 95 % 0,60 à 0,98). Analyse intermédiaire ; bénéfice surtout dans les tumeurs non sensibles aux hormones.",
+     "mecanisme": "Non précisé par l'étude ; perte de poids modeste associée.",
+     "zones": [
+      "breast_l"
+     ],
+     "source": "wins",
+     "resume": "Récidive − 24 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "sein_precoce",
+     "type": "obtenue",
+     "titre": "Cancer précoce : chirurgie et traitements ciblés selon le type",
+     "objectif": "Absence durable de récidive",
+     "resultat": "HER2 positif : 88,3 % sans maladie invasive à 3 ans avec le T-DM1 ; triple négatif : 86,6 % en vie à 5 ans avec le pembrolizumab ; hormonosensible : mortalité réduite d'un tiers par le tamoxifène.",
+     "composants": [
+      {
+       "nom": "Chirurgie",
+       "role": "retirer la tumeur"
+      },
+      {
+       "nom": "Trastuzumab puis T-DM1",
+       "role": "tumeurs HER2 positives",
+       "ref": "tdm1"
+      },
+      {
+       "nom": "Pembrolizumab",
+       "role": "tumeurs triple négatives",
+       "ref": "pembrolizumab_sein"
+      },
+      {
+       "nom": "Tamoxifène",
+       "role": "tumeurs hormonosensibles",
+       "ref": "tamoxifene"
+      }
+     ],
+     "risques": "Effets propres à chaque traitement ; suivi oncologique obligatoire.",
+     "source": "katherine",
+     "source2": "keynote522"
+    },
+    {
+     "id": "sein_tn",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Triple négatif : immunothérapie, puis traitement adapté à la tumeur restante, et alimentation pauvre en graisses",
+     "objectif": "Augmenter la part de patientes guéries d'un cancer triple négatif",
+     "composants": [
+      {
+       "nom": "Pembrolizumab avec chimiothérapie avant chirurgie",
+       "role": "détruire la tumeur avant l'opération",
+       "ref": "pembrolizumab_sein"
+      },
+      {
+       "nom": "Capécitabine si une tumeur reste après chirurgie",
+       "role": "éliminer les cellules restantes",
+       "ref": "capecitabine_sein"
+      },
+      {
+       "nom": "Alimentation pauvre en graisses",
+       "role": "réduire les récidives",
+       "ref": "regime_pauvre_graisses"
+      }
+     ],
+     "raisonnement": "Chaque élément a amélioré la survie dans son propre essai ; le bénéfice de l'alimentation pauvre en graisses était le plus net dans les tumeurs non hormonosensibles, comme le triple négatif. Les trois agissent par des voies différentes.",
+     "a_tester": "Essai randomisé chez les patientes avec tumeur restante après pembrolizumab : capécitabine + alimentation encadrée contre soins habituels ; critère : survie sans récidive à 5 ans.",
+     "risques": "Cumul des effets de l'immunothérapie et de la capécitabine (peau des mains et des pieds, diarrhée).",
+     "source": "keynote522",
+     "source2": "createx"
+    }
+   ]
+  },
+  {
+   "id": "cancer_prostate",
+   "nom": "Cancer de la prostate",
+   "sexe": "male",
+   "synonymes": [
+    "prostate",
+    "cancer prostate",
+    "PSA",
+    "cancer"
+   ],
+   "zones": [
+    "prostate"
+   ],
+   "description": "Cancer de la glande prostatique, souvent lent. Localisé, il se guérit par chirurgie ou radiothérapie, ou se surveille ; métastatique, il se contrôle longtemps par l'hormonothérapie.",
+   "source": "protect",
+   "stades": [
+    {
+     "id": "prevention",
+     "nom": "Avant le cancer · prévention",
+     "niveau": "faible"
+    },
+    {
+     "id": "localise",
+     "nom": "Cancer localisé",
+     "niveau": "modere"
+    },
+    {
+     "id": "metastatique_hs",
+     "nom": "Métastatique, sensible à la castration",
+     "niveau": "eleve",
+     "zones": [
+      "prostate",
+      "pelvis",
+      "spine_lumbar"
+     ]
+    },
+    {
+     "id": "resistant",
+     "nom": "Métastatique, résistant à la castration",
+     "niveau": "eleve",
+     "zones": [
+      "prostate",
+      "pelvis",
+      "spine_lumbar",
+      "femur_l"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "finasteride",
+     "nom": "Finastéride",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "prevention"
+     ],
+     "dose": "5 mg par jour pendant 7 ans",
+     "population": "18 882 hommes de 55 ans et plus",
+     "effet": "Cancers de la prostate − 24,8 % (IC 95 % 18,6 à 30,6 %).",
+     "mecanisme": "Bloque la transformation de la testostérone en dihydrotestostérone dans la prostate.",
+     "prudence": "Plus de tumeurs de haut grade parmi les cancers trouvés sous finastéride ; à discuter avec un médecin.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "pcpt",
+     "resume": "Cancers évités : − 24,8 %"
+    },
+    {
+     "id": "abiraterone_haut_risque",
+     "nom": "Abiratérone + radiothérapie + castration",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "localise"
+     ],
+     "condition": "Cancer non métastatique à haut risque",
+     "dose": "Abiratérone 1 000 mg/j + prednisolone 5 mg/j pendant 2 ans",
+     "population": "1 974 hommes",
+     "effet": "Survie sans métastase : HR 0,53 (IC 95 % 0,44 à 0,64) ; 82 % contre 69 % à 6 ans.",
+     "mecanisme": "Arrête la fabrication des hormones mâles qui nourrissent la tumeur.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "stampede",
+     "resume": "Sans métastase à 6 ans : 82 % contre 69 %"
+    },
+    {
+     "id": "abiraterone",
+     "nom": "Abiratérone + castration",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "metastatique_hs"
+     ],
+     "dose": "1 000 mg/j + prednisone 5 mg/j",
+     "population": "1 199 hommes",
+     "effet": "Décès − 38 % (HR 0,62 ; IC 95 % 0,51 à 0,76).",
+     "mecanisme": "Bloque l'enzyme CYP17 qui fabrique les androgènes.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "latitude",
+     "resume": "Décès − 38 %"
+    },
+    {
+     "id": "abiraterone_docetaxel",
+     "nom": "Abiratérone ajoutée au docétaxel et à la castration",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "metastatique_hs"
+     ],
+     "condition": "Métastatique d'emblée",
+     "dose": "Abiratérone 1 000 mg/j + prednisone ; docétaxel 75 mg/m² toutes les 3 semaines",
+     "population": "710 hommes recevant docétaxel",
+     "effet": "Décès − 25 % (HR 0,75 ; IC 95,1 % 0,59 à 0,95) ; progression radiologique − 50 %.",
+     "rr": 0.75,
+     "bas": 0.59,
+     "haut": 0.95,
+     "mecanisme": "Attaque à la fois les hormones et la division cellulaire.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "peace1",
+     "resume": "Décès − 25 % en plus du docétaxel"
+    },
+    {
+     "id": "lu_psma",
+     "nom": "Lutétium-177-PSMA-617",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "resistant"
+     ],
+     "dose": "7,4 GBq toutes les 6 semaines, 4 à 6 cures",
+     "population": "831 hommes",
+     "effet": "Décès − 38 % (HR 0,62 ; IC 95 % 0,52 à 0,74) ; survie médiane 15,3 contre 11,3 mois.",
+     "mecanisme": "Molécule radioactive qui se fixe sur la protéine PSMA des cellules cancéreuses et les irradie.",
+     "zones": [
+      "prostate",
+      "pelvis"
+     ],
+     "source": "vision",
+     "resume": "Décès − 38 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "prostate_localise",
+     "type": "obtenue",
+     "titre": "Cancer localisé : chirurgie, radiothérapie ou surveillance active",
+     "objectif": "Ne pas mourir de ce cancer",
+     "resultat": "Après 15 ans, 2,7 % des hommes sont morts de ce cancer, quel que soit le choix initial ; les traitements radicaux réduisent surtout les métastases.",
+     "composants": [
+      {
+       "nom": "Prostatectomie",
+       "role": "retirer la prostate"
+      },
+      {
+       "nom": "Radiothérapie avec hormonothérapie courte",
+       "role": "détruire la tumeur sur place"
+      },
+      {
+       "nom": "Surveillance active",
+       "role": "traiter seulement si le cancer évolue"
+      }
+     ],
+     "risques": "Troubles urinaires et sexuels après chirurgie ou radiothérapie.",
+     "source": "protect"
+    },
+    {
+     "id": "prostate_haut_risque",
+     "type": "hypothese",
+     "appui": "fort",
+     "titre": "Haut risque : radiothérapie + castration + abiratérone pour une guérison sans métastase",
+     "objectif": "Guérison définitive des cancers à haut risque non métastatiques",
+     "composants": [
+      {
+       "nom": "Radiothérapie de la prostate",
+       "role": "détruire la tumeur"
+      },
+      {
+       "nom": "Abiratérone et castration pendant 2 ans",
+       "role": "éliminer les cellules disséminées",
+       "ref": "abiraterone_haut_risque"
+      }
+     ],
+     "raisonnement": "L'ajout de l'abiratérone fait passer la survie sans métastase de 69 % à 82 % à 6 ans. La guérison se jugera au PSA indétectable des années après l'arrêt des hormones.",
+     "a_tester": "Suivi à 10 ans du PSA après arrêt de l'hormonothérapie chez les hommes traités ; comparer avec et sans abiratérone.",
+     "risques": "Hypertension, baisse du potassium, atteinte du foie sous abiratérone ; bouffées de chaleur et perte osseuse sous castration.",
+     "source": "stampede"
+    },
+    {
+     "id": "prostate_meta",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Métastatique d'emblée : castration + docétaxel + abiratérone, puis lutétium-PSMA à la progression",
+     "objectif": "Contrôle prolongé, puis rémission profonde",
+     "composants": [
+      {
+       "nom": "Castration + docétaxel + abiratérone",
+       "role": "attaque initiale sur deux voies",
+       "ref": "abiraterone_docetaxel"
+      },
+      {
+       "nom": "Lutétium-177-PSMA-617",
+       "role": "irradiation ciblée si résistance",
+       "ref": "lu_psma"
+      }
+     ],
+     "raisonnement": "Chaque étape a allongé la survie dans un essai randomisé ; placer le lutétium plus tôt, quand la masse tumorale est plus faible, pourrait augmenter les réponses complètes.",
+     "a_tester": "Essai randomisé : lutétium-PSMA dès que le PSA ne baisse plus assez, contre à la progression ; critère : PSA indétectable et survie.",
+     "risques": "Fatigue, sécheresse de la bouche, baisse des globules sous lutétium ; neuropathie et infections sous docétaxel.",
+     "source": "peace1",
+     "source2": "vision"
+    }
+   ]
+  },
+  {
+   "id": "cancer_foie",
+   "nom": "Cancer du foie (carcinome hépatocellulaire)",
+   "synonymes": [
+    "cancer du foie",
+    "carcinome hépatocellulaire",
+    "CHC",
+    "hépatocarcinome",
+    "foie",
+    "cancer"
+   ],
+   "zones": [
+    "liver"
+   ],
+   "description": "Cancer né des cellules du foie, le plus souvent sur une hépatite B ou C, l'alcool ou une stéatose. Détecté petit, il se guérit par greffe, chirurgie ou destruction locale.",
+   "source": "mazzaferro",
+   "stades": [
+    {
+     "id": "prevention",
+     "nom": "Foie à risque · prévention",
+     "niveau": "faible"
+    },
+    {
+     "id": "precoce",
+     "nom": "Tumeur précoce (petite)",
+     "niveau": "modere"
+    },
+    {
+     "id": "avance",
+     "nom": "Cancer avancé",
+     "niveau": "eleve",
+     "zones": [
+      "liver",
+      "veins_abdomen"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "vaccin_hbv",
+     "nom": "Vaccin contre l'hépatite B",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "prevention"
+     ],
+     "dose": "Vaccination universelle des nourrissons",
+     "population": "Enfants de Taïwan, avant et après le programme national",
+     "effet": "Cancer du foie de l'enfant (6 à 14 ans) : 0,70 cas pour 100 000 avant le programme, 0,36 après.",
+     "mecanisme": "Empêche l'infection chronique par le virus B, première cause de ce cancer.",
+     "zones": [
+      "liver"
+     ],
+     "source": "changHbv",
+     "resume": "Cancers de l'enfant divisés par deux"
+    },
+    {
+     "id": "cafe_foie",
+     "nom": "Café",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "prevention"
+     ],
+     "partie": "Grains torréfiés, en boisson ; le café caféiné est le plus étudié",
+     "dose": "Deux tasses de plus par jour",
+     "population": "18 cohortes (2,3 millions de personnes) et 8 études cas-témoins",
+     "effet": "Risque de cancer du foie − 35 % (RR 0,65 ; IC 95 % 0,59 à 0,72). Études d'observation : qualité des preuves très basse selon les auteurs.",
+     "mecanisme": "Non précisé par l'étude.",
+     "zones": [
+      "liver"
+     ],
+     "source": "kennedyCafe",
+     "resume": "Risque − 35 % pour 2 tasses de plus"
+    },
+    {
+     "id": "atezo_beva",
+     "nom": "Atézolizumab + bévacizumab",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "Atézolizumab 1 200 mg + bévacizumab 15 mg/kg toutes les 3 semaines",
+     "population": "501 patients non opérables",
+     "effet": "Décès − 42 % (HR 0,58 ; IC 95 % 0,42 à 0,79) ; survie à 12 mois 67,2 % contre 54,6 % sous sorafénib.",
+     "mecanisme": "Réactive l'immunité contre la tumeur et coupe sa vascularisation.",
+     "prudence": "Hypertension ; risque de saignement des varices à contrôler avant le traitement.",
+     "zones": [
+      "liver"
+     ],
+     "source": "imbrave",
+     "resume": "Décès − 42 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "foie_greffe",
+     "type": "obtenue",
+     "titre": "Greffe de foie pour les petites tumeurs (critères de Milan)",
+     "objectif": "Retirer la tumeur et le foie malade",
+     "resultat": "Survie à 4 ans 75 % ; 83 % sans récidive.",
+     "composants": [
+      {
+       "nom": "Greffe de foie",
+       "role": "une tumeur de 5 cm au plus, ou jusqu'à 3 de 3 cm au plus"
+      }
+     ],
+     "risques": "Chirurgie lourde, traitement anti-rejet à vie, attente d'un greffon.",
+     "source": "mazzaferro"
+    },
+    {
+     "id": "foie_prevention",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Prévenir puis détecter tôt pour guérir : vaccin B, traitement des hépatites, café et surveillance",
+     "objectif": "Que chaque cancer du foie soit trouvé à un stade guérissable",
+     "composants": [
+      {
+       "nom": "Vaccin contre l'hépatite B",
+       "role": "supprimer la première cause",
+       "ref": "vaccin_hbv"
+      },
+      {
+       "nom": "Café",
+       "role": "association protectrice observée",
+       "ref": "cafe_foie"
+      },
+      {
+       "nom": "Échographie tous les 6 mois chez les personnes à risque",
+       "role": "trouver les tumeurs petites"
+      },
+      {
+       "nom": "Greffe ou destruction locale",
+       "role": "guérir les petites tumeurs"
+      }
+     ],
+     "raisonnement": "La vaccination a divisé par deux les cancers de l'enfant ; les tumeurs trouvées petites se guérissent par greffe. Le café est associé à un risque plus faible, sans preuve d'essai.",
+     "a_tester": "Programme pilote en région à forte hépatite B : vaccination de rattrapage, dépistage semestriel, conseil café ; critère : part des cancers découverts au stade précoce.",
+     "risques": "Faux positifs du dépistage ; café à limiter en cas de grossesse ou d'arythmie.",
+     "source": "changHbv",
+     "source2": "mazzaferro"
+    }
+   ]
+  },
+  {
+   "id": "cancer_col",
+   "nom": "Cancer du col de l'utérus",
+   "sexe": "female",
+   "synonymes": [
+    "col de l'utérus",
+    "cancer du col",
+    "HPV",
+    "papillomavirus",
+    "cancer"
+   ],
+   "zones": [
+    "uterus"
+   ],
+   "description": "Cancer causé dans presque tous les cas par une infection persistante aux papillomavirus (HPV). Évitable par la vaccination et le dépistage ; les lésions précancéreuses se traitent avant de devenir un cancer.",
+   "source": "leiHpv",
+   "stades": [
+    {
+     "id": "prevention",
+     "nom": "Prévention et lésions précancéreuses",
+     "niveau": "faible"
+    },
+    {
+     "id": "avance",
+     "nom": "Cancer persistant, récidivant ou métastatique",
+     "niveau": "eleve",
+     "zones": [
+      "uterus",
+      "vagina",
+      "pelvis"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "vaccin_hpv",
+     "nom": "Vaccin contre les papillomavirus (HPV)",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "prevention"
+     ],
+     "dose": "Vaccin quadrivalent, de préférence avant 17 ans",
+     "population": "1,7 million de filles et femmes suivies en Suède",
+     "effet": "Cancer invasif du col − 88 % chez les femmes vaccinées avant 17 ans (rapport des taux 0,12) ; − 53 % entre 17 et 30 ans.",
+     "mecanisme": "Empêche l'infection par les types de HPV responsables de la plupart des cancers.",
+     "zones": [
+      "uterus"
+     ],
+     "source": "leiHpv",
+     "resume": "Cancer évité à 88 % avant 17 ans"
+    },
+    {
+     "id": "pembrolizumab_col",
+     "nom": "Pembrolizumab + chimiothérapie",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "condition": "Tumeur PD-L1 positive (CPS ≥ 1)",
+     "dose": "200 mg toutes les 3 semaines jusqu'à 35 cures",
+     "population": "617 patientes",
+     "effet": "Décès − 36 % (HR 0,64 ; IC 95 % 0,50 à 0,81).",
+     "mecanisme": "Lève le frein PD-1 sur les lymphocytes.",
+     "zones": [
+      "uterus"
+     ],
+     "source": "keynote826",
+     "resume": "Décès − 36 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "col_vaccin",
+     "type": "obtenue",
+     "titre": "Cancer évité par la vaccination avant 17 ans",
+     "objectif": "Ne jamais développer le cancer",
+     "resultat": "Rapport des taux 0,12 : 88 % de cancers invasifs en moins chez les femmes vaccinées avant 17 ans.",
+     "composants": [
+      {
+       "nom": "Vaccin HPV",
+       "role": "prévention",
+       "ref": "vaccin_hpv"
+      }
+     ],
+     "risques": "Vaccin bien toléré ; douleur au point d'injection.",
+     "source": "leiHpv"
+    },
+    {
+     "id": "col_elimination",
+     "type": "hypothese",
+     "appui": "fort",
+     "titre": "Élimination : vaccination de 90 % des filles + test HPV deux fois dans la vie + traitement des lésions",
+     "objectif": "Moins de 4 cancers pour 100 000 femmes par an",
+     "composants": [
+      {
+       "nom": "Vaccin HPV chez 90 % des filles",
+       "role": "prévention",
+       "ref": "vaccin_hpv"
+      },
+      {
+       "nom": "Test HPV vers 35 et 45 ans",
+       "role": "trouver les lésions précancéreuses"
+      },
+      {
+       "nom": "Traitement des lésions trouvées",
+       "role": "empêcher leur évolution"
+      }
+     ],
+     "raisonnement": "La modélisation de 78 pays à revenu faible ou intermédiaire montre que l'association vaccination large + dépistage permet d'atteindre le seuil d'élimination au cours du siècle ; la vaccination seule y parvient plus lentement.",
+     "a_tester": "Programme national en Côte d'Ivoire : couverture vaccinale, auto-prélèvement HPV, traitement le jour même ; critère : incidence du cancer du col.",
+     "risques": "Accès aux soins des lésions trouvées ; adhésion au dépistage.",
+     "source": "brisson",
+     "source2": "leiHpv"
+    }
+   ]
+  },
+  {
+   "id": "cancer_colorectal",
+   "nom": "Cancer colorectal",
+   "synonymes": [
+    "côlon",
+    "rectum",
+    "cancer du côlon",
+    "cancer colorectal",
+    "Lynch",
+    "cancer"
+   ],
+   "zones": [
+    "colon"
+   ],
+   "description": "Cancer du côlon ou du rectum, souvent issu d'un polype. Opéré à temps, il se guérit dans la majorité des cas ; certains cancers du rectum (dMMR) disparaissent sous immunothérapie seule.",
+   "source": "challenge",
+   "stades": [
+    {
+     "id": "risque",
+     "nom": "Risque élevé (syndrome de Lynch)",
+     "niveau": "faible"
+    },
+    {
+     "id": "local",
+     "nom": "Cancer localisé ou opéré",
+     "niveau": "modere"
+    },
+    {
+     "id": "avance",
+     "nom": "Cancer métastatique",
+     "niveau": "eleve",
+     "zones": [
+      "colon",
+      "liver"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "aspirine_lynch",
+     "nom": "Aspirine",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "risque"
+     ],
+     "condition": "Syndrome de Lynch",
+     "dose": "600 mg par jour pendant environ 2 ans",
+     "population": "861 porteurs du syndrome de Lynch, suivis 10 ans",
+     "effet": "Cancers colorectaux − 35 % (HR 0,65 ; IC 95 % 0,43 à 0,97).",
+     "mecanisme": "Non précisé par l'étude.",
+     "prudence": "Saignements digestifs ; à ne pas prendre sans avis médical.",
+     "zones": [
+      "colon"
+     ],
+     "source": "capp2",
+     "resume": "Cancers évités : − 35 %"
+    },
+    {
+     "id": "exercice_colon",
+     "nom": "Programme d'exercice structuré",
+     "type": "regime",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "local"
+     ],
+     "dose": "Programme d'activité physique encadré, débuté après la chimiothérapie",
+     "duree": "3 ans",
+     "population": "889 patients opérés d'un cancer du côlon",
+     "effet": "Récidive, nouveau cancer ou décès − 28 % (HR 0,72 ; IC 95 % 0,55 à 0,94) ; sans maladie à 5 ans 80,3 % contre 73,9 % ; en vie à 8 ans 90,3 % contre 83,2 %.",
+     "mecanisme": "Non précisé par l'étude.",
+     "prudence": "Plus de douleurs musculaires et articulaires (18,5 % contre 11,5 %).",
+     "zones": [
+      "colon"
+     ],
+     "source": "challenge",
+     "resume": "Récidive ou décès − 28 %"
+    },
+    {
+     "id": "dostarlimab",
+     "nom": "Dostarlimab",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "local"
+     ],
+     "condition": "Cancer du rectum localement avancé avec déficit de réparation de l'ADN (dMMR)",
+     "dose": "500 mg toutes les 3 semaines pendant 6 mois",
+     "population": "12 patients (essai de phase 2)",
+     "effet": "12 patients sur 12 en réponse clinique complète, sans chirurgie, radiothérapie ni chimiothérapie, pendant le suivi rapporté.",
+     "mecanisme": "Anticorps anti-PD-1 : les tumeurs dMMR, très mutées, sont très visibles pour le système immunitaire.",
+     "zones": [
+      "colon"
+     ],
+     "source": "cercek",
+     "resume": "12 sur 12 en rémission complète"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "rectum_dmmr",
+     "type": "obtenue",
+     "titre": "Cancer du rectum dMMR : disparition sous immunothérapie seule",
+     "objectif": "Guérir sans chirurgie ni rayons",
+     "resultat": "12 patients sur 12 en réponse clinique complète après 6 mois de dostarlimab.",
+     "composants": [
+      {
+       "nom": "Dostarlimab",
+       "role": "seul traitement",
+       "ref": "dostarlimab"
+      }
+     ],
+     "risques": "Effets immunitaires (thyroïde, peau) ; suivi rapproché pour vérifier l'absence de reprise.",
+     "source": "cercek"
+    },
+    {
+     "id": "colon_opere",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Côlon opéré : chimiothérapie, puis exercice 3 ans, aspirine en cas de Lynch",
+     "objectif": "Supprimer les récidives après chirurgie",
+     "composants": [
+      {
+       "nom": "Programme d'exercice structuré",
+       "role": "réduire récidive et décès",
+       "ref": "exercice_colon"
+      },
+      {
+       "nom": "Aspirine",
+       "role": "réduire les nouveaux cancers en cas de Lynch",
+       "ref": "aspirine_lynch"
+      }
+     ],
+     "raisonnement": "L'exercice a réduit récidives et décès dans un essai randomisé ; l'aspirine a réduit les cancers chez les porteurs de Lynch. Les deux sont peu coûteux et agissent par des voies différentes.",
+     "a_tester": "Essai factoriel chez les patients opérés : exercice et aspirine, seuls ou associés ; critère : survie sans maladie à 5 ans.",
+     "risques": "Saignements sous aspirine ; douleurs musculaires avec l'exercice.",
+     "source": "challenge",
+     "source2": "capp2"
+    }
+   ]
+  },
+  {
+   "id": "fibromes",
+   "nom": "Fibromes utérins",
+   "sexe": "female",
+   "synonymes": [
+    "fibrome",
+    "fibromes",
+    "myome",
+    "léiomyome",
+    "utérus"
+   ],
+   "zones": [
+    "uterus"
+   ],
+   "description": "Tumeurs bénignes du muscle de l'utérus, très fréquentes avant la ménopause. Ils peuvent causer des règles abondantes, une anémie et des douleurs.",
+   "source": "liberty",
+   "stades": [
+    {
+     "id": "symptomatique",
+     "nom": "Fibromes avec symptômes",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "relugolix",
+     "nom": "Relugolix + estradiol + noréthistérone",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "symptomatique"
+     ],
+     "dose": "Relugolix 40 mg + estradiol 1 mg + acétate de noréthistérone 0,5 mg, 1 fois par jour",
+     "duree": "24 semaines",
+     "population": "770 femmes (deux essais)",
+     "effet": "Saignements contrôlés chez 73 % et 71 % des femmes contre 19 % et 15 % sous placebo.",
+     "mecanisme": "Bloque l'hormone GnRH et baisse les œstrogènes qui font grossir les fibromes ; l'estradiol ajouté protège les os.",
+     "zones": [
+      "uterus"
+     ],
+     "source": "liberty",
+     "resume": "Saignements contrôlés : 73 % contre 19 %"
+    },
+    {
+     "id": "egcg",
+     "nom": "Extrait de thé vert (EGCG)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 2,
+     "stades": [
+      "symptomatique"
+     ],
+     "partie": "Feuilles de thé vert (Camellia sinensis), extrait à 45 % d'épigallocatéchine gallate (EGCG)",
+     "dose": "800 mg d'extrait par jour (environ 360 mg d'EGCG)",
+     "duree": "4 mois",
+     "population": "33 femmes (essai pilote)",
+     "effet": "Volume des fibromes − 32,6 % (contre + 24,3 % sous placebo) ; pertes de sang de 71 à 45 mL par mois ; anémie améliorée de 0,7 g/dL.",
+     "mecanisme": "Non précisé par l'étude.",
+     "prudence": "L'EFSA signale une hausse des enzymes du foie à partir de 800 mg d'EGCG par jour en complément.",
+     "zones": [
+      "uterus"
+     ],
+     "source": "roshdy",
+     "source2": "efsaThe",
+     "resume": "Volume des fibromes − 32,6 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "fibromes_gestes",
+     "type": "obtenue",
+     "titre": "Myomectomie ou embolisation des artères utérines",
+     "objectif": "Faire disparaître les symptômes en gardant l'utérus",
+     "resultat": "Les deux améliorent nettement la qualité de vie à 2 ans ; elle est un peu meilleure après myomectomie.",
+     "composants": [
+      {
+       "nom": "Myomectomie",
+       "role": "retirer les fibromes"
+      },
+      {
+       "nom": "Embolisation",
+       "role": "couper leur vascularisation"
+      }
+     ],
+     "risques": "Chirurgie ou geste radiologique ; reprise possible de fibromes.",
+     "source": "femme"
+    },
+    {
+     "id": "fibromes_sans_chirurgie",
+     "type": "hypothese",
+     "appui": "faible",
+     "titre": "Réduire les fibromes sans chirurgie : relugolix + thé vert",
+     "objectif": "Rétrécir les fibromes et arrêter les saignements sans opération",
+     "composants": [
+      {
+       "nom": "Relugolix en association",
+       "role": "baisse hormonale",
+       "ref": "relugolix"
+      },
+      {
+       "nom": "Extrait de thé vert",
+       "role": "réduction du volume observée",
+       "ref": "egcg"
+      }
+     ],
+     "raisonnement": "Le relugolix contrôle les saignements dans de grands essais ; l'EGCG a réduit le volume des fibromes dans un petit essai. Leurs mécanismes ne se chevauchent pas.",
+     "a_tester": "Essai randomisé de 6 mois : relugolix + EGCG contre relugolix seul ; critères : volume des fibromes à l'IRM, saignements, enzymes du foie.",
+     "risques": "Enzymes du foie sous EGCG ; perte osseuse limitée par l'estradiol.",
+     "source": "liberty",
+     "source2": "roshdy"
+    }
+   ]
+  },
+  {
+   "id": "mash",
+   "nom": "Stéatose du foie et stéatohépatite (MASH)",
+   "synonymes": [
+    "foie gras",
+    "stéatose",
+    "stéatohépatite",
+    "NASH",
+    "MASH",
+    "NAFLD",
+    "MASLD",
+    "foie"
+   ],
+   "zones": [
+    "liver"
+   ],
+   "description": "Accumulation de graisse dans le foie liée au surpoids et au diabète. Elle peut s'enflammer (stéatohépatite) et évoluer vers la fibrose puis la cirrhose ; elle régresse avec la perte de poids.",
+   "source": "vilarGomez",
+   "stades": [
+    {
+     "id": "steatose",
+     "nom": "Stéatose simple",
+     "niveau": "faible"
+    },
+    {
+     "id": "mash",
+     "nom": "Stéatohépatite avec fibrose",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "perte_poids_foie",
+     "nom": "Perte de poids d'au moins 10 %",
+     "type": "regime",
+     "force": "moyenne",
+     "critere": 1,
+     "dose": "Régime hypocalorique et activité physique, objectif : au moins 10 % du poids",
+     "duree": "52 semaines",
+     "population": "293 patients avec stéatohépatite prouvée par biopsie",
+     "effet": "Chez ceux qui ont perdu au moins 10 % : stéatohépatite disparue chez 90 % et fibrose réduite chez 45 %.",
+     "mecanisme": "Moins de graisse et d'inflammation dans le foie.",
+     "zones": [
+      "liver"
+     ],
+     "source": "vilarGomez",
+     "resume": "Disparition chez 90 % au-delà de 10 % perdus"
+    },
+    {
+     "id": "semaglutide_foie",
+     "nom": "Sémaglutide",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "mash"
+     ],
+     "dose": "2,4 mg par semaine en injection",
+     "duree": "72 semaines",
+     "population": "800 patients (fibrose F2 ou F3)",
+     "effet": "Stéatohépatite disparue chez 62,9 % contre 34,3 % ; fibrose réduite chez 36,8 % contre 22,4 % ; poids − 10,5 %.",
+     "mecanisme": "Agoniste du GLP-1 : perte de poids et meilleure gestion du sucre.",
+     "zones": [
+      "liver"
+     ],
+     "source": "essence",
+     "resume": "Disparition : 62,9 % contre 34,3 %"
+    },
+    {
+     "id": "resmetirom",
+     "nom": "Résmétirom",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "mash"
+     ],
+     "dose": "80 ou 100 mg par jour",
+     "duree": "52 semaines",
+     "population": "966 patients",
+     "effet": "Stéatohépatite disparue chez 25,9 % et 29,9 % contre 9,7 % ; fibrose améliorée chez 24,2 % et 25,9 % contre 14,2 %.",
+     "mecanisme": "Active le récepteur bêta des hormones thyroïdiennes dans le foie, qui brûle davantage de graisse.",
+     "zones": [
+      "liver"
+     ],
+     "source": "maestro",
+     "resume": "Disparition : environ 28 % contre 10 %"
+    },
+    {
+     "id": "vitamine_e",
+     "nom": "Vitamine E",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "mash"
+     ],
+     "partie": "Vitamine E naturelle (RRR-α-tocophérol)",
+     "dose": "800 UI par jour",
+     "duree": "96 semaines",
+     "population": "247 adultes non diabétiques",
+     "effet": "Amélioration du foie chez 43 % contre 19 % sous placebo.",
+     "mecanisme": "Antioxydant.",
+     "condition": "Personnes sans diabète",
+     "zones": [
+      "liver"
+     ],
+     "source": "pivens",
+     "resume": "Amélioration : 43 % contre 19 %"
+    },
+    {
+     "id": "silymarine",
+     "nom": "Silymarine (chardon-Marie)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 2,
+     "stades": [
+      "mash"
+     ],
+     "partie": "Graines du chardon-Marie (Silybum marianum), extrait de flavonolignanes",
+     "dose": "700 mg 3 fois par jour",
+     "duree": "48 semaines",
+     "population": "99 patients",
+     "effet": "Critère principal non atteint ; fibrose réduite à la biopsie chez 22,4 % contre 6,0 %.",
+     "mecanisme": "Non précisé par l'étude.",
+     "zones": [
+      "liver"
+     ],
+     "source": "silymarine",
+     "resume": "Fibrose réduite : 22,4 % contre 6 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "mash_bariatrique",
+     "type": "obtenue",
+     "titre": "Chirurgie bariatrique",
+     "objectif": "Disparition durable de la stéatohépatite",
+     "resultat": "Stéatohépatite disparue chez 84 % à 5 ans ; fibrose disparue chez 56 %.",
+     "composants": [
+      {
+       "nom": "Chirurgie de l'obésité",
+       "role": "perte de poids importante et durable"
+      }
+     ],
+     "risques": "Chirurgie ; carences à surveiller à vie.",
+     "source": "lassailly"
+    },
+    {
+     "id": "mash_poids",
+     "type": "obtenue",
+     "titre": "Perte de poids d'au moins 10 % par le mode de vie",
+     "objectif": "Disparition de la stéatohépatite",
+     "resultat": "90 % de disparition et 45 % de fibrose réduite chez ceux qui ont perdu au moins 10 %.",
+     "composants": [
+      {
+       "nom": "Régime et activité physique",
+       "role": "perte de poids",
+       "ref": "perte_poids_foie"
+      }
+     ],
+     "risques": "Peu atteint par la majorité sans aide.",
+     "source": "vilarGomez"
+    },
+    {
+     "id": "mash_combine",
+     "type": "hypothese",
+     "appui": "fort",
+     "titre": "Atteindre 10 % de perte de poids : sémaglutide + mode de vie, résmétirom si la fibrose persiste",
+     "objectif": "Disparition de la stéatohépatite et régression de la fibrose sans chirurgie",
+     "composants": [
+      {
+       "nom": "Sémaglutide",
+       "role": "perte de poids d'environ 10 %",
+       "ref": "semaglutide_foie"
+      },
+      {
+       "nom": "Régime et activité",
+       "role": "compléter la perte de poids",
+       "ref": "perte_poids_foie"
+      },
+      {
+       "nom": "Résmétirom",
+       "role": "action directe sur la graisse du foie",
+       "ref": "resmetirom"
+      },
+      {
+       "nom": "Vitamine E sans diabète",
+       "role": "antioxydant",
+       "ref": "vitamine_e"
+      }
+     ],
+     "raisonnement": "Le seuil de 10 % de perte de poids donne 90 % de disparition ; le sémaglutide seul fait perdre 10,5 %. Le résmétirom agit dans le foie par une autre voie.",
+     "a_tester": "Essai randomisé : sémaglutide + programme de mode de vie ± résmétirom ; critère : disparition et régression de la fibrose à la biopsie à 72 semaines.",
+     "risques": "Troubles digestifs sous sémaglutide ; diarrhée sous résmétirom.",
+     "source": "essence",
+     "source2": "vilarGomez"
+    }
+   ]
+  },
+  {
+   "id": "cirrhose",
+   "nom": "Cirrhose du foie",
+   "synonymes": [
+    "cirrhose",
+    "fibrose du foie",
+    "hypertension portale",
+    "foie"
+   ],
+   "zones": [
+    "liver",
+    "spleen"
+   ],
+   "description": "Remplacement du foie par du tissu cicatriciel, après des années d'alcool, d'hépatite ou de stéatose. Compensée, elle se stabilise si la cause est supprimée ; décompensée, elle entraîne ascite, saignements et confusion.",
+   "source": "predesci",
+   "stades": [
+    {
+     "id": "compensee",
+     "nom": "Cirrhose compensée",
+     "niveau": "modere"
+    },
+    {
+     "id": "decompensee",
+     "nom": "Cirrhose décompensée",
+     "niveau": "eleve",
+     "zones": [
+      "liver",
+      "spleen",
+      "brain"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "betabloquant",
+     "nom": "Propranolol ou carvédilol",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "compensee"
+     ],
+     "condition": "Hypertension portale significative",
+     "dose": "Dose ajustée à la tolérance",
+     "population": "201 patients",
+     "effet": "Décompensation ou décès 16 % contre 27 % (HR 0,51 ; IC 95 % 0,26 à 0,97).",
+     "mecanisme": "Baisse la pression dans la veine porte.",
+     "zones": [
+      "liver",
+      "spleen"
+     ],
+     "source": "predesci",
+     "resume": "Décompensation − 49 %"
+    },
+    {
+     "id": "albumine",
+     "nom": "Albumine humaine au long cours",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "decompensee"
+     ],
+     "condition": "Ascite",
+     "dose": "40 g deux fois par semaine pendant 2 semaines, puis 40 g par semaine",
+     "population": "440 patients",
+     "effet": "Décès − 38 % (HR 0,62 ; IC 95 % 0,40 à 0,95) ; survie à 18 mois 77 % contre 66 %.",
+     "mecanisme": "Restaure le volume sanguin et lutte contre l'inflammation.",
+     "zones": [
+      "liver"
+     ],
+     "source": "answer",
+     "resume": "Décès − 38 %"
+    },
+    {
+     "id": "rifaximine",
+     "nom": "Rifaximine",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "decompensee"
+     ],
+     "condition": "Encéphalopathie hépatique récidivante",
+     "dose": "550 mg deux fois par jour",
+     "duree": "6 mois",
+     "population": "299 patients",
+     "effet": "Épisodes d'encéphalopathie − 58 % (HR 0,42 ; IC 95 % 0,28 à 0,64) ; hospitalisations − 50 %.",
+     "mecanisme": "Antibiotique intestinal qui réduit les bactéries productrices d'ammoniac.",
+     "zones": [
+      "brain",
+      "small_intestine"
+     ],
+     "source": "bassRifax",
+     "resume": "Encéphalopathie − 58 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "cirrhose_cause",
+     "type": "obtenue",
+     "titre": "Supprimer la cause : guérison du virus C",
+     "objectif": "Arrêter l'agression du foie",
+     "resultat": "Virus C éliminé chez 99 % des patients en 12 semaines, y compris en cas de cirrhose compensée.",
+     "composants": [
+      {
+       "nom": "Sofosbuvir + velpatasvir",
+       "role": "guérison virale"
+      }
+     ],
+     "risques": "Interactions médicamenteuses à vérifier.",
+     "source": "astral1"
+    },
+    {
+     "id": "cirrhose_recompensation",
+     "type": "hypothese",
+     "appui": "moyen",
+     "titre": "Recompensation : cause supprimée + bêtabloquant + albumine + rifaximine",
+     "objectif": "Revenir à une cirrhose compensée et stable",
+     "composants": [
+      {
+       "nom": "Suppression de la cause (virus, alcool, poids)",
+       "role": "arrêter la fibrose"
+      },
+      {
+       "nom": "Bêtabloquant",
+       "role": "moins de décompensation",
+       "ref": "betabloquant"
+      },
+      {
+       "nom": "Albumine",
+       "role": "moins de décès en cas d'ascite",
+       "ref": "albumine"
+      },
+      {
+       "nom": "Rifaximine",
+       "role": "moins d'encéphalopathie",
+       "ref": "rifaximine"
+      }
+     ],
+     "raisonnement": "Chaque traitement réduit une complication différente ; associés à l'arrêt de la cause, ils pourraient permettre au foie de se stabiliser.",
+     "a_tester": "Cohorte prospective de patients décompensés recevant les quatre mesures ; critère : part sans ascite ni encéphalopathie à 1 an sans traitement de secours.",
+     "risques": "Hypotension sous bêtabloquant ; coût et perfusions de l'albumine.",
+     "source": "answer",
+     "source2": "predesci"
+    }
+   ]
+  },
+  {
+   "id": "hepatite_c",
+   "nom": "Hépatite C chronique",
+   "synonymes": [
+    "hépatite C",
+    "VHC",
+    "HCV",
+    "foie"
+   ],
+   "zones": [
+    "liver"
+   ],
+   "description": "Infection du foie par le virus C, longtemps silencieuse, qui mène à la cirrhose et au cancer du foie. Elle se guérit aujourd'hui en 12 semaines de comprimés.",
+   "source": "astral1",
+   "stades": [
+    {
+     "id": "chronique",
+     "nom": "Infection chronique",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "sofosbuvir_velpatasvir",
+     "nom": "Sofosbuvir + velpatasvir",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "dose": "Un comprimé par jour (400 mg / 100 mg)",
+     "duree": "12 semaines",
+     "population": "624 patients, génotypes 1, 2, 4, 5 et 6",
+     "effet": "Guérison virologique (virus indétectable 12 semaines après l'arrêt) chez 99 %.",
+     "mecanisme": "Bloque deux enzymes indispensables à la multiplication du virus.",
+     "zones": [
+      "liver"
+     ],
+     "source": "astral1",
+     "resume": "Guérison : 99 %"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "vhc_guerison",
+     "type": "obtenue",
+     "titre": "Guérison en 12 semaines par antiviraux directs",
+     "objectif": "Élimination définitive du virus",
+     "resultat": "99 % de guérison virologique.",
+     "composants": [
+      {
+       "nom": "Sofosbuvir + velpatasvir",
+       "role": "traitement unique",
+       "ref": "sofosbuvir_velpatasvir"
+      }
+     ],
+     "risques": "Réinfection possible ; interactions médicamenteuses.",
+     "source": "astral1"
     }
    ]
   }

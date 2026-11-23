@@ -165,6 +165,8 @@ function choisir(id){
  const avant=maladie;
  maladie=registre.maladies.find(m=>m.id===id)||registre.maladies[0];
  if(active()){const url=new URL(location.href);url.searchParams.set("maladie",maladie.id);if(stade)url.searchParams.set("stade",stade);else url.searchParams.delete("stade");history.replaceState(null,"",url);}
+ // Maladie propre à un sexe (sein, prostate, utérus) : le corps affiché suit.
+ if(active()&&maladie.sexe&&maladie.sexe!==sexe())document.querySelector('#sex-choice [data-sex="'+maladie.sexe+'"]')?.click();
  rendreListe();rendreMaladie();rendreDroite();envoyerAtlas();
  // Nouvelle maladie : on revient au corps entier pour voir tous les organes touchés.
  if(avant&&avant!==maladie&&active())document.dispatchEvent(new CustomEvent("xp-focus",{detail:""}));
