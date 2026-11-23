@@ -160,3 +160,11 @@ test('Lot 7 : maladies du rein (polykystose, IgA, HSF, drépanocytose, lupus)',(
  const pkd=registre.maladies.find(m=>m.id==='polykystose');
  assert.ok(ids(pkd,'avance').includes('tolvaptan_pkd')&&!ids(pkd,'debut').includes('tolvaptan_pkd'));
 });
+
+test('Lot 8 : cancers du sang, ovaire, estomac, œsophage, tête et cou, lymphomes',()=>{
+ for(const [mot,id] of [['myélome','myelome'],['LMC','leucemies'],['ovaire','cancer_ovaire'],['Helicobacter','cancer_estomac'],['œsophage','cancer_oesophage'],['gorge','cancer_orl'],['lymphome','lymphome']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ const l=registre.maladies.find(m=>m.id==='leucemies');
+ assert.ok(l.guerison.some(g=>g.type==='obtenue'));
+ assert.ok(ids(l,'lmc').includes('imatinib_lmc')&&!ids(l,'lap').includes('imatinib_lmc'));
+});
