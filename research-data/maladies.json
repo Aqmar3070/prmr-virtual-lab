@@ -1020,6 +1020,38 @@
   "wotherspoon": {
    "source": "Wotherspoon et coll. · régression du lymphome gastrique MALT après éradication d'Helicobacter, Lancet 1993",
    "url": "https://doi.org/10.1016/0140-6736(93)91409-f"
+  },
+  "peul": {
+   "source": "Peul et coll. · chirurgie précoce ou traitement prolongé sans chirurgie de la sciatique, N Engl J Med 2007",
+   "url": "https://doi.org/10.1056/NEJMoa064039"
+  },
+  "bailey": {
+   "source": "Bailey et coll. · microdiscectomie contre soins sans chirurgie, sciatique de 4 à 12 mois, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1912658"
+  },
+  "chiu": {
+   "source": "Chiu et coll. · probabilité de régression spontanée de la hernie discale lombaire, revue, Clin Rehabil 2015",
+   "url": "https://doi.org/10.1177/0269215514540919"
+  },
+  "oktay": {
+   "source": "Oktay et coll. · régression spontanée de hernies discales, 5 cas, Niger J Clin Pract 2019",
+   "url": "https://doi.org/10.4103/njcp.njcp_437_18"
+  },
+  "hope": {
+   "source": "Kroon et coll. · HOPE, prednisolone 10 mg dans l'arthrose des mains, Lancet 2019",
+   "url": "https://doi.org/10.1016/S0140-6736(19)32489-4"
+  },
+  "loxin": {
+   "source": "Sengupta et coll. · extrait de Boswellia serrata (5-Loxin) dans l'arthrose du genou, Arthritis Res Ther 2008",
+   "url": "https://doi.org/10.1186/ar2461"
+  },
+  "eradias": {
+   "source": "Maheu et coll. · ERADIAS, insaponifiables d'avocat et de soja dans l'arthrose de la hanche, Ann Rheum Dis 2014",
+   "url": "https://doi.org/10.1136/annrheumdis-2012-202485"
+  },
+  "svege": {
+   "source": "Svege et coll. · exercice et report de la prothèse de hanche, Ann Rheum Dis 2015",
+   "url": "https://doi.org/10.1136/annrheumdis-2013-203628"
   }
  },
  "maladies": [
@@ -8335,23 +8367,49 @@
   },
   {
    "id": "arthrose",
-   "nom": "Arthrose du genou",
+   "nom": "Arthrose (genou, hanche, mains)",
    "synonymes": [
     "arthrose",
     "genou",
     "articulations",
-    "usure"
+    "usure",
+    "hanche",
+    "coxarthrose",
+    "gonarthrose",
+    "mains",
+    "doigts",
+    "rhumatisme"
    ],
    "zones": [
     "knee_l",
-    "knee_r"
+    "knee_r",
+    "hip_l",
+    "hip_r"
    ],
-   "description": "Usure du cartilage avec douleurs et raideur.",
+   "description": "Usure du cartilage des articulations avec douleurs, raideur et parfois inflammation ; touche surtout les genoux, les hanches et les mains.",
    "source": "messier",
    "stades": [
     {
-     "id": "surpoids",
-     "nom": "Avec surpoids",
+     "id": "genou",
+     "nom": "Genou",
+     "niveau": "modere",
+     "zones": [
+      "knee_l",
+      "knee_r"
+     ]
+    },
+    {
+     "id": "hanche",
+     "nom": "Hanche",
+     "niveau": "modere",
+     "zones": [
+      "hip_l",
+      "hip_r"
+     ]
+    },
+    {
+     "id": "mains",
+     "nom": "Mains (doigts), poussée inflammatoire",
      "niveau": "modere"
     }
    ],
@@ -8367,7 +8425,7 @@
      "resume": "Douleur et fonction améliorées",
      "source": "messier",
      "stades": [
-      "surpoids"
+      "genou"
      ],
      "duree": "18 mois",
      "mecanisme": "Moins de charge sur le genou et moins d'inflammation.",
@@ -8395,6 +8453,103 @@
      "zones": [
       "knee_l",
       "knee_r"
+     ],
+     "stades": [
+      "genou"
+     ]
+    },
+    {
+     "id": "boswellia",
+     "nom": "Boswellia serrata (encens, extrait 5-Loxin)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "100 ou 250 mg d'extrait par jour",
+     "population": "70 patients ayant terminé l'essai, contre placebo",
+     "effet": "Douleur et fonction nettement améliorées dès 7 jours à 250 mg ; enzyme qui détruit le cartilage (MMP-3) en baisse dans le liquide du genou.",
+     "resume": "Douleur et fonction améliorées en 1 semaine",
+     "source": "loxin",
+     "stades": [
+      "genou"
+     ],
+     "duree": "90 jours",
+     "mecanisme": "Résine de l'arbre à encens : bloque la 5-lipoxygénase, voie de l'inflammation.",
+     "prudence": "Petit essai ; tolérance comparable au placebo.",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r",
+      "hip_l",
+      "hip_r"
+     ]
+    },
+    {
+     "id": "exercice_hanche",
+     "nom": "Programme d'exercices + éducation",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Programme d'exercices encadrés (détail dans l'article), avec éducation",
+     "population": "Patients atteints d'arthrose de hanche, contre éducation seule, suivi 6 ans",
+     "effet": "Hanche d'origine conservée à 6 ans : 41 % contre 25 % ; besoin de prothèse − 44 % (HR 0,56) ; prothèse repoussée de 3,5 à 5,4 ans en médiane.",
+     "resume": "Prothèse évitée ou repoussée : − 44 %",
+     "source": "svege",
+     "stades": [
+      "hanche"
+     ],
+     "mecanisme": "Muscles plus forts qui soulagent l'articulation.",
+     "prudence": "Pas de différence sur la douleur ; étude explicative.",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r",
+      "hip_l",
+      "hip_r"
+     ]
+    },
+    {
+     "id": "asu_hanche",
+     "nom": "Insaponifiables d'avocat et de soja (Piascledine)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Gélule quotidienne (dose dans l'article)",
+     "population": "399 patients, contre placebo",
+     "effet": "Pas de différence sur l'épaisseur moyenne du cartilage, mais 20 % de patients en moins dont l'arthrose progresse (40 % contre 50 %).",
+     "resume": "Moins de progression : 40 % contre 50 %",
+     "source": "eradias",
+     "stades": [
+      "hanche"
+     ],
+     "duree": "3 ans",
+     "mecanisme": "Extraits gras d'avocat et de soja qui freineraient la dégradation du cartilage.",
+     "prudence": "Aucun effet sur la douleur dans cet essai ; effet de structure à confirmer.",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r",
+      "hip_l",
+      "hip_r"
+     ]
+    },
+    {
+     "id": "prednisolone_mains",
+     "nom": "Prednisolone 10 mg (cure courte)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "10 mg par jour pendant 6 semaines, puis arrêt progressif",
+     "population": "92 patients avec arthrose des doigts inflammatoire, contre placebo",
+     "effet": "Douleur des doigts − 21,5 contre − 5,2 points sur 100 à 6 semaines.",
+     "resume": "Douleur des doigts − 16 points de plus que le placebo",
+     "source": "hope",
+     "stades": [
+      "mains"
+     ],
+     "mecanisme": "Calme l'inflammation de la membrane des articulations.",
+     "prudence": "Effet qui disparaît à l'arrêt ; ne pas prolonger sans avis médical (os, sucre, tension).",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r",
+      "hip_l",
+      "hip_r"
      ]
     }
    ],
@@ -8631,6 +8786,100 @@
      "zones": [
       "lung_l",
       "lung_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "hernie_discale",
+   "nom": "Hernie discale et sciatique",
+   "synonymes": [
+    "hernie discale",
+    "hernie",
+    "disque",
+    "sciatique",
+    "lombalgie",
+    "dos",
+    "colonne"
+   ],
+   "zones": [
+    "pelvis"
+   ],
+   "description": "Le noyau d'un disque entre deux vertèbres sort et appuie sur un nerf : douleur du dos et de la jambe (sciatique), parfois fourmillements ou faiblesse.",
+   "source": "chiu",
+   "stades": [
+    {
+     "id": "recente",
+     "nom": "Sciatique récente (moins de 3 mois)",
+     "niveau": "modere"
+    },
+    {
+     "id": "persistante",
+     "nom": "Sciatique persistante (4 à 12 mois)",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "regression_spontanee",
+     "nom": "Traitement sans chirurgie : la hernie peut se résorber seule",
+     "type": "regime",
+     "force": "moyenne",
+     "dose": "Antidouleurs, kinésithérapie, activité adaptée ; surveillance par IRM",
+     "population": "Revue de nombreuses études (et 5 cas détaillés en 2019)",
+     "effet": "Régression spontanée dans 96 % des hernies séquestrées, 70 % des extrusions, 41 % des protrusions, 13 % des simples bombements ; disparition complète dans 43 % des séquestrations. Dans les 5 cas, douleur de jambe soulagée en 2 à 4 semaines.",
+     "resume": "Hernie résorbée sans opération : jusqu'à 96 %",
+     "source": "chiu",
+     "source2": "oktay",
+     "stades": [
+      "recente"
+     ],
+     "mecanisme": "Le morceau de disque sorti se déshydrate et est « mangé » par la réaction inflammatoire.",
+     "prudence": "Urgence chirurgicale si perte de contrôle des urines ou des selles, engourdissement du périnée, ou paralysie qui s'aggrave.",
+     "critere": 1,
+     "zones": [
+      "pelvis"
+     ]
+    },
+    {
+     "id": "chirurgie_precoce",
+     "nom": "Microdiscectomie précoce",
+     "type": "geste",
+     "force": "moyenne",
+     "dose": "Opération dans les 2 à 3 semaines (sciatique de 6 à 12 semaines)",
+     "population": "283 patients, contre traitement prolongé sans chirurgie (opération si besoin)",
+     "effet": "Douleur de jambe soulagée plus vite et guérison ressentie 2 fois plus rapide ; mais à 1 an, 95 % de guérison ressentie dans les deux groupes.",
+     "resume": "Guérison plus rapide, même résultat à 1 an",
+     "source": "peul",
+     "stades": [
+      "recente"
+     ],
+     "mecanisme": "Retire le fragment qui comprime le nerf.",
+     "prudence": "39 % des patients non opérés d'emblée ont finalement été opérés. Risques chirurgicaux.",
+     "critere": 1,
+     "zones": [
+      "pelvis"
+     ]
+    },
+    {
+     "id": "microdiscectomie_persistante",
+     "nom": "Microdiscectomie pour sciatique qui dure",
+     "type": "geste",
+     "force": "faible",
+     "dose": "Opération (délai médian 3 semaines après l'inclusion)",
+     "population": "128 patients, sciatique depuis 4 à 12 mois",
+     "effet": "Douleur de jambe à 6 mois 2,8 contre 5,2 sur 10.",
+     "resume": "Douleur de jambe divisée par 2 à 6 mois",
+     "source": "bailey",
+     "stades": [
+      "persistante"
+     ],
+     "mecanisme": "Décomprime le nerf.",
+     "prudence": "Complications chez 9 patients ; essai dans un seul centre.",
+     "critere": 1,
+     "zones": [
+      "pelvis"
      ]
     }
    ],
