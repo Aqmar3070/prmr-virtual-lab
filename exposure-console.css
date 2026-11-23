@@ -51,5 +51,134 @@ main{padding:12px;max-width:1720px;margin:auto}.xp-board{display:grid;grid-templ
 .xr-acc details>p{white-space:pre-line}
 
 /* Deux espaces de travail en onglets dans le bandeau : exposition et maladies. */
-.xp-tabs{display:flex;gap:6px}.xp-tabs a{padding:8px 16px;border:1px solid #2f7f91;border-radius:6px;background:#06202d;color:#bfeef6!important;font-size:15px;font-weight:600;white-space:nowrap}.xp-tabs a[aria-current=page]{background:#0f4c5d;border-color:#47e3ef;color:#fff!important;box-shadow:0 0 10px #2fd6e655}.xp-head .xp-tabs a:first-child,.xp-head .xp-tabs a:last-child{margin-left:0;font-size:15px}
-@media(max-width:570px){.xp-tabs{width:100%;order:3}.xp-tabs a{flex:1;text-align:center;padding:7px 6px;font-size:13px}}
+/* ===== Interface compacte (novembre 2026) : bandeau fin, onglets fins, une seule
+   ligne par élément, détail au clic. Deux vues partagent le même corps 3D. ===== */
+body{font-size:13px}
+body[data-vue=maladies] [data-vue=substances],body:not([data-vue=maladies]) [data-vue=maladies]{display:none!important}
+.xp-head{gap:14px;padding:5px 14px;min-height:38px;box-sizing:border-box}
+.xp-head a.xp-logo{font-size:14px;letter-spacing:.04em;margin:0}
+.xp-head #xp-reperes{margin-left:auto;font-size:12px;color:#8fd6e2}
+.xp-vues{display:inline-flex;padding:2px;border:1px solid #2b7184;border-radius:999px;background:#041824}
+.xp-vues button{border:0;background:none;color:#a9dbe5;font:600 12.5px Inter,Arial,sans-serif;padding:5px 16px;border-radius:999px;cursor:pointer}
+.xp-vues button[aria-pressed=true]{background:#17d4e6;color:#02202b;box-shadow:0 0 10px #17d4e666}
+main{padding:8px 10px}
+.xp-board{gap:8px}
+.xp-left{gap:8px}
+.xp-card{padding:10px 11px;border-radius:8px}
+.xp-card h2{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:#7fe9f5;margin:0 0 8px;padding-bottom:6px;font-weight:700}
+.xp-card h3{font-size:12px;margin:8px 0 5px}
+.xp-card p,.xp-card small{font-size:11.5px}
+.xp-card button,.xp-card select,.xp-card input:not([type=range]){padding:4px 7px;font-size:12px;border-radius:5px}
+.xp-board label,.xp-profile span{font-size:12px}
+.xp-profile-card{padding:7px 11px}
+.xp-profile-card summary{font-size:12px}
+.xp-profile{grid-template-columns:60px 1fr}
+/* Trois onglets fins sur une seule ligne */
+.xp-board #xp-categories{display:flex;gap:4px;grid-template-columns:none}
+#xp-categories button{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;padding:5px 4px;font-size:11.5px;white-space:nowrap}
+#xp-categories svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;flex:none}
+#xp-categories button[aria-pressed=true]{color:#fff}
+#xp-list{margin-top:6px}
+#xp-list>p{margin:4px 0}
+.xp-row{padding:4px 0;font-size:12px}
+.xp-row button{padding:2px 7px}
+#xp-add{margin-top:6px;padding:5px}
+.xp-catalogue{display:block;margin-top:8px;color:#7fa9b5!important;font-size:10.5px!important}
+.xp-assistant textarea{padding:6px 8px;font-size:12px;min-height:46px}
+.xp-assistant .xp-actions button{padding:4px 8px}
+#xp-dossier>p{display:none}
+/* Corps 3D : barre d'outils sur une ligne */
+.xp-body{padding:6px 4px}
+.xa-toolbar{gap:4px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.xa-toolbar select,.xa-toolbar button,#sex-choice button{padding:3px 7px;font-size:11.5px;border-radius:5px;background:#092536;color:#ccedf5;border:1px solid #33687a;cursor:pointer;white-space:nowrap}
+#sex-choice{display:inline-flex;gap:2px;margin-right:4px}
+#sex-choice button[aria-pressed=true]{background:#115061;border-color:#47e3ef;color:#fff}
+.xa-presets{display:inline-flex;gap:3px;margin-left:auto}
+.xa-ready #xa-stage{height:clamp(380px,64vh,660px)}
+.xa-controls{font-size:11px;padding:3px}
+.xa-controls small{font-size:10.5px;color:#7fa9b5}
+.xp-body figcaption{font-size:10.5px}
+/* Panneau droit : défile à l'intérieur, à la hauteur du corps */
+.xp-right{max-height:calc(64vh + 90px);overflow-y:auto;scrollbar-width:thin}
+#xp-signals button{margin:3px 0;padding:5px 8px;font-size:12px}
+.xp-right details summary{font-size:12px}
+.xp-apports{margin-top:6px}
+.xp-metric{padding:4px 0;font-size:12px}
+/* Rangée de graphiques */
+.xp-graphes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}
+.xg{margin:0;min-width:0;border:1px solid #1d4b5a;border-radius:6px;padding:7px 8px;background:#03131e88}
+.xg figcaption{font-size:11.5px;font-weight:650;color:#cdf6fb;margin-bottom:4px}
+.xg figcaption small{font-weight:400;color:#7fa9b5;margin-left:4px}
+.xg svg{width:100%;height:auto;max-height:230px}
+.xg svg text{font:11px Inter,Arial,sans-serif;fill:#cfe9f0}
+.xg-vide{font-style:italic;color:#7fa9b5!important;margin:14px 4px}
+.xg-reglages{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:3px}
+.xg-reglages select{font-size:11px!important;padding:2px 4px!important;max-width:48%}
+.xg-reglages label{font-size:11px!important;display:inline-flex;align-items:center;gap:3px}
+#xp-chart-title{margin:2px 0;font-size:11px}
+#xp-legend,#xp-totals{font-size:11px}
+.xp-graphes .xr-legende{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;font-size:10.5px}
+.xp-time{padding:6px 11px}
+@media(min-width:901px){
+ .xp-board{grid-template-columns:minmax(250px,290px) minmax(0,1fr) minmax(280px,350px);grid-template-rows:auto auto auto}
+ .xp-left{grid-column:1;grid-row:1/4}
+ .xp-body{grid-column:2;grid-row:1}
+ .xp-right{grid-column:3;grid-row:1}
+ .xp-graphes{grid-column:2/4;grid-row:2}
+ .xp-time{grid-column:2/4;grid-row:3}
+}
+@media(max-width:900px){.xp-graphes{grid-column:1/-1;grid-template-columns:1fr}.xp-right{max-height:none}}
+@media(max-width:570px){.xp-head{gap:8px}.xp-vues button{padding:5px 11px}.xa-presets{display:none}}
+/* Vue Maladies */
+.mx-tete{display:flex;align-items:center;gap:8px;margin-bottom:6px;border-bottom:1px solid #265767;padding-bottom:6px}
+.mx-tete h2{border:0;margin:0;padding:0}
+.mx-tete input{flex:1;min-width:0}
+#mx-liste{display:flex;flex-direction:column;gap:2px;max-height:min(46vh,430px);overflow-y:auto;scrollbar-width:thin}
+.xp-card .mx-maladie{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:5px 8px;border-color:transparent;background:#071e2b;font-size:12.5px}
+.xp-card .mx-maladie:hover{border-color:#2b7184}
+.xp-card .mx-maladie[aria-pressed=true]{background:#0e4252;border-color:#47e3ef}
+.mx-maladie span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mx-maladie small{color:#7fd3e0!important;font-size:10.5px!important;border:1px solid #2b6577;border-radius:9px;padding:0 6px;min-width:22px;text-align:center}
+.mx-maladie i,.mx-cle i{width:8px;height:8px;border-radius:50%;flex:none;background:var(--mx-c,#5b7480);box-shadow:0 0 6px var(--mx-c,transparent)}
+.mx-cle{display:flex;flex-wrap:wrap;align-items:center;gap:3px 5px;margin:7px 0 0;font-size:10.5px!important;color:#7fa9b5!important}
+.mx-cle i{display:inline-block;margin-left:4px}
+.mx-apropos summary{cursor:pointer;font-weight:700;font-size:13.5px;color:#e6fbff}
+.mx-apropos p{margin:5px 0}
+.xp-card .mx-ligne{display:flex;align-items:center;gap:8px;margin:8px 0 4px}
+#mx-stade{flex:1;min-width:0}
+.mx-lire summary{cursor:pointer;font-size:11.5px;color:#8fd6e2}
+.mx-legende{border-left:3px solid var(--mx-c);padding-left:7px;margin:5px 0;font-size:11px!important}
+.mx-legende b{color:var(--mx-c)}
+[data-force=forte]{--mx-c:#3fe6b0}[data-force=moyenne]{--mx-c:#5fc8ff}[data-force=faible]{--mx-c:#c4b5fd}[data-force=preclinique]{--mx-c:#ffc94a}[data-force=theorique]{--mx-c:#a9bcc6}
+[data-appui=obtenue]{--mx-c:#7cf7ff}[data-appui=fort]{--mx-c:#3fe6b0}[data-appui=moyen]{--mx-c:#5fc8ff}[data-appui=faible]{--mx-c:#c4b5fd}
+.mx-onglets{display:flex;align-items:center;gap:4px;margin-bottom:8px;border-bottom:1px solid #265767;padding-bottom:7px}
+.xp-card .mx-onglets button{padding:4px 11px;border-radius:999px;font-size:12px;font-weight:600;background:#071e2b;border-color:#2b6577}
+.xp-card .mx-onglets button[aria-pressed=true]{background:#17d4e6;color:#02202b;border-color:#17d4e6}
+.mx-onglets b{font-size:10.5px;margin-left:3px;opacity:.85}
+#mx-titre-stade{margin-left:auto;font-size:11px;color:#71e1f2;max-width:40%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mx-compte{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}
+.mx-pastille{font-size:10.5px;padding:1px 7px;border-radius:9px;border:1px solid var(--mx-c);color:var(--mx-c)}
+.mx-niveau{font-size:10.5px!important;text-transform:uppercase;letter-spacing:.06em;color:#7fa9b5!important;margin:9px 0 3px!important;border:0!important;padding:0!important}
+.mx-ligne-d{border:1px solid #1a4352;border-left:3px solid var(--mx-c);border-radius:4px;background:#05192566;margin:3px 0}
+.mx-ligne-d summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:5px 8px;font-size:12.5px;color:#e2f6fa}
+.mx-ligne-d summary::-webkit-details-marker{display:none}
+.mx-ligne-d summary span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mx-ligne-d[open] summary span{white-space:normal}
+.mx-ligne-d summary b{color:var(--mx-c);font-size:10.5px;font-weight:600;white-space:nowrap;border:1px solid var(--mx-c);border-radius:9px;padding:0 6px}
+.mx-ligne-d>:not(summary){margin:0 9px 5px 12px;font-size:11.5px;line-height:1.5;color:#bcdbe3}
+.mx-ligne-d p b,.mx-composants b{color:#dff6fa;font-weight:600}
+.mx-resume{color:#e2f6fa!important}
+.mx-composants{padding-left:16px}.mx-composants small{color:#8fb4bf}
+.mx-ligne-d a{color:#94e2eb;font-size:11px}
+.mx-etiq{color:#8fb4bf!important;font-style:italic}
+.mx-vide{font-style:italic}
+/* Volets repliables : une simple ligne, sans cadre épais */
+.xp-board details:not(.mx-ligne-d):not(.xr-item){border:0;border-top:1px solid #1d4655;border-radius:0;background:none;padding:6px 0 2px;margin:4px 0 0}
+.xp-board .xp-profile-card details,.xp-board #mx-fiche details{border-top:0;padding:0;margin:0}
+.xp-board details[open]>summary{margin-bottom:5px}
+.xp-board details.mx-ligne-d{padding:0;margin:3px 0;background:#05192566;border:1px solid #1a4352;border-left:3px solid var(--mx-c);border-radius:4px}
+.xp-board details.mx-ligne-d[open]>summary{margin-bottom:2px;color:#fff}
+.xa-ready #xa-stage{height:clamp(340px,56vh,620px)}
+.xp-right{max-height:calc(56vh + 90px)}
+.mx-cle{font-size:10px!important}
+.xg svg#xr-forest,.xg svg#xr-balance{max-height:none}
