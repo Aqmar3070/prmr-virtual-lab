@@ -1,7 +1,7 @@
 // Vue « Maladies » de l'explorateur : maladie et stade à gauche, corps au centre,
-// pistes de guérison et substances à droite (deux onglets), graphiques en bas.
+// trois onglets à droite : Guéris (guérisons et cas), Testés (études), Pistes (jamais testé) ; graphiques en bas.
 // Les lignes sont courtes ; le détail s'ouvre au clic.
-import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,plageEtudiee,rapportPublie,CHAMPS_PROFIL,evaluerProfil,decrireProfil,profilActif,hypothesesPour,APPUI_HYPOTHESE} from "./maladies.mjs";
+import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,plageEtudiee,rapportPublie,CHAMPS_PROFIL,evaluerProfil,decrireProfil,profilActif,pourGueris,pourTestes,pourPistes} from "./maladies.mjs";
 
 const $=id=>document.getElementById(id);
 const el=(tag,cls,texte)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(texte!==undefined)n.textContent=texte;return n;};
@@ -70,25 +70,32 @@ function rendreProfil(){
 function ligne(parent,titre,texte){if(!texte)return;const p=el("p","");p.append(el("b","",titre+" : "),texte);parent.append(p);}
 function sources(d,cles){for(const k of cles){const a=k&&lien(k,registre);if(a){d.append(a);d.append(el("br",""));}}}
 
-// Pistes de guérison : d'abord ce qui a déjà guéri, puis les combinaisons à tester.
-function rendreGuerison(zone){
- const pistes=[...(maladie.guerison||[])].sort((a,b)=>APPUI[cleAppui(a)].rang-APPUI[cleAppui(b)].rang);
- if(!pistes.length){zone.append(el("p","mx-etiq","Pistes de guérison en cours de recherche pour cette maladie."));return;}
- for(const g of pistes){
-  const cle=cleAppui(g);
-  const d=el("details","mx-ligne-d mx-piste");d.dataset.appui=cle;
-  const res=el("summary","");res.append(el("span","",g.titre),el("b","",APPUI[cle].court));d.append(res);
-  ligne(d,"Objectif",g.objectif);
-  if(g.resultat)ligne(d,"Résultat obtenu",g.resultat);
-  const ul=el("ul","mx-composants");
-  for(const c of g.composants||[]){const li=el("li","");li.append(el("b","",c.nom),c.role?" — "+c.role:"");if(c.ref){const s=maladie.substances.find(x=>x.id===c.ref);if(s?.resume)li.append(el("small",""," ("+s.resume+")"));}ul.append(li);}
-  d.append(el("p","",g.type==="obtenue"?"Composants :":"Combinaison proposée :"),ul);
-  ligne(d,"Raisonnement",g.raisonnement);
-  ligne(d,"Comment la tester",g.a_tester);
-  ligne(d,"Risques",g.risques);
-  d.append(el("p","mx-etiq",g.type==="obtenue"?"Résultat publié chez l’humain · repris de la source":"Hypothèse PRMR construite à partir des études citées · à vérifier par un essai"));
-  sources(d,[g.source,g.source2]);
-  zone.append(d);
+// Carte d'une guérison obtenue ou d'une combinaison proposée.
+function carteGuerison(g){
+ const cle=cleAppui(g);
+ const d=el("details","mx-ligne-d mx-piste");d.dataset.appui=cle;
+ const res=el("summary","");res.append(el("span","",g.titre),el("b","",g.type==="obtenue"?"Guéri":"Combinaison"));d.append(res);
+ ligne(d,"Objectif",g.objectif);
+ if(g.resultat)ligne(d,"Résultat obtenu",g.resultat);
+ const ul=el("ul","mx-composants");
+ for(const c of g.composants||[]){const li=el("li","");li.append(el("b","",c.nom),c.role?" — "+c.role:"");if(c.ref){const s=maladie.substances.find(x=>x.id===c.ref);if(s?.resume)li.append(el("small",""," ("+s.resume+")"));}ul.append(li);}
+ d.append(el("p","",g.type==="obtenue"?"Composants :":"Combinaison proposée :"),ul);
+ ligne(d,"Raisonnement",g.raisonnement);
+ ligne(d,"Comment la tester",g.a_tester);
+ ligne(d,"Risques",g.risques);
+ d.append(el("p","mx-etiq",g.type==="obtenue"?"Résultat publié chez l’humain · repris de la source":"Combinaison jamais testée ensemble · construite à partir des études citées · "+APPUI[cle].libelle.toLowerCase()));
+ sources(d,[g.source,g.source2]);
+ return d;
+}
+
+// Guéris : guérisons ou rémissions obtenues, puis cas individuels et témoignages.
+function rendreGueris(zone,{obtenues,cas}){
+ if(!obtenues.length&&!cas.length){zone.append(el("p","mx-etiq","Aucune guérison documentée pour l’instant dans le registre."));return;}
+ if(obtenues.length){zone.append(el("h3","mx-niveau","Guérisons ou rémissions obtenues"));for(const g of obtenues)zone.append(carteGuerison(g));}
+ if(cas.length){
+  zone.append(el("h3","mx-niveau","Cas et témoignages"));
+  zone.append(el("p","mx-etiq","Une ou quelques personnes, sans groupe de comparaison, souvent avec d’autres traitements en même temps : on ne peut pas savoir ce qui a agi."));
+  rendreGroupe(zone,cas,null,true);
  }
  const note=el("details","mx-note");note.append(el("summary","","Pourquoi aucun pourcentage de guérison"),el("p","mx-etiq",registre.regle_appui?.avertissement||""));zone.append(note);
 }
@@ -105,14 +112,14 @@ function rendreSubstancesListe(zone,liste){
   rendreGroupe(bloc,groupe,avis);zone.append(bloc);
  }
 }
-function rendreGroupe(zone,liste,avis){
+function rendreGroupe(zone,liste,avis,sansEntete){
  const compte=el("div","mx-compte");
  for(const [cle,f] of Object.entries(FORCES)){const n=liste.filter(s=>s.force===cle).length;if(!n)continue;const c=el("span","mx-pastille",COURT[cle]+" "+n);c.title=f.libelle;c.dataset.force=cle;compte.append(c);}
- zone.append(compte);
+ if(!sansEntete)zone.append(compte);
  let groupeCourant="";
  for(const [cle,f] of Object.entries(FORCES)){
   const groupe=liste.filter(s=>s.force===cle);if(!groupe.length)continue;
-  if(f.groupe!==groupeCourant){groupeCourant=f.groupe;zone.append(el("h3","mx-niveau",f.groupe));}
+  if(!sansEntete&&f.groupe!==groupeCourant){groupeCourant=f.groupe;zone.append(el("h3","mx-niveau",f.groupe));}
   for(const s of groupe){
    const d=el("details","mx-ligne-d mx-substance");d.dataset.force=cle;
    const resume=el("summary","");resume.append(el("span","",s.nom),el("b","",COURT[cle]));d.append(resume);
@@ -136,39 +143,46 @@ function rendreGroupe(zone,liste,avis){
    zone.append(d);
   }
  }
- if(maladie.lacune)zone.append(el("p","mx-etiq",maladie.lacune));
+ if(maladie.lacune&&!sansEntete)zone.append(el("p","mx-etiq",maladie.lacune));
 }
 
-// Hypothèses : propositions non testées, toujours conditionnelles à la situation du malade.
-const STATUTS_H={etudie:"Correspond à la situation visée",a_preciser:"À préciser : la cause manque",hors:"Ne correspond pas à la situation visée",non_precise:"Situation non précisée"};
-function rendreHypotheses(zone,liste){
- const av=el("p","mx-etiq mx-hyp-avert","Pistes qui n’ont pas encore été testées pour cette maladie chez l’humain. Chacune dit « pourrait éventuellement », jamais « guérit ». Elles servent à orienter la recherche et la discussion avec le médecin, pas à se soigner.");
- zone.append(av);
- if(!liste.length){zone.append(el("p","mx-etiq","Hypothèses en cours de construction pour cette maladie."));return;}
- const pp=maladie.profil_patient,actif=pp&&profilActif(patient);
- const avis=actif?new Map(liste.map(h=>[h,evaluerProfil(h,{cause:patient.cause},pp.causes)])):null;
- const groupes=actif?Object.entries(STATUTS_H).map(([k,t])=>[k,t,liste.filter(h=>avis.get(h).statut===k)]):[["","",liste]];
- for(const [cle,titre,groupe] of groupes){
-  if(!groupe.length)continue;
-  let cible=zone;
-  if(cle){cible=el("details","mx-statut");cible.dataset.statut=cle;cible.open=cle!=="hors";cible.append(el("summary","",titre+" · "+groupe.length));zone.append(cible);}
-  for(const h of groupe){
-   const d=el("details","mx-ligne-d mx-hypothese");d.dataset.appui=h.appui;
-   const s=el("summary","");s.append(el("span","",h.nom),el("b","","Hypothèse"));d.append(s);
-   const a=avis?.get(h);if(a){const p=el("p","mx-avis",a.statut==="etudie"?"La cause saisie correspond à la situation visée":a.raisons.join(" · "));p.dataset.statut=a.statut;d.append(p);}
-   d.append(el("p","mx-formulation",h.formulation));
-   ligne(d,"Type",TYPES[h.type]||h.type);
-   ligne(d,"Situation visée",h.situation);
-   ligne(d,"Ce qui est abîmé",h.lesion);
-   ligne(d,"Mécanisme",h.mecanisme);
-   ligne(d,"Sur quoi elle repose",h.base);
-   ligne(d,"Ce qu’il faut vérifier",h.a_verifier);
-   ligne(d,"Prudence",h.prudence);
-   d.append(el("p","mx-etiq","Hypothèse PRMR · appui : "+(APPUI_HYPOTHESE[h.appui]?.libelle||"non précisé")+" · pas une preuve d’efficacité ni de sécurité"));
-   sources(d,[h.source,h.source2]);
-   d.ontoggle=()=>{if(d.open&&h.zones?.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:h.zones[0]}));};
-   cible.append(d);
+// Pistes : jamais testées pour cette maladie, ni chez l'humain ni chez l'animal.
+const STATUTS_P={etudie:"Correspond à la situation visée",a_preciser:"À préciser : la cause manque",hors:"Ne correspond pas à la situation visée",non_precise:"Situation non précisée"};
+function cartePiste(h,a){
+ const d=el("details","mx-ligne-d mx-hypothese");
+ const s=el("summary","");s.append(el("span","",h.nom),el("b","","Piste"));d.append(s);
+ if(a){const p=el("p","mx-avis",a.statut==="etudie"?"La cause saisie correspond à la situation visée":a.raisons.join(" · "));p.dataset.statut=a.statut;d.append(p);}
+ d.append(el("p","mx-formulation",h.formulation));
+ ligne(d,"Type",TYPES[h.type]||h.type);
+ ligne(d,"Situation visée",h.situation);
+ ligne(d,"Ce qui est abîmé",h.lesion);
+ ligne(d,"Fait connu sur la molécule",h.fait_molecule);
+ ligne(d,"Fait connu sur la maladie",h.fait_maladie);
+ ligne(d,"Lien proposé par PRMR",h.lien);
+ ligne(d,"Ce qu’il faut vérifier",h.a_verifier);
+ ligne(d,"Prudence",h.prudence);
+ d.append(el("p","mx-etiq",(h.recherche?h.recherche+" · ":"")+"Proposition PRMR : jamais testée, pas une preuve d’efficacité ni de sécurité"));
+ sources(d,[h.source,h.source2]);
+ d.ontoggle=()=>{if(d.open&&h.zones?.length)document.dispatchEvent(new CustomEvent("xp-focus",{detail:h.zones[0]}));};
+ return d;
+}
+function rendrePistes(zone,{pistes,combinaisons,theoriques}){
+ zone.append(el("p","mx-etiq mx-hyp-avert","Propositions jamais testées pour cette maladie, ni chez l’humain ni chez l’animal. Chacune part de faits publiés (ce que fait la molécule, ce qui est abîmé dans la maladie) et dit « pourrait éventuellement », jamais « guérit ». Elles orientent la recherche et la discussion avec le médecin ; elles ne servent pas à se soigner."));
+ if(!pistes.length&&!combinaisons.length&&!theoriques.length){zone.append(el("p","mx-etiq","Pistes en cours de construction pour cette maladie."));return;}
+ if(pistes.length){
+  zone.append(el("h3","mx-niveau","Molécules à explorer"));
+  const pp=maladie.profil_patient,actif=pp&&profilActif(patient);
+  if(!actif)for(const h of pistes)zone.append(cartePiste(h));
+  else for(const [k,t] of Object.entries(STATUTS_P)){
+   const g=pistes.filter(h=>evaluerProfil(h,{cause:patient.cause},pp.causes).statut===k);if(!g.length)continue;
+   const bloc=el("details","mx-statut");bloc.dataset.statut=k;bloc.open=k!=="hors";bloc.append(el("summary","",t+" · "+g.length));
+   for(const h of g)bloc.append(cartePiste(h,evaluerProfil(h,{cause:patient.cause},pp.causes)));zone.append(bloc);
   }
+ }
+ if(theoriques.length){zone.append(el("h3","mx-niveau","Cibles et simulations"));rendreGroupe(zone,theoriques,null,true);}
+ if(combinaisons.length){
+  zone.append(el("h3","mx-niveau","Combinaisons jamais testées ensemble"));
+  for(const g of [...combinaisons].sort((a,b)=>APPUI[cleAppui(a)].rang-APPUI[cleAppui(b)].rang))zone.append(carteGuerison(g));
  }
 }
 
@@ -178,12 +192,12 @@ function rendreDroite(){
  const liste=substancesPour(maladie,maladie.profil_patient&&profilActif(patient)?"":stade);
  const st=maladie.stades?.find(x=>x.id===stade);
  $("mx-titre-stade").textContent=st?st.nom:"";
- $("mx-n-guerison").textContent=(maladie.guerison||[]).length;
- $("mx-n-substances").textContent=liste.length;
- const hyp=hypothesesPour(maladie,maladie.profil_patient&&profilActif(patient)?"":stade);
- $("mx-n-hypotheses").textContent=hyp.length;
+ const gueris=pourGueris(maladie,liste),testes=pourTestes(liste),pistes=pourPistes(maladie,liste,maladie.profil_patient&&profilActif(patient)?"":stade);
+ $("mx-n-guerison").textContent=gueris.obtenues.length+gueris.cas.length;
+ $("mx-n-substances").textContent=testes.length;
+ $("mx-n-pistes").textContent=pistes.pistes.length+pistes.combinaisons.length+pistes.theoriques.length;
  for(const b of document.querySelectorAll("[data-onglet]"))b.setAttribute("aria-pressed",String(b.dataset.onglet===onglet));
- if(onglet==="guerison")rendreGuerison(zone);else if(onglet==="hypotheses")rendreHypotheses(zone,hyp);else rendreSubstancesListe(zone,liste);
+ if(onglet==="guerison")rendreGueris(zone,gueris);else if(onglet==="pistes")rendrePistes(zone,pistes);else rendreSubstancesListe(zone,testes);
  rendreGraphes(liste);
 }
 
@@ -207,7 +221,7 @@ function rendreGraphes(liste){
  const g2=$("mx-g-effet");g2.replaceChildren();
  const chiffres=liste.map(s=>({s,r:rapportPublie(s)})).filter(x=>x.r).sort((a,b)=>a.r.rr-b.r.rr);
  $("mx-g-effet-vide").hidden=chiffres.length>0;g2.style.display=chiffres.length?"":"none";
- $("mx-g-effet-vide").textContent="Aucun rapport de risque avec intervalle publié dans les essais retenus pour ce choix. Le résultat écrit de chaque substance reste dans l’onglet Substances.";
+ $("mx-g-effet-vide").textContent="Aucun rapport de risque avec intervalle publié dans les essais retenus pour ce choix. Le résultat écrit de chaque substance reste dans l’onglet Testés.";
  if(chiffres.length){
   const bas=Math.min(...chiffres.map(x=>x.r.bas)),hautMax=Math.max(1.2,...chiffres.map(x=>x.r.haut));
   const h=34+chiffres.length*22,lo=Math.log(bas*0.8),hi=Math.log(hautMax*1.15),X=v=>150+180*(Math.log(v)-lo)/(hi-lo);

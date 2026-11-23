@@ -244,21 +244,29 @@ test('Profil du patient (rein) : comparaison aux populations étudiées',async()
  assert.match(decrireProfil(S('empagliflozine_rein').profil,causes),/DFG 20 à 44/);
 });
 
-test('Hypothèses (rein) : sourcées, conditionnelles et rattachées à une situation',async()=>{
- const {hypothesesPour,evaluerProfil,APPUI_HYPOTHESE}=await import('../src/maladies.mjs');
- const mrc=registre.maladies.find(m=>m.id==='mrc');
- const hs=hypothesesPour(mrc,'');assert.ok(hs.length>=5);
- for(const h of hs){
-  for(const k of ['id','nom','type','appui','situation','lesion','mecanisme','base','formulation','a_verifier','prudence','source'])assert.ok(h[k],h.id+' '+k);
-  assert.ok(APPUI_HYPOTHESE[h.appui],h.id);
-  assert.match(h.formulation,/pourrait éventuellement/,h.id);
-  assert.doesNotMatch(h.formulation+h.base,/guérit|guérison assurée|100 ?%/i,h.id);
-  for(const s of [h.source,h.source2].filter(Boolean))assert.match(registre.sources[s]?.url||'',/^https:\/\/doi\.org\//,s);
-  // une hypothèse ne doit pas répéter une substance déjà testée pour la même maladie
-  assert.ok(!mrc.substances.some(s=>s.id===h.id),h.id);
+test('Trois rubriques : Guéris, Testés, Pistes',async()=>{
+ const {pourGueris,pourTestes,pourPistes,substancesPour,evaluerProfil}=await import('../src/maladies.mjs');
+ for(const m of registre.maladies){
+  const l=substancesPour(m,'');const g=pourGueris(m,l),t=pourTestes(l),p=pourPistes(m,l,'');
+  // chaque substance apparaît dans une seule rubrique
+  assert.equal(g.cas.length+t.length+p.theoriques.length,l.length,m.id);
+  assert.ok(g.obtenues.every(x=>x.type==='obtenue')&&p.combinaisons.every(x=>x.type!=='obtenue'),m.id);
+  assert.ok(!t.some(s=>s.force==='cas'||s.force==='theorique'),m.id);
  }
- const causes=mrc.profil_patient.causes,H=id=>hs.find(h=>h.id===id);
- assert.equal(evaluerProfil(H('h_niclosamide_pkd'),{cause:'polykystose'},causes).statut,'etudie');
- assert.equal(evaluerProfil(H('h_niclosamide_pkd'),{cause:'diabete'},causes).statut,'hors');
- assert.equal(evaluerProfil(H('h_senolytiques_dkd'),{cause:''},causes).statut,'a_preciser');
+ const mrc=registre.maladies.find(m=>m.id==='mrc');
+ // les anciennes « hypothèses » déjà testées sur l'animal ou l'humain sont dans Testés
+ for(const id of ['niclosamide_pkd','artesunate_fibrose','berberine_dn','cetogene_bhb_pkd','senolytiques_dkd','mebendazole_pkd'])assert.ok(pourTestes(mrc.substances).some(s=>s.id===id),id);
+ assert.ok(!mrc.hypotheses);
+ // les pistes : jamais testées, deux faits sourcés, formulation conditionnelle
+ const ps=pourPistes(mrc,mrc.substances,'').pistes;assert.ok(ps.length>=2);
+ for(const h of ps){
+  for(const k of ['nom','situation','lesion','fait_molecule','fait_maladie','lien','formulation','recherche','a_verifier','prudence','source','source2'])assert.ok(h[k],h.id+' '+k);
+  assert.match(h.formulation,/pourrait éventuellement/);assert.doesNotMatch(h.formulation,/guérit/);
+  assert.match(h.recherche,/Aucune étude/);
+  for(const s of [h.source,h.source2])assert.match(registre.sources[s].url,/^https:\/\/doi\.org\//);
+  assert.ok(!mrc.substances.some(s=>s.id===h.id));
+ }
+ const causes=mrc.profil_patient.causes,P=id=>ps.find(h=>h.id===id);
+ assert.equal(evaluerProfil(P('p_fenbendazole_pkd'),{cause:'polykystose'},causes).statut,'etudie');
+ assert.equal(evaluerProfil(P('p_fenbendazole_pkd'),{cause:'diabete'},causes).statut,'hors');
 });
