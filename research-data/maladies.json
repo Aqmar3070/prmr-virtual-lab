@@ -944,6 +944,66 @@
   "messier": {
    "source": "Messier et coll. · régime et exercice dans l'arthrose du genou, JAMA 2013",
    "url": "https://doi.org/10.1001/jama.2013.277669"
+  },
+  "donadio": {
+   "source": "Donadio et coll. · huile de poisson dans la néphropathie à IgA, N Engl J Med 1994",
+   "url": "https://doi.org/10.1056/NEJM199411033311804"
+  },
+  "liu_hcq": {
+   "source": "Liu et coll. · hydroxychloroquine dans la néphropathie à IgA, Am J Kidney Dis 2019",
+   "url": "https://doi.org/10.1053/j.ajkd.2019.01.026"
+  },
+  "wills": {
+   "source": "Wills et coll. · nutrition hypercalorique par sonde dans la SLA, Lancet 2014",
+   "url": "https://doi.org/10.1016/S0140-6736(14)60222-1"
+  },
+  "bijkerk": {
+   "source": "Bijkerk et coll. · psyllium ou son dans l'intestin irritable, BMJ 2009",
+   "url": "https://doi.org/10.1136/bmj.b3154"
+  },
+  "jensen_pso": {
+   "source": "Jensen et coll. · perte de poids et psoriasis, JAMA Dermatol 2013",
+   "url": "https://doi.org/10.1001/jamadermatol.2013.722"
+  },
+  "parsad": {
+   "source": "Parsad et coll. · Ginkgo biloba dans le vitiligo, Clin Exp Dermatol 2003",
+   "url": "https://doi.org/10.1046/j.1365-2230.2003.01207.x"
+  },
+  "hui_nam": {
+   "source": "Hui et coll. · nicotinamide (vitamine B3) dans le glaucome, Clin Exp Ophthalmol 2020",
+   "url": "https://doi.org/10.1111/ceo.13818"
+  },
+  "wang_cl": {
+   "source": "Wang et coll. · extrait de curcuma dans l'arthrose du genou, Ann Intern Med 2020",
+   "url": "https://doi.org/10.7326/M20-0990"
+  },
+  "omer": {
+   "source": "Omer et coll. · armoise absinthe (Artemisia absinthium) dans la maladie de Crohn, Phytomedicine 2007",
+   "url": "https://doi.org/10.1016/j.phymed.2007.01.001"
+  },
+  "langmead": {
+   "source": "Langmead et coll. · gel d'aloe vera dans la rectocolite, Aliment Pharmacol Ther 2004",
+   "url": "https://doi.org/10.1111/j.1365-2036.2004.01902.x"
+  },
+  "pantheon": {
+   "source": "Zheng et coll. · PANTHEON, N-acétylcystéine dans la BPCO, Lancet Respir Med 2014",
+   "url": "https://doi.org/10.1016/S2213-2600(13)70286-8"
+  },
+  "khajehdehi_lupus": {
+   "source": "Khajehdehi et coll. · curcuma dans la néphrite lupique, J Ren Nutr 2012",
+   "url": "https://doi.org/10.1053/j.jrn.2011.03.002"
+  },
+  "strubl": {
+   "source": "Strubl et coll. · régimes cétogènes dans la polykystose, série de 131 cas, Clin Kidney J 2022",
+   "url": "https://doi.org/10.1093/ckj/sfab162"
+  },
+  "porpora": {
+   "source": "Porpora et coll. · N-acétylcystéine et kystes d'endométriose, cohorte, Evid Based Complement Alternat Med 2013",
+   "url": "https://doi.org/10.1155/2013/240702"
+  },
+  "golombick": {
+   "source": "Golombick et coll. · curcumine dans la gammapathie (MGUS) et le myélome indolent, Am J Hematol 2012",
+   "url": "https://doi.org/10.1002/ajh.23159"
   }
  },
  "maladies": [
@@ -5811,6 +5871,24 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "ceto_pkd_cas",
+     "nom": "Régimes cétogènes — 131 cas rapportés",
+     "type": "regime",
+     "force": "cas",
+     "dose": "Régime cétogène ou jeûne alimentaire limité dans le temps, pendant 6 mois en moyenne",
+     "population": "131 patients (questionnaires, étude rétrospective)",
+     "effet": "86 % disent leur santé améliorée ; 90 % ont maigri ; 64 % des hypertendus ont vu leur tension baisser ; 45 signalent une légère hausse du DFG.",
+     "resume": "Amélioration ressentie chez 86 %",
+     "source": "strubl",
+     "mecanisme": "La cétose prive les kystes du sucre dont ils dépendent (observé chez l'animal).",
+     "prudence": "Données déclaratives, sans groupe témoin. Effets indésirables chez 66 %, cholestérol élevé chez 22. Un essai de 14 jours n'a pas changé le volume des reins.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": []
@@ -5889,6 +5967,50 @@
      "duree": "110 semaines",
      "mecanisme": "Bloque à la fois l'angiotensine et l'endothéline.",
      "prudence": "Surveillance du foie ; contre-indiqué pendant la grossesse.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "huile_poisson_iga",
+     "nom": "Huile de poisson (oméga-3)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "12 g d'huile de poisson par jour",
+     "population": "106 patients avec protéinurie persistante, contre huile d'olive",
+     "effet": "Créatinine augmentée de 50 % : 6 % contre 33 % ; décès ou dialyse à 4 ans 10 % contre 40 %.",
+     "resume": "Dialyse ou décès à 4 ans : 10 % contre 40 %",
+     "source": "donadio",
+     "stades": [
+      "proteinurie"
+     ],
+     "duree": "2 ans",
+     "mecanisme": "Les oméga-3 modifient les médiateurs de l'inflammation et la circulation dans le rein.",
+     "prudence": "Essai ancien, non confirmé par tous les essais suivants. Saignements possibles avec les anticoagulants.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "hcq_iga",
+     "nom": "Hydroxychloroquine",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "En plus du traitement bloqueur de l'angiotensine (dose dans l'article)",
+     "population": "60 patients, contre placebo",
+     "effet": "Protéinurie à 6 mois − 48,4 % contre + 10 % ; aucun effet indésirable grave.",
+     "resume": "Protéinurie divisée par 2 en 6 mois",
+     "source": "liu_hcq",
+     "stades": [
+      "proteinurie"
+     ],
+     "duree": "6 mois",
+     "mecanisme": "Antipaludique qui calme l'immunité (récepteurs Toll).",
+     "prudence": "Essai court ; contrôle des yeux (rétine) en cas de traitement prolongé.",
      "critere": 1,
      "zones": [
       "kidney_l",
@@ -6047,6 +6169,24 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "curcuma_lupus",
+     "nom": "Curcuma",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Gélules de curcuma (dose dans l'article)",
+     "population": "Patients en rechute ou résistants, contre placebo (essai iranien)",
+     "effet": "Protéinurie de 954 à 261 mg/24 h en 3 mois ; sang dans les urines et tension systolique en baisse ; aucun effet chez les témoins.",
+     "resume": "Protéinurie divisée par 3,7 en 3 mois",
+     "source": "khajehdehi_lupus",
+     "mecanisme": "Freine l'inflammation et la liaison des auto-anticorps (laboratoire).",
+     "prudence": "Comparaison surtout avant/après ; petit essai court. Interactions avec les anticoagulants.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": []
@@ -6069,6 +6209,11 @@
    "description": "Cancer des plasmocytes de la moelle osseuse : douleurs et fractures des os, anémie, atteinte des reins. Les rechutes sont la règle.",
    "source": "maia",
    "stades": [
+    {
+     "id": "precurseur",
+     "nom": "Précurseur : MGUS ou myélome indolent",
+     "niveau": "modere"
+    },
     {
      "id": "nouveau",
      "nom": "Nouvellement diagnostiqué",
@@ -6118,6 +6263,29 @@
      ],
      "mecanisme": "Freine les voies STAT3 et NF-κB des cellules du myélome (laboratoire).",
      "prudence": "Un seul cas ; l'essai de phase I/II cité par les auteurs n'avait montré aucune réponse objective. Forte dose : troubles digestifs, interactions avec les anticoagulants.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ]
+    },
+    {
+     "id": "curcumine_mgus",
+     "nom": "Curcumine",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "4 g par jour (essai croisé), puis 8 g par jour (prolongement)",
+     "population": "36 patients MGUS ou myélome indolent, contre placebo",
+     "effet": "Rapport des chaînes légères libres et marqueur de destruction osseuse en baisse sous curcumine, en hausse sous placebo.",
+     "resume": "Marqueurs du myélome en baisse",
+     "source": "golombick",
+     "stades": [
+      "precurseur"
+     ],
+     "duree": "3 mois par période",
+     "mecanisme": "Freine les voies de survie des plasmocytes anormaux (STAT3, NF-κB).",
+     "prudence": "Effet sur des marqueurs sanguins, pas sur l'évolution vers le myélome.",
      "critere": 1,
      "zones": [
       "femur_l",
@@ -6697,6 +6865,25 @@
       "small_intestine",
       "colon"
      ]
+    },
+    {
+     "id": "absinthe_crohn",
+     "nom": "Armoise absinthe (Artemisia absinthium)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "500 mg 3 fois par jour, pendant la baisse de la cortisone",
+     "population": "40 patients sous cortisone, contre placebo",
+     "effet": "Rémission presque complète chez 65 % contre 0 % après 8 semaines, sans reprise de cortisone pour 90 % ; reprise nécessaire chez 80 % des témoins.",
+     "resume": "Rémission 65 % contre 0 %",
+     "source": "omer",
+     "duree": "10 semaines",
+     "mecanisme": "Plante de la famille de l'armoise annuelle ; anti-inflammatoire.",
+     "prudence": "Petit essai unique. La thuyone de l'absinthe est toxique pour les nerfs à forte dose : uniquement des préparations dosées.",
+     "critere": 1,
+     "zones": [
+      "small_intestine",
+      "colon"
+     ]
     }
    ],
    "guerison": []
@@ -6761,6 +6948,27 @@
      ],
      "mecanisme": "Remplace un microbiote intestinal appauvri ; la diversité bactérienne augmente et persiste.",
      "prudence": "Donneurs dépistés en milieu hospitalier uniquement ; jamais en automédication (risque d'infection).",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    },
+    {
+     "id": "aloe_rch",
+     "nom": "Gel d'aloe vera à boire",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "100 mL 2 fois par jour",
+     "population": "44 patients en poussée, contre placebo",
+     "effet": "Réponse clinique 47 % contre 14 % ; rémission 30 % contre 7 % (non significatif) ; inflammation au microscope réduite.",
+     "resume": "Réponse 47 % contre 14 %",
+     "source": "langmead",
+     "stades": [
+      "active"
+     ],
+     "duree": "4 semaines",
+     "mecanisme": "Gel de la feuille : anti-inflammatoire.",
+     "prudence": "Gel uniquement (le latex de l'aloe est laxatif irritant).",
      "critere": 1,
      "zones": [
       "colon"
@@ -6855,6 +7063,27 @@
      "zones": [
       "skin"
      ]
+    },
+    {
+     "id": "perte_poids_pso",
+     "nom": "Régime très pauvre en calories (perte de poids)",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Régime très pauvre en calories puis réintroduction des aliments (détail dans l'article)",
+     "population": "60 patients obèses, contre alimentation habituelle",
+     "effet": "15,4 kg perdus ; qualité de vie liée à la peau améliorée ; tendance à moins de plaques (PASI − 2,0, à la limite de la signification).",
+     "resume": "Qualité de vie améliorée, plaques en tendance à la baisse",
+     "source": "jensen_pso",
+     "stades": [
+      "modere"
+     ],
+     "duree": "16 semaines",
+     "mecanisme": "La graisse en excès entretient l'inflammation.",
+     "prudence": "Encadrement médical pour un régime aussi strict.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
     }
    ],
    "guerison": []
@@ -6897,6 +7126,23 @@
      "duree": "24 à 52 semaines",
      "mecanisme": "Bloque les enzymes JAK qui guident l'attaque immunitaire des cellules pigmentaires.",
      "prudence": "Acné et démangeaisons au point d'application.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    },
+    {
+     "id": "ginkgo_vitiligo",
+     "nom": "Ginkgo biloba (extrait)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "40 mg 3 fois par jour",
+     "population": "47 patients évaluables, vitiligo limité et lent, contre placebo",
+     "effet": "Progression des taches arrêtée de façon significative ; repigmentation marquée à complète chez 10 patients contre 2.",
+     "resume": "Taches stoppées, repigmentation chez 10 contre 2",
+     "source": "parsad",
+     "mecanisme": "Antioxydant et modulateur de l'immunité.",
+     "prudence": "Risque de saignement avec les anticoagulants.",
      "critere": 1,
      "zones": [
       "skin"
@@ -6960,6 +7206,24 @@
      "duree": "21 jours",
      "mecanisme": "Moins de sucres qui fermentent dans le côlon, donc moins de gaz et d'eau.",
      "prudence": "Régime restrictif : à réintroduire progressivement avec une diététicienne.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    },
+    {
+     "id": "psyllium_sii",
+     "nom": "Psyllium (fibres solubles)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "10 g par jour",
+     "population": "275 patients en médecine générale, contre placebo et son",
+     "effet": "Soulagement 57 % contre 35 % le 1er mois ; sévérité − 90 points contre − 49. Le son (fibres insolubles) n'a pas fait mieux que le placebo.",
+     "resume": "Soulagement 57 % contre 35 %",
+     "source": "bijkerk",
+     "duree": "12 semaines",
+     "mecanisme": "Fibres solubles qui régularisent les selles.",
+     "prudence": "Boire suffisamment. Éviter le son, qui peut aggraver les symptômes.",
      "critere": 1,
      "zones": [
       "colon"
@@ -7182,6 +7446,23 @@
      ],
      "mecanisme": "Brin d'ARN qui empêche la fabrication de la protéine SOD1 toxique.",
      "prudence": "Critère principal non atteint. Effets liés à la ponction lombaire ; effets neurologiques graves chez 7 %.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "hypercalorique_sla",
+     "nom": "Nutrition hypercalorique riche en glucides",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Alimentation par sonde riche en glucides, apportant plus de calories que les besoins",
+     "population": "20 patients déjà nourris par sonde, contre apport normal",
+     "effet": "Aucun décès en 5 mois contre 3 sur 7 ; aucun effet grave contre 9.",
+     "resume": "0 décès contre 3 sur 7 en 5 mois",
+     "source": "wills",
+     "mecanisme": "Compense la dépense d'énergie excessive de la SLA.",
+     "prudence": "Très petit essai de phase 2 ; à confirmer.",
      "critere": 1,
      "zones": [
       "brain"
@@ -7529,6 +7810,25 @@
       "lung_l",
       "lung_r"
      ]
+    },
+    {
+     "id": "nac_bpco",
+     "nom": "N-acétylcystéine",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "600 mg 2 fois par jour",
+     "population": "1 006 patients, BPCO modérée à sévère, contre placebo",
+     "effet": "Poussées par an 1,16 contre 1,49 (RR 0,78 ; IC 95 % 0,67 à 0,90).",
+     "resume": "Poussées − 22 %",
+     "source": "pantheon",
+     "duree": "1 an",
+     "mecanisme": "Fluidifie le mucus et agit comme antioxydant.",
+     "prudence": "Bien tolérée ; étudiée chez des patients chinois.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
     }
    ],
    "guerison": []
@@ -7832,6 +8132,26 @@
       "ovary_l",
       "ovary_r"
      ]
+    },
+    {
+     "id": "nac_endo",
+     "nom": "N-acétylcystéine",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Par la bouche pendant 3 mois (schéma dans l'article)",
+     "population": "92 femmes avec kystes d'endométriose de l'ovaire, comparées à des femmes non traitées (sans tirage au sort)",
+     "effet": "Kystes −1,5 mm contre +6,6 mm ; 24 femmes ont annulé l'opération prévue (kystes réduits ou disparus, douleur soulagée, grossesse) contre 1.",
+     "resume": "Opération évitée chez 24 contre 1",
+     "source": "porpora",
+     "duree": "3 mois",
+     "mecanisme": "Antioxydant qui freine la prolifération des cellules d'endométriose.",
+     "prudence": "Étude d'observation, choix du traitement par les patientes.",
+     "critere": 1,
+     "zones": [
+      "uterus",
+      "ovary_l",
+      "ovary_r"
+     ]
     }
    ],
    "guerison": []
@@ -7923,6 +8243,25 @@
      "duree": "18 mois",
      "mecanisme": "Moins de charge sur le genou et moins d'inflammation.",
      "prudence": "Encadrement nécessaire pour l'exercice.",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r"
+     ]
+    },
+    {
+     "id": "curcuma_arthrose",
+     "nom": "Extrait de curcuma (Curcuma longa)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "2 gélules d'extrait par jour (dose dans l'article)",
+     "population": "70 patients avec épanchement du genou, contre placebo",
+     "effet": "Douleur − 9,1 mm sur 100 de plus que le placebo ; WOMAC douleur − 47,2 ; pas d'effet sur l'épanchement ni le cartilage.",
+     "resume": "Douleur du genou réduite",
+     "source": "wang_cl",
+     "duree": "12 semaines",
+     "mecanisme": "Anti-inflammatoire (rhizome de curcuma).",
+     "prudence": "Effets indésirables comparables au placebo.",
      "critere": 1,
      "zones": [
       "knee_l",
@@ -8046,6 +8385,25 @@
      ],
      "mecanisme": "Améliore l'évacuation du liquide de l'œil.",
      "prudence": "Effet qui peut s'épuiser ; contrôle régulier.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    },
+    {
+     "id": "nicotinamide_glaucome",
+     "nom": "Nicotinamide (vitamine B3)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "1,5 g/j pendant 6 semaines puis 3,0 g/j pendant 6 semaines",
+     "population": "Patients glaucomateux, essai croisé contre placebo",
+     "effet": "Fonction de la rétine améliorée de 14,8 % (contre 5,2 %) ; champ visuel amélioré d'au moins 1 dB chez 27 %.",
+     "resume": "Fonction de la rétine + 15 %",
+     "source": "hui_nam",
+     "duree": "12 semaines",
+     "mecanisme": "Protège l'énergie (NAD) des cellules du nerf optique.",
+     "prudence": "Fortes doses : surveiller le foie. Ne remplace pas le traitement de la pression de l'œil.",
      "critere": 1,
      "zones": [
       "eye_l",

@@ -184,3 +184,10 @@ test('Lot 11 : génétique, femme, vieillissement, infections',()=>{
  for(const [mot,id] of [['thalassémie','thalassemie'],['hémophilie','hemophilie'],['mucoviscidose','mucoviscidose'],['Duchenne','duchenne'],['endométriose','endometriose'],['infertilité','sopk'],['arthrose','arthrose'],['ostéoporose','osteoporose'],['glaucome','glaucome'],['DMLA','dmla'],['tuberculose','tuberculose_mr']])
   assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
 });
+
+test('Approfondissement 1 : plantes et petites études ajoutées aux nouvelles maladies',()=>{
+ const m=registre.maladies.find(x=>x.id==='myelome');
+ assert.ok(ids(m,'precurseur').includes('curcumine_mgus')&&!ids(m,'rechute').includes('curcumine_mgus'));
+ for(const [mid,sid] of [['nephropathie_iga','huile_poisson_iga'],['crohn','absinthe_crohn'],['bpco','nac_bpco'],['polykystose','ceto_pkd_cas']])
+  assert.ok(registre.maladies.find(x=>x.id===mid).substances.some(s=>s.id===sid),sid);
+});
