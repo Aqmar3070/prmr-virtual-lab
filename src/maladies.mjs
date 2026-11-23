@@ -58,3 +58,47 @@ export function rapportPublie(s){
  const r={rr:nombre(m[2]),bas:nombre(m[3]),haut:nombre(m[4])};
  return r.bas>0&&r.bas<=r.rr&&r.rr<=r.haut?r:null;
 }
+
+// ---- Profil du patient : comparer sa situation aux populations réellement étudiées ----
+// Chaque substance peut porter « profil » : causes étudiées et critères d'inclusion des essais
+// (plages repris mot pour mot des publications). Aucune décision de traitement n'en découle :
+// on indique seulement si des patients comparables ont été étudiés.
+export const CHAMPS_PROFIL={
+ dfg:{libelle:"DFG",unite:"mL/min/1,73 m²"},
+ rac:{libelle:"Albumine/créatinine urinaire",unite:"mg/g"},
+ bicarbonate:{libelle:"Bicarbonate sanguin",unite:"mmol/L"}
+};
+const dans=(v,[a,b])=>(a==null||v>=a)&&(b==null||v<=b);
+const plageTexte=([a,b],u)=>a==null?"jusqu’à "+b+" "+u:b==null?"au moins "+a+" "+u:a+" à "+b+" "+u;
+export function decrireProfil(p,causes){
+ if(!p)return null;
+ const morceaux=[];
+ if(p.causes?.length)morceaux.push("cause : "+p.causes.map(c=>causes?.find(x=>x.id===c)?.nom||c).join(" ou "));
+ const crit=(p.criteres||[]).map(c=>Object.entries(CHAMPS_PROFIL).filter(([k])=>c[k]).map(([k,f])=>f.libelle+" "+plageTexte(c[k],f.unite)).concat(c.note?[c.note]:[]).join(", ")).filter(Boolean);
+ if(crit.length)morceaux.push(crit.join(" ; ou "));
+ return morceaux.join(" · ");
+}
+export function evaluerProfil(s,patient,causes){
+ const p=s.profil;
+ if(!p)return {statut:"non_precise",raisons:["Profil des patients non précisé dans la source"]};
+ if(p.causes?.length&&patient.cause&&!p.causes.includes(patient.cause))
+  return {statut:"hors",raisons:["Étudié seulement en cas de "+p.causes.map(c=>causes?.find(x=>x.id===c)?.nom||c).join(" ou ")]};
+ const manqueCause=p.causes?.length&&!patient.cause;
+ const criteres=p.criteres?.length?p.criteres:[{}];
+ let meilleur=null;
+ for(const c of criteres){
+  const hors=[],manque=[];
+  for(const [k,f] of Object.entries(CHAMPS_PROFIL)){
+   if(!c[k])continue;
+   const v=patient[k];
+   if(v==null||v===""||Number.isNaN(v))manque.push(f.libelle);
+   else if(!dans(v,c[k]))hors.push(f.libelle+" "+v+" hors de la plage étudiée ("+plageTexte(c[k],f.unite)+")");
+  }
+  const r={hors,manque};
+  if(!hors.length&&!manque.length&&!manqueCause)return {statut:"etudie",raisons:["Patients comparables étudiés"+(c.note?" ("+c.note+")":"")]};
+  if(!meilleur||hors.length<meilleur.hors.length)meilleur=r;
+ }
+ if(!meilleur.hors.length)return {statut:"a_preciser",raisons:["À préciser : "+[...(manqueCause?["cause de la maladie"]:[]),...meilleur.manque].join(", ")]};
+ return {statut:"hors",raisons:meilleur.hors};
+}
+export const profilActif=patient=>Object.values(patient||{}).some(v=>v!==""&&v!=null&&!Number.isNaN(v));
