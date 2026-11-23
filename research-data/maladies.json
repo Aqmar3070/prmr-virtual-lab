@@ -1132,6 +1132,30 @@
   "capsaicine": {
    "source": "Simpson et coll. · patch de capsaïcine 8 % dans la neuropathie diabétique douloureuse, J Pain 2017",
    "url": "https://doi.org/10.1016/j.jpain.2016.09.008"
+  },
+  "hidit1": {
+   "source": "Wedemeyer et coll. · HIDIT-1, peginterféron dans l'hépatite D, N Engl J Med 2011",
+   "url": "https://doi.org/10.1056/NEJMoa0912696"
+  },
+  "super_sild": {
+   "source": "Galiè et coll. · SUPER, sildénafil dans l'hypertension artérielle pulmonaire, N Engl J Med 2005",
+   "url": "https://doi.org/10.1056/NEJMoa050010"
+  },
+  "believe": {
+   "source": "Cappellini et coll. · BELIEVE, luspatercept dans la bêta-thalassémie, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1910182"
+  },
+  "nixtb": {
+   "source": "Conradie et coll. · Nix-TB, bédaquiline + prétomanide + linézolide, N Engl J Med 2020",
+   "url": "https://doi.org/10.1056/NEJMoa1901814"
+  },
+  "haltc_cafe": {
+   "source": "Freedman et coll. · café et évolution de l'hépatite C (HALT-C), Hepatology 2009",
+   "url": "https://doi.org/10.1002/hep.23162"
+  },
+  "crowe_div": {
+   "source": "Crowe et coll. · alimentation végétarienne, fibres et diverticules (EPIC-Oxford), BMJ 2011",
+   "url": "https://doi.org/10.1136/bmj.d4131"
   }
  },
  "maladies": [
@@ -5495,6 +5519,23 @@
      ],
      "source": "astral1",
      "resume": "Guérison : 99 %"
+    },
+    {
+     "id": "cafe_hcv",
+     "nom": "Café (3 tasses ou plus par jour)",
+     "type": "regime",
+     "force": "faible",
+     "dose": "3 tasses ou plus par jour",
+     "population": "Patients avec hépatite C avancée non guérie par l'interféron, suivis 3,8 ans (observation)",
+     "effet": "Aggravation du foie − 53 % avec 3 tasses ou plus (RR 0,47 ; IC 95 % 0,27 à 0,85) par rapport à aucune tasse.",
+     "resume": "Aggravation − 53 % (association)",
+     "source": "haltc_cafe",
+     "mecanisme": "Composés du café qui freineraient l'inflammation et la fibrose du foie.",
+     "prudence": "Association observée, pas un traitement : les antiviraux guérissent l'hépatite C dans plus de 95 % des cas.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
     }
    ],
    "guerison": [
@@ -7828,6 +7869,11 @@
    "source": "dialon",
    "stades": [
     {
+     "id": "prevention",
+     "nom": "Prévention",
+     "niveau": "faible"
+    },
+    {
      "id": "simple",
      "nom": "Diverticulite simple (sans complication)",
      "niveau": "modere"
@@ -7849,6 +7895,26 @@
      ],
      "mecanisme": "La plupart des diverticulites simples guérissent seules.",
      "prudence": "Seulement si le scanner confirme une forme simple ; antibiotiques si fièvre élevée, abcès ou terrain fragile.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
+    },
+    {
+     "id": "fibres_vegetarien",
+     "nom": "Alimentation riche en fibres ou végétarienne",
+     "type": "regime",
+     "force": "faible",
+     "dose": "Au moins 25,5 g (femmes) à 26,1 g (hommes) de fibres par jour, ou alimentation végétarienne",
+     "population": "47 033 adultes suivis 11,6 ans (observation)",
+     "effet": "Fibres : risque − 41 % (RR 0,59 ; IC 95 % 0,46 à 0,78) ; végétariens : − 31 % (RR 0,69).",
+     "resume": "Diverticulite grave − 41 % (association)",
+     "source": "crowe_div",
+     "stades": [
+      "prevention"
+     ],
+     "mecanisme": "Les fibres rendent les selles plus volumineuses et diminuent la pression dans le côlon.",
+     "prudence": "Association observée ; augmenter les fibres progressivement et boire suffisamment.",
      "critere": 1,
      "zones": [
       "colon"
@@ -8279,6 +8345,26 @@
      "zones": [
       "liver"
      ]
+    },
+    {
+     "id": "peginterferon_hdv",
+     "nom": "Peginterféron alfa-2a",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Injection chaque semaine pendant 48 semaines (avec ou sans adéfovir)",
+     "population": "Patients atteints d'hépatite D, comparés à l'adéfovir seul",
+     "effet": "Virus indétectable à 48 semaines chez 23 à 24 % (0 % avec adéfovir seul) ; 28 % toujours indétectables 24 semaines après l'arrêt.",
+     "resume": "Virus éliminé durablement chez 28 %",
+     "source": "hidit1",
+     "stades": [
+      "chronique"
+     ],
+     "mecanisme": "Stimule les défenses antivirales du foie.",
+     "prudence": "Fièvre, fatigue, dépression, baisse des globules ; contre-indiqué dans la cirrhose décompensée.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
     }
    ],
    "guerison": []
@@ -8457,6 +8543,28 @@
       "lung_r",
       "heart"
      ]
+    },
+    {
+     "id": "sildenafil_htap",
+     "nom": "Sildénafil (molécule du Viagra)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "20, 40 ou 80 mg 3 fois par jour",
+     "population": "Patients symptomatiques, contre placebo (12 semaines puis suivi 1 an)",
+     "effet": "Marche de 6 minutes + 45 à 50 m ; pression pulmonaire en baisse ; + 51 m à 1 an.",
+     "resume": "Marche + 45 m",
+     "source": "super_sild",
+     "stades": [
+      "classe2_3"
+     ],
+     "mecanisme": "Dilate les artères du poumon (voie du monoxyde d'azote).",
+     "prudence": "Bouffées de chaleur, digestion difficile, diarrhée. Jamais avec les dérivés nitrés.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "heart"
+     ]
     }
    ],
    "guerison": []
@@ -8498,6 +8606,27 @@
      ],
      "mecanisme": "Ajoute un gène de bêta-globine fonctionnel dans les cellules souches du sang.",
      "prudence": "La chimiothérapie préparatoire est lourde (infertilité, infections). Coût très élevé.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "liver"
+     ]
+    },
+    {
+     "id": "luspatercept",
+     "nom": "Luspatercept",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Injection sous la peau toutes les 3 semaines (schéma de l'essai)",
+     "population": "336 patients dépendants des transfusions, contre placebo",
+     "effet": "Transfusions réduites d'au moins un tiers : 70,5 % contre 29,5 % sur une période de 12 semaines ; de moitié : 40,2 % contre 6,3 % ; moins de fer accumulé.",
+     "resume": "Transfusions réduites chez 70 %",
+     "source": "believe",
+     "stades": [
+      "dependante"
+     ],
+     "mecanisme": "Aide les globules rouges à mûrir dans la moelle.",
+     "prudence": "Douleurs osseuses passagères, hypertension, acide urique élevé.",
      "critere": 1,
      "zones": [
       "spleen",
@@ -9272,6 +9401,27 @@
      ],
      "mecanisme": "Combinaison d'antibiotiques actifs sur les bacilles résistants.",
      "prudence": "Surveillance du sang et des nerfs (linézolide), du cœur (bédaquiline).",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
+    },
+    {
+     "id": "bpal",
+     "nom": "Bédaquiline + prétomanide + linézolide (BPaL), 6 mois",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Par la bouche pendant 26 semaines",
+     "population": "109 patients atteints de tuberculose très résistante (sans groupe témoin)",
+     "effet": "Guérison sans rechute 6 mois après la fin : 90 %.",
+     "resume": "Guérison 90 %",
+     "source": "nixtb",
+     "stades": [
+      "resistante"
+     ],
+     "mecanisme": "Trois antibiotiques actifs sur les bacilles ultrarésistants.",
+     "prudence": "Atteinte des nerfs (81 %) et de la moelle (48 %) due au linézolide : doses souvent réduites.",
      "critere": 1,
      "zones": [
       "lung_l",
