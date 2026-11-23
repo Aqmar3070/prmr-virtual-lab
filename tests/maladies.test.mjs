@@ -191,3 +191,10 @@ test('Approfondissement 1 : plantes et petites études ajoutées aux nouvelles m
  for(const [mid,sid] of [['nephropathie_iga','huile_poisson_iga'],['crohn','absinthe_crohn'],['bpco','nac_bpco'],['polykystose','ceto_pkd_cas']])
   assert.ok(registre.maladies.find(x=>x.id===mid).substances.some(s=>s.id===sid),sid);
 });
+
+test('Approfondissement 2 : prévention du cancer de l’estomac et lymphome MALT',()=>{
+ const e=registre.maladies.find(x=>x.id==='cancer_estomac');
+ assert.ok(ids(e,'prevention').includes('vitamines_ail')&&!ids(e,'operable').includes('vitamines_ail'));
+ const l=registre.maladies.find(x=>x.id==='lymphome');
+ assert.ok(ids(l,'malt').includes('hp_malt_cas'));
+});

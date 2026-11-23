@@ -1004,6 +1004,22 @@
   "golombick": {
    "source": "Golombick et coll. · curcumine dans la gammapathie (MGUS) et le myélome indolent, Am J Hematol 2012",
    "url": "https://doi.org/10.1002/ajh.23159"
+  },
+  "wright_lupus": {
+   "source": "Wright et coll. · oméga-3 dans le lupus, essai contre placebo, Ann Rheum Dis 2008",
+   "url": "https://doi.org/10.1136/ard.2007.077156"
+  },
+  "chandran": {
+   "source": "Chandran et Goel · curcumine dans la polyarthrite active, essai pilote, Phytother Res 2012",
+   "url": "https://doi.org/10.1002/ptr.4639"
+  },
+  "shandong": {
+   "source": "Li et coll. · Helicobacter, vitamines et ail contre le cancer de l'estomac, 22 ans de suivi, BMJ 2019",
+   "url": "https://doi.org/10.1136/bmj.l5016"
+  },
+  "wotherspoon": {
+   "source": "Wotherspoon et coll. · régression du lymphome gastrique MALT après éradication d'Helicobacter, Lancet 1993",
+   "url": "https://doi.org/10.1016/0140-6736(93)91409-f"
   }
  },
  "maladies": [
@@ -6481,6 +6497,11 @@
    "source": "flot",
    "stades": [
     {
+     "id": "prevention",
+     "nom": "Prévention en région à haut risque",
+     "niveau": "faible"
+    },
+    {
      "id": "precoce",
      "nom": "Précoce, retiré par endoscopie",
      "niveau": "modere"
@@ -6527,6 +6548,47 @@
      ],
      "mecanisme": "Chimiothérapie combinée qui réduit la tumeur avant l'opération.",
      "prudence": "Effets graves chez 27 % (comme le schéma ancien).",
+     "critere": 1,
+     "zones": [
+      "stomach"
+     ]
+    },
+    {
+     "id": "shandong_hp",
+     "nom": "Traitement d'Helicobacter (2 semaines) — prévention",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Amoxicilline + oméprazole pendant 2 semaines",
+     "population": "2 258 personnes porteuses d'Helicobacter, suivies 22 ans",
+     "effet": "Cancers de l'estomac − 52 % (OR 0,48) ; décès par cancer de l'estomac − 38 % (HR 0,62).",
+     "resume": "Cancers − 52 % sur 22 ans",
+     "source": "shandong",
+     "stades": [
+      "prevention"
+     ],
+     "mecanisme": "Supprime la bactérie responsable de l'inflammation chronique.",
+     "prudence": "Résistances aux antibiotiques : schéma à adapter localement.",
+     "critere": 1,
+     "zones": [
+      "stomach"
+     ]
+    },
+    {
+     "id": "vitamines_ail",
+     "nom": "Vitamines C et E + sélénium, ou ail (extrait et huile)",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Prise quotidienne pendant 7,3 ans",
+     "population": "3 365 habitants d'une région à haut risque (Chine), contre placebo",
+     "effet": "Vitamines : cancers − 36 % et décès par cancer de l'estomac − 52 % (HR 0,48) ; ail : décès − 34 % (HR 0,66, limite de la signification).",
+     "resume": "Décès par cancer de l'estomac − 34 à − 52 %",
+     "source": "shandong",
+     "stades": [
+      "prevention"
+     ],
+     "duree": "7 ans, effet suivi 22 ans",
+     "mecanisme": "Antioxydants ; composés soufrés de l'ail.",
+     "prudence": "Doses exactes dans l'article ; effet de l'ail apparu tardivement.",
      "critere": 1,
      "zones": [
       "stomach"
@@ -6647,6 +6709,11 @@
    "source": "polarix",
    "stades": [
     {
+     "id": "malt",
+     "nom": "Lymphome gastrique MALT avec Helicobacter",
+     "niveau": "modere"
+    },
+    {
      "id": "non_traite",
      "nom": "Lymphome B diffus, non traité",
      "niveau": "eleve"
@@ -6668,6 +6735,26 @@
      ],
      "mecanisme": "Anticorps qui apporte un poison directement dans les cellules du lymphome.",
      "prudence": "Profil de tolérance comparable au R-CHOP ; pas de gain de survie globale.",
+     "critere": 1,
+     "zones": [
+      "spleen"
+     ]
+    },
+    {
+     "id": "hp_malt_cas",
+     "nom": "Antibiotiques contre Helicobacter — 6 cas",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Traitement antibiotique d'éradication d'Helicobacter pylori",
+     "population": "6 patients atteints de lymphome MALT de l'estomac de bas grade",
+     "effet": "Bactérie éliminée chez les 6 ; plus aucune trace de lymphome sur les biopsies chez 5 sur 6.",
+     "resume": "Lymphome disparu chez 5 sur 6",
+     "source": "wotherspoon",
+     "stades": [
+      "malt"
+     ],
+     "mecanisme": "Ce lymphome est entretenu par la réaction immunitaire contre la bactérie.",
+     "prudence": "Seulement pour ce type précis de lymphome ; suivi par biopsies nécessaire.",
      "critere": 1,
      "zones": [
       "spleen"
@@ -6753,6 +6840,30 @@
       "skin",
       "heart"
      ]
+    },
+    {
+     "id": "omega3_lupus",
+     "nom": "Oméga-3 (huile de poisson) à faible dose",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "3 g d'oméga-3 par jour",
+     "population": "60 patients, contre placebo",
+     "effet": "Activité du lupus (SLAM-R) de 9,4 à 6,3 et BILAG de 13,6 à 6,7 en 24 semaines ; vaisseaux en meilleur état ; stress oxydant réduit de moitié.",
+     "resume": "Activité du lupus − 33 à − 50 %",
+     "source": "wright_lupus",
+     "stades": [
+      "actif"
+     ],
+     "duree": "24 semaines",
+     "mecanisme": "Les oméga-3 réduisent l'inflammation et protègent la paroi des vaisseaux.",
+     "prudence": "Petit essai ; saignements possibles avec les anticoagulants.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r",
+      "skin",
+      "heart"
+     ]
     }
    ],
    "guerison": [
@@ -6812,6 +6923,24 @@
      ],
      "mecanisme": "Les oméga-3 réduisent les médiateurs de l'inflammation.",
      "prudence": "Troubles digestifs, saignements possibles avec les anticoagulants.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
+    },
+    {
+     "id": "curcumine_pr",
+     "nom": "Curcumine",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "500 mg par jour (seule ou avec diclofénac 50 mg)",
+     "population": "45 patients en poussée, comparaison avec le diclofénac",
+     "effet": "Activité (DAS28) et réponses ACR 20, 50 et 70 meilleures avec la curcumine seule qu'avec le diclofénac ; aucun effet indésirable.",
+     "resume": "Plus efficace que le diclofénac dans ce petit essai",
+     "source": "chandran",
+     "mecanisme": "Anti-inflammatoire (NF-κB, COX-2).",
+     "prudence": "Essai pilote, non masqué pour les patients ; à confirmer.",
      "critere": 1,
      "zones": [
       "femur_l",
