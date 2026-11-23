@@ -153,3 +153,10 @@ test('Rein bloqué : gestes de désobstruction classés et filtrés par fonction
  assert.ok(!ids(r,'fonction_basse').includes('levee_obstruction'));
  assert.ok(r.substances.every(s=>s.type in TYPES));
 });
+
+test('Lot 7 : maladies du rein (polykystose, IgA, HSF, drépanocytose, lupus)',()=>{
+ for(const [mot,id] of [['polykystose','polykystose'],['Berger','nephropathie_iga'],['FSGS','hsf'],['néphropathie drépanocytaire','rein_drepanocytaire'],['néphrite lupique','nephrite_lupique']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ const pkd=registre.maladies.find(m=>m.id==='polykystose');
+ assert.ok(ids(pkd,'avance').includes('tolvaptan_pkd')&&!ids(pkd,'debut').includes('tolvaptan_pkd'));
+});
