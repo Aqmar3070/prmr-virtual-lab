@@ -179,3 +179,8 @@ test('Lot 10 : cerveau, foie, poumon, cœur',()=>{
  for(const [mot,id] of [['Charcot','sla'],['épilepsie','epilepsie'],['Huntington','huntington'],['neuropathie','neuropathie_diabetique'],['cholangite biliaire','cbp'],['delta','hepatite_d'],['fibrose pulmonaire','fibrose_pulmonaire'],['BPCO','bpco'],['HTAP','htap']])
   assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
 });
+
+test('Lot 11 : génétique, femme, vieillissement, infections',()=>{
+ for(const [mot,id] of [['thalassémie','thalassemie'],['hémophilie','hemophilie'],['mucoviscidose','mucoviscidose'],['Duchenne','duchenne'],['endométriose','endometriose'],['infertilité','sopk'],['arthrose','arthrose'],['ostéoporose','osteoporose'],['glaucome','glaucome'],['DMLA','dmla'],['tuberculose','tuberculose_mr']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+});
