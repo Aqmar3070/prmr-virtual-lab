@@ -9,7 +9,7 @@ export const FORCES={
  preclinique:{rang:4,libelle:"Préclinique",groupe:"Études chez l'animal ou sur cellules",couleur:"#ffc94a"},
  theorique:{rang:5,libelle:"Piste théorique",groupe:"Hypothèses à tester",couleur:"#a9bcc6"}
 };
-export const TYPES={medicament:"Médicament",naturel:"Substance naturelle",regime:"Régime ou mode de vie"};
+export const TYPES={medicament:"Médicament",naturel:"Substance naturelle",regime:"Régime ou mode de vie",geste:"Geste médical ou chirurgical"};
 
 export const plier=t=>String(t||"").replace(/[’ʼ`]/g,"'").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 

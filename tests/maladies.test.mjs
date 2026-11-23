@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {FORCES,chercherMaladies,substancesPour,zonesPour,concerne} from '../src/maladies.mjs';
+import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,concerne} from '../src/maladies.mjs';
 
 const registre=JSON.parse(readFileSync(new URL('../research-data/maladies.json',import.meta.url)));
 const mrc=registre.maladies.find(m=>m.id==='mrc');
@@ -144,4 +144,12 @@ test('Vermox (mébendazole) retrouvé par son nom commercial',()=>{
  const colon=registre.maladies.find(m=>m.id==='cancer_colorectal');
  assert.equal(colon.substances.find(s=>s.id==='mebendazole_folfox').force,'moyenne');
  for(const m of registre.maladies)for(const s of m.substances)if(/mébendazole/i.test(s.nom))assert.match(s.nom,/Vermox/,s.id);
+});
+
+test('Rein bloqué : gestes de désobstruction classés et filtrés par fonction restante',()=>{
+ const r=registre.maladies.find(m=>m.id==='rein_obstrue');
+ assert.ok(chercherMaladies(registre,'hydronéphrose').some(m=>m.id==='rein_obstrue'));
+ assert.ok(ids(r,'fonction_conservee').includes('levee_obstruction'));
+ assert.ok(!ids(r,'fonction_basse').includes('levee_obstruction'));
+ assert.ok(r.substances.every(s=>s.type in TYPES));
 });

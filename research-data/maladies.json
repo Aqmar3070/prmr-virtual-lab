@@ -696,6 +696,18 @@
   "hegazy": {
    "source": "Hegazy et coll. · mébendazole (Vermox) + FOLFOX4 et bévacizumab, cancer colorectal métastatique, essai contre placebo, Life Sci 2022",
    "url": "https://doi.org/10.1016/j.lfs.2022.120536"
+  },
+  "khalaf": {
+   "source": "Khalaf et coll. · récupération du rein après levée d'une obstruction unilatérale, 91 adultes, étude prospective, Urology 2004",
+   "url": "https://doi.org/10.1016/j.urology.2004.05.018"
+  },
+  "kalra": {
+   "source": "Kalra et coll. · drainage de 6 semaines des reins obstrués à fonction ≤ 20 %, étude prospective, Cureus 2020",
+   "url": "https://doi.org/10.7759/cureus.10124"
+  },
+  "ascher_sprint": {
+   "source": "Ascher et coll. · marqueurs urinaires et récupération après atteinte rénale aiguë ambulatoire, SPRINT, Am J Kidney Dis 2025",
+   "url": "https://doi.org/10.1053/j.ajkd.2025.02.607"
   }
  },
  "maladies": [
@@ -5431,6 +5443,84 @@
      "source": "ivermectine_revue",
      "source2": "dili_fbz",
      "resume": "Actif en laboratoire, non prouvé chez l'humain"
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "rein_obstrue",
+   "nom": "Rein bloqué (obstruction des voies urinaires)",
+   "synonymes": [
+    "obstruction",
+    "uropathie obstructive",
+    "hydronéphrose",
+    "calcul",
+    "rein bloqué",
+    "sonde",
+    "néphrostomie",
+    "rein"
+   ],
+   "zones": [
+    "kidney_l"
+   ],
+   "description": "Un calcul, un rétrécissement ou une compression empêche l'urine de sortir d'un rein, qui se dilate et perd sa fonction. Levée à temps, l'obstruction laisse souvent le rein récupérer ; au-delà d'un certain seuil de fonction perdue, les dégâts sont durables.",
+   "source": "khalaf",
+   "stades": [
+    {
+     "id": "fonction_conservee",
+     "nom": "DFG du rein atteint ≥ 10 mL/min/1,73 m² (scintigraphie)",
+     "niveau": "modere"
+    },
+    {
+     "id": "fonction_basse",
+     "nom": "DFG du rein atteint < 10 mL/min/1,73 m²",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "levee_obstruction",
+     "nom": "Lever l'obstruction (retirer la cause)",
+     "type": "geste",
+     "force": "faible",
+     "critere": 2,
+     "stades": [
+      "fonction_conservee"
+     ],
+     "dose": "Traitement de la cause (calcul, rétrécissement…) ; contrôles à 3, 6 et 12 mois",
+     "duree": "Suivi moyen 13 mois",
+     "population": "91 adultes, obstruction d'un seul rein, autre rein normal (sans groupe de comparaison)",
+     "effet": "Fonction stabilisée ou améliorée quand le DFG du rein atteint était d'au moins 10 mL/min/1,73 m² avant traitement ; en dessous de 10, rein jugé atteint de façon irréversible. Seuls le DFG et la perfusion du rein avant traitement prédisaient la récupération.",
+     "mecanisme": "L'urine s'écoule de nouveau ; la pression baisse dans le rein et la filtration peut reprendre.",
+     "prudence": "Seuil de 10 tiré d'une seule étude, mesuré par scintigraphie (pas par la créatinine du sang). Le critère regroupe stabilisation et amélioration : il ne dit pas combien de fonction revient.",
+     "zones": [
+      "kidney_l"
+     ],
+     "source": "khalaf",
+     "resume": "Récupération si DFG du rein ≥ 10"
+    },
+    {
+     "id": "drainage_6_semaines",
+     "nom": "Drainage par sonde à travers la peau (néphrostomie) pendant 6 semaines",
+     "type": "geste",
+     "force": "faible",
+     "critere": 2,
+     "condition": "Rein obstrué assurant au plus 20 % de la fonction totale des deux reins",
+     "dose": "Sonde de néphrostomie laissée 6 semaines avant de décider entre réparation et ablation du rein",
+     "duree": "6 semaines",
+     "population": "17 patients de 15 à 65 ans (sans groupe de comparaison)",
+     "effet": "Part du rein en hausse chez 12 sur 17 ; gain moyen de DFG 1,4 mL/min et de 3 points de part (non significatif, p = 0,08). Gain de 5 points ou plus chez 3 des 7 reins à 15 % ou plus, aucun sous 15 %.",
+     "mecanisme": "Décompression prolongée du rein, qui révèle ce qu'il peut encore récupérer.",
+     "prudence": "Très petit effectif : ne permet pas de fixer un seuil individuel. Sous 15 % de part, aucun gain notable n'a été observé.",
+     "zones": [
+      "kidney_l"
+     ],
+     "source": "kalra",
+     "resume": "Amélioration chez 12 sur 17, gain moyen modeste",
+     "stades": [
+      "fonction_conservee",
+      "fonction_basse"
+     ]
     }
    ],
    "guerison": []

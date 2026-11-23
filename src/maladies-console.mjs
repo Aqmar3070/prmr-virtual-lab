@@ -120,7 +120,7 @@ function rendreDroite(){
 
 // ---- Graphiques : uniquement des valeurs publiées ou des comptes du registre ----
 const RANG_PREUVE={forte:6,moyenne:5,faible:4,cas:3,preclinique:2,theorique:1};
-const COULEUR_TYPE={medicament:"#5fc8ff",naturel:"#3fe6b0",regime:"#ffc94a"};
+const COULEUR_TYPE={medicament:"#5fc8ff",naturel:"#3fe6b0",regime:"#ffc94a",geste:"#d7a6ff"};
 const coupe=(t,n)=>t.length>n?t.slice(0,n-1)+"…":t;
 
 function rendreGraphes(liste){
@@ -133,7 +133,7 @@ function rendreGraphes(liste){
   for(const t of Object.keys(COULEUR_TYPE)){const n=liste.filter(s=>s.force===k&&s.type===t).length;if(!n)continue;const w=n/max1*230;g1.append(svg("rect",{x,y,width:Math.max(2,w-1),height:16,rx:2,fill:COULEUR_TYPE[t]}));x+=w;}
   const tot=liste.filter(s=>s.force===k).length;g1.append(svg("text",{x:x+5,y:y+12},tot));
  });
- let lx=10;for(const [t,c] of Object.entries(COULEUR_TYPE)){const y=20+niveaux.length*26;g1.append(svg("rect",{x:lx,y:y-9,width:10,height:10,rx:2,fill:c}),svg("text",{x:lx+14,y},{medicament:"Médicament",naturel:"Plante, naturel",regime:"Régime, mode de vie"}[t]));lx+=t==="medicament"?100:115;}
+ let lx=10;for(const [t,c] of Object.entries(COULEUR_TYPE).filter(([t])=>t!=="geste"||liste.some(s=>s.type==="geste"))){const y=20+niveaux.length*26;const g=liste.some(s=>s.type==="geste");g1.append(svg("rect",{x:lx,y:y-9,width:10,height:10,rx:2,fill:c}),svg("text",{x:lx+14,y},{medicament:"Médicament",naturel:"Plante, naturel",regime:g?"Mode de vie":"Régime, mode de vie",geste:"Geste"}[t]));lx+=t==="medicament"?100:g?(t==="regime"?90:105):115;}
  // 2. Effet mesuré : rapports de risque publiés avec IC 95 % (échelle log).
  const g2=$("mx-g-effet");g2.replaceChildren();
  const chiffres=liste.map(s=>({s,r:rapportPublie(s)})).filter(x=>x.r).sort((a,b)=>a.r.rr-b.r.rr);
