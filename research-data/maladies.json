@@ -692,6 +692,10 @@
   "vahdat": {
    "source": "Vahdat et coll. · vitamine D et récidive des fibromes, essai pilote contre placebo, Complement Ther Clin Pract 2022",
    "url": "https://doi.org/10.1016/j.ctcp.2022.101536"
+  },
+  "hegazy": {
+   "source": "Hegazy et coll. · mébendazole (Vermox) + FOLFOX4 et bévacizumab, cancer colorectal métastatique, essai contre placebo, Life Sci 2022",
+   "url": "https://doi.org/10.1016/j.lfs.2022.120536"
   }
  },
  "maladies": [
@@ -3608,7 +3612,9 @@
     "prostate",
     "cancer prostate",
     "PSA",
-    "cancer"
+    "cancer",
+    "vermox",
+    "mébendazole"
    ],
    "zones": [
     "prostate"
@@ -3818,7 +3824,7 @@
     },
     {
      "id": "antiparasitaires_ama_cas",
-     "nom": "Ivermectine, mébendazole, praziquantel, niclosamide — série de cas",
+     "nom": "Ivermectine, mébendazole (Vermox), praziquantel, niclosamide — série de cas",
      "type": "medicament",
      "force": "cas",
      "critere": 1,
@@ -4186,7 +4192,9 @@
     "cancer du côlon",
     "cancer colorectal",
     "Lynch",
-    "cancer"
+    "cancer",
+    "vermox",
+    "mébendazole"
    ],
    "zones": [
     "colon"
@@ -4385,7 +4393,7 @@
     },
     {
      "id": "mebendazole_colon_cas",
-     "nom": "Mébendazole (vermifuge) — cas rapporté",
+     "nom": "Mébendazole (Vermox, vermifuge) — cas rapporté",
      "type": "medicament",
      "force": "cas",
      "critere": 1,
@@ -4403,6 +4411,28 @@
      ],
      "source": "nygren",
      "resume": "Rémission rapportée chez 1 patient"
+    },
+    {
+     "id": "mebendazole_folfox",
+     "nom": "Mébendazole (Vermox) + chimiothérapie FOLFOX4 et bévacizumab",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "500 mg par la bouche 2 fois par jour, avec 6 cures de FOLFOX4 + bévacizumab",
+     "duree": "12 semaines",
+     "population": "40 patients, cancer métastatique, contre placebo, en double aveugle",
+     "effet": "Réponse tumorale à 12 semaines 65 % contre 10 % ; survie sans progression médiane 9,25 mois contre 3 ; baisse du VEGF, facteur de croissance des vaisseaux tumoraux. Bien toléré.",
+     "mecanisme": "Bloque la tubuline des cellules tumorales et freine la formation de vaisseaux (VEGF).",
+     "prudence": "Petit essai d'un seul centre (Égypte), enregistré après coup ; à confirmer par un essai plus grand. Surveiller le foie et les globules blancs aux doses élevées.",
+     "zones": [
+      "colon",
+      "liver"
+     ],
+     "source": "hegazy",
+     "resume": "Réponse 65 % contre 10 %, sans progression 9,25 contre 3 mois"
     }
    ],
    "guerison": [
@@ -4998,7 +5028,9 @@
     "tumeur cérébrale",
     "gliome",
     "glioblastome",
-    "cancer"
+    "cancer",
+    "vermox",
+    "mébendazole"
    ],
    "zones": [
     "brain"
@@ -5041,7 +5073,7 @@
     },
     {
      "id": "mebendazole_gbm",
-     "nom": "Mébendazole (vermifuge) + témozolomide",
+     "nom": "Mébendazole (Vermox, vermifuge) + témozolomide",
      "type": "medicament",
      "force": "faible",
      "critere": 1,
@@ -5321,7 +5353,8 @@
     "ivermectine",
     "mébendazole",
     "fenbendazole",
-    "cancer"
+    "cancer",
+    "vermox"
    ],
    "zones": [
     "adrenal_l"
@@ -5338,7 +5371,7 @@
    "substances": [
     {
      "id": "mebendazole_surrenale_cas",
-     "nom": "Mébendazole seul — cas rapporté",
+     "nom": "Mébendazole (Vermox) seul — cas rapporté",
      "type": "medicament",
      "force": "cas",
      "critere": 1,

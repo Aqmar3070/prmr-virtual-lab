@@ -137,3 +137,11 @@ test('Lot 6 : VIH, Alzheimer, tension, fibromes — guérisons rapportées et pe
  assert.ok(ids(ad,'precoce').includes('mend_cas')&&!ids(ad,'modere').includes('mend_cas'));
  for(const m of registre.maladies)for(const s of m.substances)assert.ok(Array.isArray(s.zones)&&s.zones.length,m.id+' '+s.id+' sans zone');
 });
+
+test('Vermox (mébendazole) retrouvé par son nom commercial',()=>{
+ const trouves=chercherMaladies(registre,'Vermox').map(m=>m.id);
+ for(const id of ['cancer_colorectal','glioblastome','cancers_rares'])assert.ok(trouves.includes(id),id);
+ const colon=registre.maladies.find(m=>m.id==='cancer_colorectal');
+ assert.equal(colon.substances.find(s=>s.id==='mebendazole_folfox').force,'moyenne');
+ for(const m of registre.maladies)for(const s of m.substances)if(/mébendazole/i.test(s.nom))assert.match(s.nom,/Vermox/,s.id);
+});
