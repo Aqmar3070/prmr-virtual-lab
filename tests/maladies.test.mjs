@@ -87,3 +87,14 @@ test('Pistes de guérison : guérisons obtenues puis hypothèses sourcées',()=>
  }
  assert.ok(registre.maladies.find(m=>m.id==='drepanocytose').guerison.some(g=>g.type==='obtenue'));
 });
+
+test('Lot 3 : cancers, fibromes et maladies du foie, guérisons d’abord',()=>{
+ for(const [mot,id] of [['cancer du sein','cancer_sein'],['prostate','cancer_prostate'],['carcinome hépatocellulaire','cancer_foie'],['col de l’utérus','cancer_col'],['côlon','cancer_colorectal'],['fibrome','fibromes'],['stéatose','mash'],['cirrhose','cirrhose'],['hépatite C','hepatite_c']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ for(const id of ['cancer_sein','cancer_prostate','cancer_foie','cancer_col','cancer_colorectal','fibromes','mash','cirrhose','hepatite_c']){
+  const m=registre.maladies.find(x=>x.id===id);
+  assert.ok(m.guerison.some(g=>g.type==='obtenue'),id+' sans guérison obtenue');
+ }
+ for(const id of ['cancer_sein','cancer_col','fibromes'])assert.equal(registre.maladies.find(x=>x.id===id).sexe,'female');
+ assert.equal(registre.maladies.find(x=>x.id==='cancer_prostate').sexe,'male');
+});

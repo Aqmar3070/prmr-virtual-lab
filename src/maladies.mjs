@@ -10,7 +10,7 @@ export const FORCES={
 };
 export const TYPES={medicament:"Médicament",naturel:"Substance naturelle",regime:"Régime ou mode de vie"};
 
-export const plier=t=>String(t||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+export const plier=t=>String(t||"").replace(/[’ʼ`]/g,"'").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 
 export function chercherMaladies(registre,texte){
  const q=plier(texte).trim();
@@ -53,5 +53,7 @@ const nombre=t=>Number(String(t).replace(",","."));
 export function rapportPublie(s){
  if(s.rr!=null&&s.bas!=null&&s.haut!=null)return {rr:s.rr,bas:s.bas,haut:s.haut};
  const m=MOTIF.exec((s.effet||"")+" "+(s.resume||""));
- return m?{rr:nombre(m[2]),bas:nombre(m[3]),haut:nombre(m[4])}:null;
+ if(!m)return null;
+ const r={rr:nombre(m[2]),bas:nombre(m[3]),haut:nombre(m[4])};
+ return r.bas>0&&r.bas<=r.rr&&r.rr<=r.haut?r:null;
 }
