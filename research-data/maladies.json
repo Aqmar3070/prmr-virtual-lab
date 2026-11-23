@@ -5,7 +5,8 @@
   "moyenne": "Essai clinique de moins de 1 000 participants, ou méta-analyse, montrant un bénéfice mesuré : DFG préservé ou amélioré, créatinine stabilisée, protéinurie réduite.",
   "faible": "Bénéfice rapporté chez l'humain, mais preuves de qualité basse selon les auteurs, essais hétérogènes, ou simple association observée.",
   "preclinique": "Bénéfice observé chez l'animal ou sur cellules : piste prometteuse, à confirmer chez l'humain.",
-  "theorique": "Piste théorique : cible ou mécanisme proposé, simulation informatique ; hypothèse à tester, pas une preuve."
+  "theorique": "Piste théorique : cible ou mécanisme proposé, simulation informatique ; hypothèse à tester, pas une preuve.",
+  "cas": "Cas rapportés et témoignages : guérison, rémission ou recul observés chez une ou quelques personnes, sans groupe de comparaison. Souvent avec d'autres traitements pris en même temps : on ne peut pas savoir ce qui a agi. Piste à vérifier, jamais une preuve."
  },
  "sources": {
   "kdigo": {
@@ -535,6 +536,102 @@
   "predesci": {
    "source": "Villanueva et coll. · PREDESCI, bêtabloquants dans la cirrhose, Lancet 2019",
    "url": "https://doi.org/10.1016/S0140-6736(18)31875-0"
+  },
+  "moertel": {
+   "source": "Moertel et coll. · lévamisole + fluorouracile après chirurgie du côlon, N Engl J Med 1990 (1 296 patients)",
+   "url": "https://doi.org/10.1056/NEJM199002083220602"
+  },
+  "alascca": {
+   "source": "Martling et coll. · ALASCCA, aspirine à faible dose et cancer colorectal avec altération PI3K, N Engl J Med 2025",
+   "url": "https://doi.org/10.1056/NEJMoa2504650"
+  },
+  "matsumoto": {
+   "source": "Matsumoto et coll. · cimétidine après chirurgie du cancer colorectal, Br J Cancer 2002",
+   "url": "https://doi.org/10.1038/sj.bjc.6600048"
+  },
+  "cufox": {
+   "source": "Howells et coll. · curcumine + FOLFOX, essai randomisé de phase IIa, J Nutr 2019",
+   "url": "https://doi.org/10.1093/jn/nxz029"
+  },
+  "krishna": {
+   "source": "Artésunate oral avant chirurgie du cancer colorectal, essai contre placebo, EBioMedicine 2015",
+   "url": "https://doi.org/10.1016/j.ebiom.2014.11.010"
+  },
+  "nygren": {
+   "source": "Nygren et Larsson · rémission tumorale sous mébendazole, cancer du côlon métastatique réfractaire, Acta Oncol 2014",
+   "url": "https://doi.org/10.3109/0284186X.2013.844359"
+  },
+  "makis": {
+   "source": "Fenbendazole pris par 3 patients atteints de cancer avancé, série de cas, Case Rep Oncol 2025",
+   "url": "https://doi.org/10.1159/000546362"
+  },
+  "msct": {
+   "source": "Rapport de cas · cancer du sein HR+ métastatique, chimiothérapie sous soutien métabolique et médicaments repositionnés, Front Oncol 2026",
+   "url": "https://doi.org/10.3389/fonc.2026.1795402"
+  },
+  "itraco": {
+   "source": "Antonarakis et coll. · itraconazole dans le cancer de la prostate résistant à la castration, phase II, Oncologist 2013",
+   "url": "https://doi.org/10.1634/theoncologist.2012-314"
+  },
+  "niclo": {
+   "source": "Parikh et coll. · niclosamide reformulé + abiratérone, phase Ib, Sci Rep 2021",
+   "url": "https://doi.org/10.1038/s41598-021-85969-x"
+  },
+  "ama": {
+   "source": "Série de 6 cas · antiparasitaires choisis par évaluation électro-acupuncturale, 2026 (PubMed 42491797)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13377776/"
+  },
+  "sotelo": {
+   "source": "Sotelo et coll. · chloroquine ajoutée au traitement du glioblastome, essai contre placebo, Ann Intern Med 2006",
+   "url": "https://doi.org/10.7326/0003-4819-144-5-200603070-00008"
+  },
+  "gallia": {
+   "source": "Mébendazole + témozolomide dans les gliomes de haut grade, phase 1, Neurooncol Adv 2021",
+   "url": "https://doi.org/10.1093/noajnl/vdaa154"
+  },
+  "patil": {
+   "source": "Mébendazole + lomustine ou témozolomide, glioblastome récidivant, phase II, eClinicalMedicine 2022",
+   "url": "https://doi.org/10.1016/j.eclinm.2022.101449"
+  },
+  "troger": {
+   "source": "Tröger et coll. · extrait de gui (Viscum album) dans le cancer du pancréas avancé, essai randomisé de phase III, Eur J Cancer 2013",
+   "url": "https://doi.org/10.1016/j.ejca.2013.06.043"
+  },
+  "degiorgi": {
+   "source": "De Giorgi et coll. · propranolol après mélanome opéré, cohorte prospective, JAMA Oncol 2018",
+   "url": "https://doi.org/10.1001/jamaoncol.2017.2908"
+  },
+  "berger": {
+   "source": "Artésunate dans le mélanome uvéal métastatique, 2 premiers cas traités, 2005 (PubMed 16273263)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/16273263/"
+  },
+  "zhang_art": {
+   "source": "Artésunate + vinorelbine-cisplatine, cancer du poumon non à petites cellules avancé, essai randomisé, J Chin Integr Med 2008",
+   "url": "https://doi.org/10.3736/jcim20080206"
+  },
+  "fenfever": {
+   "source": "Revue · fenbendazole, le cas d'un cancer du poumon déclaré guéri et l'automédication en Corée, Curr Issues Mol Biol 2022",
+   "url": "https://doi.org/10.3390/cimb44100338"
+  },
+  "dobro": {
+   "source": "Dobrosotskaya et coll. · mébendazole seul, carcinome corticosurrénalien métastatique, Endocr Pract 2011",
+   "url": "https://doi.org/10.4158/EP10390.CR"
+  },
+  "ivermectine_revue": {
+   "source": "Revue · ivermectine et cancer, données précliniques et absence d'essai humain contrôlé, Curr Oncol Rep 2025",
+   "url": "https://doi.org/10.1007/s11912-025-01704-z"
+  },
+  "dili_fbz": {
+   "source": "Rapport de cas · atteinte du foie après fenbendazole et ivermectine vétérinaires, cancer de la prostate, Cureus 2026",
+   "url": "https://doi.org/10.7759/cureus.108896"
+  },
+  "dili_fbz2": {
+   "source": "Rapport de cas · atteinte du foie après fenbendazole pris seul, cancer du poumon, Case Rep Oncol 2021",
+   "url": "https://doi.org/10.1159/000516276"
+  },
+  "benzimidazoles": {
+   "source": "Revue · benzimidazoles (mébendazole, albendazole, fenbendazole) comme anticancéreux, Immune Netw 2020",
+   "url": "https://doi.org/10.4110/in.2020.20.e29"
   }
  },
  "maladies": [
@@ -3074,6 +3171,53 @@
      ],
      "source": "wins",
      "resume": "Récidive − 24 %"
+    },
+    {
+     "id": "fenbendazole_sein_cas",
+     "nom": "Fenbendazole (vermifuge vétérinaire) — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "dose": "222 mg par jour, tous les jours, pendant 8 mois, puis poursuivi",
+     "population": "1 femme de 83 ans, métastases foie, poumons, os ; chimiothérapie refusée",
+     "effet": "Plus aucune activité cancéreuse au PET-scan après 5 mois ; marqueur CA 27.29 de 316 à 26,5 ; sans récidive près de 3 ans après. Prenait aussi du fulvestrant (hormonothérapie), une radiothérapie sur 2 métastases et de la vitamine D 5 000 UI/j.",
+     "mecanisme": "Bloque la tubuline, freine la consommation de glucose des cellules tumorales (laboratoire).",
+     "prudence": "Médicament vétérinaire, non autorisé chez l'humain : dose, pureté et sécurité non établies. Des atteintes graves du foie ont été publiées après automédication (transaminases à plus de 1 700 U/L, jaunisse), réversibles à l'arrêt. Surveillance du foie indispensable ; ne pas arrêter les traitements prescrits. Ici, hausse passagère des enzymes du foie.",
+     "zones": [
+      "breast_l",
+      "liver",
+      "lung_l",
+      "lung_r"
+     ],
+     "source": "makis",
+     "source2": "dili_fbz",
+     "resume": "Rémission complète, recul de 3 ans (1 cas)"
+    },
+    {
+     "id": "protocole_metabolique_sein_cas",
+     "nom": "Protocole métabolique avec médicaments repositionnés — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "condition": "Cancer HR+, HER2−, métastases osseuses étendues",
+     "dose": "Chimiothérapie après 14 h de jeûne et légère baisse du sucre par insuline, régime cétogène strict, hyperthermie, oxygène hyperbare ; metformine, aspirine, doxycycline, mébendazole, ivermectine, famotidine (doses dans l'article)",
+     "population": "1 femme de 49 ans, très affaiblie au départ",
+     "effet": "Réponse presque complète à 6 mois, disparition des métastases osseuses actives ; en rémission plus de 3 ans après le diagnostic, vie normale.",
+     "mecanisme": "Vise le métabolisme du sucre des cellules cancéreuses (effet Warburg) sur plusieurs fronts à la fois.",
+     "prudence": "La chimiothérapie faisait partie du protocole : impossible de savoir ce qui a agi. Hypoglycémie provoquée : uniquement en milieu médical.",
+     "zones": [
+      "breast_l",
+      "femur_l",
+      "femur_r"
+     ],
+     "source": "msct",
+     "resume": "Rémission > 3 ans (1 cas, avec chimiothérapie)"
     }
    ],
    "guerison": [
@@ -3289,6 +3433,91 @@
      ],
      "source": "vision",
      "resume": "Décès − 38 %"
+    },
+    {
+     "id": "itraconazole_prostate",
+     "nom": "Itraconazole (antifongique) à forte dose",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "condition": "Cancer métastatique résistant à la castration, sans chimiothérapie antérieure",
+     "dose": "600 mg par jour par la bouche (200 mg/j inefficace)",
+     "duree": "Jusqu'à progression",
+     "population": "46 hommes (29 à forte dose)",
+     "effet": "Sans progression du PSA à 24 semaines : 48 % à 600 mg/j contre 11,8 % à 200 mg/j ; survie sans progression médiane 35,9 contre 11,9 semaines ; PSA en baisse chez 14 %.",
+     "mecanisme": "Bloque la voie Hedgehog et la formation de vaisseaux tumoraux, sans baisser la testostérone.",
+     "prudence": "Fatigue, nausées, baisse du potassium, hypertension, œdèmes. Nombreuses interactions médicamenteuses.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "itraco",
+     "resume": "Sans progression à 24 sem. : 48 % (forte dose)"
+    },
+    {
+     "id": "niclosamide_prostate",
+     "nom": "Niclosamide (vermifuge) + abiratérone",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "condition": "Résistant à la castration, jamais traité par abiratérone",
+     "dose": "Niclosamide reformulé 1 200 mg 3 fois par jour + abiratérone 1 000 mg/j + prednisone 5 mg 2 fois par jour",
+     "population": "9 hommes (phase Ib, sans groupe témoin)",
+     "effet": "PSA en baisse chez 5 patients sur 8 évaluables, dont 2 avec PSA devenu indétectable et réponse à l'imagerie.",
+     "mecanisme": "Bloque le variant 7 du récepteur des androgènes, cause de résistance, et renforce l'abiratérone.",
+     "prudence": "La forme habituelle du niclosamide est très peu absorbée : seule la forme reformulée atteint des taux utiles. Diarrhée fréquente.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "niclo",
+     "resume": "PSA en baisse : 5 sur 8 ; 2 indétectables"
+    },
+    {
+     "id": "fenbendazole_prostate_cas",
+     "nom": "Fenbendazole (vermifuge vétérinaire) — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "dose": "222 à 444 mg par jour, presque tous les jours",
+     "duree": "Plus de 26 mois",
+     "population": "1 homme de 75 ans, métastases osseuses étendues",
+     "effet": "PSA indétectable plus de 2 ans, ganglions disparus, lésions osseuses éteintes au PSMA-PET : réponse presque complète. Prenait aussi une hormonothérapie (relugolix, apalutamide) et de nombreux compléments (vitamine D, mélatonine, curcumine, artémisinine, berbérine, cimétidine).",
+     "mecanisme": "Bloque la tubuline, freine la consommation de glucose (laboratoire).",
+     "prudence": "Médicament vétérinaire, non autorisé chez l'humain : dose, pureté et sécurité non établies. Des atteintes graves du foie ont été publiées après automédication (transaminases à plus de 1 700 U/L, jaunisse), réversibles à l'arrêt. Surveillance du foie indispensable ; ne pas arrêter les traitements prescrits. Un homme atteint du même cancer a fait une atteinte grave du foie avec fenbendazole + ivermectine vétérinaires.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "makis",
+     "source2": "dili_fbz",
+     "resume": "Réponse presque complète > 2 ans (1 cas, avec hormonothérapie)"
+    },
+    {
+     "id": "antiparasitaires_ama_cas",
+     "nom": "Ivermectine, mébendazole, praziquantel, niclosamide — série de cas",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "dose": "Associations variables, choisies selon une mesure électrique de points d'acupuncture (doses dans l'article)",
+     "population": "6 patients de stade IV (sein, poumon, prostate, 2 glioblastomes, myélome)",
+     "effet": "Tous en vie au-delà du pronostic attendu ; prostate : PSA de 32 à 0,3 ; sein : rémission complète depuis plus de 30 mois ; poumon : imagerie négative 10 ans après ; myélome : 14 ans de survie.",
+     "mecanisme": "Hypothèse des auteurs : freinage de la voie Wnt/β-caténine par les antiparasitiques.",
+     "prudence": "Méthode de choix des médicaments (électro-acupuncture) sans validation scientifique ; aucun groupe témoin ; autres traitements non détaillés.",
+     "zones": [
+      "prostate"
+     ],
+     "source": "ama",
+     "resume": "PSA 32 → 0,3 (1 cas sur 6)"
     }
    ],
    "guerison": [
@@ -3730,6 +3959,133 @@
      ],
      "source": "cercek",
      "resume": "12 sur 12 en rémission complète"
+    },
+    {
+     "id": "levamisole_colon",
+     "nom": "Lévamisole (antiparasitaire) + fluorouracile",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "stades": [
+      "local"
+     ],
+     "condition": "Cancer du côlon opéré, stade C (ganglions atteints)",
+     "dose": "Lévamisole par la bouche, associé au fluorouracile, pendant 1 an (schéma détaillé dans l'article)",
+     "duree": "1 an",
+     "population": "1 296 patients randomisés",
+     "effet": "Stade C : récidive − 41 % et décès − 33 % avec l'association. Le lévamisole seul n'a pas eu d'effet décelable.",
+     "mecanisme": "Antiparasitaire (vermifuge) qui stimule l'immunité ; l'effet n'apparaît qu'associé au fluorouracile.",
+     "prudence": "Retiré du marché humain dans plusieurs pays (risque de chute des globules blancs) ; remplacé depuis par des chimiothérapies plus efficaces. Montre qu'un antiparasitaire a déjà fait partie d'un traitement standard du cancer.",
+     "zones": [
+      "colon"
+     ],
+     "source": "moertel",
+     "resume": "Récidive − 41 %, décès − 33 % (stade C)"
+    },
+    {
+     "id": "aspirine_pi3k",
+     "nom": "Aspirine à faible dose (tumeur avec altération PI3K)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "local"
+     ],
+     "condition": "Tumeur porteuse d'une mutation PIK3CA ou d'une autre altération de la voie PI3K (environ 1 cancer sur 3)",
+     "dose": "160 mg une fois par jour",
+     "duree": "3 ans",
+     "population": "626 patients opérés (stades I à III), contre placebo",
+     "effet": "Récidive à 3 ans 7,7 % contre 14,1 % (HR 0,49 ; IC 95 % 0,24 à 0,98) ; autres altérations PI3K : 7,7 % contre 16,8 % (HR 0,42 ; IC 95 % 0,21 à 0,83).",
+     "mecanisme": "Non établi ; hypothèse d'une action sur l'inflammation et les plaquettes, plus marquée quand la voie PI3K est activée.",
+     "prudence": "Effets indésirables graves 16,8 % contre 11,6 % sous placebo (saignements). Nécessite une analyse génétique de la tumeur.",
+     "zones": [
+      "colon"
+     ],
+     "source": "alascca",
+     "resume": "Récidive à 3 ans : 7,7 % contre 14,1 %"
+    },
+    {
+     "id": "cimetidine_colon",
+     "nom": "Cimétidine (antiacide) + fluorouracile",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "local"
+     ],
+     "dose": "800 mg par jour par la bouche, débuté 2 semaines après l'opération, avec 200 mg/j de fluorouracile",
+     "duree": "1 an",
+     "population": "64 patients opérés, randomisés",
+     "effet": "Survie à 10 ans 84,6 % contre 49,8 % ; 95,5 % contre 35,1 % quand la tumeur exprime beaucoup de sialyl-Lewis X.",
+     "mecanisme": "Bloque l'E-sélectine des vaisseaux et empêche les cellules cancéreuses de s'y accrocher pour former des métastases.",
+     "prudence": "Petit essai d'un seul pays, jamais confirmé à grande échelle. Interactions médicamenteuses nombreuses (enzymes du foie).",
+     "zones": [
+      "colon"
+     ],
+     "source": "matsumoto",
+     "resume": "Survie à 10 ans : 85 % contre 50 %"
+    },
+    {
+     "id": "curcumine_folfox",
+     "nom": "Curcumine + chimiothérapie FOLFOX",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "2 g de curcumine par jour par la bouche, pendant la chimiothérapie",
+     "population": "28 patients, cancer métastatique, randomisés 1 pour 2",
+     "effet": "Survie médiane 502 jours contre 200 (HR 0,34 ; IC 95 % 0,14 à 0,82) ; progression non significativement retardée. Le critère principal de l'essai était la tolérance, bonne.",
+     "mecanisme": "Composé du curcuma (rhizome) ; agit sur l'inflammation (NF-κB) en laboratoire.",
+     "prudence": "Très petit essai : le gain de survie est à confirmer. Absorption faible ; interactions possibles avec les anticoagulants.",
+     "zones": [
+      "colon",
+      "liver"
+     ],
+     "source": "cufox",
+     "resume": "Survie médiane 502 jours contre 200"
+    },
+    {
+     "id": "artesunate_colon",
+     "nom": "Artésunate (antipaludique, famille de l'artéméther)",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "local"
+     ],
+     "dose": "200 mg par jour par la bouche, 14 jours avant l'opération",
+     "population": "23 patients, contre placebo, en double aveugle",
+     "effet": "Récidive pendant 42 mois de suivi (médiane) : 1 patient sous artésunate contre 6 sous placebo. Baisse probable de la prolifération tumorale (Ki67). Essai pilote, analyse exploratoire.",
+     "mecanisme": "Dérivé de l'armoise annuelle (Artemisia annua) ; le fer des cellules tumorales l'active et produit des radicaux toxiques pour elles.",
+     "prudence": "Bien toléré à 200 mg/j sur 14 jours. Au long cours (jusqu'à 37 mois chez des patientes) : vertiges et troubles de l'audition rapportés, surveillance conseillée.",
+     "zones": [
+      "colon"
+     ],
+     "source": "krishna",
+     "resume": "Récidive : 1 sur 9 contre 6 sur 11"
+    },
+    {
+     "id": "mebendazole_colon_cas",
+     "nom": "Mébendazole (vermifuge) — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "Dose précisée dans l'article (lettre à l'éditeur, résumé non disponible)",
+     "population": "1 patient, cancer du côlon métastatique après échec des chimiothérapies",
+     "effet": "Rémission des métastases rapportée par les auteurs sous mébendazole, après échec des traitements standard.",
+     "mecanisme": "Bloque la tubuline (squelette de la cellule) comme certaines chimiothérapies, et freine la formation de vaisseaux.",
+     "prudence": "Fortes doses : hausse des enzymes du foie (grade 3 chez 4 patients sur 15 à 200 mg/kg/j), réversible en baissant la dose. Prise de sang du foie régulière.",
+     "zones": [
+      "colon",
+      "liver"
+     ],
+     "source": "nygren",
+     "resume": "Rémission rapportée chez 1 patient"
     }
    ],
    "guerison": [
@@ -4295,6 +4651,418 @@
      "source": "astral1"
     }
    ]
+  },
+  {
+   "id": "glioblastome",
+   "nom": "Glioblastome (tumeur du cerveau)",
+   "synonymes": [
+    "cerveau",
+    "tumeur cérébrale",
+    "gliome",
+    "glioblastome",
+    "cancer"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Tumeur maligne la plus fréquente du cerveau chez l'adulte. Traitement : chirurgie, radiothérapie et témozolomide ; la récidive est presque constante.",
+   "source": "sotelo",
+   "stades": [
+    {
+     "id": "nouveau",
+     "nom": "Nouvellement diagnostiqué",
+     "niveau": "eleve"
+    },
+    {
+     "id": "recidive",
+     "nom": "Récidive",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "chloroquine_gbm",
+     "nom": "Chloroquine (antipaludique)",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "nouveau"
+     ],
+     "dose": "150 mg par jour par la bouche, dès le 5e jour après l'opération",
+     "duree": "12 mois",
+     "population": "30 patients de moins de 60 ans, contre placebo, en double aveugle",
+     "effet": "Survie médiane 24 mois contre 11 ; décès environ moitié moins rapides (HR 0,52 ; IC 95 % 0,21 à 1,26), écart non significatif. 6 survivants à 20–59 mois contre 3.",
+     "mecanisme": "Bloque l'autophagie, le recyclage interne qui aide la tumeur à résister à la chimiothérapie et aux rayons.",
+     "prudence": "Les auteurs n'excluent pas le hasard. Surveillance des yeux (rétine) et du cœur.",
+     "zones": [
+      "brain"
+     ],
+     "source": "sotelo",
+     "resume": "Survie médiane 24 mois contre 11"
+    },
+    {
+     "id": "mebendazole_gbm",
+     "nom": "Mébendazole (vermifuge) + témozolomide",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "nouveau"
+     ],
+     "dose": "Jusqu'à 200 mg/kg par jour par la bouche, avec le témozolomide d'entretien (paliers 25, 50, 100, 200 mg/kg/j)",
+     "population": "24 patients (phase 1, sans groupe témoin)",
+     "effet": "Survie médiane 21 mois ; 41,7 % en vie à 2 ans, 25 % à 3 et 4 ans. Sans progression 13,1 mois avec plus d'un mois de mébendazole, contre 9,2 mois avec moins.",
+     "mecanisme": "Passe dans le cerveau ; bloque la tubuline et freine les vaisseaux de la tumeur.",
+     "prudence": "Fortes doses : hausse des enzymes du foie (grade 3 chez 4 patients sur 15 à 200 mg/kg/j), réversible en baissant la dose. Prise de sang du foie régulière. En récidive (88 patients, Inde 2022), l'ajout du mébendazole n'a pas atteint l'objectif de survie fixé.",
+     "zones": [
+      "brain"
+     ],
+     "source": "gallia",
+     "source2": "patil",
+     "resume": "25 % en vie à 4 ans (sans comparaison)"
+    }
+   ],
+   "guerison": [
+    {
+     "id": "gbm_hypothese",
+     "type": "hypothese",
+     "appui": "faible",
+     "titre": "Traitement standard + chloroquine ou mébendazole",
+     "objectif": "Allonger nettement la survie après le traitement standard",
+     "composants": [
+      {
+       "nom": "Chirurgie, radiothérapie, témozolomide",
+       "role": "traitement de référence"
+      },
+      {
+       "nom": "Chloroquine",
+       "role": "lever la résistance par l'autophagie",
+       "ref": "chloroquine_gbm"
+      },
+      {
+       "nom": "Mébendazole",
+       "role": "agir sur la tubuline, passe dans le cerveau",
+       "ref": "mebendazole_gbm"
+      }
+     ],
+     "raisonnement": "Deux médicaments anciens, peu coûteux, qui passent dans le cerveau, avec des signaux de survie dans de petits essais.",
+     "a_tester": "Essai randomisé assez grand ; l'association des deux n'a jamais été évaluée.",
+     "risques": "Foie (mébendazole à forte dose), yeux et cœur (chloroquine).",
+     "source": "sotelo",
+     "source2": "gallia"
+    }
+   ]
+  },
+  {
+   "id": "cancer_pancreas",
+   "nom": "Cancer du pancréas",
+   "synonymes": [
+    "pancréas",
+    "adénocarcinome pancréatique",
+    "cancer"
+   ],
+   "zones": [
+    "pancreas"
+   ],
+   "description": "Cancer souvent découvert tard, de mauvais pronostic. Seule la chirurgie d'une tumeur localisée peut guérir.",
+   "source": "troger",
+   "stades": [
+    {
+     "id": "avance",
+     "nom": "Localement avancé ou métastatique",
+     "niveau": "eleve",
+     "zones": [
+      "pancreas",
+      "liver"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "gui_pancreas",
+     "nom": "Extrait de gui (Viscum album)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "Injections sous la peau 3 fois par semaine, dose croissante de 0,01 mg à 10 mg",
+     "population": "220 patients sans traitement anticancéreux, randomisés contre soins de confort seuls",
+     "effet": "Survie médiane 4,8 mois contre 2,7 (HR 0,49) ; 6,6 contre 3,2 mois dans le groupe de meilleur pronostic. Aucun effet indésirable lié au gui.",
+     "mecanisme": "Lectines et viscotoxines de la plante : stimulation immunitaire, toxicité pour les cellules tumorales.",
+     "prudence": "Essai ouvert, sans placebo, dans un seul pays ; un essai ultérieur avec chimiothérapie n'a pas montré de gain. Réactions au point d'injection, allergies.",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "troger",
+     "resume": "Survie médiane 4,8 contre 2,7 mois"
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "melanome",
+   "nom": "Mélanome",
+   "synonymes": [
+    "peau",
+    "cancer de la peau",
+    "mélanome",
+    "grain de beauté",
+    "cancer"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Cancer des cellules pigmentaires de la peau (ou de l'œil). Opéré tôt, il guérit le plus souvent ; l'immunothérapie a transformé le pronostic des formes avancées.",
+   "source": "degiorgi",
+   "stades": [
+    {
+     "id": "opere",
+     "nom": "Opéré, sans métastase",
+     "niveau": "modere"
+    },
+    {
+     "id": "metastatique",
+     "nom": "Métastatique",
+     "niveau": "eleve",
+     "zones": [
+      "skin",
+      "liver",
+      "lung_l",
+      "lung_r"
+     ]
+    }
+   ],
+   "substances": [
+    {
+     "id": "propranolol_melanome",
+     "nom": "Propranolol (bêtabloquant)",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 1,
+     "stades": [
+      "opere"
+     ],
+     "dose": "80 mg par jour, débuté au diagnostic",
+     "population": "53 patients (19 sous propranolol), stades IB à IIIA, sans tirage au sort",
+     "effet": "Récidive environ − 80 % chez les utilisateurs (HR 0,18 ; IC 95 % 0,04 à 0,89), après ajustement.",
+     "mecanisme": "Bloque l'adrénaline qui favorise la formation de vaisseaux et la migration des cellules du mélanome.",
+     "prudence": "Association observée, pas d'essai randomisé. Contre-indiqué en cas d'asthme, de pouls lent ; ne jamais arrêter brutalement.",
+     "zones": [
+      "skin"
+     ],
+     "source": "degiorgi",
+     "resume": "Récidive − 80 % (association observée)"
+    },
+    {
+     "id": "fenbendazole_melanome_cas",
+     "nom": "Fenbendazole (vermifuge vétérinaire) — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "dose": "222 à 444 mg par jour, tous les jours",
+     "population": "1 homme de 63 ans, récidive métastatique (péritoine, os, muscles)",
+     "effet": "ADN tumoral circulant de 123,37 à 0,38 en 7 semaines puis 0 ; plus aucune maladie visible environ 2 mois après le début, sans récidive 11 mois plus tard. A reçu 2 doses de nivolumab (immunothérapie) dans le même temps.",
+     "mecanisme": "Bloque la tubuline, freine la consommation de glucose (laboratoire).",
+     "prudence": "Médicament vétérinaire, non autorisé chez l'humain : dose, pureté et sécurité non établies. Des atteintes graves du foie ont été publiées après automédication (transaminases à plus de 1 700 U/L, jaunisse), réversibles à l'arrêt. Surveillance du foie indispensable ; ne pas arrêter les traitements prescrits. Le nivolumab peut à lui seul expliquer la rémission.",
+     "zones": [
+      "skin"
+     ],
+     "source": "makis",
+     "source2": "dili_fbz",
+     "resume": "Rémission complète, 11 mois (1 cas, avec immunothérapie)"
+    },
+    {
+     "id": "artesunate_uveal_cas",
+     "nom": "Artésunate (antipaludique) + chimiothérapie — 2 cas",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "metastatique"
+     ],
+     "dose": "Ajouté à la chimiothérapie, en usage compassionnel (dose dans l'article)",
+     "population": "2 patients, mélanome de l'œil métastatique, en progression sous chimiothérapie seule",
+     "effet": "Un patient : réponse temporaire ; l'autre : stabilisation puis régression de métastases à la rate et aux poumons, en vie 47 mois après le stade IV (survie habituelle : 2 à 5 mois).",
+     "mecanisme": "Dérivé de l'artémisinine activé par le fer des cellules tumorales.",
+     "prudence": "Deux cas seulement ; la chimiothérapie était poursuivie.",
+     "zones": [
+      "skin",
+      "lung_l",
+      "lung_r"
+     ],
+     "source": "berger",
+     "resume": "Vivant à 47 mois au stade IV (1 cas sur 2)"
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "cancer_poumon",
+   "nom": "Cancer du poumon",
+   "synonymes": [
+    "poumon",
+    "bronches",
+    "cancer bronchique",
+    "cancer"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r"
+   ],
+   "description": "Premier cancer mortel dans le monde, lié surtout au tabac. Opéré tôt, il peut guérir ; les formes avancées bénéficient de thérapies ciblées et d'immunothérapie.",
+   "source": "zhang_art",
+   "stades": [
+    {
+     "id": "avance",
+     "nom": "Non à petites cellules, avancé",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "artesunate_poumon",
+     "nom": "Artésunate (antipaludique) + chimiothérapie",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "120 mg en injection intraveineuse une fois par jour, jours 1 à 8 de chaque cure de 21 jours, au moins 2 cures, avec vinorelbine-cisplatine",
+     "population": "120 patients randomisés",
+     "effet": "Maladie contrôlée 88,2 % contre 72,7 % ; progression retardée (24 contre 20 semaines). Survie à 1 an 45,1 % contre 32,7 %, écart non significatif. Pas de toxicité en plus.",
+     "mecanisme": "Dérivé de l'artémisinine activé par le fer des cellules tumorales.",
+     "prudence": "Essai d'un seul pays, publié en chinois ; non confirmé ailleurs.",
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ],
+     "source": "zhang_art",
+     "resume": "Maladie contrôlée 88 % contre 73 %"
+    },
+    {
+     "id": "fenbendazole_poumon_temoignage",
+     "nom": "Fenbendazole — témoignage public d'un cancer du poumon déclaré guéri",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "Non vérifiée : rapportée par le témoignage, pas par un dossier médical publié",
+     "population": "1 témoignage (diffusé sur internet), suivi en Corée d'une vague d'automédication",
+     "effet": "Guérison complète déclarée par la personne. Aucune donnée médicale publiée permettant de la vérifier. Chez une patiente de 80 ans suivie à l'hôpital, aucun recul de la tumeur et une atteinte grave du foie.",
+     "mecanisme": "Bloque la tubuline (laboratoire).",
+     "prudence": "Médicament vétérinaire, non autorisé chez l'humain : dose, pureté et sécurité non établies. Des atteintes graves du foie ont été publiées après automédication (transaminases à plus de 1 700 U/L, jaunisse), réversibles à l'arrêt. Surveillance du foie indispensable ; ne pas arrêter les traitements prescrits. Des patients coréens ont pris le produit sans en parler à leur cancérologue, ce qui a gêné leur traitement.",
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ],
+     "source": "fenfever",
+     "source2": "dili_fbz2",
+     "resume": "Guérison déclarée, non vérifiée"
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "cancers_rares",
+   "nom": "Autres cancers (surrénale, lymphome…) et pistes antiparasitaires",
+   "synonymes": [
+    "surrénale",
+    "corticosurrénalome",
+    "lymphome",
+    "antiparasitaire",
+    "vermifuge",
+    "ivermectine",
+    "mébendazole",
+    "fenbendazole",
+    "cancer"
+   ],
+   "zones": [
+    "adrenal_l"
+   ],
+   "description": "Cancers moins fréquents, et pistes communes à de nombreux cancers testées surtout en laboratoire.",
+   "source": "benzimidazoles",
+   "stades": [
+    {
+     "id": "avance",
+     "nom": "Avancé ou métastatique",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "mebendazole_surrenale_cas",
+     "nom": "Mébendazole seul — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "100 mg 2 fois par jour, seul, toutes les chimiothérapies arrêtées",
+     "duree": "24 mois",
+     "population": "1 homme de 48 ans, carcinome corticosurrénalien métastatique en échec de traitement",
+     "effet": "Métastases d'abord en recul puis stables pendant 19 mois, bonne qualité de vie, sans effet indésirable notable ; nouvelle progression après 24 mois.",
+     "mecanisme": "Bloque la tubuline, freine les vaisseaux tumoraux.",
+     "prudence": "Fortes doses : hausse des enzymes du foie (grade 3 chez 4 patients sur 15 à 200 mg/kg/j), réversible en baissant la dose. Prise de sang du foie régulière.",
+     "zones": [
+      "adrenal_l"
+     ],
+     "source": "dobro",
+     "resume": "Maladie contrôlée 2 ans, seul (1 cas)"
+    },
+    {
+     "id": "fenbendazole_lymphome_cas",
+     "nom": "Fenbendazole seul — lymphome, cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "1 g par jour, seul",
+     "duree": "12 mois",
+     "population": "1 patient, lymphome B diffus à grandes cellules de stade IV",
+     "effet": "Régression du lymphome rapportée (cas cité dans la série de cas sur le fenbendazole, 2025).",
+     "mecanisme": "Bloque la tubuline (laboratoire).",
+     "prudence": "Médicament vétérinaire, non autorisé chez l'humain : dose, pureté et sécurité non établies. Des atteintes graves du foie ont été publiées après automédication (transaminases à plus de 1 700 U/L, jaunisse), réversibles à l'arrêt. Surveillance du foie indispensable ; ne pas arrêter les traitements prescrits.",
+     "zones": [
+      "spleen"
+     ],
+     "source": "makis",
+     "resume": "Régression (1 cas, cité)"
+    },
+    {
+     "id": "ivermectine_cancer",
+     "nom": "Ivermectine",
+     "type": "medicament",
+     "force": "preclinique",
+     "critere": 1,
+     "stades": [
+      "avance"
+     ],
+     "dose": "Aucune dose anticancéreuse établie chez l'humain",
+     "population": "Cellules et animaux (sein, côlon, glioblastome, leucémie…)",
+     "effet": "Freine la multiplication et provoque la mort des cellules cancéreuses en laboratoire ; aucun grand essai humain contrôlé publié à ce jour.",
+     "mecanisme": "Agit sur les voies Wnt/β-caténine et Akt/mTOR.",
+     "prudence": "Une cohorte de 197 patients (ivermectine 25 mg + mébendazole 250 mg, télémédecine) a été RÉTRACTÉE par la revue en 2026 : ses résultats ne peuvent pas être retenus. Atteinte du foie décrite avec l'ivermectine vétérinaire.",
+     "zones": [
+      "adrenal_l"
+     ],
+     "source": "ivermectine_revue",
+     "source2": "dili_fbz",
+     "resume": "Actif en laboratoire, non prouvé chez l'humain"
+    }
+   ],
+   "guerison": []
   }
  ],
  "regle_appui": {
