@@ -1340,6 +1340,34 @@
   "jindal2025_metformine_dmla": {
    "source": "Jindal et al., JAMA Ophthalmol 2025 — metformine et apparition ou aggravation de la DMLA (dossiers de 70 établissements)",
    "url": "https://doi.org/10.1001/jamaophthalmol.2025.3070"
+  },
+  "patten2018_ldn": {
+   "source": "Patten et al., Pharmacotherapy 2018 — naltrexone à faible dose dans la douleur et l'inflammation chroniques (SEP, fibromyalgie, Crohn)",
+   "url": "https://doi.org/10.1002/phar.2086"
+  },
+  "ronaldson2021_hero": {
+   "source": "Ronaldson et al., F1000Res 2021 — hydroxychloroquine contre placebo dans l'arthrose des mains (essai HERO, 248 participants)",
+   "url": "https://doi.org/10.12688/f1000research.55296.1"
+  },
+  "sun2020_metformine_lupus": {
+   "source": "Sun et al., Lupus Sci Med 2020 — metformine et poussées de lupus (analyse groupée de deux essais, 201 patients)",
+   "url": "https://doi.org/10.1136/lupus-2020-000429"
+  },
+  "hoilat2022_larazotide": {
+   "source": "Hoilat et al., Clin Res Hepatol Gastroenterol 2022 — larazotide dans la maladie cœliaque (méta-analyse, 626 patients)",
+   "url": "https://doi.org/10.1016/j.clinre.2021.101782"
+  },
+  "cope2024_apippra": {
+   "source": "Cope et al. (APIPPRA), Lancet 2024 — abatacept chez les personnes à haut risque de polyarthrite (213 participants)",
+   "url": "https://doi.org/10.1016/S0140-6736(23)02649-1"
+  },
+  "hahn2022_vital": {
+   "source": "Hahn et al. (VITAL), BMJ 2022 — vitamine D et oméga-3 pour prévenir les maladies auto-immunes (25 871 participants)",
+   "url": "https://doi.org/10.1136/bmj-2021-066452"
+  },
+  "liu2024_vitiligo_icc": {
+   "source": "Liu et al., Eur J Immunol 2024 — l'axe IFN-γ–CXCL9/10–CXCR3 et les lymphocytes T CD8 qui détruisent les mélanocytes dans le vitiligo",
+   "url": "https://doi.org/10.1002/eji.202250281"
   }
  },
  "maladies": [
@@ -8312,6 +8340,28 @@
       "skin",
       "heart"
      ]
+    },
+    {
+     "id": "metformine_lupus",
+     "nom": "Metformine (antidiabétique)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Ajoutée au traitement habituel, 12 mois",
+     "population": "201 patients avec lupus peu actif (deux essais regroupés après coup)",
+     "effet": "Poussées à 12 mois : 21 % sous metformine contre 35 % sans (RR 0,68 ; IC 95 % 0,46 à 0,96), surtout chez les patients au lupus calme biologiquement et sous hydroxychloroquine.",
+     "resume": "Un tiers de poussées en moins",
+     "source": "sun2020_metformine_lupus",
+     "stades": [
+      "actif"
+     ],
+     "prudence": "Analyse groupée faite après coup : à confirmer par un essai dédié.",
+     "critere": 1,
+     "zones": [
+      "kidney_l",
+      "kidney_r",
+      "skin",
+      "heart"
+     ]
     }
    ],
    "guerison": [
@@ -8394,6 +8444,40 @@
       "femur_l",
       "femur_r"
      ]
+    },
+    {
+     "id": "abatacept_prevention",
+     "nom": "Abatacept",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "125 mg en injection sous la peau chaque semaine, 12 mois",
+     "population": "213 personnes à haut risque (anticorps ACPA et facteur rhumatoïde, douleurs articulaires)",
+     "effet": "Polyarthrite apparue chez 6 % sous abatacept contre 29 % sous placebo pendant le traitement ; à 2 ans, 25 % contre 37 %. Effet partiellement maintenu après l'arrêt.",
+     "resume": "Polyarthrite retardée chez les personnes à risque",
+     "source": "cope2024_apippra",
+     "condition": "Prévention avant l'apparition de la maladie",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
+    },
+    {
+     "id": "vitd_autoimmun_pr",
+     "nom": "Vitamine D3",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Vitamine D3 2 000 UI par jour (± oméga-3 1 g), 5 ans",
+     "population": "25 871 adultes de plus de 50 ou 55 ans sans maladie auto-immune",
+     "effet": "Vitamine D : 22 % de maladies auto-immunes confirmées en moins (HR 0,78 ; IC 95 % 0,61 à 0,99) — polyarthrite, pseudopolyarthrite, thyroïdite, psoriasis et autres réunis. Oméga-3 : −15 %, non significatif.",
+     "resume": "22 % de maladies auto-immunes en moins (prévention)",
+     "source": "hahn2022_vital",
+     "condition": "Prévention : effet mesuré sur l'ensemble des maladies auto-immunes, pas sur celle-ci seule",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
     }
    ],
    "guerison": []
@@ -8456,6 +8540,24 @@
      "duree": "10 semaines",
      "mecanisme": "Plante de la famille de l'armoise annuelle ; anti-inflammatoire.",
      "prudence": "Petit essai unique. La thuyone de l'absinthe est toxique pour les nerfs à forte dose : uniquement des préparations dosées.",
+     "critere": 1,
+     "zones": [
+      "small_intestine",
+      "colon"
+     ]
+    },
+    {
+     "id": "ldn_crohn",
+     "nom": "Naltrexone à faible dose",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Faible dose (bien inférieure à la dose utilisée contre l'alcool), selon les études",
+     "population": "Petites études chez des patients atteints de Crohn, de SEP ou de fibromyalgie (revue)",
+     "effet": "Bonne tolérance ; bénéfices surtout sur des mesures ressenties (qualité de vie, douleur) ; peu de preuves sur des mesures objectives.",
+     "resume": "Mieux-être ressenti, preuves objectives limitées",
+     "source": "patten2018_ldn",
+     "mecanisme": "Hypothèse : freine la multiplication des lymphocytes T et B et bloque le récepteur TLR4.",
+     "prudence": "Usage hors autorisation ; essais randomisés plus grands nécessaires.",
      "critere": 1,
      "zones": [
       "small_intestine",
@@ -8725,6 +8827,22 @@
      "zones": [
       "skin"
      ]
+    },
+    {
+     "id": "vitd_autoimmun_pso",
+     "nom": "Vitamine D3",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Vitamine D3 2 000 UI par jour (± oméga-3 1 g), 5 ans",
+     "population": "25 871 adultes de plus de 50 ou 55 ans sans maladie auto-immune",
+     "effet": "Vitamine D : 22 % de maladies auto-immunes confirmées en moins (HR 0,78 ; IC 95 % 0,61 à 0,99) — polyarthrite, pseudopolyarthrite, thyroïdite, psoriasis et autres réunis. Oméga-3 : −15 %, non significatif.",
+     "resume": "22 % de maladies auto-immunes en moins (prévention)",
+     "source": "hahn2022_vital",
+     "condition": "Prévention : effet mesuré sur l'ensemble des maladies auto-immunes, pas sur celle-ci seule",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
     }
    ],
    "guerison": []
@@ -8790,7 +8908,28 @@
      ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_ldn_vitiligo",
+     "nom": "Naltrexone à faible dose dans le vitiligo",
+     "type": "medicament",
+     "situation": "Vitiligo actif (taches qui s'étendent), quand l'attaque immunitaire est en cours.",
+     "lesion": "Des lymphocytes T CD8, attirés par le signal IFN-γ–CXCL9/10–CXCR3, détachent et détruisent les mélanocytes (cellules du pigment).",
+     "fait_molecule": "La naltrexone à faible dose est supposée freiner la multiplication des lymphocytes T et B et bloquer le récepteur TLR4 ; elle est bien tolérée dans la SEP, la fibromyalgie et la maladie de Crohn (Patten 2018).",
+     "fait_maladie": "Dans le vitiligo, les lymphocytes T CD8 sont les exécutants de la destruction des mélanocytes, entretenue par une boucle d'IFN-γ (Liu 2024).",
+     "lien": "Si la naltrexone à faible dose freine bien les lymphocytes T, elle pourrait calmer l'attaque des mélanocytes, à un coût faible et par la bouche.",
+     "formulation": "Chez une personne dont le vitiligo s'étend, la naltrexone à faible dose pourrait éventuellement stabiliser les taches, voire aider la repigmentation avec la photothérapie.",
+     "recherche": "Aucune étude sur la naltrexone dans le vitiligo trouvée sur PubMed (recherche du 24/11/2026 : 0 résultat).",
+     "a_verifier": "L'effet sur les lymphocytes T est une hypothèse : le vérifier d'abord (marqueurs CXCL10 dans le sang ou la peau), puis un petit essai mesurant l'extension des taches.",
+     "prudence": "Jamais testée dans le vitiligo. Interdite avec les médicaments opioïdes.",
+     "zones": [
+      "skin"
+     ],
+     "source": "patten2018_ldn",
+     "source2": "liu2024_vitiligo_icc"
+    }
+   ]
   },
   {
    "id": "intestin_irritable",
@@ -9041,6 +9180,22 @@
      ],
      "mecanisme": "Supprime le déclencheur de la réaction immunitaire.",
      "prudence": "Écarts de régime = lésions persistantes ; contrôle par biopsie conseillé chez l'adulte.",
+     "critere": 1,
+     "zones": [
+      "small_intestine"
+     ]
+    },
+    {
+     "id": "larazotide",
+     "nom": "Larazotide (régulateur de la perméabilité intestinale)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Selon les essais, avant les repas",
+     "population": "4 essais, 626 patients cœliaques",
+     "effet": "Moins de symptômes digestifs chez les patients exposés au gluten ; pas d'effet sur la perméabilité intestinale mesurée ni chez ceux au régime sans gluten.",
+     "resume": "Symptômes réduits en cas d'exposition au gluten",
+     "source": "hoilat2022_larazotide",
+     "prudence": "Ne remplace pas le régime sans gluten.",
      "critere": 1,
      "zones": [
       "small_intestine"
@@ -10402,6 +10557,27 @@
      ],
      "mecanisme": "Calme l'inflammation de la membrane des articulations.",
      "prudence": "Effet qui disparaît à l'arrêt ; ne pas prolonger sans avis médical (os, sucre, tension).",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r",
+      "hip_l",
+      "hip_r"
+     ]
+    },
+    {
+     "id": "hcq_mains",
+     "nom": "Hydroxychloroquine (antipaludéen)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Dose quotidienne de l'essai, 12 mois",
+     "population": "248 participants avec arthrose des mains douloureuse (essai HERO contre placebo)",
+     "effet": "Pas d'amélioration de la qualité de vie par rapport au placebo ; traitement jugé non rentable pour soulager la douleur.",
+     "resume": "Pas de bénéfice démontré",
+     "source": "ronaldson2021_hero",
+     "stades": [
+      "mains"
+     ],
      "critere": 1,
      "zones": [
       "knee_l",
