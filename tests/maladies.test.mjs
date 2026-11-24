@@ -327,3 +327,11 @@ test('Lot molécules 3 : cerveau, nerfs et yeux (résultats positifs et négatif
   assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
  assert.match(m('parkinson').substances.find(s=>s.id==='deferiprone_parkinson').resume,/Aggravation/);
 });
+
+test('Lot molécules 4 : auto-immunité et intestin',async()=>{
+ const {pourTestes,pourPistes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['polyarthrite','abatacept_prevention'],['polyarthrite','vitd_autoimmun_pr'],['psoriasis','vitd_autoimmun_pso'],['crohn','ldn_crohn'],['arthrose','hcq_mains'],['lupus','metformine_lupus'],['coeliaque','larazotide']])
+  assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+ assert.equal(pourPistes(m('vitiligo'),[],'').pistes[0].id,'p_ldn_vitiligo');
+});
