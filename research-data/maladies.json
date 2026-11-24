@@ -1520,6 +1520,86 @@
   "sadeghzadeh2021_isotretinoine": {
    "source": "Sadeghzadeh-Bazargan et al., Dermatol Ther 2021 — isotrétinoïne à faible dose dans l'acné (revue systématique)",
    "url": "https://doi.org/10.1111/dth.14438"
+  },
+  "goadsby2017_erenumab": {
+   "source": "Goadsby et al. (STRIVE), N Engl J Med 2017 — érénumab dans la migraine épisodique (955 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1705848"
+  },
+  "katz2017_ipp": {
+   "source": "Targownik et al. (AGA), Gastroenterology 2017 — bon usage des inhibeurs de la pompe à protons au long cours",
+   "url": "https://doi.org/10.1053/j.gastro.2017.01.031"
+  },
+  "sheikh2020_mpff": {
+   "source": "Sheikh et al., Adv Ther 2020 — fraction flavonoïque purifiée micronisée dans la maladie hémorroïdaire (méta-analyse)",
+   "url": "https://doi.org/10.1007/s12325-020-01353-7"
+  },
+  "pasupathy2023_fer": {
+   "source": "Pasupathy et al., Sci Rep 2023 — fer un jour sur deux contre tous les jours dans l'anémie par manque de fer (200 adultes)",
+   "url": "https://doi.org/10.1038/s41598-023-29034-9"
+  },
+  "obyrne2018_sygma": {
+   "source": "O'Byrne et al. (SYGMA 1), N Engl J Med 2018 — budésonide-formotérol à la demande dans l'asthme léger (3 849 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1715274"
+  },
+  "spinks2021_angine": {
+   "source": "Spinks et al., Cochrane 2021 — antibiotiques dans le mal de gorge (29 essais, 15 337 cas)",
+   "url": "https://doi.org/10.1002/14651858.CD000023.pub5"
+  },
+  "venekamp2023_otite": {
+   "source": "Venekamp et al., Cochrane 2023 — antibiotiques dans l'otite moyenne aiguë de l'enfant",
+   "url": "https://doi.org/10.1002/14651858.CD000219.pub5"
+  },
+  "chen2023_conjonctivite": {
+   "source": "Chen et al., Cochrane 2023 — antibiotiques dans la conjonctivite bactérienne aiguë (21 essais, 8 805 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD001211.pub4"
+  },
+  "dykewicz2024_rhinite": {
+   "source": "Bousquet / Wallace et al., J Allergy Clin Immunol 2024 — traitements en spray nasal de la rhinite allergique (méta-analyse en réseau, 151 études)",
+   "url": "https://doi.org/10.1016/j.jaci.2024.04.016"
+  },
+  "herpes2022_valaciclovir": {
+   "source": "J Evid Based Dent Pract 2022 — traitements de l'herpès labial récidivant (revue systématique et méta-analyse en réseau)",
+   "url": "https://doi.org/10.1016/j.jebdp.2022.101778"
+  },
+  "kwok2012_verrues": {
+   "source": "Kwok et al., Cochrane 2012 — traitements locaux des verrues",
+   "url": "https://doi.org/10.1002/14651858.CD001781.pub3"
+  },
+  "penha2024_minoxidil": {
+   "source": "Penha et al., JAMA Dermatol 2024 — minoxidil par la bouche contre minoxidil local dans la calvitie masculine (essai randomisé)",
+   "url": "https://doi.org/10.1001/jamadermatol.2024.0284"
+  },
+  "furukawa2024_tcci": {
+   "source": "Furukawa et al., JAMA Psychiatry 2024 — composantes de la thérapie cognitive et comportementale de l'insomnie (241 essais, 31 452 participants)",
+   "url": "https://doi.org/10.1001/jamapsychiatry.2023.5060"
+  },
+  "noetel2024_exercice_depression": {
+   "source": "Noetel et al., BMJ 2024 — exercice physique dans la dépression (méta-analyse en réseau, 218 études, 14 170 participants)",
+   "url": "https://doi.org/10.1136/bmj-2023-075847"
+  },
+  "hayden2021_lombalgie": {
+   "source": "Hayden et al., Cochrane 2021 — exercice dans la lombalgie chronique (249 essais)",
+   "url": "https://doi.org/10.1002/14651858.CD009790.pub2"
+  },
+  "doherty2018_goutte": {
+   "source": "Doherty et al., Lancet 2018 — goutte prise en charge par infirmières avec objectif d'acide urique (517 patients)",
+   "url": "https://doi.org/10.1016/S0140-6736(18)32158-5"
+  },
+  "brittenden2015_class": {
+   "source": "Brittenden et al. (CLASS), Health Technol Assess 2015 — mousse, laser ou chirurgie dans les varices",
+   "url": "https://doi.org/10.3310/hta19270"
+  },
+  "ford2016_hpylori": {
+   "source": "Ford et al., Cochrane 2016 — éradication d'Helicobacter pylori dans l'ulcère",
+   "url": "https://doi.org/10.1002/14651858.CD003840.pub5"
+  },
+  "crawford2007_pied": {
+   "source": "Crawford et Hollis, Cochrane 2007 — traitements locaux des mycoses de la peau des pieds",
+   "url": "https://doi.org/10.1002/14651858.CD001434.pub2"
+  },
+  "wu2025_clemastine_sla": {
+   "source": "Wu et al., Redox Biol 2025 — récepteur sigma-1 et clémastine contre le stress oxydatif des astrocytes dans la SLA C9orf72 (cellules, souris)",
+   "url": "https://doi.org/10.1016/j.redox.2025.103875"
   }
  },
  "maladies": [
@@ -7056,7 +7136,28 @@
      ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_vitc_itraconazole",
+     "nom": "Vitamine C intraveineuse + itraconazole : deux attaques par le stress oxydatif",
+     "type": "medicament",
+     "situation": "Cancer du pancréas avancé, en complément de la chimiothérapie.",
+     "lesion": "Les cellules du cancer du pancréas supportent mal un excès de stress oxydatif.",
+     "fait_molecule": "L'itraconazole (antifongique) déclenche la mort des cellules du cancer du pancréas par stress oxydatif des mitochondries et freine les tumeurs greffées chez la souris (Jiang 2019).",
+     "fait_maladie": "La vitamine C intraveineuse à forte dose ajoutée à la chimiothérapie a doublé la survie dans un petit essai randomisé (Bodeker 2024).",
+     "lien": "Les deux molécules frappent par le stress oxydatif, par deux voies différentes : leur association pourrait additionner leurs effets.",
+     "formulation": "Chez une personne atteinte d'un cancer du pancréas avancé, l'association vitamine C intraveineuse + itraconazole pourrait éventuellement renforcer l'effet de la chimiothérapie.",
+     "recherche": "Aucune étude associant vitamine C et itraconazole dans le cancer du pancréas trouvée sur PubMed (recherche du 24/11/2026 : 0 résultat).",
+     "a_verifier": "D'abord sur cellules et chez la souris, seule puis avec gemcitabine + nab-paclitaxel ; vérifier les interactions de l'itraconazole avec la chimiothérapie.",
+     "prudence": "Jamais testé. L'itraconazole a de nombreuses interactions médicamenteuses ; perfusions de vitamine C uniquement à l'hôpital.",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "jiang2019_itraconazole_pancreas",
+     "source2": "bodeker2024_vitc_pancreas"
+    }
+   ]
   },
   {
    "id": "melanome",
@@ -9707,6 +9808,22 @@
      ],
      "condition": "SLA récente (moins d'un an) à progression modérée",
      "prudence": "Effet démontré sur 16 semaines ; forme injectable à forte dose, différente des comprimés de B12.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "clemastine_sla",
+     "nom": "Clémastine (antihistaminique, active le récepteur sigma-1)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales",
+     "population": "Astrocytes et souris modèles de SLA liée à C9orf72",
+     "effet": "Diminue la production de NOX4 et le stress oxydatif des astrocytes ; activer le récepteur sigma-1 protège les neurones chez la souris.",
+     "resume": "Neurones protégés (souris)",
+     "source": "wu2025_clemastine_sla",
+     "prudence": "Pas d'essai chez l'humain dans la SLA selon cette source.",
      "critere": 1,
      "zones": [
       "brain"
@@ -12412,6 +12529,907 @@
     }
    ],
    "guerison": []
+  },
+  {
+   "id": "migraine",
+   "nom": "Migraine",
+   "synonymes": [
+    "migraine",
+    "mal de tête",
+    "céphalée",
+    "maux de tête"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Maux de tête qui reviennent par crises, souvent d'un côté, avec nausées et gêne à la lumière.",
+   "source": "goadsby2017_erenumab",
+   "stades": [
+    {
+     "id": "episodique",
+     "nom": "Migraine épisodique (moins de 15 jours par mois)",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "erenumab",
+     "nom": "Érénumab (anticorps anti-CGRP)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "70 ou 140 mg en injection une fois par mois, 6 mois",
+     "population": "955 adultes, migraine épisodique",
+     "effet": "Jours de migraine par mois réduits de 3,2 (70 mg) et 3,7 (140 mg) contre 1,8 sous placebo ; migraine réduite d'au moins moitié chez 43 % et 50 % contre 27 %. Effets indésirables proches du placebo.",
+     "resume": "Crises réduites de moitié chez près d'une personne sur deux",
+     "source": "goadsby2017_erenumab",
+     "stades": [
+      "episodique"
+     ],
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "reflux",
+   "nom": "Reflux gastro-œsophagien (brûlures d'estomac)",
+   "synonymes": [
+    "reflux",
+    "RGO",
+    "brûlures d'estomac",
+    "remontées acides",
+    "pyrosis"
+   ],
+   "zones": [
+    "esophagus",
+    "stomach"
+   ],
+   "description": "L'acide de l'estomac remonte dans l'œsophage et provoque des brûlures derrière le sternum.",
+   "source": "katz2017_ipp",
+   "stades": [
+    {
+     "id": "symptomes",
+     "nom": "Reflux avec symptômes",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "ipp_reflux",
+     "nom": "Inhibiteurs de la pompe à protons (oméprazole, ésoméprazole…)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Cure courte, puis dose la plus faible efficace",
+     "population": "Recommandations d'experts (Association américaine de gastroentérologie)",
+     "effet": "Traitement de référence pour cicatriser l'œsophage à court terme ; ensuite, essayer de réduire ou d'arrêter, et garder la dose la plus faible qui contrôle les symptômes.",
+     "resume": "Cicatrise l'œsophage ; viser la plus petite dose ensuite",
+     "source": "katz2017_ipp",
+     "prudence": "Au long cours, réévaluer régulièrement l'indication avec le médecin.",
+     "critere": 1,
+     "zones": [
+      "esophagus",
+      "stomach"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "hemorroides",
+   "nom": "Hémorroïdes",
+   "synonymes": [
+    "hémorroïdes",
+    "maladie hémorroïdaire",
+    "saignement anal"
+   ],
+   "zones": [
+    "colon",
+    "pelvis"
+   ],
+   "description": "Gonflement des veines de l'anus, qui peut saigner, gêner ou faire mal.",
+   "source": "sheikh2020_mpff",
+   "stades": [
+    {
+     "id": "crise",
+     "nom": "Crise hémorroïdaire",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "mpff",
+     "nom": "Fraction flavonoïque purifiée micronisée (diosmine + hespéridine)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Selon les essais",
+     "population": "Méta-analyse d'essais dans la maladie hémorroïdaire",
+     "effet": "Saignements nettement réduits (OR 0,082) et amélioration globale plus fréquente (OR 5,25) par rapport aux comparateurs.",
+     "resume": "Moins de saignements",
+     "source": "sheikh2020_mpff",
+     "critere": 1,
+     "zones": [
+      "colon",
+      "pelvis"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "anemie_fer",
+   "nom": "Anémie par manque de fer",
+   "synonymes": [
+    "anémie",
+    "manque de fer",
+    "carence en fer",
+    "fatigue",
+    "hémoglobine basse"
+   ],
+   "zones": [
+    "spleen",
+    "heart"
+   ],
+   "description": "Le manque de fer fait baisser l'hémoglobine : fatigue, essoufflement, pâleur.",
+   "source": "pasupathy2023_fer",
+   "stades": [
+    {
+     "id": "adulte",
+     "nom": "Adulte carencé",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "fer_alterne",
+     "nom": "Fer par la bouche un jour sur deux",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Fer un jour sur deux, comparé à tous les jours",
+     "population": "200 adultes anémiés (essai randomisé)",
+     "effet": "Hémoglobine remontée de 1,05 g/dL un jour sur deux contre 1,36 g/dL tous les jours, sans différence significative entre les deux schémas.",
+     "resume": "Le fer un jour sur deux fait presque aussi bien",
+     "source": "pasupathy2023_fer",
+     "prudence": "Chercher la cause du manque de fer (saignements, alimentation).",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "heart"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "asthme",
+   "nom": "Asthme",
+   "synonymes": [
+    "asthme",
+    "crise d'asthme",
+    "sifflements",
+    "bronches"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r"
+   ],
+   "description": "Les bronches se resserrent et s'enflamment par crises : toux, sifflements, essoufflement.",
+   "source": "obyrne2018_sygma",
+   "stades": [
+    {
+     "id": "leger",
+     "nom": "Asthme léger",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "budesonide_formoterol",
+     "nom": "Budésonide-formotérol à la demande",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Inhalateur seulement en cas de gêne, 52 semaines",
+     "population": "3 849 patients, asthme léger",
+     "effet": "Crises graves 0,07 par an contre 0,20 avec la terbutaline seule (−64 %), aussi peu qu'avec le budésonide quotidien, avec environ 4 fois moins de corticoïde inhalé.",
+     "resume": "Crises graves réduites de deux tiers",
+     "source": "obyrne2018_sygma",
+     "stades": [
+      "leger"
+     ],
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "rhinite_allergique",
+   "nom": "Rhinite allergique (rhume des foins)",
+   "synonymes": [
+    "rhinite allergique",
+    "rhume des foins",
+    "allergie au pollen",
+    "éternuements",
+    "nez bouché"
+   ],
+   "zones": [
+    "pharynx"
+   ],
+   "description": "Allergie du nez (pollens, acariens) : éternuements, nez qui coule ou bouché, yeux qui piquent.",
+   "source": "dykewicz2024_rhinite",
+   "stades": [
+    {
+     "id": "saisonniere",
+     "nom": "Rhinite saisonnière ou permanente",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "sprays_rhinite",
+     "nom": "Sprays nasaux : azélastine-fluticasone, fluticasone",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Spray nasal quotidien",
+     "population": "151 études comparées (méta-analyse en réseau)",
+     "effet": "L'association azélastine-fluticasone et la fluticasone seule figurent parmi les sprays les plus efficaces sur les symptômes du nez.",
+     "resume": "Parmi les sprays les plus efficaces",
+     "source": "dykewicz2024_rhinite",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "angine",
+   "nom": "Angine et mal de gorge",
+   "synonymes": [
+    "angine",
+    "mal de gorge",
+    "pharyngite",
+    "gorge"
+   ],
+   "zones": [
+    "pharynx"
+   ],
+   "description": "Inflammation de la gorge, le plus souvent due à un virus ; guérit seule dans la plupart des cas.",
+   "source": "spinks2021_angine",
+   "stades": [
+    {
+     "id": "aigu",
+     "nom": "Mal de gorge aigu",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "antibio_angine",
+     "nom": "Antibiotiques",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Selon les essais",
+     "population": "29 essais, 15 337 cas",
+     "effet": "Gorge douloureuse au 3e jour réduite de 30 % (RR 0,70) ; mais 82 % des personnes sont guéries en une semaine sans antibiotique. Moins d'otites (OR 0,21) et d'abcès de la gorge (OR 0,16).",
+     "resume": "Bénéfice modeste ; guérit seul le plus souvent",
+     "source": "spinks2021_angine",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "angine_spontanee",
+     "type": "obtenue",
+     "titre": "Guérison spontanée",
+     "objectif": "Disparition du mal de gorge",
+     "resultat": "82 % des personnes n'ont plus de symptômes en une semaine sans antibiotique.",
+     "composants": [],
+     "risques": "Consulter si fièvre forte, difficulté à avaler ou à respirer.",
+     "source": "spinks2021_angine"
+    }
+   ]
+  },
+  {
+   "id": "otite",
+   "nom": "Otite moyenne aiguë de l'enfant",
+   "synonymes": [
+    "otite",
+    "mal d'oreille",
+    "oreille",
+    "otite moyenne"
+   ],
+   "zones": [
+    "pharynx"
+   ],
+   "description": "Infection de l'oreille moyenne, très fréquente chez le jeune enfant.",
+   "source": "venekamp2023_otite",
+   "stades": [
+    {
+     "id": "aigu",
+     "nom": "Otite aiguë",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "antibio_otite",
+     "nom": "Antibiotiques",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Selon les essais",
+     "population": "Enfants avec otite aiguë",
+     "effet": "Aucun effet sur la douleur à 24 h ; douleur un peu réduite à 2–3 jours (RR 0,71 : 1 enfant soulagé pour 20 traités) ; effets indésirables plus fréquents (RR 1,38 : 1 pour 14).",
+     "resume": "Bénéfice faible, effets indésirables fréquents",
+     "source": "venekamp2023_otite",
+     "prudence": "Décision avec le médecin selon l'âge et la gravité.",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "conjonctivite",
+   "nom": "Conjonctivite",
+   "synonymes": [
+    "conjonctivite",
+    "œil rouge",
+    "yeux rouges",
+    "œil qui colle"
+   ],
+   "zones": [
+    "eye_l",
+    "eye_r"
+   ],
+   "description": "Inflammation de la membrane qui couvre le blanc de l'œil : rougeur, larmes, paupières collées.",
+   "source": "chen2023_conjonctivite",
+   "stades": [
+    {
+     "id": "bacterienne",
+     "nom": "Conjonctivite bactérienne",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "antibio_conjonctivite",
+     "nom": "Collyres antibiotiques",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Selon les essais",
+     "population": "21 essais, 8 805 participants",
+     "effet": "Guérison plus fréquente avec antibiotique (RR 1,26) : 68 % contre 56 % qui guérissent spontanément.",
+     "resume": "Guérison un peu plus fréquente",
+     "source": "chen2023_conjonctivite",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "conjonctivite_guerison",
+     "type": "obtenue",
+     "titre": "Guérison, souvent spontanée",
+     "objectif": "Disparition de la conjonctivite",
+     "resultat": "Plus de la moitié guérit seule ; environ 2 sur 3 avec un collyre antibiotique.",
+     "composants": [],
+     "risques": "Consulter si douleur, baisse de vision ou port de lentilles.",
+     "source": "chen2023_conjonctivite"
+    }
+   ]
+  },
+  {
+   "id": "herpes_labial",
+   "nom": "Herpès labial (bouton de fièvre)",
+   "synonymes": [
+    "herpès",
+    "bouton de fièvre",
+    "herpès labial",
+    "feu sauvage"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Petites cloques sur les lèvres dues au virus de l'herpès, qui reviennent par poussées.",
+   "source": "herpes2022_valaciclovir",
+   "stades": [
+    {
+     "id": "recidive",
+     "nom": "Poussée récidivante",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "valaciclovir_clobetasol",
+     "nom": "Valaciclovir + crème de clobétasol",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Selon les essais",
+     "population": "Revue des traitements de l'herpès labial récidivant",
+     "effet": "La combinaison raccourcit le plus la guérison de la poussée, d'environ 3,5 jours.",
+     "resume": "Poussée guérie 3,5 jours plus tôt",
+     "source": "herpes2022_valaciclovir",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "verrues",
+   "nom": "Verrues",
+   "synonymes": [
+    "verrues",
+    "verrue plantaire",
+    "verrue"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Petites excroissances de la peau dues à un papillomavirus, surtout aux mains et aux pieds.",
+   "source": "kwok2012_verrues",
+   "stades": [
+    {
+     "id": "mains_pieds",
+     "nom": "Mains ou pieds",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "acide_salicylique",
+     "nom": "Acide salicylique local",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Application régulière",
+     "population": "Essais réunis par Cochrane",
+     "effet": "Disparition plus fréquente que sous placebo (RR 1,56), surtout aux mains (2,67) qu'aux pieds (1,29).",
+     "resume": "Verrues disparues plus souvent",
+     "source": "kwok2012_verrues",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    },
+    {
+     "id": "cryotherapie",
+     "nom": "Cryothérapie (azote liquide)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Selon les essais",
+     "population": "Essais réunis par Cochrane",
+     "effet": "Pas de différence nette avec le placebo (RR 1,45, non significatif) ; la cryothérapie plus intense fait mieux que la douce (RR 1,90).",
+     "resume": "Efficace surtout si appliquée fortement",
+     "source": "kwok2012_verrues",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "verrues_disparition",
+     "type": "obtenue",
+     "titre": "Disparition des verrues",
+     "objectif": "Faire disparaître la verrue",
+     "resultat": "L'acide salicylique fait disparaître les verrues plus souvent que le placebo, surtout aux mains.",
+     "composants": [
+      {
+       "nom": "Acide salicylique",
+       "role": "kératolytique",
+       "ref": "acide_salicylique"
+      }
+     ],
+     "risques": "Irritation locale possible.",
+     "source": "kwok2012_verrues"
+    }
+   ]
+  },
+  {
+   "id": "alopecie",
+   "nom": "Chute de cheveux (calvitie masculine)",
+   "synonymes": [
+    "chute de cheveux",
+    "calvitie",
+    "alopécie",
+    "cheveux"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Perte progressive des cheveux sur le sommet et les tempes, d'origine hormonale et héréditaire.",
+   "source": "penha2024_minoxidil",
+   "stades": [
+    {
+     "id": "androgenetique",
+     "nom": "Calvitie androgénétique",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "minoxidil_oral",
+     "nom": "Minoxidil par la bouche (5 mg) ou en lotion",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "5 mg par jour par la bouche, comparé à la lotion",
+     "population": "Hommes avec calvitie (essai randomisé)",
+     "effet": "Le comprimé n'a pas fait mieux que la lotion dans l'ensemble ; photos du sommet du crâne meilleures de 24 % ; pilosité excessive ailleurs chez 49 %.",
+     "resume": "Pas supérieur à la lotion dans l'ensemble",
+     "source": "penha2024_minoxidil",
+     "prudence": "Pilosité excessive fréquente ; tension artérielle à surveiller.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "insomnie",
+   "nom": "Insomnie",
+   "synonymes": [
+    "insomnie",
+    "troubles du sommeil",
+    "dormir",
+    "sommeil",
+    "nuits blanches"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Difficulté à s'endormir ou à rester endormi, avec fatigue la journée.",
+   "source": "furukawa2024_tcci",
+   "stades": [
+    {
+     "id": "chronique",
+     "nom": "Insomnie chronique",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "tcc_insomnie",
+     "nom": "Thérapie cognitive et comportementale de l'insomnie (restriction du sommeil, contrôle du stimulus, travail sur les pensées)",
+     "type": "regime",
+     "force": "forte",
+     "dose": "Séances sur quelques semaines",
+     "population": "241 essais, 31 452 participants",
+     "effet": "La meilleure combinaison de composantes augmente la rémission de 33 % (1 personne en rémission pour 3 traitées) ; la relaxation pourrait au contraire nuire.",
+     "resume": "Rémission pour 1 personne sur 3 traitées",
+     "source": "furukawa2024_tcci",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "insomnie_remission",
+     "type": "obtenue",
+     "titre": "Rémission par thérapie comportementale",
+     "objectif": "Retrouver un sommeil normal sans médicament",
+     "resultat": "Rémission de l'insomnie obtenue chez une personne de plus sur trois traitées par rapport aux témoins.",
+     "composants": [
+      {
+       "nom": "TCC de l'insomnie",
+       "role": "thérapie",
+       "ref": "tcc_insomnie"
+      }
+     ],
+     "risques": "Peu d'effets indésirables ; fatigue passagère au début de la restriction du sommeil.",
+     "source": "furukawa2024_tcci"
+    }
+   ]
+  },
+  {
+   "id": "depression",
+   "nom": "Dépression",
+   "synonymes": [
+    "dépression",
+    "déprime",
+    "tristesse",
+    "humeur basse"
+   ],
+   "zones": [
+    "brain"
+   ],
+   "description": "Tristesse, perte d'envie et de plaisir qui durent des semaines et gênent la vie quotidienne.",
+   "source": "noetel2024_exercice_depression",
+   "stades": [
+    {
+     "id": "episode",
+     "nom": "Épisode dépressif",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "exercice_depression",
+     "nom": "Exercice physique (marche, course, yoga, musculation, tai-chi)",
+     "type": "regime",
+     "force": "forte",
+     "dose": "Séances régulières, de préférence plus intenses",
+     "population": "218 études, 14 170 participants",
+     "effet": "Baisse des symptômes : marche ou course g −0,62, yoga −0,55, musculation −0,49, tai-chi −0,42 ; l'effet augmente avec l'intensité.",
+     "resume": "Symptômes nettement réduits",
+     "source": "noetel2024_exercice_depression",
+     "prudence": "En complément du suivi médical ; urgence si idées noires.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "lombalgie",
+   "nom": "Mal de dos (lombalgie chronique)",
+   "synonymes": [
+    "mal de dos",
+    "lombalgie",
+    "douleur lombaire",
+    "dos"
+   ],
+   "zones": [
+    "pelvis",
+    "hip_l",
+    "hip_r"
+   ],
+   "description": "Douleur du bas du dos qui dure plus de trois mois, sans cause grave identifiée.",
+   "source": "hayden2021_lombalgie",
+   "stades": [
+    {
+     "id": "chronique",
+     "nom": "Lombalgie chronique",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "exercice_lombalgie",
+     "nom": "Exercice physique",
+     "type": "regime",
+     "force": "forte",
+     "dose": "Programmes d'exercice",
+     "population": "249 essais",
+     "effet": "Douleur réduite de 15,2 points sur 100 et gêne fonctionnelle de 6,8 points par rapport à l'absence de traitement ou aux soins habituels.",
+     "resume": "Douleur réduite",
+     "source": "hayden2021_lombalgie",
+     "critere": 1,
+     "zones": [
+      "pelvis",
+      "hip_l",
+      "hip_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "goutte",
+   "nom": "Goutte",
+   "synonymes": [
+    "goutte",
+    "acide urique",
+    "crise de goutte",
+    "gros orteil"
+   ],
+   "zones": [
+    "knee_l",
+    "knee_r"
+   ],
+   "description": "Des cristaux d'acide urique se déposent dans les articulations et provoquent des crises très douloureuses.",
+   "source": "doherty2018_goutte",
+   "stades": [
+    {
+     "id": "recidivante",
+     "nom": "Goutte avec crises répétées",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "allopurinol_cible",
+     "nom": "Baisse de l'acide urique jusqu'à une cible (suivi infirmier, allopurinol surtout)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Doses augmentées jusqu'à l'acide urique < 360 µmol/L, 2 ans",
+     "population": "517 patients",
+     "effet": "Cible atteinte chez 95 % contre 30 % avec les soins habituels (RR 3,18) ; moins de crises et de tophus la deuxième année.",
+     "resume": "Acide urique contrôlé chez 95 %",
+     "source": "doherty2018_goutte",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "varices",
+   "nom": "Varices",
+   "synonymes": [
+    "varices",
+    "veines des jambes",
+    "jambes lourdes"
+   ],
+   "zones": [
+    "femur_l",
+    "femur_r",
+    "knee_l",
+    "knee_r"
+   ],
+   "description": "Veines des jambes dilatées et tortueuses, avec lourdeur et parfois douleur.",
+   "source": "brittenden2015_class",
+   "stades": [
+    {
+     "id": "symptomatiques",
+     "nom": "Varices gênantes",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "class_varices",
+     "nom": "Mousse sclérosante, laser endoveineux ou chirurgie",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Une intervention",
+     "population": "Essai CLASS (Royaume-Uni)",
+     "effet": "La mousse améliore un peu moins la qualité de vie que la chirurgie à 6 mois ; le laser est le choix le plus rentable à 5 ans (environ 79 % de probabilité).",
+     "resume": "Trois techniques efficaces, le laser rentable",
+     "source": "brittenden2015_class",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "knee_l",
+      "knee_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "ulcere",
+   "nom": "Ulcère de l'estomac ou du duodénum",
+   "synonymes": [
+    "ulcère",
+    "ulcère gastrique",
+    "ulcère duodénal",
+    "Helicobacter pylori"
+   ],
+   "zones": [
+    "stomach",
+    "small_intestine"
+   ],
+   "description": "Plaie de la paroi de l'estomac ou du duodénum, souvent due à la bactérie Helicobacter pylori.",
+   "source": "ford2016_hpylori",
+   "stades": [
+    {
+     "id": "hp",
+     "nom": "Ulcère avec Helicobacter pylori",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "eradication_hp",
+     "nom": "Éradication d'Helicobacter pylori (antibiotiques + anti-acide)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Traitement combiné de 1 à 2 semaines",
+     "population": "Essais réunis par Cochrane",
+     "effet": "Ulcère duodénal persistant moins fréquent qu'avec un médicament cicatrisant seul (RR 0,66) et que sans traitement (RR 0,37).",
+     "resume": "Ulcère guéri plus souvent",
+     "source": "ford2016_hpylori",
+     "critere": 1,
+     "zones": [
+      "stomach",
+      "small_intestine"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "ulcere_eradication",
+     "type": "obtenue",
+     "titre": "Guérison par élimination d'Helicobacter pylori",
+     "objectif": "Cicatriser l'ulcère et supprimer sa cause",
+     "resultat": "L'éradication cicatrise plus souvent l'ulcère duodénal que les autres traitements.",
+     "composants": [
+      {
+       "nom": "Éradication d'H. pylori",
+       "role": "antibiotiques",
+       "ref": "eradication_hp"
+      }
+     ],
+     "risques": "Effets indésirables digestifs des antibiotiques.",
+     "source": "ford2016_hpylori"
+    }
+   ]
+  },
+  {
+   "id": "pied_athlete",
+   "nom": "Pied d'athlète (mycose de la peau des pieds)",
+   "synonymes": [
+    "pied d'athlète",
+    "mycose des pieds",
+    "intertrigo",
+    "démangeaisons entre les orteils"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Champignon de la peau entre les orteils : démangeaisons, peau qui pèle.",
+   "source": "crawford2007_pied",
+   "stades": [
+    {
+     "id": "peau",
+     "nom": "Peau des pieds",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "antifongiques_pied",
+     "nom": "Antifongiques locaux (allylamines comme la terbinafine, azolés)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Crème selon la notice",
+     "population": "Essais réunis par Cochrane",
+     "effet": "Échec du traitement divisé par trois par rapport au placebo (allylamines RR 0,33 ; azolés 0,30) ; les allylamines font un peu mieux que les azolés (RR 0,63).",
+     "resume": "Guérison dans la plupart des cas",
+     "source": "crawford2007_pied",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "pied_guerison",
+     "type": "obtenue",
+     "titre": "Guérison par crème antifongique",
+     "objectif": "Éliminer le champignon",
+     "resultat": "Les crèmes antifongiques réduisent l'échec du traitement d'environ deux tiers par rapport au placebo.",
+     "composants": [
+      {
+       "nom": "Antifongique local",
+       "role": "antifongique",
+       "ref": "antifongiques_pied"
+      }
+     ],
+     "risques": "Récidive possible ; garder les pieds secs.",
+     "source": "crawford2007_pied"
+    }
+   ]
   }
  ],
  "regle_appui": {

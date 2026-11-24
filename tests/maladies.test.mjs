@@ -377,3 +377,13 @@ test('Maladies courantes 2 : yeux, rhume, peau',()=>{
   assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
  assert.ok(registre.maladies.find(m=>m.id==='myopie').guerison.some(g=>g.type==='obtenue'));
 });
+
+test('Maladies courantes 3 : migraine, reflux, asthme, ORL, peau, sommeil, dos, goutte, ulcère…',async()=>{
+ for(const [mot,id] of [['migraine','migraine'],['brûlures d\'estomac','reflux'],['hémorroïdes','hemorroides'],['anémie','anemie_fer'],['asthme','asthme'],['rhume des foins','rhinite_allergique'],['angine','angine'],['otite','otite'],['conjonctivite','conjonctivite'],['bouton de fièvre','herpes_labial'],['verrue','verrues'],['calvitie','alopecie'],['insomnie','insomnie'],['dépression','depression'],['lombalgie','lombalgie'],['goutte','goutte'],['varices','varices'],['ulcère','ulcere'],["pied d'athlète",'pied_athlete']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ const {pourPistes,pourGueris}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ const p=pourPistes(m('cancer_pancreas'),[],'').pistes.find(h=>h.id==='p_vitc_itraconazole');
+ assert.ok(p);assert.match(p.formulation,/pourrait éventuellement/);
+ for(const id of ['ulcere','pied_athlete','insomnie','verrues'])assert.ok(pourGueris(m(id),m(id).substances).obtenues.length,id);
+});
