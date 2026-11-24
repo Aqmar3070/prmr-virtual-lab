@@ -371,3 +371,9 @@ test('Pistes 1 : DCA (fibrose pulmonaire), clémastine + nicotinamide (glaucome)
  for(const [mid,sid] of [['alzheimer','clemastine_alz'],['glaucome','clemastine_glaucome'],['vitiligo','biotherapies_vitiligo'],['drepanocytose','inducteurs_hbf']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
  assert.match(m('endometriose').substances.find(s=>s.id==='dca_endo').prudence,/neuropathie/);
 });
+
+test('Maladies courantes 2 : yeux, rhume, peau',()=>{
+ for(const [mot,id] of [['myopie','myopie'],['hypermétropie','myopie'],['presbytie','presbytie'],['cataracte','cataracte'],['rhume','rhume'],['gale','gale'],['mycose','mycose_ongles'],['eczéma','eczema'],['acné','acne']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ assert.ok(registre.maladies.find(m=>m.id==='myopie').guerison.some(g=>g.type==='obtenue'));
+});

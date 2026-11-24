@@ -1476,6 +1476,50 @@
   "gambari2024_hbf": {
    "source": "Gambari et al., Int J Mol Sci 2024 — inducteurs validés de l'hémoglobine fœtale dans la thalassémie et la drépanocytose (revue)",
    "url": "https://doi.org/10.3390/ijms25084263"
+  },
+  "yam2019_lamp": {
+   "source": "Yam et al. (LAMP), Ophthalmology 2019 — atropine faible dose contre la progression de la myopie (438 enfants)",
+   "url": "https://doi.org/10.1016/j.ophtha.2018.05.029"
+  },
+  "he2022_exterieur": {
+   "source": "He et al., Ophthalmology 2022 — temps passé dehors et apparition de la myopie (essai en écoles)",
+   "url": "https://doi.org/10.1016/j.ophtha.2022.06.024"
+  },
+  "friedrich2026_lasik": {
+   "source": "Friedrich et al., Ophthalmol Ther 2026 — LASIK guidé par lancer de rayons dans la myopie (méta-analyse, 1 577 yeux)",
+   "url": "https://doi.org/10.1007/s40123-026-01376-3"
+  },
+  "waring2022_gemini": {
+   "source": "Waring et al. (GEMINI 1), JAMA Ophthalmol 2022 — collyre de pilocarpine 1,25 % dans la presbytie (323 participants)",
+   "url": "https://doi.org/10.1001/jamaophthalmol.2022.0059"
+  },
+  "kang2026_monovision": {
+   "source": "Kang et al., Surv Ophthalmol 2026 — chirurgie de la cataracte avec implants et mini-monovision (revue)",
+   "url": "https://doi.org/10.1016/j.survophthal.2025.11.010"
+  },
+  "nault2024_zinc_rhume": {
+   "source": "Nault et al., Cochrane 2024 — zinc pour prévenir et traiter le rhume (34 études, 8 526 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD014914.pub2"
+  },
+  "hemila2013_vitc_rhume": {
+   "source": "Hemilä et Chalker, Cochrane 2013 — vitamine C pour prévenir et traiter le rhume",
+   "url": "https://doi.org/10.1002/14651858.CD000980.pub4"
+  },
+  "rosumeck2018_gale": {
+   "source": "Rosumeck et al., Cochrane 2018 — ivermectine et perméthrine dans la gale (15 essais, 1 896 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD012994"
+  },
+  "gupta2013_terbinafine": {
+   "source": "Gupta et al., J Eur Acad Dermatol Venereol 2013 — terbinafine dans la mycose des ongles des pieds (méta-analyse)",
+   "url": "https://doi.org/10.1111/j.1468-3083.2012.04584.x"
+  },
+  "simpson2016_dupilumab": {
+   "source": "Simpson et al. (SOLO 1 et 2), N Engl J Med 2016 — dupilumab dans l'eczéma atopique (1 379 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1610020"
+  },
+  "sadeghzadeh2021_isotretinoine": {
+   "source": "Sadeghzadeh-Bazargan et al., Dermatol Ther 2021 — isotrétinoïne à faible dose dans l'acné (revue systématique)",
+   "url": "https://doi.org/10.1111/dth.14438"
   }
  },
  "maladies": [
@@ -11967,6 +12011,403 @@
      "zones": [
       "small_intestine",
       "colon"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "myopie",
+   "nom": "Myopie (et autres défauts de la vue)",
+   "synonymes": [
+    "myopie",
+    "hypermétropie",
+    "astigmatisme",
+    "troubles de la vue",
+    "vue",
+    "mauvaise vue de loin"
+   ],
+   "zones": [
+    "eye_l",
+    "eye_r"
+   ],
+   "description": "L'œil voit flou de loin car il est trop long. Elle apparaît souvent dans l'enfance et s'aggrave jusqu'à l'âge adulte. L'hypermétropie (vue floue de près, œil trop court) et l'astigmatisme se corrigent aussi par lunettes, lentilles ou chirurgie.",
+   "source": "yam2019_lamp",
+   "stades": [
+    {
+     "id": "enfant",
+     "nom": "Enfant dont la myopie progresse",
+     "niveau": "modere"
+    },
+    {
+     "id": "adulte",
+     "nom": "Adulte, myopie stable",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "atropine_myopie",
+     "nom": "Atropine en collyre à faible dose (0,05 %, 0,025 %, 0,01 %)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "1 goutte le soir dans chaque œil, 1 an",
+     "population": "438 enfants de 4 à 12 ans, myopie d'au moins −1 dioptrie",
+     "effet": "Progression sur 1 an : −0,27 D avec 0,05 % contre −0,81 D sous placebo (et allongement de l'œil 0,20 contre 0,41 mm). Effet proportionnel à la dose ; vision et qualité de vie non affectées.",
+     "resume": "Progression de la myopie divisée par 3 (0,05 %)",
+     "source": "yam2019_lamp",
+     "stades": [
+      "enfant"
+     ],
+     "prudence": "Pupille un peu plus large et accommodation un peu réduite, surtout à 0,05 %.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    },
+    {
+     "id": "exterieur_myopie",
+     "nom": "Temps passé dehors (lumière du jour)",
+     "type": "regime",
+     "force": "moyenne",
+     "dose": "Environ 2 h par jour dehors à l'école",
+     "population": "Écoliers en Chine (essai randomisé par écoles), 2 ans",
+     "effet": "Apparition de la myopie réduite de 11 à 16 % ; moins d'aggravation chez les enfants. 120 à 150 minutes par jour à 5 000 lux réduisaient le risque de 15 à 24 %.",
+     "resume": "Moins de myopie chez l'enfant",
+     "source": "he2022_exterieur",
+     "stades": [
+      "enfant"
+     ],
+     "condition": "Prévention, surtout chez les enfants pas encore myopes",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "myopie_lasik",
+     "type": "obtenue",
+     "titre": "Correction définitive par chirurgie laser (LASIK)",
+     "objectif": "Voir net de loin sans lunettes",
+     "resultat": "99 % des yeux opérés voient 10/10 sans correction après LASIK guidé par lancer de rayons (14 études, 1 577 yeux) ; 2 % perdent au moins une ligne de vision corrigée.",
+     "composants": [],
+     "risques": "Légère tendance à la surcorrection ; suivi à long terme encore court selon les auteurs ; tous les yeux ne sont pas opérables.",
+     "source": "friedrich2026_lasik"
+    }
+   ]
+  },
+  {
+   "id": "presbytie",
+   "nom": "Presbytie (vue de près qui baisse avec l'âge)",
+   "synonymes": [
+    "presbytie",
+    "vue de près",
+    "lunettes de lecture"
+   ],
+   "zones": [
+    "eye_l",
+    "eye_r"
+   ],
+   "description": "Après 40 ans, le cristallin perd sa souplesse et la lecture de près devient difficile.",
+   "source": "waring2022_gemini",
+   "stades": [
+    {
+     "id": "installee",
+     "nom": "Presbytie installée",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "pilocarpine_presbytie",
+     "nom": "Pilocarpine en collyre 1,25 %",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "1 goutte par jour dans chaque œil",
+     "population": "323 adultes de 40 à 55 ans environ, 30 jours",
+     "effet": "Gain d'au moins 3 lignes de lecture de près en faible lumière chez 31 % contre 8 % sous placebo (3 h après la goutte) ; effet qui diminue au fil de la journée.",
+     "resume": "Lecture de près améliorée quelques heures",
+     "source": "waring2022_gemini",
+     "prudence": "Effet temporaire ; ne remplace pas toujours les lunettes.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "cataracte",
+   "nom": "Cataracte",
+   "synonymes": [
+    "cataracte",
+    "cristallin opaque",
+    "vue voilée"
+   ],
+   "zones": [
+    "eye_l",
+    "eye_r"
+   ],
+   "description": "Le cristallin devient opaque avec l'âge et la vue se voile ; c'est l'une des premières causes de mauvaise vue dans le monde.",
+   "source": "kang2026_monovision",
+   "stades": [
+    {
+     "id": "installee",
+     "nom": "Cataracte gênante",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [],
+   "guerison": [
+    {
+     "id": "cataracte_chirurgie",
+     "type": "obtenue",
+     "titre": "Chirurgie avec implant artificiel",
+     "objectif": "Remplacer le cristallin opaque",
+     "resultat": "Le cristallin est remplacé par un implant ; avec la mini-monovision, beaucoup de patients se passent de lunettes avec une satisfaction proche des implants multifocaux.",
+     "composants": [],
+     "risques": "Choix de l'implant à discuter selon les yeux et les besoins.",
+     "source": "kang2026_monovision"
+    }
+   ]
+  },
+  {
+   "id": "rhume",
+   "nom": "Rhume (infection des voies respiratoires hautes)",
+   "synonymes": [
+    "rhume",
+    "nez qui coule",
+    "enrhumé",
+    "rhinopharyngite"
+   ],
+   "zones": [
+    "pharynx"
+   ],
+   "description": "Infection virale bénigne du nez et de la gorge, qui guérit seule en une à deux semaines.",
+   "source": "nault2024_zinc_rhume",
+   "stades": [
+    {
+     "id": "aigu",
+     "nom": "Rhume en cours",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "zinc_rhume",
+     "nom": "Zinc (pastilles surtout)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Gluconate de zinc 45 à 276 mg par jour, 4,5 à 21 jours (selon les études)",
+     "population": "34 études, 8 526 participants",
+     "effet": "En traitement, le rhume pourrait durer environ 2,4 jours de moins (preuves faibles) ; aucun effet net en prévention. Effets indésirables bénins plus fréquents (goût, nausées).",
+     "resume": "Rhume peut-être raccourci de 2 jours",
+     "source": "nault2024_zinc_rhume",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    },
+    {
+     "id": "vitc_rhume",
+     "nom": "Vitamine C (prise régulière)",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Au moins 0,2 g par jour en continu (1 à 2 g chez l'enfant dans certains essais)",
+     "population": "29 comparaisons, 11 306 participants",
+     "effet": "N'évite pas les rhumes dans la population générale (RR 0,97) mais les divise par deux chez les sportifs et militaires très exposés au froid (RR 0,48) ; raccourcit la durée de 8 % chez l'adulte et 14 % chez l'enfant. Prise seulement au début du rhume : pas d'effet net.",
+     "resume": "Rhumes un peu plus courts (prise régulière)",
+     "source": "hemila2013_vitc_rhume",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "gale",
+   "nom": "Gale",
+   "synonymes": [
+    "gale",
+    "scabiose",
+    "démangeaisons la nuit"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Infection de la peau par un acarien qui creuse des sillons et provoque de fortes démangeaisons, surtout la nuit ; contagieuse dans la famille.",
+   "source": "rosumeck2018_gale",
+   "stades": [
+    {
+     "id": "commune",
+     "nom": "Gale commune",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "ivermectine_permethrine_gale",
+     "nom": "Ivermectine (antiparasitaire, par la bouche ou en lotion) ou perméthrine 5 % (crème)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Ivermectine 200 µg/kg en 1 à 3 doses ; perméthrine 1 à 3 applications",
+     "population": "15 essais, 1 896 participants",
+     "effet": "À 4 semaines, guérison complète chez environ 86 à 97 % sous ivermectine et 93 à 94 % sous perméthrine, sans différence nette ; ivermectine orale un peu plus lente la première semaine.",
+     "resume": "Guérison chez près de 9 personnes sur 10",
+     "source": "rosumeck2018_gale",
+     "prudence": "Traiter toute la famille en même temps.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "gale_guerison",
+     "type": "obtenue",
+     "titre": "Guérison par ivermectine ou perméthrine",
+     "objectif": "Éliminer l'acarien",
+     "resultat": "Guérison complète chez environ 9 personnes sur 10 après 1 à 3 traitements.",
+     "composants": [
+      {
+       "nom": "Ivermectine ou perméthrine",
+       "role": "antiparasitaire",
+       "ref": "ivermectine_permethrine_gale"
+      }
+     ],
+     "risques": "Effets indésirables rares et légers.",
+     "source": "rosumeck2018_gale"
+    }
+   ]
+  },
+  {
+   "id": "mycose_ongles",
+   "nom": "Mycose des ongles (onychomycose)",
+   "synonymes": [
+    "mycose",
+    "champignon des ongles",
+    "onychomycose",
+    "mycose des pieds"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Infection des ongles, surtout des pieds, par des champignons ; les ongles s'épaississent et jaunissent.",
+   "source": "gupta2013_terbinafine",
+   "stades": [
+    {
+     "id": "ongle_pied",
+     "nom": "Ongles des pieds",
+     "niveau": "faible"
+    }
+   ],
+   "substances": [
+    {
+     "id": "terbinafine",
+     "nom": "Terbinafine (antifongique)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "250 mg par jour en continu, ou 2 cures de 4 semaines séparées de 4 semaines",
+     "population": "9 études comparant deux façons de la prendre",
+     "effet": "Le traitement continu élimine mieux le champignon ; pour la guérison complète de l'ongle, certaines cures intermittentes font aussi bien.",
+     "resume": "Guérison de l'ongle possible, en continu ou en cures",
+     "source": "gupta2013_terbinafine",
+     "prudence": "Surveillance du foie selon le médecin.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "eczema",
+   "nom": "Eczéma atopique",
+   "synonymes": [
+    "eczéma",
+    "dermatite atopique",
+    "peau sèche qui gratte"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Maladie inflammatoire de la peau qui démange, souvent depuis l'enfance, avec des poussées.",
+   "source": "simpson2016_dupilumab",
+   "stades": [
+    {
+     "id": "modere_severe",
+     "nom": "Modéré à sévère",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "dupilumab",
+     "nom": "Dupilumab",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Injection toutes les semaines ou toutes les 2 semaines, 16 semaines",
+     "population": "1 379 adultes (essais SOLO 1 et 2)",
+     "effet": "Peau nette ou presque chez 36 à 38 % contre 8 à 10 % sous placebo ; moins de démangeaisons, d'anxiété et de dépression.",
+     "resume": "Peau nette chez plus d'un tiers",
+     "source": "simpson2016_dupilumab",
+     "stades": [
+      "modere_severe"
+     ],
+     "prudence": "Conjonctivites et réactions au point d'injection plus fréquentes.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "acne",
+   "nom": "Acné",
+   "synonymes": [
+    "acné",
+    "boutons",
+    "points noirs"
+   ],
+   "zones": [
+    "skin"
+   ],
+   "description": "Inflammation des glandes de la peau (boutons, points noirs), surtout à l'adolescence.",
+   "source": "sadeghzadeh2021_isotretinoine",
+   "stades": [
+    {
+     "id": "moderee_severe",
+     "nom": "Acné modérée à sévère",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "isotretinoine",
+     "nom": "Isotrétinoïne (par la bouche)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Standard 0,5 à 1 mg/kg/jour pendant 4 mois ; faible dose 0,1 à 0,3 mg/kg/jour plus de 6 mois",
+     "population": "15 études (revue systématique)",
+     "effet": "Traitement le plus efficace de l'acné modérée à sévère ; à faible dose, résultat final comparable avec moins d'effets indésirables.",
+     "resume": "Le plus efficace contre l'acné sévère",
+     "source": "sadeghzadeh2021_isotretinoine",
+     "prudence": "Effets indésirables liés à la dose ; interdite pendant la grossesse (malformations), contraception obligatoire chez la femme.",
+     "critere": 1,
+     "zones": [
+      "skin"
      ]
     }
    ],
