@@ -1288,6 +1288,30 @@
   "epstein2022_arm": {
    "source": "Epstein, Kidney Int Suppl 2022 — antagonistes des récepteurs minéralocorticoïdes : besoins non couverts, dont l'atteinte rénale drépanocytaire",
    "url": "https://doi.org/10.1016/j.kisu.2021.11.008"
+  },
+  "rosselot2024_harmine": {
+   "source": "Rosselot et al., Sci Transl Med 2024 — harmine + exendine-4 multiplient les cellules à insuline humaines greffées chez la souris",
+   "url": "https://doi.org/10.1126/scitranslmed.adg3456"
+  },
+  "martin2022_gaba_dt1": {
+   "source": "Martin et al., Nat Commun 2022 — GABA par la bouche (± GAD) chez 97 enfants avec diabète de type 1 récent",
+   "url": "https://doi.org/10.1038/s41467-022-35544-3"
+  },
+  "kang2019_ciclopirox_vhb": {
+   "source": "Kang et al., Nat Commun 2019 — le ciclopirox bloque l'assemblage de la capside du virus de l'hépatite B",
+   "url": "https://doi.org/10.1038/s41467-019-10200-5"
+  },
+  "hiller2020_propranolol_sein": {
+   "source": "Hiller et al., Clin Cancer Res 2020 — propranolol avant chirurgie du cancer du sein, essai de phase II (60 patientes)",
+   "url": "https://doi.org/10.1158/1078-0432.CCR-19-2641"
+  },
+  "pose2025_liverhope": {
+   "source": "Pose et al. (LIVERHOPE), JAMA 2025 — simvastatine + rifaximine dans la cirrhose décompensée (237 patients)",
+   "url": "https://doi.org/10.1001/jama.2024.27441"
+  },
+  "ng2019_sunshine": {
+   "source": "Ng et al. (SUNSHINE), JAMA 2019 — vitamine D3 à forte dose avec chimiothérapie, cancer colorectal métastatique (139 patients)",
+   "url": "https://doi.org/10.1001/jama.2019.2402"
   }
  },
  "maladies": [
@@ -2891,6 +2915,26 @@
      "zones": [
       "pancreas"
      ]
+    },
+    {
+     "id": "harmine_glp1",
+     "nom": "Harmine (alcaloïde de la rue syrienne) + exendine-4 (analogue du GLP-1)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales (souris)",
+     "population": "Souris diabétiques et non diabétiques portant des îlots humains greffés",
+     "effet": "La combinaison a multiplié par 4 à 7 la masse de cellules à insuline humaines en 3 mois et a fait disparaître le diabète des souris, sans toucher aux autres cellules des îlots.",
+     "resume": "Cellules à insuline humaines × 4 à 7 (souris)",
+     "source": "rosselot2024_harmine",
+     "zones": [
+      "pancreas"
+     ],
+     "prudence": "Aucun essai chez l'humain. L'harmine agit aussi sur le cerveau (alcaloïde psychoactif) : ne pas en prendre hors étude.",
+     "critere": 1,
+     "stades": [
+      "diabete",
+      "diabete_rein"
+     ]
     }
    ],
    "guerison": [
@@ -3078,6 +3122,25 @@
      ],
      "source": "cipsc",
      "resume": "Sans insuline à 1 an (1 patiente)"
+    },
+    {
+     "id": "gaba_dt1",
+     "nom": "GABA par la bouche (± vaccin GAD)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "GABA deux fois par jour (faible dose pédiatrique) ; GAD-alum en 2 injections",
+     "population": "97 enfants avec diabète de type 1 récent, 1 an",
+     "effet": "Production résiduelle d'insuline (peptide C) non préservée ; la combinaison GABA + GAD a seulement baissé le glucagon. Bien toléré.",
+     "resume": "Pas de préservation de l'insuline (essai randomisé)",
+     "source": "martin2022_gaba_dt1",
+     "stades": [
+      "recent"
+     ],
+     "prudence": "Les auteurs évoquent des doses plus fortes à tester.",
+     "critere": 1,
+     "zones": [
+      "pancreas"
+     ]
     }
    ],
    "lacune": "Aucune substance naturelle avec un essai randomisé démontrant un effet sur le diabète de type 1 n'a été retrouvée dans les sources consultées à ce jour.",
@@ -3124,6 +3187,27 @@
      "risques": "Éruptions, baisse passagère des lymphocytes ; tension artérielle (vérapamil).",
      "source": "teplizumab",
      "source2": "verapamil"
+    }
+   ],
+   "pistes": [
+    {
+     "id": "p_verapamil_harmine",
+     "nom": "Vérapamil + harmine : protéger puis régénérer les cellules à insuline",
+     "type": "medicament",
+     "situation": "Diabète de type 1 récemment diagnostiqué, quand il reste des cellules qui fabriquent de l'insuline.",
+     "lesion": "Destruction progressive des cellules bêta du pancréas ; celles qui restent sont trop peu nombreuses et ne se renouvellent pas.",
+     "fait_molecule": "Le vérapamil préserve la production d'insuline restante chez l'enfant et l'adolescent (essai CLVer : peptide C 30 % plus élevé à 1 an). L'harmine, associée à un analogue du GLP-1, multiplie par 4 à 7 les cellules à insuline humaines chez la souris (Rosselot 2024).",
+     "fait_maladie": "Au diagnostic, il reste une partie des cellules bêta ; leur nombre décide de la quantité d'insuline encore produite.",
+     "lien": "Le vérapamil ralentirait la perte des cellules restantes pendant que l'harmine pousserait les survivantes à se multiplier : deux actions différentes qui pourraient s'additionner.",
+     "formulation": "Chez une personne dont le diabète de type 1 vient d'être découvert, l'association vérapamil + harmine pourrait éventuellement augmenter le nombre de cellules qui fabriquent l'insuline.",
+     "recherche": "Aucune étude associant harmine (ou un inhibiteur de DYRK1A) et vérapamil dans le diabète de type 1 trouvée sur PubMed (recherche du 24/11/2026 : 0 résultat).",
+     "a_verifier": "D'abord chez la souris diabétique auto-immune : les nouvelles cellules risquent d'être détruites à leur tour par l'immunité ; il faudra peut-être ajouter un traitement immunitaire (comme le téplizumab).",
+     "prudence": "Jamais testé. L'harmine n'est pas un médicament autorisé et agit sur le cerveau ; le vérapamil baisse la tension et le rythme cardiaque.",
+     "zones": [
+      "pancreas"
+     ],
+     "source": "verapamil",
+     "source2": "rosselot2024_harmine"
     }
    ]
   },
@@ -4257,6 +4341,22 @@
      ],
      "source": "phyllanthus",
      "source2": "phyllanthus2"
+    },
+    {
+     "id": "ciclopirox_vhb",
+     "nom": "Ciclopirox (antifongique)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales",
+     "population": "Cellules infectées et souris à foie humanisé (criblage de 978 médicaments autorisés)",
+     "effet": "Bloque fortement la multiplication du virus en empêchant l'assemblage de son enveloppe interne (capside) ; effet renforcé avec les antiviraux habituels (analogues nucléosidiques) chez la souris.",
+     "resume": "Multiplication virale bloquée (cellules, souris)",
+     "source": "kang2019_ciclopirox_vhb",
+     "prudence": "Aucun essai chez l'humain dans l'hépatite B ; le ciclopirox est surtout utilisé en application locale.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
     }
    ],
    "guerison": [
@@ -4683,6 +4783,26 @@
      "resume": "Rémission complète > 30 mois (1 cas)",
      "source": "ama",
      "prudence": "Cas choisis et suivis par les auteurs, sans groupe de comparaison ; traitement guidé par une méthode d'électro-acupuncture (évaluation des méridiens) dont la validité n'est pas établie. Infections dentaires traitées en même temps. Antiparasitaires hors autorisation dans le cancer : à discuter avec l'oncologue.",
+     "critere": 1,
+     "zones": [
+      "breast_l",
+      "breast_r"
+     ]
+    },
+    {
+     "id": "propranolol_sein",
+     "nom": "Propranolol (bêtabloquant)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "80 à 160 mg par jour pendant 7 jours avant l'opération",
+     "population": "60 patientes, cancer du sein précoce opérable (essai de phase II contre placebo)",
+     "effet": "Moins d'expression des gènes liés aux métastases dans la tumeur et plus de cellules immunitaires dans la tumeur. Effet sur les rechutes et la survie non mesuré.",
+     "resume": "Marqueurs de métastase réduits (phase II)",
+     "source": "hiller2020_propranolol_sein",
+     "stades": [
+      "precoce"
+     ],
+     "prudence": "Résultat sur des marqueurs seulement ; les auteurs demandent un essai de phase III.",
      "critere": 1,
      "zones": [
       "breast_l",
@@ -5598,6 +5718,25 @@
      "zones": [
       "colon"
      ]
+    },
+    {
+     "id": "vitd_sunshine",
+     "nom": "Vitamine D3 à forte dose",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Forte dose quotidienne avec chimiothérapie (mFOLFOX6 + bévacizumab)",
+     "population": "139 patients, cancer colorectal avancé ou métastatique",
+     "effet": "Survie sans progression 13 mois contre 11 mois avec la dose standard : différence non significative au test principal, mais risque de progression ou décès réduit dans l'analyse ajustée (HR 0,64). Pas de différence de survie globale.",
+     "resume": "Progression peut-être retardée (phase II)",
+     "source": "ng2019_sunshine",
+     "stades": [
+      "avance"
+     ],
+     "prudence": "À confirmer par un essai plus grand.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
     }
    ],
    "guerison": [
@@ -6107,6 +6246,26 @@
      "condition": "Cirrhose due à l'hépatite B",
      "mecanisme": "Bloquer le virus durablement laisse le foie se réparer.",
      "prudence": "Surveiller les reins et les os.",
+     "critere": 1,
+     "zones": [
+      "liver",
+      "spleen"
+     ]
+    },
+    {
+     "id": "simva_rifaximine",
+     "nom": "Simvastatine + rifaximine",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Simvastatine 20 mg/j + rifaximine 1 200 mg/j, 12 mois",
+     "population": "237 patients, cirrhose décompensée (14 hôpitaux européens, phase III)",
+     "effet": "Aucune réduction des complications graves, des greffes ou des décès par rapport au placebo. 3 rhabdomyolyses sous traitement.",
+     "resume": "Pas de bénéfice (essai de phase III)",
+     "source": "pose2025_liverhope",
+     "stades": [
+      "decompensee"
+     ],
+     "prudence": "Risque musculaire (rhabdomyolyse) dans la cirrhose avancée.",
      "critere": 1,
      "zones": [
       "liver",
