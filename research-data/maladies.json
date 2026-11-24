@@ -1244,6 +1244,22 @@
   "lazzerini2016_zinc": {
    "source": "Lazzerini et Wanzira, Cochrane 2016 — zinc par la bouche dans la diarrhée de l'enfant (33 essais, 10 841 enfants)",
    "url": "https://doi.org/10.1002/14651858.CD005436.pub5"
+  },
+  "aydin2024_crc": {
+   "source": "Aydın et al., Front Oncol 2024 — cancer colorectal métastatique : réponse moléculaire complète sous double immunothérapie, sorafénib et mébendazole (cas)",
+   "url": "https://doi.org/10.3389/fonc.2024.1405170"
+  },
+  "bedlack2016_inversions": {
+   "source": "Bedlack et al., Neurology 2016 — fréquence des plateaux et des inversions de la SLA (base PRO-ACT)",
+   "url": "https://doi.org/10.1212/WNL.0000000000002251"
+  },
+  "sun2023_ozone_sla": {
+   "source": "Sun et al. (ALSUntangled 68), ALS FTD 2023 — ozonothérapie dans la SLA, dont une inversion vérifiée",
+   "url": "https://doi.org/10.1080/21678421.2022.2145904"
+  },
+  "omura2019_mebendazole_htap": {
+   "source": "Omura et al., Circ Res 2019 — ADAMTS8 et hypertension pulmonaire ; le mébendazole améliore la maladie chez le rongeur",
+   "url": "https://doi.org/10.1161/CIRCRESAHA.119.315398"
   }
  },
  "maladies": [
@@ -4591,6 +4607,23 @@
      ],
      "source": "msct",
      "resume": "Rémission > 3 ans (1 cas, avec chimiothérapie)"
+    },
+    {
+     "id": "ama_sein_cas",
+     "nom": "Antiparasitaires associés (ivermectine, mébendazole (Vermox), praziquantel, niclosamide) — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Combinaisons d'ivermectine, mébendazole, praziquantel, niclosamide et antifongiques ; doses non précisées dans le résumé",
+     "population": "1 patiente, cancer du sein de stade IV (série de 6 cas, 2011-2022)",
+     "effet": "Rémission complète, sans maladie depuis plus de 30 mois.",
+     "resume": "Rémission complète > 30 mois (1 cas)",
+     "source": "ama",
+     "prudence": "Cas choisis et suivis par les auteurs, sans groupe de comparaison ; traitement guidé par une méthode d'électro-acupuncture (évaluation des méridiens) dont la validité n'est pas établie. Infections dentaires traitées en même temps. Antiparasitaires hors autorisation dans le cancer : à discuter avec l'oncologue.",
+     "critere": 1,
+     "zones": [
+      "breast_l",
+      "breast_r"
+     ]
     }
    ],
    "guerison": [
@@ -5485,6 +5518,22 @@
      ],
      "source": "hegazy",
      "resume": "Réponse 65 % contre 10 %, sans progression 9,25 contre 3 mois"
+    },
+    {
+     "id": "mebendazole_sorafenib_cas",
+     "nom": "Mébendazole (Vermox) + sorafénib + double immunothérapie — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Mébendazole associé à deux immunothérapies puis au sorafénib (doses non précisées dans le résumé)",
+     "population": "1 homme de 58 ans, cancer du côlon avec métastases au foie, résistant aux traitements habituels",
+     "effet": "Après ajout du sorafénib (ciblant une amplification de FLT3), réponse marquée à l'imagerie et maladie résiduelle indétectable par test sanguin, de façon durable.",
+     "resume": "Maladie résiduelle indétectable (1 cas)",
+     "source": "aydin2024_crc",
+     "prudence": "Plusieurs médicaments pris ensemble : on ne peut pas attribuer l'effet au mébendazole. Traitement choisi d'après le profil génétique propre à cette tumeur.",
+     "critere": 1,
+     "zones": [
+      "colon"
+     ]
     }
    ],
    "guerison": [
@@ -6219,6 +6268,23 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "ama_gbm_cas",
+     "nom": "Antiparasitaires associés — cas rapportés",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Combinaisons d'ivermectine, mébendazole, praziquantel, niclosamide et antifongiques ; doses non précisées dans le résumé",
+     "population": "2 patients, glioblastome (série de 6 cas)",
+     "effet": "Régression de la tumeur et survie prolongée chez les deux ; l'un est décédé en 2025 d'une chute avec traumatisme crânien.",
+     "resume": "Régression tumorale (2 cas)",
+     "source": "ama",
+     "prudence": "Cas choisis et suivis par les auteurs, sans groupe de comparaison ; traitement guidé par une méthode d'électro-acupuncture (évaluation des méridiens) dont la validité n'est pas établie. Infections dentaires traitées en même temps. Antiparasitaires hors autorisation dans le cancer : à discuter avec l'oncologue.",
+     "gueri": false,
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": [
@@ -6491,6 +6557,23 @@
      "source": "fenfever",
      "source2": "dili_fbz2",
      "resume": "Guérison déclarée, non vérifiée"
+    },
+    {
+     "id": "ama_poumon_cas",
+     "nom": "Antiparasitaires associés — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Combinaisons d'ivermectine, mébendazole, praziquantel, niclosamide et antifongiques ; doses non précisées dans le résumé",
+     "population": "1 patient, cancer du poumon de stade IV (série de 6 cas)",
+     "effet": "Vivant 10 ans après le diagnostic, imagerie sans trace de cancer.",
+     "resume": "Vivant 10 ans, imagerie négative (1 cas)",
+     "source": "ama",
+     "prudence": "Cas choisis et suivis par les auteurs, sans groupe de comparaison ; traitement guidé par une méthode d'électro-acupuncture (évaluation des méridiens) dont la validité n'est pas établie. Infections dentaires traitées en même temps. Antiparasitaires hors autorisation dans le cancer : à discuter avec l'oncologue.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
     }
    ],
    "guerison": []
@@ -7236,6 +7319,24 @@
      "duree": "3 mois par période",
      "mecanisme": "Freine les voies de survie des plasmocytes anormaux (STAT3, NF-κB).",
      "prudence": "Effet sur des marqueurs sanguins, pas sur l'évolution vers le myélome.",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "spleen"
+     ]
+    },
+    {
+     "id": "ama_myelome_cas",
+     "nom": "Antiparasitaires associés — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Combinaisons d'ivermectine, mébendazole, praziquantel, niclosamide et antifongiques ; doses non précisées dans le résumé",
+     "population": "1 patient, myélome multiple (série de 6 cas)",
+     "effet": "Vivant 14 ans après le diagnostic, avec des marqueurs biologiques normalisés.",
+     "resume": "Vivant 14 ans, marqueurs normalisés (1 cas)",
+     "source": "ama",
+     "prudence": "Cas choisis et suivis par les auteurs, sans groupe de comparaison ; traitement guidé par une méthode d'électro-acupuncture (évaluation des méridiens) dont la validité n'est pas établie. Infections dentaires traitées en même temps. Antiparasitaires hors autorisation dans le cancer : à discuter avec l'oncologue.",
      "critere": 1,
      "zones": [
       "femur_l",
@@ -8668,6 +8769,38 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "sla_inversions",
+     "nom": "Inversions de la SLA (récupération durable)",
+     "type": "geste",
+     "force": "cas",
+     "dose": "Sans objet (observation)",
+     "population": "Base PRO-ACT : 1 343 à 3 132 participants d'essais cliniques",
+     "effet": "Moins de 1 % des participants ont récupéré au moins 4 points sur l'échelle fonctionnelle pendant au moins 12 mois. Les petites améliorations courtes sont plus fréquentes (14 %) et ne doivent pas être prises pour un effet de traitement.",
+     "resume": "Récupération durable chez moins de 1 %",
+     "source": "bedlack2016_inversions",
+     "prudence": "Ces récupérations ne sont pas attribuées à un traitement précis ; les auteurs les jugent rares et dignes d'étude.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "ozone_sla_cas",
+     "nom": "Ozonothérapie dans un mélange de traitements alternatifs — cas rapporté",
+     "type": "geste",
+     "force": "cas",
+     "dose": "Non précisée",
+     "population": "1 personne atteinte de SLA",
+     "effet": "Une inversion de la SLA vérifiée est survenue sous un mélange de traitements alternatifs comprenant l'ozone. Aucun essai chez l'humain.",
+     "resume": "1 inversion vérifiée (mélange de traitements)",
+     "source": "sun2023_ozone_sla",
+     "prudence": "Effets indésirables possiblement graves selon la dose. Les auteurs recommandent des études animales mais pas le traitement des patients.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": []
@@ -9045,7 +9178,29 @@
      ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_mebendazole_fpi",
+     "nom": "Mébendazole (Vermox) contre la fibrose pulmonaire",
+     "type": "medicament",
+     "situation": "Fibrose pulmonaire idiopathique qui progresse.",
+     "lesion": "Les cicatrices du poumon sont fabriquées par des myofibroblastes ; chez la souris, une grande partie vient de cellules marquées par Gli1, un relais de la voie Hedgehog, situées autour des vaisseaux.",
+     "fait_molecule": "Le mébendazole bloque la voie Hedgehog à des concentrations atteignables chez l'humain (Larsen 2015).",
+     "fait_maladie": "Les cellules Gli1+ prolifèrent après une lésion du poumon, du rein, du foie ou du cœur et produisent les myofibroblastes (Kramann 2015).",
+     "lien": "En freinant la voie Hedgehog dans ces cellules, le mébendazole pourrait limiter la production de cicatrices dans le poumon.",
+     "formulation": "Chez une personne dont la fibrose pulmonaire progresse, le mébendazole pourrait éventuellement ralentir la formation de nouvelles cicatrices.",
+     "recherche": "Aucune étude trouvée sur PubMed testant le mébendazole contre la fibrose pulmonaire (recherche du 24/11/2026 : 3 résultats, aucun ne le teste).",
+     "a_verifier": "D'abord chez l'animal (fibrose induite par la bléomycine), en mesurant les cicatrices et les cellules Gli1+ ; vérifier que la dose atteint le poumon.",
+     "prudence": "Jamais testé dans cette maladie. Antiparasitaire autorisé en cures courtes ; un usage prolongé n'est pas évalué ici.",
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ],
+     "source": "larsen2015_mebendazole_hh",
+     "source2": "kramann2015_gli1"
+    }
+   ]
   },
   {
    "id": "bpco",
@@ -9175,6 +9330,24 @@
      ],
      "mecanisme": "Dilate les artères du poumon (voie du monoxyde d'azote).",
      "prudence": "Bouffées de chaleur, digestion difficile, diarrhée. Jamais avec les dérivés nitrés.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "heart"
+     ]
+    },
+    {
+     "id": "mebendazole_htap",
+     "nom": "Mébendazole (Vermox)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales (non transposables)",
+     "population": "Cellules de patients atteints d'HTAP et rongeurs",
+     "effet": "Repéré par criblage : il diminue ADAMTS8 et la multiplication des cellules musculaires des artères pulmonaires, et améliore l'hypertension pulmonaire et l'insuffisance du ventricule droit chez le rongeur.",
+     "resume": "Hypertension pulmonaire améliorée (rongeurs)",
+     "source": "omura2019_mebendazole_htap",
+     "prudence": "Aucun essai chez l'humain dans l'HTAP.",
      "critere": 1,
      "zones": [
       "lung_l",
