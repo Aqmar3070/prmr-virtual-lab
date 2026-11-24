@@ -387,3 +387,17 @@ test('Maladies courantes 3 : migraine, reflux, asthme, ORL, peau, sommeil, dos, 
  assert.ok(p);assert.match(p.formulation,/pourrait éventuellement/);
  for(const id of ['ulcere','pied_athlete','insomnie','verrues'])assert.ok(pourGueris(m(id),m(id).substances).obtenues.length,id);
 });
+
+test('Solutions concrètes : romarin et plantes dans Alzheimer, plus de « guérit seul »',async()=>{
+ const {pourPistes,pourGueris,pourTestes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ const alz=pourTestes(m('alzheimer').substances).map(s=>s.id);
+ for(const id of ['romarin_aroma_alz','safran_alz','sauge_alz','melisse_alz'])assert.ok(alz.includes(id),id);
+ assert.ok(pourPistes(m('alzheimer'),[],'').pistes.some(p=>p.id==='p_romarin_safran_alz'));
+ for(const id of ['angine','conjonctivite']){
+  for(const g of pourGueris(m(id),m(id).substances).obtenues)assert.doesNotMatch(g.titre,/spontan/i,id);
+ }
+ for(const id of ['rhume','grippe','angine'])assert.doesNotMatch(m(id).description,/guérit seule|guérie spontanément|guérit seul/i,id);
+ for(const [mid,sid] of [['alopecie','romarin_cheveux'],['herpes_labial','propolis_miel_herpes'],['depression','safran_depression'],['migraine','gingembre_migraine'],['grippe','baloxavir'],['ulcere','vonoprazan_hp']])
+  assert.ok(m(mid).substances.some(s=>s.id===sid),sid);
+});
