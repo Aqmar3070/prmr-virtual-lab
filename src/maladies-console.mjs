@@ -93,9 +93,9 @@ function rendreGueris(zone,{obtenues,cas}){
  if(!obtenues.length&&!cas.length){zone.append(el("p","mx-etiq","Aucune guérison documentée pour l’instant dans le registre."));return;}
  if(obtenues.length){zone.append(el("h3","mx-niveau","Guérisons ou rémissions obtenues"));for(const g of obtenues)zone.append(carteGuerison(g));}
  if(cas.length){
-  zone.append(el("h3","mx-niveau","Cas et témoignages"));
-  zone.append(el("p","mx-etiq","Une ou quelques personnes, sans groupe de comparaison, souvent avec d’autres traitements en même temps : on ne peut pas savoir ce qui a agi."));
-  rendreGroupe(zone,cas,null,true);
+  zone.append(el("h3","mx-niveau","Guérisons rapportées · cas et témoignages"));
+  zone.append(el("p","mx-etiq","Guérison ou rémission rapportée chez une ou quelques personnes. Chaque fiche dit si elle a été vérifiée par des examens et si d’autres traitements étaient pris en même temps."));
+  rendreGroupe(zone,cas,null,"gueris");
  }
  const note=el("details","mx-note");note.append(el("summary","","Pourquoi aucun pourcentage de guérison"),el("p","mx-etiq",registre.regle_appui?.avertissement||""));zone.append(note);
 }
@@ -122,7 +122,7 @@ function rendreGroupe(zone,liste,avis,sansEntete){
   if(!sansEntete&&f.groupe!==groupeCourant){groupeCourant=f.groupe;zone.append(el("h3","mx-niveau",f.groupe));}
   for(const s of groupe){
    const d=el("details","mx-ligne-d mx-substance");d.dataset.force=cle;
-   const resume=el("summary","");resume.append(el("span","",s.nom),el("b","",COURT[cle]));d.append(resume);
+   const resume=el("summary","");resume.append(el("span","",s.nom),el("b","",sansEntete==="gueris"?"Guérison rapportée":COURT[cle]));d.append(resume);
    const a=avis?.get(s);if(a){const p=el("p","mx-avis",a.raisons.join(" · "));p.dataset.statut=a.statut;d.append(p);}
    if(s.resume)d.append(el("p","mx-resume",s.resume));
    ligne(d,"Type",TYPES[s.type]||s.type);
