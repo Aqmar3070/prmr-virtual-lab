@@ -350,3 +350,9 @@ test('Lot molécules 6 : sang et maladies rares',async()=>{
  assert.ok(pourGueris(m('hemophilie'),m('hemophilie').substances).obtenues.some(g=>g.id==='hemo_b_genique'));
  for(const [mid,sid] of [['mucoviscidose','azithro_muco'],['duchenne','givinostat'],['drepanocytose','metformine_hbf']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
 });
+
+test('Lot molécules 7 : cœur, poumons, foie, yeux, os',async()=>{
+ const {pourTestes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['insuffisance_cardiaque','fer_iv_ic'],['bpco','azithro_bpco'],['mash','tirzepatide_mash'],['glaucome','citicoline_combi'],['osteoporose','vitk2_osteo']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+});

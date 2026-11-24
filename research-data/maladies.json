@@ -1412,6 +1412,26 @@
   "zhang2018_metformine_hbf": {
    "source": "Zhang et al., Blood 2018 — la metformine augmente l'hémoglobine fœtale via FOXO3 dans les cellules sanguines humaines",
    "url": "https://doi.org/10.1182/blood-2017-11-814335"
+  },
+  "shalabi2025_fer_ic": {
+   "source": "Shalabi et al., Eur J Pharmacol 2025 — carboxymaltose ferrique intraveineux dans l'insuffisance cardiaque avec carence en fer (méta-analyse, 9 essais, 7 491 patients)",
+   "url": "https://doi.org/10.1016/j.ejphar.2025.178314"
+  },
+  "albert2011_azithro_bpco": {
+   "source": "Albert et al., N Engl J Med 2011 — azithromycine quotidienne pour prévenir les exacerbations de BPCO (1 142 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1104623"
+  },
+  "loomba2024_tirzepatide": {
+   "source": "Loomba et al. (SYNERGY-NASH), N Engl J Med 2024 — tirzépatide dans la stéatohépatite avec fibrose (190 patients, phase 2)",
+   "url": "https://doi.org/10.1056/NEJMoa2401943"
+  },
+  "martucci2025_glaucome": {
+   "source": "Martucci et al., J Clin Med 2025 — neuroprotection du glaucome par associations de molécules (revue)",
+   "url": "https://doi.org/10.3390/jcm14176145"
+  },
+  "su2019_menatetrenone": {
+   "source": "Su et al., Osteoporos Int 2019 — vitamine K2 (ménatétrénone) dans l'ostéoporose (méta-analyse, 18 essais, 8 882 patients)",
+   "url": "https://doi.org/10.1007/s00198-019-04853-7"
   }
  },
  "maladies": [
@@ -4378,6 +4398,25 @@
       "heart"
      ],
      "source": "qsymbio"
+    },
+    {
+     "id": "fer_iv_ic",
+     "nom": "Fer intraveineux (carboxymaltose ferrique)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Perfusions selon la carence en fer",
+     "population": "9 essais, 7 491 patients insuffisants cardiaques carencés en fer",
+     "effet": "Moins d'hospitalisations pour insuffisance cardiaque (RR 0,82 ; IC 95 % 0,77 à 0,87) et moins de décès cardiovasculaires (RR 0,89 ; IC 95 % 0,80 à 0,99). Pas d'effet sur l'ensemble des hospitalisations.",
+     "resume": "18 % d'hospitalisations cardiaques en moins",
+     "source": "shalabi2025_fer_ic",
+     "stades": [
+      "fer"
+     ],
+     "condition": "Carence en fer prouvée",
+     "critere": 1,
+     "zones": [
+      "heart"
+     ]
     }
    ],
    "guerison": [
@@ -6274,6 +6313,25 @@
      "source": "nie_berb",
      "mecanisme": "Active l'AMPK, régulateur du métabolisme du sucre et des graisses.",
      "prudence": "Troubles digestifs légers ; nombreuses interactions (enzymes du foie). Effet sur la fibrose non démontré.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
+    },
+    {
+     "id": "tirzepatide_mash",
+     "nom": "Tirzépatide (antidiabétique et anti-obésité)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "5, 10 ou 15 mg en injection une fois par semaine, 52 semaines",
+     "population": "190 patients avec stéatohépatite et fibrose F2 ou F3 prouvées par biopsie",
+     "effet": "Disparition de la stéatohépatite sans aggravation de la fibrose : 44 à 62 % selon la dose contre 10 % sous placebo ; recul d'au moins un stade de fibrose : 51 à 55 % contre 30 %.",
+     "resume": "Stéatohépatite disparue chez jusqu'à 62 %",
+     "source": "loomba2024_tirzepatide",
+     "stades": [
+      "mash"
+     ],
+     "prudence": "Troubles digestifs fréquents, le plus souvent légers.",
      "critere": 1,
      "zones": [
       "liver"
@@ -9996,6 +10054,23 @@
       "lung_l",
       "lung_r"
      ]
+    },
+    {
+     "id": "azithro_bpco",
+     "nom": "Azithromycine (antibiotique) au long cours",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "250 mg par jour pendant 1 an, en plus du traitement habituel",
+     "population": "1 142 patients BPCO à risque d'exacerbations, sans trouble de l'audition ni risque cardiaque (QT)",
+     "effet": "Première exacerbation retardée (266 contre 174 jours) ; 1,48 exacerbation par an contre 1,83 (HR 0,73 ; IC 95 % 0,63 à 0,84) ; qualité de vie respiratoire améliorée.",
+     "resume": "27 % d'exacerbations en moins",
+     "source": "albert2011_azithro_bpco",
+     "prudence": "Patients avec troubles de l'audition ou risque d'allongement du QT exclus de l'essai.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
     }
    ],
    "guerison": []
@@ -10908,6 +10983,23 @@
       "hip_r",
       "pelvis"
      ]
+    },
+    {
+     "id": "vitk2_osteo",
+     "nom": "Vitamine K2 (ménatétrénone)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Selon les essais",
+     "population": "18 essais, 8 882 patients",
+     "effet": "Densité osseuse lombaire un peu améliorée ; baisse non significative des fractures vertébrales (RR 0,87 ; IC 95 % 0,64 à 1,20) ; plus d'effets indésirables non graves.",
+     "resume": "Os un peu plus dense, fractures non réduites",
+     "source": "su2019_menatetrenone",
+     "critere": 1,
+     "zones": [
+      "hip_l",
+      "hip_r",
+      "pelvis"
+     ]
     }
    ],
    "guerison": []
@@ -10968,6 +11060,26 @@
      "duree": "12 semaines",
      "mecanisme": "Protège l'énergie (NAD) des cellules du nerf optique.",
      "prudence": "Fortes doses : surveiller le foie. Ne remplace pas le traitement de la pression de l'œil.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    },
+    {
+     "id": "citicoline_combi",
+     "nom": "Associations neuroprotectrices : citicoline + coenzyme Q10 (± vitamine B3), citicoline + homotaurine, nicotinamide + pyruvate",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Associations à doses fixes, selon les essais",
+     "population": "Essais cliniques et études animales (revue)",
+     "effet": "Les associations testées améliorent de façon additive l'activité électrique des cellules de la rétine, la fonction visuelle, la sensibilité aux contrastes et la qualité de vie, sans changer la pression de l'œil.",
+     "resume": "Fonction visuelle améliorée (associations)",
+     "source": "martucci2025_glaucome",
+     "stades": [
+      "angle_ouvert"
+     ],
+     "prudence": "Complète le traitement qui baisse la pression de l'œil, ne le remplace pas.",
      "critere": 1,
      "zones": [
       "eye_l",
