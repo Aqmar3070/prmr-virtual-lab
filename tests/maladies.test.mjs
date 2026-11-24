@@ -310,3 +310,12 @@ test('Lot molécules 1 : classes variées (SGLT2, antifongique, antagoniste min�
  assert.match(m('duchenne').substances.find(s=>s.id==='empagliflozine_dmd').prudence,/non relue/);
  assert.equal(pourPistes(m('rein_drepanocytaire'),[],'').pistes[0].id,'p_finerenone_drepano');
 });
+
+test('Lot molécules 2 : diabète, foie, cancers (positifs et négatifs)',async()=>{
+ const {pourTestes,pourPistes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['dt2','harmine_glp1'],['dt1','gaba_dt1'],['hepatite_b','ciclopirox_vhb'],['cancer_sein','propranolol_sein'],['cirrhose','simva_rifaximine'],['cancer_colorectal','vitd_sunshine']])
+  assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+ assert.match(m('cirrhose').substances.find(s=>s.id==='simva_rifaximine').resume,/Pas de bénéfice/);
+ assert.equal(pourPistes(m('dt1'),[],'').pistes[0].id,'p_verapamil_harmine');
+});
