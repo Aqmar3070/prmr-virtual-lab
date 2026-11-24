@@ -335,3 +335,10 @@ test('Lot molécules 4 : auto-immunité et intestin',async()=>{
   assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
  assert.equal(pourPistes(m('vitiligo'),[],'').pistes[0].id,'p_ldn_vitiligo');
 });
+
+test('Lot molécules 5 : cancers (médicaments détournés et vitamine C)',async()=>{
+ const {pourTestes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['glioblastome','cusp9_gbm'],['cancer_foie','statine_chc_vhb'],['cancer_foie','aspirine_chc_vhc'],['cancer_pancreas','vitc_iv_pancreas'],['cancer_ovaire','metformine_ovaire'],['lymphome','doxycycline_oaml']])
+  assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+});

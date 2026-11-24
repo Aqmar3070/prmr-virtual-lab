@@ -1368,6 +1368,30 @@
   "liu2024_vitiligo_icc": {
    "source": "Liu et al., Eur J Immunol 2024 — l'axe IFN-γ–CXCL9/10–CXCR3 et les lymphocytes T CD8 qui détruisent les mélanocytes dans le vitiligo",
    "url": "https://doi.org/10.1002/eji.202250281"
+  },
+  "skaga2019_cusp9": {
+   "source": "Skaga et al., J Cancer Res Clin Oncol 2019 — CUSP9 : neuf médicaments détournés + témozolomide sur cellules souches de glioblastome de 15 patients",
+   "url": "https://doi.org/10.1007/s00432-019-02920-4"
+  },
+  "liao2020_aspirine_vhc": {
+   "source": "Liao et al., BMC Gastroenterol 2020 — aspirine et cancer du foie chez les porteurs du virus C (cohorte nationale, Taïwan)",
+   "url": "https://doi.org/10.1186/s12876-020-1158-y"
+  },
+  "sinn2023_statine_vhb": {
+   "source": "Sinn et al., BMC Gastroenterol 2023 — statines et cancer du foie dans l'hépatite B chronique (données nationales, Corée)",
+   "url": "https://doi.org/10.1186/s12876-023-02996-w"
+  },
+  "bodeker2024_vitc_pancreas": {
+   "source": "Bodeker et al., Redox Biol 2024 — vitamine C intraveineuse à forte dose + gemcitabine/nab-paclitaxel, cancer du pancréas métastatique (36 patients)",
+   "url": "https://doi.org/10.1016/j.redox.2024.103375"
+  },
+  "brown2020_metformine_ovaire": {
+   "source": "Brown et al., JCI Insight 2020 — metformine contre les cellules souches du cancer de l'ovaire, phase II (38 patientes)",
+   "url": "https://doi.org/10.1172/jci.insight.133247"
+  },
+  "sassone2017_oaml": {
+   "source": "Sassone et al., Best Pract Res Clin Haematol 2017 — lymphome MALT des annexes de l'œil, Chlamydia psittaci et doxycycline (revue)",
+   "url": "https://doi.org/10.1016/j.beha.2016.11.002"
   }
  },
  "maladies": [
@@ -5392,6 +5416,46 @@
      ],
      "source": "imbrave",
      "resume": "Décès − 42 %"
+    },
+    {
+     "id": "statine_chc_vhb",
+     "nom": "Statines (anticholestérol)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Selon prescription habituelle",
+     "population": "2 915 patients avec hépatite B et cholestérol ≥ 2 g/L sous statine, comparés à 8 525 sans",
+     "effet": "Cancer du foie moins fréquent sous statine (HR 0,56 ; IC 95 % 0,39 à 0,80) et moins de décès d'origine hépatique (HR 0,59) ; pas d'effet sur la mortalité totale.",
+     "resume": "44 % de cancers du foie en moins (observation)",
+     "source": "sinn2023_statine_vhb",
+     "stades": [
+      "prevention"
+     ],
+     "condition": "Hépatite B avec cholestérol élevé",
+     "prudence": "Étude d'observation (essai émulé), pas d'essai randomisé.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
+    },
+    {
+     "id": "aspirine_chc_vhc",
+     "nom": "Aspirine",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Selon prescription habituelle ; meilleur effet entre 1 et 2 ans",
+     "population": "1 911 porteurs du virus C sous aspirine comparés à 1 911 sans",
+     "effet": "Cancer du foie moins fréquent sous aspirine (HR ajusté 0,56 ; IC 95 % 0,43 à 0,72) sur 10 ans.",
+     "resume": "44 % de cancers du foie en moins (observation)",
+     "source": "liao2020_aspirine_vhc",
+     "stades": [
+      "prevention"
+     ],
+     "condition": "Porteurs du virus de l'hépatite C",
+     "prudence": "Étude d'observation ; risque de saignement, notamment en cas de cirrhose avec varices.",
+     "critere": 1,
+     "zones": [
+      "liver"
+     ]
     }
    ],
    "guerison": [
@@ -6620,6 +6684,22 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "cusp9_gbm",
+     "nom": "CUSP9 : aprépitant, auranofine, captopril, célécoxib, disulfirame, itraconazole, minocycline, quétiapine, sertraline + témozolomide",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Concentrations atteignables dans le sang chez l'humain",
+     "population": "Cellules souches de glioblastome prélevées chez 15 patients (tumeurs nouvelles et récidives)",
+     "effet": "L'association a eu un effet combiné supérieur à chaque médicament seul et au témozolomide seul ; la moitié des cultures étaient très sensibles. Elle diminue la voie Wnt.",
+     "resume": "Effet combiné sur cellules de patients",
+     "source": "skaga2019_cusp9",
+     "prudence": "Les auteurs signalent que des patients prennent déjà ce cocktail sans suivi : neuf médicaments, nombreuses interactions possibles. Aucun essai d'efficacité publié dans cette source.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": [
@@ -6734,6 +6814,25 @@
      "resume": "Tumeurs freinées chez la souris",
      "source": "jiang2019_itraconazole_pancreas",
      "prudence": "Antifongique autorisé, mais non étudié chez l'humain dans ce cancer selon cette source. Nombreuses interactions médicamenteuses.",
+     "critere": 1,
+     "zones": [
+      "pancreas"
+     ]
+    },
+    {
+     "id": "vitc_iv_pancreas",
+     "nom": "Vitamine C intraveineuse à forte dose",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "75 g en perfusion 3 fois par semaine, avec gemcitabine + nab-paclitaxel",
+     "population": "34 patients traités, cancer du pancréas métastatique (essai randomisé)",
+     "effet": "Survie globale 16 mois contre 8,3 mois avec la chimiothérapie seule (HR 0,46) ; survie sans progression 6,2 contre 3,9 mois. Pas plus d'effets indésirables, qualité de vie préservée.",
+     "resume": "Survie doublée (petit essai randomisé)",
+     "source": "bodeker2024_vitc_pancreas",
+     "stades": [
+      "avance"
+     ],
+     "prudence": "Petit essai de 34 patients : à confirmer par un essai plus grand. Perfusions à l'hôpital uniquement, avec l'équipe d'oncologie.",
      "critere": 1,
      "zones": [
       "pancreas"
@@ -7906,6 +8005,26 @@
       "ovary_l",
       "ovary_r"
      ]
+    },
+    {
+     "id": "metformine_ovaire",
+     "nom": "Metformine (antidiabétique)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Avant et après la chirurgie, avec la chimiothérapie",
+     "population": "38 patientes non diabétiques, cancer de l'ovaire avancé (phase II, sans groupe tiré au sort)",
+     "effet": "Bien tolérée ; cellules souches cancéreuses divisées par 2,4 ; survie sans rechute à 18 mois 59 % ; survie médiane 57,9 mois, meilleure que prévu selon les auteurs.",
+     "resume": "Cellules souches tumorales réduites, survie encourageante",
+     "source": "brown2020_metformine_ovaire",
+     "stades": [
+      "avance"
+     ],
+     "prudence": "Comparaison avec des patientes historiques : à confirmer en phase III.",
+     "critere": 1,
+     "zones": [
+      "ovary_l",
+      "ovary_r"
+     ]
     }
    ],
    "guerison": []
@@ -8231,6 +8350,25 @@
      ],
      "mecanisme": "Ce lymphome est entretenu par la réaction immunitaire contre la bactérie.",
      "prudence": "Seulement pour ce type précis de lymphome ; suivi par biopsies nécessaire.",
+     "critere": 1,
+     "zones": [
+      "spleen"
+     ]
+    },
+    {
+     "id": "doxycycline_oaml",
+     "nom": "Doxycycline (antibiotique)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Cure antibiotique (selon protocoles)",
+     "population": "Lymphomes MALT des annexes de l'œil (revue)",
+     "effet": "Le lymphome est relié à l'infection par Chlamydia psittaci ; l'antibiotique qui l'élimine est présenté comme une approche sûre et peu coûteuse.",
+     "resume": "Antibiotique contre un lymphome lié à une bactérie",
+     "source": "sassone2017_oaml",
+     "stades": [
+      "malt"
+     ],
+     "condition": "Lymphome MALT de l'œil et de ses annexes",
      "critere": 1,
      "zones": [
       "spleen"
