@@ -281,3 +281,13 @@ test('Guéris : seules les guérisons ou rémissions rapportées',async()=>{
   assert.ok(pourTestes(l).some(s=>s.id===sid),sid);
  }
 });
+
+test('Maladies courantes : paludisme, typhoïde, dengue, grippe, infection urinaire, diarrhée',()=>{
+ for(const [mot,id] of [['palu','paludisme'],['typhoïde','typhoide'],['dengue','dengue'],['grippe','grippe'],['cystite','infection_urinaire'],['gastro','diarrhee_aigue']])
+  assert.ok(chercherMaladies(registre,mot).some(m=>m.id===id),mot);
+ const palu=registre.maladies.find(m=>m.id==='paludisme');
+ assert.ok(palu.guerison.some(g=>g.type==='obtenue'));
+ // l'essai Artemisia rétracté doit être signalé comme tel, jamais compté comme preuve
+ const a=palu.substances.find(s=>s.id==='artemisia_tisane');
+ assert.equal(a.force,'faible');assert.match(a.effet,/rétracté/);assert.ok(a.source2);
+});

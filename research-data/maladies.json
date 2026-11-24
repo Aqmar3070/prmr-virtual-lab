@@ -1208,6 +1208,42 @@
   "dogra2018_fenbendazole": {
    "source": "Dogra et al., Sci Rep 2018 — le fenbendazole se fixe sur la tubuline des mammifères (déstabilisant modéré des microtubules)",
    "url": "https://doi.org/10.1038/s41598-018-30158-6"
+  },
+  "aquamat2010": {
+   "source": "Dondorp et al. (AQUAMAT), Lancet 2010 — artésunate contre quinine dans le paludisme grave de l'enfant africain, 5 425 enfants",
+   "url": "https://doi.org/10.1016/S0140-6736(10)61924-1"
+  },
+  "sinclair2009_act": {
+   "source": "Sinclair et al., Cochrane 2009 — combinaisons à base d'artémisinine dans le paludisme simple (50 essais)",
+   "url": "https://doi.org/10.1002/14651858.CD007483.pub2"
+  },
+  "munyangi2019_artemisia": {
+   "source": "Munyangi et al., Phytomedicine 2019 — tisanes d'Artemisia annua et afra contre ASAQ (article rétracté)",
+   "url": "https://doi.org/10.1016/j.phymed.2018.12.002"
+  },
+  "munyangi2020_retrait": {
+   "source": "Phytomedicine 2020 — avis de rétractation de l'essai Artemisia de Munyangi et al.",
+   "url": "https://doi.org/10.1016/j.phymed.2020.153304"
+  },
+  "effa2008_azithro": {
+   "source": "Effa et Bukirwa, Cochrane 2008 — azithromycine dans la fièvre typhoïde non compliquée (7 essais, 773 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD006083.pub2"
+  },
+  "rajapakse2019_papaye": {
+   "source": "Rajapakse et al., BMC Complement Altern Med 2019 — extrait de papayer dans la dengue (méta-analyse)",
+   "url": "https://doi.org/10.1186/s12906-019-2678-2"
+  },
+  "jefferson2014_grippe": {
+   "source": "Jefferson et al., Cochrane 2014 — inhibiteurs de la neuraminidase (oseltamivir, zanamivir) dans la grippe",
+   "url": "https://doi.org/10.1002/14651858.CD008965.pub4"
+  },
+  "williams2023_canneberge": {
+   "source": "Williams et al., Cochrane 2023 — canneberge pour prévenir les infections urinaires (50 essais, 8 857 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD001321.pub6"
+  },
+  "lazzerini2016_zinc": {
+   "source": "Lazzerini et Wanzira, Cochrane 2016 — zinc par la bouche dans la diarrhée de l'enfant (33 essais, 10 841 enfants)",
+   "url": "https://doi.org/10.1002/14651858.CD005436.pub5"
   }
  },
  "maladies": [
@@ -10143,6 +10179,387 @@
      "critere": 1,
      "zones": [
       "pelvis"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "paludisme",
+   "nom": "Paludisme (malaria)",
+   "synonymes": [
+    "malaria",
+    "palu",
+    "fièvre palustre",
+    "plasmodium"
+   ],
+   "zones": [
+    "liver",
+    "spleen",
+    "brain"
+   ],
+   "description": "Infection par un parasite (Plasmodium) transmis par la piqûre de moustique. Le paludisme simple se guérit en quelques jours de traitement ; la forme grave est une urgence.",
+   "source": "sinclair2009_act",
+   "stades": [
+    {
+     "id": "simple",
+     "nom": "Paludisme simple",
+     "niveau": "modere"
+    },
+    {
+     "id": "grave",
+     "nom": "Paludisme grave",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "act_palu",
+     "nom": "Combinaisons à base d'artémisinine (artéméther-luméfantrine, artésunate-amodiaquine, dihydroartémisinine-pipéraquine)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Selon la combinaison, par la bouche pendant 3 jours (posologie du fabricant)",
+     "population": "50 essais comparatifs, paludisme simple à P. falciparum",
+     "effet": "Les cinq combinaisons étudiées ont un taux d'échec (corrigé par PCR) inférieur à 10 % dans la plupart des sites, conforme aux exigences de l'OMS. La dihydroartémisinine-pipéraquine a fait mieux que l'artéméther-luméfantrine en Afrique (RR d'échec 0,39 ; IC 95 % 0,24 à 0,64).",
+     "resume": "Guérison dans plus de 90 % des cas",
+     "source": "sinclair2009_act",
+     "stades": [
+      "simple"
+     ],
+     "mecanisme": "L'artémisinine tue rapidement les parasites dans le sang ; le second médicament élimine ceux qui restent.",
+     "critere": 1,
+     "zones": [
+      "liver",
+      "spleen",
+      "brain"
+     ]
+    },
+    {
+     "id": "artesunate_iv_palu",
+     "nom": "Artésunate injectable",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Par voie injectable (veine ou muscle)",
+     "population": "5 425 enfants de moins de 15 ans, paludisme grave, 11 centres dans 9 pays africains",
+     "effet": "Décès à l'hôpital : 8,5 % sous artésunate contre 10,9 % sous quinine (OR 0,75 ; IC 95 % 0,63 à 0,90), soit 22,5 % de décès en moins. Moins de comas, de convulsions et d'hypoglycémies.",
+     "resume": "22,5 % de décès en moins que la quinine",
+     "source": "aquamat2010",
+     "stades": [
+      "grave"
+     ],
+     "prudence": "Urgence hospitalière : ne pas retarder le traitement.",
+     "critere": 1,
+     "zones": [
+      "liver",
+      "spleen",
+      "brain"
+     ]
+    },
+    {
+     "id": "artemisia_tisane",
+     "nom": "Tisane d'Artemisia annua ou afra",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "1 litre par jour d'infusion de feuilles et tiges sèches, 7 jours",
+     "population": "957 patients en RD Congo, comparés à l'artésunate-amodiaquine",
+     "effet": "L'article annonçait de meilleurs taux de guérison qu'avec l'artésunate-amodiaquine, mais il a été rétracté par la revue en 2020 : ses résultats ne peuvent pas être retenus.",
+     "resume": "Essai rétracté : résultats non fiables",
+     "source": "munyangi2019_artemisia",
+     "source2": "munyangi2020_retrait",
+     "prudence": "Ne pas remplacer un traitement reconnu par la tisane : le paludisme peut devenir grave en quelques heures. L'avis de rétractation est cité en seconde source.",
+     "critere": 1,
+     "zones": [
+      "liver",
+      "spleen",
+      "brain"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "palu_guerison",
+     "type": "obtenue",
+     "titre": "Guérison du paludisme simple en 3 jours",
+     "objectif": "Élimination des parasites du sang",
+     "resultat": "Échec inférieur à 10 % avec les combinaisons à base d'artémisinine dans la plupart des sites étudiés, soit plus de 90 % de guérisons.",
+     "composants": [
+      {
+       "nom": "Combinaison à base d'artémisinine",
+       "role": "traitement de 3 jours",
+       "ref": "act_palu"
+      }
+     ],
+     "risques": "Résistances en extension dans certaines régions : suivre les recommandations nationales.",
+     "source": "sinclair2009_act"
+    }
+   ]
+  },
+  {
+   "id": "typhoide",
+   "nom": "Fièvre typhoïde",
+   "synonymes": [
+    "typhoïde",
+    "paratyphoïde",
+    "fièvre entérique",
+    "salmonella typhi"
+   ],
+   "zones": [
+    "small_intestine",
+    "colon"
+   ],
+   "description": "Infection par la bactérie Salmonella Typhi, transmise par l'eau ou les aliments contaminés. Elle se guérit par antibiotiques ; les souches résistantes compliquent le choix.",
+   "source": "effa2008_azithro",
+   "stades": [
+    {
+     "id": "simple",
+     "nom": "Forme non compliquée",
+     "niveau": "modere"
+    },
+    {
+     "id": "compliquee",
+     "nom": "Forme compliquée",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "azithro_typhoide",
+     "nom": "Azithromycine",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Par la bouche (posologies variables selon les essais)",
+     "population": "7 essais, 773 enfants et adultes hospitalisés, typhoïde confirmée par culture",
+     "effet": "Contre les fluoroquinolones : moins d'échecs cliniques (OR 0,48 ; IC 95 % 0,26 à 0,89) et un jour d'hôpital en moins ; contre la ceftriaxone : moins de rechutes (OR 0,09 ; IC 95 % 0,01 à 0,70). Effets indésirables rares et légers.",
+     "resume": "Moins d'échecs que les fluoroquinolones, moins de rechutes que la ceftriaxone",
+     "source": "effa2008_azithro",
+     "stades": [
+      "simple"
+     ],
+     "condition": "Souches résistantes présentes dans les essais comparés aux fluoroquinolones",
+     "critere": 1,
+     "zones": [
+      "small_intestine",
+      "colon"
+     ]
+    }
+   ],
+   "guerison": [
+    {
+     "id": "typhoide_guerison",
+     "type": "obtenue",
+     "titre": "Guérison par antibiotique adapté",
+     "objectif": "Élimination de la bactérie",
+     "resultat": "Guérison chez la majorité des patients traités dans les essais ; l'azithromycine réduit les échecs face aux souches résistantes.",
+     "composants": [
+      {
+       "nom": "Azithromycine",
+       "role": "antibiotique",
+       "ref": "azithro_typhoide"
+      }
+     ],
+     "risques": "Choisir l'antibiotique selon les résistances locales.",
+     "source": "effa2008_azithro"
+    }
+   ]
+  },
+  {
+   "id": "dengue",
+   "nom": "Dengue",
+   "synonymes": [
+    "dengue",
+    "fièvre dengue",
+    "dengue sévère"
+   ],
+   "zones": [
+    "skin",
+    "liver"
+   ],
+   "description": "Infection virale transmise par le moustique Aedes. Il n'existe pas de médicament antiviral spécifique : le traitement repose sur l'hydratation et la surveillance.",
+   "source": "rajapakse2019_papaye",
+   "stades": [
+    {
+     "id": "classique",
+     "nom": "Dengue classique",
+     "niveau": "modere"
+    },
+    {
+     "id": "severe",
+     "nom": "Dengue sévère",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "papaye_dengue",
+     "nom": "Extrait de feuilles de papayer (Carica papaya)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Selon les essais",
+     "population": "9 études (Inde, Pakistan, Indonésie, Malaisie)",
+     "effet": "Hausse des plaquettes dans 7 études sur 9 ; séjour à l'hôpital peut-être réduit d'environ 2 jours (3 études, 580 participants, preuves de faible qualité). Aucun effet démontré sur les complications graves ou les décès.",
+     "resume": "Plaquettes en hausse, preuves faibles",
+     "source": "rajapakse2019_papaye",
+     "prudence": "Les auteurs jugent les preuves insuffisantes pour conclure. Ne remplace pas l'hydratation et la surveillance médicale.",
+     "critere": 1,
+     "zones": [
+      "skin",
+      "liver"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "grippe",
+   "nom": "Grippe saisonnière",
+   "synonymes": [
+    "grippe",
+    "influenza",
+    "état grippal"
+   ],
+   "zones": [
+    "lung_l",
+    "lung_r",
+    "pharynx"
+   ],
+   "description": "Infection respiratoire virale, le plus souvent guérie spontanément en une à deux semaines, parfois grave chez les personnes fragiles.",
+   "source": "jefferson2014_grippe",
+   "stades": [
+    {
+     "id": "simple",
+     "nom": "Grippe simple",
+     "niveau": "faible"
+    },
+    {
+     "id": "compliquee",
+     "nom": "Grippe compliquée",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "oseltamivir",
+     "nom": "Oseltamivir (Tamiflu)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Dose standard des essais : 150 mg par jour",
+     "population": "20 essais (9 623 participants)",
+     "effet": "Chez l'adulte, les symptômes se calment environ 17 heures plus tôt (de 7 à 6,3 jours). Pas d'effet démontré sur les hospitalisations ni sur les complications graves. Plus de nausées et de vomissements.",
+     "resume": "Symptômes raccourcis de 17 heures chez l'adulte",
+     "source": "jefferson2014_grippe",
+     "prudence": "Effets indésirables : nausées, vomissements, effets psychiatriques et rénaux signalés.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "pharynx"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "infection_urinaire",
+   "nom": "Infection urinaire",
+   "synonymes": [
+    "cystite",
+    "infection urinaire",
+    "pyélonéphrite",
+    "infection de la vessie"
+   ],
+   "zones": [
+    "bladder",
+    "kidney_l",
+    "kidney_r"
+   ],
+   "description": "Infection de la vessie (cystite) ou du rein (pyélonéphrite), surtout chez la femme. Elle se traite par antibiotiques ; la canneberge peut réduire les récidives.",
+   "source": "williams2023_canneberge",
+   "stades": [
+    {
+     "id": "cystite",
+     "nom": "Cystite (vessie)",
+     "niveau": "faible"
+    },
+    {
+     "id": "pyelo",
+     "nom": "Pyélonéphrite (rein)",
+     "niveau": "eleve"
+    },
+    {
+     "id": "recidives",
+     "nom": "Infections à répétition",
+     "niveau": "modere"
+    }
+   ],
+   "substances": [
+    {
+     "id": "canneberge",
+     "nom": "Canneberge (cranberry)",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Jus ou comprimés, doses variables",
+     "population": "50 essais, 8 857 participants",
+     "effet": "Moins d'infections urinaires confirmées (RR 0,70 ; IC 95 % 0,58 à 0,84), surtout chez les femmes à infections répétées (RR 0,74), les enfants (RR 0,46) et après un geste sur les voies urinaires (RR 0,47). Pas de bénéfice démontré chez les personnes âgées en institution, la femme enceinte ou en cas de vessie qui se vide mal.",
+     "resume": "30 % d'infections en moins (prévention)",
+     "source": "williams2023_canneberge",
+     "stades": [
+      "recidives"
+     ],
+     "condition": "Prévention des récidives, pas traitement d'une infection en cours",
+     "critere": 1,
+     "zones": [
+      "bladder",
+      "kidney_l",
+      "kidney_r"
+     ]
+    }
+   ],
+   "guerison": []
+  },
+  {
+   "id": "diarrhee_aigue",
+   "nom": "Diarrhée aiguë et gastro-entérite",
+   "synonymes": [
+    "gastro-entérite",
+    "gastro",
+    "diarrhée",
+    "diarrhée aiguë",
+    "diarrhée de l'enfant"
+   ],
+   "zones": [
+    "small_intestine",
+    "colon"
+   ],
+   "description": "Selles liquides fréquentes, le plus souvent d'origine infectieuse. Le danger principal est la déshydratation, surtout chez l'enfant.",
+   "source": "lazzerini2016_zinc",
+   "stades": [
+    {
+     "id": "aigue",
+     "nom": "Diarrhée aiguë",
+     "niveau": "modere"
+    },
+    {
+     "id": "persistante",
+     "nom": "Diarrhée persistante",
+     "niveau": "eleve"
+    }
+   ],
+   "substances": [
+    {
+     "id": "zinc_diarrhee",
+     "nom": "Zinc par la bouche",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Selon les essais",
+     "population": "33 essais, 10 841 enfants de 1 mois à 5 ans",
+     "effet": "Après 6 mois : diarrhée raccourcie d'environ 11 heures et moins d'enfants encore malades au 7e jour (RR 0,73) ; environ 26 heures de moins chez l'enfant dénutri. Aucun effet avant 6 mois. Plus de vomissements.",
+     "resume": "Diarrhée raccourcie chez l'enfant de plus de 6 mois",
+     "source": "lazzerini2016_zinc",
+     "condition": "Utile surtout là où la carence en zinc ou la dénutrition est fréquente",
+     "critere": 1,
+     "zones": [
+      "small_intestine",
+      "colon"
      ]
     }
    ],

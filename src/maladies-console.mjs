@@ -135,7 +135,7 @@ function rendreGroupe(zone,liste,avis,sansEntete){
    ligne(d,"Mécanisme",s.mecanisme);
    ligne(d,"Réserve",s.condition&&("étudié en cas de "+s.condition.charAt(0).toLowerCase()+s.condition.slice(1)));
    ligne(d,"Prudence",s.prudence);
-   const plage=plageEtudiee(s);if(plage)d.append(el("p","mx-etiq",plage));
+   const plage=maladie.stades?.some(x=>x.dfg)&&plageEtudiee(s);if(plage)d.append(el("p","mx-etiq",plage));
    if(s.fiche)d.append(el("p","mx-etiq","Fiche détaillée dans la vue Substances : « "+s.fiche+" »."));
    d.append(el("p","mx-etiq",{forte:"Essai clinique",moyenne:"Essai clinique",faible:"Essais cliniques de qualité limitée",cas:"Cas rapporté : sans groupe de comparaison, ne prouve pas l’effet",preclinique:"Étude animale ou cellulaire : à confirmer chez l’humain",theorique:"Hypothèse : à vérifier par l’expérience"}[cle]+" · résultat repris de la source"));
    sources(d,[s.source,s.source2]);
