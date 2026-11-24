@@ -356,3 +356,9 @@ test('Lot molécules 7 : cœur, poumons, foie, yeux, os',async()=>{
  const m=id=>registre.maladies.find(x=>x.id===id);
  for(const [mid,sid] of [['insuffisance_cardiaque','fer_iv_ic'],['bpco','azithro_bpco'],['mash','tirzepatide_mash'],['glaucome','citicoline_combi'],['osteoporose','vitk2_osteo']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
 });
+
+test('Lot molécules 8 : femmes et neuropathie',async()=>{
+ const {pourTestes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['endometriose','melatonine_endo'],['endometriose','dca_endo'],['sopk','inositol_sopk'],['neuropathie_diabetique','benfotiamine_groupe'],['neuropathie_diabetique','clemastine_nerf_optique']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+});

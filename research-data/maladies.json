@@ -1432,6 +1432,26 @@
   "su2019_menatetrenone": {
    "source": "Su et al., Osteoporos Int 2019 — vitamine K2 (ménatétrénone) dans l'ostéoporose (méta-analyse, 18 essais, 8 882 patients)",
    "url": "https://doi.org/10.1007/s00198-019-04853-7"
+  },
+  "soderman2023_melatonine": {
+   "source": "Söderman et al., PLoS One 2023 — mélatonine 20 mg contre la douleur de l'endométriose (40 femmes, contre placebo)",
+   "url": "https://doi.org/10.1371/journal.pone.0286182"
+  },
+  "fitz2024_inositol": {
+   "source": "Fitz et al., J Clin Endocrinol Metab 2024 — inositol dans le SOPK (méta-analyse pour les recommandations internationales 2023, 30 essais)",
+   "url": "https://doi.org/10.1210/clinem/dgad762"
+  },
+  "ziegler2023_neuropathie": {
+   "source": "Ziegler, Diabetes Res Clin Pract 2023 — traitements qui agissent sur la cause de la neuropathie diabétique (revue)",
+   "url": "https://doi.org/10.1016/j.diabres.2023.110764"
+  },
+  "horne2019_dca": {
+   "source": "Horne et al., PNAS 2019 — dichloroacétate détourné pour traiter l'endométriose (cellules de patientes, souris)",
+   "url": "https://doi.org/10.1073/pnas.1916144116"
+  },
+  "wu2023_clemastine_diabete": {
+   "source": "Wu et al., Glia 2023 — myéline du nerf optique chez la souris diabétique ; la clémastine restaure sa fonction",
+   "url": "https://doi.org/10.1002/glia.24341"
   }
  },
  "maladies": [
@@ -9772,6 +9792,42 @@
       "femur_l",
       "femur_r"
      ]
+    },
+    {
+     "id": "benfotiamine_groupe",
+     "nom": "Benfotiamine, Actovegin, épalrestat (traitements de la cause)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Selon les essais",
+     "population": "Essais randomisés chez des patients avec neuropathie diabétique douloureuse (revue)",
+     "effet": "Efficacité et bonne tolérance démontrées dans des essais randomisés sur la neuropathie symptomatique ; ces produits sont autorisés dans plusieurs pays.",
+     "resume": "Efficaces sur les symptômes (essais randomisés)",
+     "source": "ziegler2023_neuropathie",
+     "stades": [
+      "douloureuse"
+     ],
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
+    },
+    {
+     "id": "clemastine_nerf_optique",
+     "nom": "Clémastine (antihistaminique)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales",
+     "population": "Souris diabétiques",
+     "effet": "Le diabète appauvrit la myéline neuve du nerf optique et ralentit la conduction ; la clémastine restaure les cellules qui fabriquent la myéline et la fonction du nerf.",
+     "resume": "Nerf optique réparé chez la souris diabétique",
+     "source": "wu2023_clemastine_diabete",
+     "condition": "Atteinte du nerf optique liée au diabète",
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ],
+     "critere": 1
     }
    ],
    "guerison": []
@@ -10626,6 +10682,47 @@
       "ovary_l",
       "ovary_r"
      ]
+    },
+    {
+     "id": "melatonine_endo",
+     "nom": "Mélatonine",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "20 mg le soir, 2 cycles",
+     "population": "40 femmes avec règles très douloureuses liées à l'endométriose",
+     "effet": "Douleur 2,9 sous mélatonine contre 3,3 sous placebo : différence ni significative ni ressentie. Aucun effet indésirable.",
+     "resume": "Pas de bénéfice sur la douleur",
+     "source": "soderman2023_melatonine",
+     "stades": [
+      "douloureuse"
+     ],
+     "critere": 1,
+     "zones": [
+      "uterus",
+      "ovary_l",
+      "ovary_r"
+     ]
+    },
+    {
+     "id": "dca_endo",
+     "nom": "Dichloroacétate (DCA)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Par la bouche (souris) ; concentrations de laboratoire",
+     "population": "Cellules du péritoine de femmes atteintes d'endométriose ; souris",
+     "effet": "Corrige le métabolisme anormal des cellules (trop de glycolyse et de lactate), freine la croissance des cellules de l'endomètre et réduit la taille des lésions chez la souris.",
+     "resume": "Lésions réduites chez la souris, traitement non hormonal",
+     "source": "horne2019_dca",
+     "stades": [
+      "douloureuse"
+     ],
+     "prudence": "Non contraceptif, ce qui est son intérêt ; pas encore d'efficacité démontrée chez la femme dans cette source.",
+     "critere": 1,
+     "zones": [
+      "uterus",
+      "ovary_l",
+      "ovary_r"
+     ]
     }
    ],
    "guerison": []
@@ -10690,6 +10787,22 @@
      ],
      "mecanisme": "La perte de poids réduit l'excès d'insuline et d'hormones mâles qui bloque l'ovulation.",
      "prudence": "Les médicaments amaigrissants de l'essai (sibutramine) ne sont plus autorisés ; la perte de poids par l'alimentation reste la base.",
+     "critere": 1,
+     "zones": [
+      "ovary_l",
+      "ovary_r"
+     ]
+    },
+    {
+     "id": "inositol_sopk",
+     "nom": "Myo-inositol ou D-chiro-inositol",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Selon les essais",
+     "population": "30 essais, 2 230 femmes",
+     "effet": "Quelques effets métaboliques ; D-chiro-inositol peut-être utile pour l'ovulation ; pas d'effet sur les autres critères. Moins de troubles digestifs que la metformine. Preuves jugées limitées et non concluantes.",
+     "resume": "Preuves limitées et non concluantes",
+     "source": "fitz2024_inositol",
      "critere": 1,
      "zones": [
       "ovary_l",
