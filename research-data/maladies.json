@@ -1452,6 +1452,30 @@
   "wu2023_clemastine_diabete": {
    "source": "Wu et al., Glia 2023 — myéline du nerf optique chez la souris diabétique ; la clémastine restaure sa fonction",
    "url": "https://doi.org/10.1002/glia.24341"
+  },
+  "xie2015_glycolyse_fpi": {
+   "source": "Xie et al., Am J Respir Crit Care Med 2015 — reprogrammation glycolytique des myofibroblastes dans la fibrose pulmonaire",
+   "url": "https://doi.org/10.1164/rccm.201504-0780OC"
+  },
+  "niimi2019_neuropathies": {
+   "source": "Niimi et al., Adv Exp Med Biol 2019 — neuropathies démyélinisantes causées par des médicaments (amiodarone, dichloroacétate, anti-TNF)",
+   "url": "https://doi.org/10.1007/978-981-32-9636-7_23"
+  },
+  "chen2021_clemastine_alz": {
+   "source": "Chen et al., Neuron 2021 — renforcer le renouvellement de la myéline corrige la mémoire de souris Alzheimer (clémastine)",
+   "url": "https://doi.org/10.1016/j.neuron.2021.05.012"
+  },
+  "liu2024_clemastine_glaucome": {
+   "source": "Liu et al., Glia 2024 — la clémastine réduit l'atteinte du nerf optique et de la rétine dans un glaucome de souris",
+   "url": "https://doi.org/10.1002/glia.24543"
+  },
+  "merybossard2017_vitiligo_bio": {
+   "source": "Méry-Bossard et al., J Eur Acad Dermatol Venereol 2017 — vitiligo déclenché ou aggravé sous biothérapies (36 patients)",
+   "url": "https://doi.org/10.1111/jdv.13759"
+  },
+  "gambari2024_hbf": {
+   "source": "Gambari et al., Int J Mol Sci 2024 — inducteurs validés de l'hémoglobine fœtale dans la thalassémie et la drépanocytose (revue)",
+   "url": "https://doi.org/10.3390/ijms25084263"
   }
  },
  "maladies": [
@@ -3543,6 +3567,24 @@
       "femur_l",
       "femur_r"
      ]
+    },
+    {
+     "id": "inducteurs_hbf",
+     "nom": "Inducteurs de l'hémoglobine fœtale : butyrate et dérivés, thalidomide, sirolimus",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Selon les études",
+     "population": "Patients drépanocytaires ou thalassémiques (revue)",
+     "effet": "Cités comme inducteurs validés de l'hémoglobine fœtale aux côtés de l'hydroxyurée ; la réponse dépend en partie de variations génétiques propres à chaque patient.",
+     "resume": "Hémoglobine fœtale augmentée (revue)",
+     "source": "gambari2024_hbf",
+     "prudence": "Thalidomide : graves malformations du fœtus, contraception stricte.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "femur_l",
+      "femur_r"
+     ]
     }
    ],
    "guerison": [
@@ -4058,6 +4100,21 @@
       "precoce"
      ],
      "prudence": "Les auteurs déconseillent ce traitement dans cette indication.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "clemastine_alz",
+     "nom": "Clémastine (antihistaminique)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales",
+     "population": "Souris modèles d'Alzheimer (APP/PS1) et tissus de patients décédés",
+     "effet": "La myéline est diminuée dans le cortex et l'hippocampe ; la clémastine, qui favorise son renouvellement, améliore la mémoire des souris.",
+     "resume": "Mémoire améliorée chez la souris",
+     "source": "chen2021_clemastine_alz",
      "critere": 1,
      "zones": [
       "brain"
@@ -9160,6 +9217,22 @@
      "zones": [
       "skin"
      ]
+    },
+    {
+     "id": "biotherapies_vitiligo",
+     "nom": "Biothérapies (anti-TNF surtout, aussi anti-IL-12/23, anti-IL-17, abatacept)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Traitements des rhumatismes, du psoriasis ou de l'intestin",
+     "population": "36 patients en France (vitiligo apparu ou préexistant sous biothérapie)",
+     "effet": "Effet défavorable : vitiligo apparu chez 18 patients, surtout sous anti-TNF ; chez ceux qui avaient déjà un vitiligo, aggravation chez 7 sur 15 renseignés.",
+     "resume": "Peut déclencher ou aggraver le vitiligo",
+     "source": "merybossard2017_vitiligo_bio",
+     "prudence": "À connaître avant toute biothérapie chez une personne atteinte de vitiligo.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
     }
    ],
    "guerison": [],
@@ -10044,6 +10117,26 @@
      ],
      "source": "larsen2015_mebendazole_hh",
      "source2": "kramann2015_gli1"
+    },
+    {
+     "id": "p_dca_fpi",
+     "nom": "Dichloroacétate (DCA) contre la fibrose pulmonaire",
+     "type": "medicament",
+     "situation": "Fibrose pulmonaire idiopathique qui progresse malgré le traitement.",
+     "lesion": "Les fibroblastes du poumon basculent vers un métabolisme glycolytique (beaucoup de lactate) qui les transforme en myofibroblastes producteurs de cicatrices.",
+     "fait_molecule": "Le DCA réactive la pyruvate déshydrogénase, normalise ce métabolisme et réduit le lactate ; chez la souris, il a réduit les lésions d'endométriose (Horne 2019).",
+     "fait_maladie": "L'augmentation de la glycolyse est précoce et durable dans la formation des myofibroblastes ; la bloquer (inhibiteur 3PO) freine la fibrose chez la souris et le caractère fibrosant des cellules de patients (Xie 2015).",
+     "lien": "Le DCA corrige le même basculement métabolique par une autre porte d'entrée : il pourrait donc freiner la transformation des fibroblastes en cellules cicatricielles.",
+     "formulation": "Chez une personne dont la fibrose pulmonaire progresse, le dichloroacétate pourrait éventuellement ralentir la formation des cicatrices, en complément des traitements actuels.",
+     "recherche": "Aucune étude sur le dichloroacétate dans la fibrose pulmonaire idiopathique trouvée sur PubMed (recherche du 24/11/2026 : 0 résultat).",
+     "a_verifier": "D'abord sur fibroblastes de patients et chez la souris (bléomycine), en mesurant lactate et cicatrices ; surveiller les nerfs.",
+     "prudence": "Jamais testé dans cette maladie. Le DCA peut provoquer une neuropathie avec perte de myéline (Niimi 2019).",
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ],
+     "source": "horne2019_dca",
+     "source2": "xie2015_glycolyse_fpi"
     }
    ]
   },
@@ -10716,13 +10809,14 @@
      "stades": [
       "douloureuse"
      ],
-     "prudence": "Non contraceptif, ce qui est son intérêt ; pas encore d'efficacité démontrée chez la femme dans cette source.",
+     "prudence": "Non contraceptif, ce qui est son intérêt ; pas encore d'efficacité démontrée chez la femme dans cette source. Le dichloroacétate peut lui-même provoquer une neuropathie avec perte de myéline (Niimi 2019).",
      "critere": 1,
      "zones": [
       "uterus",
       "ovary_l",
       "ovary_r"
-     ]
+     ],
+     "source2": "niimi2019_neuropathies"
     }
    ],
    "guerison": []
@@ -11198,9 +11292,51 @@
       "eye_l",
       "eye_r"
      ]
+    },
+    {
+     "id": "clemastine_glaucome",
+     "nom": "Clémastine (antihistaminique)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales",
+     "population": "Souris avec pression de l'œil élevée (modèle de glaucome)",
+     "effet": "L'atteinte du nerf optique précède celle de la rétine ; la clémastine favorise la réparation de la myéline et limite les dégâts du nerf optique et de la rétine.",
+     "resume": "Nerf optique et rétine protégés (souris)",
+     "source": "liu2024_clemastine_glaucome",
+     "stades": [
+      "angle_ouvert"
+     ],
+     "prudence": "Aucun essai chez l'humain dans le glaucome.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_clemastine_nicotinamide",
+     "nom": "Clémastine + nicotinamide (vitamine B3) : réparer et nourrir le nerf optique",
+     "type": "medicament",
+     "situation": "Glaucome à angle ouvert qui continue de s'aggraver alors que la pression de l'œil est contrôlée.",
+     "lesion": "La gaine de myéline du nerf optique s'abîme avant la rétine ; les cellules de la rétine manquent d'énergie (NAD).",
+     "fait_molecule": "La clémastine favorise la réparation de la myéline et protège nerf optique et rétine chez la souris glaucomateuse (Liu 2024). La nicotinamide améliore la fonction de la rétine chez des patients (Hui 2020).",
+     "fait_maladie": "Dans le glaucome expérimental, l'atteinte du nerf optique précède celle de la rétine, et baisser la pression ne suffit pas toujours à empêcher la perte des cellules de la rétine (Liu 2024).",
+     "lien": "Deux actions différentes : réparer la gaine du nerf (clémastine) et redonner de l'énergie aux cellules de la rétine (nicotinamide). Elles pourraient s'additionner.",
+     "formulation": "Chez une personne dont le glaucome progresse malgré une pression bien contrôlée, l'association clémastine + nicotinamide pourrait éventuellement mieux protéger la vision que chacune seule.",
+     "recherche": "Aucune étude associant clémastine et nicotinamide trouvée sur PubMed (recherche du 24/11/2026 : 0 résultat).",
+     "a_verifier": "Chez la souris glaucomateuse : chaque molécule seule puis l'association, en mesurant la conduction du nerf optique et la rétine.",
+     "prudence": "Jamais testé. La clémastine fait dormir et a des effets anticholinergiques, qui peuvent être dangereux dans le glaucome à angle fermé ; ne concerne que l'angle ouvert, avec l'ophtalmologue.",
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ],
+     "source": "liu2024_clemastine_glaucome",
+     "source2": "hui_nam"
+    }
+   ]
   },
   {
    "id": "dmla",

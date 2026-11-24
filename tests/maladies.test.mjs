@@ -362,3 +362,12 @@ test('Lot molécules 8 : femmes et neuropathie',async()=>{
  const m=id=>registre.maladies.find(x=>x.id===id);
  for(const [mid,sid] of [['endometriose','melatonine_endo'],['endometriose','dca_endo'],['sopk','inositol_sopk'],['neuropathie_diabetique','benfotiamine_groupe'],['neuropathie_diabetique','clemastine_nerf_optique']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
 });
+
+test('Pistes 1 : DCA (fibrose pulmonaire), clémastine + nicotinamide (glaucome)',async()=>{
+ const {pourPistes,pourTestes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ assert.ok(pourPistes(m('fibrose_pulmonaire'),[],'').pistes.some(p=>p.id==='p_dca_fpi'));
+ assert.equal(pourPistes(m('glaucome'),[],'').pistes[0].id,'p_clemastine_nicotinamide');
+ for(const [mid,sid] of [['alzheimer','clemastine_alz'],['glaucome','clemastine_glaucome'],['vitiligo','biotherapies_vitiligo'],['drepanocytose','inducteurs_hbf']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+ assert.match(m('endometriose').substances.find(s=>s.id==='dca_endo').prudence,/neuropathie/);
+});
