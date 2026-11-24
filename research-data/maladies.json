@@ -1260,6 +1260,34 @@
   "omura2019_mebendazole_htap": {
    "source": "Omura et al., Circ Res 2019 — ADAMTS8 et hypertension pulmonaire ; le mébendazole améliore la maladie chez le rongeur",
    "url": "https://doi.org/10.1161/CIRCRESAHA.119.315398"
+  },
+  "zeidler2026_empa_dmd": {
+   "source": "Zeidler et al., bioRxiv 2026 (prépublication, non relue par les pairs) — l'empagliflozine préserve le cœur de souris myopathes (Duchenne)",
+   "url": "https://doi.org/10.64898/2026.03.11.710889"
+  },
+  "ersboll2026_dapah": {
+   "source": "Ersbøll et al., J Heart Lung Transplant 2026 — essai DAPAH : dapagliflozine dans l'hypertension pulmonaire (52 patients)",
+   "url": "https://doi.org/10.1016/j.healun.2026.07.008"
+  },
+  "jiang2019_itraconazole_pancreas": {
+   "source": "Jiang et al., J Cell Biochem 2019 — l'itraconazole freine les cellules du cancer du pancréas (cellules, souris)",
+   "url": "https://doi.org/10.1002/jcb.27719"
+  },
+  "tseng2025_sglt2_neuro": {
+   "source": "Tseng et al., BMC Med 2025 — méta-analyse en réseau : antidiabétiques récents et prévention des maladies neurodégénératives (22 essais, 138 282 participants)",
+   "url": "https://doi.org/10.1186/s12916-025-04018-w"
+  },
+  "wang2024_empa_drepano": {
+   "source": "Wang et al., J Cell Mol Med 2024 — l'empagliflozine améliore l'anémie chez la souris et l'humain drépanocytaires",
+   "url": "https://doi.org/10.1111/jcmm.70091"
+  },
+  "jin2026_sglt_drepano": {
+   "source": "Jin et al., Cardiovasc Res 2026 — dapagliflozine et sotagliflozine contre les crises vaso-occlusives chez la souris drépanocytaire",
+   "url": "https://doi.org/10.1093/cvr/cvag003"
+  },
+  "epstein2022_arm": {
+   "source": "Epstein, Kidney Int Suppl 2022 — antagonistes des récepteurs minéralocorticoïdes : besoins non couverts, dont l'atteinte rénale drépanocytaire",
+   "url": "https://doi.org/10.1016/j.kisu.2021.11.008"
   }
  },
  "maladies": [
@@ -3254,6 +3282,25 @@
      ],
      "source": "niprisan",
      "source2": "phytoCochrane"
+    },
+    {
+     "id": "sglt2_drepano",
+     "nom": "Empagliflozine, dapagliflozine, sotagliflozine (antidiabétiques)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales chez la souris",
+     "population": "Souris drépanocytaires ; dossiers médicaux de patients drépanocytaires traités pour une autre raison",
+     "effet": "Empagliflozine : hémoglobine et globules rouges en hausse chez la souris et chez des patients (dossiers médicaux), accidents vasculaires cérébraux plus petits chez la souris. Dapagliflozine et sotagliflozine : moins de blocages des petits vaisseaux et moins d'atteinte du foie et des poumons chez la souris ; seule la sotagliflozine a amélioré la survie.",
+     "resume": "Anémie améliorée, moins de crises chez la souris",
+     "source": "wang2024_empa_drepano",
+     "source2": "jin2026_sglt_drepano",
+     "prudence": "Aucun essai randomisé chez les patients drépanocytaires. Ajout à l'hydroxyurée sans bénéfice supplémentaire chez la souris.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "femur_l",
+      "femur_r"
+     ]
     }
    ],
    "guerison": [
@@ -3884,6 +3931,23 @@
       "brain"
      ],
      "source": "sparx"
+    },
+    {
+     "id": "dapagliflozine_parkinson",
+     "nom": "Dapagliflozine (antidiabétique, inhibiteur SGLT2)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Doses des essais cardiaques et rénaux",
+     "population": "22 essais randomisés, 138 282 participants (surtout diabétiques ou cardiaques)",
+     "effet": "Seule la dapagliflozine était associée à moins de nouveaux cas de Parkinson (OR 0,28 ; IC 95 % 0,09 à 0,93). Aucun effet préventif des autres SGLT2 ni des GLP-1 sur les maladies neurodégénératives étudiées.",
+     "resume": "Moins de nouveaux cas de Parkinson",
+     "source": "tseng2025_sglt2_neuro",
+     "condition": "Prévention : non étudiée chez des personnes déjà malades",
+     "prudence": "Peu d'événements : résultat à confirmer. Ce n'est pas un traitement de la maladie installée.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "lacune": "La lévodopa du commerce reste la référence des symptômes ; la source qui la classe n'a pas encore été intégrée au registre.",
@@ -6387,6 +6451,22 @@
      "zones": [
       "pancreas"
      ]
+    },
+    {
+     "id": "itraconazole_pancreas",
+     "nom": "Itraconazole (antifongique)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales",
+     "population": "Cellules de cancer du pancréas et souris greffées",
+     "effet": "Freine la croissance des cellules et des tumeurs greffées chez la souris en déclenchant leur mort (activation de Bak-1, stress oxydatif mitochondrial).",
+     "resume": "Tumeurs freinées chez la souris",
+     "source": "jiang2019_itraconazole_pancreas",
+     "prudence": "Antifongique autorisé, mais non étudié chez l'humain dans ce cancer selon cette source. Nombreuses interactions médicamenteuses.",
+     "critere": 1,
+     "zones": [
+      "pancreas"
+     ]
     }
    ],
    "guerison": []
@@ -7140,7 +7220,29 @@
      ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_finerenone_drepano",
+     "nom": "Finérénone (protecteur rénal du diabète) dans l'atteinte rénale drépanocytaire",
+     "type": "medicament",
+     "situation": "Drépanocytaire dont le rein fuit des protéines (albuminurie), au stade où la fonction est encore conservée.",
+     "lesion": "Inflammation et fibrose du rein, entretenues notamment par l'activation du récepteur minéralocorticoïde.",
+     "fait_molecule": "La finérénone bloque le récepteur minéralocorticoïde et réduit la perte de fonction rénale dans la maladie rénale du diabète (FIDELIO-DKD, 5 734 patients).",
+     "fait_maladie": "L'activation de ce récepteur, avec inflammation et fibrose, intervient aussi dans les maladies rénales non diabétiques ; l'atteinte rénale drépanocytaire fait partie des groupes de patients cités comme non couverts (Epstein 2022).",
+     "lien": "Si le même mécanisme abîme le rein drépanocytaire, le bloquer pourrait ralentir la fuite de protéines et la fibrose, en plus du losartan.",
+     "formulation": "Chez un drépanocytaire dont le rein commence à fuir des protéines, la finérénone pourrait éventuellement ralentir la dégradation du rein.",
+     "recherche": "Aucune étude testant la finérénone dans la drépanocytose trouvée sur PubMed (recherche du 24/11/2026 : 1 résultat, une revue qui en suggère l'intérêt).",
+     "a_verifier": "Petit essai mesurant l'albuminurie et le potassium chez des drépanocytaires adultes ; vérifier l'interaction avec le losartan (risque d'hyperkaliémie).",
+     "prudence": "Jamais testée dans la drépanocytose. Risque de potassium élevé, surtout associée à un bloqueur de l'angiotensine.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "fidelio",
+     "source2": "epstein2022_arm"
+    }
+   ]
   },
   {
    "id": "nephrite_lupique",
@@ -9354,6 +9456,24 @@
       "lung_r",
       "heart"
      ]
+    },
+    {
+     "id": "dapagliflozine_htap",
+     "nom": "Dapagliflozine (antidiabétique, inhibiteur SGLT2)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "10 mg par jour",
+     "population": "52 patients (HTAP ou hypertension pulmonaire thromboembolique), déjà sous traitement",
+     "effet": "Aucune amélioration de la capacité d'effort, de la pression dans les poumons ni de la marche de 6 minutes après 12 semaines ; seul un score de risque a un peu baissé. Bien toléré.",
+     "resume": "Pas de bénéfice démontré (essai randomisé)",
+     "source": "ersboll2026_dapah",
+     "duree": "12 semaines",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "heart"
+     ]
     }
    ],
    "guerison": []
@@ -9646,6 +9766,22 @@
       "femur_l",
       "femur_r"
      ]
+    },
+    {
+     "id": "empagliflozine_dmd",
+     "nom": "Empagliflozine (antidiabétique, inhibiteur SGLT2)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Environ 25 mg/kg/jour dans l'alimentation (souris)",
+     "population": "Souris mdx (modèle de Duchenne)",
+     "effet": "Fraction d'éjection du cœur préservée pendant 12 semaines et meilleure à 24 semaines ; moins d'hypertrophie, mitochondries protégées, plus d'énergie dans le muscle cardiaque ; force musculaire améliorée, reins non affectés.",
+     "resume": "Cœur préservé chez la souris",
+     "source": "zeidler2026_empa_dmd",
+     "zones": [
+      "heart"
+     ],
+     "prudence": "Prépublication non relue par les pairs. Aucun essai chez l'enfant atteint de Duchenne.",
+     "critere": 1
     }
    ],
    "guerison": []
