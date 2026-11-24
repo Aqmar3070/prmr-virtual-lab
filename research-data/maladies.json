@@ -1312,6 +1312,34 @@
   "ng2019_sunshine": {
    "source": "Ng et al. (SUNSHINE), JAMA 2019 — vitamine D3 à forte dose avec chimiothérapie, cancer colorectal métastatique (139 patients)",
    "url": "https://doi.org/10.1001/jama.2019.2402"
+  },
+  "oki2022_jetals": {
+   "source": "Oki et al. (JETALS), JAMA Neurol 2022 — méthylcobalamine à très forte dose dans la SLA débutante (130 patients, phase 3)",
+   "url": "https://doi.org/10.1001/jamaneurol.2022.0901"
+  },
+  "silveira2025_ambroxol": {
+   "source": "Silveira et al., JAMA Neurol 2025 — ambroxol dans la démence de la maladie de Parkinson (55 patients)",
+   "url": "https://doi.org/10.1001/jamaneurol.2025.1687"
+  },
+  "devos2022_fairpark": {
+   "source": "Devos et al. (FAIRPARK-II), N Engl J Med 2022 — défériprone dans la maladie de Parkinson débutante (372 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2209254"
+  },
+  "green2017_rebuild": {
+   "source": "Green et al. (ReBUILD), Lancet 2017 — clémastine (antihistaminique) pour réparer la myéline dans la sclérose en plaques (50 patients)",
+   "url": "https://doi.org/10.1016/S0140-6736(17)32346-2"
+  },
+  "devanand2026_valad": {
+   "source": "Devanand et al. (VALAD), JAMA 2026 — valaciclovir dans la maladie d'Alzheimer débutante avec herpès (120 patients)",
+   "url": "https://doi.org/10.1001/jama.2025.21738"
+  },
+  "reilmann2025_proofhd": {
+   "source": "Reilmann et al. (PROOF-HD), Nat Med 2025 — pridopidine dans la maladie de Huntington débutante (phase 3)",
+   "url": "https://doi.org/10.1038/s41591-025-03920-3"
+  },
+  "jindal2025_metformine_dmla": {
+   "source": "Jindal et al., JAMA Ophthalmol 2025 — metformine et apparition ou aggravation de la DMLA (dossiers de 70 établissements)",
+   "url": "https://doi.org/10.1001/jamaophthalmol.2025.3070"
   }
  },
  "maladies": [
@@ -3885,6 +3913,25 @@
       "brain"
      ],
      "gueri": false
+    },
+    {
+     "id": "valaciclovir_alz",
+     "nom": "Valaciclovir (antiviral contre l'herpès)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "4 g par jour, 78 semaines",
+     "population": "120 patients, Alzheimer débutant avec anticorps contre l'herpès",
+     "effet": "Aggravation cognitive plus forte sous valaciclovir que sous placebo (différence de 3,9 points sur l'échelle ADAS-Cog) ; pas d'effet sur l'amyloïde ni la protéine tau.",
+     "resume": "Aggravation : non recommandé",
+     "source": "devanand2026_valad",
+     "stades": [
+      "precoce"
+     ],
+     "prudence": "Les auteurs déconseillent ce traitement dans cette indication.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": [
@@ -4028,6 +4075,43 @@
      "source": "tseng2025_sglt2_neuro",
      "condition": "Prévention : non étudiée chez des personnes déjà malades",
      "prudence": "Peu d'événements : résultat à confirmer. Ce n'est pas un traitement de la maladie installée.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "ambroxol_pdd",
+     "nom": "Ambroxol (médicament contre la toux)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Faible ou forte dose par la bouche, 52 semaines",
+     "population": "55 patients atteints de démence parkinsonienne",
+     "effet": "Aucune différence sur la mémoire ni sur les autres critères ; l'enzyme visée (glucocérébrosidase) a augmenté et le médicament atteint le cerveau. Plus de troubles digestifs.",
+     "resume": "Pas de bénéfice démontré (petit essai)",
+     "source": "silveira2025_ambroxol",
+     "stades": [
+      "installe"
+     ],
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "deferiprone_parkinson",
+     "nom": "Défériprone (chélateur du fer)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "15 mg/kg deux fois par jour, 36 semaines",
+     "population": "372 patients, Parkinson débutant jamais traité par lévodopa",
+     "effet": "Aggravation : score moteur +15,6 points contre +6,3 sous placebo ; 22 % ont dû commencer un traitement dopaminergique contre 2,7 %. Fer cérébral bien diminué, mais 2 agranulocytoses.",
+     "resume": "Aggravation par rapport au placebo",
+     "source": "devos2022_fairpark",
+     "stades": [
+      "debut"
+     ],
+     "prudence": "À éviter dans le Parkinson débutant : enlever le fer du cerveau a aggravé la maladie.",
      "critere": 1,
      "zones": [
       "brain"
@@ -8556,6 +8640,25 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "clemastine_sep",
+     "nom": "Clémastine (antihistaminique contre l'allergie)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "5,36 mg deux fois par jour, 60 à 90 jours",
+     "population": "50 patients, sclérose en plaques à poussées avec atteinte ancienne du nerf optique",
+     "effet": "Conduction du nerf optique améliorée (retard réduit de 1,7 ms par œil), signe de réparation de la myéline même après des lésions anciennes. Fatigue, pas d'effet indésirable grave.",
+     "resume": "Réparation de la myéline mesurée (premier essai positif)",
+     "source": "green2017_rebuild",
+     "stades": [
+      "poussees"
+     ],
+     "prudence": "Petit essai sur un marqueur ; effet sur le handicap non mesuré.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": []
@@ -9062,6 +9165,26 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "methylcobalamine_sla",
+     "nom": "Méthylcobalamine à très forte dose (forme de vitamine B12)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Très forte dose en injection (posologie de l'essai japonais)",
+     "population": "130 patients, SLA débutée depuis moins d'un an et progression modérée",
+     "effet": "Perte fonctionnelle ralentie : score ALSFRS-R −2,66 contre −4,63 sous placebo à 16 semaines (différence 1,97 point ; IC 95 % 0,44 à 3,50). Effets indésirables comparables.",
+     "resume": "Déclin ralenti de 2 points en 16 semaines",
+     "source": "oki2022_jetals",
+     "stades": [
+      "debut"
+     ],
+     "condition": "SLA récente (moins d'un an) à progression modérée",
+     "prudence": "Effet démontré sur 16 semaines ; forme injectable à forte dose, différente des comprimés de B12.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": []
@@ -9169,6 +9292,22 @@
      ],
      "mecanisme": "Diminue la dopamine libérée, responsable des mouvements involontaires.",
      "prudence": "Somnolence, dépression (22 à 32 %), idées suicidaires (5 à 9 %) : surveillance de l'humeur obligatoire.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "pridopidine_hd",
+     "nom": "Pridopidine",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "45 mg deux fois par jour, 65 semaines",
+     "population": "Patients au début de la maladie de Huntington (phase 3)",
+     "effet": "Critères principaux non atteints dans l'ensemble des patients. Tendance favorable chez ceux qui ne prenaient aucun médicament antidopaminergique. Bien tolérée.",
+     "resume": "Pas de bénéfice global (phase 3)",
+     "source": "reilmann2025_proofhd",
+     "condition": "Signal seulement chez les patients sans antidopaminergiques (analyse de sous-groupe)",
      "critere": 1,
      "zones": [
       "brain"
@@ -10481,6 +10620,23 @@
      "duree": "2 ans",
      "mecanisme": "Bloque le VEGF qui fait pousser des vaisseaux anormaux sous la rétine.",
      "prudence": "Infection de l'œil (1 %), inflammation (1,3 %).",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    },
+    {
+     "id": "metformine_dmla",
+     "nom": "Metformine (antidiabétique)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Selon prescription habituelle",
+     "population": "Dossiers médicaux de plus de 300 000 personnes de 65 ans et plus (70 établissements)",
+     "effet": "Risque d'apparition de DMLA légèrement plus bas (RR 0,90), jugé non significatif selon le seuil choisi par les auteurs ; pas d'effet sur l'aggravation vers l'atrophie ou la forme humide.",
+     "resume": "Pas d'effet net (observation)",
+     "source": "jindal2025_metformine_dmla",
+     "prudence": "Étude d'observation : association, pas preuve de cause.",
      "critere": 1,
      "zones": [
       "eye_l",
