@@ -319,3 +319,11 @@ test('Lot molécules 2 : diabète, foie, cancers (positifs et négatifs)',async(
  assert.match(m('cirrhose').substances.find(s=>s.id==='simva_rifaximine').resume,/Pas de bénéfice/);
  assert.equal(pourPistes(m('dt1'),[],'').pistes[0].id,'p_verapamil_harmine');
 });
+
+test('Lot molécules 3 : cerveau, nerfs et yeux (résultats positifs et négatifs)',async()=>{
+ const {pourTestes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['sla','methylcobalamine_sla'],['parkinson','ambroxol_pdd'],['parkinson','deferiprone_parkinson'],['sep','clemastine_sep'],['alzheimer','valaciclovir_alz'],['huntington','pridopidine_hd'],['dmla','metformine_dmla']])
+  assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+ assert.match(m('parkinson').substances.find(s=>s.id==='deferiprone_parkinson').resume,/Aggravation/);
+});
