@@ -3700,7 +3700,8 @@
      "resume": "9 sur 10 améliorés (série de cas)",
      "zones": [
       "brain"
-     ]
+     ],
+     "gueri": false
     }
    ],
    "guerison": [
@@ -6383,7 +6384,8 @@
       "lung_r"
      ],
      "source": "berger",
-     "resume": "Vivant à 47 mois au stade IV (1 cas sur 2)"
+     "resume": "Vivant à 47 mois au stade IV (1 cas sur 2)",
+     "gueri": false
     }
    ],
    "guerison": []
@@ -6504,7 +6506,8 @@
       "adrenal_l"
      ],
      "source": "dobro",
-     "resume": "Maladie contrôlée 2 ans, seul (1 cas)"
+     "resume": "Maladie contrôlée 2 ans, seul (1 cas)",
+     "gueri": false
     },
     {
      "id": "fenbendazole_lymphome_cas",
@@ -6563,7 +6566,8 @@
      "critere": 1,
      "zones": [
       "adrenal_l"
-     ]
+     ],
+     "gueri": false
     },
     {
      "id": "melatonine_cancer",
@@ -6730,7 +6734,8 @@
      "zones": [
       "kidney_l",
       "kidney_r"
-     ]
+     ],
+     "gueri": false
     },
     {
      "id": "mebendazole_pkd",
@@ -7176,7 +7181,8 @@
       "femur_l",
       "femur_r",
       "spleen"
-     ]
+     ],
+     "gueri": false
     },
     {
      "id": "curcumine_mgus",
@@ -9273,7 +9279,8 @@
      "zones": [
       "knee_l",
       "knee_r"
-     ]
+     ],
+     "gueri": false
     },
     {
      "id": "emicizumab",

@@ -104,8 +104,10 @@ export function evaluerProfil(s,patient,causes){
 export const profilActif=patient=>Object.values(patient||{}).some(v=>v!==""&&v!=null&&!Number.isNaN(v));
 
 // Trois rubriques : Guéris (guérisons obtenues + cas), Testés (études), Pistes (jamais testé).
-export const pourGueris=(m,liste)=>({obtenues:(m?.guerison||[]).filter(g=>g.type==="obtenue"),cas:liste.filter(s=>s.force==="cas")});
-export const pourTestes=liste=>liste.filter(s=>s.force!=="cas"&&s.force!=="theorique");
+// Un cas compte comme guérison rapportée sauf s'il ne décrit qu'une amélioration ou une stabilisation (gueri:false).
+export const estGuerisonRapportee=s=>s.force==="cas"&&s.gueri!==false;
+export const pourGueris=(m,liste)=>({obtenues:(m?.guerison||[]).filter(g=>g.type==="obtenue"),cas:liste.filter(estGuerisonRapportee)});
+export const pourTestes=liste=>liste.filter(s=>!estGuerisonRapportee(s)&&s.force!=="theorique");
 export function pourPistes(m,liste,stadeId){
  const st=m?.stades?.find(s=>s.id===stadeId);
  const pistes=(m?.pistes||[]).filter(h=>{

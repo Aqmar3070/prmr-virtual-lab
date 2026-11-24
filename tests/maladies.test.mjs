@@ -251,7 +251,7 @@ test('Trois rubriques : Guéris, Testés, Pistes',async()=>{
   // chaque substance apparaît dans une seule rubrique
   assert.equal(g.cas.length+t.length+p.theoriques.length,l.length,m.id);
   assert.ok(g.obtenues.every(x=>x.type==='obtenue')&&p.combinaisons.every(x=>x.type!=='obtenue'),m.id);
-  assert.ok(!t.some(s=>s.force==='cas'||s.force==='theorique'),m.id);
+  assert.ok(!t.some(s=>(s.force==='cas'&&s.gueri!==false)||s.force==='theorique'),m.id);
  }
  const mrc=registre.maladies.find(m=>m.id==='mrc');
  // les anciennes « hypothèses » déjà testées sur l'animal ou l'humain sont dans Testés
@@ -269,4 +269,15 @@ test('Trois rubriques : Guéris, Testés, Pistes',async()=>{
  const causes=mrc.profil_patient.causes,P=id=>ps.find(h=>h.id===id);
  assert.equal(evaluerProfil(P('p_fenbendazole_pkd'),{cause:'polykystose'},causes).statut,'etudie');
  assert.equal(evaluerProfil(P('p_fenbendazole_pkd'),{cause:'diabete'},causes).statut,'hors');
+});
+
+test('Guéris : seules les guérisons ou rémissions rapportées',async()=>{
+ const {pourGueris,pourTestes,substancesPour}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ assert.ok(pourGueris(m('cancer_sein'),m('cancer_sein').substances).cas.some(s=>s.id==='fenbendazole_sein_cas'));
+ for(const [mid,sid] of [['alzheimer','mend_cas'],['polykystose','ceto_pkd_cas'],['myelome','curcumine_myelome_cas']]){
+  const l=substancesPour(m(mid),'');
+  assert.ok(!pourGueris(m(mid),l).cas.some(s=>s.id===sid),sid);
+  assert.ok(pourTestes(l).some(s=>s.id===sid),sid);
+ }
 });
