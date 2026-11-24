@@ -1600,6 +1600,214 @@
   "wu2025_clemastine_sla": {
    "source": "Wu et al., Redox Biol 2025 — récepteur sigma-1 et clémastine contre le stress oxydatif des astrocytes dans la SLA C9orf72 (cellules, souris)",
    "url": "https://doi.org/10.1016/j.redox.2025.103875"
+  },
+  "jimbo2009_aroma_alz": {
+   "source": "Jimbo et al., Psychogeriatrics 2009 — aromathérapie (romarin + citron le matin, lavande + orange le soir) chez 28 personnes âgées dont 17 Alzheimer",
+   "url": "https://doi.org/10.1111/j.1479-8301.2009.00299.x"
+  },
+  "okuda2020_aroma_souris": {
+   "source": "Okuda et al., PLoS One 2020 — huiles de romarin, citron, lavande et orange chez la souris SAMP8 (amyloïde, tau)",
+   "url": "https://doi.org/10.1371/journal.pone.0240378"
+  },
+  "moss2003_romarin": {
+   "source": "Moss et al., Int J Neurosci 2003 — l'odeur d'huile essentielle de romarin améliore la mémoire chez 144 adultes",
+   "url": "https://doi.org/10.1080/00207450390161903"
+  },
+  "nematolahi2018_romarin": {
+   "source": "Nematolahi et al., Complement Ther Clin Pract 2018 — romarin par la bouche, mémoire d'étudiants (68 participants)",
+   "url": "https://doi.org/10.1016/j.ctcp.2017.11.004"
+  },
+  "banerjee2025_diacca": {
+   "source": "Banerjee et al., Antioxidants 2025 — diAcCA, dérivé de l'acide carnosique du romarin, chez la souris Alzheimer 5xFAD",
+   "url": "https://doi.org/10.3390/antiox14030293"
+  },
+  "akhondzadeh2010_safran": {
+   "source": "Akhondzadeh et al., Psychopharmacology 2010 — safran 30 mg contre donépézil dans l'Alzheimer léger à modéré (54 patients, 22 semaines)",
+   "url": "https://doi.org/10.1007/s00213-009-1706-1"
+  },
+  "akhondzadeh2003_sauge": {
+   "source": "Akhondzadeh et al., J Clin Pharm Ther 2003 — extrait de sauge dans l'Alzheimer léger à modéré (42 patients, 4 mois)",
+   "url": "https://doi.org/10.1046/j.1365-2710.2003.00463.x"
+  },
+  "akhondzadeh2003_melisse": {
+   "source": "Akhondzadeh et al., J Neurol Neurosurg Psychiatry 2003 — extrait de mélisse dans l'Alzheimer léger à modéré (42 patients, 4 mois)",
+   "url": "https://doi.org/10.1136/jnnp.74.7.863"
+  },
+  "panahi2015_romarin_cheveux": {
+   "source": "Panahi et al., Skinmed 2015 — huile de romarin contre minoxidil 2 % dans la calvitie (100 patients, 6 mois)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/25842469/"
+  },
+  "mahmoudi2026_safran_dep": {
+   "source": "Mahmoudi et al., Nutr Neurosci 2026 — safran dans la dépression et l'anxiété (34 essais, 1 769 participants)",
+   "url": "https://doi.org/10.1080/1028415X.2025.2602153"
+  },
+  "shafiee2025_safran_isrs": {
+   "source": "Shafiee et al., Nutr Rev 2025 — safran contre antidépresseurs ISRS (8 essais)",
+   "url": "https://doi.org/10.1093/nutrit/nuae076"
+  },
+  "reif2023_esketamine": {
+   "source": "Reif et al., N Engl J Med 2023 — eskétamine en spray nasal contre quétiapine dans la dépression résistante (676 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2304145"
+  },
+  "raison2023_psilocybine": {
+   "source": "Raison et al., JAMA 2023 — une dose unique de psilocybine dans la dépression (104 patients)",
+   "url": "https://doi.org/10.1001/jama.2023.14530"
+  },
+  "maghbooli2014_gingembre": {
+   "source": "Maghbooli et al., Phytother Res 2014 — gingembre en poudre contre sumatriptan dans la crise de migraine (100 patients)",
+   "url": "https://doi.org/10.1002/ptr.4996"
+  },
+  "talandashti2025_supplements": {
+   "source": "Talandashti et al., Neurol Sci 2025 — compléments en prévention de la migraine (magnésium, CoQ10, riboflavine… 22 essais)",
+   "url": "https://doi.org/10.1007/s10072-024-07794-0"
+  },
+  "abuelgasim2021_miel": {
+   "source": "Abuelgasim et al., BMJ Evid Based Med 2021 — miel dans les infections des voies respiratoires hautes (14 études)",
+   "url": "https://doi.org/10.1136/bmjebm-2020-111336"
+  },
+  "timmer2008_pelargonium": {
+   "source": "Timmer et al., Cochrane 2008 — Pelargonium sidoides dans les infections respiratoires aiguës",
+   "url": "https://doi.org/10.1002/14651858.CD006323.pub2"
+  },
+  "zakayrones2004_sureau": {
+   "source": "Zakay-Rones et al., J Int Med Res 2004 — sirop de sureau noir dans la grippe A et B (60 patients)",
+   "url": "https://doi.org/10.1177/147323000403200205"
+  },
+  "hawkins2019_sureau": {
+   "source": "Hawkins et al., Complement Ther Med 2019 — sureau noir et symptômes respiratoires (méta-analyse, 180 participants)",
+   "url": "https://doi.org/10.1016/j.ctim.2018.12.004"
+  },
+  "hayden2018_baloxavir": {
+   "source": "Hayden et al., N Engl J Med 2018 — baloxavir en une seule prise dans la grippe (1 064 patients infectés)",
+   "url": "https://doi.org/10.1056/NEJMoa1716197"
+  },
+  "kuijpers2025_duree_atb": {
+   "source": "Kuijpers et al., Lancet Infect Dis 2025 — durée des antibiotiques dans les infections respiratoires (revue de revues)",
+   "url": "https://doi.org/10.1016/S1473-3099(24)00456-0"
+  },
+  "azarpazhooh2016_xylitol": {
+   "source": "Azarpazhooh et al., Cochrane 2016 — xylitol pour prévenir l'otite chez l'enfant (3 405 enfants)",
+   "url": "https://doi.org/10.1002/14651858.CD007095.pub3"
+  },
+  "hoberman2016_otite": {
+   "source": "Hoberman et al., N Engl J Med 2016 — amoxicilline-acide clavulanique 5 contre 10 jours dans l'otite (520 enfants)",
+   "url": "https://doi.org/10.1056/NEJMoa1606043"
+  },
+  "martinmoro2023_povidone": {
+   "source": "González Martín-Moro et al., Cont Lens Anterior Eye 2023 — povidone iodée dans la conjonctivite à adénovirus (méta-analyse)",
+   "url": "https://doi.org/10.1016/j.clae.2023.101873"
+  },
+  "niode2026_propolis": {
+   "source": "Niode et al., Int J STD AIDS 2026 — propolis et miel contre aciclovir 5 % dans l'herpès (7 études)",
+   "url": "https://doi.org/10.1177/09564624251413431"
+  },
+  "anheyer2025_herpes_plantes": {
+   "source": "Anheyer et al., J Integr Complement Med 2025 — plantes dans l'herpès labial (mélisse, olivier, propolis, sauge-rhubarbe ; 7 essais, 1 250 patients)",
+   "url": "https://doi.org/10.1089/jicm.2025.0131"
+  },
+  "abdellatif2020_ruban": {
+   "source": "Abdel-Latif et al., Dermatol Ther 2020 — ruban adhésif contre cryothérapie dans les verrues plantaires (100 adultes)",
+   "url": "https://doi.org/10.1111/dth.13342"
+  },
+  "tong1992_theier_pied": {
+   "source": "Tong et al., Australas J Dermatol 1992 — crème à l'huile d'arbre à thé 10 % dans le pied d'athlète (104 patients)",
+   "url": "https://doi.org/10.1111/j.1440-0960.1992.tb00103.x"
+  },
+  "lipner2026_efinaconazole": {
+   "source": "Lipner et al., J Drugs Dermatol 2026 — efinaconazole 10 % en solution dans la mycose des ongles (1 655 participants, analyse groupée de phase 3)",
+   "url": "https://doi.org/10.36849/JDD.9384"
+  },
+  "santer2023_spironolactone": {
+   "source": "Santer et al. (SAFA), BMJ 2023 — spironolactone dans l'acné de la femme adulte (410 femmes)",
+   "url": "https://doi.org/10.1136/bmj-2022-074349"
+  },
+  "enshaieh2007_theier_acne": {
+   "source": "Enshaieh et al., Indian J Dermatol Venereol Leprol 2007 — gel d'huile d'arbre à thé 5 % dans l'acné légère à modérée",
+   "url": "https://doi.org/10.4103/0378-6323.30646"
+  },
+  "blauvelt2021_upadacitinib": {
+   "source": "Blauvelt et al., JAMA Dermatol 2021 — upadacitinib contre dupilumab dans l'eczéma atopique (692 patients)",
+   "url": "https://doi.org/10.1001/jamadermatol.2021.3023"
+  },
+  "decrescenzo2022_insomnie": {
+   "source": "De Crescenzo et al., Lancet 2022 — médicaments de l'insomnie comparés (154 essais, 44 089 participants)",
+   "url": "https://doi.org/10.1016/S0140-6736(22)00878-9"
+  },
+  "oltean2014_plantes_dos": {
+   "source": "Oltean et al., Cochrane 2014 — plantes dans le mal de dos (14 essais, 2 050 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD004504.pub4"
+  },
+  "gagnier2006_harpago": {
+   "source": "Gagnier et al., Cochrane 2006 — plantes dans le mal de dos : harpagophytum, saule blanc, piment",
+   "url": "https://doi.org/10.1002/14651858.CD004504.pub3"
+  },
+  "chen2019_cerises": {
+   "source": "Chen et al., Evid Based Complement Alternat Med 2019 — cerises et goutte (revue systématique, 6 études)",
+   "url": "https://doi.org/10.1155/2019/9896757"
+  },
+  "stamp2020_cerise": {
+   "source": "Stamp et al., Rheumatology 2020 — concentré de cerise acide et acide urique dans la goutte (50 patients)",
+   "url": "https://doi.org/10.1093/rheumatology/kez606"
+  },
+  "pittler2006_marronnier": {
+   "source": "Pittler et Ernst, Cochrane 2006 — extrait de graines de marronnier d'Inde dans l'insuffisance veineuse",
+   "url": "https://doi.org/10.1002/14651858.CD003230.pub3"
+  },
+  "tanashat2025_probio_hp": {
+   "source": "Tanashat et al., Clin Nutr ESPEN 2025 — probiotiques ajoutés au traitement d'Helicobacter pylori (91 essais, 13 680 patients)",
+   "url": "https://doi.org/10.1016/j.clnesp.2024.11.016"
+  },
+  "chey2022_vonoprazan": {
+   "source": "Chey et al., Gastroenterology 2022 — vonoprazan en bithérapie ou trithérapie contre Helicobacter pylori (1 046 patients)",
+   "url": "https://doi.org/10.1053/j.gastro.2022.05.055"
+  },
+  "leiman2017_alginate": {
+   "source": "Leiman et al., Dis Esophagus 2017 — alginates dans le reflux (14 essais, 2 095 patients)",
+   "url": "https://doi.org/10.1093/dote/dow020"
+  },
+  "govindappagari2019_fer_iv": {
+   "source": "Govindappagari et al., Am J Perinatol 2019 — fer intraveineux contre fer oral dans l'anémie de la grossesse (méta-analyse)",
+   "url": "https://doi.org/10.1055/s-0038-1668555"
+  },
+  "schapowal2002_petasite": {
+   "source": "Schapowal et al., BMJ 2002 — pétasite contre cétirizine dans le rhume des foins",
+   "url": "https://doi.org/10.1136/bmj.324.7330.144"
+  },
+  "harding2022_altar": {
+   "source": "Harding et al. (ALTAR), Health Technol Assess 2022 — méthénamine contre antibiotiques pour prévenir les infections urinaires (240 femmes)",
+   "url": "https://doi.org/10.3310/QOIZ6538"
+  },
+  "hayward2024_mannose": {
+   "source": "Hayward et al., JAMA Intern Med 2024 — D-mannose pour prévenir les infections urinaires récidivantes (598 femmes)",
+   "url": "https://doi.org/10.1001/jamainternmed.2024.0264"
+  },
+  "collinson2020_probio_diarrhee": {
+   "source": "Collinson et al., Cochrane 2020 — probiotiques dans la diarrhée infectieuse aiguë (82 études, 12 127 participants)",
+   "url": "https://doi.org/10.1002/14651858.CD003048.pub4"
+  },
+  "jiang2022_lumiere_rouge": {
+   "source": "Jiang et al., Ophthalmology 2022 — lumière rouge de faible intensité répétée contre la myopie de l'enfant (264 enfants)",
+   "url": "https://doi.org/10.1016/j.ophtha.2021.11.023"
+  },
+  "brown2016_hubble": {
+   "source": "Brown et al. (HubBLe), Lancet 2016 — ligature élastique contre ligature artérielle des hémorroïdes (372 patients)",
+   "url": "https://doi.org/10.1016/S0140-6736(16)30584-0"
+  },
+  "zhao2015_lanosterol": {
+   "source": "Zhao et al., Nature 2015 — le lanostérol dissout les agrégats de protéines de la cataracte (cellules, cristallins de lapin, chiens)",
+   "url": "https://doi.org/10.1038/nature14650"
+  },
+  "corren2023_tezepelumab": {
+   "source": "Corren et al., Am J Respir Crit Care Med 2023 — tézépélumab dans l'asthme sévère non contrôlé (1 334 patients)",
+   "url": "https://doi.org/10.1164/rccm.202210-2005OC"
+  },
+  "biswal2019_tak003": {
+   "source": "Biswal et al., N Engl J Med 2019 — vaccin dengue TAK-003 chez 20 071 enfants et adolescents",
+   "url": "https://doi.org/10.1056/NEJMoa1903869"
+  },
+  "shakya2021_tcv": {
+   "source": "Shakya et al., Lancet Glob Health 2021 — vaccin conjugué contre la typhoïde au Népal (20 019 enfants)",
+   "url": "https://doi.org/10.1016/S2214-109X(21)00346-6"
   }
  },
  "maladies": [
@@ -4243,6 +4451,99 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "romarin_aroma_alz",
+     "nom": "Huile essentielle de romarin (inhalée le matin, avec citron) + lavande et orange le soir",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Diffusion des huiles : romarin + citron le matin, lavande + orange le soir, 28 jours",
+     "population": "28 personnes âgées dont 17 atteintes d'Alzheimer (étude sans tirage au sort)",
+     "effet": "Orientation et fonctions cognitives améliorées chez tous les patients ; chez les malades d'Alzheimer, amélioration significative du score cognitif total (TDAS). Aucun effet indésirable aux analyses de sang.",
+     "resume": "Cognition améliorée en 28 jours (petite étude)",
+     "source": "jimbo2009_aroma_alz",
+     "source2": "moss2003_romarin",
+     "prudence": "Petite étude sans groupe témoin tiré au sort ; la mémoire n'est pas « retrouvée » entièrement. Chez des adultes sains, l'odeur de romarin améliore la qualité de la mémoire (144 personnes, Moss 2003).",
+     "condition": "En complément du traitement ; facile et peu coûteux",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "romarin_souris_alz",
+     "nom": "Huiles de romarin et citron (nuit) + lavande et orange (jour)",
+     "type": "naturel",
+     "force": "preclinique",
+     "dose": "Diffusion pendant 2 mois",
+     "population": "Souris à vieillissement accéléré (SAMP8)",
+     "effet": "Mémoire améliorée ; amyloïde et protéine tau anormale nettement réduites dans le cerveau, BDNF (facteur de croissance des neurones) un peu augmenté.",
+     "resume": "Amyloïde et tau réduits (souris)",
+     "source": "okuda2020_aroma_souris",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "acide_carnosique_alz",
+     "nom": "Acide carnosique du romarin et de la sauge (forme stable diAcCA)",
+     "type": "naturel",
+     "force": "preclinique",
+     "dose": "3 mois chez la souris",
+     "population": "Souris Alzheimer 5xFAD",
+     "effet": "Synapses préservées, mémoire améliorée, inflammation, plaques amyloïdes et amas de tau réduits ; jugé assez sûr pour des essais chez l'humain.",
+     "resume": "Mémoire et synapses restaurées (souris)",
+     "source": "banerjee2025_diacca",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "safran_alz",
+     "nom": "Safran (Crocus sativus)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "30 mg par jour (15 mg deux fois), 22 semaines",
+     "population": "54 patients, Alzheimer léger à modéré (essai randomisé contre donépézil)",
+     "effet": "Aussi efficace que le donépézil sur la cognition (ADAS-cog) et le fonctionnement ; moins de vomissements que sous donépézil.",
+     "resume": "Aussi efficace que le donépézil",
+     "source": "akhondzadeh2010_safran",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "sauge_alz",
+     "nom": "Extrait de sauge officinale (Salvia officinalis)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "60 gouttes par jour, 4 mois",
+     "population": "42 patients de 65 à 80 ans, Alzheimer léger à modéré (contre placebo)",
+     "effet": "Cognition significativement meilleure que sous placebo (ADAS-cog et CDR) ; agitation peut-être moins fréquente.",
+     "resume": "Cognition améliorée en 4 mois",
+     "source": "akhondzadeh2003_sauge",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "melisse_alz",
+     "nom": "Extrait de mélisse (Melissa officinalis)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "60 gouttes par jour, 4 mois",
+     "population": "42 patients de 65 à 80 ans, Alzheimer léger à modéré (contre placebo)",
+     "effet": "Cognition significativement meilleure que sous placebo (ADAS-cog, CDR) et moins d'agitation.",
+     "resume": "Cognition améliorée, moins d'agitation",
+     "source": "akhondzadeh2003_melisse",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": [
@@ -4277,6 +4578,27 @@
      "risques": "Œdèmes et saignements cérébraux des anti-amyloïdes ; surveillance par IRM.",
      "source": "finger",
      "source2": "donanemab"
+    }
+   ],
+   "pistes": [
+    {
+     "id": "p_romarin_safran_alz",
+     "nom": "Romarin inhalé le matin + safran par la bouche + sauge : trois plantes, trois actions",
+     "type": "naturel",
+     "situation": "Alzheimer au stade léger à modéré, en complément du traitement habituel.",
+     "lesion": "Manque d'acétylcholine, dépôts d'amyloïde et de tau, inflammation du cerveau.",
+     "fait_molecule": "L'aromathérapie au romarin a amélioré la cognition de malades d'Alzheimer (Jimbo 2009) ; le safran 30 mg a fait aussi bien que le donépézil (Akhondzadeh 2010) ; la sauge a fait mieux que le placebo (Akhondzadeh 2003).",
+     "fait_maladie": "Chez la souris, les huiles de romarin réduisent l'amyloïde et la tau (Okuda 2020) ; l'acide carnosique du romarin préserve les synapses (Banerjee 2025).",
+     "lien": "Chaque plante agit sur une partie différente de la maladie (odorat et éveil le matin, cognition, inflammation) : les associer pourrait additionner leurs effets.",
+     "formulation": "Chez une personne au stade léger à modéré, l'association romarin inhalé le matin + safran 30 mg + sauge pourrait éventuellement améliorer davantage la mémoire que chaque plante seule.",
+     "recherche": "Aucun essai associant romarin et safran dans l'Alzheimer trouvé sur PubMed (recherche du 24/11/2026 : seulement des revues générales).",
+     "a_verifier": "Essai sur 6 mois contre chaque plante seule, avec tests de mémoire et surveillance des interactions avec les médicaments en cours.",
+     "prudence": "Jamais testé en association. Huiles essentielles : pas par la bouche, pas chez l'épileptique sans avis (romarin). Safran : pas au-delà des doses étudiées.",
+     "zones": [
+      "brain"
+     ],
+     "source": "jimbo2009_aroma_alz",
+     "source2": "akhondzadeh2010_safran"
     }
    ]
   },
@@ -11909,6 +12231,23 @@
       "small_intestine",
       "colon"
      ]
+    },
+    {
+     "id": "vaccin_typhoide",
+     "nom": "Vaccin conjugué contre la typhoïde",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "1 injection",
+     "population": "20 019 enfants au Népal, suivi 2 ans",
+     "effet": "Typhoïde confirmée évitée à 79 %, sans baisse de la protection sur 2 ans.",
+     "resume": "Typhoïde évitée à 79 %",
+     "source": "shakya2021_tcv",
+     "condition": "Prévention",
+     "critere": 1,
+     "zones": [
+      "small_intestine",
+      "colon"
+     ]
     }
    ],
    "guerison": [
@@ -11973,6 +12312,23 @@
       "skin",
       "liver"
      ]
+    },
+    {
+     "id": "vaccin_dengue",
+     "nom": "Vaccin TAK-003 (Qdenga)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "2 injections à 3 mois d'intervalle",
+     "population": "20 071 enfants et adolescents de 4 à 16 ans en Asie et Amérique latine",
+     "effet": "Dengue confirmée évitée à 81 % et hospitalisations évitées à 95 %, y compris chez les enfants jamais infectés auparavant (75 %).",
+     "resume": "Dengue évitée à 81 %",
+     "source": "biswal2019_tak003",
+     "condition": "Prévention",
+     "critere": 1,
+     "zones": [
+      "skin",
+      "liver"
+     ]
     }
    ],
    "guerison": []
@@ -11990,7 +12346,7 @@
     "lung_r",
     "pharynx"
    ],
-   "description": "Infection respiratoire virale, le plus souvent guérie spontanément en une à deux semaines, parfois grave chez les personnes fragiles.",
+   "description": "Infection respiratoire virale (fièvre, courbatures, toux), parfois grave chez les personnes fragiles ; des antiviraux et des plantes raccourcissent les symptômes.",
    "source": "jefferson2014_grippe",
    "stades": [
     {
@@ -12022,9 +12378,69 @@
       "lung_r",
       "pharynx"
      ]
+    },
+    {
+     "id": "baloxavir",
+     "nom": "Baloxavir (antiviral, une seule prise)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "40 ou 80 mg en une seule prise selon le poids, dans les 48 h",
+     "population": "1 064 patients infectés de 12 à 64 ans",
+     "effet": "Symptômes soulagés en 54 h contre 80 h sous placebo (environ 1 jour de moins), comme l'oséltamivir ; virus éliminé plus vite.",
+     "resume": "Grippe raccourcie d'un jour, en une prise",
+     "source": "hayden2018_baloxavir",
+     "prudence": "Des virus moins sensibles sont apparus chez 10 % des patients traités.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "pharynx"
+     ]
+    },
+    {
+     "id": "sureau_grippe",
+     "nom": "Sirop de sureau noir (Sambucus nigra)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "15 mL quatre fois par jour, 5 jours, dans les 48 h",
+     "population": "60 patients, grippe A ou B (essai contre placebo) ; méta-analyse de 180 participants",
+     "effet": "Symptômes soulagés en moyenne 4 jours plus tôt et moins de médicaments de secours ; la méta-analyse confirme une forte baisse des symptômes respiratoires.",
+     "resume": "Grippe raccourcie de 4 jours (petits essais)",
+     "source": "zakayrones2004_sureau",
+     "source2": "hawkins2019_sureau",
+     "prudence": "Petits essais : à confirmer.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "pharynx"
+     ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_sureau_baloxavir",
+     "nom": "Baloxavir + sirop de sureau noir",
+     "type": "medicament",
+     "situation": "Grippe débutante (moins de 48 h), surtout chez une personne fragile.",
+     "lesion": "Le virus se multiplie très vite dans les voies respiratoires les deux premiers jours.",
+     "fait_molecule": "Le baloxavir bloque la copie du virus et fait baisser la charge virale dès le premier jour (Hayden 2018).",
+     "fait_maladie": "Le sirop de sureau a raccourci les symptômes de 4 jours dans un petit essai (Zakay-Rones 2004).",
+     "lien": "Deux moyens différents contre le même virus : leurs effets pourraient s'ajouter.",
+     "formulation": "Chez une personne au début d'une grippe, le baloxavir associé au sirop de sureau noir pourrait éventuellement raccourcir davantage la maladie que le baloxavir seul.",
+     "recherche": "Aucune étude associant sureau et baloxavir trouvée sur PubMed (recherche du 24/11/2026 : 0 résultat).",
+     "a_verifier": "Essai randomisé à trois groupes (baloxavir, sureau, association) mesurant durée des symptômes et charge virale.",
+     "prudence": "Jamais testé ensemble. Le baloxavir est un médicament sur prescription.",
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "pharynx"
+     ],
+     "source": "hayden2018_baloxavir",
+     "source2": "zakayrones2004_sureau"
+    }
+   ]
   },
   {
    "id": "infection_urinaire",
@@ -12080,6 +12496,40 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "methenamine",
+     "nom": "Méthénamine hippurate (prévention sans antibiotique)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "1 g deux fois par jour, 12 mois",
+     "population": "240 femmes avec infections récidivantes",
+     "effet": "Infections ramenées à 1,4 par an, presque aussi peu qu'avec un antibiotique quotidien (0,9) ; évite les résistances.",
+     "resume": "Prévention sans antibiotique",
+     "source": "harding2022_altar",
+     "critere": 1,
+     "zones": [
+      "bladder",
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "dmannose",
+     "nom": "D-mannose",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "2 g par jour, 6 mois",
+     "population": "598 femmes avec infections récidivantes",
+     "effet": "Aucun effet : 51 % ont refait une infection contre 56 % sous placebo (différence non significative).",
+     "resume": "Inefficace en prévention",
+     "source": "hayward2024_mannose",
+     "critere": 1,
+     "zones": [
+      "bladder",
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": []
@@ -12124,6 +12574,22 @@
      "resume": "Diarrhée raccourcie chez l'enfant de plus de 6 mois",
      "source": "lazzerini2016_zinc",
      "condition": "Utile surtout là où la carence en zinc ou la dénutrition est fréquente",
+     "critere": 1,
+     "zones": [
+      "small_intestine",
+      "colon"
+     ]
+    },
+    {
+     "id": "probiotiques_diarrhee",
+     "nom": "Probiotiques (Lactobacillus GG, Saccharomyces boulardii…)",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Selon les essais",
+     "population": "82 études, 12 127 participants",
+     "effet": "Les grands essais fiables ne montrent pas de différence sur les diarrhées de plus de 48 h ; hospitalisation un peu plus courte.",
+     "resume": "Peu ou pas d'effet",
+     "source": "collinson2020_probio_diarrhee",
      "critere": 1,
      "zones": [
       "small_intestine",
@@ -12197,6 +12663,26 @@
       "enfant"
      ],
      "condition": "Prévention, surtout chez les enfants pas encore myopes",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    },
+    {
+     "id": "lumiere_rouge",
+     "nom": "Lumière rouge de faible intensité (appareil, 3 min, 2 fois par jour)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "3 minutes deux fois par jour, 5 jours par semaine, 12 mois",
+     "population": "264 enfants",
+     "effet": "Allongement de l'œil 0,13 mm contre 0,38 mm et progression −0,20 D contre −0,79 D avec des lunettes simples : progression réduite des trois quarts.",
+     "resume": "Myopie freinée des trois quarts",
+     "source": "jiang2022_lumiere_rouge",
+     "stades": [
+      "enfant"
+     ],
+     "prudence": "Appareil médical à utiliser avec suivi ophtalmologique.",
      "critere": 1,
      "zones": [
       "eye_l",
@@ -12280,7 +12766,25 @@
      "niveau": "modere"
     }
    ],
-   "substances": [],
+   "substances": [
+    {
+     "id": "lanosterol",
+     "nom": "Lanostérol (collyre ou injection expérimentale)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses expérimentales",
+     "population": "Cristallins de lapin isolés et chiens atteints de cataracte",
+     "effet": "Dissout les amas de protéines qui opacifient le cristallin ; transparence améliorée chez le lapin et cataracte moins sévère chez le chien.",
+     "resume": "Cataracte atténuée sans chirurgie (animal)",
+     "source": "zhao2015_lanosterol",
+     "prudence": "Aucun essai chez l'humain ; la chirurgie reste le seul traitement validé.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
+    }
+   ],
    "guerison": [
     {
      "id": "cataracte_chirurgie",
@@ -12306,7 +12810,7 @@
    "zones": [
     "pharynx"
    ],
-   "description": "Infection virale bénigne du nez et de la gorge, qui guérit seule en une à deux semaines.",
+   "description": "Infection virale du nez et de la gorge (nez qui coule, gorge irritée, toux) ; plusieurs moyens réduisent les symptômes et la durée.",
    "source": "nault2024_zinc_rhume",
    "stades": [
     {
@@ -12341,6 +12845,38 @@
      "effet": "N'évite pas les rhumes dans la population générale (RR 0,97) mais les divise par deux chez les sportifs et militaires très exposés au froid (RR 0,48) ; raccourcit la durée de 8 % chez l'adulte et 14 % chez l'enfant. Prise seulement au début du rhume : pas d'effet net.",
      "resume": "Rhumes un peu plus courts (prise régulière)",
      "source": "hemila2013_vitc_rhume",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    },
+    {
+     "id": "miel_rhume",
+     "nom": "Miel",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Selon les études (souvent 1 à 2 cuillères le soir)",
+     "population": "14 études, infections des voies respiratoires hautes",
+     "effet": "Meilleur que les soins habituels sur l'ensemble des symptômes (−3,96 points), la fréquence et la force de la toux.",
+     "resume": "Toux et symptômes réduits",
+     "source": "abuelgasim2021_miel",
+     "prudence": "Jamais de miel avant 1 an (botulisme).",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    },
+    {
+     "id": "pelargonium_rhume",
+     "nom": "Pelargonium sidoides (Umckaloabo)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Extrait liquide, 10 jours",
+     "population": "Essais réunis par Cochrane",
+     "effet": "Pourrait soulager le rhume et la sinusite de l'adulte (sinusite : guérison complète à 21 jours bien plus fréquente, RR 0,43 de non-guérison) ; preuves jugées incertaines.",
+     "resume": "Symptômes soulagés (preuves incertaines)",
+     "source": "timmer2008_pelargonium",
+     "prudence": "Inefficace en comprimés selon la revue ; effets indésirables digestifs légers.",
      "critere": 1,
      "zones": [
       "pharynx"
@@ -12443,6 +12979,21 @@
      "zones": [
       "skin"
      ]
+    },
+    {
+     "id": "efinaconazole",
+     "nom": "Efinaconazole 10 % en solution sur l'ongle",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Application quotidienne, 52 semaines",
+     "population": "1 655 participants (2 essais de phase 3)",
+     "effet": "Champignon éliminé chez 53 à 61 % contre 11 à 30 % ; guérison complète de l'ongle chez 13 à 28 % contre 2 à 13 %.",
+     "resume": "Alternative locale aux comprimés",
+     "source": "lipner2026_efinaconazole",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
     }
    ],
    "guerison": []
@@ -12486,6 +13037,22 @@
      "zones": [
       "skin"
      ]
+    },
+    {
+     "id": "upadacitinib",
+     "nom": "Upadacitinib (comprimé)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "30 mg par jour, 16 semaines",
+     "population": "692 adultes, eczéma modéré à sévère (contre dupilumab)",
+     "effet": "Amélioration d'au moins 75 % chez 71 % contre 61 % sous dupilumab ; peau totalement nette chez 28 % contre 8 % ; démangeaisons soulagées dès la 1re semaine.",
+     "resume": "Plus efficace que le dupilumab",
+     "source": "blauvelt2021_upadacitinib",
+     "prudence": "Infections (zona, herpès) plus fréquentes ; bilan sanguin régulier.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
     }
    ],
    "guerison": []
@@ -12522,6 +13089,37 @@
      "resume": "Le plus efficace contre l'acné sévère",
      "source": "sadeghzadeh2021_isotretinoine",
      "prudence": "Effets indésirables liés à la dose ; interdite pendant la grossesse (malformations), contraception obligatoire chez la femme.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    },
+    {
+     "id": "spironolactone_acne",
+     "nom": "Spironolactone (femmes)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "50 mg puis 100 mg par jour, 24 semaines",
+     "population": "410 femmes adultes (essai SAFA)",
+     "effet": "Qualité de vie liée à l'acné meilleure à 12 et surtout à 24 semaines ; plus de femmes jugent leur acné améliorée.",
+     "resume": "Acné de la femme améliorée",
+     "source": "santer2023_spironolactone",
+     "prudence": "Pas pendant la grossesse ; potassium à surveiller selon le médecin.",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    },
+    {
+     "id": "theier_acne",
+     "nom": "Gel d'huile d'arbre à thé 5 %",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Gel 2 fois par jour, 45 jours",
+     "population": "60 patients, acné légère à modérée (contre placebo)",
+     "effet": "Nombre total de lésions réduit 3,6 fois plus et gravité réduite 5,8 fois plus que sous placebo.",
+     "resume": "Boutons nettement réduits",
+     "source": "enshaieh2007_theier_acne",
      "critere": 1,
      "zones": [
       "skin"
@@ -12569,9 +13167,60 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "gingembre_migraine",
+     "nom": "Gingembre en poudre (pendant la crise)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Poudre de gingembre au début de la crise, 5 crises",
+     "population": "100 patients, migraine sans aura (contre sumatriptan)",
+     "effet": "Douleur réduite à 2 h aussi bien qu'avec le sumatriptan, avec moins d'effets indésirables ; même satisfaction des patients.",
+     "resume": "Aussi efficace que le sumatriptan",
+     "source": "maghbooli2014_gingembre",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "magnesium_migraine",
+     "nom": "Magnésium, coenzyme Q10, riboflavine (vitamine B2), vitamine D (prévention)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Prise quotidienne en prévention",
+     "population": "22 essais (méta-analyse dose-réponse)",
+     "effet": "Magnésium : 2,5 crises de moins et 1,7 jour de migraine de moins par mois ; CoQ10 : 1,7 crise de moins et crises plus courtes ; riboflavine : 1,3 crise de moins ; vitamine D : 2,4 jours de migraine de moins.",
+     "resume": "Crises moins nombreuses",
+     "source": "talandashti2025_supplements",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_magnesium_gingembre",
+     "nom": "Magnésium tous les jours + gingembre au début de chaque crise",
+     "type": "naturel",
+     "situation": "Migraine épisodique fréquente, chez une personne qui veut limiter les médicaments.",
+     "lesion": "Excitabilité du cerveau et inflammation des vaisseaux autour du cerveau pendant la crise.",
+     "fait_molecule": "Le gingembre soulage la crise aussi bien que le sumatriptan (Maghbooli 2014).",
+     "fait_maladie": "Le magnésium quotidien réduit le nombre de crises de 2,5 par mois (Talandashti 2025).",
+     "lien": "L'un réduit le nombre de crises, l'autre arrête celles qui surviennent : ensemble, ils couvriraient la prévention et la crise.",
+     "formulation": "Chez une personne qui a des migraines fréquentes, le magnésium quotidien associé au gingembre en crise pourrait éventuellement réduire à la fois le nombre de crises et leur intensité, sans médicament.",
+     "recherche": "Aucune étude associant gingembre et magnésium dans la migraine trouvée sur PubMed (recherche du 24/11/2026 : 0 résultat).",
+     "a_verifier": "Carnet de crises sur 3 mois contre chaque produit seul.",
+     "prudence": "Jamais testé ensemble. Magnésium : prudence en cas de maladie des reins.",
+     "zones": [
+      "brain"
+     ],
+     "source": "maghbooli2014_gingembre",
+     "source2": "talandashti2025_supplements"
+    }
+   ]
   },
   {
    "id": "reflux",
@@ -12608,6 +13257,22 @@
      "resume": "Cicatrise l'œsophage ; viser la plus petite dose ensuite",
      "source": "katz2017_ipp",
      "prudence": "Au long cours, réévaluer régulièrement l'indication avec le médecin.",
+     "critere": 1,
+     "zones": [
+      "esophagus",
+      "stomach"
+     ]
+    },
+    {
+     "id": "alginate_reflux",
+     "nom": "Alginates (Gaviscon et équivalents)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Après les repas et au coucher",
+     "population": "14 essais, 2 095 patients",
+     "effet": "Disparition des symptômes 4,4 fois plus probable qu'avec placebo ou antiacides ; un peu moins efficaces que les IPP (différence non significative).",
+     "resume": "Soulage sans bloquer l'acide",
+     "source": "leiman2017_alginate",
      "critere": 1,
      "zones": [
       "esophagus",
@@ -12654,6 +13319,22 @@
       "colon",
       "pelvis"
      ]
+    },
+    {
+     "id": "ligature_hemorroides",
+     "nom": "Ligature élastique ou ligature artérielle (gestes au cabinet ou à l'hôpital)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Une intervention",
+     "population": "372 patients, hémorroïdes de grade 2 ou 3",
+     "effet": "Récidive à 1 an : 49 % après ligature élastique contre 30 % après ligature artérielle ; la ligature élastique fait moins mal et coûte moins, quitte à la répéter.",
+     "resume": "Traitement concret des hémorroïdes",
+     "source": "brown2016_hubble",
+     "critere": 1,
+     "zones": [
+      "colon",
+      "pelvis"
+     ]
     }
    ],
    "guerison": []
@@ -12693,6 +13374,22 @@
      "resume": "Le fer un jour sur deux fait presque aussi bien",
      "source": "pasupathy2023_fer",
      "prudence": "Chercher la cause du manque de fer (saignements, alimentation).",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "heart"
+     ]
+    },
+    {
+     "id": "fer_iv",
+     "nom": "Fer en perfusion (intraveineux)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Une ou quelques perfusions",
+     "population": "Femmes enceintes anémiées (méta-analyse)",
+     "effet": "Hémoglobine cible atteinte plus souvent (OR 2,66), +0,84 g/dL de plus à 4 semaines, et moins d'effets indésirables qu'avec le fer oral.",
+     "resume": "Correction plus rapide que le fer oral",
+     "source": "govindappagari2019_fer_iv",
      "critere": 1,
      "zones": [
       "spleen",
@@ -12743,6 +13440,22 @@
       "lung_l",
       "lung_r"
      ]
+    },
+    {
+     "id": "tezepelumab",
+     "nom": "Tézépélumab (asthme sévère)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Injection toutes les 4 semaines, 52 semaines",
+     "population": "1 334 patients, asthme sévère non contrôlé",
+     "effet": "Crises réduites de 60 % (rapport 0,40), y compris dans les asthmes sans allergie marquée ; moins d'hospitalisations et de passages aux urgences.",
+     "resume": "Crises réduites de 60 %",
+     "source": "corren2023_tezepelumab",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r"
+     ]
     }
    ],
    "guerison": []
@@ -12784,6 +13497,22 @@
      "zones": [
       "pharynx"
      ]
+    },
+    {
+     "id": "petasite",
+     "nom": "Pétasite (Petasites hybridus)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Comprimés, 2 semaines",
+     "population": "Rhume des foins (contre cétirizine)",
+     "effet": "Aussi efficace que la cétirizine, sans la somnolence fréquente avec la cétirizine.",
+     "resume": "Aussi efficace qu'un antihistaminique",
+     "source": "schapowal2002_petasite",
+     "prudence": "N'utiliser que des extraits sans alcaloïdes toxiques pour le foie.",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
     }
    ],
    "guerison": []
@@ -12800,7 +13529,7 @@
    "zones": [
     "pharynx"
    ],
-   "description": "Inflammation de la gorge, le plus souvent due à un virus ; guérit seule dans la plupart des cas.",
+   "description": "Inflammation de la gorge, virale ou bactérienne (streptocoque) ; antibiotique en cas d'angine bactérienne, et moyens simples contre la douleur.",
    "source": "spinks2021_angine",
    "stades": [
     {
@@ -12812,14 +13541,31 @@
    "substances": [
     {
      "id": "antibio_angine",
-     "nom": "Antibiotiques",
+     "nom": "Antibiotiques (angine bactérienne : pénicilline, amoxicilline, céphalosporine)",
      "type": "medicament",
      "force": "forte",
      "dose": "Selon les essais",
      "population": "29 essais, 15 337 cas",
-     "effet": "Gorge douloureuse au 3e jour réduite de 30 % (RR 0,70) ; mais 82 % des personnes sont guéries en une semaine sans antibiotique. Moins d'otites (OR 0,21) et d'abcès de la gorge (OR 0,16).",
-     "resume": "Bénéfice modeste ; guérit seul le plus souvent",
+     "effet": "Gorge douloureuse au 3e jour réduite de 30 % (RR 0,70) ; otites divisées par 5 (OR 0,21) et abcès de la gorge par 6 (OR 0,16). Une céphalosporine sur une durée courte est validée ; la pénicilline courte en 3 prises par jour ne l'est pas (Kuijpers 2025).",
+     "resume": "Douleur réduite et complications évitées",
      "source": "spinks2021_angine",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ],
+     "source2": "kuijpers2025_duree_atb"
+    },
+    {
+     "id": "miel_angine",
+     "nom": "Miel",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Selon les études",
+     "population": "14 études, infections des voies respiratoires hautes",
+     "effet": "Symptômes globaux et toux mieux soulagés qu'avec les soins habituels.",
+     "resume": "Gorge et toux soulagées",
+     "source": "abuelgasim2021_miel",
+     "prudence": "Jamais avant 1 an.",
      "critere": 1,
      "zones": [
       "pharynx"
@@ -12828,13 +13574,19 @@
    ],
    "guerison": [
     {
-     "id": "angine_spontanee",
+     "id": "angine_antibio",
      "type": "obtenue",
-     "titre": "Guérison spontanée",
-     "objectif": "Disparition du mal de gorge",
-     "resultat": "82 % des personnes n'ont plus de symptômes en une semaine sans antibiotique.",
-     "composants": [],
-     "risques": "Consulter si fièvre forte, difficulté à avaler ou à respirer.",
+     "titre": "Guérison de l'angine bactérienne par antibiotique",
+     "objectif": "Éliminer le streptocoque et éviter les complications",
+     "resultat": "Les antibiotiques réduisent la douleur au 3e jour et préviennent otites (÷5) et abcès de la gorge (÷6).",
+     "composants": [
+      {
+       "nom": "Antibiotique",
+       "role": "antibactérien",
+       "ref": "antibio_angine"
+      }
+     ],
+     "risques": "Allergie à la pénicilline à signaler ; terminer la durée prescrite.",
      "source": "spinks2021_angine"
     }
    ]
@@ -12872,6 +13624,37 @@
      "resume": "Bénéfice faible, effets indésirables fréquents",
      "source": "venekamp2023_otite",
      "prudence": "Décision avec le médecin selon l'âge et la gravité.",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    },
+    {
+     "id": "amoxiclav_otite",
+     "nom": "Amoxicilline-acide clavulanique pendant 10 jours (plutôt que 5)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "10 jours, enfants de 6 à 23 mois",
+     "population": "520 enfants",
+     "effet": "Échec du traitement 16 % avec 10 jours contre 34 % avec 5 jours : chez le petit enfant, la durée complète guérit nettement mieux.",
+     "resume": "Échec divisé par 2 avec 10 jours",
+     "source": "hoberman2016_otite",
+     "critere": 1,
+     "zones": [
+      "pharynx"
+     ]
+    },
+    {
+     "id": "xylitol_otite",
+     "nom": "Xylitol (sucre naturel : gomme, sirop, pastilles)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Prise régulière en prévention",
+     "population": "1 826 enfants en crèche (3 essais)",
+     "effet": "Risque d'otite ramené de 30 % à environ 22 % (RR 0,75) ; inefficace pendant un rhume déjà en cours ou chez les enfants qui font des otites à répétition.",
+     "resume": "Otites réduites d'un quart",
+     "source": "azarpazhooh2016_xylitol",
+     "condition": "Prévention",
      "critere": 1,
      "zones": [
       "pharynx"
@@ -12918,17 +13701,40 @@
       "eye_l",
       "eye_r"
      ]
+    },
+    {
+     "id": "povidone_conj",
+     "nom": "Povidone iodée + dexaméthasone en collyre (conjonctivite virale à adénovirus)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Collyre 4 fois par jour, 5 jours",
+     "population": "5 essais (méta-analyse)",
+     "effet": "Durée de la maladie raccourcie de 2,4 jours (un seul essai) ; pas d'effet net sur la guérison la première semaine.",
+     "resume": "Conjonctivite virale raccourcie de 2 jours",
+     "source": "martinmoro2023_povidone",
+     "prudence": "Corticoïde : seulement sur avis d'un ophtalmologue.",
+     "critere": 1,
+     "zones": [
+      "eye_l",
+      "eye_r"
+     ]
     }
    ],
    "guerison": [
     {
-     "id": "conjonctivite_guerison",
+     "id": "conjonctivite_collyre",
      "type": "obtenue",
-     "titre": "Guérison, souvent spontanée",
-     "objectif": "Disparition de la conjonctivite",
-     "resultat": "Plus de la moitié guérit seule ; environ 2 sur 3 avec un collyre antibiotique.",
-     "composants": [],
-     "risques": "Consulter si douleur, baisse de vision ou port de lentilles.",
+     "titre": "Guérison par collyre antibiotique (conjonctivite bactérienne)",
+     "objectif": "Faire disparaître l'infection",
+     "resultat": "Guérison chez environ 68 % sous collyre antibiotique contre 56 % sans (RR 1,26), et plus rapide.",
+     "composants": [
+      {
+       "nom": "Collyre antibiotique",
+       "role": "antibactérien",
+       "ref": "antibio_conjonctivite"
+      }
+     ],
+     "risques": "Consulter si douleur, baisse de vision ou lentilles.",
      "source": "chen2023_conjonctivite"
     }
    ]
@@ -12969,9 +13775,60 @@
      "zones": [
       "skin"
      ]
+    },
+    {
+     "id": "propolis_miel_herpes",
+     "nom": "Propolis et/ou miel en application",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Application locale sur le bouton",
+     "population": "7 études comparées à l'aciclovir 5 %",
+     "effet": "Bouton guéri 1,9 jour plus tôt qu'avec l'aciclovir et guérison au 7e jour beaucoup plus fréquente (OR 4,7) ; douleur plus courte et plus faible.",
+     "resume": "Mieux que l'aciclovir en crème",
+     "source": "niode2026_propolis",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    },
+    {
+     "id": "melisse_herpes",
+     "nom": "Mélisse (crème), extrait de feuille d'olivier, crème sauge-rhubarbe",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Application locale",
+     "population": "7 essais, 1 250 patients",
+     "effet": "La mélisse réduit douleur et gonflement ; l'olivier guérit plus vite que l'aciclovir ; la crème sauge-rhubarbe fait aussi bien que l'aciclovir.",
+     "resume": "Guérison accélérée",
+     "source": "anheyer2025_herpes_plantes",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
     }
    ],
-   "guerison": []
+   "guerison": [],
+   "pistes": [
+    {
+     "id": "p_propolis_melisse",
+     "nom": "Propolis + mélisse en une seule crème",
+     "type": "naturel",
+     "situation": "Bouton de fièvre dès les premiers picotements.",
+     "lesion": "Le virus se multiplie dans les cellules de la lèvre et forme des vésicules.",
+     "fait_molecule": "La propolis guérit plus vite que l'aciclovir (Niode 2026).",
+     "fait_maladie": "La mélisse réduit la douleur et le gonflement (Anheyer 2025).",
+     "lien": "La propolis agit sur la cicatrisation et la mélisse sur la douleur et le gonflement : leur association pourrait réunir les deux bénéfices.",
+     "formulation": "Chez une personne qui fait des boutons de fièvre, une crème associant propolis et mélisse pourrait éventuellement guérir plus vite et faire moins mal que chacune seule.",
+     "recherche": "Aucun essai de cette association trouvé sur PubMed (recherche du 24/11/2026 : une seule revue qui les étudie séparément).",
+     "a_verifier": "Essai randomisé contre aciclovir 5 %.",
+     "prudence": "Jamais testé ensemble. Allergie possible à la propolis.",
+     "zones": [
+      "skin"
+     ],
+     "source": "niode2026_propolis",
+     "source2": "anheyer2025_herpes_plantes"
+    }
+   ]
   },
   {
    "id": "verrues",
@@ -13019,6 +13876,21 @@
      "effet": "Pas de différence nette avec le placebo (RR 1,45, non significatif) ; la cryothérapie plus intense fait mieux que la douce (RR 1,90).",
      "resume": "Efficace surtout si appliquée fortement",
      "source": "kwok2012_verrues",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    },
+    {
+     "id": "ruban_verrues",
+     "nom": "Ruban adhésif occlusif (contre cryothérapie)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Ruban jusqu'à 8 semaines",
+     "population": "100 adultes, verrues plantaires",
+     "effet": "Disparition complète 20 % avec le ruban contre 58 % avec la cryothérapie : la cryothérapie est nettement plus efficace sur la plante des pieds.",
+     "resume": "Cryothérapie bien meilleure au pied",
+     "source": "abdellatif2020_ruban",
      "critere": 1,
      "zones": [
       "skin"
@@ -13081,6 +13953,21 @@
      "zones": [
       "skin"
      ]
+    },
+    {
+     "id": "romarin_cheveux",
+     "nom": "Huile de romarin en massage du cuir chevelu",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Application quotidienne, 6 mois",
+     "population": "100 hommes avec calvitie (contre minoxidil 2 %)",
+     "effet": "Nombre de cheveux augmenté à 6 mois autant qu'avec le minoxidil 2 %, et moins de démangeaisons du cuir chevelu.",
+     "resume": "Aussi efficace que le minoxidil 2 %",
+     "source": "panahi2015_romarin_cheveux",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
     }
    ],
    "guerison": []
@@ -13118,6 +14005,22 @@
      "effet": "La meilleure combinaison de composantes augmente la rémission de 33 % (1 personne en rémission pour 3 traitées) ; la relaxation pourrait au contraire nuire.",
      "resume": "Rémission pour 1 personne sur 3 traitées",
      "source": "furukawa2024_tcci",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "medicaments_sommeil",
+     "nom": "Médicaments du sommeil comparés (eszopiclone, lemborexant, zolpidem, mélatonine…)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Selon le médicament",
+     "population": "154 essais, 44 089 participants",
+     "effet": "Benzodiazépines, eszopiclone, zolpidem, zopiclone, lemborexant sont plus efficaces que le placebo à court terme ; la mélatonine est moins efficace que ces médicaments.",
+     "resume": "Efficaces à court terme ; la thérapie reste le premier choix",
+     "source": "decrescenzo2022_insomnie",
+     "prudence": "Dépendance et chutes possibles avec les somnifères classiques.",
      "critere": 1,
      "zones": [
       "brain"
@@ -13180,6 +14083,54 @@
      "zones": [
       "brain"
      ]
+    },
+    {
+     "id": "safran_depression",
+     "nom": "Safran (Crocus sativus)",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Le plus souvent 30 mg par jour",
+     "population": "34 essais, 1 769 participants (contre placebo) ; 8 essais contre antidépresseurs",
+     "effet": "Symptômes dépressifs réduits de 4,4 points (BDI) et anxieux de 5,1 points (BAI) ; aussi efficace que les antidépresseurs ISRS, avec moins d'effets indésirables.",
+     "resume": "Aussi efficace qu'un antidépresseur",
+     "source": "mahmoudi2026_safran_dep",
+     "source2": "shafiee2025_safran_isrs",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "esketamine",
+     "nom": "Eskétamine en spray nasal (dépression résistante)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "Spray nasal, avec un antidépresseur, 32 semaines",
+     "population": "676 patients après au moins 2 échecs de traitement",
+     "effet": "Rémission à 8 semaines 27 % contre 18 % avec la quétiapine ; plus de patients restent en rémission jusqu'à 32 semaines.",
+     "resume": "Rémission plus fréquente si résistance",
+     "source": "reif2023_esketamine",
+     "prudence": "Administré sous surveillance médicale (vertiges, dissociation, tension).",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
+    },
+    {
+     "id": "psilocybine",
+     "nom": "Psilocybine (une seule dose, avec accompagnement)",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "25 mg en une seule séance accompagnée",
+     "population": "104 adultes avec dépression majeure",
+     "effet": "Symptômes réduits de 12 points (MADRS) dès le 8e jour et jusqu'au 43e jour par rapport au témoin.",
+     "resume": "Effet rapide après une seule dose",
+     "source": "raison2023_psilocybine",
+     "prudence": "Uniquement en essai clinique encadré ; interdit hors recherche dans la plupart des pays.",
+     "critere": 1,
+     "zones": [
+      "brain"
+     ]
     }
    ],
    "guerison": []
@@ -13224,6 +14175,24 @@
       "hip_l",
       "hip_r"
      ]
+    },
+    {
+     "id": "harpagophytum",
+     "nom": "Harpagophytum (griffe du diable), saule blanc, crème au piment",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Harpagoside 50 à 100 mg par jour ; salicine 120 à 240 mg ; crème au piment",
+     "population": "Essais réunis par Cochrane (2006, 2014)",
+     "effet": "Griffe du diable et saule blanc : douleur mieux soulagée que le placebo à court terme et aussi bien qu'un anti-inflammatoire (rofécoxib) ; crème au piment : probablement meilleure que le placebo dans la lombalgie chronique.",
+     "resume": "Douleur soulagée comme un anti-inflammatoire",
+     "source": "gagnier2006_harpago",
+     "source2": "oltean2014_plantes_dos",
+     "critere": 1,
+     "zones": [
+      "pelvis",
+      "hip_l",
+      "hip_r"
+     ]
     }
    ],
    "guerison": []
@@ -13261,6 +14230,24 @@
      "effet": "Cible atteinte chez 95 % contre 30 % avec les soins habituels (RR 3,18) ; moins de crises et de tophus la deuxième année.",
      "resume": "Acide urique contrôlé chez 95 %",
      "source": "doherty2018_goutte",
+     "critere": 1,
+     "zones": [
+      "knee_l",
+      "knee_r"
+     ]
+    },
+    {
+     "id": "cerise_goutte",
+     "nom": "Cerise acide (jus ou concentré)",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Selon les études",
+     "population": "6 études (revue) ; essai de 50 patients",
+     "effet": "Les études d'observation associent la cerise à moins de crises ; mais un essai randomisé de 28 jours n'a trouvé aucun effet sur l'acide urique ni sur les crises.",
+     "resume": "Moins de crises observées ; pas d'effet sur l'acide urique",
+     "source": "chen2019_cerises",
+     "source2": "stamp2020_cerise",
+     "prudence": "Ne remplace pas le traitement qui baisse l'acide urique.",
      "critere": 1,
      "zones": [
       "knee_l",
@@ -13311,6 +14298,24 @@
       "knee_l",
       "knee_r"
      ]
+    },
+    {
+     "id": "marronnier",
+     "nom": "Extrait de graines de marronnier d'Inde",
+     "type": "naturel",
+     "force": "moyenne",
+     "dose": "Par la bouche, quelques semaines",
+     "population": "Essais réunis par Cochrane (insuffisance veineuse)",
+     "effet": "Douleur des jambes réduite dans 6 essais sur 7 ; volume des jambes diminué de 32 mL ; peut-être aussi efficace que les bas de contention ; effets indésirables légers.",
+     "resume": "Jambes moins douloureuses et moins gonflées",
+     "source": "pittler2006_marronnier",
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r",
+      "knee_l",
+      "knee_r"
+     ]
     }
    ],
    "guerison": []
@@ -13348,6 +14353,38 @@
      "effet": "Ulcère duodénal persistant moins fréquent qu'avec un médicament cicatrisant seul (RR 0,66) et que sans traitement (RR 0,37).",
      "resume": "Ulcère guéri plus souvent",
      "source": "ford2016_hpylori",
+     "critere": 1,
+     "zones": [
+      "stomach",
+      "small_intestine"
+     ]
+    },
+    {
+     "id": "vonoprazan_hp",
+     "nom": "Vonoprazan + amoxicilline (± clarithromycine)",
+     "type": "medicament",
+     "force": "forte",
+     "dose": "14 jours",
+     "population": "1 046 patients aux États-Unis et en Europe",
+     "effet": "Bactérie éliminée chez 77 à 81 % contre 69 % avec le traitement classique ; en cas de résistance à la clarithromycine, 66 à 70 % contre 32 %.",
+     "resume": "Éradication plus fréquente",
+     "source": "chey2022_vonoprazan",
+     "critere": 1,
+     "zones": [
+      "stomach",
+      "small_intestine"
+     ]
+    },
+    {
+     "id": "probiotiques_hp",
+     "nom": "Probiotiques ajoutés au traitement",
+     "type": "naturel",
+     "force": "forte",
+     "dose": "Pendant le traitement d'éradication",
+     "population": "91 essais, 13 680 patients",
+     "effet": "Éradication 79 % contre 62 % (OR 1,62) ; diarrhée divisée par deux et moins de nausées, douleurs et mauvais goût.",
+     "resume": "Éradication plus fréquente, moins d'effets indésirables",
+     "source": "tanashat2025_probio_hp",
      "critere": 1,
      "zones": [
       "stomach",
@@ -13406,6 +14443,21 @@
      "effet": "Échec du traitement divisé par trois par rapport au placebo (allylamines RR 0,33 ; azolés 0,30) ; les allylamines font un peu mieux que les azolés (RR 0,63).",
      "resume": "Guérison dans la plupart des cas",
      "source": "crawford2007_pied",
+     "critere": 1,
+     "zones": [
+      "skin"
+     ]
+    },
+    {
+     "id": "theier_pied",
+     "nom": "Huile d'arbre à thé 10 % en crème",
+     "type": "naturel",
+     "force": "faible",
+     "dose": "Crème, 4 semaines",
+     "population": "104 patients (contre tolnaftate et placebo)",
+     "effet": "Moins efficace que l'antifongique : champignon éliminé chez 30 % contre 85 % avec le tolnaftate (21 % sous placebo) ; les symptômes s'améliorent toutefois.",
+     "resume": "Soulage, mais élimine mal le champignon",
+     "source": "tong1992_theier_pied",
      "critere": 1,
      "zones": [
       "skin"
