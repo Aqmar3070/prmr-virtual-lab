@@ -301,3 +301,12 @@ test('Guérisons rapportées et pistes : maladies incurables (lot 1)',async()=>{
  assert.ok(pourTestes(m('htap').substances).some(s=>s.id==='mebendazole_htap'));
  assert.equal(pourPistes(m('fibrose_pulmonaire'),[],'').pistes[0].id,'p_mebendazole_fpi');
 });
+
+test('Lot molécules 1 : classes variées (SGLT2, antifongique, antagoniste minéralocorticoïde)',async()=>{
+ const {pourTestes,pourPistes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['duchenne','empagliflozine_dmd'],['htap','dapagliflozine_htap'],['cancer_pancreas','itraconazole_pancreas'],['parkinson','dapagliflozine_parkinson'],['drepanocytose','sglt2_drepano']])
+  assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+ assert.match(m('duchenne').substances.find(s=>s.id==='empagliflozine_dmd').prudence,/non relue/);
+ assert.equal(pourPistes(m('rein_drepanocytaire'),[],'').pistes[0].id,'p_finerenone_drepano');
+});
