@@ -291,3 +291,13 @@ test('Maladies courantes : paludisme, typhoïde, dengue, grippe, infection urina
  const a=palu.substances.find(s=>s.id==='artemisia_tisane');
  assert.equal(a.force,'faible');assert.match(a.effet,/rétracté/);assert.ok(a.source2);
 });
+
+test('Guérisons rapportées et pistes : maladies incurables (lot 1)',async()=>{
+ const {pourGueris,pourTestes,pourPistes}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ for(const [mid,sid] of [['cancer_sein','ama_sein_cas'],['myelome','ama_myelome_cas'],['cancer_poumon','ama_poumon_cas'],['cancer_colorectal','mebendazole_sorafenib_cas'],['sla','sla_inversions']])
+  assert.ok(pourGueris(m(mid),m(mid).substances).cas.some(s=>s.id===sid),sid);
+ assert.ok(pourTestes(m('glioblastome').substances).some(s=>s.id==='ama_gbm_cas'));
+ assert.ok(pourTestes(m('htap').substances).some(s=>s.id==='mebendazole_htap'));
+ assert.equal(pourPistes(m('fibrose_pulmonaire'),[],'').pistes[0].id,'p_mebendazole_fpi');
+});
