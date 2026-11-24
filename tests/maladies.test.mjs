@@ -342,3 +342,11 @@ test('Lot molécules 5 : cancers (médicaments détournés et vitamine C)',async
  for(const [mid,sid] of [['glioblastome','cusp9_gbm'],['cancer_foie','statine_chc_vhb'],['cancer_foie','aspirine_chc_vhc'],['cancer_pancreas','vitc_iv_pancreas'],['cancer_ovaire','metformine_ovaire'],['lymphome','doxycycline_oaml']])
   assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
 });
+
+test('Lot molécules 6 : sang et maladies rares',async()=>{
+ const {pourTestes,pourGueris}=await import('../src/maladies.mjs');
+ const m=id=>registre.maladies.find(x=>x.id===id);
+ assert.ok(pourGueris(m('thalassemie'),m('thalassemie').substances).cas.some(s=>s.id==='thalidomide_thal_cas'));
+ assert.ok(pourGueris(m('hemophilie'),m('hemophilie').substances).obtenues.some(g=>g.id==='hemo_b_genique'));
+ for(const [mid,sid] of [['mucoviscidose','azithro_muco'],['duchenne','givinostat'],['drepanocytose','metformine_hbf']])assert.ok(pourTestes(m(mid).substances).some(s=>s.id===sid),sid);
+});

@@ -1392,6 +1392,26 @@
   "sassone2017_oaml": {
    "source": "Sassone et al., Best Pract Res Clin Haematol 2017 — lymphome MALT des annexes de l'œil, Chlamydia psittaci et doxycycline (revue)",
    "url": "https://doi.org/10.1016/j.beha.2016.11.002"
+  },
+  "nag2020_thalidomide": {
+   "source": "Nag et al., Indian J Hematol Blood Transfus 2020 — thalidomide dans la thalassémie E-bêta dépendante des transfusions, résistante à l'hydroxyurée (21 patients)",
+   "url": "https://doi.org/10.1007/s12288-020-01263-2"
+  },
+  "southern2003_macrolides": {
+   "source": "Southern et al., Cochrane 2003 — macrolides (azithromycine) dans la mucoviscidose",
+   "url": "https://doi.org/10.1002/14651858.CD002203"
+  },
+  "mercuri2024_epidys": {
+   "source": "Mercuri et al. (EPIDYS), Lancet Neurol 2024 — givinostat chez les garçons atteints de Duchenne (179 patients, phase 3)",
+   "url": "https://doi.org/10.1016/S1474-4422(24)00036-X"
+  },
+  "dargaud2026_genique": {
+   "source": "Dargaud et al., Blood Rev 2026 — durée d'effet de la thérapie génique dans l'hémophilie (revue)",
+   "url": "https://doi.org/10.1016/j.blre.2025.101353"
+  },
+  "zhang2018_metformine_hbf": {
+   "source": "Zhang et al., Blood 2018 — la metformine augmente l'hémoglobine fœtale via FOXO3 dans les cellules sanguines humaines",
+   "url": "https://doi.org/10.1182/blood-2017-11-814335"
   }
  },
  "maladies": [
@@ -3459,6 +3479,24 @@
      "source": "wang2024_empa_drepano",
      "source2": "jin2026_sglt_drepano",
      "prudence": "Aucun essai randomisé chez les patients drépanocytaires. Ajout à l'hydroxyurée sans bénéfice supplémentaire chez la souris.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "femur_l",
+      "femur_r"
+     ]
+    },
+    {
+     "id": "metformine_hbf",
+     "nom": "Metformine (antidiabétique)",
+     "type": "medicament",
+     "force": "preclinique",
+     "dose": "Doses croissantes sur cellules en culture",
+     "population": "Cellules souches sanguines humaines transformées en globules rouges",
+     "effet": "Augmente l'hémoglobine fœtale (qui empêche les globules de se déformer) via FOXO3 ; effet additionnel avec l'hydroxyurée, dont elle corrige le frein à la maturation.",
+     "resume": "Hémoglobine fœtale augmentée (cellules)",
+     "source": "zhang2018_metformine_hbf",
+     "prudence": "Résultat en laboratoire : effet chez les patients à confirmer.",
      "critere": 1,
      "zones": [
       "spleen",
@@ -10132,6 +10170,23 @@
       "spleen",
       "liver"
      ]
+    },
+    {
+     "id": "thalidomide_thal_cas",
+     "nom": "Thalidomide",
+     "type": "medicament",
+     "force": "cas",
+     "dose": "Dose non précisée dans le résumé, poursuivie environ 16 mois",
+     "population": "21 patients avec thalassémie E-bêta dépendante des transfusions, échec de l'hydroxyurée (série d'un seul centre, Inde)",
+     "effet": "15 patients sur 21 (71 %) n'ont plus eu besoin de transfusions, le plus souvent dès le premier mois ; 1 réponse partielle, 5 sans réponse. Pas de toxicité grave rapportée.",
+     "resume": "Plus de transfusions chez 15 sur 21",
+     "source": "nag2020_thalidomide",
+     "prudence": "Étude rétrospective sans groupe de comparaison. Le thalidomide provoque de graves malformations du fœtus : contraception stricte obligatoire.",
+     "critere": 1,
+     "zones": [
+      "spleen",
+      "liver"
+     ]
     }
    ],
    "guerison": [
@@ -10224,7 +10279,24 @@
      ]
     }
    ],
-   "guerison": []
+   "guerison": [
+    {
+     "id": "hemo_b_genique",
+     "type": "obtenue",
+     "titre": "Hémophilie B : une seule perfusion de thérapie génique",
+     "objectif": "Production durable du facteur IX par le foie",
+     "resultat": "Production du facteur IX stable pendant plus de 10 ans dans l'hémophilie B selon les suivis des essais ; dans l'hémophilie A, le facteur VIII baisse souvent avec le temps (suivi jusqu'à 5 ans).",
+     "composants": [
+      {
+       "nom": "Étranacogène dézaparvovec",
+       "role": "thérapie génique en une perfusion",
+       "ref": "etranacogene"
+      }
+     ],
+     "risques": "Réponse immunitaire contre le vecteur ; effet variable d'une personne à l'autre ; nouvelle administration souvent impossible.",
+     "source": "dargaud2026_genique"
+    }
+   ]
   },
   {
    "id": "mucoviscidose",
@@ -10284,6 +10356,23 @@
      "source": "elkins",
      "mecanisme": "Attire l'eau dans le mucus et le rend plus facile à expectorer.",
      "prudence": "Toux, gêne de la gorge ; le bronchodilatateur avant est nécessaire.",
+     "critere": 1,
+     "zones": [
+      "lung_l",
+      "lung_r",
+      "pancreas"
+     ]
+    },
+    {
+     "id": "azithro_muco",
+     "nom": "Azithromycine (antibiotique)",
+     "type": "medicament",
+     "force": "faible",
+     "dose": "Selon les essais",
+     "population": "2 petits essais, 101 participants (adultes et enfants)",
+     "effet": "Petite amélioration de la fonction respiratoire à court terme (capacité vitale forcée +5,4 %). Les auteurs ne recommandaient pas un usage large avant d'autres essais.",
+     "resume": "Souffle un peu amélioré à court terme",
+     "source": "southern2003_macrolides",
      "critere": 1,
      "zones": [
       "lung_l",
@@ -10373,6 +10462,25 @@
      ],
      "prudence": "Prépublication non relue par les pairs. Aucun essai chez l'enfant atteint de Duchenne.",
      "critere": 1
+    },
+    {
+     "id": "givinostat",
+     "nom": "Givinostat",
+     "type": "medicament",
+     "force": "moyenne",
+     "dose": "Par la bouche deux fois par jour, dose selon le poids, 72 semaines",
+     "population": "179 garçons de 6 ans et plus qui marchent, sous corticoïdes",
+     "effet": "Déclin à la montée de 4 marches plus faible qu'avec placebo (rapport 0,86 ; IC 95 % 0,745 à 0,989). Diarrhées et vomissements plus fréquents.",
+     "resume": "Déclin musculaire ralenti",
+     "source": "mercuri2024_epidys",
+     "stades": [
+      "jeune"
+     ],
+     "critere": 1,
+     "zones": [
+      "femur_l",
+      "femur_r"
+     ]
     }
    ],
    "guerison": []
