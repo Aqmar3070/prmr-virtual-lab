@@ -1,5 +1,6 @@
 import {regions,rules,correspondances,urgence} from "./symptomes-registre.mjs";
 import {plier,TYPES,FORCES} from "./maladies.mjs";
+import {lecturesMaladie} from "./references-internationales.mjs";
 const $=id=>document.getElementById("sx-"+id);
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
 function button(text,act){const b=node("button",text);b.type="button";b.onclick=act;return b;}
@@ -78,6 +79,7 @@ function render(){
     const src=register.sources[item.source];if(src?.url)li.append(" ",link("Étude",src.url));ul.append(li);}
    d.append(ul);
   }
+  d.append(lecturesMaladie(m.id));
   const full=link("Ouvrir la fiche Maladies","?vue=maladies&maladie="+encodeURIComponent(m.id));d.append(full);dest.append(d);
  }
  if(!matches.length)dest.append(node("p","Aucune fiche ne réunit actuellement deux des signes retenus."));

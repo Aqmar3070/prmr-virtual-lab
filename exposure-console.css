@@ -205,3 +205,7 @@ body:not([data-vue=symptomes]) #sx,body[data-vue=symptomes] :is(#exposure-consol
 #sx-results a{display:inline-block;margin:4px 0}#sx-selected{margin-bottom:16px}#sx-results li{margin-bottom:7px}
 @media(max-width:900px){.sx-grid{grid-template-columns:1fr 1fr}.sx-grid>section:last-child{grid-column:1/-1}}
 @media(max-width:600px){.sx-grid{grid-template-columns:1fr}}
+
+.prmr-refs{margin:10px 0;padding:8px 0;border-block-start:1px solid #285264}.prmr-refs summary{cursor:pointer;color:#a2edf8;font-weight:600}
+.prmr-refs ul{padding-inline-start:18px;margin:5px 0 10px}.prmr-refs li{margin:4px 0;overflow-wrap:anywhere}
+.prmr-refs [data-ref-resultats]{max-height:420px;overflow:auto}.prmr-refs [data-ref-resultats] section{padding:8px 0}
