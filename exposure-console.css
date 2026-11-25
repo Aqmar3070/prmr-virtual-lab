@@ -226,3 +226,10 @@ body[data-vue=symptomes] :is(#registre,#xp-reperes,.prmr-tabs){display:none!impo
 #sy-affiner h3{font-size:11.5px;font-weight:600;color:#9fe6f0;border-top:1px solid #265767;padding-top:8px}
 .sy-maladie.sy-complete summary small{color:#5fe9b8}.sy-absents{font-size:11px!important;color:#c9a98a!important;margin:0 0 4px}
 .sy-resume{font-size:11px!important;color:#8fbecb!important;margin:0 0 6px}.xp-card button.sy-plus{width:100%;margin-top:6px;font-size:11.5px}
+
+/* Personnage 3D seul : plus d'image de repli ni de boutons de cadrage, tout se fait à la souris. */
+.xp-body>svg{display:none!important}
+#xa-stage{position:relative;visibility:visible;height:clamp(340px,56vh,620px)}
+.xp-body:not(.xa-ready) #xa-stage::after{content:"Chargement du personnage 3D…";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#7fd8e6;font-size:12px;letter-spacing:.04em}
+.xp-body:not(.xa-ready) #xa-stage canvas{visibility:hidden}
+#xa-message button{margin-left:6px;font-size:11px;padding:2px 8px}

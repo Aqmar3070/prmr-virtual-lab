@@ -18,7 +18,7 @@ const scene=new T.Scene(),camera=new T.OrthographicCamera(-1,1,1,-1,.001,100);
 scene.add(new T.HemisphereLight(0xe5faff,0x30435d,1.8));const light=new T.DirectionalLight(0xd9faff,2.5);light.position.set(-2,4,3);scene.add(light);
 const controls=new OrbitControls(camera,canvas);controls.enablePan=true;controls.zoomToCursor=true;controls.screenSpacePanning=true;controls.minZoom=.35;controls.maxZoom=100;
 const layers=new Set(Object.keys(styles).filter(s=>s!=="nerves"));
-let root=null,items=[],bounds,scale=1,token=0,sex=null,signals=[],current=null;
+let essais=0,root=null,items=[],bounds,scale=1,token=0,sex=null,signals=[],current=null;
 const cache=new Map(),loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
 function draw(){
  if(!root||!stage.clientWidth||!stage.clientHeight)return;
@@ -156,21 +156,18 @@ async function model(next){
   bounds=new T.Box3().setFromObject(root);scale=bounds.getSize(new T.Vector3()).y;
   for(const layer of Object.keys(styles)){const group=document.createElement("optgroup");group.label=labels[layer];for(const it of items.filter(i=>i.layer===layer).sort((a,b)=>nameOf(a.mesh.name).localeCompare(nameOf(b.mesh.name),"fr")))group.append(new Option(nameOf(it.mesh.name),it.mesh.name));focus.append(group);}
   for(const [key,label] of [["toes_l","Orteils gauches"],["toes_r","Orteils droits"]])focus.append(new Option(label,key));
-  stage.parentNode.classList.add("xa-ready");resize();frame(null);$("xa-message").textContent=items.length+" structures · "+(ctx?"rendu 3D en points":"surfaces 3D")+" · molette sur la zone pour zoomer · glisser pour tourner · clic droit + glisser pour déplacer";
- }catch{if(id!==token)return;cache.delete(next);sex=null;$("xa-message").textContent="Atlas 3D indisponible · vue de référence affichée.";}
+  essais=0;stage.parentNode.classList.add("xa-ready");resize();frame(null);$("xa-message").textContent=items.length+" structures · "+(ctx?"rendu 3D en points":"surfaces 3D")+" · molette sur la zone pour zoomer · glisser pour tourner · clic droit + glisser pour monter ou descendre · double-clic : vue entière";
+ }catch{if(id!==token)return;cache.delete(next);sex=null;
+  // Nouvel essai automatique (connexion lente), puis bouton pour réessayer : plus d'image de repli.
+  essais++;if(essais<3){$("xa-message").textContent="Chargement du personnage 3D… nouvel essai";setTimeout(()=>{if(id===token)model(next);},1500*essais);return;}
+  const msg=$("xa-message");msg.textContent="Le personnage 3D n'a pas pu se charger. ";const b=document.createElement("button");b.type="button";b.textContent="Réessayer";b.onclick=()=>{essais=0;model(next);};msg.append(b);}
 }
 for(const bouton of document.querySelectorAll("[data-structure]"))bouton.onclick=()=>choose(bouton.dataset.structure);
 focus.onchange=()=>choose(focus.value);$("xa-isolate").onchange=paint;
 function zoom(factor){camera.zoom=T.MathUtils.clamp(camera.zoom*factor,.35,100);camera.updateProjectionMatrix();draw();}
-$("xa-in").onclick=()=>zoom(1.4);$("xa-out").onclick=()=>zoom(1/1.4);$("xa-reset").onclick=()=>choose("");
-// Monter ou descendre la vue le long du corps (gros plan sur la tête, les mollets, les pieds…).
-function glisser(sens){
- if(!root)return;
- const pas=(camera.top-camera.bottom)/camera.zoom*.25*sens;
- const y=Math.min(bounds.max.y,Math.max(bounds.min.y,controls.target.y+pas))-controls.target.y;
- camera.position.y+=y;controls.target.y+=y;controls.update();draw();
-}
-$("xa-up").onclick=()=>glisser(1);$("xa-down").onclick=()=>glisser(-1);
+// Tout se fait à la souris ou au doigt ; double-clic (ou double-tape) : vue entière.
+canvas.addEventListener("dblclick",()=>choose(""));
+
 canvas.onkeydown=e=>{if(!root)return;const s=new T.Spherical().setFromVector3(camera.position.clone().sub(controls.target));if(e.key==="ArrowRight")s.theta+=.15;else if(e.key==="ArrowLeft")s.theta-=.15;else if(e.key==="ArrowUp")s.phi-=.15;else if(e.key==="ArrowDown")s.phi+=.15;else return;e.preventDefault();s.makeSafe();camera.position.setFromSpherical(s).add(controls.target);controls.update();};
 controls.addEventListener("change",draw);new ResizeObserver(resize).observe(stage);
 document.addEventListener("xp-atlas",e=>{signals=e.detail.signals;if(e.detail.sex!==sex)model(e.detail.sex);else paint();});
