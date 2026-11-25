@@ -3,6 +3,8 @@
 // Les lignes sont courtes ; le détail s'ouvre au clic.
 import {FORCES,TYPES,chercherMaladies,substancesPour,zonesPour,plageEtudiee,rapportPublie,CHAMPS_PROFIL,evaluerProfil,decrireProfil,profilActif,pourGueris,pourTestes,pourPistes} from "./maladies.mjs";
 
+import {lecturesMaladie,monterRecherche} from "./references-internationales.mjs";
+
 const $=id=>document.getElementById(id);
 const el=(tag,cls,texte)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(texte!==undefined)n.textContent=texte;return n;};
 const svg=(tag,attributs,texte)=>{const n=document.createElementNS("http://www.w3.org/2000/svg",tag);for(const [k,v] of Object.entries(attributs))n.setAttribute(k,String(v));if(texte!==undefined)n.textContent=texte;return n;};
@@ -42,7 +44,7 @@ function rendreMaladie(){
  const fiche=$("mx-fiche");fiche.replaceChildren();
  const d=el("details","mx-apropos");d.append(el("summary","",maladie.nom),el("p","",maladie.description));
  const s=lien(maladie.source,registre);if(s){const p=el("p","mx-source","Référence : ");p.append(s);d.append(p);}
- fiche.append(d);
+ fiche.append(d,lecturesMaladie(maladie.id));
  const choix=$("mx-stade");choix.replaceChildren(new Option("Tous les stades",""));
  for(const st of maladie.stades||[])choix.append(new Option(st.nom,st.id));
  if(!maladie.stades?.some(st=>st.id===stade))stade="";
@@ -269,4 +271,5 @@ async function demarrer(){
  document.addEventListener("xp-vue",e=>{if(e.detail==="maladies")choisir(maladie.id);});
  choisir(params.get("maladie")||registre.maladies[0].id);
 }
+monterRecherche($("mx-recherche"),$("mx-international"));
 demarrer();

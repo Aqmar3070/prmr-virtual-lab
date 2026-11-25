@@ -51,6 +51,29 @@ avec une source par fiche. Le seuil de deux signes communs sert à naviguer dans
 registre et ne possède aucune validation diagnostique. Les options étudiées,
 leurs populations et leurs références proviennent des fiches Maladies existantes.
 
+Les vues Maladies et Symptômes donnent accès aux références externes depuis
+chaque fiche. Les liens de lecture sont conservés dans
+`research-data/references-maladies.json`. Le classement des signes et le niveau
+de preuve des traitements restent fondés sur leurs sources propres.
+
+Dans la vue Maladies, la recherche parcourt aussi trois index locaux :
+les [repères de santé publique de l’OMS](https://www.who.int/fr/news-room/fact-sheets),
+les intitulés codés disponibles en français dans la
+[CIM-11 MMS 2026-01](https://icd.who.int/browse/2026-01/mms/fr) et les
+[sujets professionnels du Manuel MSD](https://www.msdmanuals.com/fr/professional).
+Les index de liens OMS et MSD proviennent du répertoire français de l’OMS et du
+[plan officiel des sujets du Manuel](https://www.msdmanuals.com/sitemaps/professional-topic.xml.gz)
+consultés le 25 novembre 2026. Les articles s’ouvrent chez leurs éditeurs.
+La recherche dans les index s’effectue sur l’appareil.
+
+Le fichier `cim11-fr-2026-01.json.gz` conserve pour chaque catégorie codée
+disponible en français le code, le titre, le suffixe de l’URI de linéarisation
+(`http://id.who.int/icd/release/11/mms/`) et le fragment du lien de navigation.
+Source : [table officielle française](https://icdcdn.who.int/static/releasefiles/2026-01/SimpleTabulation-ICD-11-MMS-fr.zip).
+International Classification of Diseases, Eleventh Revision (ICD-11),
+World Health Organization (WHO), 2019. [Licence CC BY-ND 3.0 IGO](https://creativecommons.org/licenses/by-nd/3.0/igo/).
+Les rapprochements documentaires sélectionnés par PRMR ne constituent pas un codage clinique.
+
 La navigation est servie par un module unique, `src/prmr_route.mjs`, qui nomme chaque
 destination d'une seule façon sur toutes les pages.
 

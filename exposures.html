@@ -91,7 +91,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=aff0459b2d">
+<link rel="stylesheet" href="./exposure-console.css?v=4251a125b6">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
@@ -119,6 +119,11 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <div class="xp-left">
  <section class="xp-card mx-card" data-vue="maladies"><div class="mx-tete"><h2>Maladies</h2><input id="mx-recherche" type="search" autocomplete="off" placeholder="Rechercher" aria-label="Rechercher une maladie"></div>
   <div id="mx-liste" aria-label="Maladies du registre"></div>
+  <details id="mx-international" class="prmr-refs"><summary>Rechercher dans l’OMS et le Manuel MSD</summary>
+  <p>Utilisez le champ « Rechercher une maladie » ci-dessus. Deux caractères suffisent pour chercher un intitulé ou un code, même sans fiche PRMR.</p>
+  <div data-ref-resultats aria-live="polite"></div>
+  <p><a href="https://www.who.int/fr/news-room/fact-sheets" target="_blank" rel="noopener noreferrer">Toutes les fiches de santé publique OMS</a> · <a href="https://www.msdmanuals.com/fr/professional" target="_blank" rel="noopener noreferrer">Manuel MSD professionnel</a></p>
+  <small>Classification internationale des maladies, onzième révision (CIM-11), OMS, 2019. Index français MMS 2026-01, incluant les catégories et codes complémentaires. <a href="https://icd.who.int/browse/2026-01/mms/fr" target="_blank" rel="noopener noreferrer">Classification officielle</a> · <a href="https://creativecommons.org/licenses/by-nd/3.0/igo/" target="_blank" rel="noopener noreferrer">CC BY-ND 3.0 IGO</a>. Index des fiches OMS et des liens MSD du 25 novembre 2026.</small></details>
   <p class="mx-cle">Meilleure piste : <i data-appui="obtenue"></i>guérison <i data-appui="fort"></i>fort <i data-appui="moyen"></i>moyen <i data-appui="faible"></i>faible <i></i>à l’étude</p></section>
  <section class="xp-card mx-card" data-vue="maladies"><div id="mx-fiche"></div>
   <label class="mx-ligne">Stade <select id="mx-stade"></select></label>
@@ -247,8 +252,8 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
 <script type="module" src="./src/exposure-console.mjs?v=68f57f8615"></script>
-<script type="module" src="./src/maladies-console.mjs?v=caba485d7b"></script>
+<script type="module" src="./src/maladies-console.mjs?v=334d34fc6a"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
-<script type="module" src="./src/symptomes-console.mjs?v=15b5cc5417"></script>
+<script type="module" src="./src/symptomes-console.mjs?v=16c7914beb"></script>
 </body>
 </html>
