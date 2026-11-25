@@ -91,13 +91,30 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=7b60672c6f">
+<link rel="stylesheet" href="./exposure-console.css?v=aff0459b2d">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
-<nav class="xp-vues" aria-label="Vue de l’explorateur"><button type="button" data-choix-vue="substances" aria-pressed="true">Substances</button><button type="button" data-choix-vue="maladies" aria-pressed="false">Maladies</button></nav>
+<nav class="xp-vues" aria-label="Vue de l’explorateur"><button type="button" data-choix-vue="substances" aria-pressed="true">Substances</button><button type="button" data-choix-vue="maladies" aria-pressed="false">Maladies</button><button type="button" data-choix-vue="symptomes" aria-pressed="false">Symptômes</button></nav>
 <a id="xp-reperes" href="#registre">Repères publiés</a></header>
 <main>
+<section id="sx" data-vue="symptomes" aria-labelledby="sx-title">
+ <header><h1 id="sx-title">Explorer les symptômes</h1><p>Décrivez une observation, puis examinez les signes qui la rapprochent des fiches du registre.</p></header>
+ <div class="sx-grid">
+ <section class="xp-card"><h2>Profil du sujet</h2><div id="sx-profile">
+ <label>Âge en années <input name="age" type="number" min="0" max="125" step="0.1"></label>
+ <label>Poids en kg <input name="poids" type="number" min="0.1" step="0.1"></label>
+ <label>Sexe <select name="sexe"><option value="">Non renseigné</option><option>Féminin</option><option>Masculin</option><option>Intersexe</option></select></label>
+ <label>Diabète déjà diagnostiqué <select name="diabete"><option value="">Inconnu</option><option>Oui</option><option>Non</option></select></label>
+ <label>Genre, si pertinent <input name="genre" maxlength="80"></label>
+ <label>Contexte, traitements en cours et allergies <textarea name="contexte" maxlength="1500"></textarea></label></div>
+ <h3>Observation enregistrée</h3><p>Sauvegarde volontaire dans ce navigateur. Une observation par enregistrement.</p>
+ <button id="sx-save">Enregistrer une observation</button><div id="sx-history"></div><p role="status" id="sx-status"></p></section>
+ <section class="xp-card"><h2>Régions du corps</h2><label>Région <select id="sx-region"></select></label>
+ <label>Rechercher dans toutes les régions <input type="search" id="sx-search" placeholder="Fièvre, fourmillements…"></label>
+ <div id="sx-signs"></div><label>Autre symptôme dans la région choisie <input id="sx-other" maxlength="100"></label><button id="sx-add">Ajouter à l’observation</button></section>
+ <section class="xp-card"><h2>Signes retenus</h2><div id="sx-selected"></div><h2>Correspondances documentaires</h2><div id="sx-results" aria-live="polite"></div></section>
+ </div></section>
 <div class="xp-board" id="exposure-console">
  <div class="xp-left">
  <section class="xp-card mx-card" data-vue="maladies"><div class="mx-tete"><h2>Maladies</h2><input id="mx-recherche" type="search" autocomplete="off" placeholder="Rechercher" aria-label="Rechercher une maladie"></div>
@@ -228,9 +245,10 @@ register.addEventListener("toggle",mount);mount();
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<script type="module" src="./src/explorateur-vues.mjs?v=1f59803a02"></script>
+<script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
 <script type="module" src="./src/exposure-console.mjs?v=68f57f8615"></script>
 <script type="module" src="./src/maladies-console.mjs?v=caba485d7b"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
+<script type="module" src="./src/symptomes-console.mjs?v=15b5cc5417"></script>
 </body>
 </html>

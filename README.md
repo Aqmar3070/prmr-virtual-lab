@@ -44,6 +44,13 @@ l'endroit où les données s'arrêtent. Il ne prédit l'état d'aucun organe : a
 validé ne le permet, et son curseur de durée sert précisément à montrer où s'arrête la
 littérature.
 
+La vue [Symptômes](exposures.html?vue=symptomes) permet de consigner une observation
+par région corporelle et de la sauvegarder explicitement sur le navigateur utilisé.
+Les correspondances exploratoires sont définies dans `src/symptomes-registre.mjs`,
+avec une source par fiche. Le seuil de deux signes communs sert à naviguer dans le
+registre et ne possède aucune validation diagnostique. Les options étudiées,
+leurs populations et leurs références proviennent des fiches Maladies existantes.
+
 La navigation est servie par un module unique, `src/prmr_route.mjs`, qui nomme chaque
 destination d'une seule façon sur toutes les pages.
 

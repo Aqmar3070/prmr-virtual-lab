@@ -196,3 +196,12 @@ main{padding:8px 10px}
 .mx-hypothese{--mx-c:#d7a6ff}
 .mx-formulation{font-style:italic;color:#e8d6ff;border-left:2px solid #d7a6ff;padding-left:8px;margin:6px 0}
 .mx-hyp-avert{border:1px dashed #6d5a8a;padding:6px 8px;border-radius:4px;margin-bottom:8px}
+
+body:not([data-vue=symptomes]) #sx,body[data-vue=symptomes] :is(#exposure-console,#registre,#xp-reperes){display:none!important}
+#sx{max-width:1500px;margin:auto;padding:clamp(8px,2vw,30px)}#sx header h1{font-size:clamp(24px,3vw,38px);margin:0}#sx header p{color:#bad8e4;margin:8px 0 20px}
+.sx-grid{display:grid;grid-template-columns:minmax(200px,.8fr) minmax(250px,1.1fr) minmax(280px,1.2fr);gap:14px;align-items:start}
+#sx label{display:grid;gap:4px;margin:9px 0;color:#cce5ee}#sx textarea{resize:vertical;min-height:55px;background:#092536;color:#e3f9ff;border:1px solid #416f80;border-radius:5px;padding:6px}
+#sx button{margin:3px 4px 3px 0}#sx details{padding:10px 0;border-top:1px solid #285264}#sx summary{cursor:pointer;color:#a2edf8}#sx .sx-alert{border-left:3px solid #ffad53;padding:8px;background:#35291e;color:#ffdfb5}
+#sx-results a{display:inline-block;margin:4px 0}#sx-selected{margin-bottom:16px}#sx-results li{margin-bottom:7px}
+@media(max-width:900px){.sx-grid{grid-template-columns:1fr 1fr}.sx-grid>section:last-child{grid-column:1/-1}}
+@media(max-width:600px){.sx-grid{grid-template-columns:1fr}}
