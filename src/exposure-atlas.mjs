@@ -163,6 +163,14 @@ for(const bouton of document.querySelectorAll("[data-structure]"))bouton.onclick
 focus.onchange=()=>choose(focus.value);$("xa-isolate").onchange=paint;
 function zoom(factor){camera.zoom=T.MathUtils.clamp(camera.zoom*factor,.35,100);camera.updateProjectionMatrix();draw();}
 $("xa-in").onclick=()=>zoom(1.4);$("xa-out").onclick=()=>zoom(1/1.4);$("xa-reset").onclick=()=>choose("");
+// Monter ou descendre la vue le long du corps (gros plan sur la tête, les mollets, les pieds…).
+function glisser(sens){
+ if(!root)return;
+ const pas=(camera.top-camera.bottom)/camera.zoom*.25*sens;
+ const y=Math.min(bounds.max.y,Math.max(bounds.min.y,controls.target.y+pas))-controls.target.y;
+ camera.position.y+=y;controls.target.y+=y;controls.update();draw();
+}
+$("xa-up").onclick=()=>glisser(1);$("xa-down").onclick=()=>glisser(-1);
 canvas.onkeydown=e=>{if(!root)return;const s=new T.Spherical().setFromVector3(camera.position.clone().sub(controls.target));if(e.key==="ArrowRight")s.theta+=.15;else if(e.key==="ArrowLeft")s.theta-=.15;else if(e.key==="ArrowUp")s.phi-=.15;else if(e.key==="ArrowDown")s.phi+=.15;else return;e.preventDefault();s.makeSafe();camera.position.setFromSpherical(s).add(controls.target);controls.update();};
 controls.addEventListener("change",draw);new ResizeObserver(resize).observe(stage);
 document.addEventListener("xp-atlas",e=>{signals=e.detail.signals;if(e.detail.sex!==sex)model(e.detail.sex);else paint();});

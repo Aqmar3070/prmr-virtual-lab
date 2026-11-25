@@ -152,8 +152,8 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 <details><summary>Projet privé</summary><button id="xa-projects-load">Charger mes projets</button>
 <label>Projet <select id="xa-projects"></select></label><button id="xa-save">Enregistrer le scénario</button><button id="xa-history">Consulter les résultats enregistrés</button><div id="xa-history-list"></div></details>
 <p role="status" id="xa-file-status"></p></section></div>
- <figure class="xp-body"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button>
- <span class="xa-presets" aria-label="Vues rapprochées"><button data-structure="eye_l">Œil</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></span></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
+ <figure class="xp-body"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-up" aria-label="Déplacer la vue vers la tête" title="Vers la tête">▲</button><button type="button" id="xa-down" aria-label="Déplacer la vue vers les pieds" title="Vers les pieds">▼</button><button type="button" id="xa-reset">Vue entière</button>
+ <span class="xa-presets" aria-label="Vues rapprochées"><button data-structure="skull">Tête</button><button data-structure="eye_l">Œil</button><button data-structure="calf_l">Mollet</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></span></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
  <defs><radialGradient id="xp-base"><stop stop-color="#4bf6ff" stop-opacity=".7"/><stop offset="1" stop-color="#00bfff" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-bad"><stop stop-color="#fff0aa"/><stop offset=".35" stop-color="#ffa123" stop-opacity=".94"/><stop offset="1" stop-color="#ff4523" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-high"><stop stop-color="#fff5c0"/><stop offset=".32" stop-color="#ff4c39"/><stop offset="1" stop-color="#f1243f" stop-opacity="0"/></radialGradient>
@@ -242,7 +242,7 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
 <script type="module" src="./src/exposure-console.mjs?v=70eacfe128"></script>
 <script type="module" src="./src/maladies-console.mjs?v=334d34fc6a"></script>
-<script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
+<script type="module" src="./src/exposure-atlas.mjs?v=226a4f2991"></script>
 <script type="module" src="./src/symptomes-console.mjs?v=1723ec45b1"></script>
 </body>
 </html>
