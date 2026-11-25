@@ -21,12 +21,34 @@ import { dirname, join, resolve } from "node:path";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const write = process.argv.includes("--write");
 
+// Imports internes déjà marqués « ?v= » dans les modules : même empreinte, sinon un module
+// mis à jour pourrait charger une ancienne dépendance restée en cache.
+const IMPORT = /(?<kw>from |import\()"(?<path>\.\/[^"?#]+\.mjs)\?v=[^"]*"/g;
+// Modules suivis (les autres pages, dont l'accueil validé, ne sont pas modifiées ici).
+const modules = ["symptomes-console.mjs"].map(f => join(root, "src", f));
+const stale = [];
+let changed = 0;
+for (let pass = 0; pass < 5; pass++) {
+  let again = false;
+  for (const file of modules) {
+    const original = readFileSync(file, "utf8");
+    const updated = original.replace(IMPORT, (match, kw, path, offset, whole, groups) => {
+      const target = join(dirname(file), groups.path.slice(2));
+      if (!existsSync(target)) return match;
+      const digest = createHash("sha256").update(readFileSync(target)).digest("hex").slice(0, 10);
+      return `${groups.kw}"${groups.path}?v=${digest}"`;
+    });
+    if (updated !== original) {
+      if (!stale.includes(file)) stale.push(file.slice(root.length + 1));
+      if (write) { writeFileSync(file, updated, "utf8"); again = true; changed++; }
+    }
+  }
+  if (!again) break;
+}
+
 const pages = readdirSync(root).filter(f => f.endsWith(".html"));
 // Référence locale, avec ou sans empreinte, dans un attribut src ou href.
 const REFERENCE = /(?<attr>src|href)="(?<path>\.\/[^"?#]+\.(?:mjs|js|css))(?:\?v=[^"]*)?"/g;
-
-let changed = 0;
-const stale = [];
 
 for (const page of pages) {
   const file = join(root, page);
