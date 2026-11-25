@@ -20,15 +20,16 @@ const assert=require("node:assert/strict");
   await page.click(".xp-profile-card summary");
   await page.waitForFunction(()=>document.querySelector(".xa-ready")&&document.querySelector('#xa-focus option[value="uterus"]'));
   await page.screenshot({path:"/tmp/atlas-femme.png"});
-  // Barre de cadrage retirée : le cadrage passe par la souris et par la sélection d'organes (événement xp-focus).
-  assert.equal(await page.locator(".xp-body>svg").isVisible(),false);
-  for(const structure of ["lung_l","eye_l","toes_l"]){
-   await page.evaluate(s=>document.dispatchEvent(new CustomEvent("xp-focus",{detail:s})),structure);
+  // La barre « Atlas anatomique » a été retirée : les poumons se choisissent dans la liste.
+  for(const structure of ["lung_l","lung_r"]){
+   await page.selectOption("#xa-focus",structure);
    assert.equal(await page.inputValue("#xa-focus"),structure);
   }
-  const zone=await page.locator("#xa-stage canvas").boundingBox();
-  await page.mouse.move(zone.x+zone.width/2,zone.y+zone.height/2);await page.mouse.wheel(0,-100);
-  await page.mouse.dblclick(zone.x+zone.width/2,zone.y+zone.height/2);
+  for(const structure of ["eye_l","foot_l","toes_l"]){
+   await page.click('[data-structure="'+structure+'"]');
+   assert.equal(await page.inputValue("#xa-focus"),structure);
+  }
+  await page.mouse.move(830,400);await page.mouse.wheel(0,-100);await page.click("#xa-reset");
   assert.equal(await page.inputValue("#xa-focus"),"");
   await page.fill("#xa-note","Caféine, 80 mg par jour");await page.click("#xa-read");
   await page.locator("#xa-proposals button").first().click();
