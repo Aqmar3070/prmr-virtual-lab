@@ -1,5 +1,5 @@
 // Vue Symptômes : symptômes à gauche, corps 3D au centre, maladies correspondantes à droite.
-import {filtrer,departager,urgence,zonesDe,chercher} from "./symptomes.mjs";
+import {filtrer,departager,urgence,zonesDe,chercher} from "./symptomes.mjs?v=aff27699df";
 
 const $=id=>document.getElementById("sy-"+id);
 const MSD="https://www.msdmanuals.com/fr/professional/";
