@@ -200,7 +200,7 @@ function render(){
  const all=fiches.length?[...fiches.flatMap(f=>reperesAtlas(f)),...result.signals.filter(s=>!s.source.startsWith("National Cancer Institute"))]:result.signals;
  for(const s of all)s.cle??=s.recherche?s.title:s.zone;
  renderRecherche(fiches,analyse);
- if(document.body.dataset.vue!=="maladies")document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
+ if((document.body.dataset.vue||"substances")==="substances")document.dispatchEvent(new CustomEvent("xp-atlas",{detail:{sex,signals:all}}));
  const display={ethanolMl:"Alcool pur (mL)",ethanolG:"Alcool pur (g)",sugarG:"Sucres (g)",caffeineMg:"Caféine (mg)"};
  $("xp-totals").textContent=[...result.available].map(key=>display[key]+" : "+fmt(result.totals[key])).join(" · ");
  const tableau=$("xp-day-table");tableau.replaceChildren();

@@ -91,32 +91,18 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=4251a125b6">
+<link rel="stylesheet" href="./exposure-console.css?v=ffa1a026ba">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
 <nav class="xp-vues" aria-label="Vue de l’explorateur"><button type="button" data-choix-vue="substances" aria-pressed="true">Substances</button><button type="button" data-choix-vue="maladies" aria-pressed="false">Maladies</button><button type="button" data-choix-vue="symptomes" aria-pressed="false">Symptômes</button></nav>
 <a id="xp-reperes" href="#registre">Repères publiés</a></header>
 <main>
-<section id="sx" data-vue="symptomes" aria-labelledby="sx-title">
- <header><h1 id="sx-title">Explorer les symptômes</h1><p>Décrivez une observation, puis examinez les signes qui la rapprochent des fiches du registre.</p></header>
- <div class="sx-grid">
- <section class="xp-card"><h2>Profil du sujet</h2><div id="sx-profile">
- <label>Âge en années <input name="age" type="number" min="0" max="125" step="0.1"></label>
- <label>Poids en kg <input name="poids" type="number" min="0.1" step="0.1"></label>
- <label>Sexe <select name="sexe"><option value="">Non renseigné</option><option>Féminin</option><option>Masculin</option><option>Intersexe</option></select></label>
- <label>Diabète déjà diagnostiqué <select name="diabete"><option value="">Inconnu</option><option>Oui</option><option>Non</option></select></label>
- <label>Genre, si pertinent <input name="genre" maxlength="80"></label>
- <label>Contexte, traitements en cours et allergies <textarea name="contexte" maxlength="1500"></textarea></label></div>
- <h3>Observation enregistrée</h3><p>Sauvegarde volontaire dans ce navigateur. Une observation par enregistrement.</p>
- <button id="sx-save">Enregistrer une observation</button><div id="sx-history"></div><p role="status" id="sx-status"></p></section>
- <section class="xp-card"><h2>Régions du corps</h2><label>Région <select id="sx-region"></select></label>
- <label>Rechercher dans toutes les régions <input type="search" id="sx-search" placeholder="Fièvre, fourmillements…"></label>
- <div id="sx-signs"></div><label>Autre symptôme dans la région choisie <input id="sx-other" maxlength="100"></label><button id="sx-add">Ajouter à l’observation</button></section>
- <section class="xp-card"><h2>Signes retenus</h2><div id="sx-selected"></div><h2>Correspondances documentaires</h2><div id="sx-results" aria-live="polite"></div></section>
  </div></section>
 <div class="xp-board" id="exposure-console">
  <div class="xp-left">
+ <section class="xp-card sy-card" data-vue="symptomes"><div class="mx-tete"><h2>Symptômes</h2><input id="sy-recherche" type="search" autocomplete="off" placeholder="Rechercher" aria-label="Rechercher un symptôme"></div>
+  <div id="sy-choisis" aria-label="Symptômes cochés"></div><div id="sy-groupes"></div></section>
  <section class="xp-card mx-card" data-vue="maladies"><div class="mx-tete"><h2>Maladies</h2><input id="mx-recherche" type="search" autocomplete="off" placeholder="Rechercher" aria-label="Rechercher une maladie"></div>
   <div id="mx-liste" aria-label="Maladies du registre"></div>
   <details id="mx-international" class="prmr-refs"><summary>Rechercher dans l’OMS et le Manuel MSD</summary>
@@ -179,6 +165,9 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <section class="xp-card xp-right" data-vue="substances"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
  <div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
  <details class="xp-apports"><summary>Apports du jour</summary><div id="xp-day-table"></div></details><details><summary>Comment lire les probabilités</summary><p>Les chiffres sont des risques relatifs publiés, recalculés pour la dose saisie : « risque × 2,2 » signifie que, dans les populations étudiées, la maladie survient 2,2 fois plus souvent qu’en l’absence d’alcool. La fourchette (IC 95 %) donne l’incertitude. Ce n’est pas un diagnostic : l’âge, la génétique, le tabac et le poids modifient le risque réel.</p></details></section>
+ <section class="xp-card xp-right sy-droite" data-vue="symptomes"><h2>Maladies possibles <b id="sy-n"></b></h2>
+  <p id="sy-alerte" class="sy-alerte" role="alert" hidden>Signe d'alerte : si c'est actuel, appelez immédiatement les urgences.</p>
+  <div id="sy-resultats" aria-live="polite"></div><div id="sy-affiner"></div><p id="sy-note" class="sy-note"></p></section>
  <section class="xp-card xp-right mx-droite" data-vue="maladies"><div class="mx-onglets" role="tablist"><button type="button" data-onglet="guerison" aria-pressed="true">Guéris <b id="mx-n-guerison"></b></button><button type="button" data-onglet="substances" aria-pressed="false">Testés <b id="mx-n-substances"></b></button><button type="button" data-onglet="pistes" aria-pressed="false">Pistes <b id="mx-n-pistes"></b></button><output id="mx-titre-stade"></output></div>
   <div id="mx-substances" aria-live="polite"></div></section>
  <section class="xp-card xp-graphes" data-vue="substances">
@@ -251,9 +240,9 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
-<script type="module" src="./src/exposure-console.mjs?v=68f57f8615"></script>
+<script type="module" src="./src/exposure-console.mjs?v=70eacfe128"></script>
 <script type="module" src="./src/maladies-console.mjs?v=334d34fc6a"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
-<script type="module" src="./src/symptomes-console.mjs?v=16c7914beb"></script>
+<script type="module" src="./src/symptomes-console.mjs?v=88613c71f7"></script>
 </body>
 </html>

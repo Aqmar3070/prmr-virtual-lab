@@ -54,7 +54,7 @@ main{padding:12px;max-width:1720px;margin:auto}.xp-board{display:grid;grid-templ
 /* ===== Interface compacte (novembre 2026) : bandeau fin, onglets fins, une seule
    ligne par élément, détail au clic. Deux vues partagent le même corps 3D. ===== */
 body{font-size:13px}
-body[data-vue=maladies] [data-vue=substances],body:not([data-vue=maladies]) [data-vue=maladies]{display:none!important}
+body:not([data-vue=substances]) [data-vue=substances],body:not([data-vue=maladies]) [data-vue=maladies],body:not([data-vue=symptomes]) [data-vue=symptomes]{display:none!important}
 .xp-head{gap:14px;padding:5px 14px;min-height:38px;box-sizing:border-box}
 .xp-head a.xp-logo{font-size:14px;letter-spacing:.04em;margin:0}
 .xp-head #xp-reperes{margin-left:auto;font-size:12px;color:#8fd6e2}
@@ -197,15 +197,30 @@ main{padding:8px 10px}
 .mx-formulation{font-style:italic;color:#e8d6ff;border-left:2px solid #d7a6ff;padding-left:8px;margin:6px 0}
 .mx-hyp-avert{border:1px dashed #6d5a8a;padding:6px 8px;border-radius:4px;margin-bottom:8px}
 
-body:not([data-vue=symptomes]) #sx,body[data-vue=symptomes] :is(#exposure-console,#registre,#xp-reperes){display:none!important}
-#sx{max-width:1500px;margin:auto;padding:clamp(8px,2vw,30px)}#sx header h1{font-size:clamp(24px,3vw,38px);margin:0}#sx header p{color:#bad8e4;margin:8px 0 20px}
-.sx-grid{display:grid;grid-template-columns:minmax(200px,.8fr) minmax(250px,1.1fr) minmax(280px,1.2fr);gap:14px;align-items:start}
-#sx label{display:grid;gap:4px;margin:9px 0;color:#cce5ee}#sx textarea{resize:vertical;min-height:55px;background:#092536;color:#e3f9ff;border:1px solid #416f80;border-radius:5px;padding:6px}
-#sx button{margin:3px 4px 3px 0}#sx details{padding:10px 0;border-top:1px solid #285264}#sx summary{cursor:pointer;color:#a2edf8}#sx .sx-alert{border-left:3px solid #ffad53;padding:8px;background:#35291e;color:#ffdfb5}
-#sx-results a{display:inline-block;margin:4px 0}#sx-selected{margin-bottom:16px}#sx-results li{margin-bottom:7px}
-@media(max-width:900px){.sx-grid{grid-template-columns:1fr 1fr}.sx-grid>section:last-child{grid-column:1/-1}}
-@media(max-width:600px){.sx-grid{grid-template-columns:1fr}}
+body[data-vue=symptomes] :is(#registre,#xp-reperes,.prmr-tabs){display:none!important}
 
 .prmr-refs{margin:10px 0;padding:8px 0;border-block-start:1px solid #285264}.prmr-refs summary{cursor:pointer;color:#a2edf8;font-weight:600}
 .prmr-refs ul{padding-inline-start:18px;margin:5px 0 10px}.prmr-refs li{margin:4px 0;overflow-wrap:anywhere}
 .prmr-refs [data-ref-resultats]{max-height:420px;overflow:auto}.prmr-refs [data-ref-resultats] section{padding:8px 0}
+
+/* ===== Vue Symptômes : liste fine à gauche, corps 3D au centre, maladies à droite ===== */
+#sy-groupes{max-height:min(66vh,640px);overflow-y:auto;scrollbar-width:thin}
+#sy-groupes details{border-top:1px solid #1f4d5d}#sy-groupes summary{cursor:pointer;padding:6px 2px;font-size:12px;font-weight:600;color:#bfeff7;list-style-position:inside}
+#sy-groupes summary b,.sy-droite h2 b{font-size:10.5px;color:#02202b;background:#17d4e6;border-radius:999px;padding:0 6px;margin-left:6px}
+.sy-liste{display:flex;flex-direction:column;gap:1px;padding:0 0 6px 10px}
+.xp-card button.sy-symptome{text-align:left;font-size:12px;font-weight:400;padding:3px 8px;border:0;border-left:2px solid transparent;border-radius:0;background:none;color:#cde8ef}
+.xp-card button.sy-symptome:hover{background:#0b2a39}
+.xp-card button.sy-symptome[aria-pressed=true]{background:#0c3443;border-left-color:#ff8a2a;color:#fff}
+#sy-choisis{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}#sy-choisis:empty{display:none}
+.xp-card button.sy-puce{font-size:11px;padding:2px 8px;border-radius:999px;border-color:#ff8a2a;background:#2a1a0e;color:#ffd2a8}
+.xp-card button.sy-effacer{font-size:11px;padding:2px 8px;border-radius:999px;background:none;color:#8fc9d4}
+.sy-droite h2{display:flex;align-items:center}
+.sy-maladie{border-top:1px solid #1f4d5d}.sy-maladie summary{cursor:pointer;display:flex;justify-content:space-between;gap:6px;padding:6px 2px;font-size:12.5px}
+.sy-maladie summary small{color:#ffb36b;font-variant-numeric:tabular-nums}
+.sy-signes{display:flex;flex-wrap:wrap;gap:3px;padding:2px 0 6px}
+.xp-card button.sy-signe{font-size:11px;padding:2px 7px;border-radius:999px;background:#071e2b;border-color:#2b6577;color:#a9d3dc}
+.xp-card button.sy-signe.sy-ok{border-color:#ff8a2a;color:#ffd2a8}
+.sy-liens{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 8px}
+.sy-alerte{border-left:3px solid #ff5a3c;background:#3a120d;color:#ffd6cc!important;padding:6px 8px;margin:0 0 8px}
+.sy-vide{color:#8fbecb!important}.sy-note{margin-top:10px;font-size:10.5px!important;color:#7fa9b5!important}
+#sy-affiner h3{font-size:11.5px;font-weight:600;color:#9fe6f0;border-top:1px solid #265767;padding-top:8px}
