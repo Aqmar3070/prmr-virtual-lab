@@ -54,21 +54,16 @@ const assert=require("node:assert/strict");
   }
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:"/tmp/atlas-mobile.png",fullPage:true});
   await page.click('[data-choix-vue="symptomes"]');
-  for(const sign of ["Mal de tête","Fièvre","Fourmillements des pieds"]){
-   await page.fill("#sx-search",sign);
-   await page.locator("#sx-signs").getByRole("button",{name:sign,exact:true}).click();
-  }
-  await page.locator("#sx-results summary").filter({hasText:"Grippe"}).click();
-  assert.match(await page.locator("#sx-results details[open]").innerText(),/Signes non couverts.*Fourmillements des pieds/);
-  await page.click("#sx-save");
-  await page.reload();
-  await page.locator("#sx-history button").first().click();
-  assert.equal(await page.locator("#sx-selected button").count(),3);
-  await page.fill("#sx-search","Raideur de nuque");
-  await page.locator("#sx-signs button").click();
-  assert.ok(await page.locator(".sx-alert").isVisible());
-  await page.locator("#sx-history button").last().click();
-  assert.equal(await page.locator("#sx-history button").count(),0);
+  await page.fill("#sy-recherche","Mal de tête");
+  await page.locator("#sy-groupes").getByRole("button",{name:"Mal de tête",exact:true}).click();
+  const n1=Number(await page.textContent("#sy-n"));assert.ok(n1>10);
+  await page.fill("#sy-recherche","Raideur de la nuque");
+  await page.locator("#sy-groupes").getByRole("button",{name:"Raideur de la nuque",exact:true}).click();
+  const n2=Number(await page.textContent("#sy-n"));assert.ok(n2<n1&&n2>0);
+  assert.match(await page.textContent("#sy-resultats"),/Méningite/);
+  await page.fill("#sy-recherche","Fièvre");
+  await page.locator("#sy-groupes").getByRole("button",{name:"Fièvre",exact:true}).click();
+  assert.ok(await page.locator("#sy-alerte").isVisible());
   assert.deepEqual(erreurs,[]);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

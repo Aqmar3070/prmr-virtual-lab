@@ -44,12 +44,13 @@ l'endroit où les données s'arrêtent. Il ne prédit l'état d'aucun organe : a
 validé ne le permet, et son curseur de durée sert précisément à montrer où s'arrête la
 littérature.
 
-La vue [Symptômes](exposures.html?vue=symptomes) permet de consigner une observation
-par région corporelle et de la sauvegarder explicitement sur le navigateur utilisé.
-Les correspondances exploratoires sont définies dans `src/symptomes-registre.mjs`,
-avec une source par fiche. Le seuil de deux signes communs sert à naviguer dans le
-registre et ne possède aucune validation diagnostique. Les options étudiées,
-leurs populations et leurs références proviennent des fiches Maladies existantes.
+La vue [Symptômes](exposures.html?vue=symptomes) reprend la disposition des autres vues :
+symptômes classés par région à gauche, corps 3D au centre (les zones des symptômes cochés
+s'allument), maladies à droite. Une maladie reste affichée tant qu'elle présente tous les
+symptômes cochés ; des symptômes qui départagent les maladies restantes sont proposés.
+Les données sont dans `research-data/symptomes.json` (symptômes principaux des fiches du
+Manuel MSD, édition professionnelle), la logique dans `src/symptomes.mjs`. Liste
+d'orientation, sans valeur diagnostique.
 
 Les vues Maladies et Symptômes donnent accès aux références externes depuis
 chaque fiche. Les liens de lecture sont conservés dans
