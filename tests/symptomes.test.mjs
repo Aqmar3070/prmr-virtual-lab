@@ -18,19 +18,22 @@ test("Données : symptômes connus, zones 3D, fiches et sources valides",()=>{
  for(const m of registre.maladies)assert.ok(data.maladies.some(x=>x.id===m.id),"fiche sans symptômes : "+m.id);
 });
 
-test("Un symptôme montre toutes ses maladies ; chaque ajout réduit la liste",()=>{
- const tete=filtrer(data,new Set(["cephalee"]),"male").map(m=>m.id);
+test("Classement par symptômes communs : jamais vide à cause d'un symptôme atypique",()=>{
+ const ids=r=>r.map(x=>x.m.id);
+ const tete=ids(filtrer(data,new Set(["cephalee"]),"male"));
  for(const id of ["migraine","angiome_cerebral","meningite","paludisme","grippe","cephalee_tension"])assert.ok(tete.includes(id),id);
- const deux=filtrer(data,new Set(["cephalee","photophobie"]),"male").map(m=>m.id);
- assert.ok(deux.length<tete.length&&deux.includes("migraine")&&!deux.includes("grippe"));
- const trois=filtrer(data,new Set(["cephalee","photophobie","raideur_nuque"]),"male").map(m=>m.id);
- assert.ok(trois.includes("meningite")&&!trois.includes("migraine"));
+ const trois=filtrer(data,new Set(["cephalee","photophobie","raideur_nuque"]),"male");
+ assert.equal(trois[0].absents.length,0);assert.ok(ids(trois.filter(r=>!r.absents.length)).includes("meningite"));
+ assert.ok(ids(trois).indexOf("meningite")<ids(trois).indexOf("grippe"));
+ // Paludisme + toux : la toux n'est pas dans la fiche, le paludisme reste proposé avec 2 symptômes sur 3.
+ const palu=filtrer(data,new Set(["fievre","frissons","toux"]),"male").find(r=>r.m.id==="paludisme");
+ assert.ok(palu);assert.deepEqual(palu.absents,["toux"]);
 });
 
 test("Sexe, départage, urgence, zones, recherche",()=>{
- assert.ok(!filtrer(data,new Set(["douleur_pelvienne"]),"male").some(m=>m.id==="endometriose"));
- assert.ok(filtrer(data,new Set(["douleur_pelvienne"]),"female").some(m=>m.id==="endometriose"));
- const r=filtrer(data,new Set(["fievre"]),"male");const d=departager(r,new Set(["fievre"]));
+ assert.ok(!filtrer(data,new Set(["douleur_pelvienne"]),"male").some(r=>r.m.id==="endometriose"));
+ assert.ok(filtrer(data,new Set(["douleur_pelvienne"]),"female").some(r=>r.m.id==="endometriose"));
+ const r=filtrer(data,new Set(["fievre"]),"male");assert.ok(r.every(x=>x.communs.length===1));const d=departager(r,new Set(["fievre"]));
  assert.ok(d.length>0&&!d.includes("fievre"));
  assert.ok(urgence(data,new Set(["fievre","raideur_nuque"])));assert.ok(!urgence(data,new Set(["fievre"])));
  assert.ok(zonesDe(data,new Set(["cephalee"])).includes("brain"));

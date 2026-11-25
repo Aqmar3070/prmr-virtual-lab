@@ -59,7 +59,7 @@ const assert=require("node:assert/strict");
   const n1=Number(await page.textContent("#sy-n"));assert.ok(n1>10);
   await page.fill("#sy-recherche","Raideur de la nuque");
   await page.locator("#sy-groupes").getByRole("button",{name:"Raideur de la nuque",exact:true}).click();
-  const n2=Number(await page.textContent("#sy-n"));assert.ok(n2<n1&&n2>0);
+  assert.match(await page.locator("#sy-resultats summary").first().innerText(),/2 \/ 2/);
   assert.match(await page.textContent("#sy-resultats"),/Méningite/);
   await page.fill("#sy-recherche","Fièvre");
   await page.locator("#sy-groupes").getByRole("button",{name:"Fièvre",exact:true}).click();

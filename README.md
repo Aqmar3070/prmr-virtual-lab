@@ -46,8 +46,8 @@ littérature.
 
 La vue [Symptômes](exposures.html?vue=symptomes) reprend la disposition des autres vues :
 symptômes classés par région à gauche, corps 3D au centre (les zones des symptômes cochés
-s'allument), maladies à droite. Une maladie reste affichée tant qu'elle présente tous les
-symptômes cochés ; des symptômes qui départagent les maladies restantes sont proposés.
+s'allument), maladies à droite. Les maladies sont classées par nombre de symptômes cochés
+qu'elles expliquent (score « 3 / 4 »), sans être éliminées par un symptôme atypique ; des symptômes qui départagent les maladies restantes sont proposés.
 Les données sont dans `research-data/symptomes.json` (symptômes principaux des fiches du
 Manuel MSD, édition professionnelle), la logique dans `src/symptomes.mjs`. Liste
 d'orientation, sans valeur diagnostique.

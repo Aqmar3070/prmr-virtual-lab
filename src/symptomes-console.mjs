@@ -14,7 +14,7 @@ function bouton(s){
  b.setAttribute("aria-pressed",String(choix.has(s.id)));
  b.onclick=()=>basculer(s.id);return b;
 }
-function basculer(id){if(choix.has(id))choix.delete(id);else choix.add(id);rendre();}
+function basculer(id){if(choix.has(id))choix.delete(id);else choix.add(id);limite=30;rendre();}
 
 function rendreGauche(){
  const q=$("recherche").value;
@@ -37,14 +37,16 @@ function rendreGauche(){
  }
 }
 
-function carte(m){
- const d=el("details",null,"sy-maladie");
+function carte({m,communs,absents}){
+ const d=el("details",null,absents.length?"sy-maladie":"sy-maladie sy-complete");
  const sum=el("summary");sum.append(el("span",m.nom));
- if(choix.size)sum.append(el("small",choix.size+"/"+m.symptomes.length));
+ sum.append(el("small",communs.length+" / "+choix.size));
+ d.title=communs.length+" de vos "+choix.size+" symptômes sur "+m.symptomes.length+" décrits pour cette maladie";
  d.append(sum);
  const ul=el("div",null,"sy-signes");
  for(const id of m.symptomes){const s=parId.get(id);const t=el("button",s.nom,choix.has(id)?"sy-signe sy-ok":"sy-signe");t.type="button";t.title=choix.has(id)?"Symptôme coché":"Ajouter ce symptôme";t.onclick=()=>basculer(id);ul.append(t);}
  d.append(ul);
+ if(absents.length)d.append(el("p","Non décrits dans cette fiche : "+absents.map(id=>parId.get(id).nom).join(", ")+".","sy-absents"));
  const liens=el("p",null,"sy-liens");
  if(m.fiche){const a=el("a","Fiche PRMR : Guéris · Testés · Pistes");a.href="?vue=maladies&maladie="+encodeURIComponent(m.id);liens.append(a);}
  if(m.msd){const a=el("a","Manuel MSD");a.href=MSD+m.msd;a.target="_blank";a.rel="noopener noreferrer";liens.append(a);}
@@ -52,14 +54,20 @@ function carte(m){
  d.append(liens);return d;
 }
 
+let limite=30;
 function rendreDroite(){
  const res=filtrer(data,choix,sexe());
  $("n").textContent=String(res.length);
+ const complets=res.filter(r=>!r.absents.length).length;
  $("alerte").hidden=!urgence(data,choix);
  const dest=$("resultats");dest.replaceChildren();
  if(!choix.size)dest.append(el("p","Cliquez un symptôme à gauche : toutes les maladies où il apparaît s'affichent ici. Chaque symptôme ajouté réduit la liste.","sy-vide"));
- else if(!res.length)dest.append(el("p","Aucune maladie du registre ne réunit tous ces symptômes. Retirez le moins sûr, ou consultez : l'association peut relever d'une cause non répertoriée.","sy-vide"));
- else for(const m of res)dest.append(carte(m));
+ else if(!res.length)dest.append(el("p","Aucune maladie du registre ne présente ces symptômes.","sy-vide"));
+ else{
+  dest.append(el("p",complets?complets+" maladie(s) présentent tous vos symptômes ; les suivantes en partagent une partie.":"Aucune maladie ne présente tous vos symptômes : voici les plus proches. Le score indique combien de vos symptômes chacune explique.","sy-resume"));
+  for(const r of res.slice(0,limite))dest.append(carte(r));
+  if(res.length>limite){const b=el("button","Afficher les "+(res.length-limite)+" autres","sy-plus");b.type="button";b.onclick=()=>{limite=res.length;rendreDroite();};dest.append(b);}
+ }
  const aff=$("affiner");aff.replaceChildren();
  const dep=choix.size?departager(res,choix):[];
  if(dep.length){aff.append(el("h3","Pour affiner, le sujet a-t-il aussi :"));const box=el("div",null,"sy-liste");box.append(...dep.map(id=>bouton(parId.get(id))));aff.append(box);}

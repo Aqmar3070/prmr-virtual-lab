@@ -224,3 +224,5 @@ body[data-vue=symptomes] :is(#registre,#xp-reperes,.prmr-tabs){display:none!impo
 .sy-alerte{border-left:3px solid #ff5a3c;background:#3a120d;color:#ffd6cc!important;padding:6px 8px;margin:0 0 8px}
 .sy-vide{color:#8fbecb!important}.sy-note{margin-top:10px;font-size:10.5px!important;color:#7fa9b5!important}
 #sy-affiner h3{font-size:11.5px;font-weight:600;color:#9fe6f0;border-top:1px solid #265767;padding-top:8px}
+.sy-maladie.sy-complete summary small{color:#5fe9b8}.sy-absents{font-size:11px!important;color:#c9a98a!important;margin:0 0 4px}
+.sy-resume{font-size:11px!important;color:#8fbecb!important;margin:0 0 6px}.xp-card button.sy-plus{width:100%;margin-top:6px;font-size:11.5px}
