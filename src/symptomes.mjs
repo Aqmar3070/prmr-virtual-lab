@@ -5,18 +5,22 @@ import {plier} from "./maladies.mjs";
 const SEXES={female:"F",male:"H"};
 export const compatibleSexe=(m,sexe)=>!m.sexe||!SEXES[sexe]||m.sexe===SEXES[sexe];
 
-// Maladies qui réunissent tous les symptômes choisis, les plus « complètes » d'abord.
+// Maladies classées par nombre de symptômes en commun : un symptôme atypique n'élimine plus une maladie.
+// Chaque résultat porte {m, communs, absents} ; les plus concordantes d'abord.
 export function filtrer(data,choix,sexe){
  const liste=[...choix];
- return data.maladies
-  .filter(m=>compatibleSexe(m,sexe)&&liste.every(s=>m.symptomes.includes(s)))
-  .map(m=>({m,part:liste.length?liste.length/m.symptomes.length:0}))
-  .sort((a,b)=>b.part-a.part||a.m.nom.localeCompare(b.m.nom,"fr"))
-  .map(x=>x.m);
+ if(!liste.length)return [];
+ return data.maladies.filter(m=>compatibleSexe(m,sexe)).map(m=>{
+  const communs=liste.filter(s=>m.symptomes.includes(s));
+  return {m,communs,absents:liste.filter(s=>!m.symptomes.includes(s))};
+ }).filter(r=>r.communs.length)
+  .sort((a,b)=>b.communs.length-a.communs.length||b.communs.length/b.m.symptomes.length-a.communs.length/a.m.symptomes.length||a.m.nom.localeCompare(b.m.nom,"fr"));
 }
 
 // Symptômes qui départagent le mieux les maladies restantes (présents chez environ la moitié).
-export function departager(restantes,choix,max=8){
+export function departager(resultats,choix,max=8){
+ // On départage les maladies du meilleur niveau de concordance.
+ const top=resultats[0]?.communs.length||0,restantes=resultats.filter(r=>r.communs.length===top).map(r=>r.m);
  if(restantes.length<2)return [];
  const n=new Map();
  for(const m of restantes)for(const s of m.symptomes)if(!choix.has(s))n.set(s,(n.get(s)||0)+1);
