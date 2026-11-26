@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
 <link rel="stylesheet" href="./prmr-home.css?v=29dcdaebc6">
 <link rel="stylesheet" href="./renal-display.css?v=ca27c1cb43">
-<link rel="stylesheet" href="./landing-map.css?v=c8b50072c8">
+<link rel="stylesheet" href="./landing-map.css?v=7cfe774352">
 </head>
 <body>
 <div class="shell">
@@ -177,4 +177,18 @@
 </main>
  <nav class="landing-mobile" aria-label="Accès aux espaces"><a href="./index.html">Accueil</a><a href="./preclinical.html">Preuves</a><a href="./species-r04.html">Anatomie comparée</a><a href="./screening.html">Molécules</a><a href="./risk-r03.html">Modélisation</a><a href="./clinical.html">Recherche clinique</a><a href="./exposures.html">Exposition</a></nav>
 </div></div>
+<script type="module">
+const bar = document.querySelector(".prmr-routebar");
+const exportSession = document.getElementById("export-session");
+const exportButton = document.createElement("button");
+exportButton.type = "button";
+exportButton.className = "prmr-route-aside-link landing-export";
+exportButton.textContent = exportSession.textContent;
+exportButton.addEventListener("click", () => exportSession.click());
+bar.querySelector(".prmr-route-aside").append(exportButton);
+const build = document.createElement("small");
+build.className = "landing-build";
+build.textContent = document.querySelector(".topbar .version").textContent;
+bar.append(build);
+</script>
 </body></html>

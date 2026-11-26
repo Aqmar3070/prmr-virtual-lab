@@ -12,3 +12,8 @@ body:has(#view-overview:not([hidden])) .main {margin:0}
   .landing-mobile a {padding:.7rem;border:1px solid #376c81;border-radius:.35rem;color:#d7faff;min-height:44px}
   .landing-mobile a:is(:hover,:focus-visible,:active){outline:2px solid #8ffaff;box-shadow:0 0 10px #30deff}
 }
+body:has(#view-overview:not([hidden])) .topbar {display:none}
+body:has(#view-overview:not([hidden])) .shell {min-height:0}
+.landing-export,.landing-build {display:none}
+body:has(#view-overview:not([hidden])) .landing-export {display:inline-flex;background:transparent;font-family:inherit;cursor:pointer}
+body:has(#view-overview:not([hidden])) .landing-build {display:block;text-align:right;color:var(--prmr-text-faint);font-size:var(--prmr-size-micro);padding:0 .75rem .35rem}
