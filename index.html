@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="./molecular-viewer.css?v=820853787f">
 <script type="module" src="./src/molecular-viewer.mjs?v=1acb0f74ec"></script>
 <link rel="stylesheet" href="./renal-display.css?v=ca27c1cb43">
-<link rel="stylesheet" href="./landing-map.css">
+<link rel="stylesheet" href="./landing-map.css?v=conformer2">
 </head>
 <body>
 <div class="shell">
@@ -51,6 +51,12 @@
   <h1 class="landing-sr">Accueil du laboratoire PRMR</h1>
   <img class="landing-image" src="./assets/home/prmr-accueil-original.png" width="1672" height="941" alt="Laboratoire PRMR. Silhouette humaine translucide aux reins éclairés, entourée des espaces de recherche." fetchpriority="high">
   <svg class="landing-map" viewBox="0 0 1672 941" aria-label="Navigation du laboratoire">
+    <!-- Reuse the neutral menu background beneath the original selected row. -->
+    <g pointer-events="none" aria-hidden="true">
+      <svg x="0" y="146" width="214" height="81" viewBox="0 224 214 6" preserveAspectRatio="none"><image href="./assets/home/prmr-accueil-original.png" width="1672" height="941"/></svg>
+      <path d="M35 186 51 171 67 186 M39 183v18h9v-11h7v11h9v-18" fill="none" stroke="#8beafa" stroke-width="2.1" stroke-linejoin="round"/>
+      <text x="89" y="194" font-family="Arial,sans-serif" font-size="19" fill="#f2f9ff">Accueil</text>
+    </g>
     <g>      <a href="./index.html" aria-label="Accueil"><title>Accueil</title><rect x="14" y="160" width="194" height="55" rx="6"/></a>
       <a href="./preclinical.html" aria-label="Preuves"><title>Preuves</title><rect x="14" y="228" width="194" height="59" rx="6"/></a>
       <a href="./species-r04.html" aria-label="Anatomie comparée"><title>Anatomie comparée</title><rect x="14" y="292" width="194" height="65" rx="6"/></a>
@@ -64,10 +70,8 @@
       <a href="./risk-r03.html" aria-label="Modélisation"><title>Modélisation</title><polygon points="1128,325 1146,307 1619,297 1640,316 1640,473 1621,492 1147,487 1128,469"/></a>
       <a href="./clinical.html" aria-label="Recherche clinique"><title>Recherche clinique</title><polygon points="1098,533 1117,514 1612,516 1634,537 1634,672 1612,693 1116,678 1098,659"/></a>
       <a href="./exposures.html" aria-label="Explorer une exposition"><title>Explorer une exposition</title><polygon points="512,777 534,755 1138,755 1160,777 1160,838 1138,860 534,860 512,838"/></a></g>
-          <a href="./exposures.html?vue=maladies&amp;maladie=mrc" aria-label="Explorer la maladie rénale chronique"><title>Explorer la maladie rénale chronique</title><path d="M837 404Q794 395 788 453Q785 492 817 490Q842 487 851 454L843 446Q862 414 837 404ZM888 406Q922 392 935 437Q948 482 919 491Q890 497 878 457L885 445Q865 418 888 406Z"/></a>
-          <a href="./species-r04.html" aria-label="Atlas anatomique"><title>Atlas anatomique</title><path fill-rule="evenodd" d="M817 144Q810 84 862 83Q911 82 912 140L903 186 912 225 971 253Q1001 264 1007 319L1022 407 1048 513 1076 617 1075 674 1060 686 1040 652 1035 602 997 522 971 434 963 511 976 612 959 749 751 749 746 617 758 514 752 434 724 512 694 588 687 647 664 687 649 674 652 619 675 542 699 438 717 335Q720 274 752 258L813 229 824 188Z M782 397H944V496H782Z"/></a>
   </svg>
-  <a class="landing-brand" href="./index.html" aria-label="PRMR Virtual Lab — Accueil"><svg viewBox="0 0 40 40" aria-hidden="true"><g class="landing-molecule"><path d="M7 11L20 21 30 8M20 21L32 29M20 21L9 32" fill="none" stroke="#a2faff" stroke-width="2.4"/><g fill="#52efff" stroke="#d7ffff"><circle cx="7" cy="11" r="3"/><circle cx="30" cy="8" r="3.8"/><circle cx="32" cy="29" r="3"/><circle cx="9" cy="32" r="3.5"/><circle cx="20" cy="21" r="5"/></g></g></svg></a>
+  <a class="landing-brand" href="./screening.html#conformeres" data-conformer aria-label="Irbesartan en 3D — ouvrir les molécules"><canvas data-mol-canvas aria-hidden="true"></canvas></a>
  </div>
  <nav class="landing-mobile" aria-label="Accès aux espaces"><a href="./index.html">Accueil</a><a href="./preclinical.html">Preuves</a><a href="./species-r04.html">Anatomie comparée</a><a href="./screening.html">Molécules</a><a href="./risk-r03.html">Modélisation</a><a href="./clinical.html">Recherche clinique</a><a href="./exposures.html">Exposition</a></nav>
 </section>

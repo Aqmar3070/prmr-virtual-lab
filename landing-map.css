@@ -4,11 +4,8 @@
 .landing-map a {fill:transparent;stroke:transparent;stroke-width:2.5;cursor:pointer;outline:none}
 .landing-map a:is(:hover,:focus-visible,:active) {fill:rgba(99,240,255,.12);stroke:#aeffff;filter:drop-shadow(0 0 5px #23e6ff) drop-shadow(0 0 10px #16c9ff)}
 .landing-brand {position:absolute;left:.65%;top:2.2%;width:2%;aspect-ratio:1;color:#b7ffff;border-radius:50%}
-.landing-brand svg {display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 2px #23dfff)}
+.landing-brand canvas {display:block;width:100%;height:100%;pointer-events:none}
 .landing-brand:is(:hover,:focus-visible) {outline:2px solid currentColor;box-shadow:0 0 12px #59edff}
-.landing-molecule {transform-origin:center;animation:landing-spin 7s linear infinite}
-@keyframes landing-spin {to {transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.landing-molecule {animation:none}}
 .landing-sr {position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
 .landing-mobile {display:none}
 @media(max-width:650px){
