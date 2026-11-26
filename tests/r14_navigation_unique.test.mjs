@@ -49,7 +49,7 @@ test("l'explorateur de doses s'annonce sur l'accueil", () => {
      et à un bouton. L'exigence tient toujours — l'explorateur doit s'annoncer
      sur l'accueil, pas s'y cacher. */
   const home = read("index.html");
-  assert.match(home, /class="home-panel panel-exposure"/,
+  assert.match(home, /<a href="\.\/exposures\.html" aria-label="Explorer une exposition"><title>[^<]+<\/title><polygon /,
     "l'explorateur doit avoir son panneau sur la console d'accueil");
   assert.match(home, /href="\.\/exposures\.html"/);
   const route = read("src/prmr_route.mjs");

@@ -56,8 +56,10 @@ test("La page d'accueil oriente vers les cinq étapes de recherche sans duplique
     « prmr-stage » mais les panneaux et le rail de cette console. Ce que cette
     vérification protège n'a pas changé — chaque étape doit mener à son module
     réel, et aucun module ne doit être redupliqué sur l'accueil. */
- assert.match(home,/class="home-rail"/);
- assert.match(home,/class="home-panel/);
+ const map=home.split('class="landing-map"')[1].split("</svg>\n  <a class=")[0];
+ assert.equal((map.match(/<rect /g)||[]).length,7,"Les sept entrées du menu sont cliquables");
+ assert.equal((map.match(/<polygon /g)||[]).length,6,"Chaque panneau possède son lien");
+ assert.doesNotMatch(map,/<a[^>]*>[\s\S]*?<title>Atlas anatomique<\/title>/);
  assert.match(home,/prmr-route\.css/);
  assert.match(home,/prmr_route\.mjs/);
  // Les cinq étapes doivent chacune mener à leur module réel.
