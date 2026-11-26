@@ -17,3 +17,32 @@ body:has(#view-overview:not([hidden])) .shell {min-height:0}
 .landing-export,.landing-build {display:none}
 body:has(#view-overview:not([hidden])) .landing-export {display:inline-flex;background:transparent;font-family:inherit;cursor:pointer}
 body:has(#view-overview:not([hidden])) .landing-build {display:block;text-align:right;color:var(--prmr-text-faint);font-size:var(--prmr-size-micro);padding:0 .75rem .35rem}
+
+/* Keep the controls together and share the last line with the build number. */
+body:has(#view-overview:not([hidden])) .prmr-routebar {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;
+  padding:2px clamp(10px,1.25vw,20px);
+  gap:0 8px;
+}
+body:has(#view-overview:not([hidden])) :is(.prmr-route-inner,.prmr-route-state) {max-width:none}
+body:has(#view-overview:not([hidden])) .prmr-route-inner {
+  grid-column:1/-1;
+  width:100%;
+  margin:0;
+  padding:0;
+  gap:2px 10px;
+}
+body:has(#view-overview:not([hidden])) :is(.prmr-route-step,.prmr-route-aside-link) {
+  padding:2px 6px;
+  min-height:24px;
+  line-height:18px;
+  font-size:12px;
+}
+body:has(#view-overview:not([hidden])) .prmr-route-num {min-width:17px;height:17px;font-size:10px}
+body:has(#view-overview:not([hidden])) .prmr-route-aside {gap:4px}
+body:has(#view-overview:not([hidden])) .prmr-route-steps {padding-bottom:0}
+body:has(#view-overview:not([hidden])) .prmr-route-state {margin:0;padding:0;line-height:14px;font-size:10px}
+body:has(#view-overview:not([hidden])) .prmr-route-state .prmr-status {padding:0 4px;line-height:14px;font-size:10px}
+body:has(#view-overview:not([hidden])) .landing-build {padding:0;line-height:14px;font-size:10px}
