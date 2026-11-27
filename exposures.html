@@ -152,7 +152,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 <details><summary>Projet privé</summary><button id="xa-projects-load">Charger mes projets</button>
 <label>Projet <select id="xa-projects"></select></label><button id="xa-save">Enregistrer le scénario</button><button id="xa-history">Consulter les résultats enregistrés</button><div id="xa-history-list"></div></details>
 <p role="status" id="xa-file-status"></p></section></div>
- <figure class="xp-body"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button>
+ <figure class="xp-body atlas-visible"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button>
  <span class="xa-presets" aria-label="Vues rapprochées"><button data-structure="eye_l">Œil</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></span></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
  <defs><radialGradient id="xp-base"><stop stop-color="#4bf6ff" stop-opacity=".7"/><stop offset="1" stop-color="#00bfff" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-bad"><stop stop-color="#fff0aa"/><stop offset=".35" stop-color="#ffa123" stop-opacity=".94"/><stop offset="1" stop-color="#ff4523" stop-opacity="0"/></radialGradient>
@@ -161,7 +161,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <ellipse cx="310" cy="962" rx="271" ry="43" fill="url(#xp-base)"/><g fill="none" stroke="#42cee8"><ellipse cx="310" cy="962" rx="235" ry="33"/><ellipse cx="310" cy="963" rx="190" ry="23" stroke-width="3"/><ellipse cx="310" cy="964" rx="267" ry="40" opacity=".4"/></g>
  <image id="xp-body-image" href="assets/exposure/male.webp" width="620" height="980"/><g id="xp-marks"></g></svg>
  <div class="xa-controls"><small id="xa-message" role="status">Chargement de l’atlas 3D…</small><div id="xa-layers"></div><label><input type="checkbox" id="xa-isolate"> Isoler la sélection</label></div>
- <figcaption><button type="button" data-vue="maladies" id="mx-atlas" aria-controls="xa-stage" aria-pressed="false">Atlas PRMR</button><span data-vue="maladies"> · </span><a href="./assets/human3d/ATTRIBUTION.md">crédits anatomiques</a></figcaption></figure>
+ <figcaption><button type="button" data-vue="maladies" id="mx-atlas" aria-controls="xa-stage" aria-pressed="true">Atlas PRMR</button><span data-vue="maladies"> · </span><a href="./assets/human3d/ATTRIBUTION.md">crédits anatomiques</a></figcaption></figure>
  <section class="xp-card xp-right" data-vue="substances"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
  <div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
  <details class="xp-apports"><summary>Apports du jour</summary><div id="xp-day-table"></div></details><details><summary>Comment lire les probabilités</summary><p>Les chiffres sont des risques relatifs publiés, recalculés pour la dose saisie : « risque × 2,2 » signifie que, dans les populations étudiées, la maladie survient 2,2 fois plus souvent qu’en l’absence d’alcool. La fourchette (IC 95 %) donne l’incertitude. Ce n’est pas un diagnostic : l’âge, la génétique, le tabac et le poids modifient le risque réel.</p></details></section>
@@ -242,7 +242,7 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
 <script type="module" src="./src/exposure-console.mjs?v=70eacfe128"></script>
 <script type="module" src="./src/maladies-console.mjs?v=a617c77c9c"></script>
-<script type="module" src="./src/exposure-atlas.mjs?v=8cedf1b23b"></script>
+<script type="module" src="./src/exposure-atlas.mjs?v=1ec8be35b9"></script>
 <script type="module" src="./src/symptomes-console.mjs?v=1723ec45b1"></script>
 </body>
 </html>
