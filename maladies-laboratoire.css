@@ -214,3 +214,22 @@ body[data-vue="symptomes"] {
   body[data-vue="symptomes"] .xp-board { grid-template-rows: auto; }
   body[data-vue="symptomes"] .xp-left { grid-row: 1; }
 }
+
+/* Bas de page remonté : assistant et dossier côte à côte sous la barre des jours,
+   rubriques et registre sur une même ligne, pied de page transparent sur le fond du laboratoire. */
+.xp-outils { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; align-items: start; }
+@media (min-width: 1051px) { body[data-vue="substances"] .xp-outils { grid-column: 2 / -1; } }
+@media (max-width: 570px) { .xp-outils { grid-template-columns: minmax(0,1fr); } }
+body[data-vue] > main { display: grid; grid-template-columns: auto minmax(0,1fr); column-gap: 12px; align-items: center; }
+body[data-vue] > main > * { grid-column: 1 / -1; }
+body[data-vue] > main > .prmr-tabs { grid-column: 1; margin: 10px 0 0; border-bottom: 0; }
+body[data-vue] > main > #registre { grid-column: 2; margin: 10px 0 0; }
+body[data-vue] > main > #registre[open] { grid-column: 1 / -1; }
+body[data-vue] .prmr-tab { padding: 5px 12px; }
+body[data-vue] .prmr-tab:hover { background: #ffffff14; }
+body[data-vue] > .prmr-routebar { background: transparent; border: 0; }
+body[data-vue] .prmr-tab[aria-selected="true"] { background: transparent; color: #ffcd70; border-bottom-color: #ffc158; }
+body[data-vue] .prmr-tab-hint { color: #d3e9ef; }
+.xp-outils { align-self: start; }
+body[data-vue] .xp-outils > .xp-card { padding: 8px 12px; margin: 0; }
+body[data-vue] > main > #registre:not([open]) { background: transparent; }
