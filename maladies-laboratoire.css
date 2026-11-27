@@ -79,21 +79,43 @@ body[data-vue] > .prmr-routebar { order: 1; }
 body[data-vue] .mx-graphes .xg svg { height: auto; }
 
 body[data-vue="substances"] {
-  & .xp-card:not(.xp-graphes), & .xp-graphes .xg {
-    min-width: 0; background: var(--verre); border: 1px solid var(--bord);
-    border-radius: 10px; padding: 12px; backdrop-filter: blur(3px);
-    box-shadow: inset 0 0 12px #a8f7ff1c, 0 1px 5px #002b3ba6;
+  /* Le liseré occupe les deux derniers pixels. Le centre du verre reste translucide. */
+  --reflet-bas: radial-gradient(ellipse at 52% 100%,#ffdc98ed,transparent 58%) bottom center / 92% 3px no-repeat;
+  --relief-verre: inset 0 1px 2px #fff9, inset 2px 0 4px #d9ffff38,
+    inset -2px 0 4px #fff2d83b, inset 0 -2px 4px #ffd69875, 0 2px 4px #06233291;
+  --face-verre: linear-gradient(175deg,#8cbdc6ad 0%,#416573bf 28%,#284957df 67%,#52727bbd);
+  --commande: var(--reflet-bas), var(--face-verre);
+  --ambre: inset 0 1px 2px #fff9, inset 0 -3px 6px #ffbe5caa, 0 0 5px #ffd28a80;
+  & .xp-card:not(.xp-graphes), & .xp-graphes .xg, & .xp-body, & .xp-reference {
+    min-width: 0; border: 1px solid #d2e5e5; border-radius: 17px;
+    background: var(--reflet-bas), linear-gradient(155deg,#7599a37d,#234c6096 27%,#193c4dc2 80%,#617c8585);
+    box-shadow: var(--relief-verre), inset 0 0 12px #d8fcff33;
   }
-  & .xp-body { height: max(415px,71vh); }
+  & .xp-card:not(.xp-graphes), & .xp-graphes .xg { padding: 12px; backdrop-filter: blur(3px); }
+  & .xp-body { height: max(415px,71vh); background: var(--reflet-bas), linear-gradient(145deg,#b1e5ec20,transparent 30%,transparent 80%,#b4d6d422); }
+  & .xp-vues { gap: 3px; background: transparent; border-color: transparent; }
+  & .xp-vues button, & :is(#sex-choice button,.xa-toolbar button,.xa-toolbar select),
+  & .xp-card button, & .xp-card select, & .prmr-tab, & .xp-reference button, & .xp-reference select {
+    color: #f6ffff; background: var(--commande); border: 1px solid #d7e8e8;
+    border-radius: 10px; box-shadow: var(--relief-verre); text-shadow: 0 1px 2px #173744;
+  }
+  & .xp-vues button[aria-pressed=true], & #sex-choice button[aria-pressed=true],
+  & .xp-card button[aria-pressed=true], & #xp-categories button[aria-pressed=true], & .prmr-tab[aria-selected=true] {
+    background: var(--reflet-bas), linear-gradient(175deg,#789eaa,#315d70 45%,#355465);
+    border-color: #ffe3a9; box-shadow: var(--ambre);
+  }
+  & :is(button,.prmr-tab):enabled:hover { filter: brightness(1.12); }
+  & :is(button,.prmr-tab):enabled:active { filter: brightness(.94); }
+  & #xp-categories button svg { box-sizing: content-box; padding-right: 4px; border-right: 1px solid #c9e2e188; }
   & .xp-card h2 { color: #f1fcff; font-size: 14px; }
   & .xp-profile-card summary { font-size: 14px; padding-block: 6px; }
   & .xp-board :is(label,.xp-row,.xp-card p,.xp-card small) { color: #e3f4f8; font-size: 13px; }
-  & .xp-card :is(button,select,input:not([type=checkbox],[type=range]),textarea) {
+  & .xp-card :is(input:not([type=checkbox],[type=range]),textarea) {
     background: var(--commande); color: white; border: 1px solid #9cdde474;
     border-radius: 5px; padding: 6px 8px; min-width: 0;
   }
   & #xp-categories button { padding: 8px 3px; }
-  & #xp-categories button[aria-pressed=true] { background: #32748785; border-color: #ffd267; box-shadow: var(--ambre); }
+  & .xp-card :is(button,select) { padding: 6px 8px; min-width: 0; }
   & .xp-card input::placeholder { color: #b1cbd4; }
   & #xp-editor { grid-template-columns: repeat(2,minmax(0,1fr)); align-items: end; }
   & #xp-editor input, & #xp-editor select { margin-top: 3px; }
@@ -102,7 +124,11 @@ body[data-vue="substances"] {
   & .xp-row > div { min-width: 0; overflow-wrap: anywhere; }
   & .xp-right { max-height: max(390px,68vh); scrollbar-color: #92afba #214758; }
   & .xp-right .xr-acc { max-height: none; overflow: visible; }
-  & .xr-acc .xr-item { background: #19475891; border: 1px solid #92ccdc55; border-left: 3px solid var(--xr-c); margin: 2px 0; border-radius: 4px; }
+  & .xp-board .xr-acc details.xr-item, & .xp-board details:not(.xr-item) > summary, & .xp-reference > summary {
+    background: var(--commande); border: 1px solid #bed7da; border-radius: 9px;
+    box-shadow: var(--relief-verre); padding: 5px 8px;
+  }
+  & .xp-board .xr-acc details.xr-item { border-left: 3px solid var(--xr-c); margin: 3px 0; padding: 0 4px; }
   & .xp-right summary { font-size: 13px; }
   & .xr-resume > summary { color: #66edee; }
   & .xp-graphes { background: none; border: 0; box-shadow: none; padding: 0; }
