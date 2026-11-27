@@ -1,5 +1,5 @@
-/* Décor commun des vues Maladies et Substances. */
-body:is([data-vue="maladies"], [data-vue="substances"]) {
+/* Décor commun des trois vues de l’explorateur. */
+body[data-vue] {
   --verre: linear-gradient(115deg, #23566894, #163f5270 60%, #39728578);
   --bord: #a2dee4bd;
   --commande: linear-gradient(#77bbcc42, #1c485b9c);
@@ -15,11 +15,11 @@ body:is([data-vue="maladies"], [data-vue="substances"]) {
   & .xp-vues button { padding: 8px clamp(12px,1.4vw,28px); font: 15px Arial,sans-serif; color: white; }
   & .xp-vues button[aria-pressed=true] { background: linear-gradient(#55829170,#576c636b); box-shadow: var(--ambre); }
   & .xp-board, & .xp-left { gap: 10px; }
-  & :is(.mx-card,.mx-droite,.xp-body,.mx-graphes .xg) {
+  & :is(.mx-card,.mx-droite,.sy-card,.sy-droite,.xp-body,.mx-graphes .xg) {
     background: var(--verre); border: 1px solid var(--bord); border-radius: 12px;
     box-shadow: inset 0 0 12px #a8f7ff1c, 0 1px 5px #002b3ba6;
   }
-  & :is(.mx-card,.mx-droite,.mx-graphes .xg) { backdrop-filter: blur(3px); padding: 12px; }
+  & :is(.mx-card,.mx-droite,.sy-card,.sy-droite,.mx-graphes .xg) { backdrop-filter: blur(3px); padding: 12px; }
   & .xp-body { height: max(410px,69vh); padding: 8px 7px 6px; background: #2e627425; }
   & #xa-stage { background: transparent; }
   & .xp-body.xa-ready #xa-stage { flex: 1; min-height: 0; height: auto; }
@@ -59,24 +59,24 @@ body:is([data-vue="maladies"], [data-vue="substances"]) {
   & :focus-visible { outline: 2px solid #ffdb83; outline-offset: 2px; }
 }
 @media (min-width: 1051px) {
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-board { grid-template-columns: minmax(230px,18fr) minmax(0,59fr) minmax(270px,21.6fr); grid-template-rows: auto auto; }
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-left { grid-row: 1 / 3; }
+  body[data-vue] .xp-board { grid-template-columns: minmax(230px,18fr) minmax(0,59fr) minmax(270px,21.6fr); grid-template-rows: auto auto; }
+  body[data-vue] .xp-left { grid-row: 1 / 3; }
 }
 @media (max-width: 1050px) {
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xa-presets { display: flex; }
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-body { height: max(380px,56vh); }
+  body[data-vue] .xa-presets { display: flex; }
+  body[data-vue] .xp-body { height: max(380px,56vh); }
 }
 @media (max-width: 570px) {
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-head { gap: 6px; flex-wrap: wrap; }
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-head a { font-size: 13px; }
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-vues button { font-size: 13px; padding: 6px 9px; }
-  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-board { grid-template-columns: minmax(0,1fr); }
+  body[data-vue] .xp-head { gap: 6px; flex-wrap: wrap; }
+  body[data-vue] .xp-head a { font-size: 13px; }
+  body[data-vue] .xp-vues button { font-size: 13px; padding: 6px 9px; }
+  body[data-vue] .xp-board { grid-template-columns: minmax(0,1fr); }
 }
 /* Les liens de navigation générale restent accessibles après le tableau. */
-body:is([data-vue="maladies"], [data-vue="substances"]) { display: flex; flex-direction: column; }
-body:is([data-vue="maladies"], [data-vue="substances"]) > main { width: 100%; box-sizing: border-box; }
-body:is([data-vue="maladies"], [data-vue="substances"]) > .prmr-routebar { order: 1; }
-body:is([data-vue="maladies"], [data-vue="substances"]) .mx-graphes .xg svg { height: auto; }
+body[data-vue] { display: flex; flex-direction: column; }
+body[data-vue] > main { width: 100%; box-sizing: border-box; }
+body[data-vue] > .prmr-routebar { order: 1; }
+body[data-vue] .mx-graphes .xg svg { height: auto; }
 
 body[data-vue="substances"] {
   & .xp-card:not(.xp-graphes), & .xp-graphes .xg {
@@ -122,4 +122,35 @@ body[data-vue="substances"] {
 }
 @media (max-width: 1050px) {
   body[data-vue="substances"] .xp-body { height: max(380px,56vh); }
+}
+
+body[data-vue="symptomes"] {
+  & .xp-card h2 { color: #f1fcff; font-size: 15px; }
+  & .sy-card, & .sy-droite { min-width: 0; }
+  & #sy-recherche { width: 100%; }
+  & #sy-groupes { scrollbar-color: #92afba #214758; }
+  & #sy-groupes > .sy-symptome { display: block; width: 100%; }
+  & #sy-groupes summary, & .sy-maladie summary {
+    padding: 8px 5px; color: #effaff; font-size: 14px;
+  }
+  & .xp-card button.sy-symptome {
+    padding: 6px 8px; font-size: 13px; border-radius: 5px; color: #eefaff;
+  }
+  & .sy-symptome:hover, & .sy-maladie summary:hover { background: #48809675; }
+  & .xp-card button.sy-symptome[aria-pressed=true], & .xp-card button.sy-puce,
+  & .xp-card button.sy-signe.sy-ok {
+    border: 1px solid #ffd267; background: #285869; color: white; box-shadow: var(--ambre);
+  }
+  & .xp-card :is(.sy-signe,.sy-effacer,.sy-plus) {
+    background: var(--commande); color: #edfaff; border-color: #9cdde47a;
+  }
+  & .sy-droite { max-height: max(410px,69vh); scrollbar-color: #92afba #214758; }
+  & .sy-maladie summary small { white-space: nowrap; }
+  & .sy-card .sy-vide, & .sy-droite :is(.sy-note,.sy-vide,.sy-resume) { color: #d5ebf3!important; }
+  & .sy-alerte { background: #461f1afa; border-radius: 4px; }
+  & .sy-droite .sy-liens a { color: #bdf8fb; }
+}
+@media (min-width: 901px) {
+  body[data-vue="symptomes"] .xp-board { grid-template-rows: auto; }
+  body[data-vue="symptomes"] .xp-left { grid-row: 1; }
 }
