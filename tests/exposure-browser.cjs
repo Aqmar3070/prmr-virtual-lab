@@ -25,8 +25,9 @@ const assert=require("node:assert/strict");
    await page.selectOption("#xa-focus",structure);
    assert.equal(await page.inputValue("#xa-focus"),structure);
   }
+  assert.equal(await page.locator(".xa-toolbar [data-structure]").count(),0);
   for(const structure of ["eye_l","foot_l","toes_l"]){
-   await page.click('[data-structure="'+structure+'"]');
+   await page.selectOption("#xa-focus",structure);
    assert.equal(await page.inputValue("#xa-focus"),structure);
   }
   await page.mouse.move(830,400);await page.mouse.wheel(0,-100);await page.click("#xa-reset");
@@ -84,7 +85,7 @@ const assert=require("node:assert/strict");
   await page.locator('.mx-ligne-d summary').first().click();
   await page.locator('[data-onglet=pistes]').click();await page.locator('[data-onglet=guerison]').click();
   await page.fill('#mx-recherche','rénale');await page.locator('.mx-maladie').first().click();await page.selectOption('#mx-stade',{index:1});
-  await page.locator('[data-structure=foot_l]').click();assert.equal(await page.inputValue('#xa-focus'),'foot_l');assert(await page.locator('#xa-stage').isVisible());await page.click('#mx-atlas');assert(!(await page.locator('#xa-stage').isVisible()));
+  await page.selectOption('#xa-focus','foot_l');assert.equal(await page.inputValue('#xa-focus'),'foot_l');assert(await page.locator('#xa-stage').isVisible());await page.click('#mx-atlas');assert(!(await page.locator('#xa-stage').isVisible()));
   for(const v of ['substances','symptomes','maladies'])await page.click('[data-choix-vue='+v+']');
   assert(await page.locator('#xa-stage canvas').isVisible());
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:'/tmp/atlas-maladies-mobile.png'});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.click('#xp-reperes');assert(await page.locator('#registre').evaluate(e=>e.open));

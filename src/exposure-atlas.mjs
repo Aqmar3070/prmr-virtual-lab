@@ -159,7 +159,6 @@ async function model(next){
   stage.parentNode.classList.add("xa-ready");resize();frame(null);$("xa-message").textContent=items.length+" structures · "+(ctx?"rendu 3D en points":"surfaces 3D")+" · molette sur la zone pour zoomer · glisser pour tourner · clic droit + glisser pour déplacer";
  }catch{if(id!==token)return;cache.delete(next);sex=null;$("xa-message").textContent="Atlas 3D indisponible · vue de référence affichée.";}
 }
-for(const bouton of document.querySelectorAll("[data-structure]"))bouton.onclick=()=>choose(bouton.dataset.structure);
 focus.onchange=()=>choose(focus.value);$("xa-isolate").onchange=paint;
 function zoom(factor){camera.zoom=T.MathUtils.clamp(camera.zoom*factor,.35,100);camera.updateProjectionMatrix();draw();}
 $("xa-in").onclick=()=>zoom(1.4);$("xa-out").onclick=()=>zoom(1/1.4);$("xa-reset").onclick=()=>choose("");
