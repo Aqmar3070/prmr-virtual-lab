@@ -175,7 +175,8 @@ main{padding:8px 10px}
 .mx-vide{font-style:italic}
 /* Volets repliables : une simple ligne, sans cadre épais */
 .xp-board details:not(.mx-ligne-d):not(.xr-item){border:0;border-top:1px solid #1d4655;border-radius:0;background:none;padding:6px 0 2px;margin:4px 0 0}
-.xp-board .xp-profile-card details,.xp-board #mx-fiche details{border-top:0;padding:0;margin:0}
+.xp-board .xp-profile-card details,.xp-board .xp-repli>details,.xp-board #mx-fiche details{border-top:0;padding:0;margin:0}
+#xp-dossier>details{margin-top:0;border-top:0;padding-top:0}
 .xp-board details[open]>summary{margin-bottom:5px}
 .xp-board details.mx-ligne-d{padding:0;margin:3px 0;background:#05192566;border:1px solid #1a4352;border-left:3px solid var(--mx-c);border-radius:4px}
 .xp-board details.mx-ligne-d[open]>summary{margin-bottom:2px;color:#fff}
