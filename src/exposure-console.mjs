@@ -257,7 +257,7 @@ function renderList(){
  const list=$("xp-list");list.replaceChildren();
  for(const [i,row] of rows.entries()){
   const s=lookup(row.id),box=node("div","");box.className="xp-row";
-  const label=node("div",s.name);label.append(node("small",quantiteTexte(s,row.qty)+" · J"+row.start+" à J"+row.end));
+  const label=node("div",s.name);if(row.exemple)label.append(node("small","Scénario d’exemple · quantité simulée"));label.append(node("small",quantiteTexte(s,row.qty)+" · J"+row.start+" à J"+row.end));
   if(row.label||row.caf!=null||row.abv!=null||row.sug!=null)label.append(node("small",[row.label,row.abv!=null?fmt(row.abv)+" % vol.":"",row.caf!=null?fmt(row.caf)+" mg caféine/100 mL":"",row.sug!=null?fmt(row.sug)+" g sucres/100 mL":""].filter(Boolean).join(" · ")));
   const edit=node("button","✎"),del=node("button","×");edit.ariaLabel="Modifier "+s.name;del.ariaLabel="Retirer "+s.name;
   edit.onclick=()=>openEditor(i);del.onclick=()=>{rows.splice(i,1);closeEditor();renderList();render();};box.append(label,edit,del);list.append(box);
@@ -311,7 +311,13 @@ function quantiteTexte(s,qty){
  if(!s.id.startsWith("cis"))return qty+" "+s.unit+"/j";
  const t=uniteMg(s);return qty+" "+forme(s)+"/j"+(t?" · "+fmt(qty*t)+" mg/j":"");
 }
-function openEditor(i){
+function retirerExemple(){
+ const i=rows.findIndex(r=>r.exemple);
+ if(i<0)return;
+ rows.splice(i,1);closeEditor();renderList();render();
+}
+function openEditor(i, focus=true){
+ if(i===null)retirerExemple();
  editing=i;const row=i===null?null:rows[i];if(row)family=lookup(row.id).family;
  categories();$("xp-search").value="";request++;search(row?.id);
  const val=row||entry($("xp-substance").value);
@@ -319,7 +325,7 @@ function openEditor(i){
  $("xp-bed").checked=!!row?.bed;$("xp-long").checked=!!row?.long;
  $("xp-substance").value=val.id;unit();
  for(const k of ["start","reduce","after","end"])$("xp-"+k).value=val[k];
- $("xp-dose").value=val.qty||"";$("xp-error").textContent="";$("xp-editor").hidden=false;$("xp-substance").focus();
+ $("xp-dose").value=val.qty||"";$("xp-error").textContent="";$("xp-editor").hidden=false;if(focus)$("xp-substance").focus();
  precedent={dose:val.qty,end:val.end};
 
 }
@@ -398,6 +404,11 @@ function ajouterPlantes(d){
  (d?.plantes||[]).forEach((pl,i)=>{if(!pl.latin&&!pl.commun)return;const id="ema:"+i;if(products.has(id))return;
   const s={id,name:[nomFrancais(pl),pl.commun,pl.latin].filter(Boolean).join(" · "),family:2,unit:"g",source:"EMA · monographie de plante"};products.set(id,s);index(s);});
 }
+// Le lien direct ouvre le scénario illustré. Une action pendant le chargement
+// donne la priorité à la saisie de l’utilisateur.
+let exempleDisponible=new URLSearchParams(location.search).get("vue")==="substances";
+function abandonnerExempleInitial(){exempleDisponible=false;}
+for(const type of ["pointerdown","keydown","input"])document.addEventListener(type,abandonnerExempleInitial,{once:true,capture:true});
 async function loadReferences(){
  try{
   const res=await fetch("./research-data/exposure-catalog.json.gz");if(!res.ok)throw Error();
@@ -406,7 +417,16 @@ async function loadReferences(){
   const refs=data.map(([id,name,family,unit,source,extra,ibuMg])=>({id,name,family,unit,source,active:id.startsWith("cis")?extra:undefined,nutrients:id.startsWith("al")?extra:undefined,ibuMg}));
   for(const s of refs)products.set(s.id,s);
   for(const s of refs)index(s);
-  chargerMonographies().then(d=>{monographies=d;monographiesDemandees=true;ajouterPlantes(d);if(!$("xp-editor").hidden)search($("xp-substance").value);}).catch(()=>{});
+  chargerMonographies().then(d=>{
+   monographies=d;monographiesDemandees=true;ajouterPlantes(d);
+   if(exempleDisponible && document.body.dataset.vue==="substances" && !rows.length && $("xp-editor").hidden){
+    const i=d.plantes.findIndex(pl=>pl.latin==="Anisi aetheroleum");
+    if(i>=0){
+     rows.push({...entry("ema:"+i,100),exemple:true});
+     openEditor(0,false);renderList();render();
+    }
+   }else if(!$("xp-editor").hidden)search($("xp-substance").value);
+  }).catch(()=>{});
   $("xp-catalog-status").textContent=products.size.toLocaleString("fr-FR")+" références locales · BDPM (France), Ciqual 2025 (Anses) et types de produits.";
   if(!$("xp-editor").hidden)search($("xp-substance").value);
  }catch{$("xp-catalog-status").textContent="Catalogue étendu indisponible. Recherche en ligne et saisie personnelle accessibles.";}
@@ -450,6 +470,7 @@ loadReferences().then(()=>initialiserAssistant({
  },
  definirSymptomes(liste){symptomes=liste;render();},
  appliquer(prises){
+  retirerExemple();
   // Une relecture remplace les prises du récit, tout en conservant les saisies manuelles.
   for(let i=rows.length-1;i>=0;i--)if(rows[i].origine==="recit")rows.splice(i,1);
   for(const {produit,row} of prises){if(!lookup(produit.id))index(produit);rows.push({...row,origine:"recit"});}
