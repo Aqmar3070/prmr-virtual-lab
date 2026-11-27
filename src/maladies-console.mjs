@@ -19,7 +19,10 @@ const APPUI={obtenue:{rang:0,libelle:"Guérison ou rémission obtenue",court:"Ob
 const COURT={forte:"Forte",moyenne:"Moyenne",faible:"Faible",cas:"Cas",preclinique:"Préclinique",theorique:"Théorique"};
 const cleAppui=g=>g.type==="obtenue"?"obtenue":g.appui;
 // Meilleure piste de guérison d'une maladie : donne la couleur du point dans la liste.
-const meilleure=m=>(m.guerison||[]).map(cleAppui).sort((a,b)=>APPUI[a].rang-APPUI[b].rang)[0]||"";
+// Niveau d'une maladie dans la liste : guérison obtenue, sinon le meilleur appui (hypothèse de guérison
+// ou essai clinique fort / moyen / faible), sinon « à l'étude » (cas, préclinique, théorie seulement).
+const DEPUIS_FORCE={forte:"fort",moyenne:"moyen",faible:"faible"};
+const meilleure=m=>[...(m.guerison||[]).map(cleAppui),...m.substances.map(s=>DEPUIS_FORCE[s.force]).filter(Boolean)].sort((a,b)=>APPUI[a].rang-APPUI[b].rang)[0]||"etude";
 
 function envoyerAtlas(){
  if(!maladie||!active())return;
@@ -205,7 +208,8 @@ function rendreDroite(){
 
 // ---- Graphiques : uniquement des valeurs publiées ou des comptes du registre ----
 const RANG_PREUVE={forte:6,moyenne:5,faible:4,cas:3,preclinique:2,theorique:1};
-const COULEUR_TYPE={medicament:"#5fc8ff",naturel:"#3fe6b0",regime:"#ffc94a",geste:"#d7a6ff"};
+// Une seule teinte : la couleur suit le niveau de preuve, l’opacité distingue le type.
+const COULEUR_TYPE={medicament:"#eefbfa",naturel:"#eefbfa",regime:"#eefbfa",geste:"#eefbfa"},OPACITE_TYPE={medicament:1,naturel:.72,regime:.48,geste:.3};
 const coupe=(t,n)=>t.length>n?t.slice(0,n-1)+"…":t;
 
 function rendreGraphes(liste){
@@ -214,11 +218,11 @@ function rendreGraphes(liste){
  const niveaux=Object.keys(FORCES),max1=Math.max(1,...niveaux.map(k=>liste.filter(s=>s.force===k).length));
  g1.setAttribute("viewBox","0 0 360 "+(30+niveaux.length*26));
  niveaux.forEach((k,i)=>{const y=8+i*26;let x=96;
-  g1.append(svg("text",{x:90,y:y+12,"text-anchor":"end",fill:FORCES[k].couleur},COURT[k]));
-  for(const t of Object.keys(COULEUR_TYPE)){const n=liste.filter(s=>s.force===k&&s.type===t).length;if(!n)continue;const w=n/max1*230;g1.append(svg("rect",{x,y,width:Math.max(2,w-1),height:16,rx:2,fill:COULEUR_TYPE[t]}));x+=w;}
+  g1.append(svg("text",{x:90,y:y+12,"text-anchor":"end"},COURT[k]));
+  for(const t of Object.keys(COULEUR_TYPE)){const n=liste.filter(s=>s.force===k&&s.type===t).length;if(!n)continue;const w=n/max1*230;g1.append(svg("rect",{x,y,width:Math.max(2,w-1),height:16,rx:2,fill:FORCES[k].couleur,"fill-opacity":OPACITE_TYPE[t]}));x+=w;}
   const tot=liste.filter(s=>s.force===k).length;g1.append(svg("text",{x:x+5,y:y+12},tot));
  });
- let lx=10;for(const [t,c] of Object.entries(COULEUR_TYPE).filter(([t])=>t!=="geste"||liste.some(s=>s.type==="geste"))){const y=20+niveaux.length*26;const g=liste.some(s=>s.type==="geste");g1.append(svg("rect",{x:lx,y:y-9,width:10,height:10,rx:2,fill:c}),svg("text",{x:lx+14,y},{medicament:"Médicament",naturel:"Plante, naturel",regime:g?"Mode de vie":"Régime, mode de vie",geste:"Geste"}[t]));lx+=t==="medicament"?100:g?(t==="regime"?90:105):115;}
+ let lx=10;for(const [t,c] of Object.entries(COULEUR_TYPE).filter(([t])=>t!=="geste"||liste.some(s=>s.type==="geste"))){const y=20+niveaux.length*26;const g=liste.some(s=>s.type==="geste");g1.append(svg("rect",{x:lx,y:y-9,width:10,height:10,rx:2,fill:c,"fill-opacity":OPACITE_TYPE[t]}),svg("text",{x:lx+14,y},{medicament:"Médicament",naturel:"Plante, naturel",regime:g?"Mode de vie":"Régime, mode de vie",geste:"Geste"}[t]));lx+=t==="medicament"?100:g?(t==="regime"?90:105):115;}
  // 2. Effet mesuré : rapports de risque publiés avec IC 95 % (échelle log).
  const g2=$("mx-g-effet");g2.replaceChildren();
  const chiffres=liste.map(s=>({s,r:rapportPublie(s)})).filter(x=>x.r).sort((a,b)=>a.r.rr-b.r.rr);
@@ -229,19 +233,19 @@ function rendreGraphes(liste){
   const h=34+chiffres.length*22,lo=Math.log(bas*0.8),hi=Math.log(hautMax*1.15),X=v=>150+180*(Math.log(v)-lo)/(hi-lo);
   g2.setAttribute("viewBox","0 0 360 "+h);
   for(const v of [0.01,0.05,0.1,0.25,0.5,1,2].filter(v=>Math.log(v)>=lo&&Math.log(v)<=hi)){g2.append(svg("path",{d:"M"+X(v)+" 4V"+(h-18),stroke:v===1?"#9fe9f1":"#23485a","stroke-dasharray":v===1?"":"2 3"}),svg("text",{x:X(v),y:h-6,"text-anchor":"middle"},String(v).replace(".",",")));}
-  g2.append(svg("text",{x:X(1)-4,y:h-20,"text-anchor":"end",fill:"#3fe6b0"},"◀ bénéfice"));
+  g2.append(svg("text",{x:X(1)-4,y:h-20,"text-anchor":"end",fill:"#6fd0d1"},"◀ bénéfice"));
   chiffres.forEach(({s,r},i)=>{const y=14+i*22,c=FORCES[s.force].couleur;
-   g2.append(svg("text",{x:144,y:y+4,"text-anchor":"end"},coupe(s.nom,22)),svg("path",{d:"M"+X(r.bas)+" "+y+"H"+X(r.haut),stroke:c,"stroke-width":2}),svg("rect",{x:X(r.rr)-4,y:y-4,width:8,height:8,fill:c}),svg("text",{x:Math.min(352,X(r.haut)+4),y:y+4,fill:c},String(r.rr).replace(".",",")));});
+   g2.append(svg("text",{x:144,y:y+4,"text-anchor":"end"},coupe(s.nom,22)),svg("path",{d:"M"+X(r.bas)+" "+y+"H"+X(r.haut),stroke:c,"stroke-width":2}),svg("rect",{x:X(r.rr)-4,y:y-4,width:8,height:8,fill:c}),svg("text",{x:Math.min(352,X(r.haut)+4),y:y+4},String(r.rr).replace(".",",")));});
  }
  // 3. Balance : niveau de preuve du bénéfice (droite) et précautions écrites dans la fiche (gauche).
  const g3=$("mx-g-balance");g3.replaceChildren();
  const lignes=liste.slice(0,10),h3=30+lignes.length*22,mid=170;
  g3.setAttribute("viewBox","0 0 360 "+h3);
- g3.append(svg("text",{x:mid-4,y:12,"text-anchor":"end",fill:"#ffb15c"},"◀ précautions"),svg("text",{x:mid+4,y:12,fill:"#3fe6b0"},"preuve ▶"),svg("path",{d:"M"+mid+" 18V"+(h3-4),stroke:"#9fe9f1"}));
+ g3.append(svg("text",{x:mid-4,y:12,"text-anchor":"end",fill:"#ffb15c"},"◀ précautions"),svg("text",{x:mid+4,y:12,fill:"#6fd0d1"},"preuve ▶"),svg("path",{d:"M"+mid+" 18V"+(h3-4),stroke:"#9fe9f1"}));
  lignes.forEach((s,i)=>{const y=22+i*22,p=(s.prudence?1:0)+(s.condition?1:0),b=RANG_PREUVE[s.force];
   g3.append(svg("text",{x:6,y:y+11},coupe(s.nom,17)));
   if(p)g3.append(svg("rect",{x:mid-p*24,y,width:p*24-1,height:14,rx:2,fill:"#ff9a3c"}));
-  g3.append(svg("rect",{x:mid+1,y,width:b*19,height:14,rx:2,fill:FORCES[s.force].couleur}),svg("text",{x:mid+b*19+5,y:y+11,fill:FORCES[s.force].couleur},COURT[s.force]));
+  g3.append(svg("rect",{x:mid+1,y,width:b*19,height:14,rx:2,fill:FORCES[s.force].couleur}),svg("text",{x:mid+b*19+5,y:y+11},COURT[s.force]));
  });
  const t=svg("title",{},"Droite : niveau de preuve publié (forte à théorique). Gauche : nombre de précautions écrites dans la fiche (prudence, population étudiée restreinte). Ce n’est pas un score de risque.");g3.append(t);
 }

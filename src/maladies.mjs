@@ -2,12 +2,12 @@
 // classées par force de preuve. Règle : rien n'est classé sans essai cité.
 // Trois niveaux d'essais chez l'humain, puis les pistes à confirmer.
 export const FORCES={
- forte:{rang:0,libelle:"Efficacité forte",groupe:"Essais cliniques chez l'humain",couleur:"#3fe6b0"},
- moyenne:{rang:1,libelle:"Efficacité moyenne",groupe:"Essais cliniques chez l'humain",couleur:"#5fc8ff"},
- faible:{rang:2,libelle:"Efficacité faible ou incertaine",groupe:"Essais cliniques chez l'humain",couleur:"#c4b5fd"},
- cas:{rang:3,libelle:"Cas rapportés et témoignages",groupe:"Observations individuelles, sans groupe de comparaison",couleur:"#ff9f7a"},
- preclinique:{rang:4,libelle:"Préclinique",groupe:"Études chez l'animal ou sur cellules",couleur:"#ffc94a"},
- theorique:{rang:5,libelle:"Piste théorique",groupe:"Hypothèses à tester",couleur:"#a9bcc6"}
+ forte:{rang:0,libelle:"Efficacité forte",groupe:"Essais cliniques chez l'humain",couleur:"#139aa1"},
+ moyenne:{rang:1,libelle:"Efficacité moyenne",groupe:"Essais cliniques chez l'humain",couleur:"#34b6bb"},
+ faible:{rang:2,libelle:"Efficacité faible ou incertaine",groupe:"Essais cliniques chez l'humain",couleur:"#6fd0d1"},
+ cas:{rang:3,libelle:"Cas rapportés et témoignages",groupe:"Observations individuelles, sans groupe de comparaison",couleur:"#a7e5e3"},
+ preclinique:{rang:4,libelle:"Préclinique",groupe:"Études chez l'animal ou sur cellules",couleur:"#cdf1ef"},
+ theorique:{rang:5,libelle:"Piste théorique",groupe:"Hypothèses à tester",couleur:"#eefbfa"}
 };
 export const TYPES={medicament:"Médicament",naturel:"Substance naturelle",regime:"Régime ou mode de vie",geste:"Geste médical ou chirurgical"};
 

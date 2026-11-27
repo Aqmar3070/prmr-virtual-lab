@@ -91,7 +91,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=615f863f75">
+<link rel="stylesheet" href="./exposure-console.css?v=294171d3ad">
 <link rel="stylesheet" href="./maladies-laboratoire.css?v=b538260d1e">
 </head>
 <body>
@@ -110,7 +110,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
   <div data-ref-resultats aria-live="polite"></div>
   <p><a href="https://www.who.int/fr/news-room/fact-sheets" target="_blank" rel="noopener noreferrer">Toutes les fiches de santé publique OMS</a> · <a href="https://www.msdmanuals.com/fr/professional" target="_blank" rel="noopener noreferrer">Manuel MSD professionnel</a></p>
   <small>Classification internationale des maladies, onzième révision (CIM-11), OMS, 2019. Index français MMS 2026-01, incluant les catégories et codes complémentaires. <a href="https://icd.who.int/browse/2026-01/mms/fr" target="_blank" rel="noopener noreferrer">Classification officielle</a> · <a href="https://creativecommons.org/licenses/by-nd/3.0/igo/" target="_blank" rel="noopener noreferrer">CC BY-ND 3.0 IGO</a>. Index des fiches OMS et des liens MSD du 25 novembre 2026.</small></details>
-  <p class="mx-cle">Meilleure piste : <i data-appui="obtenue"></i>guérison <i data-appui="fort"></i>fort <i data-appui="moyen"></i>moyen <i data-appui="faible"></i>faible <i></i>à l’étude</p></section>
+  <p class="mx-cle">Niveau : <i data-appui="obtenue"></i>guérison <i data-appui="fort"></i>fort <i data-appui="moyen"></i>moyen <i data-appui="faible"></i>faible <i data-appui="etude"></i>à l’étude</p></section>
  <section class="xp-card mx-card" data-vue="maladies"><div id="mx-fiche"></div>
   <label class="mx-ligne">Stade <select id="mx-stade"></select></label>
   <details id="mx-profil" class="mx-profil" hidden><summary>Profil du patient</summary><div id="mx-profil-champs"></div><p id="mx-profil-avert" class="mx-etiq"></p></details>
@@ -241,7 +241,7 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
 <script type="module" src="./src/exposure-console.mjs?v=70eacfe128"></script>
-<script type="module" src="./src/maladies-console.mjs?v=a617c77c9c"></script>
+<script type="module" src="./src/maladies-console.mjs?v=07f276f25e"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=1ec8be35b9"></script>
 <script type="module" src="./src/symptomes-console.mjs?v=1723ec45b1"></script>
 </body>
