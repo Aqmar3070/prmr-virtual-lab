@@ -169,8 +169,7 @@ document.addEventListener("xp-atlas",e=>{signals=e.detail.signals;if(e.detail.se
 document.addEventListener("xp-focus",e=>choose(e.detail));model(document.querySelector("#sex-choice [aria-pressed=true]")?.dataset.sex||"male");
 document.dispatchEvent(new Event("xp-atlas-ready"));
 
-// Le laboratoire reste vide à l’ouverture de Maladies. Une commande anatomique
-// affiche l’atlas interactif existant, que le bouton Atlas PRMR permet de replier.
+// Le bouton Atlas PRMR permet de replier le modèle affiché à l’ouverture.
 const figure = stage.closest("figure");
 const basculeAtlas = $("mx-atlas");
 function afficherAtlas(visible) {
@@ -185,4 +184,4 @@ figure.addEventListener("click", event => {
 figure.addEventListener("change", event => {
  if (document.body.dataset.vue === "maladies" && event.target === focus) afficherAtlas(true);
 });
-document.addEventListener("xp-vue", () => afficherAtlas(false));
+document.addEventListener("xp-vue", () => afficherAtlas(true));
