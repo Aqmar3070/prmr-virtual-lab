@@ -233,3 +233,22 @@ body[data-vue] .prmr-tab-hint { color: #d3e9ef; }
 .xp-outils { align-self: start; }
 body[data-vue] .xp-outils > .xp-card { padding: 8px 12px; margin: 0; }
 body[data-vue] > main > #registre:not([open]) { background: transparent; }
+
+/* Cadrans du bas alignés : même épaisseur pour l'assistant, le dossier et le registre ;
+   le registre démarre sous l'assistant ; rubriques compactes dans la colonne de gauche. */
+body[data-vue] .xp-outils > .xp-card > details { margin: 0; padding: 0; border: 0; }
+body[data-vue] .xp-outils > .xp-card, body[data-vue] > main > #registre:not([open]) { padding: 6px 10px; }
+body[data-vue] :is(.xp-outils > .xp-card > details > summary, #registre > summary) {
+  font-size: 14px; line-height: 20px; padding: 6px 8px; margin: 0;
+}
+body[data-vue="substances"] .xp-card.xp-time { padding: 8px 12px; }
+body[data-vue] .prmr-tab { padding: 6px 12px; }
+body[data-vue] .prmr-tab-label { font-size: 14px; }
+body[data-vue] .prmr-tab-hint { display: none; }
+@media (min-width: 1051px) {
+  body[data-vue] > main { column-gap: 10px; }
+  body[data-vue="substances"] > main { grid-template-columns: minmax(255px,17.4fr) minmax(0,60fr) minmax(280px,21.2fr); }
+  body[data-vue="maladies"] > main { grid-template-columns: minmax(230px,18fr) minmax(0,59fr) minmax(270px,21.6fr); }
+  body[data-vue] > main > #registre:not([open]) { grid-column: 2 / -1; }
+}
+body[data-vue="maladies"] #registre > summary { border: 1px solid #bed7da; border-radius: 9px; background: #ffffff10; }
