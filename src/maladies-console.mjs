@@ -10,7 +10,7 @@ const el=(tag,cls,texte)=>{const n=document.createElement(tag);if(cls)n.classNam
 const svg=(tag,attributs,texte)=>{const n=document.createElementNS("http://www.w3.org/2000/svg",tag);for(const [k,v] of Object.entries(attributs))n.setAttribute(k,String(v));if(texte!==undefined)n.textContent=texte;return n;};
 const lien=(src,reg)=>{const s=reg.sources[src];if(!s)return null;const a=el("a","",s.source);a.href=s.url;a.target="_blank";a.rel="noopener";return a;};
 const params=new URLSearchParams(location.search);
-let registre=null,maladie=null,stade=params.get("stade")||"",onglet="guerison";
+let registre=null,maladie=null,stade=params.get("stade")||"",onglet="substances";
 const patient={cause:"",dfg:null,rac:null,bicarbonate:null};
 const sexe=()=>document.querySelector("#sex-choice [aria-pressed=true]")?.dataset.sex||"male";
 const active=()=>document.body.dataset.vue==="maladies";

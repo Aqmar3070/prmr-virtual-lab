@@ -64,6 +64,17 @@ const assert=require("node:assert/strict");
   await page.fill("#sy-recherche","Fièvre");
   await page.locator("#sy-groupes").getByRole("button",{name:"Fièvre",exact:true}).click();
   assert.ok(await page.locator("#sy-alerte").isVisible());
+  await page.setViewportSize({width:1905,height:825});
+  await page.goto('http://127.0.0.1:4173/exposures.html?maladie=dt2&vue=maladies#rubrique-methode');
+  await page.locator('.xa-ready').waitFor();await page.locator('.mx-ligne-d summary').first().waitFor();
+  assert.equal(await page.locator('#xa-stage').isVisible(),false);
+  assert.equal(await page.locator('[data-onglet=substances]').getAttribute('aria-pressed'),'true');
+  await page.locator('.mx-ligne-d summary').first().click();
+  await page.locator('[data-onglet=pistes]').click();await page.locator('[data-onglet=guerison]').click();
+  await page.fill('#mx-recherche','rénale');await page.locator('.mx-maladie').first().click();await page.selectOption('#mx-stade',{index:1});
+  await page.locator('[data-structure=foot_l]').click();assert.equal(await page.inputValue('#xa-focus'),'foot_l');assert(await page.locator('#xa-stage').isVisible());await page.click('#mx-atlas');assert(!(await page.locator('#xa-stage').isVisible()));
+  for(const v of ['substances','symptomes','maladies'])await page.click('[data-choix-vue='+v+']');
+  await page.setViewportSize({width:390,height:844});await page.screenshot({path:'/tmp/atlas-maladies-mobile.png'});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.click('#xp-reperes');assert(await page.locator('#registre').evaluate(e=>e.open));
   assert.deepEqual(erreurs,[]);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
