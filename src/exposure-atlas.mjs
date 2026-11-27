@@ -121,7 +121,7 @@ async function preparerModele(next){
   for(const cote of ["l","r"]){
    const femur="femur_"+cote;
    const correction=recalage(new T.Box3().setFromObject(reference.getObjectByName(femur)),new T.Box3().setFromObject(corps.getObjectByName(femur)));
-   for(const groupe of ["quadriceps","hamstrings","adductors"]){
+   for(const groupe of ["quadriceps","hamstrings","adductors","gluteal"]){
     const nom=groupe+"_"+cote, muscle=reference.getObjectByName(nom);
     // Les attributs quantifiés doivent être convertis en flottants avant le recalage.
     const geo=muscle.geometry.clone(), pos=geo.getAttribute("position");

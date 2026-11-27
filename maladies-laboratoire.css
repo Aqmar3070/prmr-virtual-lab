@@ -256,8 +256,8 @@ body[data-vue] {
   }
   & .xa-toolbar button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
   & .xa-toolbar svg { width: 16px; height: 16px; flex: none; }
-  & #sex-choice { gap: 0; border: 1px solid #a9d6db; border-radius: 999px; }
-  & #sex-choice button { border: 0; border-radius: 999px; }
+  & #sex-choice { gap: 0; padding: 2px; border: 1px solid #7198a3; border-radius: 999px; background: #102c38; box-shadow: inset 0 1px 3px #051923; }
+  & #sex-choice button { border: 1px solid transparent; border-radius: 999px; background: transparent; box-shadow: none; }
   & #sex-choice button[aria-pressed=true] { color: #062d35; background: linear-gradient(#73ffde,#1cddbd); box-shadow: none; }
   & :is(#xa-in,#xa-out) { width: 32px; height: 32px; padding: 0; }
   & .xa-controls input[type=checkbox] { accent-color: #39e2d6; width: 15px; height: 15px; }
