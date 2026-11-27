@@ -259,7 +259,12 @@ function renderList(){
   const s=lookup(row.id),box=node("div","");box.className="xp-row";
   const label=node("div",s.name);if(row.exemple)label.append(node("small","Scénario d’exemple · quantité simulée"));label.append(node("small",quantiteTexte(s,row.qty)+" · J"+row.start+" à J"+row.end));
   if(row.label||row.caf!=null||row.abv!=null||row.sug!=null)label.append(node("small",[row.label,row.abv!=null?fmt(row.abv)+" % vol.":"",row.caf!=null?fmt(row.caf)+" mg caféine/100 mL":"",row.sug!=null?fmt(row.sug)+" g sucres/100 mL":""].filter(Boolean).join(" · ")));
-  const edit=node("button","✎"),del=node("button","×");edit.ariaLabel="Modifier "+s.name;del.ariaLabel="Retirer "+s.name;
+  const edit=node("button",""),del=node("button","");
+  for(const [button,path] of [[edit,"M4 16 15 5l4 4L8 20H4z M13 7l4 4"],[del,"M3 6h18 M9 6V3h6v3 M6 6l1 15h10l1-15 M10 9v9 M14 9v9"]]){
+   const icon=svg("svg",{viewBox:"0 0 24 24","aria-hidden":"true"});
+   icon.append(svg("path",{d:path}));button.append(icon);
+  }
+  del.className="xp-remove";edit.ariaLabel="Modifier "+s.name;del.ariaLabel="Retirer "+s.name;
   edit.onclick=()=>openEditor(i);del.onclick=()=>{rows.splice(i,1);closeEditor();renderList();render();};box.append(label,edit,del);list.append(box);
  }
  if(!rows.length)list.append(node("p","Aucune prise dans ce scénario."));
