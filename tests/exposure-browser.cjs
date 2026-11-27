@@ -31,6 +31,8 @@ const assert=require("node:assert/strict");
   }
   await page.mouse.move(830,400);await page.mouse.wheel(0,-100);await page.click("#xa-reset");
   assert.equal(await page.inputValue("#xa-focus"),"");
+  // L’assistant et le dossier sont repliés par défaut : on les ouvre.
+  await page.click("#xa-volet > summary");await page.click("#xa-dossier-volet > summary");
   await page.fill("#xa-note","Caféine, 80 mg par jour");await page.click("#xa-read");
   await page.locator("#xa-proposals button").first().click();
   assert.equal(await page.inputValue("#xp-dose"),"80");

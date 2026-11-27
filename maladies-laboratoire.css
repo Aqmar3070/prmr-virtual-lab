@@ -136,6 +136,9 @@ body[data-vue="substances"] {
   & button:enabled:active { filter: brightness(.94); }
   & .xp-card h2 { color: #f1fcff; font-size: 14px; }
   & .xp-profile-card summary { font-size: 14px; padding-block: 6px; }
+  /* Volets repliés (assistant, dossier) : même format compact que « Profil du sujet ». */
+  & .xp-repli summary { font-size: 14px; padding-block: 6px; }
+  & .xp-repli > details[open] > summary { margin-bottom: 8px; }
   & .xp-board :is(label,.xp-row,.xp-card p,.xp-card small) { color: #e3f4f8; font-size: 13px; }
   & .xp-card :is(input:not([type=checkbox],[type=range]),textarea) {
     background: var(--commande); color: white; border: 1px solid #9cdde474;
