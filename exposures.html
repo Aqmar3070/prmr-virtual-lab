@@ -92,7 +92,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
 <link rel="stylesheet" href="./exposure-console.css?v=9ac98d7041">
-<link rel="stylesheet" href="./maladies-laboratoire.css?v=ac33e201c6">
+<link rel="stylesheet" href="./maladies-laboratoire.css?v=6819799a05">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
@@ -141,17 +141,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <label>Jour d’arrêt<input id="xp-end" type="number" min="1" max="731" required></label>
  <p id="xp-error" role="alert"></p><button type="submit">Enregistrer</button> <button type="button" id="xp-cancel">Annuler</button></form>
  <small class="xp-catalogue"><span id="xp-catalog-status" role="status">Chargement du catalogue…</span> · <a href="https://base-donnees-publique.medicaments.gouv.fr/">BDPM</a> · <a href="https://doi.org/10.57745/RDMHWY">Ciqual 2025</a></small></section>
-<section class="xp-card xp-assistant xp-repli" data-vue="substances"><details id="xa-volet"><summary>Assistant de recherche</summary>
-<label for="xa-note">Question ou prise à examiner</label><textarea id="xa-note" rows="2" placeholder="Ex. : caféine, 80 mg par jour"></textarea>
-<div class="xp-actions"><button id="xa-read">Analyser le texte</button><button id="xa-mic">Dicter</button><button id="xa-speak">Écouter</button></div>
-<p id="xa-answer" role="status"></p><div id="xa-proposals"></div></details></section>
-<section class="xp-card xp-repli" id="xp-dossier" data-vue="substances"><details id="xa-dossier-volet"><summary>Dossier de recherche</summary>
-<label>Document à examiner <input type="file" id="xa-file" accept=".pdf,.txt,image/jpeg,image/png,image/webp"></label>
-<p>Le fichier est lu dans ce navigateur. Le texte reconnu alimente la recherche et reste modifiable. Sur une image, seuls les mots lisibles sont extraits.</p>
-<button id="xa-extract">Relire le fichier</button>
-<details><summary>Projet privé</summary><button id="xa-projects-load">Charger mes projets</button>
-<label>Projet <select id="xa-projects"></select></label><button id="xa-save">Enregistrer le scénario</button><button id="xa-history">Consulter les résultats enregistrés</button><div id="xa-history-list"></div></details>
-<p role="status" id="xa-file-status"></p></details></section></div>
+</div>
  <figure class="xp-body atlas-visible"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button>
  <span class="xa-presets" aria-label="Vues rapprochées"><button data-structure="eye_l">Œil</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></span></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
  <defs><radialGradient id="xp-base"><stop stop-color="#4bf6ff" stop-opacity=".7"/><stop offset="1" stop-color="#00bfff" stop-opacity="0"/></radialGradient>
@@ -184,6 +174,17 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
   <figure class="xg"><figcaption>Effet mesuré dans les essais <small>HR ou RR, IC 95 %</small></figcaption><svg id="mx-g-effet" role="img" aria-label="Rapports de risque publiés"></svg><p class="xg-vide" id="mx-g-effet-vide"></p></figure>
   <figure class="xg"><figcaption>Balance bénéfice / précautions</figcaption><svg id="mx-g-balance" role="img" aria-label="Niveau de preuve du bénéfice et précautions écrites"></svg></figure></section>
  <section class="xp-card xp-time" data-vue="substances"><button id="xp-play" aria-label="Lire la chronologie">▶</button><input id="xp-day" type="range" min="0" max="30" value="0" aria-label="Jour du scénario"><output id="xp-time-label">J0</output><label>Durée <input id="xp-duration" type="number" min="1" max="730" value="30"> j</label><button id="xp-compare" aria-pressed="true">Comparer</button></section>
+ <div class="xp-outils" data-vue="substances"><section class="xp-card xp-assistant xp-repli" data-vue="substances"><details id="xa-volet"><summary>Assistant de recherche</summary>
+<label for="xa-note">Question ou prise à examiner</label><textarea id="xa-note" rows="2" placeholder="Ex. : caféine, 80 mg par jour"></textarea>
+<div class="xp-actions"><button id="xa-read">Analyser le texte</button><button id="xa-mic">Dicter</button><button id="xa-speak">Écouter</button></div>
+<p id="xa-answer" role="status"></p><div id="xa-proposals"></div></details></section>
+<section class="xp-card xp-repli" id="xp-dossier" data-vue="substances"><details id="xa-dossier-volet"><summary>Dossier de recherche</summary>
+<label>Document à examiner <input type="file" id="xa-file" accept=".pdf,.txt,image/jpeg,image/png,image/webp"></label>
+<p>Le fichier est lu dans ce navigateur. Le texte reconnu alimente la recherche et reste modifiable. Sur une image, seuls les mots lisibles sont extraits.</p>
+<button id="xa-extract">Relire le fichier</button>
+<details><summary>Projet privé</summary><button id="xa-projects-load">Charger mes projets</button>
+<label>Projet <select id="xa-projects"></select></label><button id="xa-save">Enregistrer le scénario</button><button id="xa-history">Consulter les résultats enregistrés</button><div id="xa-history-list"></div></details>
+<p role="status" id="xa-file-status"></p></details></section></div>
 </div>
 <details class="xp-reference" id="registre"><summary>Consulter le registre scientifique et les sources</summary>
  <header class="r13-head">
@@ -236,6 +237,8 @@ function openRegister(){if(location.hash==="#registre"||register.contains(docume
 window.addEventListener("hashchange",openRegister);openRegister();
 let mounted=false;function mount(){if(register.open&&!mounted){mounted=true;mountExposureExplorer("r13-explorer");}}
 register.addEventListener("toggle",mount);mount();
+// Les rubriques « La méthode » et « Les sources » sont rangées dans le registre : un clic les rend visibles.
+document.addEventListener("click",e=>{if(e.target.closest(".prmr-tab"))register.open=true;});
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
