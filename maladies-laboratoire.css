@@ -1,5 +1,5 @@
-/* Vue Maladies – laboratoire bleu fumé. */
-body[data-vue="maladies"] {
+/* Décor commun des vues Maladies et Substances. */
+body:is([data-vue="maladies"], [data-vue="substances"]) {
   --verre: linear-gradient(115deg, #23566894, #163f5270 60%, #39728578);
   --bord: #a2dee4bd;
   --commande: linear-gradient(#77bbcc42, #1c485b9c);
@@ -24,7 +24,7 @@ body[data-vue="maladies"] {
   & #xa-stage { background: transparent; }
   & .xp-body.xa-ready #xa-stage { flex: 1; min-height: 0; height: auto; }
   & .xp-body > svg { flex: 1; min-height: 0; }
-  & .xp-body:not(.atlas-visible) :is(#xa-stage,svg) { visibility: hidden; pointer-events: none; }
+  &[data-vue="maladies"] .xp-body:not(.atlas-visible) :is(#xa-stage,svg) { visibility: hidden; pointer-events: none; }
   & .xa-controls { margin-top: auto; }
   & .xa-controls small, & .xp-body figcaption, & .xp-body a, & .xa-controls label { color: #eefaff; font-size: 13px; }
   & #mx-atlas { color: inherit; background: transparent; border: 0; text-decoration: underline; font: inherit; cursor: pointer; }
@@ -59,21 +59,67 @@ body[data-vue="maladies"] {
   & :focus-visible { outline: 2px solid #ffdb83; outline-offset: 2px; }
 }
 @media (min-width: 1051px) {
-  body[data-vue="maladies"] .xp-board { grid-template-columns: minmax(230px,18fr) minmax(0,59fr) minmax(270px,21.6fr); grid-template-rows: auto auto; }
-  body[data-vue="maladies"] .xp-left { grid-row: 1 / 3; }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-board { grid-template-columns: minmax(230px,18fr) minmax(0,59fr) minmax(270px,21.6fr); grid-template-rows: auto auto; }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-left { grid-row: 1 / 3; }
 }
 @media (max-width: 1050px) {
-  body[data-vue="maladies"] .xa-presets { display: flex; }
-  body[data-vue="maladies"] .xp-body { height: max(380px,56vh); }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xa-presets { display: flex; }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-body { height: max(380px,56vh); }
 }
 @media (max-width: 570px) {
-  body[data-vue="maladies"] .xp-head { gap: 6px; flex-wrap: wrap; }
-  body[data-vue="maladies"] .xp-head a { font-size: 13px; }
-  body[data-vue="maladies"] .xp-vues button { font-size: 13px; padding: 6px 9px; }
-  body[data-vue="maladies"] .xp-board { grid-template-columns: minmax(0,1fr); }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-head { gap: 6px; flex-wrap: wrap; }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-head a { font-size: 13px; }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-vues button { font-size: 13px; padding: 6px 9px; }
+  body:is([data-vue="maladies"], [data-vue="substances"]) .xp-board { grid-template-columns: minmax(0,1fr); }
 }
 /* Les liens de navigation générale restent accessibles après le tableau. */
-body[data-vue="maladies"] { display: flex; flex-direction: column; }
-body[data-vue="maladies"] > main { width: 100%; box-sizing: border-box; }
-body[data-vue="maladies"] > .prmr-routebar { order: 1; }
-body[data-vue="maladies"] .mx-graphes .xg svg { height: auto; }
+body:is([data-vue="maladies"], [data-vue="substances"]) { display: flex; flex-direction: column; }
+body:is([data-vue="maladies"], [data-vue="substances"]) > main { width: 100%; box-sizing: border-box; }
+body:is([data-vue="maladies"], [data-vue="substances"]) > .prmr-routebar { order: 1; }
+body:is([data-vue="maladies"], [data-vue="substances"]) .mx-graphes .xg svg { height: auto; }
+
+body[data-vue="substances"] {
+  & .xp-card:not(.xp-graphes), & .xp-graphes .xg {
+    min-width: 0; background: var(--verre); border: 1px solid var(--bord);
+    border-radius: 10px; padding: 12px; backdrop-filter: blur(3px);
+    box-shadow: inset 0 0 12px #a8f7ff1c, 0 1px 5px #002b3ba6;
+  }
+  & .xp-body { height: max(415px,71vh); }
+  & .xp-card h2 { color: #f1fcff; font-size: 14px; }
+  & .xp-profile-card summary { font-size: 14px; padding-block: 6px; }
+  & .xp-board :is(label,.xp-row,.xp-card p,.xp-card small) { color: #e3f4f8; font-size: 13px; }
+  & .xp-card :is(button,select,input:not([type=checkbox],[type=range]),textarea) {
+    background: var(--commande); color: white; border: 1px solid #9cdde474;
+    border-radius: 5px; padding: 6px 8px; min-width: 0;
+  }
+  & #xp-categories button { padding: 8px 3px; }
+  & #xp-categories button[aria-pressed=true] { background: #32748785; border-color: #ffd267; box-shadow: var(--ambre); }
+  & .xp-card input::placeholder { color: #b1cbd4; }
+  & #xp-editor { grid-template-columns: repeat(2,minmax(0,1fr)); align-items: end; }
+  & #xp-editor input, & #xp-editor select { margin-top: 3px; }
+  & #xp-editor .xp-actions { align-items: start; flex-direction: column; }
+  & #xp-editor .xp-actions button { margin: 0; }
+  & .xp-row > div { min-width: 0; overflow-wrap: anywhere; }
+  & .xp-right { max-height: max(390px,68vh); scrollbar-color: #92afba #214758; }
+  & .xp-right .xr-acc { max-height: none; overflow: visible; }
+  & .xr-acc .xr-item { background: #19475891; border: 1px solid #92ccdc55; border-left: 3px solid var(--xr-c); margin: 2px 0; border-radius: 4px; }
+  & .xp-right summary { font-size: 13px; }
+  & .xr-resume > summary { color: #66edee; }
+  & .xp-graphes { background: none; border: 0; box-shadow: none; padding: 0; }
+  & .xp-graphes .xg { height: max(150px,18.5vh); overflow: auto; scrollbar-width: thin; }
+  & .xg figcaption { font-size: 14px; color: white; }
+  & .xg figcaption small { color: #dfedf3; }
+  & #xp-chart-item { flex: 1 0 100%; max-width: 100%; }
+  & .xr-legende { align-self: start; }
+}
+@media (min-width: 1051px) {
+  body[data-vue="substances"] .xp-board {
+    grid-template-columns: minmax(255px,17.4fr) minmax(0,60fr) minmax(280px,21.2fr);
+    grid-template-rows: max(415px,71vh) auto auto 1fr;
+  }
+  body[data-vue="substances"] .xp-left { grid-row: 1 / 5; }
+  body[data-vue="substances"] .xp-graphes { margin-top: 8px; }
+}
+@media (max-width: 1050px) {
+  body[data-vue="substances"] .xp-body { height: max(380px,56vh); }
+}
