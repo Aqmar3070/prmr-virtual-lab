@@ -92,13 +92,13 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
 <link rel="stylesheet" href="./exposure-console.css?v=615f863f75">
+<link rel="stylesheet" href="./maladies-laboratoire.css?v=b538260d1e">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
 <nav class="xp-vues" aria-label="Vue de l’explorateur"><button type="button" data-choix-vue="substances" aria-pressed="true">Substances</button><button type="button" data-choix-vue="maladies" aria-pressed="false">Maladies</button><button type="button" data-choix-vue="symptomes" aria-pressed="false">Symptômes</button></nav>
 <a id="xp-reperes" href="#registre">Repères publiés</a></header>
 <main>
- </div></section>
 <div class="xp-board" id="exposure-console">
  <div class="xp-left">
  <section class="xp-card sy-card" data-vue="symptomes"><div class="mx-tete"><h2>Symptômes</h2><input id="sy-recherche" type="search" autocomplete="off" placeholder="Rechercher" aria-label="Rechercher un symptôme"></div>
@@ -161,7 +161,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <ellipse cx="310" cy="962" rx="271" ry="43" fill="url(#xp-base)"/><g fill="none" stroke="#42cee8"><ellipse cx="310" cy="962" rx="235" ry="33"/><ellipse cx="310" cy="963" rx="190" ry="23" stroke-width="3"/><ellipse cx="310" cy="964" rx="267" ry="40" opacity=".4"/></g>
  <image id="xp-body-image" href="assets/exposure/male.webp" width="620" height="980"/><g id="xp-marks"></g></svg>
  <div class="xa-controls"><small id="xa-message" role="status">Chargement de l’atlas 3D…</small><div id="xa-layers"></div><label><input type="checkbox" id="xa-isolate"> Isoler la sélection</label></div>
- <figcaption><a href="./assets/human3d/ATTRIBUTION.md">Atlas PRMR · crédits anatomiques</a></figcaption></figure>
+ <figcaption><button type="button" data-vue="maladies" id="mx-atlas" aria-controls="xa-stage" aria-pressed="false">Atlas PRMR</button><span data-vue="maladies"> · </span><a href="./assets/human3d/ATTRIBUTION.md">crédits anatomiques</a></figcaption></figure>
  <section class="xp-card xp-right" data-vue="substances"><h2>Analyse par zone <output id="xp-day-tag"></output></h2>
  <div id="xp-signals"></div><div id="xp-reason" aria-live="polite"></div>
  <details class="xp-apports"><summary>Apports du jour</summary><div id="xp-day-table"></div></details><details><summary>Comment lire les probabilités</summary><p>Les chiffres sont des risques relatifs publiés, recalculés pour la dose saisie : « risque × 2,2 » signifie que, dans les populations étudiées, la maladie survient 2,2 fois plus souvent qu’en l’absence d’alcool. La fourchette (IC 95 %) donne l’incertitude. Ce n’est pas un diagnostic : l’âge, la génétique, le tabac et le poids modifient le risque réel.</p></details></section>
@@ -241,8 +241,8 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
 <script type="module" src="./src/exposure-console.mjs?v=70eacfe128"></script>
-<script type="module" src="./src/maladies-console.mjs?v=334d34fc6a"></script>
-<script type="module" src="./src/exposure-atlas.mjs?v=f9a4eeb3d0"></script>
+<script type="module" src="./src/maladies-console.mjs?v=a617c77c9c"></script>
+<script type="module" src="./src/exposure-atlas.mjs?v=8cedf1b23b"></script>
 <script type="module" src="./src/symptomes-console.mjs?v=1723ec45b1"></script>
 </body>
 </html>
