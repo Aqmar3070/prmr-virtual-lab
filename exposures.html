@@ -91,8 +91,8 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 @media(max-width:1020px){.r13-layout{grid-template-columns:1fr}.r13-controls{position:static}}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
-<link rel="stylesheet" href="./exposure-console.css?v=9ac98d7041">
-<link rel="stylesheet" href="./maladies-laboratoire.css?v=240c40584d">
+<link rel="stylesheet" href="./exposure-console.css?v=43f76e117d">
+<link rel="stylesheet" href="./maladies-laboratoire.css?v=0b5aafce29">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
@@ -142,8 +142,8 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <p id="xp-error" role="alert"></p><button type="submit">Enregistrer</button> <button type="button" id="xp-cancel">Annuler</button></form>
  <small class="xp-catalogue"><span id="xp-catalog-status" role="status">Chargement du catalogue…</span> · <a href="https://base-donnees-publique.medicaments.gouv.fr/">BDPM</a> · <a href="https://doi.org/10.57745/RDMHWY">Ciqual 2025</a></small></section>
 </div>
- <figure class="xp-body atlas-visible"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true">Homme</button><button type="button" data-sex="female" aria-pressed="false">Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset">Vue entière</button>
- <span class="xa-presets" aria-label="Vues rapprochées"><button data-structure="eye_l">Œil</button><button data-structure="foot_l">Pied</button><button data-structure="toes_l">Orteils</button></span></div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
+ <figure class="xp-body atlas-visible"><div class="xa-toolbar"><div id="sex-choice"><button type="button" data-sex="male" aria-pressed="true"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6 M20 4l-6 6 M15 14a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/></svg>Homme</button><button type="button" data-sex="female" aria-pressed="false"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8a5 5 0 1 1-10 0 5 5 0 0 1 10 0 M12 13v8 M9 18h6"/></svg>Femme</button></div><select id="xa-focus" aria-label="Centrer la vue"><option>Corps entier</option></select><button type="button" id="xa-in" aria-label="Agrandir">＋</button><button type="button" id="xa-out" aria-label="Réduire">−</button><button type="button" id="xa-reset"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V3h6 M15 3h6v6 M21 15v6h-6 M9 21H3v-6"/></svg>Vue entière</button>
+ </div><div id="xa-stage"></div><svg viewBox="0 0 620 1015" role="img" aria-label="Corps entier et zones concernées">
  <defs><radialGradient id="xp-base"><stop stop-color="#4bf6ff" stop-opacity=".7"/><stop offset="1" stop-color="#00bfff" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-bad"><stop stop-color="#fff0aa"/><stop offset=".35" stop-color="#ffa123" stop-opacity=".94"/><stop offset="1" stop-color="#ff4523" stop-opacity="0"/></radialGradient>
  <radialGradient id="xp-high"><stop stop-color="#fff5c0"/><stop offset=".32" stop-color="#ff4c39"/><stop offset="1" stop-color="#f1243f" stop-opacity="0"/></radialGradient>
@@ -158,7 +158,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <section class="xp-card xp-right sy-droite" data-vue="symptomes"><h2>Maladies possibles <b id="sy-n"></b></h2>
   <p id="sy-alerte" class="sy-alerte" role="alert" hidden>Signe d'alerte : si c'est actuel, appelez immédiatement les urgences.</p>
   <div id="sy-resultats" aria-live="polite"></div><div id="sy-affiner"></div><p id="sy-note" class="sy-note"></p></section>
- <section class="xp-card xp-right mx-droite" data-vue="maladies"><div class="mx-onglets" role="tablist"><button type="button" data-onglet="guerison" aria-pressed="true">Guéris <b id="mx-n-guerison"></b></button><button type="button" data-onglet="substances" aria-pressed="false">Testés <b id="mx-n-substances"></b></button><button type="button" data-onglet="pistes" aria-pressed="false">Pistes <b id="mx-n-pistes"></b></button><output id="mx-titre-stade"></output></div>
+ <section class="xp-card xp-right mx-droite" data-vue="maladies"><div class="mx-onglets" role="tablist"><button type="button" data-onglet="guerison" aria-pressed="true"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/></svg><span>Guéris <b id="mx-n-guerison"></b></span></button><button type="button" data-onglet="substances" aria-pressed="false"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6 M10 3v6L4 19q-1 2 2 2h12q3 0 2-2l-6-10V3 M7 15h10"/></svg><span>Testés <b id="mx-n-substances"></b></span></button><button type="button" data-onglet="pistes" aria-pressed="false"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10a6 6 0 1 1-12 0 6 6 0 0 1 12 0 M15 15l6 6"/></svg><span>Pistes <b id="mx-n-pistes"></b></span></button><output id="mx-titre-stade"></output></div>
   <div id="mx-substances" aria-live="polite"></div></section>
  <section class="xp-card xp-graphes" data-vue="substances">
   <figure class="xg"><figcaption>Évolution dans le temps</figcaption>
@@ -245,7 +245,7 @@ document.addEventListener("click",e=>{if(e.target.closest(".prmr-tab"))register.
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
 <script type="module" src="./src/exposure-console.mjs?v=e90e84542a"></script>
 <script type="module" src="./src/maladies-console.mjs?v=07f276f25e"></script>
-<script type="module" src="./src/exposure-atlas.mjs?v=1ec8be35b9"></script>
+<script type="module" src="./src/exposure-atlas.mjs?v=8bc2cda048"></script>
 <script type="module" src="./src/symptomes-console.mjs?v=1723ec45b1"></script>
 </body>
 </html>

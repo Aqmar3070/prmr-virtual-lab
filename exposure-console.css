@@ -199,7 +199,7 @@ main{padding:8px 10px}
 .mx-formulation{font-style:italic;color:#e2f6fa;border-left:2px solid var(--mx-n5);padding-left:8px;margin:6px 0}
 .mx-hyp-avert{border:1px dashed #5f9aa6;padding:6px 8px;border-radius:4px;margin-bottom:8px}
 
-body[data-vue=symptomes] :is(#registre,#xp-reperes,.prmr-tabs){display:none!important}
+
 
 .prmr-refs{margin:10px 0;padding:8px 0;border-block-start:1px solid #285264}.prmr-refs summary{cursor:pointer;color:#a2edf8;font-weight:600}
 .prmr-refs ul{padding-inline-start:18px;margin:5px 0 10px}.prmr-refs li{margin:4px 0;overflow-wrap:anywhere}
