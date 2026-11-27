@@ -92,7 +92,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
 <link rel="stylesheet" href="./exposure-console.css?v=294171d3ad">
-<link rel="stylesheet" href="./maladies-laboratoire.css?v=2d108f0c1d">
+<link rel="stylesheet" href="./maladies-laboratoire.css?v=7a43d52df5">
 </head>
 <body>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
@@ -139,7 +139,7 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
  <label>Jour de réduction<input id="xp-reduce" type="number" min="0" max="730" required></label>
  <label>Quantité après réduction<input id="xp-after" type="number" min="0" step="any" required></label>
  <label>Jour d’arrêt<input id="xp-end" type="number" min="1" max="731" required></label>
- <p id="xp-error" role="alert"></p><button>Enregistrer</button> <button type="button" id="xp-cancel">Annuler</button></form>
+ <p id="xp-error" role="alert"></p><button type="submit">Enregistrer</button> <button type="button" id="xp-cancel">Annuler</button></form>
  <small class="xp-catalogue"><span id="xp-catalog-status" role="status">Chargement du catalogue…</span> · <a href="https://base-donnees-publique.medicaments.gouv.fr/">BDPM</a> · <a href="https://doi.org/10.57745/RDMHWY">Ciqual 2025</a></small></section>
 <section class="xp-card xp-assistant" data-vue="substances"><h2>Assistant de recherche</h2>
 <label for="xa-note">Question ou prise à examiner</label><textarea id="xa-note" rows="2" placeholder="Ex. : caféine, 80 mg par jour"></textarea>
@@ -240,7 +240,7 @@ register.addEventListener("toggle",mount);mount();
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
-<script type="module" src="./src/exposure-console.mjs?v=c2573a7eb4"></script>
+<script type="module" src="./src/exposure-console.mjs?v=e90e84542a"></script>
 <script type="module" src="./src/maladies-console.mjs?v=07f276f25e"></script>
 <script type="module" src="./src/exposure-atlas.mjs?v=1ec8be35b9"></script>
 <script type="module" src="./src/symptomes-console.mjs?v=1723ec45b1"></script>
