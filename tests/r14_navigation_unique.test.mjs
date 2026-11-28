@@ -46,7 +46,7 @@ test("l'explorateur clinique s'annonce sur l'accueil", () => {
   /* Depuis le 28/11/2026, l'accueil présente trois espaces ; l'explorateur
      clinique (exposures.html) y a sa carte, au même rang que les deux autres. */
   const home = read("index.html");
-  assert.match(home, /<a class="cadran" data-place="haut" href="\.\/exposures\.html">/);
+  assert.match(home, /<a class="cadran" data-place="grand" href="\.\/exposures\.html">/);
   assert.match(home, /Explorateur clinique/);
   const route = read("src/prmr_route.mjs");
   assert.match(route, /file: "exposures\.html"/);

@@ -9,19 +9,25 @@ function collapse() {
   if (reduced.matches) restart();
 }
 
+function expand(card) {
+  if (expanded === card) return;
+  collapse();
+  const box = card.getBoundingClientRect();
+  const center = box.left + box.width / 2;
+  const available = Math.min(center, document.documentElement.clientWidth - center);
+  const limit = card.dataset.place === "grand" ? 1.2 : 1.55;
+  card.style.setProperty("--zoom", Math.min(limit, 2 * available / card.offsetWidth));
+  expanded = card;
+  card.classList.add("is-expanded");
+  if (reduced.matches) restart();
+}
+
 for (const card of cards) {
-  card.addEventListener("click", event => {
-    if (expanded === card || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-    event.preventDefault();
-    collapse();
-    const box = card.getBoundingClientRect();
-    const center = box.left + box.width / 2;
-    const available = Math.min(center, document.documentElement.clientWidth - center);
-    const limit = card.dataset.place === "grand" ? 1.2 : 1.55;
-    card.style.setProperty("--zoom", Math.min(limit, 2 * available / box.width));
-    expanded = card;
-    card.classList.add("is-expanded");
-    if (reduced.matches) restart();
+  card.addEventListener("pointerenter", event => {
+    if (event.pointerType !== "touch") expand(card);
+  });
+  card.addEventListener("focus", () => {
+    if (card.matches(":focus-visible")) expand(card);
   });
   card.addEventListener("pointerleave", event => {
     if (expanded === card && event.pointerType !== "touch") collapse();
