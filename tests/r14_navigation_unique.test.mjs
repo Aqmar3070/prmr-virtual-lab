@@ -42,19 +42,14 @@ test("la barre de rubriques se place au premier niveau de la page", () => {
     "la barre doit remonter hors des grilles, sinon elle est coincée dans une colonne");
 });
 
-test("l'explorateur de doses s'annonce sur l'accueil", () => {
-  /* Il n'apparaissait que dans le plus petit lien du coin supérieur droit, à
-     côté de « Code source », sous le nom « Expositions ». L'accueil a été
-     refait depuis : le bloc d'annonce a laissé place à un panneau de console
-     et à un bouton. L'exigence tient toujours — l'explorateur doit s'annoncer
-     sur l'accueil, pas s'y cacher. */
+test("l'explorateur clinique s'annonce sur l'accueil", () => {
+  /* Depuis le 28/11/2026, l'accueil présente trois espaces ; l'explorateur
+     clinique (exposures.html) y a sa carte, au même rang que les deux autres. */
   const home = read("index.html");
-  assert.match(home, /<a href="\.\/exposures\.html" aria-label="Explorer une exposition"><title>[^<]+<\/title><polygon /,
-    "l'explorateur doit avoir son panneau sur la console d'accueil");
-  assert.match(home, /href="\.\/exposures\.html"/);
+  assert.match(home, /<a class="es-espace es-verre" href="\.\/exposures\.html">/);
+  assert.match(home, /Explorateur clinique/);
   const route = read("src/prmr_route.mjs");
-  assert.match(route, /label: "Doses et effets", primary: true/,
-    "« Expositions » est un mot d'épidémiologiste, et le lien ne peut pas rester secondaire");
+  assert.match(route, /file: "exposures\.html"/);
 });
 
 test("la version géométrique ne s'affiche pas avant le scanner", () => {

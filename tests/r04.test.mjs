@@ -102,7 +102,7 @@ test("Live interactive dashboard is linked from the lab, and displays correct ca
  assert.ok(script.includes("setSpecies("));
  assert.ok(visual.includes("pointerdown"));
  assert.ok(css.includes("@media"));
- const main=readFileSync(new URL("index.html",root),"utf8");
+ const main=readFileSync(new URL("atelier.html",root),"utf8");
  assert.ok(main.includes('href="./species-r04.html"'));
 });
 

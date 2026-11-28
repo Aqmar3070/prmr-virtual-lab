@@ -167,7 +167,7 @@ async function ouvrirRubrique(page,selector){
    assert.ok(await page.locator(".prmr-tablist").count()<=1,path+" ne doit pas avoir deux barres de rubriques");
   }
   step="une seule navigation sur l'accueil";
-  await page.goto("http://127.0.0.1:4173/index.html?v=prmr-r08",{waitUntil:"domcontentloaded"});
+  await page.goto("http://127.0.0.1:4173/atelier.html?v=prmr-r08",{waitUntil:"domcontentloaded"});
   await page.waitForSelector(".prmr-routebar",{timeout:15000});
   for(const file of ["preclinical.html","species-r04.html","screening.html","risk-r03.html","clinical.html"]){
    assert.equal(await page.locator('aside.sidebar a[href^="./'+file+'"]').count(),0,

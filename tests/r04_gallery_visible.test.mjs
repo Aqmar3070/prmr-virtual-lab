@@ -51,7 +51,7 @@ test("Home route enters a functional species and molecule workbench",()=>{
  assert.ok(app.includes("initMolecules()"));
 });
 test("La page d'accueil oriente vers les cinq étapes de recherche sans dupliquer les modules",()=>{
- const home=readFileSync(new URL("index.html",base),"utf8");
+ const home=readFileSync(new URL("atelier.html",base),"utf8");
  /* L'accueil est une console : les cinq étapes ne sont plus des cartes
     « prmr-stage » mais les panneaux et le rail de cette console. Ce que cette
     vérification protège n'a pas changé — chaque étape doit mener à son module
