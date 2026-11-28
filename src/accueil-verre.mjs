@@ -5,6 +5,7 @@ function promote(card) {
   if (card === large) return;
   large.dataset.place = card.dataset.place;
   card.dataset.place = "grand";
+  if (reduced.matches) restart();
 }
 
 // Keep the original target clickable while its illustration moves away.
@@ -40,6 +41,42 @@ const dust = Array.from({length:136}, (_,i) => ({
   end: i % 2, angle:i*2.39996, speed:.11+(i%7)*.019,
   offset:((i*53)%137)/137, width: .4+(i%5)*.15
 }));
+const wires = [...scene.querySelectorAll(".liaisons path")];
+const vertices = [[71,7],[229,7],[295,120],[229,233],[71,233],[5,120]];
+
+// Intersect the line from the hexagon centre with its actual outer stroke.
+function attachWire(card, wire, tip, origin) {
+  const box = card.getBoundingClientRect();
+  const cx = box.left + box.width/2 - origin.left;
+  const cy = box.top + box.height/2 - origin.top;
+  const dx = tip.x-cx, dy = tip.y-cy;
+  const corners = vertices.map(([x,y]) => [(x/300-.5)*box.width,(y/240-.5)*box.height]);
+  for(let i=0;i<corners.length;i++) {
+    const [x,y] = corners[i], [nx,ny] = corners[(i+1)%corners.length];
+    const sx=nx-x, sy=ny-y, det=dx*sy-dy*sx;
+    if(Math.abs(det)<.001) continue;
+    const t=(x*sy-y*sx)/det, u=(x*dy-y*dx)/det;
+    if(t<0 || u<0 || u>1) continue;
+    const ex=cx+t*dx, ey=cy+t*dy;
+    const lead=(tip.x-ex)*.24;
+    wire.setAttribute("d",`M${ex} ${ey}h${lead}L${tip.x-lead} ${tip.y}H${tip.x}`);
+    return;
+  }
+}
+
+function glassTube(a,b,r,base) {
+  const dx=b.x-a.x, dy=b.y-a.y, len=Math.hypot(dx,dy);
+  if(len<.01) return;
+  const nx=-dy*r/len, ny=dx*r/len;
+  const g=ctx.createLinearGradient(a.x-nx,a.y-ny,a.x+nx,a.y+ny);
+  for (const [stop,color] of base) g.addColorStop(stop,color);
+  ctx.strokeStyle=g;ctx.lineWidth=r*2;ctx.lineCap="round";
+  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+}
+const front=[[0,"#cbffed"],[.13,"#548b81"],[.36,"#258071"],[.55,"#a8f8d4"],[.67,"#f2fff3"],[.78,"#82cdbf"],[1,"#356c72"]];
+const rear=[[0,"#91d5cc"],[.22,"#285f67"],[.6,"#67aa91"],[.78,"#bee8da"],[1,"#366d73"]];
+const rungs=[[0,"#749da6"],[.32,"#63bbaa"],[.56,"#e0fff2"],[1,"#387883"]];
+
 let frame;
 function render(time) {
   const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -53,32 +90,43 @@ function render(time) {
   ctx.clearRect(0,0,w,h);
   const seconds = reduced.matches ? 0 : time/1000;
   const parts = [];
-  const radius = Math.min(w*.15,h*.105);
+  const radius = Math.min(w*.21,h*.13);
   function point(t,strand) {
-    const a = seconds*.85 + t*circle*1.45 + strand*Math.PI;
-    const taper = .25+.75*Math.min(1,t*7,(1-t)*7);
-    return {x:w*(.24+.52*t)+Math.cos(a)*radius*taper,
-      y:h*(.89-.78*t)+Math.cos(a)*radius*taper*.32, z:Math.sin(a)};
+    const angle = seconds*.8 + t*circle*1.75 + strand*Math.PI;
+    const taper = .22+.78*Math.min(1,t*6,(1-t)*6);
+    const offset=Math.cos(angle)*radius*taper;
+    return {x:w*(.24+.52*t)+offset, y:h*(.89-.78*t)+offset*.35,
+      z:Math.sin(angle), taper};
   }
-  for(let i=0;i<=92;i++){
-    const t=i/92, a=point(t,0), b=point(t,1);
-    if (i%4===2) parts.push({a,b,z:0,rung:true});
-    for(const p of [a,b]) parts.push({a:p,z:p.z,rung:false});
-  }
-  parts.sort((a,b)=>a.z-b.z);
-  for(const {a,b,z,rung} of parts) {
-    if(rung) {
-      const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y+.001);
-      g.addColorStop(0,"#b9ffe7");g.addColorStop(.48,"#599f91");g.addColorStop(1,"#cffff3");
-      ctx.strokeStyle=g;ctx.lineWidth=Math.max(1.2,radius*.08);
-      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
-    } else {
-      const r=Math.max(1.5,radius*(.131+.025*z));
-      const g=ctx.createRadialGradient(a.x-r*.32,a.y-r*.45,0,a.x,a.y,r);
-      g.addColorStop(0,"#f3fff5");g.addColorStop(.35,z>0?"#b1ffda":"#84d5b1");g.addColorStop(.74,"#45a897");g.addColorStop(1,"#205b68");
-      ctx.fillStyle=g;ctx.beginPath();ctx.arc(a.x,a.y,r,0,circle);ctx.fill();
+  for (let i=0;i<96;i++) {
+    for(const strand of [0,1]){
+      const a=point(i/96,strand), b=point((i+1)/96,strand);
+      parts.push({a,b,z:(a.z+b.z)/2, backbone:true});
+    }
+    if(i%4===2){
+      const a=point(i/96,0), b=point(i/96,1);
+      // Two half-bars meet at a narrow optical seam in each base pair.
+      for(const [start,end] of [[0,.48],[.52,1]]){
+        const mix=k=>({x:a.x+(b.x-a.x)*k,y:a.y+(b.y-a.y)*k,z:a.z+(b.z-a.z)*k});
+        parts.push({a:mix(start),b:mix(end),z:mix((start+end)/2).z,backbone:false});
+      }
     }
   }
+  parts.sort((a,b)=>a.z-b.z);
+  for(const part of parts) {
+    const {a,b,z,backbone}=part;
+    const thickness=backbone ? radius*.145*(.55+.45*a.taper)*(1+.14*z) : radius*.052;
+    glassTube(a,b,thickness,backbone ? (z>0?front:rear) : rungs);
+  }
+  const origin=scene.getBoundingClientRect(), box=canvas.getBoundingClientRect();
+  cards.forEach((card,i)=>{
+    const slot=card.dataset.place;
+    const t=slot==="gauche"?.52:slot==="haut"?.79:.28;
+    const sides=[point(t,0),point(t,1)];
+    sides.sort((a,b)=> slot==="gauche"?a.x-b.x:b.x-a.x);
+    const p=sides[0];
+    attachWire(card,wires[i],{x:box.left-origin.left+p.x,y:box.top-origin.top+p.y},origin);
+  });
   for(const d of dust) {
     const f=(seconds*d.speed+d.offset)%1, p=point(d.end,0), spread=f*radius*.72;
     const x=p.x+Math.cos(d.angle)*spread+(d.end?1:-1)*f*w*.055;
