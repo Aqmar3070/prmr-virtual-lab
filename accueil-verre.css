@@ -6,7 +6,8 @@ body.es {background: url("./assets/exposure/laboratoire-bleu.webp") center / cov
 .scene {width:min(95vw,124vh,69rem);margin:0 auto;aspect-ratio:1100/530;position:relative;isolation:isolate}
 .liaisons {position:absolute;width:100%;height:100%;inset:0;pointer-events:none}
 .helice {position:absolute;left:28%;top:19%;width:18%;height:57%;pointer-events:none}
-.cadran {position:absolute;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2%;text-decoration:none;transform:translate(-50%,-50%);container-type:inline-size;transition:left .55s ease,top .55s ease,width .55s ease,height .55s ease;clip-path:polygon(23% 0,77% 0,100% 50%,77% 100%,23% 100%,0 50%);text-align:center}
+.cadran {position:absolute;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2%;text-decoration:none;transform:translate(-50%,-50%);container-type:inline-size;transform-origin:center;transition:transform .28s ease-out;clip-path:polygon(23% 0,77% 0,100% 50%,77% 100%,23% 100%,0 50%);text-align:center}
+.cadran.is-expanded {transform:translate(-50%,-50%) scale(var(--zoom));z-index:2}
 .cadran[data-place=gauche] {left:17%;top:45%;width:28%;height:45%}
 .cadran[data-place=haut] {left:56%;top:20%;width:24%;height:40%}
 .cadran[data-place=grand] {left:78%;top:63%;width:44%;height:74%}
@@ -23,7 +24,7 @@ body.es {background: url("./assets/exposure/laboratoire-bleu.webp") center / cov
  .es-head {justify-content:center;gap:0;padding:.4rem}
  .es-nav {margin:auto;justify-content:center;flex-wrap:wrap}
  .es-nav a {padding:.5rem;font-size:.88rem}
- .scene {width:min(100%,31rem);aspect-ratio:4 / 5;margin-top:1rem}
+ .scene {width:min(85%,31rem);aspect-ratio:4 / 5;margin-top:1rem}
  .cadran[data-place=gauche] {left:25%;top:27%;width:46%;height:31%}
  .cadran[data-place=haut] {left:76%;top:16%;width:46%;height:31%}
  .cadran[data-place=grand] {left:60%;top:71%;width:79%;height:52%}

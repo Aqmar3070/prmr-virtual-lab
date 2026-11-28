@@ -1,37 +1,41 @@
 const scene = document.querySelector(".scene");
 const cards = [...scene.querySelectorAll(".cadran")];
-function promote(card) {
-  const large = cards.find(item => item.dataset.place === "grand");
-  if (card === large) return;
-  large.dataset.place = card.dataset.place;
-  card.dataset.place = "grand";
+let expanded = null;
+
+function collapse() {
+  if (!expanded) return;
+  expanded.classList.remove("is-expanded");
+  expanded = null;
   if (reduced.matches) restart();
 }
 
-// Keep the original target clickable while its illustration moves away.
-let held = null;
-scene.addEventListener("pointermove", event => {
-  if (event.pointerType === "touch") return;
-  if (held && Math.hypot(event.clientX - held.x, event.clientY - held.y) < 18) return;
-  held = null;
-  const card = event.target.closest(".cadran");
-  if (card && card.dataset.place !== "grand") {
-    held = {card, x:event.clientX, y:event.clientY};
-    promote(card);
-  }
-});
-scene.addEventListener("pointerleave", () => { held = null; });
-scene.addEventListener("click", event => {
-  if (held && event.detail && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) {
-    event.preventDefault();
-    location.assign(held.card.href);
-  }
-});
 for (const card of cards) {
-  card.addEventListener("focus", () => {
-    if (card.matches(":focus-visible")) promote(card);
+  card.addEventListener("click", event => {
+    if (expanded === card || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    collapse();
+    const box = card.getBoundingClientRect();
+    const center = box.left + box.width / 2;
+    const available = Math.min(center, document.documentElement.clientWidth - center);
+    const limit = card.dataset.place === "grand" ? 1.2 : 1.55;
+    card.style.setProperty("--zoom", Math.min(limit, 2 * available / box.width));
+    expanded = card;
+    card.classList.add("is-expanded");
+    if (reduced.matches) restart();
   });
+  card.addEventListener("pointerleave", event => {
+    if (expanded === card && event.pointerType !== "touch") collapse();
+  });
+  card.addEventListener("blur", () => { if (expanded === card) collapse(); });
 }
+document.addEventListener("pointerdown", event => {
+  if (expanded && !expanded.contains(event.target)) collapse();
+});
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") collapse();
+});
+window.addEventListener("resize", collapse);
+window.addEventListener("pageshow", collapse);
 
 const canvas = scene.querySelector("canvas");
 const ctx = canvas.getContext("2d");
