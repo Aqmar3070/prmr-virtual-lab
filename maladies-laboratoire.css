@@ -288,3 +288,14 @@ body[data-vue="maladies"] {
 
 /* Réserver le cadre du modèle sans peindre la silhouette de secours au chargement. */
 body[data-vue] .xp-body:not(.xa-fallback) > svg { visibility:hidden; }
+
+/* Menu des trois espaces, en haut à droite, comme sur l'accueil, le préclinique et Molécules. */
+body[data-vue] .xp-espaces { display: flex; gap: 3px; margin-left: auto; }
+body[data-vue] .xp-head .xp-espaces a { position: relative; color: #eafaff; font-size: 15px; text-decoration: none; padding: 8px clamp(10px,1.1vw,20px); }
+body[data-vue] .xp-head .xp-espaces a[aria-current="page"] { color: #ffcd70; font-weight: 700; }
+body[data-vue] .xp-espaces a[aria-current="page"]::after {
+  content: ""; position: absolute; left: 4%; right: 4%; bottom: -1px; height: 4px; pointer-events: none;
+  clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%);
+  background: linear-gradient(90deg, #ffb13b00, #ffc158 18%, #fff4cf 50%, #ffc158 82%, #ffb13b00);
+}
+body[data-vue] .xp-head #xp-reperes { margin-left: 8px; font-size: 13px; }
