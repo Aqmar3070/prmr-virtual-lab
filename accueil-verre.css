@@ -12,10 +12,11 @@ body.es {background: url("./assets/exposure/laboratoire-bleu.webp") center / cov
 .cadran[data-place=grand] {z-index:3;left:78%;top:63%;width:44%;height:74%}
 .bord {position:absolute;inset:0;width:100%;height:100%;z-index:-1}
 .cadran img {width:75%;height:54%;object-fit:contain;pointer-events:none}
-.cadran span {font-size:clamp(.72rem,5.1cqw,.9rem);font-weight:550;line-height:1.13;max-width:54%;text-wrap:balance;text-shadow:0 1px 5px #05202a}
+.cadran[href="./exposures.html"] img {height:62%}
+.cadran span {position:relative;text-align:center;font-size:clamp(.72rem,5.1cqw,.9rem);font-weight:550;line-height:1.13;max-width:54%;text-wrap:balance;text-shadow:0 1px 5px #05202a}
 .cadran[data-place=grand] span {font-size:clamp(.85rem,4.2cqw,1.08rem)}
-.cadran b {color:#ffcf69}
-.cadran b::after {content:"";display:block;position:absolute;left:32%;right:32%;height:2px;background:linear-gradient(90deg,transparent,#ffd684,transparent)}
+.cadran b {position:absolute;left:calc(100% + .22em);bottom:0;color:#ffcf69}
+.cadran span::after {content:"";display:block;position:absolute;left:4%;right:4%;bottom:-.22em;height:2px;background:linear-gradient(90deg,transparent,#ffd684,transparent)}
 .cadran:focus-visible .bord {filter:drop-shadow(0 0 4px #ffd878)}
 .cadran:focus-visible span {color:#ffe295;text-decoration:underline}
 .es-pied {flex-wrap:wrap;text-align:center}
