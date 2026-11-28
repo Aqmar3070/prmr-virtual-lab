@@ -1880,6 +1880,70 @@
   "itraconazoleHh": {
    "source": "Kim et coll. · Cancer Cell 2010, l'itraconazole bloque la voie Hedgehog (Smoothened)",
    "url": "https://doi.org/10.1016/j.ccr.2010.02.027"
+  },
+  "chelationLin2003": {
+   "source": "Lin et coll. · N Engl J Med 2003, chélation EDTA chez des patients non diabétiques à plomb corporel élevé-normal (64 randomisés)",
+   "url": "https://doi.org/10.1056/NEJMoa021672"
+  },
+  "chelationLin2007": {
+   "source": "Lin-Tan et coll. · Nephrol Dial Transplant 2007, chélation répétée sur 4 ans (116 patients)",
+   "url": "https://doi.org/10.1093/ndt/gfm342"
+  },
+  "niaoduqing2017": {
+   "source": "Essai chinois multicentrique · Chin Med J 2017, granules Niaoduqing, stade 3b-4 (300 patients)",
+   "url": "https://doi.org/10.4103/0366-6999.216407"
+  },
+  "rilparencelAsn2025": {
+   "source": "ProKidney · communiqué, résultats complets de l'essai de phase 2 REGEN-007 présentés à l'ASN Kidney Week 2025 (non publiés dans une revue)",
+   "url": "https://www.barchart.com/story/news/35958883/prokidney-presents-full-results-from-the-phase-2-regen-007-trial-of-rilparencel-at-the-american-society-of-nephrology-kidney-week-2025"
+  },
+  "xenogreffeLancet2026": {
+   "source": "Kawai, Riella et coll. · Lancet 2026, rein de porc génétiquement modifié chez un patient en insuffisance terminale",
+   "url": "https://doi.org/10.1016/S0140-6736(26)01295-X"
+  },
+  "ast120Revue": {
+   "source": "Revue · AST-120 (Kremezin) : autorisation au Japon et résultats des essais EPPIC",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6374968"
+  },
+  "ayurveda100": {
+   "source": "Étude indienne · Ayu 2011, traitement ayurvédique de 100 patients en insuffisance rénale chronique",
+   "url": "https://doi.org/10.4103/0974-8520.96120"
+  },
+  "wmtCohorte": {
+   "source": "Cohorte rétrospective · J Transl Med 2023, transplantation de microbiote lavé et fonction rénale",
+   "url": "https://doi.org/10.1186/s12967-023-04570-0"
+  },
+  "fmtIgaCas": {
+   "source": "Cas rapportés · Ren Fail 2021, transplantation fécale intensive dans 2 néphropathies à IgA réfractaires",
+   "url": "https://doi.org/10.1080/0886022X.2021.1936038"
+  },
+  "hibiscusNigeria": {
+   "source": "Essai randomisé · J Physiol Sci 2017, bissap (Hibiscus sabdariffa) chez 78 hypertendus nigérians",
+   "url": "https://doi.org/10.1007/s12576-016-0458-z"
+  },
+  "hibiscusIran": {
+   "source": "Essai randomisé · Avicenna J Phytomed 2024, bissap en plus du valsartan dans une maladie rénale légère (72 patients)",
+   "url": "https://doi.org/10.22038/AJP.2024.23871"
+  },
+  "vlckdNephro": {
+   "source": "Friedman et coll. · Clin J Am Soc Nephrol 2013, régime cétogène très hypocalorique chez 6 obèses avec néphropathie diabétique avancée",
+   "url": "https://doi.org/10.2215/CJN.04010413"
+  },
+  "renadylPilote": {
+   "source": "Ranganathan et coll. · Adv Ther 2010, probiotique Renadyl, essai pilote (46 patients stade 3-4)",
+   "url": "https://doi.org/10.1007/s12325-010-0059-9"
+  },
+  "temoignageNkf": {
+   "source": "National Kidney Foundation · témoignages publiés le 21/05/2026 (Dwayne Sunwald, Peter Agosto)",
+   "url": "https://www.kidney.org/news-stories/how-plant-based-eating-helped-two-people-slow-kidney-disease-progression"
+  },
+  "temoignageNatGeo": {
+   "source": "National Geographic · 14/11/2025, témoignage de Nicolas Palacios (stade 4 → stade 3 sous tirzépatide)",
+   "url": "https://www.nationalgeographic.com/health/article/chronic-kidney-disease-medical-breakthroughs"
+  },
+  "temoignageMayo": {
+   "source": "Forum Mayo Clinic Connect · témoignage d'un patient (« billagreste »), stade 4 à DFG 22",
+   "url": "https://connect.mayoclinic.org/comment/279953/replies"
   }
  },
  "maladies": [
@@ -3351,6 +3415,343 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "temoignage_fsgs_vegetal",
+     "nom": "Témoignage : alimentation végétale et rémission d'une HSF (National Kidney Foundation)",
+     "type": "regime",
+     "force": "cas",
+     "critere": 3,
+     "dose": "Moins de protéines animales et de sel sur conseil d'un spécialiste, puis défi végétalien de 90 jours",
+     "duree": "Rémission rapportée depuis plus de 20 ans",
+     "population": "1 homme, hyalinose segmentaire et focale (HSF) diagnostiquée en 2006",
+     "effet": "Dit être en rémission depuis plus de 20 ans : moins de protéines dans les urines, tension plus basse. Un second témoin (diabétique) a évité la dialyse en passant au végétalien du jour au lendemain.",
+     "mecanisme": "Moins de charge acide et de pression dans les glomérules, meilleure tension et glycémie.",
+     "prudence": "Analyse PRMR : aucun chiffre publié (DFG, protéinurie), médicaments non précisés, résultat déclaré par les patients eux-mêmes. Cohérent avec le cas publié d'alimentation végétale et les essais fruits et légumes, mais non vérifiable.",
+     "resume": "Rémission déclarée (témoignage, non chiffrée)",
+     "source": "temoignageNkf",
+     "profil": {
+      "causes": [
+       "glomerulonephrite",
+       "diabete"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "temoignage_tirzepatide",
+     "nom": "Témoignage : tirzépatide, stade 4 → stade 3 (National Geographic)",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 3,
+     "dose": "Tirzépatide (Mounjaro) pris dans un essai clinique puis à ses frais",
+     "duree": "Depuis 2020",
+     "population": "1 homme de 28 ans, maladie rénale non diabétique au stade 4",
+     "effet": "D'abord stabilisé par d'autres médicaments, sa fonction rénale s'est ensuite améliorée « de façon spectaculaire » sous tirzépatide : passage du stade 4 au stade 3.",
+     "mecanisme": "Agoniste GLP-1/GIP : poids, inflammation, pression dans les glomérules (comme le sémaglutide, déjà au registre).",
+     "prudence": "Analyse PRMR : aucun chiffre de DFG publié, cause de la maladie non nommée, autres médicaments non nommés. Le tirzépatide n'est pas autorisé pour le rein ; un essai dédié est en cours.",
+     "resume": "Stade 4 → 3 (témoignage)",
+     "source": "temoignageNatGeo",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "chelation_edta",
+     "nom": "Chélation du plomb par EDTA calcique",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "dfg": [
+      15,
+      60
+     ],
+     "dose": "EDTA calcique disodique en perfusion, chaque semaine pendant 3 mois puis tant que le plomb corporel reste ≥ 60 µg",
+     "duree": "27 mois (2003) ; 4 ans (2007)",
+     "population": "Patients non diabétiques, créatinine 1,5 à 3,9 mg/dL, sans exposition connue au plomb mais avec un plomb corporel « élevé-normal » (64 randomisés en 2003, 116 en 2007)",
+     "effet": "DFG + 2,1 mL/min sous chélation contre − 6,0 sans (27 mois). Sur 4 ans : − 1,8 contre − 12,7 ; doublement de la créatinine chez 3 patients chélatés contre 15 témoins.",
+     "mecanisme": "Retire le plomb accumulé dans l'organisme, qui abîme lentement les tubules même à faible dose.",
+     "prudence": "Une seule équipe (Taïwan), essais en simple aveugle. Ne vaut que si le plomb corporel est élevé (test de mobilisation à l'EDTA). Perfusions hospitalières ; surveiller calcium et zinc. Pertinent en Afrique où l'exposition au plomb (essence ancienne, batteries, poteries, cosmétiques) est fréquente.",
+     "resume": "DFG + 2,1 contre − 6,0 (plomb élevé-normal)",
+     "source": "chelationLin2003",
+     "source2": "chelationLin2007",
+     "profil": {
+      "causes": [
+       "hypertension",
+       "glomerulonephrite",
+       "autre"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "niaoduqing",
+     "nom": "Niaoduqing (granules de médecine chinoise)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "dfg": [
+      20,
+      45
+     ],
+     "partie": "Mélange de plantes dont la rhubarbe, l'astragale et la sauge rouge",
+     "dose": "5 g trois fois par jour + 10 g au coucher",
+     "duree": "24 semaines",
+     "population": "300 patients stade 3b-4 (DFG 20 à 45), 22 hôpitaux chinois",
+     "effet": "Créatinine + 1,1 µmol/L contre + 11,7 sous placebo (médianes) ; DFG − 0,2 contre − 2,2 mL/min. Effets indésirables comparables.",
+     "mecanisme": "Élimination intestinale des toxines urémiques (rhubarbe), effets antifibrosants observés chez l'animal.",
+     "prudence": "Essai court (6 mois), en Chine seulement ; effet sur la dialyse inconnu. Composition à vérifier sur le produit (certains mélanges chinois contiennent des plantes toxiques pour le rein).",
+     "resume": "DFG − 0,2 contre − 2,2 en 6 mois",
+     "source": "niaoduqing2017",
+     "profil": {
+      "criteres": [
+       {
+        "dfg": [
+         20,
+         45
+        ]
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "rilparencel",
+     "nom": "Rilparencel (thérapie cellulaire autologue)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "dfg": [
+      20,
+      50
+     ],
+     "dose": "Cellules prélevées par biopsie du patient, multipliées puis réinjectées dans chaque rein (2 injections à 3 mois d'intervalle)",
+     "duree": "Suivi médian ≈ 18 mois après la dernière injection",
+     "population": "49 patients diabétiques, DFG 20 à 50 (24 dans le groupe à 2 injections)",
+     "effet": "Perte annuelle de DFG réduite de 4,6 mL/min (− 78 %) dans le groupe à 2 injections ; fonction stabilisée. Aucun effet indésirable grave lié au traitement.",
+     "mecanisme": "Cellules progénitrices du rein du patient, censées réparer le tissu.",
+     "prudence": "Essai ouvert, petit, résultats communiqués par l'entreprise et non encore publiés dans une revue ; la moitié de l'autre groupe n'a pas atteint d'effet net. Phase 3 en cours (résultats attendus en 2027).",
+     "resume": "Déclin du DFG − 78 % (phase 2)",
+     "source": "rilparencelAsn2025",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         20,
+         50
+        ]
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "xenogreffe_porc",
+     "nom": "Rein de porc génétiquement modifié (xénogreffe)",
+     "type": "geste",
+     "force": "cas",
+     "gueri": false,
+     "critere": 1,
+     "dfg": [
+      0,
+      14
+     ],
+     "dose": "Greffe d'un rein de porc modifié (69 modifications génétiques) avec traitement antirejet",
+     "duree": "271 jours sans dialyse",
+     "population": "1 homme de 66 ans en insuffisance terminale, sans donneur humain",
+     "effet": "Le rein a fonctionné dès la greffe et a supprimé la dialyse pendant 271 jours (record). Rejet tardif après baisse des antirejets ; rein retiré, puis greffe d'un rein humain réussie 82 jours plus tard.",
+     "mecanisme": "Remplace le rein détruit.",
+     "prudence": "Expérimental (3 patients prévus) ; sert de pont vers une greffe humaine, pas de solution définitive à ce jour.",
+     "resume": "271 jours sans dialyse (1 patient)",
+     "source": "xenogreffeLancet2026",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "ast120",
+     "nom": "AST-120 (Kremezin, charbon adsorbant oral)",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 3,
+     "dfg": [
+      15,
+      59
+     ],
+     "dose": "Charbon sphérique oral, plusieurs fois par jour à distance des autres médicaments",
+     "duree": "Jusqu'à 3 ans selon les essais",
+     "population": "Autorisé au Japon depuis 1991, puis Corée, Taïwan, Philippines ; essais internationaux EPPIC",
+     "effet": "Utilisé pour retarder la dialyse en Asie ; les grands essais EPPIC n'ont pas montré de bénéfice global, seulement dans des sous-groupes (analyses après coup).",
+     "mecanisme": "Fixe dans l'intestin les précurseurs de toxines urémiques (sulfate d'indoxyle).",
+     "prudence": "Preuves contradictoires ; constipation ; espacer des autres médicaments.",
+     "resume": "Autorisé en Asie, grands essais négatifs",
+     "source": "ast120Revue",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "hibiscus_bissap",
+     "nom": "Bissap (Hibiscus sabdariffa, calices)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "partie": "Calices séchés (boisson bissap / zobo)",
+     "dose": "Extrait aqueux une fois par jour (Nigeria) ; extrait standardisé en plus du valsartan (Iran)",
+     "duree": "4 semaines (Nigeria) ; essai iranien de plusieurs semaines",
+     "population": "78 hypertendus nigérians non traités ; 72 patients iraniens avec maladie rénale légère",
+     "effet": "Nigeria : la clairance de la créatinine a augmenté par rapport au placebo (p < 0,001), contrairement au lisinopril. Iran : tension et lipides améliorés, mais pas de différence sur les marqueurs rénaux.",
+     "mecanisme": "Anthocyanes et flavonoïdes qui inhibent l'enzyme de conversion (comme les IEC) et font uriner.",
+     "prudence": "Effet rénal propre non confirmé dans la maladie rénale ; le bissap contient du potassium et des acides : prudence aux stades avancés.",
+     "resume": "Clairance ↑ chez l'hypertendu ; neutre dans la MRC légère",
+     "source": "hibiscusNigeria",
+     "source2": "hibiscusIran",
+     "profil": {
+      "causes": [
+       "hypertension"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "microbiote_lave",
+     "nom": "Transplantation de microbiote lavé (selles d'un donneur sain)",
+     "type": "geste",
+     "force": "faible",
+     "critere": 4,
+     "dose": "Suspension de microbiote lavé d'un donneur sain, par voie digestive",
+     "duree": "Cures répétées",
+     "population": "Patients avec insuffisance rénale (cohorte rétrospective chinoise) ; 2 cas de néphropathie à IgA réfractaire",
+     "effet": "Cohorte : créatinine, DFG et urée améliorés par rapport aux patients non traités (p < 0,05), effets indésirables 2,9 %. IgA : protéinurie divisée par plus de 2 et fonction stable chez les 2 patientes.",
+     "mecanisme": "Rééquilibre la flore intestinale, réduit les toxines urémiques d'origine intestinale.",
+     "prudence": "Étude rétrospective sans tirage au sort ; cas isolés. Acte médical spécialisé.",
+     "resume": "Créatinine et DFG améliorés (cohorte)",
+     "source": "wmtCohorte",
+     "source2": "fmtIgaCas",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "cetogene_hypocalorique",
+     "nom": "Régime cétogène très hypocalorique (obésité et néphropathie diabétique)",
+     "type": "regime",
+     "force": "faible",
+     "critere": 3,
+     "dfg": [
+      0,
+      40
+     ],
+     "dose": "Régime cétogène très pauvre en calories, avec encouragement à l'exercice, sous suivi médical",
+     "duree": "12 semaines",
+     "population": "6 obèses avec néphropathie diabétique avancée (DFG < 40), sous bloqueur du système rénine-angiotensine",
+     "effet": "Poids − 12 % ; créatinine de 3,54 à 3,13 mg/dL ; cystatine C de 2,79 à 2,46 ; albuminurie − 36 % (non significatif) ; glycémie et insuline nettement améliorées.",
+     "mecanisme": "Perte de poids rapide, baisse de l'insuline et de la pression dans les glomérules.",
+     "prudence": "6 patients, sans groupe témoin ; à encadrer strictement (risque d'hypoglycémie, d'acidose, de calculs).",
+     "resume": "Créatinine 3,54 → 3,13 en 12 semaines",
+     "source": "vlckdNephro",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         0,
+         40
+        ]
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "renadyl",
+     "nom": "Probiotique Renadyl (Kibow)",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 3,
+     "dfg": [
+      15,
+      59
+     ],
+     "dose": "90 milliards de bactéries par jour",
+     "duree": "6 mois",
+     "population": "46 patients stade 3-4, 4 pays",
+     "effet": "Urée sanguine diminuée et qualité de vie améliorée par rapport au placebo ; bien toléré.",
+     "mecanisme": "Bactéries qui consomment urée, acide urique et créatinine dans l'intestin.",
+     "prudence": "Petit essai pilote financé par le fabricant ; pas d'effet démontré sur le DFG.",
+     "resume": "Urée diminuée (essai pilote)",
+     "source": "renadylPilote",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "ayurveda_punarnava",
+     "nom": "Ayurveda : Punarnava (Boerhavia diffusa) et formules associées",
+     "type": "naturel",
+     "force": "faible",
+     "critere": 4,
+     "partie": "Racine de punarnava en décoction (lavement et voie orale)",
+     "dose": "Lavement quotidien de décoction de Punarnavadi + Goksuradi guggulu, Rasayana churna, Varunadi kvatha",
+     "duree": "1 mois",
+     "population": "100 patients en insuffisance rénale chronique non diabétique (hôpital ayurvédique de Nadiad, Inde)",
+     "effet": "Créatinine, urée et albumine urinaire diminuées, « très significativement » selon les auteurs ; aucun chiffre dans le résumé.",
+     "mecanisme": "Effet diurétique et anti-inflammatoire supposé.",
+     "prudence": "Analyse PRMR : pas de groupe témoin, 1 mois seulement, chiffres non publiés dans le résumé. Nombreux cas isolés publiés dans des revues ayurvédiques, souvent par des cliniques qui vendent les traitements. Certaines préparations ayurvédiques contiennent des métaux lourds.",
+     "resume": "Créatinine diminuée (sans témoin)",
+     "source": "ayurveda100",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "temoignage_antioxydants",
+     "nom": "Témoignage : curcuma, resvératrol, CoQ10, oméga-3 et niacine (forum Mayo Clinic)",
+     "type": "naturel",
+     "force": "cas",
+     "gueri": false,
+     "critere": 4,
+     "dose": "Chaque matin : curcuma-curcumine, cannelle, oméga-3, resvératrol, CoQ10, niacine 500 mg ; un grand bol de myrtilles le soir ; complément « nettoyant rénal » du commerce ; régime prescrit (sel, potassium)",
+     "duree": "Quelques mois",
+     "population": "1 homme, stade 4 (DFG 22) après une vascularite",
+     "effet": "Créatinine redescendue à 2,2 contre « plus de 3 » auparavant ; son médecin le classe en début de stade 3. Pas de nouveau DFG publié.",
+     "mecanisme": "Antioxydants et anti-inflammatoires, dont plusieurs ont un petit effet mesuré dans des essais (curcuma, resvératrol, CoQ10, oméga-3 : voir leurs fiches).",
+     "prudence": "Analyse PRMR : la vascularite peut s'apaiser d'elle-même ou sous traitement ; les bandelettes urinaires ne mesurent pas la fonction rénale ; la niacine peut abîmer le foie. Plausible mais non démontré : retenu comme piste de combinaison.",
+     "resume": "Créatinine > 3 → 2,2 (témoignage)",
+     "source": "temoignageMayo",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": [
@@ -3491,6 +3892,68 @@
      "risques": "Rare. Dépend surtout de la maladie d'origine ; une partie des patients reprend la dialyse dans l'année.",
      "source": "rkfEraEdta",
      "source2": "rkfMeta"
+    },
+    {
+     "id": "h_mrc_toxines_intestin",
+     "type": "hypothese",
+     "appui": "faible",
+     "titre": "Épuration intestinale des toxines urémiques : Niaoduqing + probiotique + fibres végétales",
+     "objectif": "Ralentir le déclin aux stades 3b-4 en retirant par l'intestin les toxines que le rein n'élimine plus",
+     "composants": [
+      {
+       "nom": "Niaoduqing (granules chinois)",
+       "role": "DFG mieux préservé en 6 mois",
+       "ref": "niaoduqing"
+      },
+      {
+       "nom": "Probiotique consommateur d'urée",
+       "role": "urée diminuée",
+       "ref": "renadyl"
+      },
+      {
+       "nom": "Alimentation végétale riche en fibres",
+       "role": "moins de toxines produites par la flore",
+       "ref": "fruits_legumes"
+      }
+     ],
+     "raisonnement": "Les trois agissent sur la même cible (les toxines produites dans l'intestin, comme le sulfate d'indoxyle) par trois moyens différents : évacuation (rhubarbe), consommation (bactéries), moindre production (fibres). Le charbon AST-120, qui visait la même cible seul, a échoué dans les grands essais : l'association reste donc incertaine.",
+     "a_tester": "Essai de 12 mois au stade 3b-4 : association contre soins habituels ; critères = sulfate d'indoxyle sanguin et pente du DFG.",
+     "risques": "Potassium (fruits et légumes), composition du produit chinois à vérifier.",
+     "source": "niaoduqing2017",
+     "source2": "renadylPilote"
+    },
+    {
+     "id": "h_mrc_antioxydants_temoignage",
+     "type": "hypothese",
+     "appui": "faible",
+     "titre": "Combinaison antioxydante du témoignage Mayo : curcuma + resvératrol + CoQ10 + oméga-3",
+     "objectif": "Reproduire de façon contrôlée l'amélioration rapportée par un patient au stade 4",
+     "composants": [
+      {
+       "nom": "Curcuma (rhizome)",
+       "role": "anti-inflammatoire",
+       "ref": "curcuma_rein"
+      },
+      {
+       "nom": "Resvératrol",
+       "role": "antioxydant",
+       "ref": "resveratrol_rein"
+      },
+      {
+       "nom": "Coenzyme Q10",
+       "role": "énergie des cellules du rein",
+       "ref": "coq10"
+      },
+      {
+       "nom": "Oméga-3 marins",
+       "role": "anti-inflammatoire",
+       "ref": "omega3"
+      }
+     ],
+     "raisonnement": "Chaque composant a montré un petit effet isolé dans des essais de faible qualité ; le témoignage les associe. Sans la niacine (toxique pour le foie) ni le complément commercial de composition inconnue.",
+     "a_tester": "Petit essai contre placebo de 6 mois, stades 3-4, en vérifiant d'abord la cause (une vascularite active doit être traitée).",
+     "risques": "Interactions avec les anticoagulants (oméga-3, curcuma).",
+     "source": "temoignageMayo"
     }
    ],
    "profil_patient": {
