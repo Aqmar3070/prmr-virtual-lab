@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="./prmr-espaces.css?v=f3ba3dda72">
 <link rel="stylesheet" href="./prmr-dna.css?v=975d3284c0">
 <script type="module" src="./src/prmr-dna.mjs?v=90aa4d329c"></script>
+<link rel="stylesheet" href="./accueil-verre.css?v=68f8859747">
+<script type="module" src="./src/accueil-verre.mjs?v=54c203f1e0"></script>
 </head>
 <body class="es">
 <header class="es-head">
@@ -22,36 +24,32 @@
  </nav>
 </header>
 <main class="es-main" id="prmr-primary-content">
- <div class="es-accueil">
+ <div class="accueil">
   <header>
    <h1>Laboratoire PRMR</h1>
    <p>Trois espaces pour croiser substances, maladies et symptômes, chez l’animal et chez l’humain, et pour combiner molécules et plantes. Chaque donnée est sourcée ; une proposition jamais testée est présentée comme telle.</p>
   </header>
-  <div class="es-espaces">
-   <a class="es-espace es-verre" href="./preclinique.html">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><ellipse cx="14" cy="17" rx="4" ry="5.5"/><ellipse cx="24" cy="12" rx="4" ry="5.5"/><ellipse cx="34" cy="17" rx="4" ry="5.5"/><path d="M24 23c-7 0-12 8-12 13 0 4 4 5 7 4s3-2 5-2 3 1 5 2 7 0 7-4c0-5-5-13-12-13z"/></svg>
-    <span class="es-statut">Base créée</span>
-    <h2>Explorateur préclinique</h2>
-    <p class="es-etiq">Le monde animal : modèles de recherche et espèces soignées en médecine vétérinaire.</p>
-    <ul><li>Substances : effet sur chaque espèce</li><li>Maladies propres aux animaux</li><li>Symptômes : d’un signe aux maladies possibles</li><li>Modèle animal figé au choix (à venir)</li></ul>
-    <span class="es-aller">Ouvrir →</span>
+  <div class="scene">
+   <svg class="liaisons" aria-hidden="true" viewBox="0 0 1100 530" preserveAspectRatio="none"><g fill="none" stroke="#c5f5f6" stroke-width="1.6"><path d="M300 238 L341 266 H370 M408 212 H443 L480 158 M405 320 H455 L480 352 H605"/></g></svg>
+   <canvas class="helice" aria-hidden="true"></canvas>
+   <a class="cadran" data-place="gauche" href="./preclinique.html">
+    <svg class="bord" viewBox="0 0 300 240" preserveAspectRatio="none" aria-hidden="true"><use href="#hexagone"/></svg>
+    <img src="./assets/accueil/animal.webp" alt=""><span>Explorateur préclinique <b aria-hidden="true">→</b></span>
    </a>
-   <a class="es-espace es-verre" href="./exposures.html">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="24" cy="9" r="5"/><path d="M24 15v15M14 20l10 3 10-3M18 44l6-14 6 14"/></svg>
-    <span class="es-statut">En service</span>
-    <h2>Explorateur clinique</h2>
-    <p class="es-etiq">L’humain : corps 3D, substances, maladies et symptômes.</p>
-    <ul><li>Substances : doses, effets sur les organes</li><li>Maladies : Guéris · Testés · Pistes</li><li>Symptômes : maladies possibles et solutions</li></ul>
-    <span class="es-aller">Ouvrir →</span>
+   <a class="cadran" data-place="haut" href="./exposures.html">
+    <svg class="bord" viewBox="0 0 300 240" preserveAspectRatio="none" aria-hidden="true"><use href="#hexagone"/></svg>
+    <img src="./assets/accueil/human.webp" alt=""><span>Explorateur clinique <b aria-hidden="true">→</b></span>
    </a>
-   <a class="es-espace es-verre" href="./molecules.html">
-    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M24 6l8 4.5v9L24 24l-8-4.5v-9z"/><path d="M16 19.5l-8 4.5v9l8 4.5 8-4.5M32 19.5l8 4.5v9l-8 4.5-8-4.5v-9"/></svg>
-    <span class="es-statut">Base créée</span>
-    <h2>Molécules</h2>
-    <p class="es-etiq">Le laboratoire de combinaisons : molécules, plantes et substances naturelles.</p>
-    <ul><li>Molécules répertoriées et leurs mécanismes</li><li>Plantes, racines, écorces, feuilles</li><li>Associer A + B : ce qui est documenté, ce qui reste à vérifier</li></ul>
-    <span class="es-aller">Ouvrir →</span>
+   <a class="cadran" data-place="grand" href="./molecules.html">
+    <svg class="bord" viewBox="0 0 300 240" preserveAspectRatio="none" aria-hidden="true"><use href="#hexagone"/></svg>
+    <img src="./assets/accueil/molecule.webp" alt=""><span>Molécules <b aria-hidden="true">→</b></span>
    </a>
+   <svg width="0" height="0" aria-hidden="true"><defs><g id="hexagone">
+    <path d="M71 7H229L295 120 229 233H71L5 120Z" fill="rgb(10 62 75 / 50%)" stroke="#ebffff" stroke-width="1.4"/>
+    <path d="M74 12H226L289 120 226 228H74L11 120Z" fill="none" stroke="#c0f5fa" stroke-width=".95"/>
+    <path d="M80 3h30m6 0h61m9 0h31M231 10l27 47m3 5 16 28M67 228l-26-44M82 237h66m8 0h54" fill="none" stroke="#e2ffff" stroke-width="1.2"/>
+    <g fill="#f5ffff"><circle cx="71" cy="7" r="2.9"/><circle cx="229" cy="7" r="2.9"/><circle cx="295" cy="120" r="2.9"/><circle cx="229" cy="233" r="2.9"/><circle cx="71" cy="233" r="2.9"/><circle cx="5" cy="120" r="2.9"/></g>
+   </g></defs></svg>
   </div>
  </div>
 </main>
