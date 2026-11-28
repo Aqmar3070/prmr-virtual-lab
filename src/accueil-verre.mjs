@@ -46,11 +46,6 @@ window.addEventListener("pageshow", collapse);
 const canvas = scene.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-const circle = Math.PI * 2;
-const dust = Array.from({length:136}, (_,i) => ({
-  end: i % 2, angle:i*2.39996, speed:.11+(i%7)*.019,
-  offset:((i*53)%137)/137, width: .4+(i%5)*.15
-}));
 const wires = [...scene.querySelectorAll(".liaisons path")];
 const vertices = [[71,7],[229,7],[295,120],[229,233],[71,233],[5,120]];
 
@@ -74,82 +69,67 @@ function attachWire(card, wire, tip, origin) {
   }
 }
 
-function glassTube(a,b,r,base) {
-  const dx=b.x-a.x, dy=b.y-a.y, len=Math.hypot(dx,dy);
-  if(len<.01) return;
-  const nx=-dy*r/len, ny=dx*r/len;
-  const g=ctx.createLinearGradient(a.x-nx,a.y-ny,a.x+nx,a.y+ny);
-  for (const [stop,color] of base) g.addColorStop(stop,color);
-  ctx.strokeStyle=g;ctx.lineWidth=r*2;ctx.lineCap="round";
-  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
-}
-const front=[[0,"#cbffed"],[.13,"#548b81"],[.36,"#258071"],[.55,"#a8f8d4"],[.67,"#f2fff3"],[.78,"#82cdbf"],[1,"#356c72"]];
-const rear=[[0,"#91d5cc"],[.22,"#285f67"],[.6,"#67aa91"],[.78,"#bee8da"],[1,"#366d73"]];
-const rungs=[[0,"#749da6"],[.32,"#63bbaa"],[.56,"#e0fff2"],[1,"#387883"]];
-
+// The atlas starts with the approved illustration and advances its glass texture
+// along the two strands over one revolution. Each tile has a transparent backdrop.
+const atlas = new Image();
+const columns = 8, rows = 6;
+const anchors = [];
 let frame;
-function render(time) {
-  const w = canvas.clientWidth, h = canvas.clientHeight;
-  if (!w || !h || !ctx) return;
-  const dpr = Math.min(devicePixelRatio,2);
-  if (canvas.width !== Math.round(w*dpr) || canvas.height !== Math.round(h*dpr)) {
-    canvas.width = Math.round(w*dpr);
-    canvas.height = Math.round(h*dpr);
+let started;
+
+function prepare() {
+  const tileWidth = atlas.naturalWidth / columns;
+  const tileHeight = atlas.naturalHeight / rows;
+  const surface = document.createElement("canvas");
+  surface.width = tileWidth;
+  surface.height = tileHeight;
+  const probe = surface.getContext("2d", {willReadFrequently:true});
+  for (let i=0; i<columns*rows; i++) {
+    probe.clearRect(0,0,tileWidth,tileHeight);
+    probe.drawImage(atlas, (i%columns)*tileWidth, Math.floor(i/columns)*tileHeight,
+      tileWidth,tileHeight,0,0,tileWidth,tileHeight);
+    anchors.push(cards.map(card=>{
+      const left = card.dataset.place === "gauche";
+      const y = Math.floor(tileHeight * (left ? .51 : card.dataset.place === "haut" ? .30 : .68));
+      const strip = probe.getImageData(0,y,tileWidth,1).data;
+      let x = left ? 0 : tileWidth-1;
+      while (x>=0 && x<tileWidth && strip[x*4+3]<120) x += left ? 1 : -1;
+      return {x:(x+.5)/tileWidth, y:(y+.5)/tileHeight};
+    }));
   }
+  restart();
+}
+
+function render(time) {
+  if (!anchors.length || !ctx) return;
+  const w=canvas.clientWidth, h=canvas.clientHeight;
+  if (!w || !h) return;
+  const dpr=Math.min(devicePixelRatio,2);
+  if (canvas.width!==Math.round(w*dpr) || canvas.height!==Math.round(h*dpr)) {
+    canvas.width=Math.round(w*dpr);
+    canvas.height=Math.round(h*dpr);
+  }
+  started ??= time;
+  const i = reduced.matches ? 0 : Math.floor((time-started)/100) % anchors.length;
+  const tw=atlas.naturalWidth/columns, th=atlas.naturalHeight/rows;
+  const scale=Math.min(w/tw,h/th);
+  const dw=tw*scale, dh=th*scale, x=(w-dw)/2, y=(h-dh)/2;
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.clearRect(0,0,w,h);
-  const seconds = reduced.matches ? 0 : time/1000;
-  const parts = [];
-  const radius = Math.min(w*.21,h*.13);
-  function point(t,strand) {
-    const angle = seconds*.8 + t*circle*1.75 + strand*Math.PI;
-    const taper = .22+.78*Math.min(1,t*6,(1-t)*6);
-    const offset=Math.cos(angle)*radius*taper;
-    return {x:w*(.24+.52*t)+offset, y:h*(.89-.78*t)+offset*.35,
-      z:Math.sin(angle), taper};
-  }
-  for (let i=0;i<96;i++) {
-    for(const strand of [0,1]){
-      const a=point(i/96,strand), b=point((i+1)/96,strand);
-      parts.push({a,b,z:(a.z+b.z)/2, backbone:true});
-    }
-    if(i%4===2){
-      const a=point(i/96,0), b=point(i/96,1);
-      // Two half-bars meet at a narrow optical seam in each base pair.
-      for(const [start,end] of [[0,.48],[.52,1]]){
-        const mix=k=>({x:a.x+(b.x-a.x)*k,y:a.y+(b.y-a.y)*k,z:a.z+(b.z-a.z)*k});
-        parts.push({a:mix(start),b:mix(end),z:mix((start+end)/2).z,backbone:false});
-      }
-    }
-  }
-  parts.sort((a,b)=>a.z-b.z);
-  for(const part of parts) {
-    const {a,b,z,backbone}=part;
-    const thickness=backbone ? radius*.145*(.55+.45*a.taper)*(1+.14*z) : radius*.052;
-    glassTube(a,b,thickness,backbone ? (z>0?front:rear) : rungs);
-  }
-  const origin=scene.getBoundingClientRect(), box=canvas.getBoundingClientRect();
-  cards.forEach((card,i)=>{
-    const slot=card.dataset.place;
-    const t=slot==="gauche"?.52:slot==="haut"?.79:.28;
-    const sides=[point(t,0),point(t,1)];
-    sides.sort((a,b)=> slot==="gauche"?a.x-b.x:b.x-a.x);
-    const p=sides[0];
-    attachWire(card,wires[i],{x:box.left-origin.left+p.x,y:box.top-origin.top+p.y},origin);
+  ctx.drawImage(atlas,(i%columns)*tw,Math.floor(i/columns)*th,tw,th,x,y,dw,dh);
+  const box=canvas.getBoundingClientRect(), origin=scene.getBoundingClientRect();
+  cards.forEach((card,j)=>{
+    const p=anchors[i][j];
+    attachWire(card,wires[j],{x:box.left-origin.left+x+p.x*dw,y:box.top-origin.top+y+p.y*dh},origin);
   });
-  for(const d of dust) {
-    const f=(seconds*d.speed+d.offset)%1, p=point(d.end,0), spread=f*radius*.72;
-    const x=p.x+Math.cos(d.angle)*spread+(d.end?1:-1)*f*w*.055;
-    const y=p.y+Math.sin(d.angle)*spread+(d.end?-1:1)*f*h*.115;
-    ctx.fillStyle='rgba(192,255,221,'+((1-f)*.87)+')';
-    ctx.beginPath();ctx.arc(x,y,d.width,0,circle);ctx.fill();
-  }
   if (!reduced.matches && !document.hidden) frame=requestAnimationFrame(render);
 }
 function restart() {
   cancelAnimationFrame(frame);
-  if(!document.hidden) render(performance.now());
+  if (!document.hidden) render(performance.now());
 }
+atlas.addEventListener("load",prepare,{once:true});
+atlas.src=new URL("../assets/accueil/helice-jade-cyan.webp",import.meta.url).href;
 new ResizeObserver(restart).observe(canvas);
 reduced.addEventListener("change",restart);
 document.addEventListener("visibilitychange",restart);
