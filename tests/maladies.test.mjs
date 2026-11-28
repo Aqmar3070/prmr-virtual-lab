@@ -401,3 +401,15 @@ test('Solutions concrètes : romarin et plantes dans Alzheimer, plus de « guér
  for(const [mid,sid] of [['alopecie','romarin_cheveux'],['herpes_labial','propolis_miel_herpes'],['depression','safran_depression'],['migraine','gingembre_migraine'],['grippe','baloxavir'],['ulcere','vonoprazan_hp']])
   assert.ok(m(mid).substances.some(s=>s.id===sid),sid);
 });
+
+test('Rein approfondi : guérisons, essais et piste ajoutés (28/11/2026)',async()=>{
+ const {pourGueris,pourTestes,pourPistes,substancesPour}=await import('../src/maladies.mjs');
+ const mrc=registre.maladies.find(m=>m.id==='mrc');const l=substancesPour(mrc,'');
+ const g=pourGueris(mrc,l);
+ for(const id of ['regression_microalb','sortie_dialyse'])assert.ok(g.obtenues.some(x=>x.id===id),id);
+ for(const id of ['pancreas_greffe_cas','lidocaine_iga_cas','aprt_allopurinol_cas','adalimumab_tinu_cas'])assert.ok(g.cas.some(s=>s.id===id),id);
+ for(const id of ['canagliflozine','atrasentan','benazepril_avance','ramipril_rein','silymarine_dn','pirfenidone_dn','allopurinol_rein','bariatrique_rein','pyrvinium_rein'])assert.ok(pourTestes(l).some(s=>s.id===id),id);
+ assert.ok(pourPistes(mrc,l,'').pistes.some(h=>h.id==='p_itraconazole_fibrose'));
+ // l'allopurinol signale le grand essai négatif
+ assert.match(mrc.substances.find(s=>s.id==='allopurinol_rein').effet,/CKD-FIX/);
+});

@@ -1808,6 +1808,78 @@
   "shakya2021_tcv": {
    "source": "Shakya et al., Lancet Glob Health 2021 — vaccin conjugué contre la typhoïde au Népal (20 019 enfants)",
    "url": "https://doi.org/10.1016/S2214-109X(21)00346-6"
+  },
+  "fiorettoPancreas": {
+   "source": "Fioretto et coll. · N Engl J Med 1998, biopsies rénales 5 et 10 ans après greffe du pancréas (8 patients)",
+   "url": "https://doi.org/10.1056/NEJM199807093390202"
+  },
+  "perkinsMicroalb": {
+   "source": "Perkins et coll. · N Engl J Med 2003, régression de la microalbuminurie dans le diabète de type 1 (386 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa021835"
+  },
+  "rkfEraEdta": {
+   "source": "Registre ERA-EDTA · Nephrol Dial Transplant 2021, récupération de la fonction rénale sous dialyse (440 996 patients)",
+   "url": "https://doi.org/10.1093/ndt/gfaa368"
+  },
+  "rkfMeta": {
+   "source": "Méta-analyse · Nutrients 2023, récupération durable sous dialyse chronique (7 études, 2 444 943 patients)",
+   "url": "https://doi.org/10.3390/nu15071595"
+  },
+  "lidocaineIgaCas": {
+   "source": "Qiu et coll. · J Anesth Transl Med 2024, cas : bloc péridural à la lidocaïne dans une néphropathie à IgA",
+   "url": "https://doi.org/10.1016/j.jatmed.2024.08.002"
+  },
+  "aprtAllopurinol": {
+   "source": "Cochran et coll. · Clin Nephrol 2018, cas : déficit en APRT, fonction rénale améliorée par l'allopurinol",
+   "url": "https://doi.org/10.5414/CN109460"
+  },
+  "adalimumabTinu": {
+   "source": "Yang et coll. · BMC Nephrol 2025, cas : syndrome TINU traité par adalimumab",
+   "url": "https://doi.org/10.1186/s12882-025-04535-z"
+  },
+  "canaCredence": {
+   "source": "Perkovic et coll. · N Engl J Med 2019, essai CREDENCE canagliflozine (4 401 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa1811744"
+  },
+  "sonarAtrasentan": {
+   "source": "Heerspink et coll. · Lancet 2019, essai SONAR atrasentan (2 648 patients répondeurs)",
+   "url": "https://doi.org/10.1016/S0140-6736(19)30772-X"
+  },
+  "benazeprilHou": {
+   "source": "Hou et coll. · N Engl J Med 2006, bénazépril en insuffisance rénale avancée (422 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa053107"
+  },
+  "reinRamipril": {
+   "source": "Groupe GISEN · Lancet 1997, essai REIN ramipril, néphropathies non diabétiques avec protéinurie",
+   "url": "https://doi.org/10.1016/S0140-6736(96)11445-8"
+  },
+  "silymarineFallahzadeh": {
+   "source": "Fallahzadeh et coll. · Am J Kidney Dis 2012, silymarine dans la néphropathie diabétique (60 patients)",
+   "url": "https://doi.org/10.1053/j.ajkd.2012.06.005"
+  },
+  "allopurinolGoicoechea": {
+   "source": "Goicoechea et coll. · Clin J Am Soc Nephrol 2010, allopurinol et progression (113 patients)",
+   "url": "https://doi.org/10.2215/CJN.01580210"
+  },
+  "ckdFix": {
+   "source": "Badve et coll. · N Engl J Med 2020, essai CKD-FIX allopurinol (369 patients), résultat négatif",
+   "url": "https://doi.org/10.1056/NEJMoa1915833"
+  },
+  "pirfenidoneSharma": {
+   "source": "Sharma et coll. · J Am Soc Nephrol 2011, pirfénidone dans la néphropathie diabétique (77 patients)",
+   "url": "https://doi.org/10.1681/ASN.2010101049"
+  },
+  "bariatriqueRein": {
+   "source": "Étude de cohorte · Am J Kidney Dis 2019, chirurgie bariatrique, diabète de type 2 et rein (737 patients)",
+   "url": "https://doi.org/10.1053/j.ajkd.2019.05.013"
+  },
+  "pyrviniumCisplatine": {
+   "source": "Étude chez le rat · Can J Physiol Pharmacol 2022, pyrvinium et atteinte rénale aiguë au cisplatine",
+   "url": "https://doi.org/10.1139/cjpp-2022-0165"
+  },
+  "itraconazoleHh": {
+   "source": "Kim et coll. · Cancer Cell 2010, l'itraconazole bloque la voie Hedgehog (Smoothened)",
+   "url": "https://doi.org/10.1016/j.ccr.2010.02.027"
   }
  },
  "maladies": [
@@ -2885,6 +2957,400 @@
       "kidney_r"
      ],
      "critere": 1
+    },
+    {
+     "id": "pancreas_greffe_cas",
+     "nom": "Greffe du pancréas (diabète de type 1) — lésions rénales effacées",
+     "type": "geste",
+     "force": "cas",
+     "critere": 1,
+     "dose": "Greffe du pancréas seule, sans greffe de rein",
+     "duree": "10 ans",
+     "population": "8 patients diabétiques de type 1 non urémiques, lésions rénales légères à avancées",
+     "effet": "Après 10 ans de glycémie normale, les lésions de la néphropathie diabétique ont régressé à la biopsie : membranes basales glomérulaires de 594 à 404 nm, mésangium de 0,33 à 0,27. Albumine urinaire de 103 à 20 mg/jour. Aucune régression à 5 ans.",
+     "mecanisme": "Glycémie normale pendant plus de 5 ans : le rein répare lui-même ses lésions.",
+     "prudence": "La clairance de la créatinine a baissé (108 → 74 mL/min), en partie à cause des médicaments antirejet. Chirurgie lourde, réservée à certains diabétiques de type 1.",
+     "resume": "Lésions effacées à 10 ans (8 patients)",
+     "source": "fiorettoPancreas",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "lidocaine_iga_cas",
+     "nom": "Bloc péridural à la lidocaïne — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 2,
+     "stades": [
+      "G3a"
+     ],
+     "dose": "Lidocaïne 0,8 %, bolus de 6 mL par pompe, 16 h par jour, cathéter péridural au niveau T6",
+     "duree": "7 mois",
+     "population": "1 homme de 57 ans, néphropathie à IgA prouvée par biopsie, stade 3",
+     "effet": "DFG de 56,2 à 72,9 mL/min (passage du stade 3 au stade 2) ; créatinine de 128,9 à 103,2 µmol/L ; protéinurie réduite de plus de 80 % ; disparition du sang dans les urines ; tension stable, antihypertenseurs arrêtés.",
+     "mecanisme": "Hypothèse des auteurs : le bloc des nerfs sympathiques du rein calme l'inflammation et la pression.",
+     "prudence": "Un seul cas, technique d'anesthésie invasive en milieu hospitalier.",
+     "resume": "DFG 56 → 73, stade 3 → 2 (1 cas)",
+     "source": "lidocaineIgaCas",
+     "profil": {
+      "causes": [
+       "glomerulonephrite"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         45,
+         59
+        ],
+        "note": "un seul cas"
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "aprt_allopurinol_cas",
+     "nom": "Allopurinol dans le déficit en APRT — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 2,
+     "dose": "Allopurinol 300 mg par jour",
+     "duree": "Non précisée dans le résumé",
+     "population": "1 homme, maladie rénale tubulo-interstitielle par déficit en APRT (maladie héréditaire), d'abord dialysé",
+     "effet": "Le patient a d'abord eu besoin de dialyse ; la fonction rénale s'est améliorée sous allopurinol. Revue de 95 cas : sans traitement, la maladie rénale apparaît chez tous après 20 ans.",
+     "mecanisme": "L'allopurinol empêche la formation de 2,8-dihydroxyadénine, cristal qui détruit les tubules dans cette maladie.",
+     "prudence": "Ne vaut que pour cette cause rare (dépistage par analyse des cristaux ou génétique).",
+     "resume": "Amélioration après dialyse (cause rare)",
+     "source": "aprtAllopurinol",
+     "profil": {
+      "causes": [
+       "autre"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "adalimumab_tinu_cas",
+     "nom": "Adalimumab dans le syndrome TINU — cas rapporté",
+     "type": "medicament",
+     "force": "cas",
+     "critere": 2,
+     "dose": "Adalimumab (anti-TNF-α) pendant 10 mois, après échec des corticoïdes et du mycophénolate",
+     "duree": "10 mois, suivi 1,25 an",
+     "population": "1 garçon de 7 ans, néphrite tubulo-interstitielle avec uvéite",
+     "effet": "DFG de 57,5 à 101 mL/min (fonction normale) ; inflammation de l'œil disparue ; aucune rechute ni effet indésirable sur 1,25 an.",
+     "mecanisme": "Bloque le TNF-α, médiateur de l'inflammation du rein et de l'œil.",
+     "prudence": "Cause particulière (inflammation), enfant ; un seul cas.",
+     "resume": "DFG 57 → 101 (1 cas)",
+     "source": "adalimumabTinu",
+     "profil": {
+      "causes": [
+       "autre"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "canagliflozine",
+     "nom": "Canagliflozine",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 34,
+     "dfg": [
+      30,
+      89
+     ],
+     "dose": "100 mg une fois par jour, avec un bloqueur du système rénine-angiotensine",
+     "duree": "2,6 ans (médiane)",
+     "population": "4 401 patients diabétiques de type 2, DFG 30 à 89, albuminurie 300 à 5 000 mg/g",
+     "effet": "Insuffisance terminale, doublement de la créatinine ou décès rénal ou cardiovasculaire − 30 % (HR 0,70 ; IC 95 % 0,59 à 0,82). Critère rénal seul − 34 % (HR 0,66 ; IC 0,53 à 0,81) ; insuffisance terminale − 32 % (HR 0,68 ; IC 0,54 à 0,86). Moins d'hospitalisations pour insuffisance cardiaque (HR 0,61). Pas plus d'amputations ni de fractures.",
+     "mecanisme": "Inhibiteur de SGLT2 : baisse la pression dans les glomérules.",
+     "rr": 0.66,
+     "bas": 0.53,
+     "haut": 0.81,
+     "resume": "34 % d'événements rénaux en moins",
+     "source": "canaCredence",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         30,
+         89
+        ],
+        "rac": [
+         300,
+         5000
+        ]
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "atrasentan",
+     "nom": "Atrasentan (antagoniste de l'endothéline)",
+     "type": "medicament",
+     "force": "forte",
+     "critere": 1,
+     "puissance": 35,
+     "dfg": [
+      25,
+      75
+     ],
+     "dose": "0,75 mg par jour, en plus d'un bloqueur du système rénine-angiotensine à dose maximale",
+     "duree": "2,2 ans (médiane)",
+     "population": "2 648 patients diabétiques de type 2, DFG 25 à 75, albuminurie 300 à 5 000 mg/g, ayant répondu à une phase d'essai (albuminurie − 30 % sans rétention d'eau)",
+     "effet": "Doublement de la créatinine ou insuffisance terminale chez 6,0 % contre 7,9 % (HR 0,65 ; IC 95 % 0,49 à 0,88).",
+     "mecanisme": "Bloque le récepteur A de l'endothéline, qui resserre les vaisseaux du rein et favorise la fibrose.",
+     "prudence": "Rétention d'eau et anémie plus fréquentes ; hospitalisations pour insuffisance cardiaque 3,5 % contre 2,6 % (non significatif). Patients sélectionnés.",
+     "rr": 0.65,
+     "bas": 0.49,
+     "haut": 0.88,
+     "resume": "35 % d'événements rénaux en moins",
+     "source": "sonarAtrasentan",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         25,
+         75
+        ],
+        "rac": [
+         300,
+         5000
+        ]
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "benazepril_avance",
+     "nom": "Bénazépril en insuffisance rénale avancée",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "puissance": 43,
+     "dfg": [
+      10,
+      30
+     ],
+     "dose": "20 mg par jour",
+     "duree": "3,4 ans en moyenne",
+     "population": "422 patients non diabétiques ; groupe comparé : créatinine 3,1 à 5,0 mg/dL (224 patients)",
+     "effet": "Doublement de la créatinine, insuffisance terminale ou décès − 43 % par rapport au placebo (41 % contre 60 % des patients). Protéinurie − 52 % ; déclin de la fonction − 23 %. Effets indésirables graves comparables.",
+     "mecanisme": "Inhibiteur de l'enzyme de conversion : moins de pression et de fuite de protéines dans les glomérules ; bénéfice non expliqué par la seule baisse de tension.",
+     "prudence": "Surveiller potassium et créatinine.",
+     "resume": "43 % de progression en moins au stade avancé",
+     "source": "benazeprilHou",
+     "profil": {
+      "causes": [
+       "hypertension",
+       "glomerulonephrite",
+       "autre"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "ramipril_rein",
+     "nom": "Ramipril (essai REIN)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "dose": "Ramipril en plus du traitement antihypertenseur habituel, même contrôle de la tension",
+     "duree": "Jusqu'à l'analyse intermédiaire (≈ 1,5 an)",
+     "population": "352 patients non diabétiques avec protéinurie ; analyse finale chez ceux à 3 g/24 h ou plus",
+     "effet": "Perte de DFG de 0,53 mL/min par mois contre 0,88 sous placebo. Doublement de la créatinine ou insuffisance terminale : 18 patients contre 40.",
+     "mecanisme": "Réduit la protéinurie ; plus la protéinurie baisse, plus le déclin ralentit.",
+     "resume": "Déclin du DFG ralenti d'environ 40 %",
+     "source": "reinRamipril",
+     "profil": {
+      "causes": [
+       "glomerulonephrite",
+       "autre"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "silymarine_dn",
+     "nom": "Silymarine (chardon-Marie)",
+     "type": "naturel",
+     "force": "moyenne",
+     "critere": 2,
+     "dfg": [
+      30,
+      200
+     ],
+     "partie": "Extrait des graines de chardon-Marie",
+     "dose": "3 comprimés de 140 mg par jour, en plus d'un bloqueur du système rénine-angiotensine",
+     "duree": "3 mois",
+     "population": "60 patients diabétiques de type 2, albuminurie > 300 mg/24 h malgré le traitement, DFG > 30",
+     "effet": "Le rapport albumine/créatinine urinaire a baissé de 347 mg/g de plus que sous placebo (IC 95 % − 690 à − 4). Baisse du TNF-α urinaire et du malondialdéhyde (stress oxydant).",
+     "mecanisme": "Antioxydant et anti-inflammatoire.",
+     "prudence": "Petit essai de courte durée ; effet sur l'insuffisance terminale inconnu.",
+     "resume": "Albuminurie − 347 mg/g en 3 mois",
+     "source": "silymarineFallahzadeh",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         30,
+         200
+        ],
+        "rac": [
+         300,
+         5000
+        ]
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "pirfenidone_dn",
+     "nom": "Pirfénidone (antifibrosant)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "dfg": [
+      20,
+      75
+     ],
+     "dose": "1 200 mg par jour (la dose de 2 400 mg a été mal tolérée)",
+     "duree": "1 an",
+     "population": "77 patients avec néphropathie diabétique, DFG 20 à 75",
+     "effet": "DFG + 3,3 mL/min sous 1 200 mg/jour contre − 2,2 sous placebo. Mises en dialyse : 4 sous placebo, aucune sous 1 200 mg (différence non significative).",
+     "mecanisme": "Freine la fibrose (cicatrisation) du rein.",
+     "prudence": "Nombreux abandons à forte dose ; essai petit.",
+     "resume": "DFG + 3,3 contre − 2,2 en 1 an",
+     "source": "pirfenidoneSharma",
+     "profil": {
+      "causes": [
+       "diabete"
+      ],
+      "criteres": [
+       {
+        "dfg": [
+         20,
+         75
+        ]
+       }
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "allopurinol_rein",
+     "nom": "Allopurinol (acide urique élevé)",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 3,
+     "dfg": [
+      15,
+      59
+     ],
+     "dose": "100 mg par jour (Goicoechea) ; 100 à 300 mg par jour (CKD-FIX)",
+     "duree": "2 ans",
+     "population": "113 patients DFG < 60 (Goicoechea) ; 369 patients stade 3 ou 4 à haut risque (CKD-FIX)",
+     "effet": "Petit essai : DFG + 1,3 sous allopurinol contre − 3,3 sans, et 71 % d'événements cardiovasculaires en moins. Grand essai CKD-FIX : aucune différence de déclin du DFG (− 3,33 contre − 3,23 par an).",
+     "mecanisme": "Baisse l'acide urique et l'inflammation (CRP).",
+     "prudence": "Résultats contradictoires : le grand essai, le plus fiable, est négatif. Utile en revanche dans les causes particulières (déficit en APRT, voir Guéris).",
+     "resume": "Positif en petit essai, négatif en grand essai",
+     "source": "allopurinolGoicoechea",
+     "source2": "ckdFix",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "bariatrique_rein",
+     "nom": "Chirurgie bariatrique (obésité et diabète)",
+     "type": "geste",
+     "force": "faible",
+     "critere": 4,
+     "dose": "Chirurgie de l'obésité",
+     "duree": "5 ans",
+     "population": "737 patients opérés, diabétiques de type 2 (minorité avec maladie rénale au départ)",
+     "effet": "La rémission du diabète après chirurgie s'accompagne de moins d'albuminurie modérée ou sévère (RR 0,66 ; IC 95 % 0,48 à 0,90) et d'un risque rénal stabilisé ; pas de lien indépendant avec le DFG.",
+     "mecanisme": "Perte de poids et rémission du diabète.",
+     "prudence": "Étude d'observation sans groupe de comparaison.",
+     "resume": "Albuminurie − 34 % si le diabète disparaît",
+     "source": "bariatriqueRein",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "pyrvinium_rein",
+     "nom": "Pyrvinium (antiparasitaire)",
+     "type": "medicament",
+     "force": "preclinique",
+     "critere": 1,
+     "dose": "60 µg/kg par voie orale chez le rat",
+     "duree": "5 jours",
+     "population": "Rats avec atteinte rénale aiguë au cisplatine",
+     "effet": "Moins de lésions et de fibrose, moins de platine accumulé dans le rein, moins d'inflammation.",
+     "mecanisme": "Bloque la voie Wnt/β-caténine, qui pousse à la fibrose, et réduit le transporteur OCT-2.",
+     "prudence": "Atteinte aiguë chez l'animal ; rien chez l'humain.",
+     "resume": "Protège le rein du rat",
+     "source": "pyrviniumCisplatine",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": [
@@ -2982,6 +3448,49 @@
      "risques": "Inconnus pour l'association ; extraits de plantes à standardiser.",
      "source": "msc",
      "source2": "astragaleAnimal"
+    },
+    {
+     "id": "regression_microalb",
+     "type": "obtenue",
+     "titre": "Régression de la microalbuminurie (stade précoce, diabète de type 1)",
+     "objectif": "Faire disparaître le premier signe d'atteinte rénale du diabète",
+     "resultat": "Chez 386 patients avec microalbuminurie persistante, l'albumine urinaire a diminué de moitié chez 58 % en 6 ans (IC 95 % 52 à 64 %). Les facteurs associés : microalbuminurie récente, hémoglobine glyquée sous 8 %, tension systolique sous 115 mm Hg, cholestérol et triglycérides bas. Avec tous ces facteurs réunis, la régression était 3 fois plus probable (HR 3,0 ; IC 95 % 1,5 à 6,0).",
+     "composants": [
+      {
+       "nom": "Glycémie bien équilibrée (HbA1c < 8 %)",
+       "role": "retire l'agression du sucre"
+      },
+      {
+       "nom": "Tension basse (systolique < 115)",
+       "role": "baisse la pression dans les glomérules"
+      },
+      {
+       "nom": "Cholestérol et triglycérides bas",
+       "role": "moins de lésions des petits vaisseaux"
+      }
+     ],
+     "risques": "Ne concerne que le stade très précoce (microalbuminurie, DFG conservé). Association observée, pas un essai.",
+     "source": "perkinsMicroalb"
+    },
+    {
+     "id": "sortie_dialyse",
+     "type": "obtenue",
+     "titre": "Sortie définitive de dialyse (récupération de la fonction rénale)",
+     "objectif": "Retrouver assez de fonction pour arrêter la dialyse",
+     "resultat": "Sur 440 996 patients européens en dialyse chronique, 1,8 % ont récupéré une fonction rénale (71 % durablement) ; 90 % des récupérations dans les 2 premières années. Une méta-analyse (2,4 millions de patients) trouve 1,5 % de récupérations durables, après environ 10 mois de dialyse, et plus de 2 ans sans dialyse en moyenne.",
+     "composants": [
+      {
+       "nom": "Cause réversible",
+       "role": "nécrose tubulaire ou corticale, sclérodermie, syndrome hémolytique et urémique : récupération 17 à 20 fois plus fréquente"
+      },
+      {
+       "nom": "Surveillance de la fonction résiduelle",
+       "role": "permet de repérer la récupération"
+      }
+     ],
+     "risques": "Rare. Dépend surtout de la maladie d'origine ; une partie des patients reprend la dialyse dans l'année.",
+     "source": "rkfEraEdta",
+     "source2": "rkfMeta"
     }
    ],
    "profil_patient": {
@@ -3067,6 +3576,34 @@
      ],
      "source": "dogra2018_fenbendazole",
      "source2": "brownjohn2024_mebendazole_pkd"
+    },
+    {
+     "id": "p_itraconazole_fibrose",
+     "nom": "Itraconazole (antifongique) contre la fibrose rénale",
+     "type": "medicament",
+     "profil": {
+      "causes": [
+       "diabete",
+       "hypertension",
+       "glomerulonephrite",
+       "autre"
+      ]
+     },
+     "situation": "Rein qui se cicatrise (fibrose) quelle que soit la cause, avec un DFG qui baisse.",
+     "lesion": "Les cicatrices sont fabriquées par des myofibroblastes ; une grande partie vient de cellules autour des vaisseaux marquées par Gli1, relais de la voie Hedgehog.",
+     "fait_molecule": "L'itraconazole bloque la voie Hedgehog en agissant sur Smoothened, à des taux sanguins comparables à ceux des traitements antifongiques (Kim 2010).",
+     "fait_maladie": "Chez la souris, les cellules Gli1+ produisent les myofibroblastes après une lésion du rein ; les supprimer réduit nettement la fibrose (Kramann 2015).",
+     "lien": "L'itraconazole agit sur un autre maillon de la voie Hedgehog que le mébendazole : s'il freine ces cellules du rein, il pourrait limiter les cicatrices.",
+     "formulation": "Chez un malade dont le rein se cicatrise progressivement, l'itraconazole pourrait éventuellement freiner la formation de nouvelles cicatrices.",
+     "recherche": "Aucune étude trouvée sur PubMed associant itraconazole et fibrose rénale (recherche du 28/11/2026).",
+     "a_verifier": "Essai chez l'animal (uretère ligaturé ou rein diabétique) mesurant la fibrose et les cellules Gli1+.",
+     "prudence": "Jamais testé pour le rein. Nombreuses interactions médicamenteuses (inhibiteur puissant du CYP3A4) ; risque pour le cœur et le foie en usage prolongé.",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ],
+     "source": "itraconazoleHh",
+     "source2": "kramann2015_gli1"
     }
    ]
   },
