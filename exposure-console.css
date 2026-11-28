@@ -139,7 +139,7 @@ main{padding:8px 10px}
 .xp-card .mx-maladie[aria-pressed=true]{background:#0e4252;border-color:#47e3ef}
 .mx-maladie span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mx-maladie small{color:#7fd3e0!important;font-size:10.5px!important;border:1px solid #2b6577;border-radius:9px;padding:0 6px;min-width:22px;text-align:center}
-.mx-maladie i,.mx-cle i{width:11px;height:11px;border-radius:50%;flex:none;background:var(--mx-c,var(--mx-n7));box-shadow:0 0 0 1px #04262e99}
+.mx-maladie i,.mx-cle i{width:10px;height:10px;border-radius:50%;flex:none;background:var(--mx-c,var(--mx-n7));box-shadow:0 0 6px 1px var(--mx-c,var(--mx-n7)),0 0 2px var(--mx-c,var(--mx-n7))}
 .mx-cle{display:flex;flex-wrap:wrap;align-items:center;gap:3px 5px;margin:7px 0 0;font-size:10.5px!important;color:#7fa9b5!important}
 .mx-cle i{display:inline-block;margin-left:4px}
 .mx-apropos summary{cursor:pointer;font-weight:700;font-size:13.5px;color:#e6fbff}
@@ -149,9 +149,9 @@ main{padding:8px 10px}
 .mx-lire summary{cursor:pointer;font-size:11.5px;color:#8fd6e2}
 .mx-legende{border-left:3px solid var(--mx-c);padding-left:7px;margin:5px 0;font-size:11px!important}
 .mx-legende b{color:#eefbfa}
-/* Une seule teinte, en dégradé : turquoise foncé (guérison) → presque blanc (à l’étude). */
-:root{--mx-n1:#0a7f86;--mx-n2:#139aa1;--mx-n3:#34b6bb;--mx-n4:#6fd0d1;--mx-n5:#a7e5e3;--mx-n6:#cdf1ef;--mx-n7:#eefbfa}
-[data-appui=obtenue]{--mx-c:var(--mx-n1);--mx-t:#fff}[data-force=forte],[data-appui=fort]{--mx-c:var(--mx-n2);--mx-t:#fff}[data-force=moyenne],[data-appui=moyen]{--mx-c:var(--mx-n3);--mx-t:#04262e}[data-force=faible],[data-appui=faible]{--mx-c:var(--mx-n4);--mx-t:#04262e}[data-force=cas]{--mx-c:var(--mx-n5);--mx-t:#04262e}[data-force=preclinique]{--mx-c:var(--mx-n6);--mx-t:#04262e}[data-force=theorique],[data-appui=etude]{--mx-c:var(--mx-n7);--mx-t:#04262e}
+/* Niveaux : guérison turquoise clair lumineux, fort turquoise sombre lumineux, moyen orange foncé, faible orange clair, à l’étude blanc. */
+:root{--mx-n1:#6ff8f1;--mx-n2:#0fb3ad;--mx-n3:#ff8419;--mx-n4:#ffc89a;--mx-n5:#ffdcbd;--mx-n6:#ffeedd;--mx-n7:#ffffff}
+[data-appui=obtenue]{--mx-c:var(--mx-n1);--mx-t:#04262e}[data-force=forte],[data-appui=fort]{--mx-c:var(--mx-n2);--mx-t:#02201f}[data-force=moyenne],[data-appui=moyen]{--mx-c:var(--mx-n3);--mx-t:#04262e}[data-force=faible],[data-appui=faible]{--mx-c:var(--mx-n4);--mx-t:#04262e}[data-force=cas]{--mx-c:var(--mx-n5);--mx-t:#04262e}[data-force=preclinique]{--mx-c:var(--mx-n6);--mx-t:#04262e}[data-force=theorique],[data-appui=etude]{--mx-c:var(--mx-n7);--mx-t:#04262e}
 .mx-onglets{display:flex;align-items:center;gap:4px;margin-bottom:8px;border-bottom:1px solid #265767;padding-bottom:7px}
 .xp-card .mx-onglets button{padding:4px 11px;border-radius:999px;font-size:12px;font-weight:600;background:#071e2b;border-color:#2b6577}
 .xp-card .mx-onglets button[aria-pressed=true]{background:#17d4e6;color:#02202b;border-color:#17d4e6}
