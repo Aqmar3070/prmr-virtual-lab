@@ -249,7 +249,20 @@ body[data-vue] {
     background: transparent; box-shadow: none; border: 0; border-radius: 0;
     border-bottom: 3px solid transparent; color: #eafaff;
   }
-  & .xp-vues button[aria-pressed=true] { color: #ffcd70; border-bottom-color: #ffc158; font-weight: 700; }
+  & .xp-vues button { position: relative; }
+  & .xp-vues button[aria-pressed=true] { color: #ffcd70; font-weight: 700; }
+  /* Trait de l’onglet actif : fuseau lumineux, épais au centre, effilé aux extrémités, avec un halo. */
+  & .xp-vues button[aria-pressed=true]::after, & .xp-vues button[aria-pressed=true]::before {
+    content: ""; position: absolute; left: 4%; right: 4%; bottom: -1px; pointer-events: none;
+  }
+  & .xp-vues button[aria-pressed=true]::after {
+    height: 4px; clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%);
+    background: linear-gradient(90deg, #ffb13b00, #ffc158 18%, #fff4cf 50%, #ffc158 82%, #ffb13b00);
+  }
+  & .xp-vues button[aria-pressed=true]::before {
+    height: 6px; bottom: -2.5px; border-radius: 50%; filter: blur(4px);
+    background: radial-gradient(closest-side, #ffe08aee, #ffb13b88 60%, transparent);
+  }
   & :is(#sex-choice button,.xa-toolbar button,.xa-toolbar select) {
     color: #e8faff; background: linear-gradient(#265364,#0d3343); border: 1px solid #a9d6db;
     box-shadow: inset 0 1px 2px #dffcff40; border-radius: 6px; min-height: 32px;
