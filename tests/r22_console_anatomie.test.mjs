@@ -35,7 +35,7 @@ test("aucune commande n'a disparu dans la recomposition", () => {
 });
 
 test("le corps occupe la colonne centrale, pas une vignette", () => {
-  assert.match(css, /\.prmr-console-stage canvas \{[^}]*height: min\(74vh, 720px\)/,
+  assert.match(css, /\.prmr-console-stage canvas \{[^}]*height: min\((?:74vh|calc\(74 \* var\(--vh, 1vh\)\)), 720px\)/,
     "le canevas doit prendre la hauteur disponible");
   assert.match(css, /grid-template-columns: minmax\(230px, 280px\) minmax\(360px, 1fr\)/,
     "la colonne centrale doit être la plus large");

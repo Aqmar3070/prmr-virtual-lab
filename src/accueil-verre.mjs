@@ -1,4 +1,8 @@
 const scene = document.querySelector(".scene");
+// Échelle d'affichage (zoom CSS sur <html>) : getBoundingClientRect donne des
+// coordonnées zoomées, alors que les tailles CSS et les SVG ne le sont pas.
+const echelle = () => parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+const cadre = el => { const r = el.getBoundingClientRect(), z = echelle(); return { left: r.left / z, top: r.top / z, width: r.width / z, height: r.height / z, right: r.right / z, bottom: r.bottom / z }; };
 const cards = [...scene.querySelectorAll(".cadran")];
 let expanded = null;
 
@@ -12,7 +16,7 @@ function collapse() {
 function expand(card) {
   if (expanded === card) return;
   collapse();
-  const box = card.getBoundingClientRect();
+  const box = cadre(card);
   const center = box.left + box.width / 2;
   const available = Math.min(center, document.documentElement.clientWidth - center);
   const limit = card.dataset.place === "grand" ? 1.2 : 1.55;
@@ -56,7 +60,7 @@ const vertices = [[71,7],[229,7],[295,120],[229,233],[71,233],[5,120]];
 
 // Intersect the line from the hexagon centre with its actual outer stroke.
 function attachWire(card, wire, tip, origin) {
-  const box = card.getBoundingClientRect();
+  const box = cadre(card);
   const cx = box.left + box.width/2 - origin.left;
   const cy = box.top + box.height/2 - origin.top;
   const dx = tip.x-cx, dy = tip.y-cy;
@@ -128,7 +132,7 @@ function render(time) {
     const thickness=backbone ? radius*.145*(.55+.45*a.taper)*(1+.14*z) : radius*.052;
     glassTube(a,b,thickness,backbone ? (z>0?front:rear) : rungs);
   }
-  const origin=scene.getBoundingClientRect(), box=canvas.getBoundingClientRect();
+  const origin=cadre(scene), box=cadre(canvas);
   cards.forEach((card,i)=>{
     const slot=card.dataset.place;
     const t=slot==="gauche"?.52:slot==="haut"?.79:.28;

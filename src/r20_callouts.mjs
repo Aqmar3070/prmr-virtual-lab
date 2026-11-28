@@ -53,7 +53,7 @@ export function createCallouts(host, canvas) {
       }
     }
 
-    const rect = canvas.getBoundingClientRect();
+    const rect = { width: canvas.clientWidth, height: canvas.clientHeight }; // tailles CSS, insensibles au zoom de la page
     if (!rect.width || !rect.height) return;
     traits.setAttribute("viewBox", "0 0 " + rect.width + " " + rect.height);
 

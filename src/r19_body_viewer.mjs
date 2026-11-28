@@ -131,7 +131,7 @@ export async function mountBodyViewer(canvas, { onStatus } = {}) {
 
   let disposed = false;
   function resize() {
-    const rect = canvas.getBoundingClientRect();
+    const rect = { width: canvas.clientWidth, height: canvas.clientHeight }; // tailles CSS, insensibles au zoom de la page
     const w = Math.max(1, rect.width), h = Math.max(1, rect.height);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
@@ -163,7 +163,7 @@ export async function mountBodyViewer(canvas, { onStatus } = {}) {
 
   return {
     ancres() {
-      const rect = canvas.getBoundingClientRect();
+      const rect = { width: canvas.clientWidth, height: canvas.clientHeight }; // tailles CSS, insensibles au zoom de la page
       const points = {};
       for (const [key, meshes] of cibles) {
         if (!meshes.length) continue;

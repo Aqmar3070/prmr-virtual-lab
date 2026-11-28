@@ -200,7 +200,7 @@ button.workflow,
 .prmr-console-read {
   position: sticky;
   top: var(--prmr-space-4);
-  max-height: calc(100vh - 2 * var(--prmr-space-4));
+  max-height: calc(calc(100 * var(--vh, 1vh)) - 2 * var(--prmr-space-4));
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -231,7 +231,7 @@ button.workflow,
 .prmr-console-stage canvas {
   display: block;
   width: 100%;
-  height: min(74vh, 720px);
+  height: min(calc(74 * var(--vh, 1vh)), 720px);
   touch-action: none;
 }
 
@@ -292,7 +292,7 @@ button.workflow,
 @media (max-width: 900px) {
   .prmr-console { grid-template-columns: 1fr; }
   .prmr-console-side { position: static; max-height: none; }
-  .prmr-console-stage canvas { height: min(60vh, 460px); }
+  .prmr-console-stage canvas { height: min(calc(60 * var(--vh, 1vh)), 460px); }
 }
 
 /* La page des espèces : mêmes colonnes, mais le sélecteur d'espèce s'empile
@@ -305,7 +305,7 @@ button.workflow,
 }
 
 .r4-st-console .r4-st-art {
-  height: clamp(64px, 9vw, 96px);
+  height: clamp(64px, calc(9 * var(--vw, 1vw)), 96px);
 }
 
 .r4-st-console .prmr-console-stage {
@@ -320,7 +320,7 @@ button.workflow,
 }
 
 .r4-st-console .r4-st-portrait {
-  min-height: min(70vh, 660px);
+  min-height: min(calc(70 * var(--vh, 1vh)), 660px);
 }
 
 .r4-st-console .r4-st-portrait canvas {
