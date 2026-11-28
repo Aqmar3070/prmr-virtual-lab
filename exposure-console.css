@@ -157,7 +157,7 @@ main{padding:8px 10px}
 .xp-card .mx-onglets button[aria-pressed=true]{background:#17d4e6;color:#02202b;border-color:#17d4e6}
 .mx-onglets b{font-size:10.5px;margin-left:3px;opacity:.85}
 #mx-titre-stade{margin-left:auto;font-size:11px;color:#71e1f2;max-width:40%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.mx-compte{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}
+.mx-compte{margin:0 0 6px}.mx-compte-ligne{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px}
 .mx-pastille{font-size:10.5px;padding:1px 7px;border-radius:9px;border:1px solid var(--mx-c);background:var(--mx-c)!important;color:var(--mx-t,#04262e)}
 .mx-niveau{font-size:10.5px!important;text-transform:uppercase;letter-spacing:.06em;color:#7fa9b5!important;margin:9px 0 3px!important;border:0!important;padding:0!important}
 .mx-ligne-d{border:1px solid #1a4352;border-left:3px solid var(--mx-c);border-radius:4px;background:#05192566;margin:3px 0}
