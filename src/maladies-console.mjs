@@ -118,8 +118,9 @@ function rendreSubstancesListe(zone,liste){
  }
 }
 function rendreGroupe(zone,liste,avis,sansEntete){
- const compte=el("div","mx-compte");
- for(const [cle,f] of Object.entries(FORCES)){const n=liste.filter(s=>s.force===cle).length;if(!n)continue;const c=el("span","mx-pastille",COURT[cle]+" "+n);c.title=f.libelle;c.dataset.force=cle;compte.append(c);}
+ // Niveaux de preuve et leurs couleurs : rangés dans un volet replié.
+ const compte=el("details","mx-note mx-compte");compte.append(el("summary","","Niveaux de preuve et couleurs"));
+ for(const [cle,f] of Object.entries(FORCES)){const n=liste.filter(s=>s.force===cle).length;if(!n)continue;const p=el("p","mx-compte-ligne");const c=el("span","mx-pastille",COURT[cle]+" "+n);c.dataset.force=cle;p.append(c,el("span","",f.libelle));compte.append(p);}
  if(!sansEntete)zone.append(compte);
  let groupeCourant="";
  for(const [cle,f] of Object.entries(FORCES)){
