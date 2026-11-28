@@ -1,0 +1,20 @@
+{
+ "version": "2026-11-28",
+ "description": "Base de l'espace Molécules. Les molécules et plantes sont tirées du registre des maladies (research-data/maladies.json) ; ce fichier ajoute les interactions documentées entre deux éléments.",
+ "categories_plantes": [
+  "Plante entière",
+  "Racine",
+  "Écorce",
+  "Feuille",
+  "Graine",
+  "Fruit et agrume",
+  "Fleur",
+  "Champignon",
+  "Autre"
+ ],
+ "schema": {
+  "interactions": "a, b (noms exacts), nature (favorable | defavorable | dangereuse | neutre), effet, statut (reglementaire | toxique_etabli | association_observee | essai), source (clé dans sources)"
+ },
+ "interactions": [],
+ "sources": {}
+}

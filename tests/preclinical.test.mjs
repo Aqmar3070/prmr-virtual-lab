@@ -4,7 +4,7 @@ import {readFileSync} from "node:fs";
 import {Script} from "node:vm";
 
 const page=readFileSync(new URL("../preclinical.html",import.meta.url),"utf8");
-const main=readFileSync(new URL("../index.html",import.meta.url),"utf8");
+const main=readFileSync(new URL("../atelier.html",import.meta.url),"utf8");
 const research=readFileSync(new URL("../research.html",import.meta.url),"utf8");
 
 test("the renal preclinical dossier is linked from both laboratory entrypoints",()=>{
@@ -13,7 +13,7 @@ test("the renal preclinical dossier is linked from both laboratory entrypoints",
  // L'accès à l'espace privé est servi par la navigation partagée, présente
  // sur chaque page, et non plus par un en-tête propre au dossier.
  const route=readFileSync(new URL("../src/prmr_route.mjs",import.meta.url),"utf8");
- assert.match(route,/index\.html\?view=cloud/);
+ assert.match(route,/atelier\.html\?view=cloud/); // l'espace privé a suivi l'ancien accueil (28/11/2026)
  assert.ok(page.includes("src/prmr_route.mjs"));
 });
 

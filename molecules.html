@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Molécules — PRMR Virtual Lab</title>
+<meta name="description" content="Espace Molécules PRMR : molécules, plantes et substances naturelles, et combinaisons.">
+<link rel="preload" as="image" href="./assets/exposure/laboratoire-bleu.webp">
+<link rel="stylesheet" href="./prmr-espaces.css?v=f3ba3dda72">
+<link rel="stylesheet" href="./prmr-dna.css?v=72af6612ad">
+<script type="module" src="./src/prmr-dna.mjs?v=e10f7f4423"></script>
+</head>
+<body class="es" data-vue="molecules">
+<header class="es-head">
+ <a href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
+ <nav class="es-vues" aria-label="Vue de l’espace Molécules">
+  <button type="button" data-vue="molecules" aria-pressed="true">Molécules</button>
+  <button type="button" data-vue="plantes" aria-pressed="false">Plantes et substances naturelles</button>
+ </nav>
+ <nav class="es-nav" aria-label="Espaces du laboratoire">
+  <a href="./index.html">Accueil</a>
+  <a href="./preclinique.html">Explorateur préclinique</a>
+  <a href="./exposures.html">Explorateur clinique</a>
+  <a href="./molecules.html" aria-current="page">Molécules</a>
+ </nav>
+</header>
+<main class="es-main" id="prmr-primary-content">
+ <div class="es-board">
+  <section class="es-verre" aria-labelledby="mo-titre-liste">
+   <h2 id="mo-titre-liste">Molécules</h2>
+   <input id="mo-recherche" type="search" placeholder="Rechercher" aria-label="Rechercher">
+   <p class="es-etiq" id="mo-compte"></p>
+   <div id="mo-liste" class="es-liste"></div>
+  </section>
+  <section class="es-verre es-centre" aria-labelledby="mo-titre-combi">
+   <h2 id="mo-titre-combi">Combinaison</h2>
+   <p class="es-etiq">Ajoutez jusqu’à quatre éléments avec le bouton « + » de la liste. L’espace montre ce qui est documenté pour chacun et pour l’association ; il ne calcule aucun résultat chiffré.</p>
+   <div class="es-choix" id="mo-choix"></div>
+   <div class="es-resultat" id="mo-resultat"></div>
+  </section>
+  <section class="es-verre es-fiche" aria-labelledby="mo-titre-fiche">
+   <h2 id="mo-titre-fiche">Fiche</h2>
+   <div id="mo-fiche"></div>
+  </section>
+ </div>
+</main>
+<footer class="es-pied"><span>Une association jamais testée est une hypothèse, pas une recommandation · toute décision revient au médecin</span></footer>
+<script type="module" src="./src/espace-molecules.mjs?v=e608783a5f"></script>
+</body>
+</html>

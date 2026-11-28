@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Explorateur préclinique — PRMR Virtual Lab</title>
+<meta name="description" content="Explorateur préclinique PRMR : substances, maladies et symptômes chez l'animal.">
+<link rel="preload" as="image" href="./assets/exposure/laboratoire-bleu.webp">
+<link rel="stylesheet" href="./prmr-espaces.css?v=f3ba3dda72">
+<link rel="stylesheet" href="./prmr-dna.css?v=72af6612ad">
+<script type="module" src="./src/prmr-dna.mjs?v=e10f7f4423"></script>
+</head>
+<body class="es" data-vue="substances">
+<header class="es-head">
+ <a href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
+ <nav class="es-vues" aria-label="Vue de l’explorateur préclinique">
+  <button type="button" data-vue="substances" aria-pressed="true">Substances</button>
+  <button type="button" data-vue="maladies" aria-pressed="false">Maladies</button>
+  <button type="button" data-vue="symptomes" aria-pressed="false">Symptômes</button>
+ </nav>
+ <nav class="es-nav" aria-label="Espaces du laboratoire">
+  <a href="./index.html">Accueil</a>
+  <a href="./preclinique.html" aria-current="page">Explorateur préclinique</a>
+  <a href="./exposures.html">Explorateur clinique</a>
+  <a href="./molecules.html">Molécules</a>
+ </nav>
+</header>
+<main class="es-main" id="prmr-primary-content">
+ <div class="es-board">
+  <section class="es-verre" aria-labelledby="pc-titre-liste">
+   <h2 id="pc-titre-liste">Substances</h2>
+   <label class="es-etiq" for="pc-espece">Espèce</label>
+   <select id="pc-espece"></select>
+   <input id="pc-recherche" type="search" placeholder="Rechercher" aria-label="Rechercher" style="margin-top:8px">
+   <div id="pc-liste" class="es-liste" aria-live="polite"></div>
+  </section>
+  <section class="es-verre es-centre" aria-labelledby="pc-titre-modele">
+   <h2 id="pc-titre-modele">Modèle animal</h2>
+   <div class="es-figure" id="pc-figure"></div>
+  </section>
+  <section class="es-verre es-fiche" aria-labelledby="pc-titre-fiche">
+   <h2 id="pc-titre-fiche">Fiche</h2>
+   <div id="pc-fiche"></div>
+  </section>
+ </div>
+</main>
+<footer class="es-pied"><span>Données animales sourcées uniquement · un résultat chez l’animal ne vaut pas pour l’humain</span></footer>
+<script type="module" src="./src/espace-preclinique.mjs?v=339a708401"></script>
+</body>
+</html>

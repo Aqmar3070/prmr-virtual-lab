@@ -6,52 +6,39 @@
  * combinaisons » et « R02 · Molécules » selon la page d'où on venait. Une seule
  * source de vérité supprime cette confusion.
  *
- * Les cinq phases forment une séquence réelle — on part des preuves publiées et
- * on arrive aux conditions d'une recherche clinique — d'où la numérotation et le
- * balisage en liste ordonnée. Aucune donnée personnelle n'est lue ni stockée.
+ * Depuis le 28/11/2026, le laboratoire tient en trois espaces : l'explorateur
+ * préclinique (animal), l'explorateur clinique (humain) et les molécules. Les
+ * anciennes pages (preuves, anatomie comparée, modélisation, recherche
+ * clinique, criblage) restent en ligne mais ne sont plus au menu. Aucune
+ * donnée personnelle n'est lue ni stockée.
  */
 
 const PHASES = [
   {
-    file: "preclinical.html",
+    file: "preclinique.html",
     phase: "01",
-    name: "Preuves",
-    full: "Preuves précliniques publiées",
-    summary: "Études animales externes, mesurées et sourcées."
+    name: "Préclinique",
+    full: "Explorateur préclinique",
+    summary: "Animaux : substances, maladies et symptômes."
   },
   {
-    file: "species-r04.html",
+    file: "exposures.html",
     phase: "02",
-    name: "Anatomie",
-    full: "Anatomie comparée 3D",
-    summary: "Chien et chat, organes issus de CT, physiologie manipulable."
+    name: "Clinique",
+    full: "Explorateur clinique",
+    summary: "Humain : substances, maladies et symptômes."
   },
   {
-    file: "screening.html",
+    file: "molecules.html",
     phase: "03",
     name: "Molécules",
-    full: "Criblage moléculaire",
-    summary: "Dix molécules, 165 associations, calculs RDKit."
-  },
-  {
-    file: "risk-r03.html",
-    phase: "04",
-    name: "Simulations",
-    full: "Exposition et sensibilité",
-    summary: "Stress-test PK/PD, hypothèses non calibrées."
-  },
-  {
-    file: "clinical.html",
-    phase: "05",
-    name: "Clinique",
-    full: "Conditions d'entrée en clinique",
-    summary: "Anatomie humaine et critères encore manquants."
+    full: "Molécules et plantes",
+    summary: "Molécules, substances naturelles et combinaisons."
   }
 ];
 
 const ASIDE = [
-  { href: "./exposures.html", label: "Doses et effets", primary: true },
-  { href: "./index.html?view=cloud", label: "Espace privé" },
+  { href: "./atelier.html?view=cloud", label: "Espace privé" },
   {
     href: "https://github.com/Aqmar3070/prmr-virtual-lab",
     label: "Code source",

@@ -1,0 +1,97 @@
+{
+ "version": "2026-11-28",
+ "description": "Base de l'explorateur préclinique : substances, maladies et symptômes chez l'animal. Créée vide le 28/11/2026 ; chaque entrée ajoutée doit être sourcée.",
+ "groupes": {
+  "compagnie": "Animaux de compagnie",
+  "rente": "Animaux d'élevage",
+  "laboratoire": "Animaux de laboratoire"
+ },
+ "especes": [
+  {
+   "id": "chien",
+   "nom": "Chien",
+   "nom_latin": "Canis lupus familiaris",
+   "groupe": "compagnie",
+   "modele": null
+  },
+  {
+   "id": "chat",
+   "nom": "Chat",
+   "nom_latin": "Felis catus",
+   "groupe": "compagnie",
+   "modele": null
+  },
+  {
+   "id": "lapin",
+   "nom": "Lapin",
+   "nom_latin": "Oryctolagus cuniculus",
+   "groupe": "compagnie",
+   "modele": null
+  },
+  {
+   "id": "cheval",
+   "nom": "Cheval",
+   "nom_latin": "Equus caballus",
+   "groupe": "rente",
+   "modele": null
+  },
+  {
+   "id": "bovin",
+   "nom": "Bovin",
+   "nom_latin": "Bos taurus",
+   "groupe": "rente",
+   "modele": null
+  },
+  {
+   "id": "mouton",
+   "nom": "Mouton",
+   "nom_latin": "Ovis aries",
+   "groupe": "rente",
+   "modele": null
+  },
+  {
+   "id": "chevre",
+   "nom": "Chèvre",
+   "nom_latin": "Capra hircus",
+   "groupe": "rente",
+   "modele": null
+  },
+  {
+   "id": "porc",
+   "nom": "Porc",
+   "nom_latin": "Sus scrofa domesticus",
+   "groupe": "rente",
+   "modele": null
+  },
+  {
+   "id": "poule",
+   "nom": "Poule",
+   "nom_latin": "Gallus gallus domesticus",
+   "groupe": "rente",
+   "modele": null
+  },
+  {
+   "id": "rat",
+   "nom": "Rat",
+   "nom_latin": "Rattus norvegicus",
+   "groupe": "laboratoire",
+   "modele": null
+  },
+  {
+   "id": "souris",
+   "nom": "Souris",
+   "nom_latin": "Mus musculus",
+   "groupe": "laboratoire",
+   "modele": null
+  }
+ ],
+ "schema": {
+  "substances": "id, nom, type (medicament | naturel | aliment | toxique), especes [ids], effets [{espece, organe, effet, dose, statut (reglementaire | toxique_etabli | association_observee | non_documente), source}]",
+  "maladies": "id, nom, especes [ids], description, symptomes [ids], gueris / testes / pistes (même logique que l'explorateur clinique), source",
+  "symptomes": "id, nom, region (tete, tronc, membres, peau, comportement, digestif…), especes [ids], maladies [ids]"
+ },
+ "substances": [],
+ "maladies": [],
+ "symptomes": [],
+ "sources": {}
+}

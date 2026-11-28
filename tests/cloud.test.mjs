@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
-const html=readFileSync(new URL("../index.html",import.meta.url),"utf8");
+const html=readFileSync(new URL("../atelier.html",import.meta.url),"utf8");
 const lab=readFileSync(new URL("../src/lab.mjs",import.meta.url),"utf8");
 const cloud=readFileSync(new URL("../src/cloud.mjs",import.meta.url),"utf8");
 test("espace privé visible dans la navigation",()=>{

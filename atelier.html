@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07121f">
+<meta name="description" content="PRMR Virtual Lab : chimie moléculaire RDKit, explorateur de données PubChem/ChEMBL et modèles PK/PD exploratoires.">
+<title>PRMR Virtual Lab | Research Workspace 2.0</title>
+<link rel="stylesheet" href="./prmr-design-system.css?v=c83334b3ec">
+<link rel="stylesheet" href="laboratory.css">
+<link rel="stylesheet" href="r04-atlas.css?v=r12-20261117">
+<script type="module" src="./src/r04_molecule_deck.mjs?v=0737c936df"></script>
+<script defer src="https://unpkg.com/@rdkit/rdkit@2026.9.2/dist/RDKit_minimal.js"></script>
+<script type="module" src="src/lab.mjs"></script>
+<link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
+<script type="module" src="./src/prmr_route.mjs?v=17d202ed6e"></script>
+<link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
+<link rel="stylesheet" href="./prmr-home.css?v=29dcdaebc6">
+<link rel="stylesheet" href="./renal-display.css?v=ca27c1cb43">
+<link rel="stylesheet" href="./landing-map.css?v=2250b00362">
+<link rel="stylesheet" href="./prmr-dna.css?v=72af6612ad">
+<script type="module" src="./src/prmr-dna.mjs?v=e10f7f4423"></script>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar" id="sidebar">
+  <div class="workspace-label">ATELIERS <span>DE CE POSTE</span></div>
+  <nav class="navigation" aria-label="Sections du laboratoire">
+    <button class="navitem selected" data-view="overview"><span class="navicon">◫</span> Parcours de recherche</button>
+    <div class="navgroup">ATELIERS MOLÉCULAIRES</div>
+    <button class="navitem" data-view="molecules"><span class="navicon">⬡</span> Atelier moléculaire <span class="navmini">RDKit</span></button>
+    <button class="navitem" data-view="library"><span class="navicon">▤</span> Bibliothèque de structures</button>
+    <button class="navitem" data-view="combinations"><span class="navicon">◇</span> Comparaison de molécules</button>
+    <div class="navgroup">MODÉLISATION</div>
+    <button class="navitem" data-view="pkpd"><span class="navicon">⌁</span> Simulation PK/PD</button>
+    <button class="navitem" data-view="systems"><span class="navicon">◎</span> Atlas physiologique</button>
+    <div class="navgroup">RÉFÉRENCE</div>
+    <button class="navitem" data-view="data"><span class="navicon">⛁</span> Données & connecteurs</button>
+    <button class="navitem" data-view="cloud"><span class="navicon">☁</span> Espace de recherche privé <span class="navmini">Cloud</span></button>
+    <button class="navitem" data-view="quality"><span class="navicon">☷</span> Traçabilité scientifique</button>
+  </nav>
+  <div class="sidebar-bottom"><div class="statusdot"></div><div><strong>Projet exploratoire</strong><span>Calculs locaux · aucun conseil clinique</span></div></div>
+</aside>
+<div class="right">
+<header class="topbar">
+ <div class="top-left"><button id="menu-toggle" class="mobilemenu" aria-label="Afficher le menu">☰</button><span class="crumb">PRMR RESEARCH / <strong id="current-crumb">Vue générale</strong></span></div>
+ <div class="top-right"><span class="engine-pill" id="rdkit-status">RDKit · chargement</span><span class="version">BUILD 2.0</span><button class="btn btn-quiet" id="export-session">Exporter la session</button></div>
+</header>
+<main class="main">
+<section class="view" id="view-overview">
+ <div class="lab-landing">
+  <h1 class="landing-sr">Accueil du laboratoire PRMR</h1>
+  <img class="landing-image" src="./assets/home/prmr-accueil-original.png" width="1672" height="941" alt="Laboratoire PRMR. Silhouette humaine translucide aux reins éclairés, entourée des espaces de recherche." fetchpriority="high">
+  <svg class="landing-map" viewBox="0 0 1672 941" aria-label="Navigation du laboratoire">
+    <!-- Reuse the neutral menu background beneath the original selected row. -->
+    <g pointer-events="none" aria-hidden="true">
+      <svg x="0" y="146" width="214" height="81" viewBox="0 224 214 6" preserveAspectRatio="none"><image href="./assets/home/prmr-accueil-original.png" width="1672" height="941"/></svg>
+      <path d="M35 186 51 171 67 186 M39 183v18h9v-11h7v11h9v-18" fill="none" stroke="#8beafa" stroke-width="2.1" stroke-linejoin="round"/>
+      <text x="89" y="194" font-family="Arial,sans-serif" font-size="19" fill="#f2f9ff">Accueil</text>
+    </g>
+    <g>      <a href="./index.html" aria-label="Accueil"><title>Accueil</title><rect x="14" y="160" width="194" height="55" rx="6"/></a>
+      <a href="./preclinical.html" aria-label="Preuves"><title>Preuves</title><rect x="14" y="228" width="194" height="59" rx="6"/></a>
+      <a href="./species-r04.html" aria-label="Anatomie comparée"><title>Anatomie comparée</title><rect x="14" y="292" width="194" height="65" rx="6"/></a>
+      <a href="./screening.html" aria-label="Molécules"><title>Molécules</title><rect x="14" y="359" width="194" height="63" rx="6"/></a>
+      <a href="./risk-r03.html" aria-label="Modélisation"><title>Modélisation</title><rect x="14" y="423" width="194" height="60" rx="6"/></a>
+      <a href="./clinical.html" aria-label="Recherche clinique"><title>Recherche clinique</title><rect x="14" y="486" width="194" height="69" rx="6"/></a>
+      <a href="./exposures.html" aria-label="Exposition"><title>Exposition</title><rect x="14" y="579" width="194" height="60" rx="6"/></a></g>
+    <g>      <a href="./preclinical.html" aria-label="Preuves"><title>Preuves</title><polygon points="245,145 263,126 641,152 657,170 657,325 642,344 264,340 245,321"/></a>
+      <a href="./species-r04.html" aria-label="Anatomie comparée"><title>Anatomie comparée</title><polygon points="241,393 260,373 616,379 633,396 633,584 615,603 261,613 241,593"/></a>
+      <a href="./screening.html?v=mol2#conformeres" aria-label="Molécules"><title>Molécules</title><polygon points="1103,114 1122,96 1610,73 1631,92 1631,250 1611,271 1121,280 1103,263"/></a>
+      <a href="./risk-r03.html" aria-label="Modélisation"><title>Modélisation</title><polygon points="1128,325 1146,307 1619,297 1640,316 1640,473 1621,492 1147,487 1128,469"/></a>
+      <a href="./clinical.html" aria-label="Recherche clinique"><title>Recherche clinique</title><polygon points="1098,533 1117,514 1612,516 1634,537 1634,672 1612,693 1116,678 1098,659"/></a>
+      <a href="./exposures.html" aria-label="Explorer une exposition"><title>Explorer une exposition</title><polygon points="512,777 534,755 1138,755 1160,777 1160,838 1138,860 534,860 512,838"/></a></g>
+  </svg>
+ </div>
+</section>
+
+<section class="view" id="view-molecules" hidden>
+ <div class="pagehead"><span class="overline">MOLECULAR DISCOVERY / MODULE 01</span><h1>Atelier moléculaire</h1><p>Analyser une structure ou énumérer des variantes virtuelles. La validation syntaxique RDKit n'est pas une preuve de synthèse ou d'activité.</p></div>
+ <section class="r4-st-panel r4-st-molecules" aria-label="Molecules existentes en 3D manipulable" style="margin:16px 0 19px">
+ <div class="r4-st-paneltop"><h2>Molécules existantes — modèles 3D interactifs</h2><span class="r4-st-chip">RDKit · ETKDG / MMFF</span></div>
+ <p id="r5-molecular-deck-status" style="color:#b8d7df;font-size:12px">Chargement des conformères 3D...</p>
+ <div id="r5-molecular-deck" class="r4-st-molecule-grid"></div>
+ <p style="font-size:11px;color:#e2c8a5">Ce sont des structures chimiques calculées, pas des preuves de fixation, de synergie, d'efficacité ou d'innocuité.</p>
+</section>
+ <div class="two-col uneven">
+ <div class="panel"><div class="panel-header"><div><h2>Définir une structure</h2><p>Notation SMILES · saisie libre</p></div><span class="label-chip">RDKit requis</span></div>
+ <label class="field-label" for="mol-name">Nom de travail</label><input class="field" id="mol-name" value="Caféine" maxlength="90"/>
+ <label class="field-label" for="mol-smiles">SMILES</label><textarea class="field mono" id="mol-smiles" spellcheck="false" rows="4" maxlength="600">Cn1c(=O)c2c(ncn2C)n(C)c1=O</textarea>
+ <div class="help">Exemples de référence</div><div id="example-chips" class="chiprow"></div>
+ <div class="actionrow"><button class="btn primary" id="analyze-mol">Analyser la structure</button><button class="btn secondary" id="save-mol">Ajouter à la bibliothèque</button></div>
+ <p id="mol-feedback" class="feedback" aria-live="polite">Chargement du moteur moléculaire…</p>
+ <div class="separator"></div><h3>Génération exploratoire</h3><p class="subtext">Énumération de substitutions sur un squelette aromatique simple. Aucune nouveauté brevetable, stabilité, synthétisabilité ou activité n'est garantie.</p>
+ <button class="btn secondary full" id="generate">Générer 16 structures virtuelles</button><div id="generated-list" class="candidates"></div>
+ </div>
+ <div class="panel molecule-result"><div class="panel-header"><div><h2>Structure et propriétés</h2><p>Analyse locale · RDKit WebAssembly</p></div><span class="label-chip" id="mol-provenance">Non calculé</span></div>
+ <div class="molecule-canvas" id="molecule-canvas"><div class="placeholder">La structure 2D apparaîtra ici après analyse RDKit.</div></div>
+ <div class="structure-caption" id="mol-canonical">SMILES non encore validé</div>
+ <div class="descriptor-grid" id="mol-descriptors"></div>
+ <div class="note">Les propriétés numériques disponibles sont des descripteurs physicochimiques; ce ne sont pas des prédictions d'efficacité, de biodisponibilité, de toxicité ou d'interactions.</div>
+ </div></div>
+</section>
+
+<section class="view" id="view-library" hidden>
+ <div class="pagehead"><span class="overline">RESEARCH COLLECTION / MODULE 02</span><h1>Bibliothèque de structures</h1><p>Structures exemples, importées de bases publiques ou générées virtuellement. Conservation en mémoire pendant la session; export disponible.</p></div>
+ <div class="panel"><div class="panel-header"><div><h2>Candidats en session</h2><p id="library-count">0 structures</p></div><button class="btn secondary" id="export-library">Exporter JSON</button></div><div class="library-list" id="library-list"></div></div>
+</section>
+
+<section class="view" id="view-combinations" hidden>
+ <div class="pagehead"><span class="overline">STRUCTURAL COMPARISON / MODULE 03</span><h1>Comparaison & co-exposition</h1><p>Étudier deux structures et comparer des simulations indépendantes. Aucune interaction médicamenteuse, synergie ou innocuité n'est inférée.</p></div>
+ <div class="panel"><div class="selector-grid"><div><label class="field-label" for="comb-a">Structure A</label><select class="field" id="comb-a"></select></div><div><label class="field-label" for="comb-b">Structure B</label><select class="field" id="comb-b"></select></div></div><button id="compare" class="btn primary">Comparer les structures</button><p id="combo-feedback" class="feedback" aria-live="polite"></p></div>
+ <div class="two-col"><div class="panel"><h2>Similarité structurale</h2><div class="big-number" id="combo-similarity">—</div><p class="subtext">Coefficient de Tanimoto entre empreintes Morgan, calculé par RDKit. Ce n'est pas une mesure d'interaction ou d'efficacité.</p><div id="combo-properties" class="comparison-lines"></div></div>
+ <div class="panel"><h2>Scénario de co-exposition : limite</h2><p class="subtext">L'outil ne possède pas de données de pharmacocinétique propres aux molécules choisies. Une comparaison PK avec des paramètres identiques serait artificielle. Aucune simulation de synergie, interaction ou coadministration n'est affichée comme un résultat fiable.</p><div class="notice compact">Pour simuler des interactions, il faut des données spécifiques de transporteurs, enzymes, affinités, concentrations et une validation expérimentale.</div><button class="btn secondary" data-jump="pkpd">Ouvrir le modèle PK/PD hypothétique</button></div></div>
+</section>
+
+<section class="view" id="view-pkpd" hidden>
+ <div class="pagehead"><span class="overline">MODELLING ENGINE / MODULE 04</span><h1>Simulateur PK/PD</h1><p>Modèle analytique à un compartiment, indépendant des molécules de l'atelier. Les paramètres sont hypothétiques; les valeurs ne sont pas des recommandations de dosage.</p></div>
+ <div class="notice">Ce modèle n'est pas un PBPK. Le facteur rénal n'est ni un DFG ni un stade d'IRC. L'indice Emax ne mesure pas une efficacité démontrée.</div>
+ <div class="pk-layout"><div class="panel"><div class="panel-header"><div><h2>Paramètres de simulation</h2><p>Unités traçables</p></div><button id="pk-reset" class="btn secondary small">Réinitialiser</button></div><div id="pk-controls"></div></div>
+ <div class="pk-results"><div class="metric-grid" id="pk-metrics"></div><div class="panel"><div class="panel-header"><div><h2>Concentration — temps</h2><p>Courbe analytique simulée, mg/L</p></div><button id="pk-export" class="btn secondary small">Exporter</button></div><div id="pk-plot" class="plot"></div><div id="pk-horizon" class="plot-caption"></div></div><div class="panel"><h2>Enveloppe de scénarios</h2><div id="pk-envelope"></div><p class="subtext">27 variations paramétriques déterministes de ±20 % sur F, CLh et CLr. Ce n'est pas un intervalle de confiance.</p></div></div></div>
+</section>
+
+<section class="view" id="view-systems" hidden>
+ <div class="pagehead"><span class="overline">SYSTEMS RESEARCH / MODULE 05</span><h1>Atlas des systèmes humains</h1><p>Carte de domaines de recherche couvrant l'organisme. Les 12 cartes ci-dessous ne sont pas des moteurs physiologiques opérationnels.</p></div>
+ <div class="atlas-grid" id="systems-list"></div>
+ <div class="panel spacer-panel"><div class="panel-header"><div><h2>Rechercher des cibles expérimentales</h2><p>Index public ChEMBL · résultats externes, pas des prédictions</p></div><span class="label-chip">Connexion à la demande</span></div><div class="searchrow"><input class="field" id="target-query" value="kinase" aria-label="Rechercher une cible ChEMBL"><button class="btn primary" id="target-search">Interroger ChEMBL</button></div><p id="target-feedback" class="feedback" aria-live="polite"></p><div id="target-results" class="target-list"></div></div>
+</section>
+
+<section class="view" id="view-data" hidden>
+ <div class="pagehead"><span class="overline">LIVE DATA CONNECTORS / MODULE 06</span><h1>Données & connexions</h1><p>Requêtes directes aux services scientifiques publics. Chaque consultation affiche sa source et signale explicitement toute indisponibilité.</p></div>
+ <div class="two-col"><div class="panel"><div class="panel-header"><div><h2>PubChem PUG REST</h2><p>Molécules enregistrées · NIH/NLM</p></div><span class="label-chip">API publique</span></div><label class="field-label" for="pubchem-query">Nom de molécule</label><div class="searchrow"><input class="field" id="pubchem-query" value="caffeine"><button class="btn primary" id="pubchem-search">Rechercher</button></div><p id="pubchem-feedback" class="feedback" aria-live="polite">Aucune requête effectuée.</p><div id="pubchem-result"></div></div>
+ <div class="panel"><div class="panel-header"><div><h2>Cartographie des connecteurs</h2><p>Statut réel de l'intégration</p></div></div><div class="engine-line"><span>RDKit.js</span><b id="connector-rdkit">En cours</b></div><div class="engine-line"><span>PubChem</span><b id="connector-pubchem">Non interrogé</b></div><div class="engine-line"><span>ChEMBL</span><b id="connector-chembl">Non interrogé</b></div><div class="engine-line"><span>PK-Sim / MoBi</span><b class="muted">Pas de backend</b></div><div class="engine-line"><span>RDKit Python</span><b class="muted">Pas de backend</b></div><div class="note">GitHub Pages héberge des fichiers statiques : le calcul RDKit.js s'exécute dans Chrome, tandis que PK-Sim/MoBi nécessiteront une infrastructure de calcul dédiée.</div></div></div>
+</section>
+
+<section class="view" id="view-cloud" hidden>
+ <div class="pagehead"><span class="overline">PRMR RESEARCH CLOUD / MODULE 08</span><h1>Espace de recherche privé</h1><p>Connexion sécurisée, projets persistants, structures chimiques, hypothèses et résultats de simulations. Les données enregistrées sont protégées par des politiques RLS liées au propriétaire du compte.</p></div>
+ <div class="notice"><strong>Protection des données :</strong> seuls les utilisateurs authentifiés peuvent enregistrer et récupérer leurs propres données. Ne pas utiliser cette version pour des données de patients ou des informations médicales identifiables.</div>
+ <div class="panel"><div class="panel-header"><div><h2>Connexion Supabase</h2><p>Compte de PRMR distinct du compte administrateur Supabase.</p></div><span class="pill" id="cloud-auth-indicator">Initialisation</span></div>
+  <div id="cloud-auth-forms">
+   <div class="cloud-auth-grid"><div><label class="field-label" for="cloud-email">Adresse e-mail</label><input class="field" type="email" id="cloud-email" autocomplete="email" placeholder="adresse@exemple.com"></div>
+   <div><label class="field-label" for="cloud-password">Mot de passe</label><input class="field" type="password" id="cloud-password" autocomplete="current-password" minlength="12" placeholder="Mot de passe personnel"></div></div>
+   <div class="actionrow"><button class="btn primary" id="cloud-login">Se connecter</button><button class="btn secondary" id="cloud-signup">Créer un compte</button></div>
+   <p class="subtext">L'inscription peut nécessiter une confirmation par e-mail. Utiliser un mot de passe d'au moins 12 caractères. Les mots de passe ne sont jamais enregistrés dans le dépôt GitHub.</p>
+  </div>
+  <div id="cloud-signed-in" hidden><div class="cloud-signed-row"><span>Session active : <strong id="cloud-user"></strong></span><button class="btn secondary" id="cloud-signout">Se déconnecter</button></div></div>
+  <p class="cloud-feedback" id="cloud-message" role="status" aria-live="polite">Initialisation du client Supabase…</p>
+ </div>
+ <div id="cloud-workbench" hidden>
+ <div class="two-col"><div class="panel"><div class="panel-header"><div><h2>Mes projets</h2><p>Enregistrements persistants · accès privé</p></div><button class="btn secondary small" id="cloud-refresh">Actualiser</button></div>
+ <label class="field-label" for="cloud-projects">Projet actif</label><select class="field" id="cloud-projects"></select><p class="subtext" id="cloud-project-empty"></p>
+ <label class="field-label" for="cloud-new-project">Créer un nouveau projet</label><input class="field" id="cloud-new-project" maxlength="180" placeholder="Ex. PRMR — Recherche rénale">
+ <label class="field-label" for="cloud-research-area">Domaine de recherche</label><select class="field" id="cloud-research-area"><option value="renal">Rénal</option><option value="cardiovascular">Cardiovasculaire</option><option value="neurological">Neurologique</option><option value="oncology">Oncologie</option><option value="general">Multisystème / général</option></select>
+ <div class="actionrow"><button class="btn primary" id="cloud-create-project">Créer le projet</button></div></div>
+ <div class="panel"><h2>Enregistrer les travaux</h2><p class="subtext">Les calculs sont générés localement par le modèle existant. Supabase conserve les résultats et leur provenance, sans prétendre effectuer la simulation lui-même.</p>
+ <div class="cloud-action"><div><strong>Structure moléculaire</strong><small>Enregistrer la structure analysée dans l'atelier et ses descripteurs calculés</small></div><button class="btn secondary" id="cloud-save-molecule">Enregistrer</button></div>
+ <div class="cloud-action"><div><strong>Simulation PK/PD</strong><small>Enregistrer paramètres fictifs, courbe calculée et scénarios d'incertitude</small></div><button class="btn secondary" id="cloud-save-simulation">Enregistrer</button></div>
+ <div class="separator"></div><label class="field-label" for="cloud-experiment-title">Nouvelle hypothèse de recherche</label><input class="field" id="cloud-experiment-title" maxlength="180" placeholder="Ex. Étudier un mécanisme de fibrose">
+ <div class="actionrow"><button class="btn secondary" id="cloud-create-experiment">Enregistrer l'hypothèse</button></div></div></div>
+ <div class="three-col cloud-records"><div class="panel"><h2>Molécules enregistrées</h2><div id="cloud-molecules"></div></div><div class="panel"><h2>Simulations archivées</h2><div id="cloud-simulations"></div></div><div class="panel"><h2>Expériences / hypothèses</h2><div id="cloud-experiments"></div></div></div>
+ </div>
+ <div class="note">L'authentification et le stockage sont fournis par Supabase. Le code public du site contient uniquement une clé publishable ; aucune clé de service privilégiée n'est exposée.</div>
+</section>
+
+<section class="view" id="view-quality" hidden>
+ <div class="pagehead"><span class="overline">SCIENTIFIC INTEGRITY / MODULE 07</span><h1>Validation & traçabilité</h1><p>Le laboratoire sépare explicitement méthodes, données, hypothèses et capacités absentes.</p></div>
+ <div class="two-col"><div class="panel"><h2>Ce qui est effectivement calculé</h2><div class="engine-line"><span>Validation SMILES et descripteurs</span><b>RDKit.js si chargé</b></div><div class="engine-line"><span>Empreintes Morgan & Tanimoto</span><b>RDKit.js si chargé</b></div><div class="engine-line"><span>Profils PK à un compartiment</span><b>Modèle analytique</b></div><div class="engine-line"><span>Propriétés PubChem</span><b>Si requête réussie</b></div><div class="engine-line"><span>Références de cibles ChEMBL</span><b>Si requête réussie</b></div></div>
+ <div class="panel"><h2>Ce qui n'est pas prédictible actuellement</h2><div class="engine-line"><span>Activité biologique de nouvelles molécules</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Synergie et interactions complexes</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Toxicité, ADMET validé</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Synthétisabilité confirmée</span><b class="muted">Non disponible</b></div><div class="engine-line"><span>Régénération d'organes / efficacité clinique</span><b class="muted">Non disponible</b></div></div></div>
+ <div class="two-col"><div class="panel"><div class="panel-header"><div><span class="overline">ARCHITECTURE</span><h2>État des moteurs</h2></div></div><div class="engine-line"><span>RDKit.js</span><b id="engine-rdkit">Chargement…</b></div><div class="engine-line"><span>PK/PD 1 compartiment</span><b class="ok">Disponible</b></div><div class="engine-line"><span>PubChem & ChEMBL</span><b>Requêtes à la demande</b></div><div class="engine-line"><span>PK-Sim / MoBi</span><b class="muted">Non connectés</b></div><div class="engine-line"><span>Modèles rénaux mécanistiques</span><b class="muted">Non connectés</b></div></div>
+ <div class="panel"><div class="panel-header"><div><span class="overline">CADRE SCIENTIFIQUE</span><h2>Provenance des résultats</h2></div></div><div class="provenance"><i class="source-dot ext"></i><div><strong>Mesures / références externes</strong><small>Uniquement si une réponse PubChem ou ChEMBL a effectivement été obtenue</small></div></div><div class="provenance"><i class="source-dot calc"></i><div><strong>Calculs reproductibles</strong><small>Descripteurs moléculaires et solutions du modèle analytique</small></div></div><div class="provenance"><i class="source-dot hypo"></i><div><strong>Hypothèses exploratoires</strong><small>Paramètres PK/PD, variantes virtuelles, absence de données biologiques</small></div></div></div></div>
+ <!-- Rappel du stade du programme. Il fermait l'accueil, qui ne doit montrer
+     que la console : il rejoint la rubrique de traçabilité. Sa forme courte
+     reste en permanence dans le bandeau de navigation. -->
+<section aria-label="État du programme">
+ <div class="prmr-current-phase"><strong>Position actuelle</strong><span>Phase 5 · Évaluation scientifique humaine</span></div>
+ <div class="prmr-gate"><div><strong>État réel du programme</strong><p>Les visualisations et calculs soutiennent la formulation d'hypothèses. Ils ne prouvent ni efficacité thérapeutique, ni innocuité, ni régénération rénale. Aucun essai clinique PRMR sur des personnes n'est actuellement autorisé.</p></div><a href="./clinical.html#clinical-readiness">Voir les conditions d'entrée en clinique</a></div>
+ </section>
+ <div class="panel spacer-panel"><h2>Protocole d'assurance qualité</h2><p>Les tests numériques du moteur PK/PD sont présents dans le dépôt et configurés pour GitHub Actions. Le statut du dernier cycle CI doit être vérifié dans GitHub : leur présence ne signifie pas automatiquement qu'ils sont passés.</p><p>Des validations supplémentaires sont nécessaires : benchmarks de RDKit, comparaison à références expérimentales, contrôle de versions et qualification des sources.</p><div class="actionrow"><a class="btn secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Aqmar3070/prmr-virtual-lab/actions">Consulter les tests GitHub</a><a class="btn secondary" target="_blank" rel="noopener noreferrer" href="https://github.com/Aqmar3070/prmr-virtual-lab">Code et historique</a></div></div>
+</section>
+<footer class="footer">PRMR Virtual Lab / 2.0 · Recherche computationnelle exploratoire · Aucune revendication de précision absolue, d'efficacité ou de sécurité clinique.</footer>
+</main>
+ <nav class="landing-mobile" aria-label="Accès aux espaces"><a href="./index.html">Accueil</a><a href="./preclinical.html">Preuves</a><a href="./species-r04.html">Anatomie comparée</a><a href="./screening.html">Molécules</a><a href="./risk-r03.html">Modélisation</a><a href="./clinical.html">Recherche clinique</a><a href="./exposures.html">Exposition</a></nav>
+</div></div>
+<script type="module">
+const bar = document.querySelector(".prmr-routebar");
+const exportSession = document.getElementById("export-session");
+const exportButton = document.createElement("button");
+exportButton.type = "button";
+exportButton.className = "prmr-route-aside-link landing-export";
+exportButton.textContent = exportSession.textContent;
+exportButton.addEventListener("click", () => exportSession.click());
+bar.querySelector(".prmr-route-aside").append(exportButton);
+const build = document.createElement("small");
+build.className = "landing-build";
+build.textContent = document.querySelector(".topbar .version").textContent;
+bar.append(build);
+</script>
+</body></html>

@@ -5,7 +5,7 @@ import {readFileSync} from "node:fs";
 const raw=readFileSync(new URL("../research-data/prmr-r02-screen.json",import.meta.url),"utf8");
 const model=JSON.parse(raw);
 const page=readFileSync(new URL("../screening.html",import.meta.url),"utf8");
-const main=readFileSync(new URL("../index.html",import.meta.url),"utf8");
+const main=readFileSync(new URL("../atelier.html",import.meta.url),"utf8");
 const previous=readFileSync(new URL("../preclinical.html",import.meta.url),"utf8");
 
 test("PRMR-R02 screen counts and full combination enumeration are consistent",()=>{
@@ -57,7 +57,9 @@ test("new user-facing research section is linked to the existing lab",()=>{
  // prmr_route.mjs est la source unique, au lieu d'un en-tête recopié par page
  // qui nommait la même destination de quatre façons différentes.
  assert.ok(main.includes('href="./screening.html"'));
+ // Depuis le 28/11/2026, la rubrique Molécules du menu pointe vers molecules.html ;
+ // le criblage reste joignable depuis l'ancien atelier (archives).
  const route=readFileSync(new URL("../src/prmr_route.mjs",import.meta.url),"utf8");
- assert.match(route,/file: *"screening\.html"/);
+ assert.match(route,/file: *"molecules\.html"/);
  assert.ok(previous.includes("src/prmr_route.mjs"),"preclinical charge la navigation partagée");
 });

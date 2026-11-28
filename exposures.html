@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Explorateur d'expositions documentées — PRMR Virtual Lab</title>
+<title>Explorateur clinique — PRMR Virtual Lab</title>
 <meta name="description" content="Pour une substance, une dose et une durée, les repères réellement publiés : seuils officiels, doses toxiques établies, associations observées, et l'endroit où les données s'arrêtent.">
 <link rel="preload" as="image" href="./assets/exposure/laboratoire-bleu.webp">
 <link rel="stylesheet" href="./prmr-design-system.css?v=c83334b3ec">
@@ -206,7 +206,7 @@ for (const button of document.querySelectorAll("[data-choix-vue]")) {
 </div>
 <details class="xp-reference" id="registre"><summary>Consulter le registre scientifique et les sources</summary>
  <header class="r13-head">
-  <p class="kicker">Explorateur d'expositions · repères publiés uniquement</p>
+  <p class="kicker">Explorateur clinique · repères publiés uniquement</p>
   <h1>Quelle dose, pendant combien de temps, <span>et que dit la littérature ?</span></h1>
   <p class="lead">Les repères réellement publiés que votre réglage franchit, les organes qu'ils concernent, et l'endroit où les données s'arrêtent.</p>
   <details class="r13-scope">
@@ -217,7 +217,7 @@ for (const button of document.querySelectorAll("[data-choix-vue]")) {
  </header>
 
  <section class="r13-workspace" aria-labelledby="explorer-heading">
-  <h2 id="explorer-heading" class="prmr-visually-hidden">Explorateur d'expositions</h2>
+  <h2 id="explorer-heading" class="prmr-visually-hidden">Explorateur clinique</h2>
   <div id="r13-explorer"></div>
  </section>
 
@@ -258,7 +258,7 @@ register.addEventListener("toggle",mount);mount();
 // Les rubriques « La méthode » et « Les sources » sont rangées dans le registre : un clic les rend visibles.
 document.addEventListener("click",e=>{if(e.target.closest(".prmr-tab"))register.open=true;});
 </script>
-<script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
+<script type="module" src="./src/prmr_route.mjs?v=17d202ed6e"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
 <script type="module" src="./src/explorateur-vues.mjs?v=4a615d0e7b"></script>
 <script type="module" src="./src/exposure-console.mjs?v=e90e84542a"></script>

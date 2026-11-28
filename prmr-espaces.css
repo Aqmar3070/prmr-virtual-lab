@@ -1,0 +1,98 @@
+/* PRMR — habillage commun des espaces créés le 28/11/2026 (accueil, explorateur
+   préclinique, molécules). Il reprend le décor de l'explorateur clinique :
+   fond du laboratoire, panneaux en verre, onglet actif souligné d'ambre. */
+:root {
+  --es-verre: linear-gradient(115deg, #23566894, #163f5270 60%, #39728578);
+  --es-bord: #a2dee4bd;
+  --es-texte: #f0fbff;
+  --es-doux: #cfe9ef;
+  --es-ambre: #ffcd70;
+}
+* { box-sizing: border-box; }
+body.es {
+  margin: 0; min-height: 100vh; color: var(--es-texte); font-family: Arial, sans-serif;
+  background: linear-gradient(#154d6433, #15506a40), url("./assets/exposure/laboratoire-bleu.webp") center center / cover fixed, #173e50;
+  display: flex; flex-direction: column;
+}
+.es a { color: inherit; }
+.es-head { display: flex; align-items: center; gap: 20px; min-height: 46px; padding: 2px 1.2vw; background: #143d4db3; border-bottom: 1px solid var(--es-bord); flex-wrap: wrap; }
+.es-head > a[href="./index.html"] { display: inline-flex; align-items: center; text-decoration: none; font-size: 16px; }
+.es-head > a[href="./index.html"] strong { margin-right: 4px; }
+.es-nav, .es-vues { display: flex; gap: 3px; }
+.es-nav { margin-left: auto; }
+.es-nav a, .es-vues button {
+  position: relative; background: transparent; border: 0; color: #eafaff; font: 15px Arial, sans-serif;
+  padding: 8px clamp(10px,1.2vw,22px); text-decoration: none; cursor: pointer;
+}
+.es-nav a[aria-current="page"], .es-vues button[aria-pressed="true"] { color: var(--es-ambre); font-weight: 700; }
+/* Même trait que l'explorateur clinique : fuseau lumineux effilé aux extrémités. */
+.es-nav a[aria-current="page"]::after, .es-vues button[aria-pressed="true"]::after {
+  content: ""; position: absolute; left: 4%; right: 4%; bottom: -1px; height: 4px; pointer-events: none;
+  clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%);
+  background: linear-gradient(90deg, #ffb13b00, #ffc158 18%, #fff4cf 50%, #ffc158 82%, #ffb13b00);
+}
+.es-main { flex: 1; padding: 10px clamp(8px,.68vw,16px) 16px; }
+.es-verre {
+  background: var(--es-verre); border: 1px solid var(--es-bord); border-radius: 12px; padding: 12px;
+  box-shadow: inset 0 0 12px #a8f7ff1c, 0 1px 5px #002b3ba6; backdrop-filter: blur(3px);
+}
+.es h1, .es h2, .es h3 { margin: 0 0 8px; letter-spacing: 0; }
+.es h2 { font-size: 16px; text-transform: uppercase; }
+.es h3 { font-size: 12px; text-transform: uppercase; color: var(--es-doux); margin-top: 10px; }
+.es p { line-height: 1.5; }
+.es-etiq { color: var(--es-doux); font-size: 12.5px; }
+.es input[type=search], .es select {
+  width: 100%; padding: 7px 9px; border-radius: 7px; border: 1px solid #a9d6db; color: #e8faff;
+  background: linear-gradient(#265364,#0d3343); font: 14px Arial, sans-serif;
+}
+.es button.es-btn {
+  color: #e8faff; background: linear-gradient(#265364,#0d3343); border: 1px solid #a9d6db; border-radius: 6px;
+  padding: 6px 10px; cursor: pointer; font: 13px Arial, sans-serif;
+}
+.es-liste { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; overflow: auto; max-height: 62vh; }
+.es-liste button {
+  text-align: left; display: flex; justify-content: space-between; gap: 8px; padding: 7px 9px; border-radius: 7px;
+  border: 1px solid #ffffff1f; background: #ffffff0d; color: #f0fbff; font: 14px Arial, sans-serif; cursor: pointer;
+}
+.es-liste button[aria-pressed="true"] { border-color: var(--es-ambre); background: #ffffff1c; }
+.es-liste small { color: var(--es-doux); }
+.es-vide { border: 1px dashed #a9d6db88; border-radius: 9px; padding: 12px; color: var(--es-doux); font-size: 13px; }
+.es-pied { display: flex; gap: 18px; justify-content: center; padding: 10px; font-size: 13px; color: var(--es-doux); }
+.es-pied a { color: var(--es-doux); }
+.es-statut { align-self: flex-start; display: inline-block; font-size: 11.5px; border: 1px solid var(--es-ambre); color: var(--es-ambre); border-radius: 999px; padding: 1px 9px; }
+
+/* Accueil : trois espaces. */
+.es-accueil { max-width: 1180px; margin: 4vh auto 0; }
+.es-accueil > header { text-align: center; margin-bottom: 26px; }
+.es-accueil > header h1 { font-size: clamp(26px,3vw,38px); }
+.es-accueil > header p { color: var(--es-doux); max-width: 760px; margin: 0 auto; }
+.es-espaces { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.es-espace { display: flex; flex-direction: column; gap: 8px; text-decoration: none; min-height: 290px; padding: 20px; transition: transform .15s, border-color .15s; }
+.es-espace:hover, .es-espace:focus-visible { transform: translateY(-2px); border-color: var(--es-ambre); }
+.es-espace svg { width: 54px; height: 54px; color: #8beafa; }
+.es-espace h2 { font-size: 20px; text-transform: none; margin: 4px 0 0; }
+.es-espace ul { margin: 4px 0 0; padding-left: 18px; color: var(--es-doux); font-size: 14px; line-height: 1.6; }
+.es-espace .es-aller { margin-top: auto; color: var(--es-ambre); font-weight: 700; }
+
+/* Explorateur préclinique et molécules : trois colonnes comme l'explorateur clinique. */
+.es-board { display: grid; grid-template-columns: minmax(250px,18fr) minmax(0,59fr) minmax(280px,23fr); gap: 10px; align-items: start; }
+.es-centre { min-height: max(410px,69vh); display: flex; flex-direction: column; }
+.es-figure { flex: 1; display: grid; place-items: center; text-align: center; border: 1px dashed #a9d6db88; border-radius: 10px; padding: 20px; margin-top: 8px; }
+.es-figure strong { font-size: 18px; display: block; margin-bottom: 6px; }
+.es-choix { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+.es-choix span { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--es-bord); border-radius: 999px; padding: 3px 4px 3px 10px; font-size: 13px; }
+.es-choix button { background: none; border: 0; color: var(--es-ambre); cursor: pointer; font-size: 15px; }
+.es-fiche dl { margin: 0; }
+.es-fiche dt { font-size: 11.5px; text-transform: uppercase; color: var(--es-doux); margin-top: 8px; }
+.es-fiche dd { margin: 2px 0 0; font-size: 13.5px; line-height: 1.5; }
+.es-fiche details { border-top: 1px solid #ffffff1f; padding: 6px 0; }
+.es-fiche summary { cursor: pointer; font-size: 14px; }
+.es-resultat { overflow: auto; }
+.es-resultat table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.es-resultat th, .es-resultat td { text-align: left; padding: 6px; border-bottom: 1px solid #ffffff1f; vertical-align: top; }
+.es-resultat th { color: var(--es-doux); font-weight: 600; }
+
+@media (max-width: 1050px) {
+  .es-espaces, .es-board { grid-template-columns: minmax(0,1fr); }
+  .es-nav { margin-left: 0; }
+}
