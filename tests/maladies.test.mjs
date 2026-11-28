@@ -413,3 +413,13 @@ test('Rein approfondi : guérisons, essais et piste ajoutés (28/11/2026)',async
  // l'allopurinol signale le grand essai négatif
  assert.match(mrc.substances.find(s=>s.id==='allopurinol_rein').effet,/CKD-FIX/);
 });
+
+test('Rein, recherche élargie : traditions, thérapies nouvelles et témoignages analysés',async()=>{
+ const {pourGueris,pourTestes,pourPistes,substancesPour}=await import('../src/maladies.mjs');
+ const mrc=registre.maladies.find(m=>m.id==='mrc');const l=substancesPour(mrc,'');
+ for(const id of ['temoignage_fsgs_vegetal','temoignage_tirzepatide'])assert.ok(pourGueris(mrc,l).cas.some(s=>s.id===id),id);
+ for(const id of ['chelation_edta','niaoduqing','rilparencel','xenogreffe_porc','ast120','hibiscus_bissap','microbiote_lave','cetogene_hypocalorique','renadyl','ayurveda_punarnava','temoignage_antioxydants'])assert.ok(pourTestes(l).some(s=>s.id===id),id);
+ for(const id of ['h_mrc_toxines_intestin','h_mrc_antioxydants_temoignage'])assert.ok(pourPistes(mrc,l,'').combinaisons.some(h=>h.id===id),id);
+ // chaque témoignage porte une analyse critique
+ for(const s of mrc.substances.filter(s=>s.id.startsWith('temoignage_')))assert.match(s.prudence,/Analyse PRMR/,s.id);
+});
