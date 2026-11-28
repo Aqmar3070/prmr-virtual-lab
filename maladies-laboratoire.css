@@ -285,3 +285,6 @@ body[data-vue="maladies"] {
   & .mx-ligne-d summary::after { content: "›" / ""; color: #dffcff; }
   & .mx-ligne-d[open] summary::after { transform: rotate(90deg); }
 }
+
+/* Réserver le cadre du modèle sans peindre la silhouette de secours au chargement. */
+body[data-vue] .xp-body:not(.xa-fallback) > svg { visibility:hidden; }

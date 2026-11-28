@@ -140,7 +140,7 @@ function chargerModele(sexe){
 }
 async function model(next){
  const id=++token;sex=next;current=null;focus.replaceChildren(new Option("Corps entier",""));
- if(root)scene.remove(root);root=null;items=[];stage.parentNode.classList.remove("xa-ready");$("xa-message").textContent="Chargement du maillage 3D…";
+ if(root)scene.remove(root);root=null;items=[];stage.parentNode.classList.remove("xa-ready","xa-fallback");$("xa-message").textContent="Chargement du maillage 3D…";
  try{
   if(!renderer&&!ctx)throw Error();
   const obj=await chargerModele(next);if(id!==token)return;
@@ -157,7 +157,7 @@ async function model(next){
   for(const layer of Object.keys(styles)){const group=document.createElement("optgroup");group.label=labels[layer];for(const it of items.filter(i=>i.layer===layer).sort((a,b)=>nameOf(a.mesh.name).localeCompare(nameOf(b.mesh.name),"fr")))group.append(new Option(nameOf(it.mesh.name),it.mesh.name));focus.append(group);}
   for(const [key,label] of [["toes_l","Orteils gauches"],["toes_r","Orteils droits"]])focus.append(new Option(label,key));
   stage.parentNode.classList.add("xa-ready");resize();frame(null);$("xa-message").textContent=items.length+" structures · "+(ctx?"rendu 3D en points":"surfaces 3D")+" · molette sur la zone pour zoomer · glisser pour tourner · clic droit + glisser pour déplacer";
- }catch{if(id!==token)return;cache.delete(next);sex=null;$("xa-message").textContent="Atlas 3D indisponible · vue de référence affichée.";}
+ }catch{if(id!==token)return;cache.delete(next);sex=null;stage.parentNode.classList.add("xa-fallback");$("xa-message").textContent="Atlas 3D indisponible · vue de référence affichée.";}
 }
 focus.onchange=()=>choose(focus.value);$("xa-isolate").onchange=paint;
 function zoom(factor){camera.zoom=T.MathUtils.clamp(camera.zoom*factor,.35,100);camera.updateProjectionMatrix();draw();}

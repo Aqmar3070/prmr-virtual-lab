@@ -3,6 +3,20 @@ const assert=require("node:assert/strict");
 (async()=>{
  const browser=await chromium.launch({args:["--enable-unsafe-swiftshader"]});
  try{
+  // Contrôler le premier rendu indépendamment de la vitesse des modules et de l’atlas.
+  const initial = await browser.newPage();
+  await initial.route(/\.mjs(?:\?|$)/, route => route.abort());
+  for (const view of ["maladies", "substances", "symptomes"]) {
+   await initial.goto("http://127.0.0.1:4173/exposures.html?vue=" + view);
+   for (const reload of [false, true]) {
+    if (reload) await initial.reload();
+    assert.equal(await initial.locator("body").getAttribute("data-vue"), view);
+    assert.equal(await initial.locator('[data-choix-vue][aria-pressed="true"]').getAttribute("data-choix-vue"), view);
+    assert.equal(await initial.locator(".xp-body > svg").isVisible(), false);
+    assert.match(await initial.locator("body").evaluate(el => getComputedStyle(el).backgroundImage), /laboratoire-bleu/);
+   }
+  }
+  await initial.close();
   const page=await browser.newPage({viewport:{width:1672,height:941}});
   // Le double de micro reproduit la fin automatique d’une session après une pause.
   await page.addInitScript(()=>{

@@ -1,8 +1,3 @@
-const params=new URLSearchParams(location.search);
-let memoire=null;
-try{memoire=localStorage.getItem("prmr-vue");}catch{}
-const depart=params.get("vue")||(params.get("maladie")?"maladies":memoire)||"substances";
-
 export function vueActive(){return document.body.dataset.vue||"substances";}
 
 const normaliser=vue=>["substances","maladies","symptomes"].includes(vue)?vue:"substances";
@@ -17,5 +12,3 @@ function choisirVue(vue){
  document.dispatchEvent(new CustomEvent("xp-vue",{detail:vue}));
 }
 for(const b of document.querySelectorAll("[data-choix-vue]"))b.addEventListener("click",()=>choisirVue(b.dataset.choixVue));
-document.body.dataset.vue=normaliser(depart);
-for(const b of document.querySelectorAll("[data-choix-vue]"))b.setAttribute("aria-pressed",String(b.dataset.choixVue===document.body.dataset.vue));

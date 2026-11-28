@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Explorateur d'expositions documentées — PRMR Virtual Lab</title>
 <meta name="description" content="Pour une substance, une dose et une durée, les repères réellement publiés : seuils officiels, doses toxiques établies, associations observées, et l'endroit où les données s'arrêtent.">
+<link rel="preload" as="image" href="./assets/exposure/laboratoire-bleu.webp">
 <link rel="stylesheet" href="./prmr-design-system.css?v=c83334b3ec">
 <link rel="stylesheet" href="./prmr-route.css?v=05bd3065dc">
 <style>
@@ -92,12 +93,27 @@ main p,main li{color:var(--prmr-text-muted);line-height:1.7}
 </style>
 <link rel="stylesheet" href="./prmr-console.css?v=7101c2aae7">
 <link rel="stylesheet" href="./exposure-console.css?v=21ff83eac4">
-<link rel="stylesheet" href="./maladies-laboratoire.css?v=703914a7dd">
+<link rel="stylesheet" href="./maladies-laboratoire.css?v=fe43a9175f">
 </head>
-<body>
+<body data-vue="substances">
+<script>
+/* Le décor et les panneaux dépendent de cette valeur dès le premier rendu. */
+{
+  const params = new URLSearchParams(location.search);
+  let saved;
+  try { saved = localStorage.getItem("prmr-vue"); } catch {}
+  const view = params.get("vue") || (params.get("maladie") ? "maladies" : saved);
+  if (["substances", "maladies", "symptomes"].includes(view)) document.body.dataset.vue = view;
+}
+</script>
 <header class="xp-head"><a class="xp-logo" href="./index.html"><strong>PRMR</strong> Virtual Lab</a>
 <nav class="xp-vues" aria-label="Vue de l’explorateur"><button type="button" data-choix-vue="substances" aria-pressed="true">Substances</button><button type="button" data-choix-vue="maladies" aria-pressed="false">Maladies</button><button type="button" data-choix-vue="symptomes" aria-pressed="false">Symptômes</button></nav>
 <a id="xp-reperes" href="#registre">Repères publiés</a></header>
+<script>
+for (const button of document.querySelectorAll("[data-choix-vue]")) {
+  button.setAttribute("aria-pressed", String(button.dataset.choixVue === document.body.dataset.vue));
+}
+</script>
 <main>
 <div class="xp-board" id="exposure-console">
  <div class="xp-left">
@@ -242,10 +258,10 @@ document.addEventListener("click",e=>{if(e.target.closest(".prmr-tab"))register.
 </script>
 <script type="module" src="./src/prmr_route.mjs?v=bf704f1e98"></script>
 <script type="module" src="./src/prmr_tabs.mjs?v=94fc45a50f"></script>
-<script type="module" src="./src/explorateur-vues.mjs?v=65e2da8c5e"></script>
+<script type="module" src="./src/explorateur-vues.mjs?v=4a615d0e7b"></script>
 <script type="module" src="./src/exposure-console.mjs?v=e90e84542a"></script>
 <script type="module" src="./src/maladies-console.mjs?v=16ab73a5e4"></script>
-<script type="module" src="./src/exposure-atlas.mjs?v=b3529ff838"></script>
+<script type="module" src="./src/exposure-atlas.mjs?v=eac144aabd"></script>
 <script type="module" src="./src/symptomes-console.mjs?v=1723ec45b1"></script>
 </body>
 </html>
