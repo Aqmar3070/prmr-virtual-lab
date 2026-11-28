@@ -1944,6 +1944,70 @@
   "temoignageMayo": {
    "source": "Forum Mayo Clinic Connect · témoignage d'un patient (« billagreste »), stade 4 à DFG 22",
    "url": "https://connect.mayoclinic.org/comment/279953/replies"
+  },
+  "parodonteEcr2026": {
+   "source": "Essai randomisé · J Clin Periodontol 2026, soins des gencives chez 53 patients rénaux diabétiques",
+   "url": "https://doi.org/10.1111/jcpe.70059"
+  },
+  "parodonteMeta2020": {
+   "source": "Méta-analyse · Clin Oral Investig 2020, soins des gencives et fonction rénale (5 études)",
+   "url": "https://doi.org/10.1007/s00784-019-03066-w"
+  },
+  "ppcCohorte2025": {
+   "source": "Cohorte · Eur J Clin Invest 2025, appareil à pression positive (PPC) et déclin rénal chez 469 apnéiques âgés",
+   "url": "https://doi.org/10.1111/eci.70098"
+  },
+  "ppcIun2015": {
+   "source": "Étude · Int Urol Nephrol 2015, PPC chez 42 patients rénaux apnéiques",
+   "url": "https://doi.org/10.1007/s11255-015-1113-y"
+  },
+  "inaxaplinNejm": {
+   "source": "Egbuna et coll. · N Engl J Med 2023, inaxaplin chez des porteurs de deux variantes APOL1 (16 patients)",
+   "url": "https://doi.org/10.1056/NEJMoa2202396"
+  },
+  "acupunctureMeta": {
+   "source": "Méta-analyse · Ren Fail 2024, acupuncture et maladie rénale chronique (24 essais, 1 494 patients)",
+   "url": "https://doi.org/10.1080/0886022X.2023.2301504"
+  },
+  "acupunctureEcr": {
+   "source": "Essai randomisé · J Altern Complement Med 2017, acupuncture (Hegu, Zusanli, Taixi) chez 53 patients",
+   "url": "https://doi.org/10.1089/acm.2016.0119"
+  },
+  "denervationPilote": {
+   "source": "Étude pilote · J Hypertens 2015, dénervation rénale chez des patients aux stades 3-4 avec hypertension résistante",
+   "url": "https://doi.org/10.1097/HJH.0000000000000556"
+  },
+  "denervationMeta": {
+   "source": "Méta-analyse · Int J Hyperthermia 2021, dénervation rénale et maladie rénale chronique (238 patients)",
+   "url": "https://doi.org/10.1080/02656736.2021.1916100"
+  },
+  "baricitinibDkd": {
+   "source": "Tuttle et coll. · Nephrol Dial Transplant 2018, baricitinib dans la néphropathie diabétique (129 patients)",
+   "url": "https://doi.org/10.1093/ndt/gfx377"
+  },
+  "tirzepatideRein": {
+   "source": "Heerspink et coll. · J Am Soc Nephrol 2025, tirzépatide et paramètres rénaux (SURMOUNT-1 et -2, 3 477 participants)",
+   "url": "https://doi.org/10.1681/ASN.0000000764"
+  },
+  "hivanRevue": {
+   "source": "Revue · J Int AIDS Soc 2013, rein et VIH de l'enfant : effet des antirétroviraux sur la néphropathie du VIH",
+   "url": "https://doi.org/10.7448/IAS.16.1.18596"
+  },
+  "hivanCorticoides": {
+   "source": "Essai randomisé · BMC Nephrol 2019, corticoïdes en plus des antirétroviraux dans la néphropathie du VIH (Afrique du Sud, 38 patients)",
+   "url": "https://doi.org/10.1186/s12882-019-1208-2"
+  },
+  "vihTbAfrique": {
+   "source": "Cohortes · AIDS 2019, maladie rénale chez des Africains avec VIH et tuberculose (Londres, Le Cap, Abidjan)",
+   "url": "https://doi.org/10.1097/QAD.0000000000002204"
+  },
+  "pertePoidsMeta": {
+   "source": "Méta-analyse · Clin J Am Soc Nephrol 2009, perte de poids dans la maladie rénale chronique (13 études)",
+   "url": "https://doi.org/10.2215/CJN.02250409"
+  },
+  "hyperbareRat": {
+   "source": "Étude chez le rat · J Mol Histol 2024, oxygène hyperbare et rein diabétique",
+   "url": "https://doi.org/10.1007/s10735-024-10330-1"
   }
  },
  "maladies": [
@@ -3752,6 +3816,229 @@
       "kidney_l",
       "kidney_r"
      ]
+    },
+    {
+     "id": "soins_gencives",
+     "nom": "Soins des gencives (traitement de la parodontite, dentisterie)",
+     "type": "geste",
+     "force": "moyenne",
+     "critere": 2,
+     "dose": "Détartrage et surfaçage radiculaire non chirurgical par un dentiste",
+     "duree": "6 mois de suivi",
+     "population": "53 patients rénaux diabétiques avec parodontite (27 traités, 26 témoins)",
+     "effet": "DFG + 10,3 à + 11,2 mL/min dans le groupe traité ; CRP (inflammation) − 84 % ; HbA1c − 0,54 %. Albuminurie un peu plus basse (non significatif).",
+     "mecanisme": "La gencive infectée entretient une inflammation de tout le corps, qui use les reins et déséquilibre le diabète.",
+     "prudence": "Une méta-analyse antérieure (5 petites études) ne trouvait pas d'effet net sur le DFG à 3 mois ; à confirmer. Geste simple et peu coûteux.",
+     "resume": "DFG + 10 en 6 mois (essai, 53 patients)",
+     "source": "parodonteEcr2026",
+     "source2": "parodonteMeta2020",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "ppc_apnee",
+     "nom": "Appareil à pression positive (PPC) contre l'apnée du sommeil",
+     "type": "geste",
+     "force": "faible",
+     "critere": 4,
+     "dose": "PPC la nuit, plus de 4 h par nuit",
+     "duree": "≈ 21 mois",
+     "population": "469 apnéiques âgés (cohorte) ; 42 patients rénaux apnéiques",
+     "effet": "Déclin rénal rapide 8,3 contre 18,2 pour 100 patients par an (HR 0,38) chez les utilisateurs assidus. Chez les patients rénaux : perte de DFG − 0,07 contre − 3,15 par an selon l'usage de la PPC.",
+     "mecanisme": "Les pauses respiratoires privent le rein d'oxygène et activent les nerfs sympathiques chaque nuit.",
+     "prudence": "Études d'observation : les patients assidus peuvent être en meilleure santé par ailleurs. Dépister l'apnée en cas de ronflement, somnolence, obésité ou tension résistante.",
+     "resume": "Déclin rénal divisé par 2 (observation)",
+     "source": "ppcCohorte2025",
+     "source2": "ppcIun2015",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "inaxaplin_apol1",
+     "nom": "Inaxaplin (variantes génétiques APOL1)",
+     "type": "medicament",
+     "force": "faible",
+     "critere": 3,
+     "dose": "Inaxaplin par voie orale",
+     "duree": "13 semaines",
+     "population": "16 porteurs de deux variantes APOL1 avec hyalinose segmentaire et focale (variantes portées surtout par des personnes d'ascendance africaine)",
+     "effet": "Protéinurie − 47,6 % (IC 95 % − 60,0 à − 31,3) chez les 13 patients assidus ; effets indésirables légers ou modérés.",
+     "mecanisme": "Bloque le canal formé par la protéine APOL1 anormale, qui détruit les cellules filtrantes du rein. Premier traitement ciblé sur une cause génétique.",
+     "prudence": "Essai de phase 2a sans groupe placebo ; essai de phase 3 en cours. Nécessite un test génétique.",
+     "resume": "Protéinurie − 48 % (cause génétique)",
+     "source": "inaxaplinNejm",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "acupuncture_rein",
+     "nom": "Acupuncture (médecine chinoise)",
+     "type": "geste",
+     "force": "faible",
+     "critere": 3,
+     "dose": "Points Hegu, Zusanli et Taixi des deux côtés (essai coréen) ; protocoles variés dans la méta-analyse",
+     "duree": "12 semaines",
+     "population": "53 patients (essai) ; 24 essais et 1 494 patients (méta-analyse, bases chinoises comprises)",
+     "effet": "Méta-analyse : créatinine diminuée (différence standardisée − 0,57) et démangeaisons soulagées. Essai : créatinine 1,45 → 1,41 contre 1,67 → 1,65 ; DFG 51,9 → 54,5.",
+     "mecanisme": "Hypothèses : meilleure circulation rénale, moins d'activité sympathique.",
+     "prudence": "Qualité des preuves jugée très basse par les auteurs ; groupes de départ inégaux dans l'essai.",
+     "resume": "Créatinine un peu diminuée (preuves faibles)",
+     "source": "acupunctureMeta",
+     "source2": "acupunctureEcr",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "denervation_renale",
+     "nom": "Dénervation rénale (cardiologie interventionnelle)",
+     "type": "geste",
+     "force": "faible",
+     "critere": 4,
+     "dfg": [
+      15,
+      59
+     ],
+     "dose": "Destruction des nerfs sympathiques des artères rénales par cathéter",
+     "duree": "12 à 24 mois",
+     "population": "Patients aux stades 3-4 avec hypertension résistante (6 médicaments en moyenne) ; 238 patients dans la méta-analyse",
+     "effet": "Avant : DFG − 4,8 par an ; 12 mois après : + 1,5 (étude pilote). Méta-analyse : tension abaissée durablement, DFG stable, albuminurie diminuée.",
+     "mecanisme": "Calme l'hyperactivité des nerfs du rein, moteur de l'hypertension et de la progression.",
+     "prudence": "Études sans groupe témoin ; geste invasif réservé à l'hypertension résistante.",
+     "resume": "Déclin du DFG arrêté (pilote)",
+     "source": "denervationPilote",
+     "source2": "denervationMeta",
+     "profil": {
+      "causes": [
+       "hypertension"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "baricitinib_dkd",
+     "nom": "Baricitinib (inhibiteur des JAK)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "dfg": [
+      25,
+      70
+     ],
+     "dose": "4 mg par jour",
+     "duree": "24 semaines",
+     "population": "129 diabétiques de type 2, DFG moyen 45, albuminurie médiane 820 mg/g",
+     "effet": "Albuminurie − 41 % par rapport au placebo à 24 semaines, effet persistant après l'arrêt ; marqueurs d'inflammation diminués.",
+     "mecanisme": "Bloque la signalisation inflammatoire JAK1/JAK2 dans le rein diabétique.",
+     "prudence": "Anémie chez 32 % (contre 3,7 %) ; effet sur la progression non démontré. Médicament de la polyarthrite.",
+     "resume": "Albuminurie − 41 %",
+     "source": "baricitinibDkd",
+     "profil": {
+      "causes": [
+       "diabete"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "tirzepatide_rein",
+     "nom": "Tirzépatide",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "dose": "5 à 15 mg une fois par semaine",
+     "duree": "72 semaines",
+     "population": "3 477 personnes obèses avec ou sans diabète de type 2 (analyse secondaire de deux essais)",
+     "effet": "Albuminurie − 31 % chez les diabétiques ; − 42 à − 55 % quand elle était déjà élevée. DFG (cystatine C) + 3,2 mL/min chez les non-diabétiques ; pas de baisse du DFG.",
+     "mecanisme": "Double agoniste GLP-1/GIP : poids, glycémie, inflammation.",
+     "prudence": "Analyse a posteriori ; essai rénal dédié en cours. Voir aussi le témoignage National Geographic dans Guéris.",
+     "resume": "Albuminurie − 31 à − 55 %",
+     "source": "tirzepatideRein",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "antiretroviraux_hivan",
+     "nom": "Antirétroviraux (néphropathie du VIH)",
+     "type": "medicament",
+     "force": "moyenne",
+     "critere": 2,
+     "dose": "Traitement antirétroviral standard ; corticoïdes 1 mg/kg ajoutés dans un essai sud-africain",
+     "duree": "Au long cours ; 2 ans dans l'essai",
+     "population": "Personnes vivant avec le VIH et une néphropathie du VIH ; 38 patients sud-africains (essai) ; cohortes de Londres, du Cap et d'Abidjan",
+     "effet": "Les antirétroviraux ont fait passer la néphropathie du VIH d'une évolution vers la dialyse à une survie prolongée. Au Cap, 28 dialysés sur 40 (70 %) ont pu arrêter la dialyse. Corticoïdes ajoutés : DFG + 25 contre + 9 mL/min, mais plus de décès (7 contre 1).",
+     "mecanisme": "Supprime le virus qui infecte les cellules du rein.",
+     "prudence": "Dépister le VIH (et la tuberculose rénale, très fréquente à Abidjan et au Cap) devant toute maladie rénale inexpliquée. Corticoïdes non recommandés en routine.",
+     "resume": "Dialyse arrêtée chez 70 % (cohorte du Cap)",
+     "source": "hivanRevue",
+     "source2": "vihTbAfrique",
+     "profil": {
+      "causes": [
+       "autre"
+      ]
+     },
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "perte_poids_rein",
+     "nom": "Perte de poids sans chirurgie (régime, activité physique, médicaments)",
+     "type": "regime",
+     "force": "faible",
+     "critere": 3,
+     "dose": "Régime, activité physique ou médicaments selon les études",
+     "duree": "7,4 mois en moyenne",
+     "population": "13 études de patients rénaux en surpoids",
+     "effet": "IMC − 3,7 ; protéinurie − 1,31 g/24 h ; tension systolique abaissée ; pas de nouvelle baisse du DFG pendant le suivi. L'exercice de musculation seul améliore force, marche et inflammation mais pas le DFG.",
+     "mecanisme": "Moins de surcharge de filtration et d'inflammation liées à l'obésité.",
+     "prudence": "Petites études courtes.",
+     "resume": "Protéinurie − 1,3 g/24 h",
+     "source": "pertePoidsMeta",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
+    },
+    {
+     "id": "oxygene_hyperbare",
+     "nom": "Oxygène hyperbare (caisson)",
+     "type": "geste",
+     "force": "preclinique",
+     "critere": 2,
+     "dose": "2,5 atmosphères, 60 min, 5 jours par semaine",
+     "duree": "5 semaines",
+     "population": "Rats diabétiques",
+     "effet": "Prévient l'atrophie des tubules et l'excès de TGF-β1 (moteur de la fibrose) dans le rein diabétique.",
+     "mecanisme": "Corrige le manque d'oxygène à l'intérieur du rein.",
+     "prudence": "Animal seulement ; caisson coûteux, contre-indications (oreilles, poumons).",
+     "resume": "Rein protégé chez le rat",
+     "source": "hyperbareRat",
+     "zones": [
+      "kidney_l",
+      "kidney_r"
+     ]
     }
    ],
    "guerison": [
@@ -3954,6 +4241,35 @@
      "a_tester": "Petit essai contre placebo de 6 mois, stades 3-4, en vérifiant d'abord la cause (une vascularite active doit être traitée).",
      "risques": "Interactions avec les anticoagulants (oméga-3, curcuma).",
      "source": "temoignageMayo"
+    },
+    {
+     "id": "h_mrc_foyers_caches",
+     "type": "hypothese",
+     "appui": "faible",
+     "titre": "Éteindre les foyers cachés : soins des gencives + traitement de l'apnée du sommeil + dépistage et traitement des infections (VIH, tuberculose, hépatites)",
+     "objectif": "Retirer les agressions silencieuses qui entretiennent la progression, en plus des médicaments du rein",
+     "composants": [
+      {
+       "nom": "Soins des gencives",
+       "role": "DFG + 10 en 6 mois dans un essai",
+       "ref": "soins_gencives"
+      },
+      {
+       "nom": "PPC si apnée du sommeil",
+       "role": "déclin rénal divisé par 2 (observation)",
+       "ref": "ppc_apnee"
+      },
+      {
+       "nom": "Antirétroviraux si VIH",
+       "role": "néphropathie du VIH stabilisée",
+       "ref": "antiretroviraux_hivan"
+      }
+     ],
+     "raisonnement": "Chaque foyer (infection des gencives, manque d'oxygène nocturne, virus) agit sur le rein par une voie différente (inflammation, hypoxie, infection directe) et passe souvent inaperçu. Les corriger tous relève de disciplines différentes (dentiste, médecin du sommeil, infectiologue) rarement coordonnées autour du rein.",
+     "a_tester": "Bilan systématique (dents, sommeil, sérologies) chez les patients aux stades 2-4, puis comparaison de la pente du DFG entre patients corrigés et non corrigés.",
+     "risques": "Peu de risques propres ; coût du bilan.",
+     "source": "parodonteEcr2026",
+     "source2": "ppcCohorte2025"
     }
    ],
    "profil_patient": {

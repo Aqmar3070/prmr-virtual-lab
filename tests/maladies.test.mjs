@@ -423,3 +423,10 @@ test('Rein, recherche élargie : traditions, thérapies nouvelles et témoignage
  // chaque témoignage porte une analyse critique
  for(const s of mrc.substances.filter(s=>s.id.startsWith('temoignage_')))assert.match(s.prudence,/Analyse PRMR/,s.id);
 });
+
+test('Rein, autres disciplines : dentisterie, sommeil, génétique, acupuncture, cardiologie, infectiologie',async()=>{
+ const {pourTestes,pourPistes,substancesPour}=await import('../src/maladies.mjs');
+ const mrc=registre.maladies.find(m=>m.id==='mrc');const l=substancesPour(mrc,'');
+ for(const id of ['soins_gencives','ppc_apnee','inaxaplin_apol1','acupuncture_rein','denervation_renale','baricitinib_dkd','tirzepatide_rein','antiretroviraux_hivan','perte_poids_rein','oxygene_hyperbare'])assert.ok(pourTestes(l).some(s=>s.id===id),id);
+ assert.ok(pourPistes(mrc,l,'').combinaisons.some(h=>h.id==='h_mrc_foyers_caches'));
+});
